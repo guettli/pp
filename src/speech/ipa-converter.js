@@ -41,7 +41,7 @@ const germanTextToIPA = {
 /**
  * Convert German text to IPA pronunciation
  * @param {string} text - German word or text
- * @returns {string} IPA pronunciation
+ * @returns {Object} Object with ipa and found status
  */
 export function convertTextToIPA(text) {
   // Normalize: lowercase and trim
@@ -54,20 +54,21 @@ export function convertTextToIPA(text) {
   const ipa = germanTextToIPA[cleaned];
 
   if (ipa) {
-    return ipa;
+    return { ipa, found: true, matchedWord: cleaned };
   }
 
   // Try to find the word within the text if it contains multiple words
   const words = cleaned.split(/\s+/);
   for (const word of words) {
     if (germanTextToIPA[word]) {
-      return germanTextToIPA[word];
+      console.log(`Found "${word}" within transcription "${text}"`);
+      return { ipa: germanTextToIPA[word], found: true, matchedWord: word };
     }
   }
 
-  // Return the cleaned text if no match found
-  console.warn(`No IPA found for: "${text}". Returning normalized text.`);
-  return cleaned;
+  // Word not found in vocabulary
+  console.warn(`No IPA found for: "${text}". Word not in vocabulary.`);
+  return { ipa: null, found: false, matchedWord: null };
 }
 
 /**
@@ -77,5 +78,19 @@ export function convertTextToIPA(text) {
  */
 export function isKnownWord(text) {
   const normalized = text.toLowerCase().trim().replace(/[.,!?;:"'-]/g, '');
-  return normalized in germanTextToIPA;
+
+  // Check exact match
+  if (normalized in germanTextToIPA) {
+    return true;
+  }
+
+  // Check if any word in the text is in vocabulary
+  const words = normalized.split(/\s+/);
+  for (const word of words) {
+    if (germanTextToIPA[word]) {
+      return true;
+    }
+  }
+
+  return false;
 }

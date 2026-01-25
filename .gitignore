@@ -8,6 +8,9 @@ pnpm-lock.yaml
 # PanPhon feature export (generated)
 panphon_features.generated.json
 
+# Temporary files
+tmp/
+
 # Build output
 dist/
 

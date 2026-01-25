@@ -30,9 +30,11 @@ export async function loadWhisper(progressCallback) {
   console.log('Starting pipeline initialization...');
 
   try {
+    // Use whisper-small for better multilingual support and accuracy
+    // This model is trained on diverse international voices and provides better phonetic accuracy
     transcriber = await pipeline(
       'automatic-speech-recognition',
-      'Xenova/whisper-tiny',
+      'Xenova/whisper-small',
       {
         progress_callback: (progress) => {
           console.log('Pipeline progress:', progress);
