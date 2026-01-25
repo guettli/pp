@@ -10,10 +10,12 @@ Build on:
   directly in your browser, with no need for a
   server!](https://github.com/huggingface/transformers.js)
 
+Built as static web-site. No server required!
+
 First Steps:
 
-* User enters a word or sentence.
-* The desired phoneme sequence gets computed.
+* Application has a set of well known words and the desired pronounciation.
+* User sees a random word, and the corresponding picture.
 * User records his/her voice.
 * The distance between desired and actual phonemes gets shown.
 
