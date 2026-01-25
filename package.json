@@ -1,0 +1,29 @@
+{
+  "name": "phoneme-party",
+  "version": "0.1.0",
+  "description": "AI-powered pronunciation practice tool for German learners",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "pronunciation",
+    "german",
+    "learning",
+    "speech-recognition"
+  ],
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@10.28.0",
+  "devDependencies": {
+    "vite": "^7.3.1"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.8",
+    "fastest-levenshtein": "^1.0.16",
+    "onnxruntime-web": "^1.23.2"
+  }
+}

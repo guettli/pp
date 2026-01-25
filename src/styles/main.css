@@ -1,0 +1,126 @@
+/**
+ * Custom styles for Phoneme Party
+ */
+
+/* Import Bootstrap */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Global styles */
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+#app {
+  max-width: 800px;
+}
+
+/* Emoji display */
+.emoji-display {
+  font-size: 8rem;
+  line-height: 1;
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Recording pulse animation */
+.pulse {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(255, 193, 7, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 193, 7, 0);
+  }
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card styles */
+.card {
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Button transitions */
+button {
+  transition: all 0.3s ease;
+}
+
+/* Loading spinner customization */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Progress bar customization */
+.progress {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.progress-bar {
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+/* Feedback section animation */
+#feedback-section {
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Header styles */
+header h1 {
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+header .lead {
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+footer {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+footer a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* Responsive emoji size */
+@media (max-width: 576px) {
+  .emoji-display {
+    font-size: 6rem;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+  }
+}

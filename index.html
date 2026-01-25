@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phoneme Party - Pronunciation Practice</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎉</text></svg>">
+
+  <!-- Console interceptor to show all console output in UI -->
+  <script>
+    (function () {
+      const originalLog = console.log;
+      const originalError = console.error;
+      const originalWarn = console.warn;
+      const originalInfo = console.info;
+      const originalFetch = window.fetch;
+
+      function addToConsoleOutput(type, args) {
+        const timestamp = new Date().toLocaleTimeString();
+        const message = Array.from(args).map(arg => {
+          if (typeof arg === 'object') {
+            try {
+              return JSON.stringify(arg, null, 2);
+            } catch (e) {
+              return String(arg);
+            }
+          }
+          return String(arg);
+        }).join(' ');
+
+        const consoleOutput = document.getElementById('console-output');
+        if (consoleOutput) {
+          const prefix = type === 'error' ? '❌ ' : type === 'warn' ? '⚠️ ' : type === 'info' ? 'ℹ️ ' : '▶️ ';
+          consoleOutput.textContent += `${timestamp} ${prefix}${message}\n`;
+          consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+      }
+
+      console.log = function (...args) {
+        originalLog.apply(console, args);
+        addToConsoleOutput('log', args);
+      };
+
+      console.error = function (...args) {
+        originalError.apply(console, args);
+        addToConsoleOutput('error', args);
+      };
+
+      console.warn = function (...args) {
+        originalWarn.apply(console, args);
+        addToConsoleOutput('warn', args);
+      };
+
+      console.info = function (...args) {
+        originalInfo.apply(console, args);
+        addToConsoleOutput('info', args);
+      };
+
+      // Fetch interceptor to log all HTTP requests and responses
+      window.fetch = async function (...args) {
+        const url = args[0];
+        console.log('🌐 FETCH REQUEST:', url);
+
+        try {
+          const response = await originalFetch.apply(this, args);
+
+          // Clone the response so we can read it
+          const clonedResponse = response.clone();
+          const contentType = response.headers.get('content-type');
+
+          console.log('📥 FETCH RESPONSE:', url);
+          console.log('   Status:', response.status, response.statusText);
+          console.log('   Content-Type:', contentType);
+
+          // Read the response body
+          const text = await clonedResponse.text();
+          console.log('   Body (first 1000 chars):', text.substring(0, 1000));
+
+          if (text.startsWith('<')) {
+            console.error('⚠️ WARNING: Response is HTML, not JSON!');
+            console.error('   Full HTML response:', text);
+          }
+
+          return response;
+        } catch (error) {
+          console.error('❌ FETCH ERROR:', url, error);
+          throw error;
+        }
+      };
+
+      // Add clear button functionality
+      document.addEventListener('DOMContentLoaded', function () {
+        const clearBtn = document.getElementById('clear-console');
+        if (clearBtn) {
+          clearBtn.addEventListener('click', function () {
+            const consoleOutput = document.getElementById('console-output');
+            if (consoleOutput) {
+              consoleOutput.textContent = '';
+            }
+          });
+        }
+      });
+    })();
+  </script>
+
+  <!-- Load transformers.js v3 from npm (unreleased) -->
+  <script type="module">
+
+    import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.8.1';
+
+    // Configure environment for remote model loading
+    env.allowLocalModels = false;
+    env.useBrowserCache = true;
+    env.backends.onnx.wasm.numThreads = 1;
+
+    console.log('Transformers.js loaded from CDN');
+    console.log('Environment config:', env);
+
+    // Make available globally
+    window.transformers = { pipeline, env };
+  </script>
+</head>
+
+<body>
+  <div id="app" class="container py-5">
+    <!-- Console Output -->
+    <div class="card mb-4 bg-dark text-light">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <strong>Console Output</strong>
+        <button id="clear-console" class="btn btn-sm btn-outline-light">Clear</button>
+      </div>
+      <div class="card-body">
+        <pre id="console-output"
+          style="max-height: 300px; overflow-y: auto; margin: 0; font-size: 0.85rem; white-space: pre-wrap;"></pre>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="text-center mb-5">
+      <h1 class="display-4 fw-bold">🎉 Phoneme Party</h1>
+      <p class="lead text-muted">Practice German pronunciation with AI</p>
+    </header>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="card shadow-sm mb-4">
+      <div class="card-body text-center py-5">
+        <div class="mb-3">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        <h5 id="loading-status" class="mb-3">Initializing...</h5>
+        <div class="progress" style="height: 25px;">
+          <div id="loading-progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+            style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            0%
+          </div>
+        </div>
+        <p class="text-muted mt-3 small">
+          Downloading AI model (~80MB). This may take a moment on first load.
+        </p>
+      </div>
+    </div>
+
+    <!-- Main Content (hidden until loaded) -->
+    <div id="main-content" style="display: none;">
+      <!-- Word Display Card -->
+      <div class="card shadow-lg mb-4">
+        <div class="card-body text-center py-5">
+          <div id="word-emoji" class="emoji-display mb-3">🐱</div>
+          <h2 id="word-text" class="display-5 fw-bold mb-2">Katze</h2>
+          <p id="word-ipa" class="text-muted fs-5 mb-0">/ˈkat͡sə/</p>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="d-grid gap-3 mb-4">
+        <button id="record-btn" class="btn btn-lg btn-danger" disabled>
+          <span id="record-icon">🎤</span>
+          <span id="record-text">Record Your Voice</span>
+        </button>
+        <button id="next-word-btn" class="btn btn-lg btn-outline-primary">
+          Next Word →
+        </button>
+      </div>
+
+      <!-- Feedback Section (hidden initially) -->
+      <div id="feedback-section" style="display: none;">
+        <div class="card shadow-sm">
+          <div class="card-header">
+            <h5 class="mb-0">Your Pronunciation</h5>
+          </div>
+          <div class="card-body">
+            <div id="feedback-alert" class="alert mb-3" role="alert">
+              <!-- Dynamic content will be inserted here -->
+            </div>
+
+            <div class="row text-center mb-3">
+              <div class="col-md-6 mb-3">
+                <strong>Target Word:</strong>
+                <p id="feedback-target" class="mb-0"></p>
+              </div>
+              <div class="col-md-6 mb-3">
+                <strong>You Said:</strong>
+                <p id="feedback-transcription" class="mb-0"></p>
+              </div>
+            </div>
+
+            <div class="row text-center">
+              <div class="col-md-6 mb-3">
+                <strong>Target IPA:</strong>
+                <p id="feedback-target-ipa" class="text-muted mb-0"></p>
+              </div>
+              <div class="col-md-6 mb-3">
+                <strong>Your IPA:</strong>
+                <p id="feedback-actual-ipa" class="text-muted mb-0"></p>
+              </div>
+            </div>
+
+            <div class="text-center mt-4">
+              <h4 id="feedback-score" class="mb-3"></h4>
+              <p id="feedback-message" class="lead"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tips -->
+      <div class="alert alert-info mt-4" role="alert">
+        <strong>Tips:</strong> Speak clearly in a quiet environment. Click "Record" to start, click again to stop.
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center mt-5 text-muted">
+      <small>
+        Powered by <a href="https://github.com/huggingface/transformers.js" target="_blank">Transformers.js</a>
+        | All processing happens locally in your browser
+      </small>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
