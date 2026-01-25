@@ -5,6 +5,8 @@
 # Node.js
 node_modules/
 pnpm-lock.yaml
+# PanPhon feature export (generated)
+panphon_features.generated.json
 
 # Build output
 dist/
