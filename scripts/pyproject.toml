@@ -1,0 +1,12 @@
+[project]
+name = "panphon-exporter"
+version = "0.1.0"
+description = "Export PanPhon IPA feature table to JSON for browser use."
+requires-python = ">=3.8"
+
+[project.dependencies]
+panphon = "*"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
