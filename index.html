@@ -59,45 +59,117 @@
       };
 
       // Fetch interceptor to log all HTTP requests and responses
+      const requestMap = new Map();
       window.fetch = async function (...args) {
-        const url = args[0];
+        const url = typeof args[0] === 'string' ? args[0] : args[0]?.url || 'unknown';
+        const requestId = Date.now() + Math.random();
+        const startTime = Date.now();
+
+        requestMap.set(requestId, { url, startTime });
+
         console.log('🌐 FETCH REQUEST:', url);
+        console.log('   Request ID:', requestId);
+        console.log('   Started at:', new Date().toLocaleTimeString());
 
         try {
           const response = await originalFetch.apply(this, args);
+          const duration = Date.now() - startTime;
 
           // Clone the response so we can read it
           const clonedResponse = response.clone();
           const contentType = response.headers.get('content-type');
+          const contentLength = response.headers.get('content-length');
+          const cacheControl = response.headers.get('cache-control');
 
           console.log('📥 FETCH RESPONSE:', url);
+          console.log('   Request ID:', requestId);
           console.log('   Status:', response.status, response.statusText);
+          console.log('   Duration:', duration, 'ms');
           console.log('   Content-Type:', contentType);
+          console.log('   Content-Length:', contentLength, 'bytes');
+          console.log('   Cache-Control:', cacheControl);
+          console.log('   From cache:', response.headers.get('x-cache') || 'unknown');
 
-          // Read the response body
-          const text = await clonedResponse.text();
-          console.log('   Body (first 1000 chars):', text.substring(0, 1000));
+          // Only read text for small responses or when content type suggests it
+          if (contentLength && parseInt(contentLength) < 100000 || contentType?.includes('json') || contentType?.includes('text') || contentType?.includes('html')) {
+            try {
+              const text = await clonedResponse.text();
 
-          if (text.startsWith('<')) {
-            console.error('⚠️ WARNING: Response is HTML, not JSON!');
-            console.error('   Full HTML response:', text);
+              if (text.startsWith('<') || text.startsWith('<!DOCTYPE')) {
+                console.error('🚨 CRITICAL: Expected JSON/binary but got HTML!');
+                console.error('   URL:', url);
+                console.error('   This usually means a 404 or server error');
+                console.error('   Full response:');
+                console.error(text);
+                console.error('   ');
+              } else {
+                console.log('   ✅ Response looks valid (not HTML)');
+                if (text.length < 500) {
+                  console.log('   Content:', text);
+                } else {
+                  console.log('   Preview (first 200 chars):', text.substring(0, 200));
+                }
+              }
+            } catch (e) {
+              console.log('   (Could not read response body:', e.message, ')');
+            }
+          } else {
+            console.log('   ✅ Binary/large file, not reading body');
           }
 
+          requestMap.delete(requestId);
           return response;
         } catch (error) {
-          console.error('❌ FETCH ERROR:', url, error);
+          const duration = Date.now() - startTime;
+          console.error('❌ FETCH ERROR:', url);
+          console.error('   Request ID:', requestId);
+          console.error('   Duration:', duration, 'ms');
+          console.error('   Error:', error.message);
+          requestMap.delete(requestId);
           throw error;
         }
       };
 
+      // Log pending requests periodically
+      setInterval(() => {
+        if (requestMap.size > 0) {
+          console.log('📊 Pending requests:', requestMap.size);
+          for (const [id, req] of requestMap.entries()) {
+            const elapsed = Date.now() - req.startTime;
+            console.log(`   - ${req.url} (${elapsed}ms elapsed)`);
+          }
+        }
+      }, 10000); // Every 10 seconds
+
       // Add clear button functionality
       document.addEventListener('DOMContentLoaded', function () {
         const clearBtn = document.getElementById('clear-console');
-        if (clearBtn) {
+        const copyBtn = document.getElementById('copy-console');
+        const consoleOutput = document.getElementById('console-output');
+
+        if (clearBtn && consoleOutput) {
           clearBtn.addEventListener('click', function () {
-            const consoleOutput = document.getElementById('console-output');
-            if (consoleOutput) {
-              consoleOutput.textContent = '';
+            consoleOutput.textContent = '';
+          });
+        }
+
+        if (copyBtn && consoleOutput) {
+          copyBtn.addEventListener('click', async function () {
+            const text = consoleOutput.textContent;
+            try {
+              await navigator.clipboard.writeText(text);
+              // Visual feedback
+              const originalText = copyBtn.textContent;
+              copyBtn.textContent = '✓ Copied!';
+              setTimeout(() => {
+                copyBtn.textContent = originalText;
+              }, 2000);
+            } catch (err) {
+              console.error('Failed to copy:', err);
+              copyBtn.textContent = '✗ Failed';
+              setTimeout(() => {
+                copyBtn.textContent = '📋 Copy';
+              }, 2000);
             }
           });
         }
@@ -129,7 +201,14 @@
     <div class="card mb-4 bg-dark text-light">
       <div class="card-header d-flex justify-content-between align-items-center">
         <strong>Console Output</strong>
-        <button id="clear-console" class="btn btn-sm btn-outline-light">Clear</button>
+        <div class="btn-group btn-group-sm">
+          <button id="copy-console" class="btn btn-outline-light" title="Copy to clipboard">
+            📋 Copy
+          </button>
+          <button id="clear-console" class="btn btn-outline-light" title="Clear console">
+            Clear
+          </button>
+        </div>
       </div>
       <div class="card-body">
         <pre id="console-output"

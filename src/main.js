@@ -50,17 +50,28 @@ async function init() {
     // Show loading overlay
     showLoading();
 
+    // Start a heartbeat to show the page is still alive
+    let heartbeatCount = 0;
+    const heartbeat = setInterval(() => {
+      heartbeatCount++;
+      console.log(`💓 Heartbeat ${heartbeatCount} - Still loading... (${heartbeatCount * 5}s elapsed)`);
+    }, 5000);
+
     // Initialize audio recorder
     setState({ recorder: new AudioRecorder() });
     console.log('Audio recorder initialized');
 
     // Load Whisper model
     console.log('Starting to load Whisper model...');
+    console.log('⏱️ This may take 30-60 seconds for first load (downloading ~40MB)');
     updateLoadingProgress({ status: 'downloading', progress: 0 });
 
     const transcriber = await loadWhisper((progress) => {
       updateLoadingProgress(progress);
     });
+
+    // Stop heartbeat
+    clearInterval(heartbeat);
 
     console.log('Whisper model loaded successfully');
     setState({ transcriber, isModelLoaded: true });

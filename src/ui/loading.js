@@ -14,24 +14,40 @@ export function updateLoadingProgress(progress) {
 
   if (!progress) return;
 
-  // Update status message
+  // Update status message with detailed information
   if (statusElement) {
-    if (progress.status === 'downloading') {
-      const percent = progress.progress ? Math.round(progress.progress) : 0;
-      statusElement.textContent = `Downloading model... ${percent}%`;
-    } else if (progress.status === 'loading') {
-      statusElement.textContent = 'Loading model...';
-    } else if (progress.status === 'ready') {
-      statusElement.textContent = 'Ready!';
-    } else if (progress.status === 'initiate') {
-      statusElement.textContent = 'Starting download...';
+    if (progress.status === 'initiate') {
+      const fileName = progress.file || 'unknown';
+      statusElement.textContent = `🔄 Initiating download: ${fileName}`;
+      console.log(`🔄 Initiating download: ${fileName}`);
     } else if (progress.status === 'download') {
       const percent = progress.progress ? Math.round(progress.progress) : 0;
-      statusElement.textContent = `Downloading ${progress.file || 'model'}... ${percent}%`;
+      const fileName = progress.file || 'model';
+      statusElement.textContent = `⬇️ Downloading ${fileName}... ${percent}%`;
+      console.log(`⬇️ Downloading ${fileName}: ${percent}%`);
     } else if (progress.status === 'done') {
-      statusElement.textContent = `Downloaded ${progress.file || 'file'}`;
+      const fileName = progress.file || 'file';
+      statusElement.textContent = `✅ Downloaded ${fileName}`;
+      console.log(`✅ Downloaded ${fileName}`);
+    } else if (progress.status === 'progress') {
+      const percent = progress.progress ? Math.round(progress.progress) : 0;
+      const fileName = progress.file || 'model';
+      statusElement.textContent = `📥 Loading ${fileName}... ${percent}%`;
+      console.log(`📥 Loading ${fileName}: ${percent}%`);
+    } else if (progress.status === 'downloading') {
+      const percent = progress.progress ? Math.round(progress.progress) : 0;
+      statusElement.textContent = `⬇️ Downloading model... ${percent}%`;
+      console.log(`⬇️ Downloading: ${percent}%`);
+    } else if (progress.status === 'loading') {
+      statusElement.textContent = '📂 Loading model into memory...';
+      console.log('📂 Loading model into memory...');
+    } else if (progress.status === 'ready') {
+      statusElement.textContent = '✨ Ready!';
+      console.log('✨ Model ready!');
     } else {
-      statusElement.textContent = progress.status || 'Initializing...';
+      const msg = progress.status || 'Initializing...';
+      statusElement.textContent = `⏳ ${msg}`;
+      console.log(`⏳ ${msg}`);
     }
   }
 
