@@ -6,6 +6,14 @@
 // Import styles
 import './styles/main.css';
 
+import {
+  getLanguage,
+  initI18n,
+  onLanguageChange,
+  setLanguage,
+  t
+} from './i18n.js';
+
 // Import state management
 import { resetFeedback, setState, state } from './state.js';
 
@@ -51,6 +59,8 @@ let recordingTimer = null;
 async function init() {
   try {
     console.log('Initializing Phoneme Party...');
+
+    initI18n();
 
     // Show loading overlay
     showLoading();
@@ -104,6 +114,7 @@ async function init() {
 function setupEventListeners() {
   const recordBtn = document.getElementById('record-btn');
   const nextWordBtn = document.getElementById('next-word-btn');
+  const languageSelect = document.getElementById('language-select');
 
   if (recordBtn) {
     // Use mousedown/mouseup for press-and-hold recording
@@ -125,6 +136,19 @@ function setupEventListeners() {
 
   if (nextWordBtn) {
     nextWordBtn.addEventListener('click', nextWord);
+  }
+
+  if (languageSelect) {
+    languageSelect.value = getLanguage();
+    languageSelect.addEventListener('change', (event) => {
+      setLanguage(event.target.value);
+    });
+
+    onLanguageChange((language) => {
+      languageSelect.value = language;
+      resetRecordButton();
+      nextWord();
+    });
   }
 }
 
@@ -213,12 +237,13 @@ async function handleRecordStop() {
       showProcessing(30);
 
       // Transcribe using Whisper
-      const transcription = await transcribeAudio(audioData);
+      const language = getLanguage();
+      const transcription = await transcribeAudio(audioData, language);
       console.log('Transcription:', transcription);
       showProcessing(70);
 
       // Convert transcription to IPA
-      const ipaResult = convertTextToIPA(transcription);
+      const ipaResult = convertTextToIPA(transcription, language);
       console.log('IPA conversion result:', ipaResult);
 
       if (!ipaResult.found) {
@@ -229,10 +254,13 @@ async function handleRecordStop() {
 
         // Create a special "not found" score
         const score = {
-          grade: 'Word Not Recognized',
+          grade: t('feedback.word_not_recognized'),
           color: 'info',
           bootstrapClass: 'alert-info',
-          message: `The system heard "${transcription}" but this word is not in the current vocabulary. Try saying the target word "${state.currentWord.word}" more clearly.`,
+          message: t('feedback.word_not_recognized_message', {
+            heard: transcription,
+            target: state.currentWord.word
+          }),
           similarity: 0,
           similarityPercent: 0,
           distance: -1,
@@ -302,7 +330,7 @@ async function handleRecordStop() {
  * Load next random word
  */
 function nextWord() {
-  const word = getRandomWord();
+  const word = getRandomWord(getLanguage());
   setState({ currentWord: word });
   resetFeedback();
 

@@ -2,6 +2,8 @@
  * Loading overlay and progress display
  */
 
+import { t } from '../i18n.js';
+
 /**
  * Update loading progress
  * @param {Object} progress - Progress object from transformers.js
@@ -18,36 +20,36 @@ export function updateLoadingProgress(progress) {
   if (statusElement) {
     if (progress.status === 'initiate') {
       const fileName = progress.file || 'unknown';
-      statusElement.textContent = `🔄 Initiating download: ${fileName}`;
-      console.log(`🔄 Initiating download: ${fileName}`);
+      statusElement.textContent = t('loading.status.initiate', { file: fileName });
+      console.log(statusElement.textContent);
     } else if (progress.status === 'download') {
       const percent = progress.progress ? Math.round(progress.progress) : 0;
       const fileName = progress.file || 'model';
-      statusElement.textContent = `⬇️ Downloading ${fileName}... ${percent}%`;
-      console.log(`⬇️ Downloading ${fileName}: ${percent}%`);
+      statusElement.textContent = t('loading.status.download', { file: fileName, percent });
+      console.log(statusElement.textContent);
     } else if (progress.status === 'done') {
       const fileName = progress.file || 'file';
-      statusElement.textContent = `✅ Downloaded ${fileName}`;
-      console.log(`✅ Downloaded ${fileName}`);
+      statusElement.textContent = t('loading.status.done', { file: fileName });
+      console.log(statusElement.textContent);
     } else if (progress.status === 'progress') {
       const percent = progress.progress ? Math.round(progress.progress) : 0;
       const fileName = progress.file || 'model';
-      statusElement.textContent = `📥 Loading ${fileName}... ${percent}%`;
-      console.log(`📥 Loading ${fileName}: ${percent}%`);
+      statusElement.textContent = t('loading.status.progress', { file: fileName, percent });
+      console.log(statusElement.textContent);
     } else if (progress.status === 'downloading') {
       const percent = progress.progress ? Math.round(progress.progress) : 0;
-      statusElement.textContent = `⬇️ Downloading model... ${percent}%`;
-      console.log(`⬇️ Downloading: ${percent}%`);
+      statusElement.textContent = t('loading.status.downloading_model', { percent });
+      console.log(statusElement.textContent);
     } else if (progress.status === 'loading') {
-      statusElement.textContent = '📂 Loading model into memory...';
-      console.log('📂 Loading model into memory...');
+      statusElement.textContent = t('loading.status.loading_model');
+      console.log(statusElement.textContent);
     } else if (progress.status === 'ready') {
-      statusElement.textContent = '✨ Ready!';
-      console.log('✨ Model ready!');
+      statusElement.textContent = t('loading.status.ready');
+      console.log(statusElement.textContent);
     } else {
-      const msg = progress.status || 'Initializing...';
-      statusElement.textContent = `⏳ ${msg}`;
-      console.log(`⏳ ${msg}`);
+      const msg = progress.status || t('loading.initializing');
+      statusElement.textContent = t('loading.status.fallback', { status: msg });
+      console.log(statusElement.textContent);
     }
   }
 
@@ -89,8 +91,8 @@ export function hideLoading() {
 export function showError(error) {
   const overlay = document.getElementById('loading-overlay');
   if (overlay) {
-    const errorMessage = error.message || 'Unknown error';
-    const errorStack = error.stack || 'No stack trace available';
+    const errorMessage = error.message || t('errors.unknown');
+    const errorStack = error.stack || t('errors.no_stack');
 
     overlay.innerHTML = `
       <div class="card-body py-5">
@@ -100,17 +102,17 @@ export function showError(error) {
             <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
           </svg>
         </div>
-        <h5 class="text-center mb-3">Error</h5>
+        <h5 class="text-center mb-3">${t('errors.title')}</h5>
         <div class="alert alert-danger" role="alert">
-          <strong>Message:</strong> ${errorMessage}
+          <strong>${t('errors.message_label')}</strong> ${errorMessage}
         </div>
         <details class="mb-3">
-          <summary class="btn btn-sm btn-outline-secondary">Show Full Error Details</summary>
+          <summary class="btn btn-sm btn-outline-secondary">${t('errors.show_details')}</summary>
           <pre class="mt-2 p-3 bg-light border rounded text-start" style="overflow-x: auto; font-size: 0.85rem;">${errorStack}</pre>
         </details>
         <div class="text-center">
           <button class="btn btn-primary" onclick="location.reload()">
-            Reload Page
+            ${t('errors.reload')}
           </button>
         </div>
       </div>
@@ -126,8 +128,8 @@ export function showInlineError(error) {
   const feedbackSection = document.getElementById('feedback-section');
   if (!feedbackSection) return;
 
-  const errorMessage = error.message || 'Unknown error';
-  const errorStack = error.stack || 'No stack trace available';
+  const errorMessage = error.message || t('errors.unknown');
+  const errorStack = error.stack || t('errors.no_stack');
 
   feedbackSection.style.display = 'block';
   feedbackSection.innerHTML = `
@@ -136,11 +138,11 @@ export function showInlineError(error) {
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-circle-fill me-2" viewBox="0 0 16 16">
           <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
         </svg>
-        Error
+        ${t('errors.title')}
       </h5>
-      <p><strong>Message:</strong> ${errorMessage}</p>
+      <p><strong>${t('errors.message_label')}</strong> ${errorMessage}</p>
       <details>
-        <summary class="btn btn-sm btn-outline-danger">Show Full Error Details</summary>
+        <summary class="btn btn-sm btn-outline-danger">${t('errors.show_details')}</summary>
         <pre class="mt-2 p-2 bg-light border rounded" style="overflow-x: auto; font-size: 0.8rem; max-height: 300px;">${errorStack}</pre>
       </details>
     </div>

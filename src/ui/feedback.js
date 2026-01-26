@@ -2,6 +2,8 @@
  * Feedback display component
  */
 
+import { t } from '../i18n.js';
+
 /**
  * Display pronunciation feedback with phoneme-level analysis
  * @param {Object} targetWord - Target word object
@@ -30,14 +32,14 @@ export function displayFeedback(targetWord, transcription, actualIPA, score) {
 
     // Only show phoneme analysis if word was recognized
     if (!score.notFound && score.phonemeComparison && score.phonemeComparison.length > 0) {
-      phonemeDetails = '<div class="mt-2 small"><strong>Phoneme Analysis:</strong><br>';
+      phonemeDetails = `<div class="mt-2 small"><strong>${t('feedback.phoneme_analysis')}</strong><br>`;
       phonemeDetails += '<div class="d-flex flex-wrap gap-2 mt-1">';
 
       score.phonemeComparison.forEach((comp, idx) => {
         const matchClass = comp.match ? 'bg-success' : 'bg-warning';
         const matchIcon = comp.match ? '✓' : '~';
         phonemeDetails += `
-          <span class="badge ${matchClass} text-white" title="Distance: ${comp.distance.toFixed(2)}">
+          <span class="badge ${matchClass} text-white" title="${t('feedback.distance')}: ${comp.distance.toFixed(2)}">
             ${matchIcon} [${comp.target}] → [${comp.actual}]
           </span>
         `;
@@ -49,7 +51,7 @@ export function displayFeedback(targetWord, transcription, actualIPA, score) {
     // Show similarity only if word was recognized
     const similarityText = score.notFound
       ? ''
-      : `<p class="mb-0">Phoneme Similarity: <strong>${score.similarityPercent}%</strong></p>`;
+      : `<p class="mb-0">${t('feedback.phoneme_similarity')} <strong>${score.similarityPercent}%</strong></p>`;
 
     alert.innerHTML = `
       <h4 class="alert-heading">${score.grade}</h4>
@@ -61,7 +63,7 @@ export function displayFeedback(targetWord, transcription, actualIPA, score) {
   // Update content
   if (targetElement) targetElement.textContent = targetWord.word;
   if (transcriptionElement) {
-    transcriptionElement.textContent = transcription || '(No speech detected)';
+    transcriptionElement.textContent = transcription || t('feedback.no_speech_detected');
   }
   if (targetIPAElement) {
     // Show phonemes if available
@@ -74,7 +76,7 @@ export function displayFeedback(targetWord, transcription, actualIPA, score) {
   if (actualIPAElement) {
     // Show phonemes if available, or "Not recognized" if word not found
     if (score.notFound) {
-      actualIPAElement.textContent = '(Word not in vocabulary)';
+      actualIPAElement.textContent = t('feedback.word_not_in_vocab');
     } else if (score.actualPhonemes && score.actualPhonemes.length > 0) {
       actualIPAElement.textContent = actualIPA
         ? `${actualIPA} [${score.actualPhonemes.join(' ')}]`

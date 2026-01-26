@@ -2,6 +2,8 @@
  * Recording UI controls
  */
 
+import { t } from '../i18n.js';
+
 /**
  * Update record button to show recording state
  * @param {boolean} isRecording - Whether currently recording
@@ -19,12 +21,12 @@ export function updateRecordButton(isRecording, duration = 0) {
     button.classList.add('btn-warning', 'pulse');
     if (icon) icon.textContent = '🎤';
     const seconds = (duration / 1000).toFixed(1);
-    if (text) text.textContent = `Recording... ${seconds}s`;
+    if (text) text.textContent = t('record.recording', { seconds });
   } else {
     button.classList.remove('btn-warning', 'pulse');
     button.classList.add('btn-danger');
     if (icon) icon.textContent = '🎤';
-    if (text) text.textContent = 'Hold to Record';
+    if (text) text.textContent = t('record.hold');
   }
 }
 
@@ -54,9 +56,9 @@ export function showProcessing(progress = 0) {
   if (icon) icon.textContent = '⏳';
 
   if (progress === 0) {
-    if (text) text.textContent = 'Processing...';
+    if (text) text.textContent = t('record.processing_plain');
   } else {
-    if (text) text.textContent = `Processing... ${Math.round(progress)}%`;
+    if (text) text.textContent = t('record.processing', { percent: Math.round(progress) });
   }
 
   // Show progress bar if available
@@ -93,7 +95,7 @@ export function resetRecordButton() {
     button.classList.add('btn-danger');
   }
   if (icon) icon.textContent = '🎤';
-  if (text) text.textContent = 'Hold to Record';
+  if (text) text.textContent = t('record.hold');
 
   hideProcessingProgress();
 }
@@ -106,9 +108,9 @@ export function showRecordingTooShortError() {
   alert.className = 'alert alert-info alert-dismissible fade show mt-3';
   alert.role = 'alert';
   alert.innerHTML = `
-    <strong>Recording too short!</strong>
-    <p class="mb-0 mt-1">Please hold down the button while speaking to record your pronunciation.</p>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <strong>${t('record.too_short_title')}</strong>
+    <p class="mb-0 mt-1">${t('record.too_short_body')}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="${t('buttons.close')}"></button>
   `;
 
   const mainContent = document.getElementById('main-content');

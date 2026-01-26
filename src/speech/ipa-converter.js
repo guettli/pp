@@ -1,9 +1,8 @@
 /**
- * Text to IPA conversion for German words
- * Uses lookup table for the 30 words in our vocabulary
+ * Text to IPA conversion for known words
+ * Uses lookup tables for the vocabulary lists
  */
 
-// Map transcribed German text to IPA pronunciation
 const germanTextToIPA = {
   'katze': 'ˈkat͡sə',
   'hund': 'hʊnt',
@@ -38,31 +37,79 @@ const germanTextToIPA = {
   'fuss': 'fuːs'  // Alternative spelling
 };
 
+const englishTextToIPA = {
+  'cat': 'kæt',
+  'dog': 'dɔɡ',
+  'house': 'haʊs',
+  'tree': 'triː',
+  'flower': 'ˈflaʊər',
+  'sun': 'sʌn',
+  'moon': 'muːn',
+  'star': 'stɑr',
+  'car': 'kɑr',
+  'ball': 'bɔl',
+  'book': 'bʊk',
+  'apple': 'ˈæpəl',
+  'banana': 'bəˈnænə',
+  'bread': 'brɛd',
+  'fish': 'fɪʃ',
+  'bird': 'bɝd',
+  'butterfly': 'ˈbʌtərflaɪ',
+  'ship': 'ʃɪp',
+  'airplane': 'ˈɛrpleɪn',
+  'aeroplane': 'ˈɛrpleɪn',
+  'train': 'treɪn',
+  'bicycle': 'ˈbaɪsɪkəl',
+  'bike': 'baɪk',
+  'door': 'dɔr',
+  'window': 'ˈwɪndoʊ',
+  'table': 'ˈteɪbəl',
+  'bed': 'bɛd',
+  'clock': 'klɑk',
+  'key': 'kiː',
+  'heart': 'hɑrt',
+  'hand': 'hænd',
+  'foot': 'fʊt'
+};
+
+function getMapForLanguage(language) {
+  return language === 'de' ? germanTextToIPA : englishTextToIPA;
+}
+
 /**
- * Convert German text to IPA pronunciation
- * @param {string} text - German word or text
+ * Convert transcribed text to IPA pronunciation
+ * @param {string} text - Word or text
+ * @param {string} language - Language code ("de" or "en")
  * @returns {Object} Object with ipa and found status
  */
-export function convertTextToIPA(text) {
+export function convertTextToIPA(text, language = 'de') {
   // Normalize: lowercase and trim
   const normalized = text.toLowerCase().trim();
 
   // Remove punctuation
   const cleaned = normalized.replace(/[.,!?;:"'-]/g, '');
 
+  const map = getMapForLanguage(language);
+
   // Look up in dictionary
-  const ipa = germanTextToIPA[cleaned];
+  const ipa = map[cleaned];
 
   if (ipa) {
     return { ipa, found: true, matchedWord: cleaned };
   }
 
+  // Try compact form for multi-word transcripts (e.g., "air plane")
+  const compact = cleaned.replace(/\s+/g, '');
+  if (compact && map[compact]) {
+    return { ipa: map[compact], found: true, matchedWord: compact };
+  }
+
   // Try to find the word within the text if it contains multiple words
   const words = cleaned.split(/\s+/);
   for (const word of words) {
-    if (germanTextToIPA[word]) {
+    if (map[word]) {
       console.log(`Found "${word}" within transcription "${text}"`);
-      return { ipa: germanTextToIPA[word], found: true, matchedWord: word };
+      return { ipa: map[word], found: true, matchedWord: word };
     }
   }
 
@@ -73,21 +120,28 @@ export function convertTextToIPA(text) {
 
 /**
  * Check if a word is in our vocabulary
- * @param {string} text - German word
+ * @param {string} text - Word
+ * @param {string} language - Language code ("de" or "en")
  * @returns {boolean}
  */
-export function isKnownWord(text) {
+export function isKnownWord(text, language = 'de') {
   const normalized = text.toLowerCase().trim().replace(/[.,!?;:"'-]/g, '');
+  const map = getMapForLanguage(language);
 
   // Check exact match
-  if (normalized in germanTextToIPA) {
+  if (normalized in map) {
+    return true;
+  }
+
+  const compact = normalized.replace(/\s+/g, '');
+  if (compact in map) {
     return true;
   }
 
   // Check if any word in the text is in vocabulary
   const words = normalized.split(/\s+/);
   for (const word of words) {
-    if (germanTextToIPA[word]) {
+    if (map[word]) {
       return true;
     }
   }

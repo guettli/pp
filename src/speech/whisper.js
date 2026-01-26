@@ -95,17 +95,19 @@ export async function loadWhisper(progressCallback) {
 }
 
 /**
- * Transcribe audio to German text
+ * Transcribe audio to text
  * @param {Float32Array} audioData - Preprocessed audio data
+ * @param {string} language - Language code ("de" or "en")
  * @returns {Promise<string>} Transcribed text
  */
-export async function transcribeAudio(audioData) {
+export async function transcribeAudio(audioData, language = 'de') {
   if (!transcriber) {
     throw new Error('Model not loaded. Please wait for initialization.');
   }
 
+  const whisperLanguage = language === 'de' ? 'german' : 'english';
   const result = await transcriber(audioData, {
-    language: 'german',
+    language: whisperLanguage,
     task: 'transcribe',
     return_timestamps: false,  // We only need text for MVP
     chunk_length_s: 30,

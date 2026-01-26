@@ -1,0 +1,4 @@
+- join python export files.
+- show progress bar while processing.
+- use webGPU, if available.
+- show console at bottom, show it collapsed by default.
