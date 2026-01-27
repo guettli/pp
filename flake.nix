@@ -29,12 +29,16 @@
           shellHook = ''
             # Create and activate virtual environment if it doesn't exist
             if [ ! -d .venv ]; then
+              echo "Creating virtual environment..."
               python -m venv .venv
+              source .venv/bin/activate
+              echo "Installing project dependencies with CPU-only PyTorch..."
+              pip install -e . --extra-index-url https://download.pytorch.org/whl/cpu
+            else
+              source .venv/bin/activate
             fi
-            source .venv/bin/activate
 
-            # Install project dependencies
-            pip install -e .
+            # To manually reinstall dependencies, run: pip install -e . --extra-index-url https://download.pytorch.org/whl/cpu
           '';
         };
       }
