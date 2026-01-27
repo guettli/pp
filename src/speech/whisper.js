@@ -41,19 +41,22 @@ export async function loadWhisper(progressCallback) {
   console.log('Starting pipeline initialization...');
 
   try {
-    // Use whisper-tiny for faster in-browser ASR
+    // Use wavLM+ model with fp16 for all languages
+    // Model: microsoft/wavlm-plus-base-sd (or latest available)
+    // See: https://huggingface.co/microsoft/wavlm-plus-base-sd
     transcriber = await pipeline(
       'automatic-speech-recognition',
-      'Xenova/whisper-tiny',
+      'microsoft/wavlm-plus-base-sd',
       {
         progress_callback: (progress) => {
           console.log('Pipeline progress:', progress);
           progressCallback(progress);
-        }
+        },
+        dtype: 'float16', // Enable fp16
       }
     );
 
-    console.log('Pipeline initialized successfully');
+    console.log('Pipeline initialized successfully (wavLM+ fp16)');
     return transcriber;
   } catch (error) {
     console.error('🚨 PIPELINE LOADING FAILED 🚨');

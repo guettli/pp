@@ -8,11 +8,21 @@ pnpm-lock.yaml
 # PanPhon feature export (generated)
 panphon_features.generated.json
 
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.Python
+
 # Temporary files
 tmp/
 
 # Build output
 dist/
+build/
 
 # Playwright
 test-results/

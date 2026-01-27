@@ -1,11 +1,14 @@
 [project]
-name = "panphon-exporter"
+name = "phoneme-party"
 version = "0.1.0"
-description = "Export PanPhon IPA feature table to JSON for browser use."
+description = "Learn speaking clearly"
 requires-python = ">=3.8"
-
-[project.dependencies]
-panphon = "*"
+dependencies = [
+    "panphon",
+    "transformers",
+    "torch",
+    "onnx",
+]
 
 [build-system]
 requires = ["setuptools>=61.0"]
