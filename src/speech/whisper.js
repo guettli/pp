@@ -4,6 +4,9 @@
 
 let transcriber = null;
 
+export const WHISPER_CHUNK_LENGTH_S = 30;
+export const WHISPER_STRIDE_LENGTH_S = 5;
+
 /**
  * Load Whisper model for German speech recognition
  * @param {Function} progressCallback - Callback for progress updates
@@ -19,6 +22,13 @@ export async function loadWhisper(progressCallback) {
   console.log('Transformers.js available, configuring environment...');
   const { pipeline, env } = window.transformers;
   env.allowLocalModels = false;
+  const webgpuAvailable = typeof navigator !== 'undefined' && !!navigator.gpu;
+  if (env.backends?.onnx) {
+    env.backends.onnx.preferredBackend = webgpuAvailable ? 'webgpu' : 'wasm';
+    if (env.backends.onnx.wasm) {
+      env.backends.onnx.wasm.numThreads = navigator.hardwareConcurrency || 4;
+    }
+  }
   // Use default HuggingFace CDN
   console.log('allowLocalModels: ', env.allowLocalModels);
   console.log('Using default HuggingFace CDN');
@@ -26,15 +36,15 @@ export async function loadWhisper(progressCallback) {
   console.log('remotePathTemplate:', env.remotePathTemplate);
   console.log('allowLocalModels:', env.allowLocalModels);
   console.log('useBrowserCache:', env.useBrowserCache);
+  console.log('webgpuAvailable:', webgpuAvailable);
 
   console.log('Starting pipeline initialization...');
 
   try {
-    // Use whisper-small for better multilingual support and accuracy
-    // This model is trained on diverse international voices and provides better phonetic accuracy
+    // Use whisper-tiny for faster in-browser ASR
     transcriber = await pipeline(
       'automatic-speech-recognition',
-      'Xenova/whisper-small',
+      'Xenova/whisper-tiny',
       {
         progress_callback: (progress) => {
           console.log('Pipeline progress:', progress);
@@ -110,8 +120,8 @@ export async function transcribeAudio(audioData, language = 'de') {
     language: whisperLanguage,
     task: 'transcribe',
     return_timestamps: false,  // We only need text for MVP
-    chunk_length_s: 30,
-    stride_length_s: 5
+    chunk_length_s: WHISPER_CHUNK_LENGTH_S,
+    stride_length_s: WHISPER_STRIDE_LENGTH_S
   });
 
   return result.text.trim();

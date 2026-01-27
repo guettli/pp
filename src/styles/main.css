@@ -83,6 +83,43 @@ button {
   font-size: 0.875rem;
 }
 
+.processing-debug {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.75rem 1rem;
+}
+
+.processing-debug-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.processing-debug-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.processing-debug-meta {
+  margin-bottom: 0.5rem;
+}
+
+.processing-debug-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.875rem;
+}
+
+.processing-debug-item.total {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 0.4rem;
+  padding-top: 0.4rem;
+  font-weight: 600;
+}
+
 /* Feedback section animation */
 #feedback-section {
   animation: fadeIn 0.5s ease-in;

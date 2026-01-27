@@ -26,7 +26,12 @@ import { AudioRecorder } from './audio/recorder.js';
 
 // Import speech recognition
 import { convertTextToIPA } from './speech/ipa-converter.js';
-import { loadWhisper, transcribeAudio } from './speech/whisper.js';
+import {
+  loadWhisper,
+  transcribeAudio,
+  WHISPER_CHUNK_LENGTH_S,
+  WHISPER_STRIDE_LENGTH_S
+} from './speech/whisper.js';
 
 // Import comparison logic
 import { scorePronunciation } from './comparison/scorer.js';
@@ -44,7 +49,9 @@ import {
   hideProcessingProgress,
   resetRecordButton,
   setRecordButtonEnabled,
+  showMicrophonePermissionNotice,
   showProcessing,
+  showProcessingDetails,
   showRecordingTooShortError,
   updateRecordButton
 } from './ui/recorder-ui.js';
@@ -61,6 +68,8 @@ async function init() {
     console.log('Initializing Phoneme Party...');
 
     initI18n();
+    setState({ webgpuAvailable: typeof navigator !== 'undefined' && !!navigator.gpu });
+    updateWebGpuStatus();
 
     // Show loading overlay
     showLoading();
@@ -81,15 +90,25 @@ async function init() {
     console.log('⏱️ This may take 30-60 seconds for first load (downloading ~40MB)');
     updateLoadingProgress({ status: 'downloading', progress: 0 });
 
+    const loadStart = performance.now();
     const transcriber = await loadWhisper((progress) => {
       updateLoadingProgress(progress);
     });
+    const modelLoadMs = performance.now() - loadStart;
 
     // Stop heartbeat
     clearInterval(heartbeat);
 
     console.log('Whisper model loaded successfully');
-    setState({ transcriber, isModelLoaded: true });
+    console.log(`Whisper model load time: ${modelLoadMs.toFixed(0)}ms`);
+    const webgpuBackend = detectAsrBackend(transcriber);
+    setState({
+      transcriber,
+      isModelLoaded: true,
+      modelLoadMs,
+      webgpuBackend
+    });
+    updateWebGpuStatus();
 
     // Hide loading, show main content
     hideLoading();
@@ -148,8 +167,51 @@ function setupEventListeners() {
       languageSelect.value = language;
       resetRecordButton();
       nextWord();
+      updateWebGpuStatus();
     });
   }
+}
+
+function detectAsrBackend(transcriber) {
+  const sessions = [
+    transcriber?.model?.session,
+    transcriber?.model?.sessions?.[0],
+    transcriber?.model?.sessions?.encoder,
+    transcriber?.model?.sessions?.decoder
+  ].filter(Boolean);
+
+  for (const session of sessions) {
+    const providers = session?.executionProviders || session?.session?.executionProviders;
+    if (Array.isArray(providers) && providers.length > 0) {
+      return providers[0];
+    }
+  }
+
+  return null;
+}
+
+function updateWebGpuStatus() {
+  const status = document.getElementById('webgpu-status');
+  if (!status) return;
+
+  if (!state.webgpuAvailable) {
+    status.textContent = t('footer.webgpu_status_unavailable');
+    return;
+  }
+
+  if (state.webgpuBackend === 'webgpu') {
+    status.textContent = t('footer.webgpu_status_active');
+    return;
+  }
+
+  if (state.webgpuBackend) {
+    status.textContent = t('footer.webgpu_status_fallback', {
+      backend: state.webgpuBackend
+    });
+    return;
+  }
+
+  status.textContent = t('footer.webgpu_status_available');
 }
 
 /**
@@ -159,6 +221,10 @@ async function handleRecordStart() {
   try {
     // Don't start if already recording or processing
     if (state.isRecording || state.isProcessing) {
+      return;
+    }
+
+    if (await shouldDeferForMicrophonePermission()) {
       return;
     }
 
@@ -185,6 +251,29 @@ async function handleRecordStart() {
     setState({ isRecording: false });
     resetRecordButton();
   }
+}
+
+async function shouldDeferForMicrophonePermission() {
+  if (!navigator.permissions?.query) {
+    return false;
+  }
+
+  let status = null;
+  try {
+    status = await navigator.permissions.query({ name: 'microphone' });
+  } catch (error) {
+    console.warn('Microphone permission check failed:', error);
+    return false;
+  }
+
+  if (status.state === 'prompt') {
+    await state.recorder.requestPermission();
+    showMicrophonePermissionNotice();
+    resetRecordButton();
+    return true;
+  }
+
+  return false;
 }
 
 /**
@@ -224,6 +313,44 @@ async function handleRecordStop() {
     let progress = 0;
     showProcessing(progress);
 
+    const timingStart = performance.now();
+    const timingSteps = [];
+    const recordTiming = (labelKey, start, end) => {
+      timingSteps.push({ labelKey, ms: end - start });
+    };
+    const measureAsync = async (labelKey, action) => {
+      const start = performance.now();
+      const result = await action();
+      recordTiming(labelKey, start, performance.now());
+      return result;
+    };
+    const measureSync = (labelKey, action) => {
+      const start = performance.now();
+      const result = action();
+      recordTiming(labelKey, start, performance.now());
+      return result;
+    };
+    const debugMeta = [];
+    if (Number.isFinite(state.modelLoadMs)) {
+      debugMeta.push({
+        labelKey: 'processing.meta_model_load',
+        value: `${state.modelLoadMs.toFixed(0)} ms`
+      });
+    }
+    const audioDurationSec = duration / 1000;
+    debugMeta.push({
+      labelKey: 'processing.meta_audio_duration',
+      value: `${audioDurationSec.toFixed(1)} s`
+    });
+    const chunkStep = WHISPER_CHUNK_LENGTH_S - WHISPER_STRIDE_LENGTH_S;
+    const estimatedChunks = chunkStep > 0
+      ? Math.max(1, Math.ceil((audioDurationSec - WHISPER_CHUNK_LENGTH_S) / chunkStep) + 1)
+      : 1;
+    debugMeta.push({
+      labelKey: 'processing.meta_asr_chunks',
+      value: `${estimatedChunks} (chunk ${WHISPER_CHUNK_LENGTH_S}s, stride ${WHISPER_STRIDE_LENGTH_S}s)`
+    });
+
     const progressInterval = setInterval(() => {
       progress += 5;
       if (progress <= 95) {
@@ -233,17 +360,23 @@ async function handleRecordStop() {
 
     try {
       // Process the audio
-      const audioData = await prepareAudioForWhisper(audioBlob);
+      const audioData = await measureAsync('processing.step_prepare', () =>
+        prepareAudioForWhisper(audioBlob)
+      );
       showProcessing(30);
 
       // Transcribe using Whisper
       const language = getLanguage();
-      const transcription = await transcribeAudio(audioData, language);
+      const transcription = await measureAsync('processing.step_transcribe', () =>
+        transcribeAudio(audioData, language)
+      );
       console.log('Transcription:', transcription);
       showProcessing(70);
 
       // Convert transcription to IPA
-      const ipaResult = convertTextToIPA(transcription, language);
+      const ipaResult = measureSync('processing.step_ipa', () =>
+        convertTextToIPA(transcription, language)
+      );
       console.log('IPA conversion result:', ipaResult);
 
       if (!ipaResult.found) {
@@ -272,6 +405,11 @@ async function handleRecordStop() {
 
         setState({ transcription, score });
         displayFeedback(state.currentWord, transcription, null, score);
+        showProcessingDetails({
+          steps: timingSteps,
+          meta: debugMeta,
+          totalMs: performance.now() - timingStart
+        });
 
         setTimeout(() => {
           resetRecordButton();
@@ -286,7 +424,9 @@ async function handleRecordStop() {
       showProcessing(85);
 
       // Score the pronunciation using PanPhon features
-      const score = scorePronunciation(state.currentWord.ipa, actualIPA);
+      const score = measureSync('processing.step_score', () =>
+        scorePronunciation(state.currentWord.ipa, actualIPA)
+      );
       console.log('Score:', score);
       console.log('Target phonemes:', score.targetPhonemes);
       console.log('Actual phonemes:', score.actualPhonemes);
@@ -298,6 +438,11 @@ async function handleRecordStop() {
 
       // Display feedback
       displayFeedback(state.currentWord, transcription, actualIPA, score);
+      showProcessingDetails({
+        steps: timingSteps,
+        meta: debugMeta,
+        totalMs: performance.now() - timingStart
+      });
       showProcessing(100);
 
       // Clear progress interval

@@ -205,27 +205,6 @@
 
 <body>
   <div id="app" class="container py-5">
-    <!-- Console Output -->
-    <div class="card mb-4 bg-dark text-light">
-      <div class="card-header d-flex justify-content-between align-items-center">
-        <strong data-i18n="console.title">Console Output</strong>
-        <div class="btn-group btn-group-sm">
-          <button id="copy-console" class="btn btn-outline-light" data-i18n="console.copy"
-            data-i18n-attr="title:console.copy_title">
-            Copy
-          </button>
-          <button id="clear-console" class="btn btn-outline-light" data-i18n="console.clear"
-            data-i18n-attr="title:console.clear_title">
-            Clear
-          </button>
-        </div>
-      </div>
-      <div class="card-body">
-        <pre id="console-output"
-          style="max-height: 300px; overflow-y: auto; margin: 0; font-size: 0.85rem; white-space: pre-wrap;"></pre>
-      </div>
-    </div>
-
     <!-- Header -->
     <header class="text-center mb-5">
       <h1 class="display-4 fw-bold" data-i18n="header.title">Phoneme Party</h1>
@@ -285,6 +264,7 @@
             <span data-i18n="processing.label">Processing...</span>
           </div>
         </div>
+        <div id="processing-debug" class="processing-debug mt-2" style="display: none;"></div>
 
         <button id="next-word-btn" class="btn btn-lg btn-outline-primary">
           <span data-i18n="buttons.next_word">Next Word →</span>
@@ -339,12 +319,34 @@
       </div>
     </div>
 
+    <!-- Console Output -->
+    <div class="card mb-4 bg-dark text-light">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <strong data-i18n="console.title">Console Output</strong>
+        <div class="btn-group btn-group-sm">
+          <button id="copy-console" class="btn btn-outline-light" data-i18n="console.copy"
+            data-i18n-attr="title:console.copy_title">
+            Copy
+          </button>
+          <button id="clear-console" class="btn btn-outline-light" data-i18n="console.clear"
+            data-i18n-attr="title:console.clear_title">
+            Clear
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <pre id="console-output"
+          style="max-height: 300px; overflow-y: auto; margin: 0; font-size: 0.85rem; white-space: pre-wrap;"></pre>
+      </div>
+    </div>
+
     <!-- Footer -->
     <footer class="text-center mt-5 text-muted">
       <small>
         <span data-i18n="footer.powered_by">Powered by</span>
         <a href="https://github.com/huggingface/transformers.js" target="_blank">Transformers.js</a>
         | <span data-i18n="footer.local_processing">All processing happens locally in your browser</span>
+        | <span id="webgpu-status" data-i18n="footer.webgpu_status_checking">WebGPU: checking...</span>
       </small>
     </footer>
   </div>

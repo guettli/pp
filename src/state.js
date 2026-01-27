@@ -10,7 +10,10 @@ export const state = {
   transcription: null,
   score: null,
   recorder: null,
-  transcriber: null
+  transcriber: null,
+  modelLoadMs: null,
+  webgpuAvailable: null,
+  webgpuBackend: null
 };
 
 /**

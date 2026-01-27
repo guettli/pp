@@ -51,12 +51,17 @@ export function showProcessing(progress = 0) {
   const text = document.getElementById('record-text');
   const progressBar = document.getElementById('processing-progress-bar');
   const progressContainer = document.getElementById('processing-progress');
+  const debugContainer = document.getElementById('processing-debug');
 
   if (button) button.disabled = true;
   if (icon) icon.textContent = '⏳';
 
   if (progress === 0) {
     if (text) text.textContent = t('record.processing_plain');
+    if (debugContainer) {
+      debugContainer.style.display = 'none';
+      debugContainer.innerHTML = '';
+    }
   } else {
     if (text) text.textContent = t('record.processing', { percent: Math.round(progress) });
   }
@@ -79,6 +84,64 @@ export function hideProcessingProgress() {
   if (progressContainer) {
     progressContainer.style.display = 'none';
   }
+}
+
+/**
+ * Show processing timing details
+ * @param {Object} timings - Timing info for processing steps
+ * @param {Array} timings.steps - Steps with labelKey and ms
+ * @param {Array} timings.meta - Meta info with labelKey and value
+ * @param {number} timings.totalMs - Total time in ms
+ */
+export function showProcessingDetails(timings) {
+  const debugContainer = document.getElementById('processing-debug');
+  if (!debugContainer || !timings || !Array.isArray(timings.steps)) {
+    return;
+  }
+
+  const steps = timings.steps.slice();
+  const totalMs = Number.isFinite(timings.totalMs)
+    ? timings.totalMs
+    : steps.reduce((sum, step) => sum + (step.ms || 0), 0);
+
+  const metaItems = Array.isArray(timings.meta) ? timings.meta : [];
+  const metaList = metaItems.map((item) => {
+    const label = t(item.labelKey);
+    const value = item.value || '—';
+    return `
+      <li class="processing-debug-item">
+        <span class="processing-debug-label">${label}</span>
+        <span class="processing-debug-value">${value}</span>
+      </li>
+    `;
+  }).join('');
+
+  steps.push({ labelKey: 'processing.step_total', ms: totalMs, isTotal: true });
+
+  const items = steps.map((step) => {
+    const ms = Number.isFinite(step.ms) ? step.ms : 0;
+    const percent = totalMs > 0 ? Math.round((ms / totalMs) * 100) : 0;
+    const label = t(step.labelKey);
+    const value = step.isTotal
+      ? `${ms.toFixed(0)} ms`
+      : `${ms.toFixed(0)} ms (${percent}%)`;
+
+    return `
+      <li class="processing-debug-item${step.isTotal ? ' total' : ''}">
+        <span class="processing-debug-label">${label}</span>
+        <span class="processing-debug-value">${value}</span>
+      </li>
+    `;
+  }).join('');
+
+  debugContainer.innerHTML = `
+    <div class="processing-debug-title">${t('processing.debug_title')}</div>
+    ${metaList ? `<ul class="processing-debug-list processing-debug-meta">${metaList}</ul>` : ''}
+    <ul class="processing-debug-list">
+      ${items}
+    </ul>
+  `;
+  debugContainer.style.display = 'block';
 }
 
 /**
@@ -124,5 +187,32 @@ export function showRecordingTooShortError() {
       alert.classList.remove('show');
       setTimeout(() => alert.remove(), 150);
     }, 5000);
+  }
+}
+
+/**
+ * Show info message when requesting microphone permission
+ */
+export function showMicrophonePermissionNotice() {
+  const alert = document.createElement('div');
+  alert.className = 'alert alert-warning alert-dismissible fade show mt-3';
+  alert.role = 'alert';
+  alert.innerHTML = `
+    <strong>${t('record.permission_title')}</strong>
+    <p class="mb-0 mt-1">${t('record.permission_body')}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="${t('buttons.close')}"></button>
+  `;
+
+  const mainContent = document.getElementById('main-content');
+  const recordBtn = document.getElementById('record-btn');
+
+  if (mainContent && recordBtn) {
+    recordBtn.parentNode.insertBefore(alert, recordBtn.nextSibling);
+
+    // Auto-dismiss after 7 seconds
+    setTimeout(() => {
+      alert.classList.remove('show');
+      setTimeout(() => alert.remove(), 150);
+    }, 7000);
   }
 }

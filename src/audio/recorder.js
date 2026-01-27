@@ -56,6 +56,23 @@ export class AudioRecorder {
   }
 
   /**
+   * Request microphone permission without starting a recording
+   * @returns {Promise<void>}
+   */
+  async requestPermission() {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      audio: {
+        channelCount: 1,
+        sampleRate: 16000,
+        echoCancellation: true,
+        noiseSuppression: true
+      }
+    });
+
+    stream.getTracks().forEach(track => track.stop());
+  }
+
+  /**
    * Stop recording and return audio blob with duration info
    * @returns {Promise<Object>} Object with blob and duration
    */
