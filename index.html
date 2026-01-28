@@ -185,21 +185,20 @@
     })();
   </script>
 
-  <!-- Load transformers.js v3 from npm (unreleased) -->
-  <script type="module">
-
-    import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.8.1';
-
-    // Configure environment for remote model loading
-    env.allowLocalModels = false;
-    env.useBrowserCache = true;
-    env.backends.onnx.wasm.numThreads = 1;
-
-    console.log('Transformers.js loaded from CDN');
-    console.log('Environment config:', env);
-
-    // Make available globally
-    window.transformers = { pipeline, env };
+  <!-- Load ONNX Runtime Web for phoneme model -->
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.19.0/dist/ort.min.js" crossorigin="anonymous"></script>
+  <script>
+    // Configure ONNX Runtime
+    if (window.ort) {
+      // Multi-threading requires crossOriginIsolated (SharedArrayBuffer)
+      if (crossOriginIsolated) {
+        ort.env.wasm.numThreads = navigator.hardwareConcurrency || 4;
+        console.log('ONNX Runtime Web loaded with', ort.env.wasm.numThreads, 'threads (crossOriginIsolated)');
+      } else {
+        ort.env.wasm.numThreads = 1;
+        console.log('ONNX Runtime Web loaded (single-threaded, crossOriginIsolated not available)');
+      }
+    }
   </script>
 </head>
 

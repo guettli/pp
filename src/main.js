@@ -24,14 +24,12 @@ import { getRandomWord } from './utils/random.js';
 import { prepareAudioForWhisper } from './audio/processor.js';
 import { AudioRecorder } from './audio/recorder.js';
 
-// Import speech recognition
-import { convertTextToIPA } from './speech/ipa-converter.js';
+// Import phoneme extraction (direct IPA output)
 import {
-  loadWhisper,
-  transcribeAudio,
-  WHISPER_CHUNK_LENGTH_S,
-  WHISPER_STRIDE_LENGTH_S
-} from './speech/whisper.js';
+  loadPhonemeModel,
+  extractPhonemes,
+  isPhonemeModelLoaded
+} from './speech/phoneme-extractor.js';
 
 // Import comparison logic
 import { scorePronunciation } from './comparison/scorer.js';
@@ -85,13 +83,13 @@ async function init() {
     setState({ recorder: new AudioRecorder() });
     console.log('Audio recorder initialized');
 
-    // Load Whisper model
-    console.log('Starting to load Whisper model...');
-    console.log('⏱️ This may take 30-60 seconds for first load (downloading ~40MB)');
+    // Load phoneme extraction model (wav2vec2-espeak INT4)
+    console.log('Starting to load phoneme model...');
+    console.log('⏱️ This may take 30-60 seconds for first load (downloading ~230MB)');
     updateLoadingProgress({ status: 'downloading', progress: 0 });
 
     const loadStart = performance.now();
-    const transcriber = await loadWhisper((progress) => {
+    await loadPhonemeModel((progress) => {
       updateLoadingProgress(progress);
     });
     const modelLoadMs = performance.now() - loadStart;
@@ -99,11 +97,12 @@ async function init() {
     // Stop heartbeat
     clearInterval(heartbeat);
 
-    console.log('Whisper model loaded successfully');
-    console.log(`Whisper model load time: ${modelLoadMs.toFixed(0)}ms`);
-    const webgpuBackend = detectAsrBackend(transcriber);
+    console.log('Phoneme model loaded successfully');
+    console.log(`Model load time: ${modelLoadMs.toFixed(0)}ms`);
+
+    // Check if WebGPU is being used
+    const webgpuBackend = state.webgpuAvailable ? 'webgpu' : 'wasm';
     setState({
-      transcriber,
       isModelLoaded: true,
       modelLoadMs,
       webgpuBackend
@@ -172,23 +171,6 @@ function setupEventListeners() {
   }
 }
 
-function detectAsrBackend(transcriber) {
-  const sessions = [
-    transcriber?.model?.session,
-    transcriber?.model?.sessions?.[0],
-    transcriber?.model?.sessions?.encoder,
-    transcriber?.model?.sessions?.decoder
-  ].filter(Boolean);
-
-  for (const session of sessions) {
-    const providers = session?.executionProviders || session?.session?.executionProviders;
-    if (Array.isArray(providers) && providers.length > 0) {
-      return providers[0];
-    }
-  }
-
-  return null;
-}
 
 function updateWebGpuStatus() {
   const status = document.getElementById('webgpu-status');
@@ -196,11 +178,15 @@ function updateWebGpuStatus() {
 
   if (!state.webgpuAvailable) {
     status.textContent = t('footer.webgpu_status_unavailable');
+    status.classList.add('text-warning');
+    // Show prominent warning
+    console.warn('⚠️ WebGPU not available - using WASM fallback (slower)');
     return;
   }
 
   if (state.webgpuBackend === 'webgpu') {
     status.textContent = t('footer.webgpu_status_active');
+    status.classList.remove('text-warning');
     return;
   }
 
@@ -208,6 +194,9 @@ function updateWebGpuStatus() {
     status.textContent = t('footer.webgpu_status_fallback', {
       backend: state.webgpuBackend
     });
+    if (state.webgpuBackend !== 'webgpu') {
+      status.classList.add('text-warning');
+    }
     return;
   }
 
@@ -342,13 +331,9 @@ async function handleRecordStop() {
       labelKey: 'processing.meta_audio_duration',
       value: `${audioDurationSec.toFixed(1)} s`
     });
-    const chunkStep = WHISPER_CHUNK_LENGTH_S - WHISPER_STRIDE_LENGTH_S;
-    const estimatedChunks = chunkStep > 0
-      ? Math.max(1, Math.ceil((audioDurationSec - WHISPER_CHUNK_LENGTH_S) / chunkStep) + 1)
-      : 1;
     debugMeta.push({
-      labelKey: 'processing.meta_asr_chunks',
-      value: `${estimatedChunks} (chunk ${WHISPER_CHUNK_LENGTH_S}s, stride ${WHISPER_STRIDE_LENGTH_S}s)`
+      labelKey: 'processing.meta_backend',
+      value: state.webgpuBackend || 'wasm'
     });
 
     const progressInterval = setInterval(() => {
@@ -365,62 +350,11 @@ async function handleRecordStop() {
       );
       showProcessing(30);
 
-      // Transcribe using Whisper
-      const language = getLanguage();
-      const transcription = await measureAsync('processing.step_transcribe', () =>
-        transcribeAudio(audioData, language)
+      // Extract phonemes directly using wav2vec2-espeak model
+      const actualIPA = await measureAsync('processing.step_phonemes', () =>
+        extractPhonemes(audioData)
       );
-      console.log('Transcription:', transcription);
-      showProcessing(70);
-
-      // Convert transcription to IPA
-      const ipaResult = measureSync('processing.step_ipa', () =>
-        convertTextToIPA(transcription, language)
-      );
-      console.log('IPA conversion result:', ipaResult);
-
-      if (!ipaResult.found) {
-        // Word not in vocabulary - show helpful message
-        console.warn('Transcribed word not in vocabulary');
-        showProcessing(100);
-        clearInterval(progressInterval);
-
-        // Create a special "not found" score
-        const score = {
-          grade: t('feedback.word_not_recognized'),
-          color: 'info',
-          bootstrapClass: 'alert-info',
-          message: t('feedback.word_not_recognized_message', {
-            heard: transcription,
-            target: state.currentWord.word
-          }),
-          similarity: 0,
-          similarityPercent: 0,
-          distance: -1,
-          phonemeComparison: [],
-          targetPhonemes: [],
-          actualPhonemes: [],
-          notFound: true
-        };
-
-        setState({ transcription, score });
-        displayFeedback(state.currentWord, transcription, null, score);
-        showProcessingDetails({
-          steps: timingSteps,
-          meta: debugMeta,
-          totalMs: performance.now() - timingStart
-        });
-
-        setTimeout(() => {
-          resetRecordButton();
-          setState({ isProcessing: false });
-        }, 500);
-
-        return;
-      }
-
-      const actualIPA = ipaResult.ipa;
-      console.log('Actual IPA:', actualIPA);
+      console.log('Extracted IPA phonemes:', actualIPA);
       showProcessing(85);
 
       // Score the pronunciation using PanPhon features
@@ -433,11 +367,11 @@ async function handleRecordStop() {
       console.log('Phoneme comparison:', score.phonemeComparison);
       showProcessing(95);
 
-      // Update state
-      setState({ transcription, score });
+      // Update state (no text transcription, just phonemes)
+      setState({ transcription: actualIPA, score });
 
-      // Display feedback
-      displayFeedback(state.currentWord, transcription, actualIPA, score);
+      // Display feedback (actualIPA is now the "transcription")
+      displayFeedback(state.currentWord, actualIPA, actualIPA, score);
       showProcessingDetails({
         steps: timingSteps,
         meta: debugMeta,

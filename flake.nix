@@ -24,9 +24,14 @@
             nodePackages.pnpm
             ripgrep
             pythonEnv
+            stdenv.cc.cc.lib  # Provides libstdc++.so.6 for onnxruntime
+            zlib  # Provides libz.so.1 for numpy
           ];
 
           shellHook = ''
+            # Make native libs available to pip-installed packages (e.g., onnxruntime, numpy)
+            export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.zlib}/lib:$LD_LIBRARY_PATH"
+
             # Create and activate virtual environment if it doesn't exist
             if [ ! -d .venv ]; then
               echo "Creating virtual environment..."

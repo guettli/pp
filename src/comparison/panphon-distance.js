@@ -53,9 +53,14 @@ function phonemeFeatureDistance(phoneme1, phoneme2) {
  */
 function splitIntoPhonemes(ipa) {
   // Remove stress marks and delimiters for processing
-  const cleaned = ipa.replace(/[\/\[\]ˈˌ]/g, '');
+  const cleaned = ipa.replace(/[\/\[\]ˈˌ]/g, '').trim();
 
-  // Split into graphemes (accounting for multi-character IPA symbols)
+  // If input contains spaces, it's already tokenized (from wav2vec2 model)
+  if (cleaned.includes(' ')) {
+    return cleaned.split(/\s+/).filter(p => p.length > 0);
+  }
+
+  // Otherwise, split into graphemes (accounting for multi-character IPA symbols)
   // This is a simplified approach - ideally we'd use a proper IPA tokenizer
   const phonemes = [];
   let i = 0;

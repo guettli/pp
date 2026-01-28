@@ -2,6 +2,8 @@
 .direnv/
 .claude
 
+onnx/wav2vec2-espeak-*/
+
 # Node.js
 node_modules/
 pnpm-lock.yaml
