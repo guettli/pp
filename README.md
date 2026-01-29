@@ -6,9 +6,12 @@ Currently, focused on German beginners/kids.
 
 Build on:
 
+* [ONNX](https://onnx.ai/)
 * [huggingface/transformers.js: State-of-the-art Machine Learning for the web. Run 🤗 Transformers
   directly in your browser, with no need for a
   server!](https://github.com/huggingface/transformers.js)
+
+Github: <https://github.com/guettli/pp>
 
 Built as static web-site. No server required!
 

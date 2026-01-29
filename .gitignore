@@ -9,6 +9,7 @@ onnx/zipa-small-ctc-int8/
 onnx/zipa-small-ctc-onnx/
 onnx/zipa-download/
 onnx/zipa-onnx/
+onnx/zipa-export*
 
 # Node.js
 node_modules/
