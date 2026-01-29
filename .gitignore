@@ -2,6 +2,9 @@
 .direnv/
 .claude
 
+# This is git repo, upload via commit and push to higgingface
+onnx/zipa-small-ctc-onnx-2026-01-28/
+
 onnx/wav2vec2-espeak-*/
 onnx/zipa-repo/
 onnx/zipa-small-ctc/

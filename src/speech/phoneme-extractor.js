@@ -4,8 +4,8 @@
  */
 
 // Model configuration
-// TODO: Update this to your actual HuggingFace repo
-const MODEL_REPO = 'guettli/wav2vec2-espeak-int4';
+// Using your HuggingFace repo for ZIPA small CTC ONNX model
+const MODEL_REPO = 'guettli/zipa-small-ctc-onnx-2026-01-28';
 const MODEL_URL = `https://huggingface.co/${MODEL_REPO}/resolve/main/model.onnx`;
 const VOCAB_URL = `https://huggingface.co/${MODEL_REPO}/resolve/main/vocab.json`;
 
