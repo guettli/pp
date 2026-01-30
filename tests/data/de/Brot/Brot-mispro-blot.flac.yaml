@@ -1,0 +1,7 @@
+word: Brot
+spoken_as: Blot
+lang: de
+mispronunciation: true
+expected_phonemes: b l o ː t
+source: edge-tts
+voice: de-DE-ConradNeural

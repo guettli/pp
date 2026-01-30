@@ -80,20 +80,34 @@ sending data to external servers.
 pnpm install
 ```
 
-### Test: All Words
-
-Comprehensive test that generates TTS audio for all German and English words and tests phoneme extraction:
+### Usage
 
 ```bash
+# Run all tests
 node tests/all-words.test.js
+
+# List all available tests
+node tests/all-words.test.js --list
+
+# Run a single test
+node tests/all-words.test.js Brot
+
+# Run tests matching a pattern (case-insensitive)
+node tests/all-words.test.js "Sch*"
+
+# Run only mispronunciation tests
+node tests/all-words.test.js "*mispro*"
+
+# Show help
+node tests/all-words.test.js --help
 ```
 
-This test:
+The test:
 
 * Downloads the ONNX model (cached in `~/.cache/phoneme-party/`)
 * Uses pre-generated TTS audio from `tests/data/` (committed to git)
 * Only generates new audio via edge-tts if files are missing
-* Runs phoneme extraction and displays results
+* Runs phoneme extraction and compares results
 
 ### Test Data Structure
 
@@ -104,12 +118,12 @@ tests/data/
 ├── de/
 │   ├── Apfel/
 │   │   ├── Apfel-edge-tts-conrad.flac
-│   │   └── Apfel-edge-tts-conrad.yaml
+│   │   └── Apfel-edge-tts-conrad.flac.yaml
 │   └── ...
 └── en/
-    ├── apple/
-    │   ├── apple-edge-tts-guy.flac
-    │   └── apple-edge-tts-guy.yaml
+    ├── Apple/
+    │   ├── Apple-edge-tts-guy.flac
+    │   └── Apple-edge-tts-guy.flac.yaml
     └── ...
 ```
 

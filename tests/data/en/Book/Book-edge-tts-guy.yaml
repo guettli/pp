@@ -1,9 +1,0 @@
-word: Book
-lang: en
-source: edge-tts
-voice: en-US-GuyNeural
-created: 2026-01-30
-format: flac
-sampleRate: 16000
-channels: 1
-generator: tests/all-words.test.js

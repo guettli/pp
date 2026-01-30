@@ -82,7 +82,7 @@ function getAudioPaths(lang, word, source) {
     return {
         dir: wordDir,
         audio: path.join(wordDir, `${baseName}.flac`),
-        metadata: path.join(wordDir, `${baseName}.yaml`)
+        metadata: path.join(wordDir, `${baseName}.flac.yaml`)
     };
 }
 
@@ -148,9 +148,8 @@ function generateTTSAudio(word, lang) {
     const { voice, source } = TTS_VOICES[lang];
     const paths = getAudioPaths(lang, word, source);
 
-    // Check if already exists (support both .yaml and .json for backwards compat)
-    const jsonPath = paths.metadata.replace('.yaml', '.json');
-    if (fs.existsSync(paths.audio) && (fs.existsSync(paths.metadata) || fs.existsSync(jsonPath))) {
+    // Check if already exists
+    if (fs.existsSync(paths.audio) && fs.existsSync(paths.metadata)) {
         return { ...paths, cached: true };
     }
 
@@ -177,18 +176,69 @@ function generateTTSAudio(word, lang) {
             word,
             lang,
             source: 'edge-tts',
-            voice,
-            created: new Date().toISOString().split('T')[0],
-            format: 'flac',
-            sampleRate: 16000,
-            channels: 1,
-            generator: 'tests/all-words.test.js'
+            voice
         };
         fs.writeFileSync(paths.metadata, toYaml(metadata));
 
         return { ...paths, cached: false };
     } catch (error) {
         console.error(`Failed to generate TTS for "${word}": ${error.message}`);
+        return null;
+    }
+}
+
+/**
+ * Generate mispronunciation TTS audio
+ * @param {string} word - The correct word (for directory)
+ * @param {string} spokenAs - What to actually speak (mispronunciation)
+ * @param {string} lang - Language code
+ * @param {string} expectedPhonemes - Expected phoneme sequence (e.g., "b l o ː t")
+ */
+function generateMispronunciationAudio(word, spokenAs, lang, expectedPhonemes) {
+    const { voice } = TTS_VOICES[lang];
+    const wordDir = getWordDir(lang, word);
+    const baseName = `${word}-mispro-${spokenAs.toLowerCase()}`;
+    const audioPath = path.join(wordDir, `${baseName}.flac`);
+    const metadataPath = path.join(wordDir, `${baseName}.flac.yaml`);
+
+    // Check if already exists
+    if (fs.existsSync(audioPath) && fs.existsSync(metadataPath)) {
+        return { audio: audioPath, metadata: metadataPath, cached: true };
+    }
+
+    // Create directory
+    if (!fs.existsSync(wordDir)) {
+        fs.mkdirSync(wordDir, { recursive: true });
+    }
+
+    try {
+        // Generate with edge-tts (outputs mp3)
+        const mp3Path = audioPath.replace('.flac', '.mp3');
+        execSync(`edge-tts --voice "${voice}" --text "${spokenAs}" --write-media "${mp3Path}" 2>/dev/null`, {
+            stdio: 'pipe'
+        });
+
+        // Convert to FLAC
+        execSync(`ffmpeg -y -i "${mp3Path}" -ar 16000 -ac 1 "${audioPath}" 2>/dev/null`, {
+            stdio: 'pipe'
+        });
+        fs.unlinkSync(mp3Path);
+
+        // Write metadata as YAML
+        const metadata = {
+            word,
+            spoken_as: spokenAs,
+            lang,
+            mispronunciation: true,
+            expected_phonemes: expectedPhonemes,
+            source: 'edge-tts',
+            voice
+        };
+        fs.writeFileSync(metadataPath, toYaml(metadata));
+
+        return { audio: audioPath, metadata: metadataPath, cached: false };
+    } catch (error) {
+        console.error(`Failed to generate mispronunciation TTS for "${spokenAs}": ${error.message}`);
         return null;
     }
 }
@@ -208,15 +258,12 @@ function findAudioFiles(lang, word) {
     for (const file of files) {
         if (file.endsWith('.flac') || file.endsWith('.wav')) {
             const baseName = file.replace(/\.(flac|wav)$/, '');
-            const yamlPath = path.join(wordDir, `${baseName}.yaml`);
-            const jsonPath = path.join(wordDir, `${baseName}.json`);
+            const yamlPath = path.join(wordDir, `${file}.yaml`);
             const audioPath = path.join(wordDir, file);
 
             let metadata = null;
             if (fs.existsSync(yamlPath)) {
                 metadata = parseYaml(fs.readFileSync(yamlPath, 'utf8'));
-            } else if (fs.existsSync(jsonPath)) {
-                metadata = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
             }
 
             audioFiles.push({
@@ -300,75 +347,215 @@ async function testWord(word, expectedIPA, lang) {
     for (const audioFile of audioFiles) {
         const audio = readAudioFile(audioFile.path);
         const extractedPhonemes = await extractPhonemes(audio);
+        const meta = audioFile.metadata || {};
 
-        results.push({
-            word,
-            lang,
-            source: audioFile.source,
-            expected: expectedIPA,
-            actual: extractedPhonemes,
-            cached: ttsResult.cached,
-            status: 'ok'
-        });
+        // Check if this is a mispronunciation test
+        if (meta.mispronunciation) {
+            const expected = meta.expected_phonemes || '';
+            const match = extractedPhonemes === expected;
+
+            results.push({
+                word,
+                lang,
+                source: audioFile.source,
+                spokenAs: meta.spoken_as,
+                expected: expected,
+                actual: extractedPhonemes,
+                mispronunciation: true,
+                match,
+                status: match ? 'ok' : 'mispro_mismatch'
+            });
+        } else {
+            results.push({
+                word,
+                lang,
+                source: audioFile.source,
+                expected: expectedIPA,
+                actual: extractedPhonemes,
+                cached: ttsResult.cached,
+                status: 'ok'
+            });
+        }
     }
 
     return results;
 }
 
-async function main() {
-    console.log('=== Phoneme Extraction Test for All Words ===\n');
+function printResults(results, lang) {
+    // Separate normal and mispronunciation results
+    const normalResults = results.filter(r => !r.mispronunciation);
+    const misproResults = results.filter(r => r.mispronunciation);
 
-    await loadModel();
+    if (normalResults.length > 0) {
+        console.log(`\n${lang === 'de' ? 'German' : 'English'} words:\n`);
+        console.log('Word'.padEnd(20) + 'Source'.padEnd(20) + 'Expected IPA'.padEnd(20) + 'Extracted');
+        console.log('-'.repeat(80));
+
+        for (const result of normalResults) {
+            if (result.status === 'ok') {
+                const cached = result.cached ? ' (cached)' : '';
+                console.log(
+                    result.word.padEnd(20) +
+                    (result.source + cached).padEnd(20) +
+                    result.expected.padEnd(20) +
+                    result.actual
+                );
+            } else {
+                console.log(`${result.word.padEnd(20)} FAILED`);
+            }
+        }
+    }
+
+    if (misproResults.length > 0) {
+        console.log(`\n${lang === 'de' ? 'German' : 'English'} mispronunciation tests:\n`);
+        console.log('Word'.padEnd(15) + 'Spoken As'.padEnd(12) + 'Expected'.padEnd(20) + 'Actual'.padEnd(20) + 'Match');
+        console.log('-'.repeat(80));
+
+        for (const result of misproResults) {
+            const matchStr = result.match ? '✓' : '✗';
+            console.log(
+                result.word.padEnd(15) +
+                result.spokenAs.padEnd(12) +
+                result.expected.padEnd(20) +
+                result.actual.padEnd(20) +
+                matchStr
+            );
+        }
+    }
+}
+
+// Mispronunciation test definitions
+const MISPRONUNCIATION_TESTS = [
+    { word: 'Brot', spokenAs: 'Blot', lang: 'de', expectedPhonemes: 'b l o ː t' },
+    { word: 'Katze', spokenAs: 'Tatze', lang: 'de', expectedPhonemes: 't ɑ t s e' },
+];
+
+/**
+ * Simple glob matching (supports * wildcard)
+ */
+function matchesPattern(text, pattern) {
+    if (!pattern || pattern === '*') return true;
+    const regex = new RegExp('^' + pattern.replace(/\*/g, '.*') + '$', 'i');
+    return regex.test(text);
+}
+
+/**
+ * Get all available tests
+ */
+function getAllTests(wordsDE, wordsEN) {
+    const tests = [];
+
+    // Add word tests
+    for (const { word, ipa } of wordsDE) {
+        tests.push({ word, ipa, lang: 'de', type: 'word' });
+    }
+    for (const { word, ipa } of wordsEN) {
+        tests.push({ word, ipa, lang: 'en', type: 'word' });
+    }
+
+    // Add mispronunciation tests
+    for (const test of MISPRONUNCIATION_TESTS) {
+        tests.push({ ...test, type: 'mispronunciation' });
+    }
+
+    return tests;
+}
+
+/**
+ * Print usage help
+ */
+function printHelp() {
+    console.log(`Usage: node tests/all-words.test.js [options] [pattern]
+
+Options:
+  --list, -l     List all available tests without running them
+  --help, -h     Show this help message
+
+Pattern:
+  Filter tests by word name (case-insensitive, supports * wildcard)
+
+Examples:
+  node tests/all-words.test.js              # Run all tests
+  node tests/all-words.test.js --list       # List all tests
+  node tests/all-words.test.js Brot         # Run tests for "Brot" only
+  node tests/all-words.test.js "Sch*"       # Run tests matching "Sch*"
+  node tests/all-words.test.js "*mispro*"   # Run mispronunciation tests
+`);
+}
+
+async function main() {
+    const args = process.argv.slice(2);
+
+    // Parse arguments
+    const showList = args.includes('--list') || args.includes('-l');
+    const showHelp = args.includes('--help') || args.includes('-h');
+    const pattern = args.find(a => !a.startsWith('-')) || '*';
+
+    if (showHelp) {
+        printHelp();
+        return;
+    }
 
     // Load word lists
     const wordsDE = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'words-de.json'), 'utf8'));
     const wordsEN = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'words-en.json'), 'utf8'));
 
-    const allResults = [];
+    const allTests = getAllTests(wordsDE, wordsEN);
 
-    console.log('Testing German words...\n');
-    console.log('Word'.padEnd(20) + 'Source'.padEnd(20) + 'Expected IPA'.padEnd(20) + 'Extracted');
-    console.log('-'.repeat(80));
+    // Filter tests by pattern
+    const filteredTests = allTests.filter(t => {
+        const testName = t.type === 'mispronunciation'
+            ? `${t.word}-mispro-${t.spokenAs}`
+            : t.word;
+        return matchesPattern(testName, pattern);
+    });
 
-    for (const { word, ipa } of wordsDE) {
-        const results = await testWord(word, ipa, 'de');
-        allResults.push(...results);
-        for (const result of results) {
-            if (result.status === 'ok') {
-                const cached = result.cached ? ' (cached)' : '';
-                console.log(
-                    result.word.padEnd(20) +
-                    (result.source + cached).padEnd(20) +
-                    result.expected.padEnd(20) +
-                    result.actual
-                );
-            } else {
-                console.log(`${word.padEnd(20)} FAILED`);
-            }
+    if (showList) {
+        console.log('Available tests:\n');
+        console.log('Lang  Type            Word');
+        console.log('-'.repeat(50));
+        for (const t of filteredTests) {
+            const type = t.type === 'mispronunciation' ? `mispro(${t.spokenAs})` : 'word';
+            console.log(`${t.lang.padEnd(6)}${type.padEnd(16)}${t.word}`);
         }
+        console.log(`\nTotal: ${filteredTests.length} tests`);
+        return;
     }
 
-    console.log('\nTesting English words...\n');
-    console.log('Word'.padEnd(20) + 'Source'.padEnd(20) + 'Expected IPA'.padEnd(20) + 'Extracted');
-    console.log('-'.repeat(80));
+    console.log('=== Phoneme Extraction Test ===\n');
 
-    for (const { word, ipa } of wordsEN) {
-        const results = await testWord(word, ipa, 'en');
-        allResults.push(...results);
-        for (const result of results) {
-            if (result.status === 'ok') {
-                const cached = result.cached ? ' (cached)' : '';
-                console.log(
-                    result.word.padEnd(20) +
-                    (result.source + cached).padEnd(20) +
-                    result.expected.padEnd(20) +
-                    result.actual
-                );
-            } else {
-                console.log(`${word.padEnd(20)} FAILED`);
-            }
-        }
+    if (pattern !== '*') {
+        console.log(`Filter: ${pattern}`);
+        console.log(`Matching tests: ${filteredTests.length}\n`);
     }
+
+    await loadModel();
+
+    // Generate mispronunciation audio for filtered tests
+    for (const test of filteredTests.filter(t => t.type === 'mispronunciation')) {
+        generateMispronunciationAudio(test.word, test.spokenAs, test.lang, test.expectedPhonemes);
+    }
+
+    // Get filtered word tests by language
+    const filteredDE = filteredTests.filter(t => t.lang === 'de' && t.type === 'word');
+    const filteredEN = filteredTests.filter(t => t.lang === 'en' && t.type === 'word');
+
+    console.log('Running tests in parallel...');
+
+    // Run filtered tests in parallel
+    const [resultsDE, resultsEN] = await Promise.all([
+        Promise.all(filteredDE.map(({ word, ipa }) => testWord(word, ipa, 'de'))),
+        Promise.all(filteredEN.map(({ word, ipa }) => testWord(word, ipa, 'en')))
+    ]);
+
+    // Flatten results
+    const allResultsDE = resultsDE.flat();
+    const allResultsEN = resultsEN.flat();
+    const allResults = [...allResultsDE, ...allResultsEN];
+
+    // Print results
+    if (allResultsDE.length > 0) printResults(allResultsDE, 'de');
+    if (allResultsEN.length > 0) printResults(allResultsEN, 'en');
 
     // Summary
     console.log('\n' + '='.repeat(80));
@@ -379,15 +566,12 @@ async function main() {
     const failed = allResults.filter(r => r.status !== 'ok');
 
     console.log(`Total audio files tested: ${allResults.length}`);
-    console.log(`Successful extractions: ${successful.length}`);
+    console.log(`Successful: ${successful.length}`);
     console.log(`Failed: ${failed.length}`);
 
-    // Count unique words
-    const uniqueWords = new Set(allResults.map(r => `${r.lang}:${r.word}`));
-    console.log(`Unique words: ${uniqueWords.size}`);
-
-    console.log(`\nAudio files stored in: ${DATA_DIR}`);
-    console.log('\nTest completed!');
+    if (failed.length > 0) {
+        process.exit(1);
+    }
 }
 
 main().catch(e => {
