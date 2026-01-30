@@ -1,4 +1,17 @@
-- run tests in parallel
+too many outputs like this on first load:
+10:59:58 ▶️ Modell wird heruntergeladen... 83%
+10:59:58 ▶️ Loading progress: {
+  "status": "downloading",
+  "name": "model.onnx",
+  "progress": 84,
+  "loaded": 240939324,
+  "total": 260267872
+}
+
+- Add button to re-play what I said.
+- Phonem-Analyse: always fine: ✓ [f] → [l] ✓ [uː] → [a] ✓ [s] → [l]
+- Add custom Icons for words.
+- explain Phoneme Glyphs (but over does not exist on mobile)
 - ipa comparison does not work well up to now. Often 100% correct, but is not.
 - More rounded corners. More child friendly
 - Positive feedback.

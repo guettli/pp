@@ -333,11 +333,14 @@ async function extractPhonemes(audioData) {
     return phonemes.join(' ');
 }
 
-async function testWord(word, expectedIPA, lang) {
-    // Ensure TTS audio exists
-    const ttsResult = generateTTSAudio(word, lang);
-    if (!ttsResult) {
-        return [{ word, lang, status: 'tts_failed', expected: expectedIPA }];
+async function testWord(word, expectedIPA, lang, testType = 'all') {
+    // Ensure TTS audio exists (only needed for normal word tests)
+    let ttsResult = { cached: false };
+    if (testType !== 'mispronunciation') {
+        ttsResult = generateTTSAudio(word, lang);
+        if (!ttsResult) {
+            return [{ word, lang, status: 'tts_failed', expected: expectedIPA }];
+        }
     }
 
     // Find all audio files for this word
@@ -345,12 +348,18 @@ async function testWord(word, expectedIPA, lang) {
     const results = [];
 
     for (const audioFile of audioFiles) {
+        const meta = audioFile.metadata || {};
+        const isMispro = !!meta.mispronunciation;
+
+        // Filter by test type
+        if (testType === 'word' && isMispro) continue;
+        if (testType === 'mispronunciation' && !isMispro) continue;
+
         const audio = readAudioFile(audioFile.path);
         const extractedPhonemes = await extractPhonemes(audio);
-        const meta = audioFile.metadata || {};
 
         // Check if this is a mispronunciation test
-        if (meta.mispronunciation) {
+        if (isMispro) {
             const expected = meta.expected_phonemes || '';
             const match = extractedPhonemes === expected;
 
@@ -507,6 +516,10 @@ async function main() {
         const testName = t.type === 'mispronunciation'
             ? `${t.word}-mispro-${t.spokenAs}`
             : t.word;
+        // For mispronunciation tests, also match on spokenAs alone
+        if (t.type === 'mispronunciation' && matchesPattern(t.spokenAs, pattern)) {
+            return true;
+        }
         return matchesPattern(testName, pattern);
     });
 
@@ -536,16 +549,16 @@ async function main() {
         generateMispronunciationAudio(test.word, test.spokenAs, test.lang, test.expectedPhonemes);
     }
 
-    // Get filtered word tests by language
-    const filteredDE = filteredTests.filter(t => t.lang === 'de' && t.type === 'word');
-    const filteredEN = filteredTests.filter(t => t.lang === 'en' && t.type === 'word');
+    // Get filtered tests by language
+    const filteredDE = filteredTests.filter(t => t.lang === 'de');
+    const filteredEN = filteredTests.filter(t => t.lang === 'en');
 
     console.log('Running tests in parallel...');
 
-    // Run filtered tests in parallel
+    // Run filtered tests in parallel, passing the test type
     const [resultsDE, resultsEN] = await Promise.all([
-        Promise.all(filteredDE.map(({ word, ipa }) => testWord(word, ipa, 'de'))),
-        Promise.all(filteredEN.map(({ word, ipa }) => testWord(word, ipa, 'en')))
+        Promise.all(filteredDE.map(t => testWord(t.word, t.ipa || '', 'de', t.type))),
+        Promise.all(filteredEN.map(t => testWord(t.word, t.ipa || '', 'en', t.type)))
     ]);
 
     // Flatten results

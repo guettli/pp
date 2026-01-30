@@ -95,7 +95,7 @@ node tests/all-words.test.js --list
 node tests/all-words.test.js Brot
 
 # Run tests matching a pattern (case-insensitive)
-node tests/all-words.test.js "Sch*"
+node tests/all-words.test.js "A*"
 
 # Run only mispronunciation tests
 node tests/all-words.test.js "*mispro*"
