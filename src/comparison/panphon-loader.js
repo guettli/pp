@@ -2,7 +2,9 @@
  * Load and decode PanPhon binary feature data
  */
 
-import panphonData from '../data/panphon_features.json' with { type: 'json' };
+// For browser: Vite bundles this JSON import at build time
+// For Node.js: the test workers handle JSON loading separately
+import panphonData from '../data/panphon_features.json';
 
 /**
  * Decode base64 binary features into a lookup table

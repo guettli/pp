@@ -83,7 +83,7 @@ export function displayFeedback(targetWord, actualIPA, score) {
   const playBtn = document.getElementById('play-recording-btn');
   if (playBtn && state.lastRecordingBlob) {
     playBtn.style.display = 'inline-block';
-    playBtn.onclick = playRecording;
+    setupPlayButton(playBtn);
   }
 
   // Show play target button for desired pronunciation (if supported)
@@ -162,6 +162,84 @@ export function hideFeedback() {
   if (window.speechSynthesis) {
     speechSynthesis.cancel();
   }
+}
+
+// Long-press threshold in milliseconds
+const LONG_PRESS_THRESHOLD = 500;
+
+/**
+ * Set up play button with click (play) and long-press (download) handlers
+ * @param {HTMLElement} playBtn - The play button element
+ */
+function setupPlayButton(playBtn) {
+  let pressTimer = null;
+  let isLongPress = false;
+
+  const handlePressStart = (e) => {
+    isLongPress = false;
+    pressTimer = setTimeout(() => {
+      isLongPress = true;
+      downloadRecording();
+    }, LONG_PRESS_THRESHOLD);
+  };
+
+  const handlePressEnd = (e) => {
+    if (pressTimer) {
+      clearTimeout(pressTimer);
+      pressTimer = null;
+    }
+    if (!isLongPress) {
+      playRecording();
+    }
+  };
+
+  const handlePressCancel = () => {
+    if (pressTimer) {
+      clearTimeout(pressTimer);
+      pressTimer = null;
+    }
+  };
+
+  // Remove existing listeners by cloning
+  const newBtn = playBtn.cloneNode(true);
+  playBtn.parentNode.replaceChild(newBtn, playBtn);
+
+  // Mouse events
+  newBtn.addEventListener('mousedown', handlePressStart);
+  newBtn.addEventListener('mouseup', handlePressEnd);
+  newBtn.addEventListener('mouseleave', handlePressCancel);
+
+  // Touch events
+  newBtn.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    handlePressStart(e);
+  });
+  newBtn.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    handlePressEnd(e);
+  });
+  newBtn.addEventListener('touchcancel', handlePressCancel);
+}
+
+/**
+ * Download the last recorded audio as a file
+ */
+function downloadRecording() {
+  if (!state.lastRecordingBlob) return;
+
+  const url = URL.createObjectURL(state.lastRecordingBlob);
+  const a = document.createElement('a');
+  a.href = url;
+
+  // Use current word for filename if available
+  const word = state.currentWord?.word || 'recording';
+  const timestamp = new Date().toISOString().slice(0, 19).replace(/[:-]/g, '');
+  a.download = `${word}_${timestamp}.webm`;
+
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
 
 /**

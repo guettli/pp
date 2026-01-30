@@ -19,8 +19,8 @@ const __dirname = path.dirname(__filename);
 // Import the pure JS mel extraction
 import { extractLogMelJS } from '../src/speech/mel-js.js';
 
-// Import PanPhon distance calculation for similarity
-import { calculatePanPhonDistance } from '../src/comparison/panphon-distance.js';
+// Import PanPhon distance calculation for similarity (Node.js version)
+import { calculatePanPhonDistance } from './panphon-distance-node.js';
 
 let session = null;
 let idToToken = null;
