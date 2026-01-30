@@ -291,7 +291,11 @@
             <div class="row text-center">
               <div class="col-md-6 mb-3">
                 <strong data-i18n="feedback.target_ipa_label">Target IPA:</strong>
-                <p id="feedback-target-ipa" class="text-muted mb-0"></p>
+                <p id="feedback-target-ipa" class="text-muted mb-0 d-inline"></p>
+                <button id="play-target-btn" class="btn btn-sm btn-outline-secondary ms-2" data-i18n-attr="title:feedback.play_target" title="Play desired pronunciation" style="display: none;">
+                  <i class="bi bi-volume-up-fill"></i>
+                </button>
+                <small id="speech-synthesis-hint" class="text-muted ms-2" style="display: none;"></small>
               </div>
               <div class="col-md-6 mb-3">
                 <strong data-i18n="feedback.your_ipa_label">Your IPA:</strong>

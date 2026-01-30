@@ -2,11 +2,13 @@
  * Feedback display component
  */
 
-import { t } from '../i18n.js';
+import { t, getLanguage } from '../i18n.js';
 import { state } from '../state.js';
 
 // Track current audio playback
 let currentAudio = null;
+let currentUtterance = null;
+let speechSynthesisSupported = null; // null = unknown, true/false after check
 
 /**
  * Display pronunciation feedback with phoneme-level analysis
@@ -85,6 +87,25 @@ export function displayFeedback(targetWord, actualIPA, score) {
     playBtn.onclick = playRecording;
   }
 
+  // Show play target button for desired pronunciation (if supported)
+  const playTargetBtn = document.getElementById('play-target-btn');
+  const speechHint = document.getElementById('speech-synthesis-hint');
+  if (playTargetBtn && targetWord.word) {
+    checkSpeechSynthesisSupport().then((supported) => {
+      if (supported) {
+        playTargetBtn.style.display = 'inline-block';
+        playTargetBtn.onclick = () => playDesiredPronunciation(targetWord.word);
+        if (speechHint) speechHint.style.display = 'none';
+      } else {
+        playTargetBtn.style.display = 'none';
+        if (speechHint) {
+          speechHint.style.display = 'inline';
+          speechHint.textContent = t('feedback.speech_not_supported');
+        }
+      }
+    });
+  }
+
   // Scroll to feedback
   section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
@@ -96,9 +117,20 @@ export function hideFeedback() {
   const section = document.getElementById('feedback-section');
   if (section) section.style.display = 'none';
 
-  // Hide play button
+  // Hide play buttons
   const playBtn = document.getElementById('play-recording-btn');
   if (playBtn) playBtn.style.display = 'none';
+
+  const playTargetBtn = document.getElementById('play-target-btn');
+  if (playTargetBtn) playTargetBtn.style.display = 'none';
+
+  const speechHint = document.getElementById('speech-synthesis-hint');
+  if (speechHint) speechHint.style.display = 'none';
+
+  // Cancel any ongoing speech
+  if (window.speechSynthesis) {
+    speechSynthesis.cancel();
+  }
 }
 
 /**
@@ -120,4 +152,62 @@ function playRecording() {
     currentAudio = null;
   };
   currentAudio.play();
+}
+
+/**
+ * Check if Web Speech API is supported and has voices available
+ * @returns {Promise<boolean>}
+ */
+function checkSpeechSynthesisSupport() {
+  // Return cached result if already checked
+  if (speechSynthesisSupported !== null) {
+    return Promise.resolve(speechSynthesisSupported);
+  }
+
+  // No speechSynthesis API at all
+  if (!window.speechSynthesis) {
+    speechSynthesisSupported = false;
+    return Promise.resolve(false);
+  }
+
+  // Check if voices are available (they load async in some browsers)
+  return new Promise((resolve) => {
+    const voices = speechSynthesis.getVoices();
+    if (voices.length > 0) {
+      speechSynthesisSupported = true;
+      resolve(true);
+      return;
+    }
+
+    // Wait for voices to load (with timeout)
+    const timeout = setTimeout(() => {
+      speechSynthesisSupported = false;
+      resolve(false);
+    }, 1000);
+
+    speechSynthesis.onvoiceschanged = () => {
+      clearTimeout(timeout);
+      const loadedVoices = speechSynthesis.getVoices();
+      speechSynthesisSupported = loadedVoices.length > 0;
+      resolve(speechSynthesisSupported);
+    };
+  });
+}
+
+/**
+ * Play the desired pronunciation using Web Speech API
+ * @param {string} word - The word to pronounce
+ */
+function playDesiredPronunciation(word) {
+  if (!word || !window.speechSynthesis) return;
+
+  // Cancel any ongoing speech
+  speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = getLanguage() === 'de' ? 'de-DE' : 'en-US';
+  utterance.rate = 0.9; // Slightly slower for clarity
+
+  currentUtterance = utterance;
+  speechSynthesis.speak(utterance);
 }
