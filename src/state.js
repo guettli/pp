@@ -12,7 +12,8 @@ export const state = {
   transcriber: null,
   modelLoadMs: null,
   webgpuAvailable: null,
-  webgpuBackend: null
+  webgpuBackend: null,
+  lastRecordingBlob: null
 };
 
 /**

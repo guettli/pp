@@ -4,6 +4,9 @@
 
 import { t } from '../i18n.js';
 
+// Track last logged progress to throttle console output
+let lastLoggedPercent = -10;
+
 /**
  * Update loading progress
  * @param {Object} progress - Progress object from transformers.js
@@ -12,44 +15,49 @@ export function updateLoadingProgress(progress) {
   const statusElement = document.getElementById('loading-status');
   const progressBar = document.getElementById('loading-progress');
 
-  console.log('Loading progress:', progress);
-
   if (!progress) return;
+
+  // Only log every 10% to reduce console spam
+  const currentPercent = progress.progress ? Math.round(progress.progress) : 0;
+  const shouldLog = currentPercent >= lastLoggedPercent + 10 || progress.status !== 'downloading';
 
   // Update status message with detailed information
   if (statusElement) {
     if (progress.status === 'initiate') {
       const fileName = progress.file || 'unknown';
       statusElement.textContent = t('loading.status.initiate', { file: fileName });
-      console.log(statusElement.textContent);
+      if (shouldLog) console.log(statusElement.textContent);
     } else if (progress.status === 'download') {
       const percent = progress.progress ? Math.round(progress.progress) : 0;
       const fileName = progress.file || 'model';
       statusElement.textContent = t('loading.status.download', { file: fileName, percent });
-      console.log(statusElement.textContent);
+      if (shouldLog) console.log(statusElement.textContent);
     } else if (progress.status === 'done') {
       const fileName = progress.file || 'file';
       statusElement.textContent = t('loading.status.done', { file: fileName });
-      console.log(statusElement.textContent);
+      if (shouldLog) console.log(statusElement.textContent);
     } else if (progress.status === 'progress') {
       const percent = progress.progress ? Math.round(progress.progress) : 0;
       const fileName = progress.file || 'model';
       statusElement.textContent = t('loading.status.progress', { file: fileName, percent });
-      console.log(statusElement.textContent);
+      if (shouldLog) console.log(statusElement.textContent);
     } else if (progress.status === 'downloading') {
       const percent = progress.progress ? Math.round(progress.progress) : 0;
       statusElement.textContent = t('loading.status.downloading_model', { percent });
-      console.log(statusElement.textContent);
+      if (shouldLog) {
+        console.log(statusElement.textContent);
+        lastLoggedPercent = currentPercent;
+      }
     } else if (progress.status === 'loading') {
       statusElement.textContent = t('loading.status.loading_model');
-      console.log(statusElement.textContent);
+      if (shouldLog) console.log(statusElement.textContent);
     } else if (progress.status === 'ready') {
       statusElement.textContent = t('loading.status.ready');
-      console.log(statusElement.textContent);
+      if (shouldLog) console.log(statusElement.textContent);
     } else {
       const msg = progress.status || t('loading.initializing');
       statusElement.textContent = t('loading.status.fallback', { status: msg });
-      console.log(statusElement.textContent);
+      if (shouldLog) console.log(statusElement.textContent);
     }
   }
 

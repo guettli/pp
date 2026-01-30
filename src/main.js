@@ -283,7 +283,7 @@ async function handleRecordStop() {
 
     // Stop recording and get blob with duration
     const { blob: audioBlob, duration } = await state.recorder.stop();
-    setState({ isRecording: false });
+    setState({ isRecording: false, lastRecordingBlob: audioBlob });
 
     console.log(`Recording stopped. Duration: ${duration}ms`);
 

@@ -3,6 +3,10 @@
  */
 
 import { t } from '../i18n.js';
+import { state } from '../state.js';
+
+// Track current audio playback
+let currentAudio = null;
 
 /**
  * Display pronunciation feedback with phoneme-level analysis
@@ -74,6 +78,13 @@ export function displayFeedback(targetWord, actualIPA, score) {
   if (scoreElement) scoreElement.textContent = score.grade;
   if (messageElement) messageElement.textContent = score.message;
 
+  // Show play button if recording is available
+  const playBtn = document.getElementById('play-recording-btn');
+  if (playBtn && state.lastRecordingBlob) {
+    playBtn.style.display = 'inline-block';
+    playBtn.onclick = playRecording;
+  }
+
   // Scroll to feedback
   section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
@@ -84,4 +95,29 @@ export function displayFeedback(targetWord, actualIPA, score) {
 export function hideFeedback() {
   const section = document.getElementById('feedback-section');
   if (section) section.style.display = 'none';
+
+  // Hide play button
+  const playBtn = document.getElementById('play-recording-btn');
+  if (playBtn) playBtn.style.display = 'none';
+}
+
+/**
+ * Play the last recorded audio
+ */
+function playRecording() {
+  if (!state.lastRecordingBlob) return;
+
+  // Stop any currently playing audio
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio = null;
+  }
+
+  const url = URL.createObjectURL(state.lastRecordingBlob);
+  currentAudio = new Audio(url);
+  currentAudio.onended = () => {
+    URL.revokeObjectURL(url);
+    currentAudio = null;
+  };
+  currentAudio.play();
 }
