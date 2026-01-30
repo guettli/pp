@@ -269,7 +269,6 @@
             <span data-i18n="processing.label">Processing...</span>
           </div>
         </div>
-        <div id="processing-debug" class="processing-debug mt-2" style="display: none;"></div>
       </div>
 
       <!-- Feedback Section (hidden initially) -->
@@ -315,10 +314,13 @@
       </div>
 
       <!-- Tips -->
-      <div class="alert alert-info mt-4" role="alert">
+      <div id="tips-section" class="alert alert-info mt-4" role="alert">
         <strong data-i18n="tips.label">Tips:</strong>
         <span data-i18n="tips.body">Hold down the button while speaking (max 4 seconds). Release to stop and process your pronunciation.</span>
       </div>
+
+      <!-- Processing Debug (shown after processing) -->
+      <div id="processing-debug" class="processing-debug mt-4" style="display: none;"></div>
     </div>
 
     <!-- Console Output -->

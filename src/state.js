@@ -13,7 +13,8 @@ export const state = {
   modelLoadMs: null,
   webgpuAvailable: null,
   webgpuBackend: null,
-  lastRecordingBlob: null
+  lastRecordingBlob: null,
+  recordingCount: 0
 };
 
 /**

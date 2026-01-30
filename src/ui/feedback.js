@@ -3,7 +3,7 @@
  */
 
 import { t, getLanguage } from '../i18n.js';
-import { state } from '../state.js';
+import { state, setState } from '../state.js';
 
 // Track current audio playback
 let currentAudio = null;
@@ -27,6 +27,13 @@ export function displayFeedback(targetWord, actualIPA, score) {
 
   // Show feedback section
   if (section) section.style.display = 'block';
+
+  // Increment recording count and hide tips after 3 recordings
+  setState({ recordingCount: state.recordingCount + 1 });
+  if (state.recordingCount >= 3) {
+    const tipsSection = document.getElementById('tips-section');
+    if (tipsSection) tipsSection.style.display = 'none';
+  }
 
   // Update alert styling with phoneme-level details
   if (alert) {
