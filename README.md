@@ -4,6 +4,8 @@ Use AI models on your local device to analyze your pronunciation.
 
 Currently, focused on German beginners/kids.
 
+Demo: <https://thomas-guettler.de/phoneme-party/>
+
 Build on:
 
 * [ONNX](https://onnx.ai/)
