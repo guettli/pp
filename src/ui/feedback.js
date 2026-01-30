@@ -4,6 +4,7 @@
 
 import { t, getLanguage } from '../i18n.js';
 import { state, setState } from '../state.js';
+import { generateExplanationsHTML } from './ipa-helper.js';
 
 // Track current audio playback
 let currentAudio = null;
@@ -35,29 +36,9 @@ export function displayFeedback(targetWord, actualIPA, score) {
     if (tipsSection) tipsSection.style.display = 'none';
   }
 
-  // Update alert styling with phoneme-level details
+  // Update alert styling
   if (alert) {
     alert.className = `alert ${score.bootstrapClass}`;
-
-    let phonemeDetails = '';
-
-    // Only show phoneme analysis if word was recognized
-    if (!score.notFound && score.phonemeComparison && score.phonemeComparison.length > 0) {
-      phonemeDetails = `<div class="mt-2 small"><strong>${t('feedback.phoneme_analysis')}</strong><br>`;
-      phonemeDetails += '<div class="d-flex flex-wrap gap-2 mt-1">';
-
-      score.phonemeComparison.forEach((comp, idx) => {
-        const matchClass = comp.match ? 'bg-success' : 'bg-warning';
-        const matchIcon = comp.match ? '✓' : '~';
-        phonemeDetails += `
-          <span class="badge ${matchClass} text-white" title="${t('feedback.distance')}: ${comp.distance.toFixed(2)}">
-            ${matchIcon} [${comp.target}] → [${comp.actual}]
-          </span>
-        `;
-      });
-
-      phonemeDetails += '</div></div>';
-    }
 
     // Show similarity only if word was recognized
     const similarityText = score.notFound
@@ -67,8 +48,19 @@ export function displayFeedback(targetWord, actualIPA, score) {
     alert.innerHTML = `
       <h4 class="alert-heading">${score.grade}</h4>
       ${similarityText}
-      ${phonemeDetails}
     `;
+  }
+
+  // Generate side-by-side phoneme comparison
+  const comparisonGrid = document.getElementById('phoneme-comparison-grid');
+  if (comparisonGrid) {
+    if (!score.notFound && score.phonemeComparison && score.phonemeComparison.length > 0) {
+      comparisonGrid.innerHTML = generatePhonemeComparisonHTML(score.phonemeComparison);
+    } else if (score.notFound) {
+      comparisonGrid.innerHTML = `<span class="text-muted">${t('feedback.word_not_in_vocab')}</span>`;
+    } else {
+      comparisonGrid.innerHTML = '';
+    }
   }
 
   // Update content
@@ -113,6 +105,32 @@ export function displayFeedback(targetWord, actualIPA, score) {
     });
   }
 
+  // Populate IPA explanations
+  const ipaContent = document.getElementById('ipa-explanations-content');
+  if (ipaContent) {
+    const explanationsHTML = generateExplanationsHTML(targetWord.ipa, actualIPA);
+    ipaContent.innerHTML = explanationsHTML || t('feedback.no_ipa_help');
+  }
+
+  // Set up IPA help toggle (collapse initially)
+  const ipaToggle = document.getElementById('ipa-help-toggle');
+  const ipaExplanations = document.getElementById('ipa-explanations');
+  const ipaChevron = document.getElementById('ipa-help-chevron');
+  if (ipaToggle && ipaExplanations) {
+    ipaExplanations.style.display = 'none';
+    if (ipaChevron) {
+      ipaChevron.className = 'bi bi-chevron-down ms-1';
+    }
+    ipaToggle.onclick = (e) => {
+      e.preventDefault();
+      const isHidden = ipaExplanations.style.display === 'none';
+      ipaExplanations.style.display = isHidden ? 'block' : 'none';
+      if (ipaChevron) {
+        ipaChevron.className = isHidden ? 'bi bi-chevron-up ms-1' : 'bi bi-chevron-down ms-1';
+      }
+    };
+  }
+
   // Scroll to feedback
   section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
@@ -133,6 +151,12 @@ export function hideFeedback() {
 
   const speechHint = document.getElementById('speech-synthesis-hint');
   if (speechHint) speechHint.style.display = 'none';
+
+  // Collapse IPA explanations
+  const ipaExplanations = document.getElementById('ipa-explanations');
+  if (ipaExplanations) ipaExplanations.style.display = 'none';
+  const ipaChevron = document.getElementById('ipa-help-chevron');
+  if (ipaChevron) ipaChevron.className = 'bi bi-chevron-down ms-1';
 
   // Cancel any ongoing speech
   if (window.speechSynthesis) {
@@ -217,4 +241,54 @@ function playDesiredPronunciation(word) {
 
   currentUtterance = utterance;
   speechSynthesis.speak(utterance);
+}
+
+/**
+ * Generate HTML for side-by-side phoneme comparison using table layout
+ * @param {Array} phonemeComparison - Array of {target, actual, match, distance}
+ * @returns {string} - HTML string
+ */
+function generatePhonemeComparisonHTML(phonemeComparison) {
+  // Build class and tooltip data for each column
+  const columns = phonemeComparison.map((comp) => {
+    const target = comp.target || '—';
+    const actual = comp.actual || '—';
+
+    let pairClass = 'match';
+    if (!comp.match) {
+      if (comp.target && !comp.actual) {
+        pairClass = 'missing';
+      } else if (!comp.target && comp.actual) {
+        pairClass = 'extra';
+      } else {
+        pairClass = 'mismatch';
+      }
+    }
+
+    const tooltip = comp.match
+      ? t('feedback.phoneme_match')
+      : `${t('feedback.distance')}: ${comp.distance.toFixed(2)}`;
+
+    return { target, actual, pairClass, tooltip };
+  });
+
+  // Build table with two rows for proper text selection
+  let html = '<table class="phoneme-table"><tbody>';
+
+  // Target row
+  html += '<tr class="phoneme-row-target">';
+  for (const col of columns) {
+    html += `<td class="phoneme-cell ${col.pairClass}" title="${col.tooltip}">${col.target}</td>`;
+  }
+  html += '</tr>';
+
+  // Actual row
+  html += '<tr class="phoneme-row-actual">';
+  for (const col of columns) {
+    html += `<td class="phoneme-cell ${col.pairClass}" title="${col.tooltip}">${col.actual}</td>`;
+  }
+  html += '</tr>';
+
+  html += '</tbody></table>';
+  return html;
 }

@@ -11,7 +11,14 @@ export function displayWord(word) {
   const textElement = document.getElementById('word-text');
   const ipaElement = document.getElementById('word-ipa');
 
-  if (emojiElement) emojiElement.textContent = word.emoji;
+  if (emojiElement) {
+    // Check if emoji is an SVG path (starts with / or ends with .svg)
+    if (word.emoji && (word.emoji.startsWith('/') || word.emoji.endsWith('.svg'))) {
+      emojiElement.innerHTML = `<img src="${word.emoji}" alt="${word.word}" style="height: 1em; width: auto;">`;
+    } else {
+      emojiElement.textContent = word.emoji;
+    }
+  }
   if (textElement) textElement.textContent = word.word;
   if (ipaElement) ipaElement.textContent = word.ipa;
 }

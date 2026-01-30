@@ -18,7 +18,7 @@ import {
 import { resetFeedback, setState, state } from './state.js';
 
 // Import utilities
-import { getRandomWord } from './utils/random.js';
+import { getRandomWord, findWordByName } from './utils/random.js';
 
 // Import audio modules
 import { prepareAudioForWhisper } from './audio/processor.js';
@@ -112,8 +112,8 @@ async function init() {
     // Hide loading, show main content
     hideLoading();
 
-    // Load first random word
-    nextWord();
+    // Load first word (from query string or random)
+    loadInitialWord();
 
     // Set up event listeners
     setupEventListeners();
@@ -402,6 +402,31 @@ async function handleRecordStop() {
     // Reset states
     setState({ isRecording: false, isProcessing: false });
     resetRecordButton();
+  }
+}
+
+/**
+ * Get word from URL query parameter (?word=...)
+ * @returns {Object|null} Word object or null
+ */
+function getWordFromQueryString() {
+  const params = new URLSearchParams(window.location.search);
+  const wordParam = params.get('word');
+  if (!wordParam) return null;
+  return findWordByName(wordParam, getLanguage());
+}
+
+/**
+ * Load initial word (from query string or random)
+ */
+function loadInitialWord() {
+  const queryWord = getWordFromQueryString();
+  if (queryWord) {
+    setState({ currentWord: queryWord });
+    displayWord(queryWord);
+    setRecordButtonEnabled(true);
+  } else {
+    nextWord();
   }
 }
 

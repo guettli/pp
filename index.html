@@ -287,21 +287,42 @@
               <p id="feedback-target" class="mb-0"></p>
             </div>
 
-            <div class="row text-center">
-              <div class="col-md-6 mb-3">
-                <strong data-i18n="feedback.target_ipa_label">Target IPA:</strong>
-                <p id="feedback-target-ipa" class="text-muted mb-0 d-inline"></p>
-                <button id="play-target-btn" class="btn btn-sm btn-outline-secondary ms-2" data-i18n-attr="title:feedback.play_target" title="Play desired pronunciation" style="display: none;">
-                  <i class="bi bi-volume-up-fill"></i>
-                </button>
-                <small id="speech-synthesis-hint" class="text-muted ms-2" style="display: none;"></small>
+            <!-- Side-by-side phoneme comparison -->
+            <div id="phoneme-comparison" class="mb-3">
+              <div class="d-flex justify-content-center align-items-start gap-2 flex-wrap">
+                <div class="d-flex align-items-center">
+                  <strong class="me-2" data-i18n="feedback.target_ipa_label">Target IPA:</strong>
+                  <button id="play-target-btn" class="btn btn-sm btn-outline-secondary" data-i18n-attr="title:feedback.play_target" title="Play desired pronunciation" style="display: none;">
+                    <i class="bi bi-volume-up-fill"></i>
+                  </button>
+                  <small id="speech-synthesis-hint" class="text-muted ms-2" style="display: none;"></small>
+                </div>
+                <div class="d-flex align-items-center">
+                  <strong class="me-2" data-i18n="feedback.your_ipa_label">Your IPA:</strong>
+                  <button id="play-recording-btn" class="btn btn-sm btn-outline-secondary" title="Play your recording" style="display: none;">
+                    <i class="bi bi-play-fill"></i>
+                  </button>
+                </div>
               </div>
-              <div class="col-md-6 mb-3">
-                <strong data-i18n="feedback.your_ipa_label">Your IPA:</strong>
-                <p id="feedback-actual-ipa" class="text-muted mb-0 d-inline"></p>
-                <button id="play-recording-btn" class="btn btn-sm btn-outline-secondary ms-2" title="Play your recording" style="display: none;">
-                  <i class="bi bi-play-fill"></i>
-                </button>
+              <div id="phoneme-comparison-grid" class="mt-3 d-flex justify-content-center flex-wrap gap-1">
+                <!-- Dynamic phoneme comparison will be inserted here -->
+              </div>
+              <!-- Hidden elements for IPA helper -->
+              <span id="feedback-target-ipa" style="display: none;"></span>
+              <span id="feedback-actual-ipa" style="display: none;"></span>
+            </div>
+
+            <!-- IPA Explanations (collapsible) -->
+            <div class="mt-3">
+              <a id="ipa-help-toggle" class="text-decoration-none small" href="#" role="button" aria-expanded="false">
+                <i class="bi bi-info-circle me-1"></i>
+                <span data-i18n="feedback.ipa_help">What do these symbols mean?</span>
+                <i id="ipa-help-chevron" class="bi bi-chevron-down ms-1"></i>
+              </a>
+              <div id="ipa-explanations" class="mt-2" style="display: none;">
+                <div class="card card-body bg-light small" id="ipa-explanations-content">
+                  <!-- Dynamic content will be inserted here -->
+                </div>
               </div>
             </div>
 

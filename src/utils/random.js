@@ -23,3 +23,15 @@ export function getRandomWord(language = getLanguage()) {
 export function getAllWords(language = getLanguage()) {
   return getWordList(language);
 }
+
+/**
+ * Find a word by name (case-insensitive)
+ * @param {string} name - Word to find
+ * @param {string} language - Language code
+ * @returns {Object|null} Word object or null if not found
+ */
+export function findWordByName(name, language = getLanguage()) {
+  const wordsData = getWordList(language);
+  const lowerName = name.toLowerCase();
+  return wordsData.find((w) => w.word.toLowerCase() === lowerName) || null;
+}

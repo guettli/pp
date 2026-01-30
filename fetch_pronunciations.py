@@ -115,7 +115,7 @@ def main():
         {"word": "Fahrrad", "emoji": "🚲", "ipa": None},
         {"word": "Tür", "emoji": "🚪", "ipa": None},
         {"word": "Fenster", "emoji": "🪟", "ipa": None},
-        {"word": "Tisch", "emoji": "🪑", "ipa": None},
+        {"word": "Tisch", "emoji": "🍽️", "ipa": None},
         {"word": "Bett", "emoji": "🛏️", "ipa": None},
         {"word": "Uhr", "emoji": "🕐", "ipa": None},
         {"word": "Schlüssel", "emoji": "🔑", "ipa": None},
