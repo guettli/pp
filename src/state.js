@@ -7,7 +7,6 @@ export const state = {
   isRecording: false,
   isModelLoaded: false,
   isProcessing: false,
-  transcription: null,
   score: null,
   recorder: null,
   transcriber: null,
@@ -29,7 +28,6 @@ export function setState(updates) {
  */
 export function resetFeedback() {
   setState({
-    transcription: null,
     score: null
   });
 }

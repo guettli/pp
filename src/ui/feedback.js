@@ -7,15 +7,13 @@ import { t } from '../i18n.js';
 /**
  * Display pronunciation feedback with phoneme-level analysis
  * @param {Object} targetWord - Target word object
- * @param {string} transcription - Transcribed text
  * @param {string} actualIPA - Actual IPA pronunciation
  * @param {Object} score - Score object from scorer.js
  */
-export function displayFeedback(targetWord, transcription, actualIPA, score) {
+export function displayFeedback(targetWord, actualIPA, score) {
   const section = document.getElementById('feedback-section');
   const alert = document.getElementById('feedback-alert');
   const targetElement = document.getElementById('feedback-target');
-  const transcriptionElement = document.getElementById('feedback-transcription');
   const targetIPAElement = document.getElementById('feedback-target-ipa');
   const actualIPAElement = document.getElementById('feedback-actual-ipa');
   const scoreElement = document.getElementById('feedback-score');
@@ -62,25 +60,13 @@ export function displayFeedback(targetWord, transcription, actualIPA, score) {
 
   // Update content
   if (targetElement) targetElement.textContent = targetWord.word;
-  if (transcriptionElement) {
-    transcriptionElement.textContent = transcription || t('feedback.no_speech_detected');
-  }
   if (targetIPAElement) {
-    // Show phonemes if available
-    if (score.targetPhonemes && score.targetPhonemes.length > 0) {
-      targetIPAElement.textContent = `${targetWord.ipa} [${score.targetPhonemes.join(' ')}]`;
-    } else {
-      targetIPAElement.textContent = targetWord.ipa;
-    }
+    targetIPAElement.textContent = targetWord.ipa;
   }
   if (actualIPAElement) {
     // Show phonemes if available, or "Not recognized" if word not found
     if (score.notFound) {
       actualIPAElement.textContent = t('feedback.word_not_in_vocab');
-    } else if (score.actualPhonemes && score.actualPhonemes.length > 0) {
-      actualIPAElement.textContent = actualIPA
-        ? `${actualIPA} [${score.actualPhonemes.join(' ')}]`
-        : '—';
     } else {
       actualIPAElement.textContent = actualIPA || '—';
     }

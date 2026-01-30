@@ -3,6 +3,9 @@
  * Outputs IPA phonemes directly from audio
  */
 
+import { extractLogMelJS } from './mel-js.js';
+import { getModelFromCache, saveModelToCache } from './model-cache.js';
+
 // Model configuration
 // Using your HuggingFace repo for ZIPA small CTC ONNX model
 const MODEL_REPO = 'guettli/zipa-small-ctc-onnx-2026-01-28';
@@ -19,8 +22,6 @@ let idToToken = null;
  * @returns {Promise<void>}
  */
 export async function loadPhonemeModel(progressCallback) {
-  console.log('Loading phoneme extraction model...');
-
   // Wait for ONNX Runtime to be available
   while (!window.ort) {
     await new Promise(resolve => setTimeout(resolve, 100));
@@ -31,7 +32,6 @@ export async function loadPhonemeModel(progressCallback) {
   try {
     // Load vocab first (small)
     progressCallback({ status: 'downloading', name: 'vocab.json', progress: 0 });
-    console.log('Fetching vocab from:', VOCAB_URL);
 
     const vocabResponse = await fetch(VOCAB_URL);
     if (!vocabResponse.ok) {
@@ -44,65 +44,67 @@ export async function loadPhonemeModel(progressCallback) {
     for (const [token, id] of Object.entries(vocab)) {
       idToToken[id] = token;
     }
-    console.log(`Loaded vocab with ${Object.keys(vocab).length} tokens`);
+
 
     progressCallback({ status: 'downloading', name: 'model.onnx', progress: 10 });
 
     // Configure ONNX Runtime - prefer WebGPU
     const webgpuAvailable = typeof navigator !== 'undefined' && !!navigator.gpu;
-    if (!webgpuAvailable) {
-      console.warn('⚠️ WebGPU not available - falling back to WASM (slower inference)');
-      console.warn('   For best performance, use Chrome 113+ or Edge 113+ with WebGPU enabled');
-    }
-
     const executionProviders = webgpuAvailable
       ? ['webgpu', 'wasm']
       : ['wasm'];
 
-    console.log('Loading ONNX model from:', MODEL_URL);
-    console.log('WebGPU available:', webgpuAvailable);
-    console.log('Execution providers:', executionProviders);
+    // Try to load model from IndexedDB cache first
+    let modelArrayBuffer = await getModelFromCache(MODEL_URL);
+    if (!modelArrayBuffer) {
+      // Not cached: download and cache
 
-    // Load model with progress tracking
-    const modelResponse = await fetch(MODEL_URL);
-    if (!modelResponse.ok) {
-      throw new Error(`Failed to fetch model: ${modelResponse.status}`);
-    }
-
-    const contentLength = modelResponse.headers.get('content-length');
-    const totalBytes = contentLength ? parseInt(contentLength, 10) : 0;
-
-    // Read response as stream for progress tracking
-    const reader = modelResponse.body.getReader();
-    const chunks = [];
-    let loadedBytes = 0;
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-
-      chunks.push(value);
-      loadedBytes += value.length;
-
-      if (totalBytes > 0) {
-        const progress = 10 + (loadedBytes / totalBytes) * 80;
-        progressCallback({
-          status: 'downloading',
-          name: 'model.onnx',
-          progress: Math.round(progress),
-          loaded: loadedBytes,
-          total: totalBytes
-        });
+      // Load model with progress tracking
+      const modelResponse = await fetch(MODEL_URL);
+      if (!modelResponse.ok) {
+        throw new Error(`Failed to fetch model: ${modelResponse.status}`);
       }
+
+      const contentLength = modelResponse.headers.get('content-length');
+      const totalBytes = contentLength ? parseInt(contentLength, 10) : 0;
+
+      // Read response as stream for progress tracking
+      const reader = modelResponse.body.getReader();
+      const chunks = [];
+      let loadedBytes = 0;
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        chunks.push(value);
+        loadedBytes += value.length;
+
+        if (totalBytes > 0) {
+          const progress = 10 + (loadedBytes / totalBytes) * 80;
+          progressCallback({
+            status: 'downloading',
+            name: 'model.onnx',
+            progress: Math.round(progress),
+            loaded: loadedBytes,
+            total: totalBytes
+          });
+        }
+      }
+
+      // Combine chunks into single ArrayBuffer
+      modelArrayBuffer = new Uint8Array(loadedBytes);
+      let offset = 0;
+      for (const chunk of chunks) {
+        modelArrayBuffer.set(chunk, offset);
+        offset += chunk.length;
+      }
+      // Save to IndexedDB cache
+      await saveModelToCache(MODEL_URL, modelArrayBuffer.buffer);
     }
 
-    // Combine chunks into single ArrayBuffer
-    const modelBuffer = new Uint8Array(loadedBytes);
-    let offset = 0;
-    for (const chunk of chunks) {
-      modelBuffer.set(chunk, offset);
-      offset += chunk.length;
-    }
+    // Use cached or freshly downloaded model
+    const modelBuffer = new Uint8Array(modelArrayBuffer);
 
     progressCallback({ status: 'initializing', progress: 90 });
 
@@ -113,9 +115,6 @@ export async function loadPhonemeModel(progressCallback) {
     });
 
     progressCallback({ status: 'ready', progress: 100 });
-    console.log('Phoneme model loaded successfully');
-    console.log('Model inputs:', session.inputNames);
-    console.log('Model outputs:', session.outputNames);
 
   } catch (error) {
     console.error('Failed to load phoneme model:', error);
@@ -135,15 +134,26 @@ export async function extractPhonemes(audioData) {
 
   const ort = window.ort;
 
-  // Create input tensor [batch=1, sequence_length]
-  const inputTensor = new ort.Tensor('float32', audioData, [1, audioData.length]);
-
+  // Extract log-mel features (shape: [frames, 80])
+  const melBands = 80;
+  const melFeatures = extractLogMelJS(audioData, melBands);
+  const numFrames = melFeatures.length / melBands;
+  // Reshape to [1, numFrames, 80]
+  const inputTensor = new ort.Tensor('float32', melFeatures, [1, numFrames, melBands]);
+  // Prepare x_lens tensor (number of frames)
+  const xLensTensor = new ort.Tensor('int64', new BigInt64Array([BigInt(numFrames)]), [1]);
   // Run inference
-  const feeds = { input_values: inputTensor };
+  const feeds = { x: inputTensor, x_lens: xLensTensor };
   const results = await session.run(feeds);
-
-  // Get logits output
-  const logits = results.logits;
+  let logits = results.logits || results.log_probs;
+  if (!logits) {
+    // Try to use the first output if logits is not found
+    const firstKey = Object.keys(results)[0];
+    logits = results[firstKey];
+  }
+  if (!logits) {
+    throw new Error('No logits output found in ONNX results. Available keys: ' + Object.keys(results).join(', '));
+  }
   const logitsData = logits.data;
   const [batchSize, seqLen, vocabSize] = logits.dims;
 
@@ -182,9 +192,9 @@ function ctcDecode(ids) {
     if (id === prevId) continue;
     prevId = id;
 
-    // Skip special tokens
+    // Skip special tokens (including sentence boundary marker ▁)
     const token = idToToken[id];
-    if (!token || token === '<pad>' || token === '<s>' || token === '</s>' || token === '<unk>') {
+    if (!token || token === '<pad>' || token === '<s>' || token === '</s>' || token === '<unk>' || token === '<blk>' || token === '▁') {
       continue;
     }
 

@@ -367,11 +367,11 @@ async function handleRecordStop() {
       console.log('Phoneme comparison:', score.phonemeComparison);
       showProcessing(95);
 
-      // Update state (no text transcription, just phonemes)
-      setState({ transcription: actualIPA, score });
+      // Update state
+      setState({ score });
 
-      // Display feedback (actualIPA is now the "transcription")
-      displayFeedback(state.currentWord, actualIPA, actualIPA, score);
+      // Display feedback
+      displayFeedback(state.currentWord, actualIPA, score);
       showProcessingDetails({
         steps: timingSteps,
         meta: debugMeta,
