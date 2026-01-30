@@ -66,6 +66,56 @@ sending data to external servers.
 * **ONNX Runtime**: Optimized inference for neural networks in JavaScript
 * **Phoneme Alignment**: Dynamic time warping or similar algorithms for sequence matching
 
+## Running Tests
+
+### Prerequisites
+
+* Node.js (v18+)
+* ffmpeg (for audio processing)
+* edge-tts (only needed for generating new TTS audio): `pip install edge-tts`
+
+### Install Dependencies
+
+```bash
+pnpm install
+```
+
+### Test: All Words
+
+Comprehensive test that generates TTS audio for all German and English words and tests phoneme extraction:
+
+```bash
+node tests/all-words.test.js
+```
+
+This test:
+
+* Downloads the ONNX model (cached in `~/.cache/phoneme-party/`)
+* Uses pre-generated TTS audio from `tests/data/` (committed to git)
+* Only generates new audio via edge-tts if files are missing
+* Runs phoneme extraction and displays results
+
+### Test Data Structure
+
+Audio test files are stored in git under `tests/data/`:
+
+```text
+tests/data/
+├── de/
+│   ├── Apfel/
+│   │   ├── Apfel-edge-tts-conrad.flac
+│   │   └── Apfel-edge-tts-conrad.yaml
+│   └── ...
+└── en/
+    ├── apple/
+    │   ├── apple-edge-tts-guy.flac
+    │   └── apple-edge-tts-guy.yaml
+    └── ...
+```
+
+Each word can have multiple audio files from different sources. The YAML metadata records the audio
+provenance (TTS voice, creation date, format).
+
 ## License
 
 MIT License - See [LICENSE](LICENSE) file for details.

@@ -1,4 +1,5 @@
-- join python export files.
-- show progress bar while processing.
-- use webGPU, if available.
-- show console at bottom, show it collapsed by default.
+- run tests in parallel
+- ipa comparison does not work well up to now. Often 100% correct, but is not.
+- More rounded corners. More child friendly
+- Positive feedback.
+- collect phonemes metrics: Which are often correct, which are often wrong?
