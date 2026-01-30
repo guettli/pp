@@ -170,16 +170,36 @@ export function calculatePanPhonDistance(target, actual) {
 
   // Calculate phoneme-by-phoneme comparison for detailed feedback
   const phonemeComparison = [];
-  const minLen = Math.min(targetPhonemes.length, actualPhonemes.length);
 
-  for (let i = 0; i < minLen; i++) {
-    const dist = phonemeFeatureDistance(targetPhonemes[i], actualPhonemes[i]);
-    phonemeComparison.push({
-      target: targetPhonemes[i],
-      actual: actualPhonemes[i],
-      distance: dist,
-      match: dist < 0.3  // Consider close matches as acceptable
-    });
+  for (let i = 0; i < maxLen; i++) {
+    const targetPhoneme = targetPhonemes[i] || null;
+    const actualPhoneme = actualPhonemes[i] || null;
+
+    if (targetPhoneme && actualPhoneme) {
+      const dist = phonemeFeatureDistance(targetPhoneme, actualPhoneme);
+      phonemeComparison.push({
+        target: targetPhoneme,
+        actual: actualPhoneme,
+        distance: dist,
+        match: dist < 0.3  // Consider close matches as acceptable
+      });
+    } else if (targetPhoneme && !actualPhoneme) {
+      // Missing phoneme (target exists but not spoken)
+      phonemeComparison.push({
+        target: targetPhoneme,
+        actual: null,
+        distance: 1.0,
+        match: false
+      });
+    } else if (!targetPhoneme && actualPhoneme) {
+      // Extra phoneme (spoken but not in target)
+      phonemeComparison.push({
+        target: null,
+        actual: actualPhoneme,
+        distance: 1.0,
+        match: false
+      });
+    }
   }
 
   return {

@@ -2,16 +2,14 @@
 // Test phoneme extraction on all words using TTS-generated audio
 
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
-import * as ort from 'onnxruntime-node';
+import { Worker } from 'worker_threads';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-// Import the pure JS mel extraction
-import { extractLogMelJS } from '../src/speech/mel-js.js';
 
 // Model configuration
 const MODEL_REPO = 'guettli/zipa-small-ctc-onnx-2026-01-28';
@@ -22,10 +20,6 @@ const VOCAB_URL = `https://huggingface.co/${MODEL_REPO}/resolve/main/vocab.json`
 const XDG_CACHE_HOME = process.env.XDG_CACHE_HOME || path.join(process.env.HOME, '.cache');
 const CACHE_DIR = path.join(XDG_CACHE_HOME, 'phoneme-party');
 const DATA_DIR = path.join(__dirname, 'data');
-
-let session = null;
-let vocab = null;
-let idToToken = null;
 
 // TTS voice configurations
 const TTS_VOICES = {
@@ -51,19 +45,61 @@ async function downloadIfNeeded(url, filename) {
     return cachePath;
 }
 
-async function loadModel() {
-    const vocabPath = await downloadIfNeeded(VOCAB_URL, 'vocab.json');
-    vocab = JSON.parse(fs.readFileSync(vocabPath, 'utf8'));
-    idToToken = {};
-    for (const [token, id] of Object.entries(vocab)) {
-        idToToken[id] = token;
-    }
-
+async function downloadModelFiles() {
     const modelPath = await downloadIfNeeded(MODEL_URL, 'model.onnx');
-    session = await ort.InferenceSession.create(modelPath, {
-        executionProviders: ['cpu'],
+    const vocabPath = await downloadIfNeeded(VOCAB_URL, 'vocab.json');
+    return { modelPath, vocabPath };
+}
+
+/**
+ * Run tasks in parallel using worker threads
+ */
+function runWorkers(tasks, modelPath, vocabPath, numWorkers) {
+    return new Promise((resolve, reject) => {
+        const results = [];
+        let completedWorkers = 0;
+
+        // Split tasks across workers
+        const tasksPerWorker = Math.ceil(tasks.length / numWorkers);
+        const workerTasks = [];
+        for (let i = 0; i < numWorkers; i++) {
+            const start = i * tasksPerWorker;
+            const end = Math.min(start + tasksPerWorker, tasks.length);
+            if (start < tasks.length) {
+                workerTasks.push(tasks.slice(start, end));
+            }
+        }
+
+        const actualWorkers = workerTasks.length;
+        if (actualWorkers === 0) {
+            resolve([]);
+            return;
+        }
+
+        for (let i = 0; i < actualWorkers; i++) {
+            const worker = new Worker(path.join(__dirname, 'worker-phoneme.js'), {
+                workerData: {
+                    modelPath,
+                    vocabPath,
+                    tasks: workerTasks[i]
+                }
+            });
+
+            worker.on('message', (workerResults) => {
+                if (workerResults.error) {
+                    reject(new Error(workerResults.error));
+                    return;
+                }
+                results.push(...workerResults);
+                completedWorkers++;
+                if (completedWorkers === actualWorkers) {
+                    resolve(results);
+                }
+            });
+
+            worker.on('error', reject);
+        }
     });
-    console.log('Model loaded.\n');
 }
 
 /**
@@ -277,119 +313,6 @@ function findAudioFiles(lang, word) {
     return audioFiles;
 }
 
-function readAudioFile(filePath) {
-    // Convert to raw 16kHz mono PCM using ffmpeg
-    const result = execSync(
-        `ffmpeg -i "${filePath}" -f s16le -acodec pcm_s16le -ar 16000 -ac 1 - 2>/dev/null`,
-        { maxBuffer: 50 * 1024 * 1024 }
-    );
-    const samples = new Float32Array(result.length / 2);
-    for (let i = 0; i < samples.length; i++) {
-        samples[i] = result.readInt16LE(i * 2) / 32768.0;
-    }
-    return samples;
-}
-
-async function extractPhonemes(audioData) {
-    const melBands = 80;
-    const melFeatures = extractLogMelJS(audioData, melBands);
-    const numFrames = melFeatures.length / melBands;
-
-    const inputTensor = new ort.Tensor('float32', melFeatures, [1, numFrames, melBands]);
-    const xLensTensor = new ort.Tensor('int64', new BigInt64Array([BigInt(numFrames)]), [1]);
-
-    const results = await session.run({ x: inputTensor, x_lens: xLensTensor });
-    let logits = results.logits || results.log_probs || results[Object.keys(results)[0]];
-
-    const logitsData = logits.data;
-    const [, seqLen, vocabSize] = logits.dims;
-
-    const predictedIds = [];
-    for (let t = 0; t < seqLen; t++) {
-        let maxIdx = 0;
-        let maxVal = logitsData[t * vocabSize];
-        for (let v = 1; v < vocabSize; v++) {
-            const val = logitsData[t * vocabSize + v];
-            if (val > maxVal) {
-                maxVal = val;
-                maxIdx = v;
-            }
-        }
-        predictedIds.push(maxIdx);
-    }
-
-    // CTC decode
-    const phonemes = [];
-    let prevId = -1;
-    for (const id of predictedIds) {
-        if (id === prevId) continue;
-        prevId = id;
-        const token = idToToken[id];
-        if (!token || token === '<pad>' || token === '<s>' || token === '</s>' || token === '<unk>' || token === '<blk>' || token === '▁') {
-            continue;
-        }
-        phonemes.push(token);
-    }
-    return phonemes.join(' ');
-}
-
-async function testWord(word, expectedIPA, lang, testType = 'all') {
-    // Ensure TTS audio exists (only needed for normal word tests)
-    let ttsResult = { cached: false };
-    if (testType !== 'mispronunciation') {
-        ttsResult = generateTTSAudio(word, lang);
-        if (!ttsResult) {
-            return [{ word, lang, status: 'tts_failed', expected: expectedIPA }];
-        }
-    }
-
-    // Find all audio files for this word
-    const audioFiles = findAudioFiles(lang, word);
-    const results = [];
-
-    for (const audioFile of audioFiles) {
-        const meta = audioFile.metadata || {};
-        const isMispro = !!meta.mispronunciation;
-
-        // Filter by test type
-        if (testType === 'word' && isMispro) continue;
-        if (testType === 'mispronunciation' && !isMispro) continue;
-
-        const audio = readAudioFile(audioFile.path);
-        const extractedPhonemes = await extractPhonemes(audio);
-
-        // Check if this is a mispronunciation test
-        if (isMispro) {
-            const expected = meta.expected_phonemes || '';
-            const match = extractedPhonemes === expected;
-
-            results.push({
-                word,
-                lang,
-                source: audioFile.source,
-                spokenAs: meta.spoken_as,
-                expected: expected,
-                actual: extractedPhonemes,
-                mispronunciation: true,
-                match,
-                status: match ? 'ok' : 'mispro_mismatch'
-            });
-        } else {
-            results.push({
-                word,
-                lang,
-                source: audioFile.source,
-                expected: expectedIPA,
-                actual: extractedPhonemes,
-                cached: ttsResult.cached,
-                status: 'ok'
-            });
-        }
-    }
-
-    return results;
-}
-
 function printResults(results, lang) {
     // Separate normal and mispronunciation results
     const normalResults = results.filter(r => !r.mispronunciation);
@@ -397,20 +320,20 @@ function printResults(results, lang) {
 
     if (normalResults.length > 0) {
         console.log(`\n${lang === 'de' ? 'German' : 'English'} words:\n`);
-        console.log('Word'.padEnd(20) + 'Source'.padEnd(20) + 'Expected IPA'.padEnd(20) + 'Extracted');
+        console.log('Word'.padEnd(15) + 'Sim'.padEnd(6) + 'Expected IPA'.padEnd(20) + 'Extracted');
         console.log('-'.repeat(80));
 
         for (const result of normalResults) {
             if (result.status === 'ok') {
-                const cached = result.cached ? ' (cached)' : '';
+                const simPercent = Math.round(result.similarity * 100) + '%';
                 console.log(
-                    result.word.padEnd(20) +
-                    (result.source + cached).padEnd(20) +
+                    result.word.padEnd(15) +
+                    simPercent.padEnd(6) +
                     result.expected.padEnd(20) +
                     result.actual
                 );
             } else {
-                console.log(`${result.word.padEnd(20)} FAILED`);
+                console.log(`${result.word.padEnd(15)} FAILED`);
             }
         }
     }
@@ -542,29 +465,51 @@ async function main() {
         console.log(`Matching tests: ${filteredTests.length}\n`);
     }
 
-    await loadModel();
+    // Download model files
+    const { modelPath, vocabPath } = await downloadModelFiles();
 
     // Generate mispronunciation audio for filtered tests
     for (const test of filteredTests.filter(t => t.type === 'mispronunciation')) {
         generateMispronunciationAudio(test.word, test.spokenAs, test.lang, test.expectedPhonemes);
     }
 
-    // Get filtered tests by language
-    const filteredDE = filteredTests.filter(t => t.lang === 'de');
-    const filteredEN = filteredTests.filter(t => t.lang === 'en');
+    // Generate TTS audio for word tests
+    for (const test of filteredTests.filter(t => t.type === 'word')) {
+        generateTTSAudio(test.word, test.lang);
+    }
 
-    console.log('Running tests in parallel...');
+    // Build list of all tasks (audio files to process)
+    const tasks = [];
+    for (const test of filteredTests) {
+        const audioFiles = findAudioFiles(test.lang, test.word);
+        for (const audioFile of audioFiles) {
+            const meta = audioFile.metadata || {};
+            const isMispro = !!meta.mispronunciation;
 
-    // Run filtered tests in parallel, passing the test type
-    const [resultsDE, resultsEN] = await Promise.all([
-        Promise.all(filteredDE.map(t => testWord(t.word, t.ipa || '', 'de', t.type))),
-        Promise.all(filteredEN.map(t => testWord(t.word, t.ipa || '', 'en', t.type)))
-    ]);
+            // Filter by test type
+            if (test.type === 'word' && isMispro) continue;
+            if (test.type === 'mispronunciation' && !isMispro) continue;
 
-    // Flatten results
-    const allResultsDE = resultsDE.flat();
-    const allResultsEN = resultsEN.flat();
-    const allResults = [...allResultsDE, ...allResultsEN];
+            tasks.push({
+                audioPath: audioFile.path,
+                expectedIPA: test.ipa || '',
+                word: test.word,
+                lang: test.lang,
+                source: audioFile.source,
+                metadata: meta
+            });
+        }
+    }
+
+    const numWorkers = os.cpus().length;
+    console.log(`Running ${tasks.length} tests using ${numWorkers} workers...`);
+
+    // Run tests in parallel using workers
+    const allResults = await runWorkers(tasks, modelPath, vocabPath, numWorkers);
+
+    // Separate results by language for printing
+    const allResultsDE = allResults.filter(r => r.lang === 'de');
+    const allResultsEN = allResults.filter(r => r.lang === 'en');
 
     // Print results
     if (allResultsDE.length > 0) printResults(allResultsDE, 'de');
@@ -578,9 +523,25 @@ async function main() {
     const successful = allResults.filter(r => r.status === 'ok');
     const failed = allResults.filter(r => r.status !== 'ok');
 
+    // Calculate average similarity for non-mispronunciation tests
+    const withSimilarity = allResults.filter(r => r.similarity !== undefined);
+    const avgSimilarity = withSimilarity.length > 0
+        ? withSimilarity.reduce((sum, r) => sum + r.similarity, 0) / withSimilarity.length
+        : 0;
+
     console.log(`Total audio files tested: ${allResults.length}`);
     console.log(`Successful: ${successful.length}`);
     console.log(`Failed: ${failed.length}`);
+    console.log(`Average similarity: ${Math.round(avgSimilarity * 100)}%`);
+
+    // Show worst 3 results
+    if (withSimilarity.length > 0) {
+        const worst = [...withSimilarity].sort((a, b) => a.similarity - b.similarity).slice(0, 3);
+        console.log('\nWorst results:');
+        for (const r of worst) {
+            console.log(`  ${r.word} (${r.lang}): ${Math.round(r.similarity * 100)}% - expected "${r.expected}", got "${r.actual}"`);
+        }
+    }
 
     if (failed.length > 0) {
         process.exit(1);

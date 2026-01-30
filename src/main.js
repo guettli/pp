@@ -57,6 +57,7 @@ import { displayWord } from './ui/word-display.js';
 
 // Track recording state
 let recordingTimer = null;
+let pendingStopTimer = null;
 
 /**
  * Initialize the application
@@ -208,6 +209,12 @@ function updateWebGpuStatus() {
  */
 async function handleRecordStart() {
   try {
+    // Cancel any pending stop timer
+    if (pendingStopTimer) {
+      clearTimeout(pendingStopTimer);
+      pendingStopTimer = null;
+    }
+
     // Don't start if already recording or processing
     if (state.isRecording || state.isProcessing) {
       return;
@@ -219,8 +226,8 @@ async function handleRecordStart() {
 
     // Start recording
     await state.recorder.start(() => {
-      // Auto-stop callback when max duration reached
-      handleRecordStop();
+      // Auto-stop callback when max duration reached - stop immediately
+      actuallyStopRecording();
     });
 
     setState({ isRecording: true });
@@ -267,9 +274,37 @@ async function shouldDeferForMicrophonePermission() {
 
 /**
  * Handle record button release (stop recording and process)
+ * Continues recording for 500ms after release to capture trailing audio
  */
 async function handleRecordStop() {
+  // Only process if actually recording
+  if (!state.isRecording) {
+    return;
+  }
+
+  // If already pending stop, don't schedule another
+  if (pendingStopTimer) {
+    return;
+  }
+
+  // Delay stop by 500ms to capture trailing audio
+  pendingStopTimer = setTimeout(() => {
+    pendingStopTimer = null;
+    actuallyStopRecording();
+  }, 500);
+}
+
+/**
+ * Actually stop recording and process the audio
+ */
+async function actuallyStopRecording() {
   try {
+    // Clear any pending stop timer
+    if (pendingStopTimer) {
+      clearTimeout(pendingStopTimer);
+      pendingStopTimer = null;
+    }
+
     // Only process if actually recording
     if (!state.isRecording) {
       return;

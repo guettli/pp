@@ -2,7 +2,7 @@
  * Load and decode PanPhon binary feature data
  */
 
-import panphonData from '../data/panphon_features.json';
+import panphonData from '../data/panphon_features.json' with { type: 'json' };
 
 /**
  * Decode base64 binary features into a lookup table
@@ -33,8 +33,6 @@ function decodePanphonFeatures() {
     // Extract feature slice for this phoneme
     featureTable[phoneme] = Array.from(features.slice(startIdx, endIdx));
   }
-
-  console.log(`Loaded ${phonemes.length} phonemes with ${featureCount} features each`);
 
   return featureTable;
 }
