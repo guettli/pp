@@ -1,8 +1,5 @@
-- Add button to re-play what I said.
+- Phoneme recognition still bad. How to fix??? Write test, adjust parameters?
 - Phonem-Analyse: always fine: ✓ [f] → [l] ✓ [uː] → [a] ✓ [s] → [l]
-- Add custom Icons for words.
-- explain Phoneme Glyphs (but over does not exist on mobile)
-- ipa comparison does not work well up to now. Often 100% correct, but is not.
 - More rounded corners. More child friendly
 - Positive feedback.
 - collect phonemes metrics: Which are often correct, which are often wrong?
