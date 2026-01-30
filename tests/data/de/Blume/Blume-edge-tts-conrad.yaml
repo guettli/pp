@@ -1,0 +1,9 @@
+word: Blume
+lang: de
+source: edge-tts
+voice: de-DE-ConradNeural
+created: 2026-01-30
+format: flac
+sampleRate: 16000
+channels: 1
+generator: tests/all-words.test.js
