@@ -23,6 +23,7 @@ body {
   font-size: 8rem;
   line-height: 1;
   animation: fadeIn 0.5s ease-in;
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
 }
 
 /* Recording pulse animation */
