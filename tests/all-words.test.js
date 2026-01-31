@@ -320,20 +320,21 @@ function printResults(results, lang) {
 
     if (normalResults.length > 0) {
         console.log(`\n${lang === 'de' ? 'German' : 'English'} words:\n`);
-        console.log('Word'.padEnd(15) + 'Sim'.padEnd(6) + 'Expected IPA'.padEnd(20) + 'Extracted');
-        console.log('-'.repeat(80));
+        console.log('Word'.padEnd(15) + 'Source'.padEnd(20) + 'Sim'.padEnd(6) + 'Expected IPA'.padEnd(20) + 'Extracted');
+        console.log('-'.repeat(100));
 
         for (const result of normalResults) {
             if (result.status === 'ok') {
                 const simPercent = Math.round(result.similarity * 100) + '%';
                 console.log(
                     result.word.padEnd(15) +
+                    result.source.padEnd(20) +
                     simPercent.padEnd(6) +
                     result.expected.padEnd(20) +
                     result.actual
                 );
             } else {
-                console.log(`${result.word.padEnd(15)} FAILED`);
+                console.log(`${result.word.padEnd(15)} ${result.source.padEnd(20)} FAILED`);
             }
         }
     }
@@ -537,9 +538,18 @@ async function main() {
     // Show worst 3 results
     if (withSimilarity.length > 0) {
         const worst = [...withSimilarity].sort((a, b) => a.similarity - b.similarity).slice(0, 3);
-        console.log('\nWorst results:');
+        console.log('\nWorst results:\n');
+        console.log('Word'.padEnd(15) + 'Source'.padEnd(20) + 'Sim'.padEnd(6) + 'Expected'.padEnd(20) + 'Actual');
+        console.log('-'.repeat(100));
         for (const r of worst) {
-            console.log(`  ${r.word} (${r.lang}): ${Math.round(r.similarity * 100)}% - expected "${r.expected}", got "${r.actual}"`);
+            const simPercent = Math.round(r.similarity * 100) + '%';
+            console.log(
+                r.word.padEnd(15) +
+                r.source.padEnd(20) +
+                simPercent.padEnd(6) +
+                r.expected.padEnd(20) +
+                r.actual
+            );
         }
     }
 

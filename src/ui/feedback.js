@@ -233,8 +233,9 @@ function downloadRecording() {
 
   // Use current word for filename if available
   const word = state.currentWord?.word || 'recording';
+  const lang = getLanguage();
   const timestamp = new Date().toISOString().slice(0, 19).replace(/[:-]/g, '');
-  a.download = `${word}_${timestamp}.webm`;
+  a.download = `${word}_${timestamp}_${lang}.webm`;
 
   document.body.appendChild(a);
   a.click();
