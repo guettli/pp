@@ -4,27 +4,30 @@
 
 import { distance } from 'fastest-levenshtein';
 
+export interface IPADistanceResult {
+  distance: number;
+  similarity: number;
+  maxLength: number;
+  targetNormalized: string;
+  actualNormalized: string;
+}
+
 /**
  * Normalize IPA string for comparison
  * Removes formatting characters but preserves phonetic content
- * @param {string} ipa - IPA string
- * @returns {string} Normalized IPA
  */
-function normalizeIPA(ipa) {
+function normalizeIPA(ipa: string): string {
   // Remove slashes, stress marks can optionally be removed for lenient comparison
   return ipa
-    .replace(/[\/\[\]]/g, '')  // Remove delimiters
+    .replace(/[/[\]]/g, '')  // Remove delimiters
     .replace(/[ˈˌ]/g, '')      // Remove stress marks for lenient comparison
     .trim();
 }
 
 /**
  * Calculate distance between two IPA strings
- * @param {string} target - Target IPA pronunciation
- * @param {string} actual - Actual IPA pronunciation
- * @returns {Object} Distance metrics
  */
-export function calculateIPADistance(target, actual) {
+export function calculateIPADistance(target: string, actual: string): IPADistanceResult {
   // Normalize both strings
   const normalizedTarget = normalizeIPA(target);
   const normalizedActual = normalizeIPA(actual);

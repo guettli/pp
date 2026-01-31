@@ -6,7 +6,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { createDistanceCalculator } from '../src/comparison/panphon-distance-core.js';
+import { createDistanceCalculator } from '../dist-node/src/comparison/panphon-distance-core.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

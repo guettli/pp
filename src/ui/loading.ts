@@ -7,11 +7,16 @@ import { t } from '../i18n.js';
 // Track last logged progress to throttle console output
 let lastLoggedPercent = -10;
 
+interface ProgressInfo {
+  status?: string;
+  progress?: number;
+  file?: string;
+}
+
 /**
  * Update loading progress
- * @param {Object} progress - Progress object from transformers.js
  */
-export function updateLoadingProgress(progress) {
+export function updateLoadingProgress(progress: ProgressInfo): void {
   const statusElement = document.getElementById('loading-status');
   const progressBar = document.getElementById('loading-progress');
 
@@ -65,7 +70,7 @@ export function updateLoadingProgress(progress) {
   if (progressBar && progress.progress !== undefined) {
     const percent = Math.round(progress.progress);
     progressBar.style.width = `${percent}%`;
-    progressBar.setAttribute('aria-valuenow', percent);
+    progressBar.setAttribute('aria-valuenow', String(percent));
     progressBar.textContent = `${percent}%`;
   }
 }
@@ -94,13 +99,13 @@ export function hideLoading() {
 
 /**
  * Show error message (for fatal initialization errors)
- * @param {Error} error - Error object
  */
-export function showError(error) {
+export function showError(error: unknown): void {
+  const err = error as Error;
   const overlay = document.getElementById('loading-overlay');
   if (overlay) {
-    const errorMessage = error.message || t('errors.unknown');
-    const errorStack = error.stack || t('errors.no_stack');
+    const errorMessage = err.message || t('errors.unknown');
+    const errorStack = err.stack || t('errors.no_stack');
 
     overlay.innerHTML = `
       <div class="card-body py-5">
@@ -130,14 +135,14 @@ export function showError(error) {
 
 /**
  * Show inline error alert (for non-fatal errors during operation)
- * @param {Error} error - Error object
  */
-export function showInlineError(error) {
+export function showInlineError(error: unknown): void {
+  const err = error as Error;
   const feedbackSection = document.getElementById('feedback-section');
   if (!feedbackSection) return;
 
-  const errorMessage = error.message || t('errors.unknown');
-  const errorStack = error.stack || t('errors.no_stack');
+  const errorMessage = err.message || t('errors.unknown');
+  const errorStack = err.stack || t('errors.no_stack');
 
   feedbackSection.style.display = 'block';
   feedbackSection.innerHTML = `

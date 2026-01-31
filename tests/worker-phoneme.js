@@ -16,8 +16,8 @@ if (typeof globalThis.atob === 'undefined') {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Import the pure JS mel extraction
-import { extractLogMelJS } from '../src/speech/mel-js.js';
+// Import the pure JS mel extraction (from compiled TypeScript)
+import { extractLogMelJS } from '../dist-node/src/speech/mel-js.js';
 
 // Import PanPhon distance calculation for similarity (Node.js version)
 import { calculatePanPhonDistance } from './panphon-distance-node.js';

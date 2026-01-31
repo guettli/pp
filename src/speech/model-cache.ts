@@ -1,11 +1,11 @@
-// src/speech/model-cache.js
+// src/speech/model-cache.ts
 // Simple IndexedDB cache for ONNX model files
 
 const DB_NAME = 'onnx-model-cache';
 const STORE_NAME = 'models';
 const DB_VERSION = 1;
 
-function openDB() {
+function openDB(): Promise<IDBDatabase> {
     return new Promise((resolve, reject) => {
         const req = indexedDB.open(DB_NAME, DB_VERSION);
         req.onupgradeneeded = () => {
@@ -16,7 +16,7 @@ function openDB() {
     });
 }
 
-export async function getModelFromCache(key) {
+export async function getModelFromCache(key: string): Promise<ArrayBuffer | null> {
     const db = await openDB();
     return new Promise((resolve, reject) => {
         const tx = db.transaction(STORE_NAME, 'readonly');
@@ -27,7 +27,7 @@ export async function getModelFromCache(key) {
     });
 }
 
-export async function saveModelToCache(key, arrayBuffer) {
+export async function saveModelToCache(key: string, arrayBuffer: ArrayBuffer): Promise<void> {
     const db = await openDB();
     return new Promise((resolve, reject) => {
         const tx = db.transaction(STORE_NAME, 'readwrite');

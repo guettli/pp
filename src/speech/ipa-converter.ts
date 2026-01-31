@@ -3,7 +3,9 @@
  * Uses lookup tables for the vocabulary lists
  */
 
-const germanTextToIPA = {
+import type { SupportedLanguage } from '../types.js';
+
+const germanTextToIPA: Record<string, string> = {
   'katze': 'ˈkat͡sə',
   'hund': 'hʊnt',
   'haus': 'haʊ̯s',
@@ -37,7 +39,7 @@ const germanTextToIPA = {
   'fuss': 'fuːs'  // Alternative spelling
 };
 
-const englishTextToIPA = {
+const englishTextToIPA: Record<string, string> = {
   'cat': 'kæt',
   'dog': 'dɔɡ',
   'house': 'haʊs',
@@ -72,17 +74,20 @@ const englishTextToIPA = {
   'foot': 'fʊt'
 };
 
-function getMapForLanguage(language) {
+function getMapForLanguage(language: SupportedLanguage): Record<string, string> {
   return language === 'de' ? germanTextToIPA : englishTextToIPA;
+}
+
+interface IPAConversionResult {
+  ipa: string | null;
+  found: boolean;
+  matchedWord: string | null;
 }
 
 /**
  * Convert transcribed text to IPA pronunciation
- * @param {string} text - Word or text
- * @param {string} language - Language code ("de" or "en")
- * @returns {Object} Object with ipa and found status
  */
-export function convertTextToIPA(text, language = 'de') {
+export function convertTextToIPA(text: string, language: SupportedLanguage = 'de'): IPAConversionResult {
   // Normalize: lowercase and trim
   const normalized = text.toLowerCase().trim();
 
@@ -120,11 +125,8 @@ export function convertTextToIPA(text, language = 'de') {
 
 /**
  * Check if a word is in our vocabulary
- * @param {string} text - Word
- * @param {string} language - Language code ("de" or "en")
- * @returns {boolean}
  */
-export function isKnownWord(text, language = 'de') {
+export function isKnownWord(text: string, language: SupportedLanguage = 'de'): boolean {
   const normalized = text.toLowerCase().trim().replace(/[.,!?;:"'-]/g, '');
   const map = getMapForLanguage(language);
 

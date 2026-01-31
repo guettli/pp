@@ -6,22 +6,51 @@
 import { extractLogMelJS } from './mel-js.js';
 import { getModelFromCache, saveModelToCache } from './model-cache.js';
 
+// ONNX Runtime types
+interface OrtTensor {
+  data: Float32Array | BigInt64Array;
+  dims: number[];
+}
+
+interface OrtInferenceSession {
+  run(feeds: Record<string, OrtTensor>): Promise<Record<string, OrtTensor>>;
+}
+
+interface OrtRuntime {
+  InferenceSession: {
+    create(buffer: ArrayBuffer, options?: Record<string, unknown>): Promise<OrtInferenceSession>;
+  };
+  Tensor: new (type: string, data: Float32Array | BigInt64Array, dims: number[]) => OrtTensor;
+}
+
+declare global {
+  interface Window {
+    ort?: OrtRuntime;
+  }
+}
+
+interface ProgressInfo {
+  status: string;
+  name?: string;
+  progress: number;
+  loaded?: number;
+  total?: number;
+}
+
 // Model configuration
 // Using your HuggingFace repo for ZIPA small CTC ONNX model
 const MODEL_REPO = 'guettli/zipa-small-ctc-onnx-2026-01-28';
 const MODEL_URL = `https://huggingface.co/${MODEL_REPO}/resolve/main/model.onnx`;
 const VOCAB_URL = `https://huggingface.co/${MODEL_REPO}/resolve/main/vocab.json`;
 
-let session = null;
-let vocab = null;
-let idToToken = null;
+let session: OrtInferenceSession | null = null;
+let vocab: Record<string, number> | null = null;
+let idToToken: Record<number, string> | null = null;
 
 /**
  * Load the phoneme extraction model
- * @param {Function} progressCallback - Callback for progress updates
- * @returns {Promise<void>}
  */
-export async function loadPhonemeModel(progressCallback) {
+export async function loadPhonemeModel(progressCallback: (info: ProgressInfo) => void): Promise<void> {
   // Wait for ONNX Runtime to be available
   while (!window.ort) {
     await new Promise(resolve => setTimeout(resolve, 100));
@@ -37,12 +66,12 @@ export async function loadPhonemeModel(progressCallback) {
     if (!vocabResponse.ok) {
       throw new Error(`Failed to fetch vocab: ${vocabResponse.status}`);
     }
-    vocab = await vocabResponse.json();
+    vocab = await vocabResponse.json() as Record<string, number>;
 
     // Create reverse mapping (id -> token)
     idToToken = {};
     for (const [token, id] of Object.entries(vocab)) {
-      idToToken[id] = token;
+      idToToken[id as unknown as number] = token;
     }
 
 
@@ -69,8 +98,11 @@ export async function loadPhonemeModel(progressCallback) {
       const totalBytes = contentLength ? parseInt(contentLength, 10) : 0;
 
       // Read response as stream for progress tracking
+      if (!modelResponse.body) {
+        throw new Error('Model response body is null');
+      }
       const reader = modelResponse.body.getReader();
-      const chunks = [];
+      const chunks: Uint8Array[] = [];
       let loadedBytes = 0;
 
       while (true) {
@@ -93,14 +125,15 @@ export async function loadPhonemeModel(progressCallback) {
       }
 
       // Combine chunks into single ArrayBuffer
-      modelArrayBuffer = new Uint8Array(loadedBytes);
+      const combinedArray = new Uint8Array(loadedBytes);
       let offset = 0;
       for (const chunk of chunks) {
-        modelArrayBuffer.set(chunk, offset);
+        combinedArray.set(chunk, offset);
         offset += chunk.length;
       }
       // Save to IndexedDB cache
-      await saveModelToCache(MODEL_URL, modelArrayBuffer.buffer);
+      await saveModelToCache(MODEL_URL, combinedArray.buffer);
+      modelArrayBuffer = combinedArray.buffer;
     }
 
     // Use cached or freshly downloaded model
@@ -124,15 +157,16 @@ export async function loadPhonemeModel(progressCallback) {
 
 /**
  * Extract phonemes from audio data
- * @param {Float32Array} audioData - Audio samples at 16kHz
- * @returns {Promise<string>} IPA phoneme string
  */
-export async function extractPhonemes(audioData) {
+export async function extractPhonemes(audioData: Float32Array): Promise<string> {
   if (!session) {
     throw new Error('Phoneme model not loaded');
   }
 
   const ort = window.ort;
+  if (!ort) {
+    throw new Error('ONNX Runtime not loaded');
+  }
 
   // Extract log-mel features (shape: [frames, 80])
   const melBands = 80;
@@ -154,8 +188,8 @@ export async function extractPhonemes(audioData) {
   if (!logits) {
     throw new Error('No logits output found in ONNX results. Available keys: ' + Object.keys(results).join(', '));
   }
-  const logitsData = logits.data;
-  const [batchSize, seqLen, vocabSize] = logits.dims;
+  const logitsData = logits.data as Float32Array;
+  const [, seqLen, vocabSize] = logits.dims;
 
   // Greedy decode: argmax over vocab dimension
   const predictedIds = [];
@@ -180,11 +214,9 @@ export async function extractPhonemes(audioData) {
 
 /**
  * CTC greedy decode: remove consecutive duplicates and special tokens
- * @param {number[]} ids - Predicted token IDs
- * @returns {string[]} Decoded phonemes
  */
-function ctcDecode(ids) {
-  const phonemes = [];
+function ctcDecode(ids: number[]): string[] {
+  const phonemes: string[] = [];
   let prevId = -1;
 
   for (const id of ids) {
@@ -193,7 +225,7 @@ function ctcDecode(ids) {
     prevId = id;
 
     // Skip special tokens (including sentence boundary marker ▁)
-    const token = idToToken[id];
+    const token = idToToken?.[id];
     if (!token || token === '<pad>' || token === '<s>' || token === '</s>' || token === '<unk>' || token === '<blk>' || token === '▁') {
       continue;
     }
@@ -214,8 +246,7 @@ export function isPhonemeModelLoaded() {
 
 /**
  * Get the vocabulary
- * @returns {Object} Token to ID mapping
  */
-export function getVocab() {
+export function getVocab(): Record<string, number> | null {
   return vocab;
 }

@@ -4,12 +4,27 @@
 
 import { t } from '../i18n.js';
 
+interface TimingStep {
+  labelKey: string;
+  ms: number;
+  isTotal?: boolean;
+}
+
+interface MetaItem {
+  labelKey: string;
+  value: string;
+}
+
+interface ProcessingTimings {
+  steps: TimingStep[];
+  meta?: MetaItem[];
+  totalMs?: number;
+}
+
 /**
  * Update record button to show recording state
- * @param {boolean} isRecording - Whether currently recording
- * @param {number} duration - Recording duration in ms (optional)
  */
-export function updateRecordButton(isRecording, duration = 0) {
+export function updateRecordButton(isRecording: boolean, duration = 0): void {
   const button = document.getElementById('record-btn');
   const icon = document.getElementById('record-icon');
   const text = document.getElementById('record-text');
@@ -32,10 +47,9 @@ export function updateRecordButton(isRecording, duration = 0) {
 
 /**
  * Enable or disable the record button
- * @param {boolean} enabled - Whether button should be enabled
  */
-export function setRecordButtonEnabled(enabled) {
-  const button = document.getElementById('record-btn');
+export function setRecordButtonEnabled(enabled: boolean): void {
+  const button = document.getElementById('record-btn') as HTMLButtonElement | null;
   if (button) {
     button.disabled = !enabled;
   }
@@ -53,7 +67,7 @@ export function showProcessing(progress = 0) {
   const progressContainer = document.getElementById('processing-progress');
   const debugContainer = document.getElementById('processing-debug');
 
-  if (button) button.disabled = true;
+  if (button) (button as HTMLButtonElement).disabled = true;
   if (icon) icon.textContent = '⏳';
 
   if (progress === 0) {
@@ -72,7 +86,7 @@ export function showProcessing(progress = 0) {
   }
   if (progressBar) {
     progressBar.style.width = `${progress}%`;
-    progressBar.setAttribute('aria-valuenow', progress);
+    progressBar.setAttribute('aria-valuenow', String(progress));
   }
 }
 
@@ -88,24 +102,20 @@ export function hideProcessingProgress() {
 
 /**
  * Show processing timing details
- * @param {Object} timings - Timing info for processing steps
- * @param {Array} timings.steps - Steps with labelKey and ms
- * @param {Array} timings.meta - Meta info with labelKey and value
- * @param {number} timings.totalMs - Total time in ms
  */
-export function showProcessingDetails(timings) {
+export function showProcessingDetails(timings: ProcessingTimings): void {
   const debugContainer = document.getElementById('processing-debug');
   if (!debugContainer || !timings || !Array.isArray(timings.steps)) {
     return;
   }
 
-  const steps = timings.steps.slice();
-  const totalMs = Number.isFinite(timings.totalMs)
+  const steps: TimingStep[] = timings.steps.slice();
+  const totalMs = (timings.totalMs !== undefined && Number.isFinite(timings.totalMs))
     ? timings.totalMs
-    : steps.reduce((sum, step) => sum + (step.ms || 0), 0);
+    : steps.reduce((sum: number, step: TimingStep) => sum + (step.ms || 0), 0);
 
-  const metaItems = Array.isArray(timings.meta) ? timings.meta : [];
-  const metaList = metaItems.map((item) => {
+  const metaItems: MetaItem[] = Array.isArray(timings.meta) ? timings.meta : [];
+  const metaList = metaItems.map((item: MetaItem) => {
     const label = t(item.labelKey);
     const value = item.value || '—';
     return `
@@ -118,7 +128,7 @@ export function showProcessingDetails(timings) {
 
   steps.push({ labelKey: 'processing.step_total', ms: totalMs, isTotal: true });
 
-  const items = steps.map((step) => {
+  const items = steps.map((step: TimingStep) => {
     const ms = Number.isFinite(step.ms) ? step.ms : 0;
     const percent = totalMs > 0 ? Math.round((ms / totalMs) * 100) : 0;
     const label = t(step.labelKey);
@@ -153,7 +163,7 @@ export function resetRecordButton() {
   const text = document.getElementById('record-text');
 
   if (button) {
-    button.disabled = false;
+    (button as HTMLButtonElement).disabled = false;
     button.classList.remove('btn-warning', 'pulse');
     button.classList.add('btn-danger');
   }
@@ -179,7 +189,7 @@ export function showRecordingTooShortError() {
   const mainContent = document.getElementById('main-content');
   const recordBtn = document.getElementById('record-btn');
 
-  if (mainContent && recordBtn) {
+  if (mainContent && recordBtn && recordBtn.parentNode) {
     recordBtn.parentNode.insertBefore(alert, recordBtn.nextSibling);
 
     // Auto-dismiss after 5 seconds
@@ -193,7 +203,7 @@ export function showRecordingTooShortError() {
 /**
  * Show info message when requesting microphone permission
  */
-export function showMicrophonePermissionNotice() {
+export function showMicrophonePermissionNotice(): void {
   const alert = document.createElement('div');
   alert.className = 'alert alert-warning alert-dismissible fade show mt-3';
   alert.role = 'alert';
@@ -206,7 +216,7 @@ export function showMicrophonePermissionNotice() {
   const mainContent = document.getElementById('main-content');
   const recordBtn = document.getElementById('record-btn');
 
-  if (mainContent && recordBtn) {
+  if (mainContent && recordBtn && recordBtn.parentNode) {
     recordBtn.parentNode.insertBefore(alert, recordBtn.nextSibling);
 
     // Auto-dismiss after 7 seconds

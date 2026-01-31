@@ -2,11 +2,12 @@
  * Word display component
  */
 
+import type { Word } from '../types.js';
+
 /**
  * Display a word with its emoji and IPA
- * @param {Object} word - Word object with word, emoji, and ipa properties
  */
-export function displayWord(word) {
+export function displayWord(word: Word): void {
   const emojiElement = document.getElementById('word-emoji');
   const textElement = document.getElementById('word-text');
   const ipaElement = document.getElementById('word-ipa');

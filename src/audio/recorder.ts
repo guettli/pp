@@ -3,21 +3,18 @@
  */
 
 export class AudioRecorder {
-  constructor() {
-    this.stream = null;
-    this.mediaRecorder = null;
-    this.chunks = [];
-    this.startTime = null;
-    this.maxDuration = 4000; // 4 seconds in milliseconds
-    this.minDuration = 500;  // 0.5 seconds minimum
-    this.autoStopTimer = null;
-  }
+  private stream: MediaStream | null = null;
+  private mediaRecorder: MediaRecorder | null = null;
+  private chunks: Blob[] = [];
+  private startTime: number | null = null;
+  public readonly maxDuration: number = 4000; // 4 seconds in milliseconds
+  public readonly minDuration: number = 500;  // 0.5 seconds minimum
+  private autoStopTimer: ReturnType<typeof setTimeout> | null = null;
 
   /**
    * Start recording audio
-   * @param {Function} onAutoStop - Callback when max duration is reached
    */
-  async start(onAutoStop = null) {
+  async start(onAutoStop: (() => void) | null = null): Promise<void> {
     this.stream = await navigator.mediaDevices.getUserMedia({
       audio: {
         channelCount: 1,
@@ -36,7 +33,7 @@ export class AudioRecorder {
     this.chunks = [];
     this.startTime = Date.now();
 
-    this.mediaRecorder.ondataavailable = (e) => {
+    this.mediaRecorder.ondataavailable = (e: BlobEvent) => {
       if (e.data.size > 0) {
         this.chunks.push(e.data);
       }
@@ -57,9 +54,8 @@ export class AudioRecorder {
 
   /**
    * Request microphone permission without starting a recording
-   * @returns {Promise<void>}
    */
-  async requestPermission() {
+  async requestPermission(): Promise<void> {
     const stream = await navigator.mediaDevices.getUserMedia({
       audio: {
         channelCount: 1,
@@ -74,9 +70,8 @@ export class AudioRecorder {
 
   /**
    * Stop recording and return audio blob with duration info
-   * @returns {Promise<Object>} Object with blob and duration
    */
-  async stop() {
+  async stop(): Promise<{ blob: Blob; duration: number }> {
     return new Promise((resolve, reject) => {
       if (!this.mediaRecorder) {
         reject(new Error('No active recording'));
@@ -90,18 +85,19 @@ export class AudioRecorder {
       }
 
       const duration = this.startTime ? Date.now() - this.startTime : 0;
+      const recorder = this.mediaRecorder;
 
-      this.mediaRecorder.onstop = () => {
-        const blob = new Blob(this.chunks, { type: this.mediaRecorder.mimeType });
+      recorder.onstop = () => {
+        const blob = new Blob(this.chunks, { type: recorder.mimeType });
         this.chunks = [];
         resolve({ blob, duration });
       };
 
-      this.mediaRecorder.onerror = (error) => {
-        reject(error);
+      recorder.onerror = (event) => {
+        reject(event);
       };
 
-      this.mediaRecorder.stop();
+      recorder.stop();
 
       // Stop all tracks
       if (this.stream) {
@@ -113,25 +109,22 @@ export class AudioRecorder {
 
   /**
    * Get recording duration in milliseconds
-   * @returns {number} Duration in ms
    */
-  getDuration() {
+  getDuration(): number {
     return this.startTime ? Date.now() - this.startTime : 0;
   }
 
   /**
    * Check if recording duration meets minimum requirement
-   * @returns {boolean}
    */
-  meetsMinimumDuration() {
+  meetsMinimumDuration(): boolean {
     return this.getDuration() >= this.minDuration;
   }
 
   /**
    * Check if currently recording
-   * @returns {boolean}
    */
-  isRecording() {
-    return this.mediaRecorder && this.mediaRecorder.state === 'recording';
+  isRecording(): boolean {
+    return this.mediaRecorder !== null && this.mediaRecorder.state === 'recording';
   }
 }

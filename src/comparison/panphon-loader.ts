@@ -2,16 +2,23 @@
  * Load and decode PanPhon binary feature data
  */
 
+import type { PhonemeFeatureTable } from '../types.js';
+
 // For browser: Vite bundles this JSON import at build time
 // For Node.js: the test workers handle JSON loading separately
 import panphonData from '../data/panphon_features.json';
 
+interface PanphonData {
+  phonemes: string[];
+  features: string;
+  featureCount: number;
+}
+
 /**
  * Decode base64 binary features into a lookup table
- * @returns {Object} Map of phoneme -> feature array
  */
-function decodePanphonFeatures() {
-  const { phonemes, features: featuresBase64, featureCount } = panphonData;
+function decodePanphonFeatures(): PhonemeFeatureTable {
+  const { phonemes, features: featuresBase64, featureCount } = panphonData as PanphonData;
 
   // Decode base64 to binary
   const binaryString = atob(featuresBase64);
@@ -25,7 +32,7 @@ function decodePanphonFeatures() {
   const features = new Int8Array(bytes.buffer);
 
   // Build lookup table: phoneme -> feature array
-  const featureTable = {};
+  const featureTable: PhonemeFeatureTable = {};
 
   for (let i = 0; i < phonemes.length; i++) {
     const phoneme = phonemes[i];
@@ -40,6 +47,6 @@ function decodePanphonFeatures() {
 }
 
 // Load and cache the features
-const panphonFeatures = decodePanphonFeatures();
+const panphonFeatures: PhonemeFeatureTable = decodePanphonFeatures();
 
 export default panphonFeatures;

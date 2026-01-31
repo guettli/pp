@@ -5,17 +5,27 @@
 import { getLanguage } from '../i18n.js';
 import ipaExamples from '../data/ipa-examples.json';
 
-// Build a flat lookup map from all categories
-const symbolLookup = new Map();
+interface LanguageExamples {
+  de?: string;
+  en?: string;
+}
 
-function buildLookup() {
+type IPACategory = 'consonants' | 'vowels' | 'diphthongs' | 'modifiers';
+
+// Build a flat lookup map from all categories
+const symbolLookup = new Map<string, LanguageExamples>();
+
+function buildLookup(): void {
   if (symbolLookup.size > 0) return;
 
-  for (const category of ['consonants', 'vowels', 'diphthongs', 'modifiers']) {
-    const symbols = ipaExamples[category];
+  const categories: IPACategory[] = ['consonants', 'vowels', 'diphthongs', 'modifiers'];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const examples = ipaExamples as any;
+  for (const category of categories) {
+    const symbols = examples[category] as Record<string, LanguageExamples> | undefined;
     if (symbols) {
-      for (const [symbol, examples] of Object.entries(symbols)) {
-        symbolLookup.set(symbol, examples);
+      for (const [symbol, exampleEntry] of Object.entries(symbols)) {
+        symbolLookup.set(symbol, exampleEntry);
       }
     }
   }
@@ -23,10 +33,8 @@ function buildLookup() {
 
 /**
  * Get explanation for an IPA symbol in the current language
- * @param {string} symbol - IPA symbol to look up
- * @returns {string|null} - Example text or null if not found
  */
-export function getSymbolExplanation(symbol) {
+export function getSymbolExplanation(symbol: string): string | null {
   buildLookup();
   const examples = symbolLookup.get(symbol);
   if (!examples) return null;
@@ -38,16 +46,14 @@ export function getSymbolExplanation(symbol) {
 /**
  * Extract unique IPA symbols from an IPA string
  * Handles multi-character symbols like t͡s, diphthongs, and modifiers
- * @param {string} ipaString - IPA string (e.g., "ˈkat͡sə")
- * @returns {string[]} - Array of unique symbols
  */
-export function extractSymbols(ipaString) {
+export function extractSymbols(ipaString: string): string[] {
   if (!ipaString) return [];
 
   buildLookup();
 
   // Remove slashes and whitespace
-  const cleaned = ipaString.replace(/[\/\[\]]/g, '').trim();
+  const cleaned = ipaString.replace(/[/[\]]/g, '').trim();
   if (!cleaned) return [];
 
   const symbols = new Set();
@@ -81,25 +87,20 @@ export function extractSymbols(ipaString) {
     }
   }
 
-  return Array.from(symbols);
+  return Array.from(symbols) as string[];
 }
 
 /**
  * Format symbol explanation with bold markers converted to HTML
- * @param {string} text - Text with **bold** markers
- * @returns {string} - HTML with <strong> tags
  */
-function formatExample(text) {
+function formatExample(text: string): string {
   return text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
 }
 
 /**
  * Generate HTML for IPA symbol explanations
- * @param {string} targetIPA - Target IPA string
- * @param {string} actualIPA - Actual IPA string
- * @returns {string} - HTML content for explanations
  */
-export function generateExplanationsHTML(targetIPA, actualIPA) {
+export function generateExplanationsHTML(targetIPA: string, actualIPA: string): string {
   // Extract symbols from both strings
   const targetSymbols = extractSymbols(targetIPA);
   const actualSymbols = extractSymbols(actualIPA);

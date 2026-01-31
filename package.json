@@ -6,11 +6,16 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:node": "tsc -p tsconfig.build.json",
     "preview": "vite preview",
     "test": "playwright test",
     "test:ui": "playwright test --ui",
     "test:headed": "playwright test --headed",
-    "test:report": "playwright show-report"
+    "test:report": "playwright show-report",
+    "test:words": "tsc -p tsconfig.build.json && node tests/all-words.test.js",
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit",
+    "check": "concurrently -n lint,types,words,e2e -c blue,cyan,yellow,magenta \"pnpm lint\" \"pnpm typecheck\" \"pnpm test:words\" \"pnpm test\""
   },
   "keywords": [
     "pronunciation",
@@ -22,7 +27,15 @@
   "license": "MIT",
   "packageManager": "pnpm@10.28.0",
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
     "@playwright/test": "^1.58.0",
+    "@types/node": "^25.1.0",
+    "@typescript-eslint/eslint-plugin": "^8.54.0",
+    "@typescript-eslint/parser": "^8.54.0",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.39.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
     "vite": "^7.3.1"
   },
   "dependencies": {

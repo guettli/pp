@@ -5,14 +5,12 @@
 import { calculateIPADistance } from './distance.js';
 import { calculatePanPhonDistance } from './panphon-distance.js';
 import { t } from '../i18n.js';
+import type { Score } from '../types.js';
 
 /**
  * Score pronunciation based on phoneme feature similarity using PanPhon
- * @param {string} targetIPA - Target IPA pronunciation
- * @param {string} actualIPA - Actual IPA pronunciation
- * @returns {Object} Score object with grade, color, message, and metrics
  */
-export function scorePronunciation(targetIPA, actualIPA) {
+export function scorePronunciation(targetIPA: string, actualIPA: string): Score {
   // Use PanPhon-based phoneme distance for more accurate scoring
   const panphonResult = calculatePanPhonDistance(targetIPA, actualIPA);
   const { distance: dist, similarity, phonemeComparison } = panphonResult;
@@ -20,7 +18,10 @@ export function scorePronunciation(targetIPA, actualIPA) {
   // Also calculate basic Levenshtein for fallback/comparison
   const basicResult = calculateIPADistance(targetIPA, actualIPA);
 
-  let grade, color, message, bootstrapClass;
+  let grade: string;
+  let color: string;
+  let message: string;
+  let bootstrapClass: string;
 
   // Determine grade based on PanPhon similarity threshold
   // PanPhon is more lenient with phonetically similar sounds

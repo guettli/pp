@@ -27,8 +27,7 @@ import { AudioRecorder } from './audio/recorder.js';
 // Import phoneme extraction (direct IPA output)
 import {
   loadPhonemeModel,
-  extractPhonemes,
-  isPhonemeModelLoaded
+  extractPhonemes
 } from './speech/phoneme-extractor.js';
 
 // Import comparison logic
@@ -44,7 +43,6 @@ import {
   updateLoadingProgress
 } from './ui/loading.js';
 import {
-  hideProcessingProgress,
   resetRecordButton,
   setRecordButtonEnabled,
   showMicrophonePermissionNotice,
@@ -56,8 +54,8 @@ import {
 import { displayWord } from './ui/word-display.js';
 
 // Track recording state
-let recordingTimer = null;
-let pendingStopTimer = null;
+let recordingTimer: ReturnType<typeof setInterval> | null = null;
+let pendingStopTimer: ReturnType<typeof setTimeout> | null = null;
 
 /**
  * Initialize the application
@@ -90,7 +88,7 @@ async function init() {
     updateLoadingProgress({ status: 'downloading', progress: 0 });
 
     const loadStart = performance.now();
-    await loadPhonemeModel((progress) => {
+    await loadPhonemeModel((progress: { status: string; progress: number }) => {
       updateLoadingProgress(progress);
     });
     const modelLoadMs = performance.now() - loadStart;
@@ -144,11 +142,11 @@ function setupEventListeners() {
     // Also support touch events for mobile
     recordBtn.addEventListener('touchstart', (e) => {
       e.preventDefault();
-      handleRecordStart();
+      void handleRecordStart();
     });
     recordBtn.addEventListener('touchend', (e) => {
       e.preventDefault();
-      handleRecordStop();
+      void handleRecordStop();
     });
     recordBtn.addEventListener('touchcancel', handleRecordStop);
   }
@@ -157,10 +155,11 @@ function setupEventListeners() {
     nextWordBtn.addEventListener('click', nextWord);
   }
 
-  if (languageSelect) {
+  if (languageSelect && languageSelect instanceof HTMLSelectElement) {
     languageSelect.value = getLanguage();
     languageSelect.addEventListener('change', (event) => {
-      setLanguage(event.target.value);
+      const target = event.target as HTMLSelectElement;
+      setLanguage(target.value);
     });
 
     onLanguageChange((language) => {
@@ -225,18 +224,22 @@ async function handleRecordStart() {
     }
 
     // Start recording
+    if (!state.recorder) {
+      throw new Error('Audio recorder not initialized');
+    }
     await state.recorder.start(() => {
       // Auto-stop callback when max duration reached - stop immediately
-      actuallyStopRecording();
+      void actuallyStopRecording();
     });
 
     setState({ isRecording: true });
     updateRecordButton(true, 0);
 
     // Update UI with duration every 100ms
+    const recorder = state.recorder;
     recordingTimer = setInterval(() => {
-      if (state.recorder.isRecording()) {
-        const duration = state.recorder.getDuration();
+      if (recorder.isRecording()) {
+        const duration = recorder.getDuration();
         updateRecordButton(true, duration);
       }
     }, 100);
@@ -262,7 +265,7 @@ async function shouldDeferForMicrophonePermission() {
     return false;
   }
 
-  if (status.state === 'prompt') {
+  if (status.state === 'prompt' && state.recorder) {
     await state.recorder.requestPermission();
     showMicrophonePermissionNotice();
     resetRecordButton();
@@ -290,7 +293,7 @@ async function handleRecordStop() {
   // Delay stop by 500ms to capture trailing audio
   pendingStopTimer = setTimeout(() => {
     pendingStopTimer = null;
-    actuallyStopRecording();
+    void actuallyStopRecording();
   }, 500);
 }
 
@@ -317,6 +320,9 @@ async function actuallyStopRecording() {
     }
 
     // Stop recording and get blob with duration
+    if (!state.recorder) {
+      throw new Error('Audio recorder not initialized');
+    }
     const { blob: audioBlob, duration } = await state.recorder.stop();
     setState({ isRecording: false, lastRecordingBlob: audioBlob });
 
@@ -337,25 +343,33 @@ async function actuallyStopRecording() {
     let progress = 0;
     showProcessing(progress);
 
+    interface TimingStep {
+      labelKey: string;
+      ms: number;
+    }
+    interface DebugMeta {
+      labelKey: string;
+      value: string;
+    }
     const timingStart = performance.now();
-    const timingSteps = [];
-    const recordTiming = (labelKey, start, end) => {
+    const timingSteps: TimingStep[] = [];
+    const recordTiming = (labelKey: string, start: number, end: number): void => {
       timingSteps.push({ labelKey, ms: end - start });
     };
-    const measureAsync = async (labelKey, action) => {
+    const measureAsync = async <T>(labelKey: string, action: () => Promise<T>): Promise<T> => {
       const start = performance.now();
       const result = await action();
       recordTiming(labelKey, start, performance.now());
       return result;
     };
-    const measureSync = (labelKey, action) => {
+    const measureSync = <T>(labelKey: string, action: () => T): T => {
       const start = performance.now();
       const result = action();
       recordTiming(labelKey, start, performance.now());
       return result;
     };
-    const debugMeta = [];
-    if (Number.isFinite(state.modelLoadMs)) {
+    const debugMeta: DebugMeta[] = [];
+    if (state.modelLoadMs !== null && Number.isFinite(state.modelLoadMs)) {
       debugMeta.push({
         labelKey: 'processing.meta_model_load',
         value: `${state.modelLoadMs.toFixed(0)} ms`
@@ -393,8 +407,12 @@ async function actuallyStopRecording() {
       showProcessing(85);
 
       // Score the pronunciation using PanPhon features
+      if (!state.currentWord) {
+        throw new Error('No current word selected');
+      }
+      const currentWord = state.currentWord;
       const score = measureSync('processing.step_score', () =>
-        scorePronunciation(state.currentWord.ipa, actualIPA)
+        scorePronunciation(currentWord.ipa, actualIPA)
       );
       console.log('Score:', score);
       console.log('Target phonemes:', score.targetPhonemes);
@@ -406,7 +424,7 @@ async function actuallyStopRecording() {
       setState({ score });
 
       // Display feedback
-      displayFeedback(state.currentWord, actualIPA, score);
+      displayFeedback(currentWord, actualIPA, score);
       showProcessingDetails({
         steps: timingSteps,
         meta: debugMeta,
@@ -502,7 +520,7 @@ function nextWord() {
 
 // Initialize the app when DOM is ready
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
+  document.addEventListener('DOMContentLoaded', () => void init());
 } else {
-  init();
+  void init();
 }

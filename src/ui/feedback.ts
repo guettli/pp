@@ -5,19 +5,16 @@
 import { t, getLanguage } from '../i18n.js';
 import { state, setState } from '../state.js';
 import { generateExplanationsHTML } from './ipa-helper.js';
+import type { Word, Score, PhonemeComparisonItem } from '../types.js';
 
 // Track current audio playback
-let currentAudio = null;
-let currentUtterance = null;
-let speechSynthesisSupported = null; // null = unknown, true/false after check
+let currentAudio: HTMLAudioElement | null = null;
+let speechSynthesisSupported: boolean | null = null; // null = unknown, true/false after check
 
 /**
  * Display pronunciation feedback with phoneme-level analysis
- * @param {Object} targetWord - Target word object
- * @param {string} actualIPA - Actual IPA pronunciation
- * @param {Object} score - Score object from scorer.js
  */
-export function displayFeedback(targetWord, actualIPA, score) {
+export function displayFeedback(targetWord: Word, actualIPA: string, score: Score): void {
   const section = document.getElementById('feedback-section');
   const alert = document.getElementById('feedback-alert');
   const targetElement = document.getElementById('feedback-target');
@@ -90,7 +87,7 @@ export function displayFeedback(targetWord, actualIPA, score) {
   const playTargetBtn = document.getElementById('play-target-btn');
   const speechHint = document.getElementById('speech-synthesis-hint');
   if (playTargetBtn && targetWord.word) {
-    checkSpeechSynthesisSupport().then((supported) => {
+    void checkSpeechSynthesisSupport().then((supported) => {
       if (supported) {
         playTargetBtn.style.display = 'inline-block';
         playTargetBtn.onclick = () => playDesiredPronunciation(targetWord.word);
@@ -132,7 +129,9 @@ export function displayFeedback(targetWord, actualIPA, score) {
   }
 
   // Scroll to feedback
-  section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
 }
 
 /**
@@ -169,13 +168,12 @@ const LONG_PRESS_THRESHOLD = 500;
 
 /**
  * Set up play button with click (play) and long-press (download) handlers
- * @param {HTMLElement} playBtn - The play button element
  */
-function setupPlayButton(playBtn) {
-  let pressTimer = null;
+function setupPlayButton(playBtn: HTMLElement): void {
+  let pressTimer: ReturnType<typeof setTimeout> | null = null;
   let isLongPress = false;
 
-  const handlePressStart = (e) => {
+  const handlePressStart = (): void => {
     isLongPress = false;
     pressTimer = setTimeout(() => {
       isLongPress = true;
@@ -183,7 +181,7 @@ function setupPlayButton(playBtn) {
     }, LONG_PRESS_THRESHOLD);
   };
 
-  const handlePressEnd = (e) => {
+  const handlePressEnd = (): void => {
     if (pressTimer) {
       clearTimeout(pressTimer);
       pressTimer = null;
@@ -193,7 +191,7 @@ function setupPlayButton(playBtn) {
     }
   };
 
-  const handlePressCancel = () => {
+  const handlePressCancel = (): void => {
     if (pressTimer) {
       clearTimeout(pressTimer);
       pressTimer = null;
@@ -202,7 +200,9 @@ function setupPlayButton(playBtn) {
 
   // Remove existing listeners by cloning
   const newBtn = playBtn.cloneNode(true);
-  playBtn.parentNode.replaceChild(newBtn, playBtn);
+  if (playBtn.parentNode) {
+    playBtn.parentNode.replaceChild(newBtn, playBtn);
+  }
 
   // Mouse events
   newBtn.addEventListener('mousedown', handlePressStart);
@@ -210,13 +210,13 @@ function setupPlayButton(playBtn) {
   newBtn.addEventListener('mouseleave', handlePressCancel);
 
   // Touch events
-  newBtn.addEventListener('touchstart', (e) => {
+  newBtn.addEventListener('touchstart', (e: Event) => {
     e.preventDefault();
-    handlePressStart(e);
+    handlePressStart();
   });
-  newBtn.addEventListener('touchend', (e) => {
+  newBtn.addEventListener('touchend', (e: Event) => {
     e.preventDefault();
-    handlePressEnd(e);
+    handlePressEnd();
   });
   newBtn.addEventListener('touchcancel', handlePressCancel);
 }
@@ -261,7 +261,7 @@ function playRecording() {
     URL.revokeObjectURL(url);
     currentAudio = null;
   };
-  currentAudio.play();
+  void currentAudio.play();
 }
 
 /**
@@ -306,9 +306,8 @@ function checkSpeechSynthesisSupport() {
 
 /**
  * Play the desired pronunciation using Web Speech API
- * @param {string} word - The word to pronounce
  */
-function playDesiredPronunciation(word) {
+function playDesiredPronunciation(word: string): void {
   if (!word || !window.speechSynthesis) return;
 
   // Cancel any ongoing speech
@@ -318,18 +317,15 @@ function playDesiredPronunciation(word) {
   utterance.lang = getLanguage() === 'de' ? 'de-DE' : 'en-US';
   utterance.rate = 0.9; // Slightly slower for clarity
 
-  currentUtterance = utterance;
   speechSynthesis.speak(utterance);
 }
 
 /**
  * Generate HTML for side-by-side phoneme comparison using table layout
- * @param {Array} phonemeComparison - Array of {target, actual, match, distance}
- * @returns {string} - HTML string
  */
-function generatePhonemeComparisonHTML(phonemeComparison) {
+function generatePhonemeComparisonHTML(phonemeComparison: PhonemeComparisonItem[]): string {
   // Build class and tooltip data for each column
-  const columns = phonemeComparison.map((comp) => {
+  const columns = phonemeComparison.map((comp: PhonemeComparisonItem) => {
     const target = comp.target || '—';
     const actual = comp.actual || '—';
 

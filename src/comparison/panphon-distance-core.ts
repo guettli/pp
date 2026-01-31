@@ -3,19 +3,24 @@
  * Shared between browser and Node.js environments
  */
 
+import type { PhonemeFeatureTable, AlignmentItem, PanPhonDistanceResult, PhonemeComparisonItem } from '../types.js';
+
+export interface DistanceCalculator {
+  calculatePanPhonDistance: (target: string, actual: string) => PanPhonDistanceResult;
+  getPhonemeFeatures: (phoneme: string) => number[] | null;
+  isKnownPhoneme: (phoneme: string) => boolean;
+  splitIntoPhonemes: (ipa: string) => string[];
+  phonemeFeatureDistance: (phoneme1: string, phoneme2: string) => number;
+}
+
 /**
  * Create distance calculation functions with the given feature table
- * @param {Object} panphonFeatures - Map of phoneme -> feature array
- * @returns {Object} Object containing all distance functions
  */
-export function createDistanceCalculator(panphonFeatures) {
+export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): DistanceCalculator {
   /**
    * Calculate distance between two phonemes based on their articulatory features
-   * @param {string} phoneme1 - First IPA phoneme
-   * @param {string} phoneme2 - Second IPA phoneme
-   * @returns {number} Feature distance (0 = identical, higher = more different)
    */
-  function phonemeFeatureDistance(phoneme1, phoneme2) {
+  function phonemeFeatureDistance(phoneme1: string, phoneme2: string): number {
     if (phoneme1 === phoneme2) {
       return 0;
     }
@@ -52,10 +57,8 @@ export function createDistanceCalculator(panphonFeatures) {
 
   /**
    * Split IPA string into individual phonemes
-   * @param {string} ipa - IPA string
-   * @returns {Array<string>} Array of phoneme symbols
    */
-  function splitIntoPhonemes(ipa) {
+  function splitIntoPhonemes(ipa: string): string[] {
     // Normalize IPA for comparison:
     // - Remove stress marks and delimiters
     // - Remove tie bars (U+0361) to split affricates: t͡s → ts
@@ -66,7 +69,7 @@ export function createDistanceCalculator(panphonFeatures) {
     // - Remove rhoticity hook (U+02DE): ɜ˞ → ɜ
     // - Expand rhotic vowel ɝ (U+025D) → ɜ ɹ
     const cleaned = ipa
-      .replace(/[\/\[\]ˈˌ]/g, '')
+      .replace(/[/[\]ˈˌ]/g, '')
       .replace(/\u0361/g, '')  // Remove tie bar
       .replace(/(.)\u0329/g, 'ə$1')  // Syllabic consonant → schwa + consonant
       .replace(/\u0261/g, 'g')  // IPA ɡ → regular g
@@ -78,9 +81,9 @@ export function createDistanceCalculator(panphonFeatures) {
 
     // If input contains spaces, it's already tokenized (from wav2vec2 model)
     if (cleaned.includes(' ')) {
-      const tokens = cleaned.split(/\s+/).filter(p => p.length > 0);
+      const tokens = cleaned.split(/\s+/).filter((p: string) => p.length > 0);
       // Combine vowels with following length mark (ː)
-      const combined = [];
+      const combined: string[] = [];
       for (let i = 0; i < tokens.length; i++) {
         if (tokens[i] === 'ː' && combined.length > 0) {
           // Append length mark to previous token
@@ -94,7 +97,7 @@ export function createDistanceCalculator(panphonFeatures) {
 
     // Otherwise, split into graphemes (accounting for multi-character IPA symbols)
     // This is a simplified approach - ideally we'd use a proper IPA tokenizer
-    const phonemes = [];
+    const phonemes: string[] = [];
     let i = 0;
 
     while (i < cleaned.length) {
@@ -134,11 +137,8 @@ export function createDistanceCalculator(panphonFeatures) {
 
   /**
    * Calculate alignment cost for dynamic programming
-   * @param {string} p1 - Phoneme from first sequence
-   * @param {string} p2 - Phoneme from second sequence
-   * @returns {number} Alignment cost
    */
-  function alignmentCost(p1, p2) {
+  function alignmentCost(p1: string, p2: string): number {
     return phonemeFeatureDistance(p1, p2);
   }
 
@@ -146,16 +146,13 @@ export function createDistanceCalculator(panphonFeatures) {
    * Calculate phonetic distance using dynamic programming alignment
    * Similar to Levenshtein but uses phonetic feature distance
    * Also returns the aligned phoneme pairs via backtracking
-   * @param {Array<string>} phonemes1 - First phoneme sequence (target)
-   * @param {Array<string>} phonemes2 - Second phoneme sequence (actual)
-   * @returns {Object} {distance, alignment} where alignment is array of {target, actual, distance}
    */
-  function alignPhonemes(phonemes1, phonemes2) {
+  function alignPhonemes(phonemes1: string[], phonemes2: string[]): { distance: number; alignment: AlignmentItem[] } {
     const m = phonemes1.length;
     const n = phonemes2.length;
 
     // Create DP table
-    const dp = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
+    const dp: number[][] = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0) as number[]);
 
     // Initialize first row and column (insertion/deletion costs)
     for (let i = 1; i <= m; i++) {
@@ -179,7 +176,7 @@ export function createDistanceCalculator(panphonFeatures) {
     }
 
     // Backtrack to find alignment
-    const alignment = [];
+    const alignment: AlignmentItem[] = [];
     let i = m;
     let j = n;
 
@@ -222,11 +219,8 @@ export function createDistanceCalculator(panphonFeatures) {
 
   /**
    * Calculate distance between two IPA strings using PanPhon features
-   * @param {string} target - Target IPA pronunciation
-   * @param {string} actual - Actual IPA pronunciation
-   * @returns {Object} Distance metrics with phoneme-level analysis
    */
-  function calculatePanPhonDistance(target, actual) {
+  function calculatePanPhonDistance(target: string, actual: string): PanPhonDistanceResult {
     // Split into phonemes
     const targetPhonemes = splitIntoPhonemes(target);
     const actualPhonemes = splitIntoPhonemes(actual);
@@ -241,7 +235,7 @@ export function createDistanceCalculator(panphonFeatures) {
     const similarity = maxLen === 0 ? 1 : 1 - (distance / maxLen);
 
     // Build phoneme comparison from alignment, adding match flag
-    const phonemeComparison = alignment.map(item => ({
+    const phonemeComparison: PhonemeComparisonItem[] = alignment.map(item => ({
       target: item.target,
       actual: item.actual,
       distance: item.distance,
@@ -260,19 +254,15 @@ export function createDistanceCalculator(panphonFeatures) {
 
   /**
    * Get phoneme features for a given IPA symbol
-   * @param {string} phoneme - IPA phoneme symbol
-   * @returns {Array|null} Feature vector or null if not found
    */
-  function getPhonemeFeatures(phoneme) {
+  function getPhonemeFeatures(phoneme: string): number[] | null {
     return panphonFeatures[phoneme] || null;
   }
 
   /**
    * Check if a phoneme is in the PanPhon database
-   * @param {string} phoneme - IPA phoneme symbol
-   * @returns {boolean}
    */
-  function isKnownPhoneme(phoneme) {
+  function isKnownPhoneme(phoneme: string): boolean {
     return phoneme in panphonFeatures;
   }
 

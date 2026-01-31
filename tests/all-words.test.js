@@ -82,7 +82,7 @@ function runWorkers(tasks, modelPath, vocabPath, numWorkers) {
                     modelPath,
                     vocabPath,
                     tasks: workerTasks[i]
-                }
+                },
             });
 
             worker.on('message', (workerResults) => {

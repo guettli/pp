@@ -2,16 +2,17 @@
  * Application state management
  */
 
-export const state = {
+import type { AppState } from './types.js';
+
+export const state: AppState = {
   currentWord: null,
   isRecording: false,
   isModelLoaded: false,
   isProcessing: false,
   score: null,
   recorder: null,
-  transcriber: null,
   modelLoadMs: null,
-  webgpuAvailable: null,
+  webgpuAvailable: false,
   webgpuBackend: null,
   lastRecordingBlob: null,
   recordingCount: 0
@@ -19,16 +20,15 @@ export const state = {
 
 /**
  * Update application state
- * @param {Object} updates - Object with state updates
  */
-export function setState(updates) {
+export function setState(updates: Partial<AppState>): void {
   Object.assign(state, updates);
 }
 
 /**
  * Reset feedback state
  */
-export function resetFeedback() {
+export function resetFeedback(): void {
   setState({
     score: null
   });

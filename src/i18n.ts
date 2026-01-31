@@ -1,8 +1,13 @@
+import type { SupportedLanguage } from './types.js';
+
 const STORAGE_KEY = 'phoneme-party-language';
-const SUPPORTED_LANGUAGES = ['de', 'en'];
+const SUPPORTED_LANGUAGES: SupportedLanguage[] = ['de', 'en'];
 const GERMAN_REGIONS = new Set(['de', 'at', 'ch']);
 
-const translations = {
+type TranslationTable = Record<string, string>;
+type Translations = Record<SupportedLanguage, TranslationTable>;
+
+const translations: Translations = {
   de: {
     'app.title': 'Phoneme Party - Aussprachetraining',
     'header.title': 'Phoneme Party',
@@ -36,9 +41,11 @@ const translations = {
     'processing.meta_model_load': 'Modell-Startzeit',
     'processing.meta_audio_duration': 'Audio-Dauer',
     'processing.meta_asr_chunks': 'ASR-Chunks (geschätzt)',
+    'processing.meta_backend': 'Backend',
     'processing.step_prepare': 'Audio-Vorbereitung',
     'processing.step_transcribe': 'Spracherkennung',
     'processing.step_ipa': 'IPA-Konvertierung',
+    'processing.step_phonemes': 'Phonem-Extraktion',
     'processing.step_score': 'Aussprache-Bewertung',
     'processing.step_total': 'Gesamt',
     'record.permission_title': 'Mikrofon-Zugriff erforderlich',
@@ -120,9 +127,11 @@ const translations = {
     'processing.meta_model_load': 'Model load time',
     'processing.meta_audio_duration': 'Audio duration',
     'processing.meta_asr_chunks': 'ASR chunks (estimated)',
+    'processing.meta_backend': 'Backend',
     'processing.step_prepare': 'Audio preprocessing',
     'processing.step_transcribe': 'Speech recognition',
     'processing.step_ipa': 'IPA conversion',
+    'processing.step_phonemes': 'Phoneme extraction',
     'processing.step_score': 'Pronunciation scoring',
     'processing.step_total': 'Total',
     'record.permission_title': 'Microphone access required',
@@ -173,27 +182,29 @@ const translations = {
   }
 };
 
-let currentLanguage = resolveInitialLanguage();
-const listeners = new Set();
+type LanguageChangeListener = (language: SupportedLanguage) => void;
 
-function resolveInitialLanguage() {
+let currentLanguage: SupportedLanguage = resolveInitialLanguage();
+const listeners = new Set<LanguageChangeListener>();
+
+function resolveInitialLanguage(): SupportedLanguage {
   // First check query string
   if (typeof window !== 'undefined' && window.location) {
     const params = new URLSearchParams(window.location.search);
     const langParam = params.get('lang');
-    if (langParam && SUPPORTED_LANGUAGES.includes(langParam)) {
-      return langParam;
+    if (langParam && SUPPORTED_LANGUAGES.includes(langParam as SupportedLanguage)) {
+      return langParam as SupportedLanguage;
     }
   }
   // Then check localStorage
   const stored = safeGetStorage(STORAGE_KEY);
-  if (stored && SUPPORTED_LANGUAGES.includes(stored)) {
-    return stored;
+  if (stored && SUPPORTED_LANGUAGES.includes(stored as SupportedLanguage)) {
+    return stored as SupportedLanguage;
   }
   return detectLanguageFromLocale();
 }
 
-function detectLanguageFromLocale() {
+function detectLanguageFromLocale(): SupportedLanguage {
   const locales = Array.isArray(navigator.languages) && navigator.languages.length
     ? navigator.languages
     : [navigator.language];
@@ -210,23 +221,23 @@ function detectLanguageFromLocale() {
   return 'en';
 }
 
-function safeGetStorage(key) {
+function safeGetStorage(key: string): string | null {
   try {
     return window.localStorage.getItem(key);
-  } catch (error) {
+  } catch {
     return null;
   }
 }
 
-function safeSetStorage(key, value) {
+function safeSetStorage(key: string, value: string): void {
   try {
     window.localStorage.setItem(key, value);
-  } catch (error) {
+  } catch {
     // Ignore storage errors (private mode or blocked storage).
   }
 }
 
-export function t(key, variables = {}) {
+export function t(key: string, variables: Record<string, string | number> = {}): string {
   const langTable = translations[currentLanguage] || translations.en;
   const template = langTable[key] || translations.en[key] || key;
   return Object.keys(variables).reduce((result, varKey) => {
@@ -235,12 +246,14 @@ export function t(key, variables = {}) {
   }, template);
 }
 
-export function getLanguage() {
+export function getLanguage(): SupportedLanguage {
   return currentLanguage;
 }
 
-export function setLanguage(language) {
-  const normalized = SUPPORTED_LANGUAGES.includes(language) ? language : 'en';
+export function setLanguage(language: string): void {
+  const normalized = SUPPORTED_LANGUAGES.includes(language as SupportedLanguage)
+    ? (language as SupportedLanguage)
+    : 'en';
   if (normalized === currentLanguage) return;
   currentLanguage = normalized;
   safeSetStorage(STORAGE_KEY, normalized);
@@ -248,12 +261,12 @@ export function setLanguage(language) {
   listeners.forEach((listener) => listener(currentLanguage));
 }
 
-export function onLanguageChange(listener) {
+export function onLanguageChange(listener: LanguageChangeListener): () => void {
   listeners.add(listener);
   return () => listeners.delete(listener);
 }
 
-export function applyTranslations(root = document) {
+export function applyTranslations(root: Document | Element = document): void {
   if (!root) return;
   if (document?.documentElement) {
     document.documentElement.lang = currentLanguage;
@@ -282,11 +295,11 @@ export function applyTranslations(root = document) {
   });
 }
 
-export function initI18n() {
+export function initI18n(): SupportedLanguage {
   applyTranslations();
   return currentLanguage;
 }
 
-export function getWhisperLanguage() {
+export function getWhisperLanguage(): string {
   return currentLanguage === 'de' ? 'german' : 'english';
 }

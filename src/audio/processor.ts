@@ -5,15 +5,14 @@
 
 /**
  * Convert audio blob to format expected by Whisper
- * @param {Blob} audioBlob - Recorded audio blob
- * @returns {Promise<Float32Array>} Audio data as Float32Array
  */
-export async function prepareAudioForWhisper(audioBlob) {
+export async function prepareAudioForWhisper(audioBlob: Blob): Promise<Float32Array> {
   // Convert blob to ArrayBuffer
   const arrayBuffer = await audioBlob.arrayBuffer();
 
   // Create audio context with 16kHz sample rate (Whisper requirement)
-  const audioContext = new (window.AudioContext || window.webkitAudioContext)({
+  const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+  const audioContext = new AudioContextClass({
     sampleRate: 16000
   });
 
@@ -21,7 +20,7 @@ export async function prepareAudioForWhisper(audioBlob) {
   const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
 
   // Get mono channel data (Whisper expects mono)
-  let audioData = audioBuffer.getChannelData(0);
+  let audioData: Float32Array = audioBuffer.getChannelData(0);
 
   // If the audio buffer sample rate is not 16kHz, we need to resample
   if (audioBuffer.sampleRate !== 16000) {
@@ -36,12 +35,12 @@ export async function prepareAudioForWhisper(audioBlob) {
 
 /**
  * Resample audio to target sample rate
- * @param {Float32Array} audioData - Input audio data
- * @param {number} originSampleRate - Original sample rate
- * @param {number} targetSampleRate - Target sample rate
- * @returns {Promise<Float32Array>} Resampled audio
  */
-async function resampleAudio(audioData, originSampleRate, targetSampleRate) {
+async function resampleAudio(
+  audioData: Float32Array,
+  originSampleRate: number,
+  targetSampleRate: number
+): Promise<Float32Array> {
   // Create offline audio context for resampling
   const offlineContext = new OfflineAudioContext(
     1, // mono
@@ -51,7 +50,7 @@ async function resampleAudio(audioData, originSampleRate, targetSampleRate) {
 
   // Create buffer source
   const buffer = offlineContext.createBuffer(1, audioData.length, originSampleRate);
-  buffer.copyToChannel(audioData, 0);
+  buffer.copyToChannel(new Float32Array(audioData), 0);
 
   const source = offlineContext.createBufferSource();
   source.buffer = buffer;

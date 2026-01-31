@@ -63,17 +63,20 @@ sending data to external servers.
 
 ### Key Technologies
 
+* **TypeScript**: Strict type-checked codebase
+* **Vite**: Fast development server and build tool
 * **transformers.js**: Runs Hugging Face transformer models directly in the browser
 * **Web Audio API**: Captures and processes audio client-side
 * **ONNX Runtime**: Optimized inference for neural networks in JavaScript
-* **Phoneme Alignment**: Dynamic time warping or similar algorithms for sequence matching
+* **PanPhon**: Phonological feature-based distance calculation for phoneme comparison
 
-## Running Tests
+## Development
 
 ### Prerequisites
 
-* Node.js (v18+)
-* ffmpeg (for audio processing)
+* Node.js (v20+)
+* pnpm
+* ffmpeg (for audio processing in tests)
 * edge-tts (only needed for generating new TTS audio): `pip install edge-tts`
 
 ### Install Dependencies
@@ -82,26 +85,45 @@ sending data to external servers.
 pnpm install
 ```
 
-### Usage
+### Scripts
 
 ```bash
-# Run all tests
-node tests/all-words.test.js
+# Start development server
+pnpm dev
+
+# Build for production
+pnpm build
+
+# Type checking
+pnpm typecheck
+
+# Linting
+pnpm lint
+
+# Run Playwright browser tests
+pnpm test
+```
+
+## Phoneme Extraction Tests
+
+```bash
+# Run all word tests
+pnpm test:words
 
 # List all available tests
-node tests/all-words.test.js --list
+pnpm test:words -- --list
 
 # Run a single test
-node tests/all-words.test.js Brot
+pnpm test:words -- Brot
 
 # Run tests matching a pattern (case-insensitive)
-node tests/all-words.test.js "A*"
+pnpm test:words -- "A*"
 
 # Run only mispronunciation tests
-node tests/all-words.test.js "*mispro*"
+pnpm test:words -- "*mispro*"
 
 # Show help
-node tests/all-words.test.js --help
+pnpm test:words -- --help
 ```
 
 The test:

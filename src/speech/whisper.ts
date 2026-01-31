@@ -2,17 +2,53 @@
  * Whisper model loading and speech recognition
  */
 
-let transcriber = null;
+import type { SupportedLanguage } from '../types.js';
+
+interface TransformersPipeline {
+  (audio: Float32Array, options?: Record<string, unknown>): Promise<{ text: string; [key: string]: unknown }>;
+}
+
+interface TransformersModule {
+  pipeline: (task: string, model: string, options?: Record<string, unknown>) => Promise<TransformersPipeline>;
+  env: {
+    allowLocalModels: boolean;
+    remoteURL?: string;
+    remotePathTemplate?: string;
+    useBrowserCache?: boolean;
+    backends?: {
+      onnx?: {
+        preferredBackend?: string;
+        wasm?: {
+          numThreads?: number;
+        };
+      };
+    };
+  };
+}
+
+declare global {
+  interface Window {
+    transformers?: TransformersModule;
+  }
+}
+
+interface ProgressInfo {
+  status?: string;
+  file?: string;
+  progress?: number;
+  loaded?: number;
+  total?: number;
+}
+
+let transcriber: TransformersPipeline | null = null;
 
 export const WHISPER_CHUNK_LENGTH_S = 30;
 export const WHISPER_STRIDE_LENGTH_S = 5;
 
 /**
  * Load Whisper model for German speech recognition
- * @param {Function} progressCallback - Callback for progress updates
- * @returns {Promise<Object>} Loaded transcriber
  */
-export async function loadWhisper(progressCallback) {
+export async function loadWhisper(progressCallback: (progress: ProgressInfo) => void): Promise<TransformersPipeline> {
   // Wait for transformers.js to be loaded from CDN
   console.log('Waiting for transformers.js...');
   while (!window.transformers) {
@@ -48,7 +84,7 @@ export async function loadWhisper(progressCallback) {
       'automatic-speech-recognition',
       'microsoft/wavlm-plus-base-sd',
       {
-        progress_callback: (progress) => {
+        progress_callback: (progress: ProgressInfo) => {
           console.log('Pipeline progress:', progress);
           progressCallback(progress);
         },
@@ -58,7 +94,8 @@ export async function loadWhisper(progressCallback) {
 
     console.log('Pipeline initialized successfully (wavLM+ fp16)');
     return transcriber;
-  } catch (error) {
+  } catch (err) {
+    const error = err as Error;
     console.error('🚨 PIPELINE LOADING FAILED 🚨');
     console.error('Error message:', error.message);
     console.error('Error name:', error.name);
@@ -66,7 +103,7 @@ export async function loadWhisper(progressCallback) {
     console.error('Full error object:', JSON.stringify(error, Object.getOwnPropertyNames(error)));
 
     // Additional context
-    if (error.message.includes('not valid JSON')) {
+    if (error.message?.includes('not valid JSON')) {
       console.error('');
       console.error('💡 DIAGNOSIS: A JSON file returned HTML instead of JSON');
       console.error('   This usually means:');
@@ -95,7 +132,7 @@ export async function loadWhisper(progressCallback) {
         }).then(() => {
           console.log('✅ Cache cleared! Please reload the page now (Ctrl+Shift+R or Cmd+Shift+R)');
           console.log('');
-        }).catch(err => {
+        }).catch((err: unknown) => {
           console.error('❌ Could not clear cache automatically:', err);
           console.error('   Please clear cache manually as described above');
         });
@@ -109,11 +146,8 @@ export async function loadWhisper(progressCallback) {
 
 /**
  * Transcribe audio to text
- * @param {Float32Array} audioData - Preprocessed audio data
- * @param {string} language - Language code ("de" or "en")
- * @returns {Promise<string>} Transcribed text
  */
-export async function transcribeAudio(audioData, language = 'de') {
+export async function transcribeAudio(audioData: Float32Array, language: SupportedLanguage = 'de'): Promise<string> {
   if (!transcriber) {
     throw new Error('Model not loaded. Please wait for initialization.');
   }
