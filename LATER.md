@@ -1,3 +1,27 @@
+Test words:
+
+Use key-value labels
+
+lang=de
+speaker=Thomas
+word=Mond
+...
+
+Then selecting a single test should easier.
+
+----
+
+It should be possible to test exactly one word.
+Example:
+
+Mond           Thomas              80%   /moːnt/             m u n d a
+
+---
+
+Why is there an "a" at the end?
+
+Mond           Thomas              80%   /moːnt/             m u n d a
+
 - Ich sage bewusst "Mand" anstatt "Mond". Warum 100% korrekt?
 m oː n t
 m a n d
