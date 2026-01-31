@@ -134,9 +134,10 @@ export function createDistanceCalculator(panphonFeatures) {
   /**
    * Calculate phonetic distance using dynamic programming alignment
    * Similar to Levenshtein but uses phonetic feature distance
-   * @param {Array<string>} phonemes1 - First phoneme sequence
-   * @param {Array<string>} phonemes2 - Second phoneme sequence
-   * @returns {number} Total alignment distance
+   * Also returns the aligned phoneme pairs via backtracking
+   * @param {Array<string>} phonemes1 - First phoneme sequence (target)
+   * @param {Array<string>} phonemes2 - Second phoneme sequence (actual)
+   * @returns {Object} {distance, alignment} where alignment is array of {target, actual, distance}
    */
   function alignPhonemes(phonemes1, phonemes2) {
     const m = phonemes1.length;
@@ -166,7 +167,46 @@ export function createDistanceCalculator(panphonFeatures) {
       }
     }
 
-    return dp[m][n];
+    // Backtrack to find alignment
+    const alignment = [];
+    let i = m;
+    let j = n;
+
+    while (i > 0 || j > 0) {
+      if (i > 0 && j > 0) {
+        const substitutionCost = alignmentCost(phonemes1[i - 1], phonemes2[j - 1]);
+        if (dp[i][j] === dp[i - 1][j - 1] + substitutionCost) {
+          // Substitution or match
+          alignment.unshift({
+            target: phonemes1[i - 1],
+            actual: phonemes2[j - 1],
+            distance: substitutionCost
+          });
+          i--;
+          j--;
+          continue;
+        }
+      }
+      if (i > 0 && dp[i][j] === dp[i - 1][j] + 1) {
+        // Deletion (target phoneme missing in actual)
+        alignment.unshift({
+          target: phonemes1[i - 1],
+          actual: null,
+          distance: 1.0
+        });
+        i--;
+      } else if (j > 0) {
+        // Insertion (extra phoneme in actual)
+        alignment.unshift({
+          target: null,
+          actual: phonemes2[j - 1],
+          distance: 1.0
+        });
+        j--;
+      }
+    }
+
+    return { distance: dp[m][n], alignment };
   }
 
   /**
@@ -180,8 +220,8 @@ export function createDistanceCalculator(panphonFeatures) {
     const targetPhonemes = splitIntoPhonemes(target);
     const actualPhonemes = splitIntoPhonemes(actual);
 
-    // Calculate alignment distance
-    const distance = alignPhonemes(targetPhonemes, actualPhonemes);
+    // Calculate alignment distance and get optimal alignment
+    const { distance, alignment } = alignPhonemes(targetPhonemes, actualPhonemes);
 
     // Calculate max length for normalization
     const maxLen = Math.max(targetPhonemes.length, actualPhonemes.length);
@@ -189,39 +229,13 @@ export function createDistanceCalculator(panphonFeatures) {
     // Calculate similarity (1 = identical, 0 = completely different)
     const similarity = maxLen === 0 ? 1 : 1 - (distance / maxLen);
 
-    // Calculate phoneme-by-phoneme comparison for detailed feedback
-    const phonemeComparison = [];
-
-    for (let i = 0; i < maxLen; i++) {
-      const targetPhoneme = targetPhonemes[i] || null;
-      const actualPhoneme = actualPhonemes[i] || null;
-
-      if (targetPhoneme && actualPhoneme) {
-        const dist = phonemeFeatureDistance(targetPhoneme, actualPhoneme);
-        phonemeComparison.push({
-          target: targetPhoneme,
-          actual: actualPhoneme,
-          distance: dist,
-          match: dist < 0.3  // Consider close matches as acceptable
-        });
-      } else if (targetPhoneme && !actualPhoneme) {
-        // Missing phoneme (target exists but not spoken)
-        phonemeComparison.push({
-          target: targetPhoneme,
-          actual: null,
-          distance: 1.0,
-          match: false
-        });
-      } else if (!targetPhoneme && actualPhoneme) {
-        // Extra phoneme (spoken but not in target)
-        phonemeComparison.push({
-          target: null,
-          actual: actualPhoneme,
-          distance: 1.0,
-          match: false
-        });
-      }
-    }
+    // Build phoneme comparison from alignment, adding match flag
+    const phonemeComparison = alignment.map(item => ({
+      target: item.target,
+      actual: item.actual,
+      distance: item.distance,
+      match: item.distance < 0.3  // Consider close matches as acceptable
+    }));
 
     return {
       distance,
