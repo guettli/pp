@@ -78,7 +78,18 @@ export function createDistanceCalculator(panphonFeatures) {
 
     // If input contains spaces, it's already tokenized (from wav2vec2 model)
     if (cleaned.includes(' ')) {
-      return cleaned.split(/\s+/).filter(p => p.length > 0);
+      const tokens = cleaned.split(/\s+/).filter(p => p.length > 0);
+      // Combine vowels with following length mark (ː)
+      const combined = [];
+      for (let i = 0; i < tokens.length; i++) {
+        if (tokens[i] === 'ː' && combined.length > 0) {
+          // Append length mark to previous token
+          combined[combined.length - 1] += 'ː';
+        } else {
+          combined.push(tokens[i]);
+        }
+      }
+      return combined;
     }
 
     // Otherwise, split into graphemes (accounting for multi-character IPA symbols)

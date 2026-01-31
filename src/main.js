@@ -452,6 +452,19 @@ function getWordFromQueryString() {
 }
 
 /**
+ * Update URL with current language and word
+ */
+function updateURL() {
+  const params = new URLSearchParams();
+  params.set('lang', getLanguage());
+  if (state.currentWord?.word) {
+    params.set('word', state.currentWord.word);
+  }
+  const newURL = `${window.location.pathname}?${params.toString()}`;
+  window.history.replaceState({}, '', newURL);
+}
+
+/**
  * Load initial word (from query string or random)
  */
 function loadInitialWord() {
@@ -460,6 +473,7 @@ function loadInitialWord() {
     setState({ currentWord: queryWord });
     displayWord(queryWord);
     setRecordButtonEnabled(true);
+    updateURL();
   } else {
     nextWord();
   }
@@ -481,6 +495,9 @@ function nextWord() {
 
   // Enable record button
   setRecordButtonEnabled(true);
+
+  // Update URL
+  updateURL();
 }
 
 // Initialize the app when DOM is ready

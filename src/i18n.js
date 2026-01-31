@@ -177,6 +177,15 @@ let currentLanguage = resolveInitialLanguage();
 const listeners = new Set();
 
 function resolveInitialLanguage() {
+  // First check query string
+  if (typeof window !== 'undefined' && window.location) {
+    const params = new URLSearchParams(window.location.search);
+    const langParam = params.get('lang');
+    if (langParam && SUPPORTED_LANGUAGES.includes(langParam)) {
+      return langParam;
+    }
+  }
+  // Then check localStorage
   const stored = safeGetStorage(STORAGE_KEY);
   if (stored && SUPPORTED_LANGUAGES.includes(stored)) {
     return stored;

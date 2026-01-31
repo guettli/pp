@@ -2,6 +2,8 @@
 m oː n t
 m a n d
 
+- claude says the wav2vec2 does ... ? Is that used?
+
 - Phoneme recognition still bad. How to fix??? Write test, adjust parameters?
 - Auto-play input and should.
 - Avoid code duplications. Via Linter
