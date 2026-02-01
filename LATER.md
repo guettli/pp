@@ -1,3 +1,12 @@
+Why same similarity ??
+
+IPA changed (same similarity, not updated):
+  Mond (Thomas): 80%
+    stored:    "m u n d"
+    extracted: "m u n d a"
+
+---
+
 Test words:
 
 Use key-value labels

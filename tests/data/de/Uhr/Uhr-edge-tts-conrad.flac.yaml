@@ -2,5 +2,5 @@ word: Uhr
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
-recognized_ipa: u w a
-similarity: 0.67
+recognized_ipa: u a
+similarity: 1

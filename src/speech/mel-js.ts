@@ -11,6 +11,7 @@ function hann(N: number): Float32Array {
     return win;
 }
 
+
 // FFT using existing browser API (if available) or fallback to naive DFT
 function fftReal(input: Float32Array): { re: Float32Array; im: Float32Array } {
     // Use browser FFT if available (e.g., in AudioContext)
@@ -81,18 +82,24 @@ function melFilterbank({
 
 /**
  * Extract log-mel spectrogram features from audio (pure JS, no dependencies)
+ * Parameters aligned with Kaldi/lhotse Fbank used by ZIPA model:
+ * - frame_length: 25ms (400 samples at 16kHz)
+ * - frame_shift: 10ms (160 samples at 16kHz)
+ * - num_mel_bins: 80
+ * - low_freq: 20 Hz
+ * - high_freq: 7600 Hz (Nyquist - 400)
  */
-export function extractLogMelJS(audioData: Float32Array, melBands = 80, hopSize = 160, winSize = 512): Float32Array {
+export function extractLogMelJS(audioData: Float32Array, melBands = 80, hopSize = 160, winSize = 400): Float32Array {
     const sampleRate = 16000;
-    const nFft = winSize;
+    const nFft = 512;  // Next power of 2 after 400
     const window = hann(winSize);
-    const fb = melFilterbank({ sampleRate, nFft, nMels: melBands, fMin: 0, fMax: sampleRate / 2 });
+    const fb = melFilterbank({ sampleRate, nFft, nMels: melBands, fMin: 20, fMax: 7600 });
     const frames = [];
     for (let i = 0; i + winSize <= audioData.length; i += hopSize) {
         const frame = audioData.slice(i, i + winSize);
         // Apply window
         for (let j = 0; j < winSize; j++) frame[j] *= window[j];
-        // Zero pad if needed
+        // Zero pad to nFft
         const padded = new Float32Array(nFft);
         padded.set(frame);
         // FFT

@@ -555,14 +555,51 @@ async function main() {
         }
     }
 
-    // Check for regressions and update YAML files
+    // Check for regressions and update YAML files (only if strictly better)
     const regressions = [];
+    const degraded = [];  // Worse but within tolerance
+    const improved = [];
+    const ipaChanged = []; // IPA changed but similarity same
     for (const r of withSimilarity) {
         if (!r.metadataPath) continue;
 
-        // Check for regression (new similarity worse than previous)
-        if (r.previousSimilarity !== undefined && r.similarity < r.previousSimilarity - 0.01) {
+        const hasPrevious = r.previousSimilarity !== undefined;
+        const hasPreviousIpa = r.previousRecognizedIpa !== undefined;
+        // Regression: new is worse than previous (with small tolerance)
+        const isRegression = hasPrevious && r.similarity < r.previousSimilarity - 0.01;
+        // Improvement: new is better than previous (with small tolerance)
+        const isImprovement = hasPrevious && r.similarity > r.previousSimilarity + 0.01;
+        // Degraded: slightly worse but within tolerance (not a regression)
+        const isDegraded = hasPrevious && r.similarity < r.previousSimilarity && !isRegression;
+        // IPA changed but similarity is same (within tolerance)
+        const isSameSimilarity = hasPrevious && Math.abs(r.similarity - r.previousSimilarity) <= 0.01;
+        const isIpaChanged = hasPreviousIpa && r.previousRecognizedIpa !== r.actual && isSameSimilarity;
+
+        if (isRegression) {
             regressions.push({
+                word: r.word,
+                source: r.source,
+                previousSimilarity: r.previousSimilarity,
+                newSimilarity: r.similarity,
+                previousIpa: r.previousRecognizedIpa,
+                newIpa: r.actual
+            });
+            // Don't update YAML on regression - keep the previous (better) values
+        } else if (fs.existsSync(r.metadataPath) && (!hasPrevious || isImprovement)) {
+            // Only update YAML file if no previous value exists OR if there's improvement
+            const content = fs.readFileSync(r.metadataPath, 'utf8');
+            const metadata = parseYaml(content);
+            metadata.recognized_ipa = r.actual;
+            metadata.similarity = Math.round(r.similarity * 100) / 100; // Round to 2 decimal places
+            fs.writeFileSync(r.metadataPath, toYaml(metadata));
+            if (isImprovement) {
+                improved.push({ word: r.word, source: r.source, old: r.previousSimilarity, new: r.similarity });
+            }
+        }
+
+        // Track degraded results (worse but within tolerance)
+        if (isDegraded) {
+            degraded.push({
                 word: r.word,
                 source: r.source,
                 previousSimilarity: r.previousSimilarity,
@@ -572,13 +609,50 @@ async function main() {
             });
         }
 
-        // Update YAML file with new recognized_ipa and similarity
-        if (fs.existsSync(r.metadataPath)) {
-            const content = fs.readFileSync(r.metadataPath, 'utf8');
-            const metadata = parseYaml(content);
-            metadata.recognized_ipa = r.actual;
-            metadata.similarity = Math.round(r.similarity * 100) / 100; // Round to 2 decimal places
-            fs.writeFileSync(r.metadataPath, toYaml(metadata));
+        // Track IPA changes with same similarity
+        if (isIpaChanged && !isDegraded) {
+            ipaChanged.push({
+                word: r.word,
+                source: r.source,
+                similarity: r.similarity,
+                previousIpa: r.previousRecognizedIpa,
+                newIpa: r.actual
+            });
+        }
+    }
+
+    // Report improvements
+    if (improved.length > 0) {
+        console.log('\nImprovements:');
+        for (const imp of improved) {
+            const oldPercent = Math.round(imp.old * 100) + '%';
+            const newPercent = Math.round(imp.new * 100) + '%';
+            console.log(`  ${imp.word} (${imp.source}): ${oldPercent} -> ${newPercent}`);
+        }
+    }
+
+    // Report degraded (worse but within tolerance - not failing)
+    if (degraded.length > 0) {
+        console.log('\nDegraded (within tolerance, not updated):');
+        for (const deg of degraded) {
+            const oldPercent = Math.round(deg.previousSimilarity * 100) + '%';
+            const newPercent = Math.round(deg.newSimilarity * 100) + '%';
+            const change = Math.round((deg.newSimilarity - deg.previousSimilarity) * 100);
+            console.log(`  ${deg.word} (${deg.source}): ${oldPercent} -> ${newPercent} (${change}%)`);
+            if (deg.previousIpa !== deg.newIpa) {
+                console.log(`    IPA: "${deg.previousIpa}" vs "${deg.newIpa}"`);
+            }
+        }
+    }
+
+    // Report IPA changes with same similarity (not updated)
+    if (ipaChanged.length > 0) {
+        console.log('\nIPA changed (same similarity, not updated):');
+        for (const chg of ipaChanged) {
+            const simPercent = Math.round(chg.similarity * 100) + '%';
+            console.log(`  ${chg.word} (${chg.source}): ${simPercent}`);
+            console.log(`    stored:    "${chg.previousIpa}"`);
+            console.log(`    extracted: "${chg.newIpa}"`);
         }
     }
 
