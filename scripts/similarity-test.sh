@@ -83,7 +83,6 @@ fi
 
 # Build TypeScript to dist-node if not already built or if source changed
 if [ ! -d "$PROJECT_ROOT/dist-node" ] || [ "$PROJECT_ROOT/src" -nt "$PROJECT_ROOT/dist-node" ]; then
-    echo "Building TypeScript..."
     cd "$PROJECT_ROOT"
     npm run build:node >/dev/null 2>&1 || tsc -p tsconfig.build.json
 fi

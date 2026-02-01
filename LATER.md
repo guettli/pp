@@ -1,9 +1,12 @@
-Why same similarity ??
+avoid spaces between chars of recognized ipa.
 
-IPA changed (same similarity, not updated):
-  Mond (Thomas): 80%
-    stored:    "m u n d"
-    extracted: "m u n d a"
+---
+
+[Panphon for JS ? · Issue #73 · dmort27/panphon](https://github.com/dmort27/panphon/issues/73)
+
+---
+
+ɨ in web UI no explanation for that char --> color should be different, so that i see that.
 
 ---
 
