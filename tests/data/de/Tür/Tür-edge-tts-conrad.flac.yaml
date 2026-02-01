@@ -2,5 +2,5 @@ word: Tür
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
-recognized_ipa: t y ː a
-similarity: 1
+recognized_ipa: t y ː ə
+similarity: 0.97

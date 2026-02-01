@@ -2,5 +2,5 @@ word: Auto
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
-recognized_ipa: a ʊ t o ː
-similarity: 1
+recognized_ipa: a w t o ː
+similarity: 0.95

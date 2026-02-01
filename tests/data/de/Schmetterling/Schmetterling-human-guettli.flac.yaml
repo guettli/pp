@@ -3,5 +3,5 @@ lang: de
 source: human
 speaker: guettli
 notes: Original test recording
-recognized_ipa: ʃ m e ː t ɐ l ɪ ŋ
-similarity: 1
+recognized_ipa: ʃ m e t ɑ r l i ŋ
+similarity: 0.87

@@ -126,6 +126,26 @@ pnpm test:words -- "*mispro*"
 pnpm test:words -- --help
 ```
 
+## Similarity Testing (without running the model)
+
+Test phoneme similarity calculations directly without audio processing:
+
+```bash
+# Compare expected IPA to actual phonemes
+./scripts/similarity-test.sh "moːnt" "m u n d"
+
+# Test mispronunciation
+./scripts/similarity-test.sh "/bʁoːt/" "b l o ː t"
+
+# Check effect of extra phonemes
+./scripts/similarity-test.sh "moːnt" "m u n d a"
+```
+
+This is useful for:
+* Understanding how similarity scores are calculated
+* Testing the PanPhon distance algorithm
+* Debugging phoneme alignment without running the full model
+
 The test:
 
 * Downloads the ONNX model (cached in `~/.cache/phoneme-party/`)

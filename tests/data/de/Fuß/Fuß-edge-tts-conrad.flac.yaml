@@ -2,5 +2,5 @@ word: Fuß
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
-recognized_ipa: f u ː s
-similarity: 1
+recognized_ipa: f u s
+similarity: 0.99

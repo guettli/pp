@@ -1,10 +1,10 @@
 // tests/all-words.test.js
 // Test phoneme extraction on all words using TTS-generated audio
 
+import { execSync } from 'child_process';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
-import { execSync } from 'child_process';
 import { fileURLToPath } from 'url';
 import { Worker } from 'worker_threads';
 
@@ -321,18 +321,23 @@ function printResults(results, lang) {
 
     if (normalResults.length > 0) {
         console.log(`\n${lang === 'de' ? 'German' : 'English'} words:\n`);
-        console.log('Word'.padEnd(15) + 'Source'.padEnd(20) + 'Sim'.padEnd(6) + 'Expected IPA'.padEnd(20) + 'Extracted');
-        console.log('-'.repeat(100));
+        console.log('Word'.padEnd(15) + 'Source'.padEnd(20) + 'Sim'.padEnd(6) + 'Expected IPA'.padEnd(20) + 'Old IPA'.padEnd(25) + 'New IPA');
+        console.log('-'.repeat(130));
 
         for (const result of normalResults) {
             if (result.status === 'ok') {
                 const simPercent = Math.round(result.similarity * 100) + '%';
+                const oldIpa = result.previousRecognizedIpa || '-';
+                const newIpa = result.actual;
+                const ipaChanged = oldIpa !== '-' && oldIpa !== newIpa;
+                const displayNewIpa = ipaChanged ? newIpa : '';
                 console.log(
                     result.word.padEnd(15) +
                     result.source.padEnd(20) +
                     simPercent.padEnd(6) +
                     result.expected.padEnd(20) +
-                    result.actual
+                    oldIpa.padEnd(25) +
+                    displayNewIpa
                 );
             } else {
                 console.log(`${result.word.padEnd(15)} ${result.source.padEnd(20)} FAILED`);
@@ -403,6 +408,7 @@ function printHelp() {
 
 Options:
   --list, -l     List all available tests without running them
+  --update, -u   Update YAML files with new recognized IPA values
   --help, -h     Show this help message
 
 Pattern:
@@ -411,6 +417,7 @@ Pattern:
 Examples:
   node tests/all-words.test.js              # Run all tests
   node tests/all-words.test.js --list       # List all tests
+  node tests/all-words.test.js --update     # Update all YAML files
   node tests/all-words.test.js Brot         # Run tests for "Brot" only
   node tests/all-words.test.js "Sch*"       # Run tests matching "Sch*"
   node tests/all-words.test.js "*mispro*"   # Run mispronunciation tests
@@ -423,6 +430,7 @@ async function main() {
     // Parse arguments
     const showList = args.includes('--list') || args.includes('-l');
     const showHelp = args.includes('--help') || args.includes('-h');
+    const updateYaml = args.includes('--update') || args.includes('-u');
     const pattern = args.find(a => !a.startsWith('-')) || '*';
 
     if (showHelp) {
@@ -584,9 +592,19 @@ async function main() {
                 previousIpa: r.previousRecognizedIpa,
                 newIpa: r.actual
             });
-            // Don't update YAML on regression - keep the previous (better) values
-        } else if (fs.existsSync(r.metadataPath) && (!hasPrevious || isImprovement)) {
-            // Only update YAML file if no previous value exists OR if there's improvement
+            // Don't update YAML on regression unless --update flag is used
+            if (updateYaml && fs.existsSync(r.metadataPath)) {
+                const content = fs.readFileSync(r.metadataPath, 'utf8');
+                const metadata = parseYaml(content);
+                metadata.recognized_ipa = r.actual;
+                metadata.similarity = Math.round(r.similarity * 100) / 100;
+                fs.writeFileSync(r.metadataPath, toYaml(metadata));
+            }
+        } else if (fs.existsSync(r.metadataPath) && (!hasPrevious || isImprovement || updateYaml)) {
+            // Update YAML file if:
+            // - no previous value exists, OR
+            // - there's improvement, OR
+            // - --update flag is used (force update)
             const content = fs.readFileSync(r.metadataPath, 'utf8');
             const metadata = parseYaml(content);
             metadata.recognized_ipa = r.actual;

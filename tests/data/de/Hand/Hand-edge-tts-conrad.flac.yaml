@@ -2,5 +2,5 @@ word: Hand
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
-recognized_ipa: h ə n t
-similarity: 1
+recognized_ipa: h ɑ n t
+similarity: 0.99

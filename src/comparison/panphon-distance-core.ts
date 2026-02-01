@@ -3,7 +3,7 @@
  * Shared between browser and Node.js environments
  */
 
-import type { PhonemeFeatureTable, AlignmentItem, PanPhonDistanceResult, PhonemeComparisonItem } from '../types.js';
+import type { AlignmentItem, PanPhonDistanceResult, PhonemeComparisonItem, PhonemeFeatureTable } from '../types.js';
 
 export interface DistanceCalculator {
   calculatePanPhonDistance: (target: string, actual: string) => PanPhonDistanceResult;
@@ -35,24 +35,26 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
 
     // Calculate Hamming distance between feature vectors
     // Features are represented as: 1 (present), 0 (absent), -1 (not applicable)
+    //
+    // IMPORTANT: We now count ALL feature differences, including cases where one
+    // phoneme has -1 (not applicable) and the other has 0 or 1. This fixes the
+    // bug where phonemes like 'n' and 't' were considered identical because they
+    // only differed in features where one had -1.
     let differences = 0;
-    let comparableFeatures = 0;
+    const totalFeatures = features1.length;
 
-    for (let i = 0; i < features1.length; i++) {
+    for (let i = 0; i < totalFeatures; i++) {
       const f1 = features1[i];
       const f2 = features2[i];
 
-      // Only compare if both features are specified (not -1)
-      if (f1 !== -1 && f2 !== -1) {
-        comparableFeatures++;
-        if (f1 !== f2) {
-          differences++;
-        }
+      // Count any difference, including -1 vs non-(-1)
+      if (f1 !== f2) {
+        differences++;
       }
     }
 
-    // Normalize by number of comparable features
-    return comparableFeatures > 0 ? differences / comparableFeatures : 1.0;
+    // Normalize by total number of features (not just comparable ones)
+    return differences / totalFeatures;
   }
 
   /**
@@ -232,7 +234,10 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
     const maxLen = Math.max(targetPhonemes.length, actualPhonemes.length);
 
     // Calculate similarity (1 = identical, 0 = completely different)
-    const similarity = maxLen === 0 ? 1 : 1 - (distance / maxLen);
+    // Use max length to properly penalize both missing and extra phonemes
+    // This ensures that "munda" (5 phonemes) gets a worse score than "mund" (4 phonemes)
+    // when compared to "moːnt" (4 phonemes target)
+    const similarity = maxLen === 0 ? 1 : Math.max(0, 1 - (distance / maxLen));
 
     // Build phoneme comparison from alignment, adding match flag
     const phonemeComparison: PhonemeComparisonItem[] = alignment.map(item => ({

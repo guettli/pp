@@ -2,5 +2,5 @@ word: Schlüssel
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
-recognized_ipa: ʒ ə i l ə s ɛ
-similarity: 0.83
+recognized_ipa: ʒ ə l ə s ɛ
+similarity: 0.69
