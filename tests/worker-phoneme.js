@@ -91,7 +91,7 @@ async function extractPhonemes(audioData) {
         }
         phonemes.push(token);
     }
-    return phonemes.join(' ');
+    return phonemes.join('');
 }
 
 async function processTask(task) {

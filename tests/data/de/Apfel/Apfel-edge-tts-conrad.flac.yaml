@@ -2,5 +2,5 @@ word: Apfel
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
-recognized_ipa: a p f e l
+recognized_ipa: apfel
 similarity: 0.98

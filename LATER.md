@@ -1,4 +1,8 @@
-avoid spaces between chars of recognized ipa.
+Ask for Feedback! UI and Github
+
+---
+
+Ask ZIPA authors for update.
 
 ---
 
@@ -20,6 +24,10 @@ word=Mond
 ...
 
 Then selecting a single test should easier.
+
+---
+
+Talk to Goethe Institut: I want feedback (not money)
 
 ----
 

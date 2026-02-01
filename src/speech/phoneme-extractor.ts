@@ -209,7 +209,7 @@ export async function extractPhonemes(audioData: Float32Array): Promise<string> 
   // CTC decode: remove consecutive duplicates and blanks
   const phonemes = ctcDecode(predictedIds);
 
-  return phonemes.join(' ');
+  return phonemes.join('');
 }
 
 /**

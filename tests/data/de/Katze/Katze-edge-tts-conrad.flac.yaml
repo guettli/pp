@@ -2,5 +2,5 @@ word: Katze
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
-recognized_ipa: k a t s e
+recognized_ipa: katse
 similarity: 0.98

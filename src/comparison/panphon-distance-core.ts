@@ -134,7 +134,18 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
       }
     }
 
-    return phonemes;
+    // Combine vowels with following length mark (ː)
+    const combined: string[] = [];
+    for (let j = 0; j < phonemes.length; j++) {
+      if (phonemes[j] === 'ː' && combined.length > 0) {
+        // Append length mark to previous token
+        combined[combined.length - 1] += 'ː';
+      } else {
+        combined.push(phonemes[j]);
+      }
+    }
+
+    return combined;
   }
 
   /**
