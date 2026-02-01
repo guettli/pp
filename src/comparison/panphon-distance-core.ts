@@ -81,7 +81,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
       .replace(/\u025D/g, 'ɜɹ')  // Expand rhotic vowel ɝ → ɜɹ
       .trim();
 
-    // If input contains spaces, it's already tokenized (from wav2vec2 model)
+    // If input contains spaces, it's already tokenized (from phoneme model)
     if (cleaned.includes(' ')) {
       const tokens = cleaned.split(/\s+/).filter((p: string) => p.length > 0);
       // Combine vowels with following length mark (ː)

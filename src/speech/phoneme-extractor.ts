@@ -1,5 +1,5 @@
 /**
- * Phoneme extraction using wav2vec2-espeak INT4 model
+ * Phoneme extraction using ZIPA small CTC ONNX model
  * Outputs IPA phonemes directly from audio
  */
 

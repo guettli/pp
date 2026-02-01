@@ -43,7 +43,7 @@ sending data to external servers.
 
 3. **Speech to Phonemes (Actual)**
    * The recorded audio is processed using transformers.js
-   * An automatic speech recognition (ASR) model (e.g., Wav2Vec2 or Whisper) runs locally in the
+   * An automatic speech recognition (ASR) model runs locally in the
      browser
    * The model outputs either:
      * Transcribed text (converted to phonemes)
@@ -142,6 +142,7 @@ Test phoneme similarity calculations directly without audio processing:
 ```
 
 This is useful for:
+
 * Understanding how similarity scores are calculated
 * Testing the PanPhon distance algorithm
 * Debugging phoneme alignment without running the full model

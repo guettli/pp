@@ -74,6 +74,7 @@ export interface AppState {
   modelLoadMs: number | null;
   recorder: AudioRecorderInstance | null;
   lastRecordingBlob: Blob | null;
+  actualIPA: string | null;
 }
 
 // Audio recorder interface

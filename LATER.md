@@ -35,8 +35,6 @@ Mond           Thomas              80%   /moːnt/             m u n d a
 m oː n t
 m a n d
 
-- claude says the wav2vec2 does ... ? Is that used?
-
 - Check browser warnings.
 - Linux shows a square, not a heart: <https://thomas-guettler.de/phoneme-party/?lang=de&word=Herz>
 - Phoneme recognition still bad. How to fix??? Write test, adjust parameters?

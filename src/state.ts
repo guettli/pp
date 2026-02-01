@@ -15,7 +15,8 @@ export const state: AppState = {
   webgpuAvailable: false,
   webgpuBackend: null,
   lastRecordingBlob: null,
-  recordingCount: 0
+  recordingCount: 0,
+  actualIPA: null
 };
 
 /**
@@ -30,6 +31,7 @@ export function setState(updates: Partial<AppState>): void {
  */
 export function resetFeedback(): void {
   setState({
-    score: null
+    score: null,
+    actualIPA: null
   });
 }

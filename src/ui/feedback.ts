@@ -235,7 +235,14 @@ function downloadRecording() {
   const word = state.currentWord?.word || 'recording';
   const lang = getLanguage();
   const timestamp = new Date().toISOString().slice(0, 19).replace(/[:-]/g, '');
-  a.download = `${word}_${timestamp}_${lang}.webm`;
+
+  // Include recognized IPA in filename if available
+  let filename = `${word}_${timestamp}_${lang}`;
+  if (state.actualIPA) {
+    // Remove spaces for cleaner filename
+    filename += `_${state.actualIPA.replace(/\s+/g, '')}`;
+  }
+  a.download = `${filename}.webm`;
 
   document.body.appendChild(a);
   a.click();

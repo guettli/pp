@@ -18,7 +18,7 @@ import {
 import { resetFeedback, setState, state } from './state.js';
 
 // Import utilities
-import { getRandomWord, findWordByName } from './utils/random.js';
+import { findWordByName, getRandomWord } from './utils/random.js';
 
 // Import audio modules
 import { prepareAudioForWhisper } from './audio/processor.js';
@@ -26,8 +26,8 @@ import { AudioRecorder } from './audio/recorder.js';
 
 // Import phoneme extraction (direct IPA output)
 import {
-  loadPhonemeModel,
-  extractPhonemes
+  extractPhonemes,
+  loadPhonemeModel
 } from './speech/phoneme-extractor.js';
 
 // Import comparison logic
@@ -82,7 +82,7 @@ async function init() {
     setState({ recorder: new AudioRecorder() });
     console.log('Audio recorder initialized');
 
-    // Load phoneme extraction model (wav2vec2-espeak INT4)
+    // Load phoneme extraction model
     console.log('Starting to load phoneme model...');
     console.log('⏱️ This may take 30-60 seconds for first load (downloading ~230MB)');
     updateLoadingProgress({ status: 'downloading', progress: 0 });
@@ -399,7 +399,7 @@ async function actuallyStopRecording() {
       );
       showProcessing(30);
 
-      // Extract phonemes directly using wav2vec2-espeak model
+      // Extract phonemes directly using phoneme model
       const actualIPA = await measureAsync('processing.step_phonemes', () =>
         extractPhonemes(audioData)
       );
@@ -421,7 +421,7 @@ async function actuallyStopRecording() {
       showProcessing(95);
 
       // Update state
-      setState({ score });
+      setState({ score, actualIPA });
 
       // Display feedback
       displayFeedback(currentWord, actualIPA, score);
