@@ -12,6 +12,7 @@ Build on:
 * [huggingface/transformers.js: State-of-the-art Machine Learning for the web. Run 🤗 Transformers
   directly in your browser, with no need for a
   server!](https://github.com/huggingface/transformers.js)
+* [ZIPA: A family of efficient speech models for multilingual phone recognition](https://github.com/lingjzhu/zipa)
 
 Github: <https://github.com/guettli/pp>
 

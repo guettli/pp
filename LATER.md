@@ -29,6 +29,10 @@ Then selecting a single test should easier.
 
 Talk to Goethe Institut: I want feedback (not money)
 
+---
+
+Form before start: Allowed to use recordings for training?
+
 ----
 
 It should be possible to test exactly one word.
