@@ -2,3 +2,5 @@ word: Bett
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
+recognized_ipa: b ɛ t
+similarity: 1

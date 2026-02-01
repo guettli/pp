@@ -2,3 +2,5 @@ word: Tisch
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
+recognized_ipa: t ɪ ʃ
+similarity: 1

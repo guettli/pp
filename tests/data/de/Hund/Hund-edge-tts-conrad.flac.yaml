@@ -2,3 +2,5 @@ word: Hund
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
+recognized_ipa: h ʊ n t
+similarity: 1

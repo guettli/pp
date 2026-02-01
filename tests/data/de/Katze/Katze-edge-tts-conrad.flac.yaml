@@ -2,3 +2,5 @@ word: Katze
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
+recognized_ipa: k ɑ t s e
+similarity: 1

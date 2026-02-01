@@ -2,3 +2,5 @@ word: Buch
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
+recognized_ipa: t u x
+similarity: 1

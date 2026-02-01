@@ -2,3 +2,5 @@ word: Mond
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
+recognized_ipa: m ɔ n t s
+similarity: 0.8

@@ -95,7 +95,11 @@ async function extractPhonemes(audioData) {
 }
 
 async function processTask(task) {
-    const { audioPath, expectedIPA, word, lang, source, metadata } = task;
+    const { audioPath, metadataPath, expectedIPA, word, lang, source, metadata } = task;
+
+    // Get previous values from metadata for regression detection
+    const previousSimilarity = metadata?.similarity;
+    const previousRecognizedIpa = metadata?.recognized_ipa;
 
     try {
         const audio = readAudioFile(audioPath);
@@ -110,6 +114,7 @@ async function processTask(task) {
                 word,
                 lang,
                 source,
+                metadataPath,
                 spokenAs: metadata.spoken_as,
                 expected,
                 actual: extractedPhonemes,
@@ -123,9 +128,12 @@ async function processTask(task) {
                 word,
                 lang,
                 source,
+                metadataPath,
                 expected: expectedIPA,
                 actual: extractedPhonemes,
                 similarity: panphonResult.similarity,
+                previousSimilarity,
+                previousRecognizedIpa,
                 status: 'ok'
             };
         }
@@ -134,6 +142,7 @@ async function processTask(task) {
             word,
             lang,
             source,
+            metadataPath,
             status: 'error',
             error: error.message
         };

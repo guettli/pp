@@ -2,3 +2,5 @@ word: Ball
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
+recognized_ipa: b a ɪ
+similarity: 0.94

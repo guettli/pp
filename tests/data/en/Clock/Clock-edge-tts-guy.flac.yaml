@@ -2,3 +2,5 @@ word: Clock
 lang: en
 source: edge-tts
 voice: en-US-GuyNeural
+recognized_ipa: k l ̴ ɑ k
+similarity: 1

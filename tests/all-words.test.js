@@ -304,6 +304,7 @@ function findAudioFiles(lang, word) {
 
             audioFiles.push({
                 path: audioPath,
+                metadataPath: yamlPath,
                 metadata,
                 source: baseName.replace(`${word}-`, '')
             });
@@ -493,6 +494,7 @@ async function main() {
 
             tasks.push({
                 audioPath: audioFile.path,
+                metadataPath: audioFile.metadataPath,
                 expectedIPA: test.ipa || '',
                 word: test.word,
                 lang: test.lang,
@@ -553,7 +555,59 @@ async function main() {
         }
     }
 
-    if (failed.length > 0) {
+    // Check for regressions and update YAML files
+    const regressions = [];
+    for (const r of withSimilarity) {
+        if (!r.metadataPath) continue;
+
+        // Check for regression (new similarity worse than previous)
+        if (r.previousSimilarity !== undefined && r.similarity < r.previousSimilarity - 0.01) {
+            regressions.push({
+                word: r.word,
+                source: r.source,
+                previousSimilarity: r.previousSimilarity,
+                newSimilarity: r.similarity,
+                previousIpa: r.previousRecognizedIpa,
+                newIpa: r.actual
+            });
+        }
+
+        // Update YAML file with new recognized_ipa and similarity
+        if (fs.existsSync(r.metadataPath)) {
+            const content = fs.readFileSync(r.metadataPath, 'utf8');
+            const metadata = parseYaml(content);
+            metadata.recognized_ipa = r.actual;
+            metadata.similarity = Math.round(r.similarity * 100) / 100; // Round to 2 decimal places
+            fs.writeFileSync(r.metadataPath, toYaml(metadata));
+        }
+    }
+
+    // Report regressions
+    if (regressions.length > 0) {
+        console.log('\n' + '='.repeat(80));
+        console.log('REGRESSIONS DETECTED');
+        console.log('='.repeat(80));
+        console.log('Word'.padEnd(15) + 'Source'.padEnd(20) + 'Old'.padEnd(6) + 'New'.padEnd(6) + 'Change');
+        console.log('-'.repeat(80));
+        for (const reg of regressions) {
+            const oldPercent = Math.round(reg.previousSimilarity * 100) + '%';
+            const newPercent = Math.round(reg.newSimilarity * 100) + '%';
+            const change = Math.round((reg.newSimilarity - reg.previousSimilarity) * 100) + '%';
+            console.log(
+                reg.word.padEnd(15) +
+                reg.source.padEnd(20) +
+                oldPercent.padEnd(6) +
+                newPercent.padEnd(6) +
+                change
+            );
+            if (reg.previousIpa !== reg.newIpa) {
+                console.log(`  IPA changed: "${reg.previousIpa}" -> "${reg.newIpa}"`);
+            }
+        }
+        console.log(`\n${regressions.length} regression(s) found!`);
+    }
+
+    if (failed.length > 0 || regressions.length > 0) {
         process.exit(1);
     }
 }

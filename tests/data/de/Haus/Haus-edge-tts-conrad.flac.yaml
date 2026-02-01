@@ -2,3 +2,5 @@ word: Haus
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
+recognized_ipa: h a ʊ s
+similarity: 1

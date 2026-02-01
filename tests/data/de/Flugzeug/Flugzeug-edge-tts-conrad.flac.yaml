@@ -2,3 +2,5 @@ word: Flugzeug
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
+recognized_ipa: f l u ː k t s ɔ ʏ k
+similarity: 1

@@ -2,3 +2,5 @@ word: Fahrrad
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
+recognized_ipa: f ɑ ɾ ɾ ɑ t
+similarity: 0.95

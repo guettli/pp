@@ -2,3 +2,5 @@ word: Book
 lang: en
 source: edge-tts
 voice: en-US-GuyNeural
+recognized_ipa: b o k
+similarity: 1

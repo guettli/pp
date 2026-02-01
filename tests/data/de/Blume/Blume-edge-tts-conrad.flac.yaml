@@ -2,3 +2,5 @@ word: Blume
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
+recognized_ipa: b l u m e
+similarity: 1
