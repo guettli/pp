@@ -17,6 +17,13 @@ if [ ! -f "$INPUT_FILE" ]; then
     exit 1
 fi
 
+# Ensure dist-node is built
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+echo "Building dist-node..."
+(cd "$PROJECT_DIR" && pnpm build:node)
+echo ""
+
 # Parse filename: Word_Timestamp_Lang.webm
 BASENAME=$(basename "$INPUT_FILE" .webm)
 WORD=$(echo "$BASENAME" | cut -d'_' -f1)
@@ -65,8 +72,6 @@ if [[ "$IS_MISPRO" =~ ^[Yy] ]]; then
 fi
 
 # Determine output paths
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 DATA_DIR="$PROJECT_DIR/tests/data/$LANG/$WORD"
 
 if [[ "$IS_MISPRO" =~ ^[Yy] ]]; then
@@ -97,6 +102,20 @@ echo ""
 echo "Converting to FLAC..."
 ffmpeg -y -i "$INPUT_FILE" -ar 16000 -ac 1 "$FLAC_FILE" 2>/dev/null
 
+# Extract phonemes and calculate similarity
+echo "Extracting phonemes and calculating similarity..."
+echo " .... pnpm" tsx "$SCRIPT_DIR/extract-and-compare.ts" "$FLAC_FILE" "$WORD" "$LANG"
+echo
+if PHONEME_RESULT=$(pnpm tsx "$SCRIPT_DIR/extract-and-compare.ts" "$FLAC_FILE" "$WORD" "$LANG" 2>&1); then
+    RECOGNIZED_IPA=$(echo "$PHONEME_RESULT" | grep -o '"recognized_ipa":"[^"]*"' | cut -d'"' -f4)
+    SIMILARITY=$(echo "$PHONEME_RESULT" | grep -o '"similarity":"[^"]*"' | cut -d'"' -f4)
+    echo "Recognized IPA: $RECOGNIZED_IPA"
+    echo "Similarity: $SIMILARITY"
+else
+    echo "Warning: Could not extract phonemes automatically: $PHONEME_RESULT"
+    exit 1
+fi
+
 # Create YAML metadata
 echo "Creating metadata..."
 {
@@ -111,7 +130,13 @@ echo "Creating metadata..."
     fi
     echo "source: $SOURCE"
     echo "timestamp: $TIMESTAMP"
-} > "$YAML_FILE"
+    if [ -n "$RECOGNIZED_IPA" ]; then
+        echo "recognized_ipa: $RECOGNIZED_IPA"
+    fi
+    if [ -n "$SIMILARITY" ]; then
+        echo "similarity: $SIMILARITY"
+    fi
+} >"$YAML_FILE"
 
 echo ""
 echo "Created:"

@@ -6,6 +6,10 @@ Ask ZIPA authors for update.
 
 ---
 
+Convert more to TS. There are still many JS files.
+
+---
+
 [Panphon for JS ? · Issue #73 · dmort27/panphon](https://github.com/dmort27/panphon/issues/73)
 
 ---
