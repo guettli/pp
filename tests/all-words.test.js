@@ -314,17 +314,25 @@ function findAudioFiles(lang, word) {
     return audioFiles;
 }
 
-function printResults(results, lang) {
+function printResults(results) {
     // Separate normal and mispronunciation results
     const normalResults = results.filter(r => !r.mispronunciation);
     const misproResults = results.filter(r => r.mispronunciation);
 
     if (normalResults.length > 0) {
-        console.log(`\n${lang === 'de' ? 'German' : 'English'} words:\n`);
-        console.log('Word'.padEnd(15) + 'Source'.padEnd(20) + 'Sim'.padEnd(6) + 'Expected IPA'.padEnd(20) + 'Old IPA'.padEnd(25) + 'New IPA');
-        console.log('-'.repeat(130));
+        // Sort by similarity descending (best first, worst last)
+        const sortedResults = [...normalResults].sort((a, b) => {
+            // Handle failed tests (no similarity)
+            if (a.status !== 'ok') return 1;
+            if (b.status !== 'ok') return -1;
+            return b.similarity - a.similarity;
+        });
 
-        for (const result of normalResults) {
+        console.log('\nAll words:\n');
+        console.log('Lang'.padEnd(6) + 'Word'.padEnd(15) + 'Source'.padEnd(20) + 'Sim'.padEnd(6) + 'Expected IPA'.padEnd(20) + 'Old IPA'.padEnd(25) + 'New IPA');
+        console.log('-'.repeat(135));
+
+        for (const result of sortedResults) {
             if (result.status === 'ok') {
                 const simPercent = Math.round(result.similarity * 100) + '%';
                 const oldIpa = result.previousRecognizedIpa || '-';
@@ -332,6 +340,7 @@ function printResults(results, lang) {
                 const ipaChanged = oldIpa !== '-' && oldIpa !== newIpa;
                 const displayNewIpa = ipaChanged ? newIpa : '';
                 console.log(
+                    result.lang.padEnd(6) +
                     result.word.padEnd(15) +
                     result.source.padEnd(20) +
                     simPercent.padEnd(6) +
@@ -340,19 +349,20 @@ function printResults(results, lang) {
                     displayNewIpa
                 );
             } else {
-                console.log(`${result.word.padEnd(15)} ${result.source.padEnd(20)} FAILED`);
+                console.log(`${result.lang.padEnd(6)}${result.word.padEnd(15)} ${result.source.padEnd(20)} FAILED`);
             }
         }
     }
 
     if (misproResults.length > 0) {
-        console.log(`\n${lang === 'de' ? 'German' : 'English'} mispronunciation tests:\n`);
-        console.log('Word'.padEnd(15) + 'Spoken As'.padEnd(12) + 'Expected'.padEnd(20) + 'Actual'.padEnd(20) + 'Match');
-        console.log('-'.repeat(80));
+        console.log('\nMispronunciation tests:\n');
+        console.log('Lang'.padEnd(6) + 'Word'.padEnd(15) + 'Spoken As'.padEnd(12) + 'Expected'.padEnd(20) + 'Actual'.padEnd(20) + 'Match');
+        console.log('-'.repeat(85));
 
         for (const result of misproResults) {
             const matchStr = result.match ? '✓' : '✗';
             console.log(
+                result.lang.padEnd(6) +
                 result.word.padEnd(15) +
                 result.spokenAs.padEnd(12) +
                 result.expected.padEnd(20) +
@@ -518,13 +528,8 @@ async function main() {
     // Run tests in parallel using workers
     const allResults = await runWorkers(tasks, modelPath, vocabPath, numWorkers);
 
-    // Separate results by language for printing
-    const allResultsDE = allResults.filter(r => r.lang === 'de');
-    const allResultsEN = allResults.filter(r => r.lang === 'en');
-
-    // Print results
-    if (allResultsDE.length > 0) printResults(allResultsDE, 'de');
-    if (allResultsEN.length > 0) printResults(allResultsEN, 'en');
+    // Print all results combined
+    if (allResults.length > 0) printResults(allResults);
 
     // Summary
     console.log('\n' + '='.repeat(80));
@@ -544,24 +549,6 @@ async function main() {
     console.log(`Successful: ${successful.length}`);
     console.log(`Failed: ${failed.length}`);
     console.log(`Average similarity: ${Math.round(avgSimilarity * 100)}%`);
-
-    // Show worst 3 results
-    if (withSimilarity.length > 0) {
-        const worst = [...withSimilarity].sort((a, b) => a.similarity - b.similarity).slice(0, 3);
-        console.log('\nWorst results:\n');
-        console.log('Word'.padEnd(15) + 'Source'.padEnd(20) + 'Sim'.padEnd(6) + 'Expected'.padEnd(20) + 'Actual');
-        console.log('-'.repeat(100));
-        for (const r of worst) {
-            const simPercent = Math.round(r.similarity * 100) + '%';
-            console.log(
-                r.word.padEnd(15) +
-                r.source.padEnd(20) +
-                simPercent.padEnd(6) +
-                r.expected.padEnd(20) +
-                r.actual
-            );
-        }
-    }
 
     // Check for regressions and update YAML files (only if strictly better)
     const regressions = [];
