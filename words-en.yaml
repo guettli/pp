@@ -1,0 +1,179 @@
+- word: Cat
+  emoji: 🐱
+  ipas:
+    - ipa: /kæt/
+      category: standard
+
+- word: Dog
+  emoji: 🐕
+  ipas:
+    - ipa: /dɔɡ/
+      category: standard
+
+- word: House
+  emoji: 🏠
+  ipas:
+    - ipa: /haʊs/
+      category: standard
+
+- word: Tree
+  emoji: 🌳
+  ipas:
+    - ipa: /triː/
+      category: standard
+
+- word: Flower
+  emoji: 🌸
+  ipas:
+    - ipa: /ˈflaʊər/
+      category: standard
+
+- word: Sun
+  emoji: ☀️
+  ipas:
+    - ipa: /sʌn/
+      category: standard
+
+- word: Moon
+  emoji: 🌙
+  ipas:
+    - ipa: /muːn/
+      category: standard
+
+- word: Star
+  emoji: ⭐
+  ipas:
+    - ipa: /stɑr/
+      category: standard
+
+- word: Car
+  emoji: 🚗
+  ipas:
+    - ipa: /kɑr/
+      category: standard
+
+- word: Ball
+  emoji: ⚽
+  ipas:
+    - ipa: /bɔl/
+      category: standard
+
+- word: Book
+  emoji: 📖
+  ipas:
+    - ipa: /bʊk/
+      category: standard
+
+- word: Apple
+  emoji: 🍎
+  ipas:
+    - ipa: /ˈæpəl/
+      category: standard
+
+- word: Banana
+  emoji: 🍌
+  ipas:
+    - ipa: /bəˈnænə/
+      category: standard
+
+- word: Bread
+  emoji: 🍞
+  ipas:
+    - ipa: /brɛd/
+      category: standard
+
+- word: Fish
+  emoji: 🐟
+  ipas:
+    - ipa: /fɪʃ/
+      category: standard
+
+- word: Bird
+  emoji: 🐦
+  ipas:
+    - ipa: /bɝd/
+      category: standard
+
+- word: Butterfly
+  emoji: 🦋
+  ipas:
+    - ipa: /ˈbʌtərflaɪ/
+      category: standard
+
+- word: Ship
+  emoji: 🚢
+  ipas:
+    - ipa: /ʃɪp/
+      category: standard
+
+- word: Airplane
+  emoji: ✈️
+  ipas:
+    - ipa: /ˈɛrpleɪn/
+      category: standard
+
+- word: Train
+  emoji: 🚂
+  ipas:
+    - ipa: /treɪn/
+      category: standard
+
+- word: Bicycle
+  emoji: 🚲
+  ipas:
+    - ipa: /ˈbaɪsɪkəl/
+      category: standard
+
+- word: Door
+  emoji: 🚪
+  ipas:
+    - ipa: /dɔr/
+      category: standard
+
+- word: Window
+  emoji: 🪟
+  ipas:
+    - ipa: /ˈwɪndoʊ/
+      category: standard
+
+- word: Table
+  emoji: 🪑
+  ipas:
+    - ipa: /ˈteɪbəl/
+      category: standard
+
+- word: Bed
+  emoji: 🛏️
+  ipas:
+    - ipa: /bɛd/
+      category: standard
+
+- word: Clock
+  emoji: 🕐
+  ipas:
+    - ipa: /klɑk/
+      category: standard
+
+- word: Key
+  emoji: 🔑
+  ipas:
+    - ipa: /kiː/
+      category: standard
+
+- word: Heart
+  emoji: ❤️
+  ipas:
+    - ipa: /hɑrt/
+      category: standard
+
+- word: Hand
+  emoji: ✋
+  ipas:
+    - ipa: /hænd/
+      category: standard
+
+- word: Foot
+  emoji: 🦶
+  ipas:
+    - ipa: /fʊt/
+      category: standard
