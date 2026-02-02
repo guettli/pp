@@ -4,7 +4,6 @@ Fetch IPA pronunciations from Wiktionary for German words.
 This script queries the Wiktionary API to get IPA pronunciations for a list of German words.
 """
 
-import json
 import re
 import urllib.request
 import urllib.parse
@@ -92,36 +91,36 @@ def main():
 
     # Initial word list with emojis - simple, concrete nouns suitable for children
     words = [
-        {"word": "Katze", "emoji": "🐱", "ipa": None},
-        {"word": "Hund", "emoji": "🐕", "ipa": None},
-        {"word": "Haus", "emoji": "🏠", "ipa": None},
-        {"word": "Baum", "emoji": "🌳", "ipa": None},
-        {"word": "Blume", "emoji": "🌸", "ipa": None},
-        {"word": "Sonne", "emoji": "☀️", "ipa": None},
-        {"word": "Mond", "emoji": "🌙", "ipa": None},
-        {"word": "Stern", "emoji": "⭐", "ipa": None},
-        {"word": "Auto", "emoji": "🚗", "ipa": None},
-        {"word": "Ball", "emoji": "⚽", "ipa": None},
-        {"word": "Buch", "emoji": "📖", "ipa": None},
-        {"word": "Apfel", "emoji": "🍎", "ipa": None},
-        {"word": "Banane", "emoji": "🍌", "ipa": None},
-        {"word": "Brot", "emoji": "🍞", "ipa": None},
-        {"word": "Fisch", "emoji": "🐟", "ipa": None},
-        {"word": "Vogel", "emoji": "🐦", "ipa": None},
-        {"word": "Schmetterling", "emoji": "🦋", "ipa": None},
-        {"word": "Schiff", "emoji": "🚢", "ipa": None},
-        {"word": "Flugzeug", "emoji": "✈️", "ipa": None},
-        {"word": "Zug", "emoji": "🚂", "ipa": None},
-        {"word": "Fahrrad", "emoji": "🚲", "ipa": None},
-        {"word": "Tür", "emoji": "🚪", "ipa": None},
-        {"word": "Fenster", "emoji": "🪟", "ipa": None},
-        {"word": "Tisch", "emoji": "🍽️", "ipa": None},
-        {"word": "Bett", "emoji": "🛏️", "ipa": None},
-        {"word": "Uhr", "emoji": "🕐", "ipa": None},
-        {"word": "Schlüssel", "emoji": "🔑", "ipa": None},
-        {"word": "Herz", "emoji": "❤️", "ipa": None},
-        {"word": "Hand", "emoji": "✋", "ipa": None},
-        {"word": "Fuß", "emoji": "🦶", "ipa": None},
+        {"word": "Katze", "emoji": "🐱", "ipas": []},
+        {"word": "Hund", "emoji": "🐕", "ipas": []},
+        {"word": "Haus", "emoji": "🏠", "ipas": []},
+        {"word": "Baum", "emoji": "🌳", "ipas": []},
+        {"word": "Blume", "emoji": "🌸", "ipas": []},
+        {"word": "Sonne", "emoji": "☀️", "ipas": []},
+        {"word": "Mond", "emoji": "🌙", "ipas": []},
+        {"word": "Stern", "emoji": "⭐", "ipas": []},
+        {"word": "Auto", "emoji": "🚗", "ipas": []},
+        {"word": "Ball", "emoji": "⚽", "ipas": []},
+        {"word": "Buch", "emoji": "📖", "ipas": []},
+        {"word": "Apfel", "emoji": "🍎", "ipas": []},
+        {"word": "Banane", "emoji": "🍌", "ipas": []},
+        {"word": "Brot", "emoji": "🍞", "ipas": []},
+        {"word": "Fisch", "emoji": "🐟", "ipas": []},
+        {"word": "Vogel", "emoji": "🐦", "ipas": []},
+        {"word": "Schmetterling", "emoji": "🦋", "ipas": []},
+        {"word": "Schiff", "emoji": "🚢", "ipas": []},
+        {"word": "Flugzeug", "emoji": "✈️", "ipas": []},
+        {"word": "Zug", "emoji": "🚂", "ipas": []},
+        {"word": "Fahrrad", "emoji": "🚲", "ipas": []},
+        {"word": "Tür", "emoji": "🚪", "ipas": []},
+        {"word": "Fenster", "emoji": "🪟", "ipas": []},
+        {"word": "Tisch", "emoji": "🍽️", "ipas": []},
+        {"word": "Bett", "emoji": "🛏️", "ipas": []},
+        {"word": "Uhr", "emoji": "🕐", "ipas": []},
+        {"word": "Schlüssel", "emoji": "🔑", "ipas": []},
+        {"word": "Herz", "emoji": "❤️", "ipas": []},
+        {"word": "Hand", "emoji": "✋", "ipas": []},
+        {"word": "Fuß", "emoji": "🦶", "ipas": []},
     ]
 
     print("Fetching IPA pronunciations from Wiktionary...\n")
@@ -131,19 +130,31 @@ def main():
         word = entry["word"]
         print(f"Fetching: {word}")
         ipa = fetch_wiktionary_ipa(word)
-        entry["ipa"] = ipa
+        if ipa:
+            entry["ipas"].append({
+                "ipa": ipa,
+                "category": "standard"
+            })
         # Be nice to Wiktionary servers
         time.sleep(0.5)
 
-    # Save to JSON file
-    output_file = "words-de.json"
+    # Save to YAML file
+    output_file = "words-de.yaml"
     with open(output_file, "w", encoding="utf-8") as f:
-        json.dump(words, f, ensure_ascii=False, indent=2)
+        for i, entry in enumerate(words):
+            f.write(f"- word: {entry['word']}\n")
+            f.write(f"  emoji: {entry['emoji']}\n")
+            f.write(f"  ipas:\n")
+            for ipa_entry in entry["ipas"]:
+                f.write(f"    - ipa: {ipa_entry['ipa']}\n")
+                f.write(f"      category: {ipa_entry['category']}\n")
+            if i < len(words) - 1:
+                f.write("\n")
 
     print(f"\n✓ Saved {len(words)} words to {output_file}")
 
     # Report statistics
-    found = sum(1 for w in words if w["ipa"])
+    found = sum(1 for w in words if w["ipas"])
     missing = len(words) - found
     print(f"\nStatistics:")
     print(f"  Found IPA: {found}/{len(words)}")
@@ -152,7 +163,7 @@ def main():
     if missing > 0:
         print(f"\nWords missing IPA:")
         for entry in words:
-            if not entry["ipa"]:
+            if not entry["ipas"]:
                 print(f"  - {entry['word']} {entry['emoji']}")
 
 

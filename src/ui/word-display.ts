@@ -42,5 +42,8 @@ export function displayWord(word: Word): void {
     }
   }
   if (textElement) textElement.textContent = word.word;
-  if (ipaElement) ipaElement.textContent = word.ipa;
+  if (ipaElement) {
+    // Use the first (standard) IPA pronunciation
+    ipaElement.textContent = word.ipas[0]?.ipa || '';
+  }
 }

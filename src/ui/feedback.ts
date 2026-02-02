@@ -63,7 +63,8 @@ export function displayFeedback(targetWord: Word, actualIPA: string, score: Scor
   // Update content
   if (targetElement) targetElement.textContent = targetWord.word;
   if (targetIPAElement) {
-    targetIPAElement.textContent = targetWord.ipa;
+    // Use the first (standard) IPA pronunciation
+    targetIPAElement.textContent = targetWord.ipas[0]?.ipa || '';
   }
   if (actualIPAElement) {
     // Show phonemes if available, or "Not recognized" if word not found
@@ -105,7 +106,9 @@ export function displayFeedback(targetWord: Word, actualIPA: string, score: Scor
   // Populate IPA explanations
   const ipaContent = document.getElementById('ipa-explanations-content');
   if (ipaContent) {
-    const explanationsHTML = generateExplanationsHTML(targetWord.ipa, actualIPA);
+    // Use the first (standard) IPA pronunciation
+    const primaryIPA = targetWord.ipas[0]?.ipa || '';
+    const explanationsHTML = generateExplanationsHTML(primaryIPA, actualIPA);
     ipaContent.innerHTML = explanationsHTML || t('feedback.no_ipa_help');
   }
 

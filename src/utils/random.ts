@@ -1,10 +1,15 @@
-import wordsDe from '../../words-de.json';
-import wordsEn from '../../words-en.json';
+import wordsDeYaml from '../../words-de.yaml?raw';
+import wordsEnYaml from '../../words-en.yaml?raw';
+import { load } from 'js-yaml';
 import { getLanguage } from '../i18n.js';
 import type { Word, SupportedLanguage } from '../types.js';
 
+// Parse YAML files
+const wordsDe: Word[] = load(wordsDeYaml) as Word[];
+const wordsEn: Word[] = load(wordsEnYaml) as Word[];
+
 function getWordList(language: SupportedLanguage = getLanguage()): Word[] {
-  return (language === 'de' ? wordsDe : wordsEn) as Word[];
+  return language === 'de' ? wordsDe : wordsEn;
 }
 
 /**

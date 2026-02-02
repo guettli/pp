@@ -2,11 +2,17 @@
  * Core type definitions for Phoneme Party
  */
 
+// IPA pronunciation with category
+export interface IPA {
+  ipa: string;
+  category: string;
+}
+
 // Word data
 export interface Word {
   word: string;
   emoji: string;
-  ipa: string;
+  ipas: IPA[];
 }
 
 // Phoneme comparison result

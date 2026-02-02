@@ -411,9 +411,16 @@ async function actuallyStopRecording() {
         throw new Error('No current word selected');
       }
       const currentWord = state.currentWord;
-      const score = measureSync('processing.step_score', () =>
-        scorePronunciation(currentWord.ipa, actualIPA)
+      // Try all IPAs and use the best score
+      const scores = currentWord.ipas.map(ipaEntry =>
+        measureSync('processing.step_score', () =>
+          scorePronunciation(ipaEntry.ipa, actualIPA)
+        )
       );
+      // Use the score with the highest similarity
+      const score = scores.reduce((best, current) =>
+        current.similarity > best.similarity ? current : best
+      , scores[0] || scorePronunciation('', actualIPA));
       console.log('Score:', score);
       console.log('Target phonemes:', score.targetPhonemes);
       console.log('Actual phonemes:', score.actualPhonemes);

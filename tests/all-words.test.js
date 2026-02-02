@@ -145,7 +145,7 @@ function toYaml(obj) {
 }
 
 /**
- * Parse simple YAML file
+ * Parse simple YAML file (key-value pairs)
  */
 function parseYaml(content) {
     const obj = {};
@@ -175,6 +175,63 @@ function parseYaml(content) {
         }
     }
     return obj;
+}
+
+/**
+ * Parse YAML file with structured data (word list format)
+ */
+function parseYamlFile(filePath) {
+    const content = fs.readFileSync(filePath, 'utf8');
+    const lines = content.split('\n');
+    const words = [];
+    let currentWord = null;
+    let currentIpa = null;
+    let indent = 0;
+
+    for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed.startsWith('#')) continue;
+
+        // Count leading spaces for indentation
+        const leadingSpaces = line.match(/^ */)[0].length;
+
+        // New word entry (starts with "- word:")
+        if (trimmed.startsWith('- word:')) {
+            if (currentWord) {
+                words.push(currentWord);
+            }
+            currentWord = { word: trimmed.slice(7).trim(), ipas: [] };
+            currentIpa = null;
+        }
+        // emoji field
+        else if (trimmed.startsWith('emoji:') && currentWord) {
+            currentWord.emoji = trimmed.slice(6).trim();
+        }
+        // ipas array start
+        else if (trimmed.startsWith('ipas:')) {
+            // Array starts
+        }
+        // New IPA entry
+        else if (trimmed.startsWith('- ipa:') && currentWord) {
+            currentIpa = { ipa: trimmed.slice(6).trim(), category: '' };
+            currentWord.ipas.push(currentIpa);
+        }
+        // ipa field (when not using array syntax)
+        else if (trimmed.startsWith('ipa:') && currentIpa) {
+            currentIpa.ipa = trimmed.slice(4).trim();
+        }
+        // category field
+        else if (trimmed.startsWith('category:') && currentIpa) {
+            currentIpa.category = trimmed.slice(9).trim();
+        }
+    }
+
+    // Add the last word
+    if (currentWord) {
+        words.push(currentWord);
+    }
+
+    return words;
 }
 
 /**
@@ -310,10 +367,14 @@ function getAllTests(wordsDE, wordsEN) {
     const tests = [];
 
     // Add word tests
-    for (const { word, ipa } of wordsDE) {
+    for (const { word, ipas } of wordsDE) {
+        // Join all IPAs with |
+        const ipa = ipas && ipas.length > 0 ? ipas.map(i => i.ipa).join('|') : '';
         tests.push({ word, ipa, lang: 'de', type: 'word' });
     }
-    for (const { word, ipa } of wordsEN) {
+    for (const { word, ipas } of wordsEN) {
+        // Join all IPAs with |
+        const ipa = ipas && ipas.length > 0 ? ipas.map(i => i.ipa).join('|') : '';
         tests.push({ word, ipa, lang: 'en', type: 'word' });
     }
 
@@ -358,8 +419,8 @@ async function main() {
     }
 
     // Load word lists
-    const wordsDE = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'words-de.json'), 'utf8'));
-    const wordsEN = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'words-en.json'), 'utf8'));
+    const wordsDE = parseYamlFile(path.join(__dirname, '..', 'words-de.yaml'));
+    const wordsEN = parseYamlFile(path.join(__dirname, '..', 'words-en.yaml'));
 
     const allTests = getAllTests(wordsDE, wordsEN);
 

@@ -105,7 +105,20 @@ async function processTask(task) {
         const audio = readAudioFile(audioPath);
         const extractedPhonemes = await extractPhonemes(audio);
 
-        const panphonResult = calculatePanPhonDistance(expectedIPA, extractedPhonemes);
+        // Handle multiple IPAs separated by |
+        const expectedIPAs = expectedIPA.split('|');
+        let bestSimilarity = 0;
+        let bestResult = null;
+
+        // Try each expected IPA and use the best match
+        for (const ipa of expectedIPAs) {
+            const panphonResult = calculatePanPhonDistance(ipa, extractedPhonemes);
+            if (panphonResult.similarity > bestSimilarity) {
+                bestSimilarity = panphonResult.similarity;
+                bestResult = panphonResult;
+            }
+        }
+
         return {
             word,
             lang,
@@ -113,7 +126,7 @@ async function processTask(task) {
             metadataPath,
             expected: expectedIPA,
             actual: extractedPhonemes,
-            similarity: panphonResult.similarity,
+            similarity: bestSimilarity,
             previousSimilarity,
             previousRecognizedIpa,
             status: 'ok'
