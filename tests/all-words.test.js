@@ -616,15 +616,20 @@ async function main() {
         }
 
         // Track degraded results (worse but within tolerance)
+        // Only report if the rounded percentages actually differ
         if (isDegraded) {
-            degraded.push({
-                word: r.word,
-                source: r.source,
-                previousSimilarity: r.previousSimilarity,
-                newSimilarity: r.similarity,
-                previousIpa: r.previousRecognizedIpa,
-                newIpa: r.actual
-            });
+            const oldPercent = Math.round(r.previousSimilarity * 100);
+            const newPercent = Math.round(r.similarity * 100);
+            if (oldPercent !== newPercent) {
+                degraded.push({
+                    word: r.word,
+                    source: r.source,
+                    previousSimilarity: r.previousSimilarity,
+                    newSimilarity: r.similarity,
+                    previousIpa: r.previousRecognizedIpa,
+                    newIpa: r.actual
+                });
+            }
         }
 
         // Track IPA changes with same similarity
