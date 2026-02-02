@@ -1,7 +1,0 @@
-word: Katze
-spoken_as: Tatze
-lang: de
-mispronunciation: true
-expected_phonemes: t ɑ t s e
-source: edge-tts
-voice: de-DE-ConradNeural

@@ -105,38 +105,19 @@ async function processTask(task) {
         const audio = readAudioFile(audioPath);
         const extractedPhonemes = await extractPhonemes(audio);
 
-        const isMispro = metadata?.mispronunciation;
-
-        if (isMispro) {
-            const expected = metadata.expected_phonemes || '';
-            const match = extractedPhonemes === expected;
-            return {
-                word,
-                lang,
-                source,
-                metadataPath,
-                spokenAs: metadata.spoken_as,
-                expected,
-                actual: extractedPhonemes,
-                mispronunciation: true,
-                match,
-                status: match ? 'ok' : 'mispro_mismatch'
-            };
-        } else {
-            const panphonResult = calculatePanPhonDistance(expectedIPA, extractedPhonemes);
-            return {
-                word,
-                lang,
-                source,
-                metadataPath,
-                expected: expectedIPA,
-                actual: extractedPhonemes,
-                similarity: panphonResult.similarity,
-                previousSimilarity,
-                previousRecognizedIpa,
-                status: 'ok'
-            };
-        }
+        const panphonResult = calculatePanPhonDistance(expectedIPA, extractedPhonemes);
+        return {
+            word,
+            lang,
+            source,
+            metadataPath,
+            expected: expectedIPA,
+            actual: extractedPhonemes,
+            similarity: panphonResult.similarity,
+            previousSimilarity,
+            previousRecognizedIpa,
+            status: 'ok'
+        };
     } catch (error) {
         return {
             word,

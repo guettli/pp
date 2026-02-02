@@ -223,61 +223,6 @@ function generateTTSAudio(word, lang) {
     }
 }
 
-/**
- * Generate mispronunciation TTS audio
- * @param {string} word - The correct word (for directory)
- * @param {string} spokenAs - What to actually speak (mispronunciation)
- * @param {string} lang - Language code
- * @param {string} expectedPhonemes - Expected phoneme sequence (e.g., "b l o ː t")
- */
-function generateMispronunciationAudio(word, spokenAs, lang, expectedPhonemes) {
-    const { voice } = TTS_VOICES[lang];
-    const wordDir = getWordDir(lang, word);
-    const baseName = `${word}-mispro-${spokenAs.toLowerCase()}`;
-    const audioPath = path.join(wordDir, `${baseName}.flac`);
-    const metadataPath = path.join(wordDir, `${baseName}.flac.yaml`);
-
-    // Check if already exists
-    if (fs.existsSync(audioPath) && fs.existsSync(metadataPath)) {
-        return { audio: audioPath, metadata: metadataPath, cached: true };
-    }
-
-    // Create directory
-    if (!fs.existsSync(wordDir)) {
-        fs.mkdirSync(wordDir, { recursive: true });
-    }
-
-    try {
-        // Generate with edge-tts (outputs mp3)
-        const mp3Path = audioPath.replace('.flac', '.mp3');
-        execSync(`edge-tts --voice "${voice}" --text "${spokenAs}" --write-media "${mp3Path}" 2>/dev/null`, {
-            stdio: 'pipe'
-        });
-
-        // Convert to FLAC
-        execSync(`ffmpeg -y -i "${mp3Path}" -ar 16000 -ac 1 "${audioPath}" 2>/dev/null`, {
-            stdio: 'pipe'
-        });
-        fs.unlinkSync(mp3Path);
-
-        // Write metadata as YAML
-        const metadata = {
-            word,
-            spoken_as: spokenAs,
-            lang,
-            mispronunciation: true,
-            expected_phonemes: expectedPhonemes,
-            source: 'edge-tts',
-            voice
-        };
-        fs.writeFileSync(metadataPath, toYaml(metadata));
-
-        return { audio: audioPath, metadata: metadataPath, cached: false };
-    } catch (error) {
-        console.error(`Failed to generate mispronunciation TTS for "${spokenAs}": ${error.message}`);
-        return null;
-    }
-}
 
 /**
  * Find all audio files for a word
@@ -315,69 +260,39 @@ function findAudioFiles(lang, word) {
 }
 
 function printResults(results) {
-    // Separate normal and mispronunciation results
-    const normalResults = results.filter(r => !r.mispronunciation);
-    const misproResults = results.filter(r => r.mispronunciation);
+    // Sort by similarity descending (best first, worst last)
+    const sortedResults = [...results].sort((a, b) => {
+        // Handle failed tests (no similarity)
+        if (a.status !== 'ok') return 1;
+        if (b.status !== 'ok') return -1;
+        return b.similarity - a.similarity;
+    });
 
-    if (normalResults.length > 0) {
-        // Sort by similarity descending (best first, worst last)
-        const sortedResults = [...normalResults].sort((a, b) => {
-            // Handle failed tests (no similarity)
-            if (a.status !== 'ok') return 1;
-            if (b.status !== 'ok') return -1;
-            return b.similarity - a.similarity;
-        });
+    console.log('\nAll words:\n');
+    console.log('Lang'.padEnd(6) + 'Word'.padEnd(15) + 'Source'.padEnd(20) + 'Sim'.padEnd(6) + 'Expected IPA'.padEnd(20) + 'Old IPA'.padEnd(25) + 'New IPA');
+    console.log('-'.repeat(135));
 
-        console.log('\nAll words:\n');
-        console.log('Lang'.padEnd(6) + 'Word'.padEnd(15) + 'Source'.padEnd(20) + 'Sim'.padEnd(6) + 'Expected IPA'.padEnd(20) + 'Old IPA'.padEnd(25) + 'New IPA');
-        console.log('-'.repeat(135));
-
-        for (const result of sortedResults) {
-            if (result.status === 'ok') {
-                const simPercent = Math.round(result.similarity * 100) + '%';
-                const oldIpa = result.previousRecognizedIpa || '-';
-                const newIpa = result.actual;
-                const ipaChanged = oldIpa !== '-' && oldIpa !== newIpa;
-                const displayNewIpa = ipaChanged ? newIpa : '';
-                console.log(
-                    result.lang.padEnd(6) +
-                    result.word.padEnd(15) +
-                    result.source.padEnd(20) +
-                    simPercent.padEnd(6) +
-                    result.expected.padEnd(20) +
-                    oldIpa.padEnd(25) +
-                    displayNewIpa
-                );
-            } else {
-                console.log(`${result.lang.padEnd(6)}${result.word.padEnd(15)} ${result.source.padEnd(20)} FAILED`);
-            }
-        }
-    }
-
-    if (misproResults.length > 0) {
-        console.log('\nMispronunciation tests:\n');
-        console.log('Lang'.padEnd(6) + 'Word'.padEnd(15) + 'Spoken As'.padEnd(12) + 'Expected'.padEnd(20) + 'Actual'.padEnd(20) + 'Match');
-        console.log('-'.repeat(85));
-
-        for (const result of misproResults) {
-            const matchStr = result.match ? '✓' : '✗';
+    for (const result of sortedResults) {
+        if (result.status === 'ok') {
+            const simPercent = Math.round(result.similarity * 100) + '%';
+            const oldIpa = result.previousRecognizedIpa || '-';
+            const newIpa = result.actual;
+            const ipaChanged = oldIpa !== '-' && oldIpa !== newIpa;
+            const displayNewIpa = ipaChanged ? newIpa : '';
             console.log(
                 result.lang.padEnd(6) +
                 result.word.padEnd(15) +
-                result.spokenAs.padEnd(12) +
+                result.source.padEnd(20) +
+                simPercent.padEnd(6) +
                 result.expected.padEnd(20) +
-                result.actual.padEnd(20) +
-                matchStr
+                oldIpa.padEnd(25) +
+                displayNewIpa
             );
+        } else {
+            console.log(`${result.lang.padEnd(6)}${result.word.padEnd(15)} ${result.source.padEnd(20)} FAILED`);
         }
     }
 }
-
-// Mispronunciation test definitions
-const MISPRONUNCIATION_TESTS = [
-    { word: 'Brot', spokenAs: 'Blot', lang: 'de', expectedPhonemes: 'b l o ː t' },
-    { word: 'Katze', spokenAs: 'Tatze', lang: 'de', expectedPhonemes: 't ɑ t s e' },
-];
 
 /**
  * Simple glob matching (supports * wildcard)
@@ -400,11 +315,6 @@ function getAllTests(wordsDE, wordsEN) {
     }
     for (const { word, ipa } of wordsEN) {
         tests.push({ word, ipa, lang: 'en', type: 'word' });
-    }
-
-    // Add mispronunciation tests
-    for (const test of MISPRONUNCIATION_TESTS) {
-        tests.push({ ...test, type: 'mispronunciation' });
     }
 
     return tests;
@@ -430,7 +340,6 @@ Examples:
   node tests/all-words.test.js --update     # Update all YAML files
   node tests/all-words.test.js Brot         # Run tests for "Brot" only
   node tests/all-words.test.js "Sch*"       # Run tests matching "Sch*"
-  node tests/all-words.test.js "*mispro*"   # Run mispronunciation tests
 `);
 }
 
@@ -455,24 +364,14 @@ async function main() {
     const allTests = getAllTests(wordsDE, wordsEN);
 
     // Filter tests by pattern
-    const filteredTests = allTests.filter(t => {
-        const testName = t.type === 'mispronunciation'
-            ? `${t.word}-mispro-${t.spokenAs}`
-            : t.word;
-        // For mispronunciation tests, also match on spokenAs alone
-        if (t.type === 'mispronunciation' && matchesPattern(t.spokenAs, pattern)) {
-            return true;
-        }
-        return matchesPattern(testName, pattern);
-    });
+    const filteredTests = allTests.filter(t => matchesPattern(t.word, pattern));
 
     if (showList) {
         console.log('Available tests:\n');
-        console.log('Lang  Type            Word');
+        console.log('Lang  Word');
         console.log('-'.repeat(50));
         for (const t of filteredTests) {
-            const type = t.type === 'mispronunciation' ? `mispro(${t.spokenAs})` : 'word';
-            console.log(`${t.lang.padEnd(6)}${type.padEnd(16)}${t.word}`);
+            console.log(`${t.lang.padEnd(6)}${t.word}`);
         }
         console.log(`\nTotal: ${filteredTests.length} tests`);
         return;
@@ -488,13 +387,8 @@ async function main() {
     // Download model files
     const { modelPath, vocabPath } = await downloadModelFiles();
 
-    // Generate mispronunciation audio for filtered tests
-    for (const test of filteredTests.filter(t => t.type === 'mispronunciation')) {
-        generateMispronunciationAudio(test.word, test.spokenAs, test.lang, test.expectedPhonemes);
-    }
-
     // Generate TTS audio for word tests
-    for (const test of filteredTests.filter(t => t.type === 'word')) {
+    for (const test of filteredTests) {
         generateTTSAudio(test.word, test.lang);
     }
 
@@ -504,11 +398,6 @@ async function main() {
         const audioFiles = findAudioFiles(test.lang, test.word);
         for (const audioFile of audioFiles) {
             const meta = audioFile.metadata || {};
-            const isMispro = !!meta.mispronunciation;
-
-            // Filter by test type
-            if (test.type === 'word' && isMispro) continue;
-            if (test.type === 'mispronunciation' && !isMispro) continue;
 
             tasks.push({
                 audioPath: audioFile.path,
@@ -539,7 +428,7 @@ async function main() {
     const successful = allResults.filter(r => r.status === 'ok');
     const failed = allResults.filter(r => r.status !== 'ok');
 
-    // Calculate average similarity for non-mispronunciation tests
+    // Calculate average similarity
     const withSimilarity = allResults.filter(r => r.similarity !== undefined);
     const avgSimilarity = withSimilarity.length > 0
         ? withSimilarity.reduce((sum, r) => sum + r.similarity, 0) / withSimilarity.length

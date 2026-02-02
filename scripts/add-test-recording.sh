@@ -46,40 +46,9 @@ echo ""
 read -r -p "Source name (default: user-recording): " SOURCE
 SOURCE=${SOURCE:-user-recording}
 
-# Ask if mispronunciation (no default, must answer)
-while true; do
-    read -r -p "Is this a mispronunciation test? [y/n]: " IS_MISPRO
-    if [[ "$IS_MISPRO" =~ ^[YyNn]$ ]]; then
-        break
-    fi
-    echo "Please answer y or n"
-done
-
-SPOKEN_AS=""
-EXPECTED_PHONEMES=""
-
-if [[ "$IS_MISPRO" =~ ^[Yy] ]]; then
-    read -r -p "Spoken as (what was actually said): " SPOKEN_AS
-    if [ -z "$SPOKEN_AS" ]; then
-        echo "Error: spoken_as is required for mispronunciation tests"
-        exit 1
-    fi
-    read -r -p "Expected phonemes (space-separated, e.g., 'b l o ː t'): " EXPECTED_PHONEMES
-    if [ -z "$EXPECTED_PHONEMES" ]; then
-        echo "Error: expected_phonemes is required for mispronunciation tests"
-        exit 1
-    fi
-fi
-
 # Determine output paths
 DATA_DIR="$PROJECT_DIR/tests/data/$LANG/$WORD"
-
-if [[ "$IS_MISPRO" =~ ^[Yy] ]]; then
-    SPOKEN_AS_LOWER=$(echo "$SPOKEN_AS" | tr '[:upper:]' '[:lower:]')
-    OUTPUT_BASE="$WORD-mispro-$SPOKEN_AS_LOWER"
-else
-    OUTPUT_BASE="$WORD-$SOURCE"
-fi
+OUTPUT_BASE="$WORD-$SOURCE"
 
 FLAC_FILE="$DATA_DIR/$OUTPUT_BASE.flac"
 YAML_FILE="$DATA_DIR/$OUTPUT_BASE.flac.yaml"
@@ -120,14 +89,7 @@ fi
 echo "Creating metadata..."
 {
     echo "word: $WORD"
-    if [[ "$IS_MISPRO" =~ ^[Yy] ]]; then
-        echo "spoken_as: $SPOKEN_AS"
-    fi
     echo "lang: $LANG"
-    if [[ "$IS_MISPRO" =~ ^[Yy] ]]; then
-        echo "mispronunciation: true"
-        echo "expected_phonemes: $EXPECTED_PHONEMES"
-    fi
     echo "source: $SOURCE"
     echo "timestamp: $TIMESTAMP"
     if [ -n "$RECOGNIZED_IPA" ]; then

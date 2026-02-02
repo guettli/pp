@@ -120,9 +120,6 @@ pnpm test:words -- Brot
 # Run tests matching a pattern (case-insensitive)
 pnpm test:words -- "A*"
 
-# Run only mispronunciation tests
-pnpm test:words -- "*mispro*"
-
 # Show help
 pnpm test:words -- --help
 ```
@@ -134,9 +131,6 @@ Test phoneme similarity calculations directly without audio processing:
 ```bash
 # Compare expected IPA to actual phonemes
 ./scripts/similarity-test.sh "moːnt" "m u n d"
-
-# Test mispronunciation
-./scripts/similarity-test.sh "/bʁoːt/" "b l o ː t"
 
 # Check effect of extra phonemes
 ./scripts/similarity-test.sh "moːnt" "m u n d a"

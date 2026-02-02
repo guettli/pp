@@ -25,7 +25,6 @@ function printUsage() {
 Examples:
   npm run similarity "moːnt" "m u n d"       # Compare expected vs actual
   npm run similarity "moːnt" "m u n d a"     # Test with extra phoneme
-  npm run similarity "/bʁoːt/" "b l o ː t"   # Mispronunciation test
 
 The script calculates phonetic similarity using PanPhon features.
 Similarity ranges from 0% (completely different) to 100% (identical).
