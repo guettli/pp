@@ -1,45 +1,51 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import yaml from 'js-yaml';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+interface WordEntry {
+    word: string;
+    emoji: string;
+    ipas: Array<{
+        ipa: string;
+        category: string;
+    }>;
+}
+
 /**
- * Get expected IPA for a word from the ipa-converter.ts lookup tables
+ * Get expected IPA for a word from the words-{lang}.yaml files
  */
 export function getExpectedIPA(word: string, lang: string): string {
-    // Always read from source, not compiled output
     const projectRoot = path.resolve(__dirname, '../..');
-    const ipaConverterPath = path.join(projectRoot, 'src/speech/ipa-converter.ts');
+    const wordsFilePath = path.join(projectRoot, `words-${lang}.yaml`);
 
-    if (!fs.existsSync(ipaConverterPath)) {
-        throw new Error(`IPA converter file not found: ${ipaConverterPath}`);
+    if (!fs.existsSync(wordsFilePath)) {
+        throw new Error(`Words file not found: ${wordsFilePath}`);
     }
 
-    const content = fs.readFileSync(ipaConverterPath, 'utf8');
+    const content = fs.readFileSync(wordsFilePath, 'utf8');
+    const words = yaml.load(content) as WordEntry[];
 
-    // Parse the TypeScript file to extract the word data
-    const langKey = lang === 'de' ? 'germanTextToIPA' : 'englishTextToIPA';
-    const regex = new RegExp(`const ${langKey}[^=]*=\\s*{([^}]+)}`, 's');
-    const match = content.match(regex);
-
-    if (!match) {
-        throw new Error(`Could not parse ${langKey} from ipa-converter.ts`);
+    if (!Array.isArray(words)) {
+        throw new Error(`Invalid YAML format in ${wordsFilePath}`);
     }
 
-    // Parse the object entries
-    const entries = match[1];
+    // Normalize word for comparison (lowercase)
     const wordLower = word.toLowerCase();
 
-    // Match: 'word': 'ipa' or "word": "ipa"
-    const wordRegex = new RegExp(`['"]${wordLower}['"]\\s*:\\s*['"]([^'"]+)['"]`);
-    const wordMatch = entries.match(wordRegex);
+    // Find the word entry
+    const entry = words.find(w => w.word.toLowerCase() === wordLower);
 
-    if (!wordMatch) {
+    if (!entry || !entry.ipas || entry.ipas.length === 0) {
         throw new Error(`Word "${word}" not found in ${lang} word data`);
     }
 
+    // Return the first IPA (usually the standard pronunciation)
+    const ipa = entry.ipas[0].ipa;
+
     // Remove slashes from IPA if present
-    return wordMatch[1].replace(/^\/|\/$/g, '');
+    return ipa.replace(/^\/|\/$/g, '');
 }

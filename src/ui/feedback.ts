@@ -267,11 +267,39 @@ function playRecording() {
 
   const url = URL.createObjectURL(state.lastRecordingBlob);
   currentAudio = new Audio(url);
+
+  // Clean up blob URL when done
   currentAudio.onended = () => {
     URL.revokeObjectURL(url);
     currentAudio = null;
   };
-  void currentAudio.play();
+
+  // Clean up on error too
+  currentAudio.onerror = () => {
+    URL.revokeObjectURL(url);
+    currentAudio = null;
+    console.error('Audio playback error');
+  };
+
+  // Wait for audio to be ready before playing (fixes Android issues)
+  currentAudio.oncanplay = () => {
+    if (currentAudio) {
+      currentAudio.play().catch((error) => {
+        console.error('Failed to play audio:', error);
+        // Retry once on Android
+        setTimeout(() => {
+          if (currentAudio) {
+            currentAudio.play().catch((retryError) => {
+              console.error('Retry failed:', retryError);
+            });
+          }
+        }, 100);
+      });
+    }
+  };
+
+  // Start loading the audio
+  currentAudio.load();
 }
 
 /**

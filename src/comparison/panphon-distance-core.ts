@@ -16,6 +16,59 @@ export interface DistanceCalculator {
 /**
  * Create distance calculation functions with the given feature table
  */
+/**
+ * Parse a single IPA word/string into phonemes
+ */
+function parseIPAWord(cleaned: string, panphonFeatures: PhonemeFeatureTable): string[] {
+  const phonemes: string[] = [];
+  let i = 0;
+
+  while (i < cleaned.length) {
+    // Try to match multi-character combinations first
+    let matched = false;
+
+    // Try matching 3-character sequences
+    if (i + 2 < cleaned.length) {
+      const triple = cleaned.substring(i, i + 3);
+      if (panphonFeatures[triple]) {
+        phonemes.push(triple);
+        i += 3;
+        matched = true;
+      }
+    }
+
+    // Try matching 2-character sequences
+    if (!matched && i + 1 < cleaned.length) {
+      const pair = cleaned.substring(i, i + 2);
+      if (panphonFeatures[pair]) {
+        phonemes.push(pair);
+        i += 2;
+        matched = true;
+      }
+    }
+
+    // Match single character
+    if (!matched) {
+      const single = cleaned[i];
+      phonemes.push(single);
+      i += 1;
+    }
+  }
+
+  // Combine vowels with following length mark (ː)
+  const combined: string[] = [];
+  for (let j = 0; j < phonemes.length; j++) {
+    if (phonemes[j] === 'ː' && combined.length > 0) {
+      // Append length mark to previous token
+      combined[combined.length - 1] += 'ː';
+    } else {
+      combined.push(phonemes[j]);
+    }
+  }
+
+  return combined;
+}
+
 export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): DistanceCalculator {
   /**
    * Calculate distance between two phonemes based on their articulatory features
@@ -81,71 +134,38 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
       .replace(/\u025D/g, 'ɜɹ')  // Expand rhotic vowel ɝ → ɜɹ
       .trim();
 
-    // If input contains spaces, it's already tokenized (from phoneme model)
+    // If input contains spaces, check if it's already tokenized (single-char tokens)
+    // or if it contains multi-word phrases (multi-char tokens that need parsing)
     if (cleaned.includes(' ')) {
       const tokens = cleaned.split(/\s+/).filter((p: string) => p.length > 0);
-      // Combine vowels with following length mark (ː)
-      const combined: string[] = [];
-      for (let i = 0; i < tokens.length; i++) {
-        if (tokens[i] === 'ː' && combined.length > 0) {
-          // Append length mark to previous token
-          combined[combined.length - 1] += 'ː';
-        } else {
-          combined.push(tokens[i]);
+
+      // Check if all tokens are single characters (already tokenized by phoneme model)
+      const allSingleChar = tokens.every((t: string) => t.length === 1 || t === 'ː');
+      if (allSingleChar) {
+        // Already tokenized: just combine length marks with previous vowels
+        const combined: string[] = [];
+        for (let i = 0; i < tokens.length; i++) {
+          if (tokens[i] === 'ː' && combined.length > 0) {
+            combined[combined.length - 1] += 'ː';
+          } else {
+            combined.push(tokens[i]);
+          }
         }
+        return combined;
       }
-      return combined;
+
+      // Multi-word phrase: parse each word separately and combine
+      const allPhonemes: string[] = [];
+      for (const word of tokens) {
+        // Parse each word using the character-by-character logic below
+        const wordPhonemes = parseIPAWord(word, panphonFeatures);
+        allPhonemes.push(...wordPhonemes);
+      }
+      return allPhonemes;
     }
 
     // Otherwise, split into graphemes (accounting for multi-character IPA symbols)
-    // This is a simplified approach - ideally we'd use a proper IPA tokenizer
-    const phonemes: string[] = [];
-    let i = 0;
-
-    while (i < cleaned.length) {
-      // Try to match multi-character combinations first
-      let matched = false;
-
-      // Try matching 3-character sequences
-      if (i + 2 < cleaned.length) {
-        const triple = cleaned.substring(i, i + 3);
-        if (panphonFeatures[triple]) {
-          phonemes.push(triple);
-          i += 3;
-          matched = true;
-        }
-      }
-
-      // Try matching 2-character sequences
-      if (!matched && i + 1 < cleaned.length) {
-        const pair = cleaned.substring(i, i + 2);
-        if (panphonFeatures[pair]) {
-          phonemes.push(pair);
-          i += 2;
-          matched = true;
-        }
-      }
-
-      // Match single character
-      if (!matched) {
-        const single = cleaned[i];
-        phonemes.push(single);
-        i += 1;
-      }
-    }
-
-    // Combine vowels with following length mark (ː)
-    const combined: string[] = [];
-    for (let j = 0; j < phonemes.length; j++) {
-      if (phonemes[j] === 'ː' && combined.length > 0) {
-        // Append length mark to previous token
-        combined[combined.length - 1] += 'ː';
-      } else {
-        combined.push(phonemes[j]);
-      }
-    }
-
-    return combined;
+    return parseIPAWord(cleaned, panphonFeatures);
   }
 
   /**

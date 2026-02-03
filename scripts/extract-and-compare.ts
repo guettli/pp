@@ -26,15 +26,35 @@ async function main() {
     try {
         const { session, idToToken } = await loadPhonemeModel();
         const audioData = readAudioFile(audioFile);
-        const recognizedIPA = await extractPhonemes(audioData, session, idToToken);
-        const expectedIPA = getExpectedIPA(word, lang);
-        const result = calculatePanPhonDistance(expectedIPA, recognizedIPA);
+        const recognizedIPA = await extractPhonemes(audioData, session, idToToken, { returnDetails: false }) as string;
+
+        // Try to get expected IPA, but don't fail if word is new
+        let expectedIPA: string | null = null;
+        let similarity: string | null = null;
+
+        try {
+            expectedIPA = getExpectedIPA(word, lang);
+            const result = calculatePanPhonDistance(expectedIPA, recognizedIPA);
+            similarity = result.similarity.toFixed(2);
+        } catch (error) {
+            // Word not found in word data - this is OK for new words
+            console.error('Note: Word not found in word data (this is OK for new words):', (error as Error).message);
+        }
 
         // Output as JSON
-        console.log(JSON.stringify({
-            recognized_ipa: recognizedIPA,
-            similarity: result.similarity.toFixed(2)
-        }));
+        const output: { recognized_ipa: string; expected_ipa?: string; similarity?: string } = {
+            recognized_ipa: recognizedIPA
+        };
+
+        if (expectedIPA) {
+            output.expected_ipa = expectedIPA;
+        }
+
+        if (similarity) {
+            output.similarity = similarity;
+        }
+
+        console.log(JSON.stringify(output));
     } catch (error) {
         console.error('Error:', (error as Error).message);
         process.exit(1);

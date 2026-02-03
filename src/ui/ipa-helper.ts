@@ -79,8 +79,8 @@ export function extractSymbols(ipaString: string): string[] {
     if (!matched) {
       // Single character not in lookup - still add it for completeness
       const char = cleaned[i];
-      // Skip combining characters when standalone
-      if (!/[\u0300-\u036f\u0361]/.test(char)) {
+      // Skip combining characters and spaces when standalone
+      if (!/[\u0300-\u036f\u0361\s]/.test(char)) {
         symbols.add(char);
       }
       i++;

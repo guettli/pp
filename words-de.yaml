@@ -179,3 +179,9 @@
   ipas:
     - ipa: /fuːs/
       category: standard
+
+- word: Der Hase lacht
+  emoji: 🐰
+  ipas:
+    - ipa: /deːɐ̯ ˈhaːzə laxt/
+      category: standard

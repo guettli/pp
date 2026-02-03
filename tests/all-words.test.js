@@ -106,7 +106,9 @@ function runWorkers(tasks, modelPath, vocabPath, numWorkers) {
  * Get the path for a word's audio directory
  */
 function getWordDir(lang, word) {
-    return path.join(DATA_DIR, lang, word);
+    // Replace spaces with underscores for directory names
+    const dirName = word.replace(/\s+/g, '_');
+    return path.join(DATA_DIR, lang, dirName);
 }
 
 /**
@@ -114,7 +116,9 @@ function getWordDir(lang, word) {
  */
 function getAudioPaths(lang, word, source) {
     const wordDir = getWordDir(lang, word);
-    const baseName = `${word}-${source}`;
+    // Replace spaces with underscores for filenames
+    const normalizedWord = word.replace(/\s+/g, '_');
+    const baseName = `${normalizedWord}-${source}`;
     return {
         dir: wordDir,
         audio: path.join(wordDir, `${baseName}.flac`),
@@ -292,6 +296,8 @@ function findAudioFiles(lang, word) {
 
     const files = fs.readdirSync(wordDir);
     const audioFiles = [];
+    // Replace spaces with underscores for filename matching
+    const normalizedWord = word.replace(/\s+/g, '_');
 
     for (const file of files) {
         if (file.endsWith('.flac') || file.endsWith('.wav')) {
@@ -308,7 +314,7 @@ function findAudioFiles(lang, word) {
                 path: audioPath,
                 metadataPath: yamlPath,
                 metadata,
-                source: baseName.replace(`${word}-`, '')
+                source: baseName.replace(`${normalizedWord}-`, '')
             });
         }
     }

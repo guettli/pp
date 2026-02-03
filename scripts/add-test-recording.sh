@@ -1,54 +1,166 @@
 #!/bin/bash
 # Add a user recording as a test case
 # Usage: ./scripts/add-test-recording.sh ~/Downloads/Brot_20260131T073450_de.webm
+#    OR: ./scripts/add-test-recording.sh --record
 
 set -e
 
-if [ -z "$1" ]; then
-    echo "Usage: $0 <recording-file>"
-    echo "Example: $0 ~/Downloads/Brot_20260131T073450_de.webm"
-    exit 1
-fi
-
-INPUT_FILE="$1"
-
-if [ ! -f "$INPUT_FILE" ]; then
-    echo "Error: File not found: $INPUT_FILE"
-    exit 1
-fi
-
-# Ensure dist-node is built
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
-echo "Building dist-node..."
-(cd "$PROJECT_DIR" && pnpm build:node)
-echo ""
 
-# Parse filename: Word_Timestamp_Lang.webm
-BASENAME=$(basename "$INPUT_FILE" .webm)
-WORD=$(echo "$BASENAME" | cut -d'_' -f1)
-TIMESTAMP=$(echo "$BASENAME" | cut -d'_' -f2)
-LANG=$(echo "$BASENAME" | cut -d'_' -f3)
-
-if [ -z "$WORD" ] || [ -z "$LANG" ]; then
-    echo "Error: Could not parse filename. Expected format: Word_Timestamp_Lang.webm"
-    echo "Got: WORD=$WORD, TIMESTAMP=$TIMESTAMP, LANG=$LANG"
-    exit 1
+# Check if recording mode
+RECORD_MODE=false
+if [ "$1" == "--record" ]; then
+    RECORD_MODE=true
 fi
 
-echo "Parsed from filename:"
-echo "  Word: $WORD"
-echo "  Language: $LANG"
-echo "  Timestamp: $TIMESTAMP"
-echo ""
+if [ "$RECORD_MODE" == "false" ]; then
+    # File mode
+    if [ -z "$1" ]; then
+        echo "Usage: $0 <recording-file>"
+        echo "   OR: $0 --record"
+        echo "Example: $0 ~/Downloads/Brot_20260131T073450_de.webm"
+        exit 1
+    fi
 
-# Ask for source name
-read -r -p "Source name (default: user-recording): " SOURCE
-SOURCE=${SOURCE:-user-recording}
+    INPUT_FILE="$1"
 
-# Determine output paths
-DATA_DIR="$PROJECT_DIR/tests/data/$LANG/$WORD"
-OUTPUT_BASE="$WORD-$SOURCE"
+    if [ ! -f "$INPUT_FILE" ]; then
+        echo "Error: File not found: $INPUT_FILE"
+        exit 1
+    fi
+
+    # Ensure dist-node is built
+    echo "Building dist-node..."
+    (cd "$PROJECT_DIR" && pnpm build:node)
+    echo ""
+
+    # Parse filename: Word_Timestamp_Lang.webm
+    BASENAME=$(basename "$INPUT_FILE" .webm)
+    WORD=$(echo "$BASENAME" | cut -d'_' -f1)
+    TIMESTAMP=$(echo "$BASENAME" | cut -d'_' -f2)
+    LANG=$(echo "$BASENAME" | cut -d'_' -f3)
+
+    if [ -z "$WORD" ] || [ -z "$LANG" ]; then
+        echo "Error: Could not parse filename. Expected format: Word_Timestamp_Lang.webm"
+        echo "Got: WORD=$WORD, TIMESTAMP=$TIMESTAMP, LANG=$LANG"
+        exit 1
+    fi
+
+    echo "Parsed from filename:"
+    echo "  Word: $WORD"
+    echo "  Language: $LANG"
+    echo "  Timestamp: $TIMESTAMP"
+    echo ""
+
+    # Ask for source name
+    read -r -p "Source name (default: user-recording): " SOURCE
+    SOURCE=${SOURCE:-user-recording}
+else
+    # Recording mode
+    echo "=== Recording Mode ==="
+    echo ""
+
+    # Ensure dist-node is built
+    echo "Building dist-node..."
+    (cd "$PROJECT_DIR" && pnpm build:node)
+    echo ""
+
+    # Ask for details first
+    read -r -p "Word to pronounce: " WORD
+    if [ -z "$WORD" ]; then
+        echo "Error: Word is required"
+        exit 1
+    fi
+
+    read -r -p "Language code (e.g., de, en): " LANG
+    if [ -z "$LANG" ]; then
+        echo "Error: Language is required"
+        exit 1
+    fi
+
+    # Generate timestamp
+    TIMESTAMP=$(date +%Y%m%dT%H%M%S)
+
+    # Ask for source name
+    read -r -p "Source name (default: user-recording): " SOURCE
+    SOURCE=${SOURCE:-user-recording}
+
+    echo ""
+    echo "Recording details:"
+    echo "  Word: $WORD"
+    echo "  Language: $LANG"
+    echo "  Timestamp: $TIMESTAMP"
+    echo "  Source: $SOURCE"
+    echo ""
+
+    # Create temporary file for recording
+    TEMP_DIR=$(mktemp -d)
+    # Note: temp files will NOT be deleted automatically for debugging
+    # trap 'rm -rf "$TEMP_DIR"' EXIT
+
+    RAW_RECORDING="$TEMP_DIR/recording_raw.wav"
+    NORMALIZED="$TEMP_DIR/recording_normalized.wav"
+
+    echo "Debug: Temporary files will be saved in: $TEMP_DIR"
+    echo ""
+
+    # Record audio
+    echo "Press ENTER when ready to start recording..."
+    read -r
+    echo ""
+    echo "Recording... Press Ctrl+C when done."
+    echo ""
+
+    # Record audio using arecord (16kHz, mono, wav format)
+    arecord -f cd -c 1 -r 16000 "$RAW_RECORDING" || true
+
+    echo ""
+    echo "Recording complete."
+    echo ""
+
+    # Check if recording was created
+    if [ ! -f "$RAW_RECORDING" ] || [ ! -s "$RAW_RECORDING" ]; then
+        echo "Error: Recording failed or is empty"
+        exit 1
+    fi
+
+    # Normalize loudness only (no silence trimming)
+    echo "Normalizing loudness..."
+    sox "$RAW_RECORDING" "$NORMALIZED" norm
+
+    # Check if normalized file is valid
+    if [ ! -f "$NORMALIZED" ] || [ ! -s "$NORMALIZED" ]; then
+        echo "Error: Normalized recording is empty or was not created"
+        exit 1
+    fi
+
+    # Check duration and show info
+    DURATION=$(soxi -D "$NORMALIZED" 2>/dev/null || echo "unknown")
+    echo "Audio duration: ${DURATION}s"
+
+    # Fail if too short (minimum 0.3 seconds required for phoneme extraction)
+    if [ "$DURATION" != "unknown" ]; then
+        if awk "BEGIN {exit !($DURATION < 0.3)}"; then
+            echo "Error: Audio is too short (${DURATION}s)"
+            echo "The phoneme model requires at least 0.3 seconds of audio."
+            echo "Please try again and record for longer."
+            exit 1
+        fi
+    fi
+
+    echo "Recording processed."
+    echo ""
+
+    # In recording mode, we'll use the normalized WAV directly
+    # Set INPUT_FILE to the normalized recording for the FLAC conversion step
+    INPUT_FILE="$NORMALIZED"
+fi
+
+# Determine output paths (replace spaces with underscores in filenames and directories)
+WORD_SAFE="${WORD// /_}"
+DATA_DIR="$PROJECT_DIR/tests/data/$LANG/$WORD_SAFE"
+OUTPUT_BASE="$WORD_SAFE-$SOURCE"
 
 FLAC_FILE="$DATA_DIR/$OUTPUT_BASE.flac"
 YAML_FILE="$DATA_DIR/$OUTPUT_BASE.flac.yaml"
@@ -69,19 +181,30 @@ mkdir -p "$DATA_DIR"
 # Convert webm to flac (16kHz mono)
 echo ""
 echo "Converting to FLAC..."
-ffmpeg -y -i "$INPUT_FILE" -ar 16000 -ac 1 "$FLAC_FILE" 2>/dev/null
+if ! ffmpeg -y -i "$INPUT_FILE" -ar 16000 -ac 1 "$FLAC_FILE" 2>&1 | tail -5; then
+    echo "Error: Failed to convert to FLAC"
+    exit 1
+fi
+
+# Check if FLAC file is valid
+if [ ! -f "$FLAC_FILE" ] || [ ! -s "$FLAC_FILE" ]; then
+    echo "Error: FLAC file is empty or was not created"
+    exit 1
+fi
 
 # Extract phonemes and calculate similarity
+echo ""
 echo "Extracting phonemes and calculating similarity..."
-echo " .... pnpm" tsx "$SCRIPT_DIR/extract-and-compare.ts" "$FLAC_FILE" "$WORD" "$LANG"
-echo
 if PHONEME_RESULT=$(pnpm tsx "$SCRIPT_DIR/extract-and-compare.ts" "$FLAC_FILE" "$WORD" "$LANG" 2>&1); then
     RECOGNIZED_IPA=$(echo "$PHONEME_RESULT" | grep -o '"recognized_ipa":"[^"]*"' | cut -d'"' -f4)
     SIMILARITY=$(echo "$PHONEME_RESULT" | grep -o '"similarity":"[^"]*"' | cut -d'"' -f4)
     echo "Recognized IPA: $RECOGNIZED_IPA"
-    echo "Similarity: $SIMILARITY"
+    if [ -n "$SIMILARITY" ]; then
+        echo "Similarity: $SIMILARITY"
+    fi
 else
-    echo "Warning: Could not extract phonemes automatically: $PHONEME_RESULT"
+    echo "Warning: Could not extract phonemes automatically"
+    echo "$PHONEME_RESULT"
     exit 1
 fi
 
