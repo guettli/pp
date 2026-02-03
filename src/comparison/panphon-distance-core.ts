@@ -68,7 +68,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
     // - Normalize IPA g (U+0261) to regular g
     // - Remove non-syllabic mark (U+032F): a̯ → a
     // - Remove velarized/dark l mark (U+0334): l̴ → l
-    // - Remove rhoticity hook (U+02DE): ɜ˞ → ɜ
+    // - Expand rhoticity hook (U+02DE): V˞ → Vɹ (e.g., ʊ˞ → ʊɹ)
     // - Expand rhotic vowel ɝ (U+025D) → ɜ ɹ
     const cleaned = ipa
       .replace(/[/[\]ˈˌ]/g, '')
@@ -77,7 +77,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
       .replace(/\u0261/g, 'g')  // IPA ɡ → regular g
       .replace(/\u032F/g, '')  // Remove non-syllabic mark
       .replace(/\u0334/g, '')  // Remove velarized mark
-      .replace(/\u02DE/g, '')  // Remove rhoticity hook
+      .replace(/(.)\u02DE/g, '$1ɹ')  // Expand rhoticity: V˞ → Vɹ
       .replace(/\u025D/g, 'ɜɹ')  // Expand rhotic vowel ɝ → ɜɹ
       .trim();
 
@@ -159,20 +159,28 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
    * Calculate phonetic distance using dynamic programming alignment
    * Similar to Levenshtein but uses phonetic feature distance
    * Also returns the aligned phoneme pairs via backtracking
+   *
+   * Insertion/deletion penalty is set to 0.5 (instead of 1.0) following PanPhon's
+   * low-cost variant approach. This is more appropriate for speech recognition where
+   * phoneme recognizers may naturally add or miss short sounds, and substitutions
+   * (wrong phoneme) are more informative errors than insertions/deletions.
    */
   function alignPhonemes(phonemes1: string[], phonemes2: string[]): { distance: number; alignment: AlignmentItem[] } {
     const m = phonemes1.length;
     const n = phonemes2.length;
+
+    // Insertion/deletion penalty (reduced from 1.0 to 0.5 for speech recognition)
+    const indelPenalty = 0.5;
 
     // Create DP table
     const dp: number[][] = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0) as number[]);
 
     // Initialize first row and column (insertion/deletion costs)
     for (let i = 1; i <= m; i++) {
-      dp[i][0] = i; // Cost of deleting all phonemes
+      dp[i][0] = i * indelPenalty; // Cost of deleting all phonemes
     }
     for (let j = 1; j <= n; j++) {
-      dp[0][j] = j; // Cost of inserting all phonemes
+      dp[0][j] = j * indelPenalty; // Cost of inserting all phonemes
     }
 
     // Fill DP table
@@ -181,9 +189,9 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
         const substitutionCost = alignmentCost(phonemes1[i - 1], phonemes2[j - 1]);
 
         dp[i][j] = Math.min(
-          dp[i - 1][j] + 1,           // Deletion
-          dp[i][j - 1] + 1,           // Insertion
-          dp[i - 1][j - 1] + substitutionCost  // Substitution
+          dp[i - 1][j] + indelPenalty,           // Deletion
+          dp[i][j - 1] + indelPenalty,           // Insertion
+          dp[i - 1][j - 1] + substitutionCost    // Substitution
         );
       }
     }
@@ -208,12 +216,12 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
           continue;
         }
       }
-      if (i > 0 && dp[i][j] === dp[i - 1][j] + 1) {
+      if (i > 0 && dp[i][j] === dp[i - 1][j] + indelPenalty) {
         // Deletion (target phoneme missing in actual)
         alignment.unshift({
           target: phonemes1[i - 1],
           actual: null,
-          distance: 1.0
+          distance: indelPenalty
         });
         i--;
       } else if (j > 0) {
@@ -221,7 +229,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
         alignment.unshift({
           target: null,
           actual: phonemes2[j - 1],
-          distance: 1.0
+          distance: indelPenalty
         });
         j--;
       }

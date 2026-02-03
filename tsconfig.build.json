@@ -3,6 +3,7 @@
   "compilerOptions": {
     "noEmit": false,
     "outDir": "./dist-node",
+    "rootDir": ".",
     "declaration": true,
     "moduleResolution": "node"
   },

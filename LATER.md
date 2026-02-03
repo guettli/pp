@@ -1,3 +1,10 @@
+Gamification: jump+run Game or similar. More fun, not theory
+---
+
+Upload current Audio via web (with a textbox for hints)
+
+---
+
 Ask for Feedback! UI and Github
 
 ---

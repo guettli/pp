@@ -24,7 +24,7 @@ const DATA_DIR = path.join(__dirname, 'data');
 // TTS voice configurations
 const TTS_VOICES = {
     de: { voice: 'de-DE-ConradNeural', source: 'edge-tts-conrad' },
-    en: { voice: 'en-US-GuyNeural', source: 'edge-tts-guy' }
+    en: { voice: 'en-US-AndrewNeural', source: 'edge-tts-andrew' }
 };
 
 async function downloadIfNeeded(url, filename) {
@@ -447,11 +447,6 @@ async function main() {
 
     // Download model files
     const { modelPath, vocabPath } = await downloadModelFiles();
-
-    // Generate TTS audio for word tests
-    for (const test of filteredTests) {
-        generateTTSAudio(test.word, test.lang);
-    }
 
     // Build list of all tasks (audio files to process)
     const tasks = [];

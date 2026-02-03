@@ -90,6 +90,9 @@ function melFilterbank({
  * - high_freq: 7600 Hz (Nyquist - 400)
  */
 export function extractLogMelJS(audioData: Float32Array, melBands = 80, hopSize = 160, winSize = 400): Float32Array {
+    if (melBands > 256) {
+        throw new Error(`melBands=${melBands} is too high (max 256). Did you accidentally pass sample rate instead?`);
+    }
     const sampleRate = 16000;
     const nFft = 512;  // Next power of 2 after 400
     const window = hann(winSize);

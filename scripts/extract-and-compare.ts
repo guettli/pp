@@ -3,9 +3,9 @@
 // Usage: tsx scripts/extract-and-compare.ts <audio-file> <word> <lang>
 
 import fs from 'fs';
-import { readAudioFile } from './lib/audio.js';
-import { loadPhonemeModel, extractPhonemes } from './lib/phoneme-model.js';
-import { getExpectedIPA } from './lib/word-data.js';
+import { readAudioFile } from '../src/lib/audio.js';
+import { loadPhonemeModel, extractPhonemes } from '../src/lib/phoneme-model.js';
+import { getExpectedIPA } from '../src/lib/word-data.js';
 import { calculatePanPhonDistance } from '../tests/panphon-distance-node.js';
 
 async function main() {
@@ -24,16 +24,13 @@ async function main() {
     }
 
     try {
-        // Load model and extract phonemes
         const { session, idToToken } = await loadPhonemeModel();
         const audioData = readAudioFile(audioFile);
         const recognizedIPA = await extractPhonemes(audioData, session, idToToken);
-
-        // Get expected IPA and calculate similarity
         const expectedIPA = getExpectedIPA(word, lang);
         const result = calculatePanPhonDistance(expectedIPA, recognizedIPA);
 
-        // Output as JSON (matching old extract-phonemes.js format)
+        // Output as JSON
         console.log(JSON.stringify({
             recognized_ipa: recognizedIPA,
             similarity: result.similarity.toFixed(2)

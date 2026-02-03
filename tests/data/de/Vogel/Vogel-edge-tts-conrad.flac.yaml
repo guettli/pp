@@ -2,5 +2,5 @@ word: Vogel
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
-recognized_ipa: foːgel
-similarity: 0.98
+recognized_ipa: foːge
+similarity: 0.88

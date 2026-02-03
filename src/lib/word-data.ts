@@ -9,7 +9,9 @@ const __dirname = path.dirname(__filename);
  * Get expected IPA for a word from the ipa-converter.ts lookup tables
  */
 export function getExpectedIPA(word: string, lang: string): string {
-    const ipaConverterPath = path.resolve(__dirname, '../../src/speech/ipa-converter.ts');
+    // Always read from source, not compiled output
+    const projectRoot = path.resolve(__dirname, '../..');
+    const ipaConverterPath = path.join(projectRoot, 'src/speech/ipa-converter.ts');
 
     if (!fs.existsSync(ipaConverterPath)) {
         throw new Error(`IPA converter file not found: ${ipaConverterPath}`);

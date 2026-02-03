@@ -2,5 +2,5 @@ word: Banane
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
-recognized_ipa: bananə
-similarity: 0.99
+recognized_ipa: banan
+similarity: 0.91
