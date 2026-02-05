@@ -1,21 +1,22 @@
 #!/usr/bin/env tsx
 // Extract phonemes from audio and compare with expected IPA
-// Usage: tsx scripts/extract-and-compare.ts <audio-file> <word> <lang>
+// Usage: tsx scripts/extract-and-compare.ts <audio-file> <phrase> <lang>
 
 import fs from 'fs';
 import { readAudioFile } from '../src/lib/audio.js';
-import { loadPhonemeModel, extractPhonemes } from '../src/lib/phoneme-model.js';
-import { getExpectedIPA } from '../src/lib/word-data.js';
+import { extractPhonemes, loadPhonemeModel } from '../src/lib/phoneme-model.js';
+import { getExpectedIPA } from '../src/lib/phrase-data.js';
 import { calculatePanPhonDistance } from '../tests/panphon-distance-node.js';
 
 async function main() {
     if (process.argv.length < 5) {
-        console.error('Usage: tsx scripts/extract-and-compare.ts <audio-file> <word> <lang>');
+        console.error('Usage: tsx scripts/extract-and-compare.ts <audio-file> <phrase> <lang>');
+        console.error('Extracts IPA phonemes from audio, and then compares to IPA of given phrase');
         process.exit(1);
     }
 
     const audioFile = process.argv[2];
-    const word = process.argv[3];
+    const phrase = process.argv[3];
     const lang = process.argv[4];
 
     if (!fs.existsSync(audioFile)) {
@@ -28,17 +29,17 @@ async function main() {
         const audioData = readAudioFile(audioFile);
         const recognizedIPA = await extractPhonemes(audioData, session, idToToken, { returnDetails: false }) as string;
 
-        // Try to get expected IPA, but don't fail if word is new
+        // Try to get expected IPA, but don't fail if phrase is new
         let expectedIPA: string | null = null;
         let similarity: string | null = null;
 
         try {
-            expectedIPA = getExpectedIPA(word, lang);
+            expectedIPA = getExpectedIPA(phrase, lang);
             const result = calculatePanPhonDistance(expectedIPA, recognizedIPA);
             similarity = result.similarity.toFixed(2);
         } catch (error) {
-            // Word not found in word data - this is OK for new words
-            console.error('Note: Word not found in word data (this is OK for new words):', (error as Error).message);
+            // phrase not found in phrase data - this is OK for new phrases
+            console.error('Note: phrase not found in phrase data (this is OK for new phrases):', (error as Error).message);
         }
 
         // Output as JSON

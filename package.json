@@ -12,10 +12,10 @@
     "test:ui": "playwright test --ui",
     "test:headed": "playwright test --headed",
     "test:report": "playwright show-report",
-    "test:words": "tsc -p tsconfig.build.json && node tests/all-words.test.js",
+    "test:phrases": "tsc -p tsconfig.build.json && node tests/all-phrases.test.js",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit",
-    "check": "concurrently -n lint,types,words,e2e -c blue,cyan,yellow,magenta \"pnpm lint\" \"pnpm typecheck\" \"pnpm test:words\" \"pnpm test\""
+    "check": "concurrently -n lint,types,phrases,e2e -c blue,cyan,yellow,magenta \"pnpm lint\" \"pnpm typecheck\" \"pnpm test:phrases\" \"pnpm test\""
   },
   "keywords": [
     "pronunciation",

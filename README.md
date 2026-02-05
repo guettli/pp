@@ -20,8 +20,8 @@ Built as static web-site. No server required!
 
 First Steps:
 
-* Application has a set of well known words and the desired pronounciation.
-* User sees a random word, and the corresponding picture.
+* Application has a set of well known phrases and the desired pronounciation.
+* User sees a random phrase, and the corresponding picture.
 * User records his/her voice.
 * The distance between desired and actual phonemes gets shown.
 
@@ -33,7 +33,7 @@ sending data to external servers.
 ### How It Works
 
 1. **Text to Phonemes (Target)**
-   * User inputs a German word or sentence
+   * User inputs a German phrase or sentence
    * A phonetic dictionary or text-to-phoneme model converts the text into the expected phoneme
      sequence
    * For German, this uses IPA (International Phonetic Alphabet) or similar phonetic representation
@@ -108,20 +108,20 @@ pnpm test
 ## Phoneme Extraction Tests
 
 ```bash
-# Run all word tests
-pnpm test:words
+# Run all phrase tests
+pnpm test:phrases
 
 # List all available tests
-pnpm test:words -- --list
+pnpm test:phrases -- --list
 
 # Run a single test
-pnpm test:words -- Brot
+pnpm test:phrases -- Brot
 
 # Run tests matching a pattern (case-insensitive)
-pnpm test:words -- "A*"
+pnpm test:phrases -- "A*"
 
 # Show help
-pnpm test:words -- --help
+pnpm test:phrases -- --help
 ```
 
 ## Similarity Testing (without running the model)
@@ -167,7 +167,7 @@ tests/data/
     └── ...
 ```
 
-Each word can have multiple audio files from different sources. The YAML metadata records the audio
+Each phrase can have multiple audio files from different sources. The YAML metadata records the audio
 provenance (TTS voice, creation date, format).
 
 ## License

@@ -1,7 +1,7 @@
 import fs from 'fs';
+import * as ort from 'onnxruntime-node';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import * as ort from 'onnxruntime-node';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -190,14 +190,14 @@ export async function extractPhonemes(
     );
 
     // Apply boundary filtering: only filter first/last phonemes that are BOTH
-    // very short (duration=1) AND low confidence. This catches noise at word edges
+    // very short (duration=1) AND low confidence. This catches noise at edges
     // while preserving valid vowels (which may have lower confidence but longer duration)
     const phonemes = nonSpecialTokens
         .filter((g, idx) => {
             const isFirstOrLast = idx === 0 || idx === nonSpecialTokens.length - 1;
 
             if (isFirstOrLast && g.duration === 1) {
-                // At word boundaries, filter very short phonemes with low confidence (likely noise)
+                // At boundaries, filter very short phonemes with low confidence (likely noise)
                 return g.avgConfidence >= minConfidence;
             }
 

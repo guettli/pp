@@ -1,8 +1,8 @@
 /**
- * Word display component
+ * Phrase display component
  */
 
-import type { Word } from '../types.js';
+import type { Phrase } from '../types.js';
 
 /**
  * Convert emoji to Twemoji CDN URL for reliable cross-platform display
@@ -24,26 +24,26 @@ function emojiToTwemojiUrl(emoji: string): string {
 }
 
 /**
- * Display a word with its emoji and IPA
+ * Display a phrase with its emoji and IPA
  */
-export function displayWord(word: Word): void {
-  const emojiElement = document.getElementById('word-emoji');
-  const textElement = document.getElementById('word-text');
-  const ipaElement = document.getElementById('word-ipa');
+export function displayPhrase(phrase: Phrase): void {
+  const emojiElement = document.getElementById('phrase-emoji');
+  const textElement = document.getElementById('phrase-text');
+  const ipaElement = document.getElementById('phrase-ipaa');
 
   if (emojiElement) {
     // Check if emoji is an SVG path (starts with / or ends with .svg)
-    if (word.emoji && (word.emoji.startsWith('/') || word.emoji.endsWith('.svg'))) {
-      emojiElement.innerHTML = `<img src="${word.emoji}" alt="${word.word}" style="height: 1em; width: auto;">`;
-    } else if (word.emoji) {
+    if (phrase.emoji && (phrase.emoji.startsWith('/') || phrase.emoji.endsWith('.svg'))) {
+      emojiElement.innerHTML = `<img src="${phrase.emoji}" alt="${phrase.phrase}" style="height: 1em; width: auto;">`;
+    } else if (phrase.emoji) {
       // Use Twemoji for reliable cross-platform emoji display
-      const twemojiUrl = emojiToTwemojiUrl(word.emoji);
-      emojiElement.innerHTML = `<img src="${twemojiUrl}" alt="${word.emoji}" draggable="false" style="height: 1em; width: auto;">`;
+      const twemojiUrl = emojiToTwemojiUrl(phrase.emoji);
+      emojiElement.innerHTML = `<img src="${twemojiUrl}" alt="${phrase.emoji}" draggable="false" style="height: 1em; width: auto;">`;
     }
   }
-  if (textElement) textElement.textContent = word.word;
+  if (textElement) textElement.textContent = phrase.phrase;
   if (ipaElement) {
     // Use the first (standard) IPA pronunciation
-    ipaElement.textContent = word.ipas[0]?.ipa || '';
+    ipaElement.textContent = phrase.ipas[0]?.ipa || '';
   }
 }

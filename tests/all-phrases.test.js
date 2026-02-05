@@ -1,5 +1,5 @@
-// tests/all-words.test.js
-// Test phoneme extraction on all words using TTS-generated audio
+// tests/all-phrases.test.js
+// Test phoneme extraction on all phrases using TTS-generated audio
 
 import { execSync } from 'child_process';
 import fs from 'fs';
@@ -103,26 +103,26 @@ function runWorkers(tasks, modelPath, vocabPath, numWorkers) {
 }
 
 /**
- * Get the path for a word's audio directory
+ * Get the path for a phrase's audio directory
  */
-function getWordDir(lang, word) {
+function getPhraseDir(lang, phrase) {
     // Replace spaces with underscores for directory names
-    const dirName = word.replace(/\s+/g, '_');
+    const dirName = phrase.replace(/\s+/g, '_');
     return path.join(DATA_DIR, lang, dirName);
 }
 
 /**
  * Get paths for audio and metadata files
  */
-function getAudioPaths(lang, word, source) {
-    const wordDir = getWordDir(lang, word);
+function getAudioPaths(lang, phrase, source) {
+    const phraseDir = getPhraseDir(lang, phrase);
     // Replace spaces with underscores for filenames
-    const normalizedWord = word.replace(/\s+/g, '_');
-    const baseName = `${normalizedWord}-${source}`;
+    const normalizedPhrase = phrase.replace(/\s+/g, '_');
+    const baseName = `${normalizedPhrase}-${source}`;
     return {
-        dir: wordDir,
-        audio: path.join(wordDir, `${baseName}.flac`),
-        metadata: path.join(wordDir, `${baseName}.flac.yaml`)
+        dir: phraseDir,
+        audio: path.join(phraseDir, `${baseName}.flac`),
+        metadata: path.join(phraseDir, `${baseName}.flac.yaml`)
     };
 }
 
@@ -182,13 +182,13 @@ function parseYaml(content) {
 }
 
 /**
- * Parse YAML file with structured data (word list format)
+ * Parse YAML file with structured data (phrase list format)
  */
 function parseYamlFile(filePath) {
     const content = fs.readFileSync(filePath, 'utf8');
     const lines = content.split('\n');
-    const words = [];
-    let currentWord = null;
+    const phrases = [];
+    let currentPhrase = null;
     let currentIpa = null;
     let indent = 0;
 
@@ -199,26 +199,26 @@ function parseYamlFile(filePath) {
         // Count leading spaces for indentation
         const leadingSpaces = line.match(/^ */)[0].length;
 
-        // New word entry (starts with "- word:")
-        if (trimmed.startsWith('- word:')) {
-            if (currentWord) {
-                words.push(currentWord);
+        // New phrase entry (starts with "- phrase:")
+        if (trimmed.startsWith('- phrase:')) {
+            if (currentPhrase) {
+                phrases.push(currentPhrase);
             }
-            currentWord = { word: trimmed.slice(7).trim(), ipas: [] };
+            currentPhrase = { phrase: trimmed.slice(8).trim(), ipas: [] };
             currentIpa = null;
         }
         // emoji field
-        else if (trimmed.startsWith('emoji:') && currentWord) {
-            currentWord.emoji = trimmed.slice(6).trim();
+        else if (trimmed.startsWith('emoji:') && currentPhrase) {
+            currentPhrase.emoji = trimmed.slice(6).trim();
         }
         // ipas array start
         else if (trimmed.startsWith('ipas:')) {
             // Array starts
         }
         // New IPA entry
-        else if (trimmed.startsWith('- ipa:') && currentWord) {
+        else if (trimmed.startsWith('- ipa:') && currentPhrase) {
             currentIpa = { ipa: trimmed.slice(6).trim(), category: '' };
-            currentWord.ipas.push(currentIpa);
+            currentPhrase.ipas.push(currentIpa);
         }
         // ipa field (when not using array syntax)
         else if (trimmed.startsWith('ipa:') && currentIpa) {
@@ -230,20 +230,20 @@ function parseYamlFile(filePath) {
         }
     }
 
-    // Add the last word
-    if (currentWord) {
-        words.push(currentWord);
+    // Add the last phrase
+    if (currentPhrase) {
+        phrases.push(currentPhrase);
     }
 
-    return words;
+    return phrases;
 }
 
 /**
  * Generate TTS audio and save with metadata
  */
-function generateTTSAudio(word, lang) {
+function generateTTSAudio(phrase, lang) {
     const { voice, source } = TTS_VOICES[lang];
-    const paths = getAudioPaths(lang, word, source);
+    const paths = getAudioPaths(lang, phrase, source);
 
     // Check if already exists
     if (fs.existsSync(paths.audio) && fs.existsSync(paths.metadata)) {
@@ -258,7 +258,7 @@ function generateTTSAudio(word, lang) {
     try {
         // Generate with edge-tts (outputs mp3)
         const mp3Path = paths.audio.replace('.flac', '.mp3');
-        execSync(`edge-tts --voice "${voice}" --text "${word}" --write-media "${mp3Path}" 2>/dev/null`, {
+        execSync(`edge-tts --voice "${voice}" --text "${phrase}" --write-media "${mp3Path}" 2>/dev/null`, {
             stdio: 'pipe'
         });
 
@@ -270,7 +270,7 @@ function generateTTSAudio(word, lang) {
 
         // Write metadata as YAML
         const metadata = {
-            word,
+            phrase,
             lang,
             source: 'edge-tts',
             voice
@@ -279,31 +279,31 @@ function generateTTSAudio(word, lang) {
 
         return { ...paths, cached: false };
     } catch (error) {
-        console.error(`Failed to generate TTS for "${word}": ${error.message}`);
+        console.error(`Failed to generate TTS for "${phrase}": ${error.message}`);
         return null;
     }
 }
 
 
 /**
- * Find all audio files for a word
+ * Find all audio files for a phrase
  */
-function findAudioFiles(lang, word) {
-    const wordDir = getWordDir(lang, word);
-    if (!fs.existsSync(wordDir)) {
+function findAudioFiles(lang, phrase) {
+    const phraseDir = getPhraseDir(lang, phrase);
+    if (!fs.existsSync(phraseDir)) {
         return [];
     }
 
-    const files = fs.readdirSync(wordDir);
+    const files = fs.readdirSync(phraseDir);
     const audioFiles = [];
     // Replace spaces with underscores for filename matching
-    const normalizedWord = word.replace(/\s+/g, '_');
+    const normalizedPhrase = phrase.replace(/\s+/g, '_');
 
     for (const file of files) {
         if (file.endsWith('.flac') || file.endsWith('.wav')) {
             const baseName = file.replace(/\.(flac|wav)$/, '');
-            const yamlPath = path.join(wordDir, `${file}.yaml`);
-            const audioPath = path.join(wordDir, file);
+            const yamlPath = path.join(phraseDir, `${file}.yaml`);
+            const audioPath = path.join(phraseDir, file);
 
             let metadata = null;
             if (fs.existsSync(yamlPath)) {
@@ -314,7 +314,7 @@ function findAudioFiles(lang, word) {
                 path: audioPath,
                 metadataPath: yamlPath,
                 metadata,
-                source: baseName.replace(`${normalizedWord}-`, '')
+                source: baseName.replace(`${normalizedPhrase}-`, '')
             });
         }
     }
@@ -331,8 +331,8 @@ function printResults(results) {
         return b.similarity - a.similarity;
     });
 
-    console.log('\nAll words:\n');
-    console.log('Lang'.padEnd(6) + 'Word'.padEnd(15) + 'Source'.padEnd(20) + 'Sim'.padEnd(6) + 'Expected IPA'.padEnd(20) + 'Old IPA'.padEnd(25) + 'New IPA');
+    console.log('\nAll phrases:\n');
+    console.log('Lang'.padEnd(6) + 'Phrase'.padEnd(15) + 'Source'.padEnd(20) + 'Sim'.padEnd(6) + 'Expected IPA'.padEnd(20) + 'Old IPA'.padEnd(25) + 'New IPA');
     console.log('-'.repeat(135));
 
     for (const result of sortedResults) {
@@ -344,7 +344,7 @@ function printResults(results) {
             const displayNewIpa = ipaChanged ? newIpa : '';
             console.log(
                 result.lang.padEnd(6) +
-                result.word.padEnd(15) +
+                result.phrase.padEnd(15) +
                 result.source.padEnd(20) +
                 simPercent.padEnd(6) +
                 result.expected.padEnd(20) +
@@ -352,7 +352,7 @@ function printResults(results) {
                 displayNewIpa
             );
         } else {
-            console.log(`${result.lang.padEnd(6)}${result.word.padEnd(15)} ${result.source.padEnd(20)} FAILED`);
+            console.log(`${result.lang.padEnd(6)}${result.phrase.padEnd(15)} ${result.source.padEnd(20)} FAILED`);
         }
     }
 }
@@ -369,19 +369,19 @@ function matchesPattern(text, pattern) {
 /**
  * Get all available tests
  */
-function getAllTests(wordsDE, wordsEN) {
+function getAllTests(phrasesDE, phrasesEN) {
     const tests = [];
 
-    // Add word tests
-    for (const { word, ipas } of wordsDE) {
+    // Add phrase tests
+    for (const { phrase, ipas } of phrasesDE) {
         // Join all IPAs with |
         const ipa = ipas && ipas.length > 0 ? ipas.map(i => i.ipa).join('|') : '';
-        tests.push({ word, ipa, lang: 'de', type: 'word' });
+        tests.push({ phrase, ipa, lang: 'de', type: 'phrase' });
     }
-    for (const { word, ipas } of wordsEN) {
+    for (const { phrase, ipas } of phrasesEN) {
         // Join all IPAs with |
         const ipa = ipas && ipas.length > 0 ? ipas.map(i => i.ipa).join('|') : '';
-        tests.push({ word, ipa, lang: 'en', type: 'word' });
+        tests.push({ phrase, ipa, lang: 'en', type: 'phrase' });
     }
 
     return tests;
@@ -391,7 +391,7 @@ function getAllTests(wordsDE, wordsEN) {
  * Print usage help
  */
 function printHelp() {
-    console.log(`Usage: node tests/all-words.test.js [options] [pattern]
+    console.log(`Usage: node tests/all-phrases.test.js [options] [pattern]
 
 Options:
   --list, -l     List all available tests without running them
@@ -399,14 +399,14 @@ Options:
   --help, -h     Show this help message
 
 Pattern:
-  Filter tests by word name (case-insensitive, supports * wildcard)
+  Filter tests by phrase name (case-insensitive, supports * wildcard)
 
 Examples:
-  node tests/all-words.test.js              # Run all tests
-  node tests/all-words.test.js --list       # List all tests
-  node tests/all-words.test.js --update     # Update all YAML files
-  node tests/all-words.test.js Brot         # Run tests for "Brot" only
-  node tests/all-words.test.js "Sch*"       # Run tests matching "Sch*"
+  node tests/all-phrases.test.js              # Run all tests
+  node tests/all-phrases.test.js --list       # List all tests
+  node tests/all-phrases.test.js --update     # Update all YAML files
+  node tests/all-phrases.test.js Brot         # Run tests for "Brot" only
+  node tests/all-phrases.test.js "Sch*"       # Run tests matching "Sch*"
 `);
 }
 
@@ -424,21 +424,21 @@ async function main() {
         return;
     }
 
-    // Load word lists
-    const wordsDE = parseYamlFile(path.join(__dirname, '..', 'words-de.yaml'));
-    const wordsEN = parseYamlFile(path.join(__dirname, '..', 'words-en.yaml'));
+    // Load phrase lists
+    const phrasesDE = parseYamlFile(path.join(__dirname, '..', 'phrases-de.yaml'));
+    const phrasesEN = parseYamlFile(path.join(__dirname, '..', 'phrases-en.yaml'));
 
-    const allTests = getAllTests(wordsDE, wordsEN);
+    const allTests = getAllTests(phrasesDE, phrasesEN);
 
     // Filter tests by pattern
-    const filteredTests = allTests.filter(t => matchesPattern(t.word, pattern));
+    const filteredTests = allTests.filter(t => matchesPattern(t.phrase, pattern));
 
     if (showList) {
         console.log('Available tests:\n');
-        console.log('Lang  Word');
+        console.log('Lang  Phrase');
         console.log('-'.repeat(50));
         for (const t of filteredTests) {
-            console.log(`${t.lang.padEnd(6)}${t.word}`);
+            console.log(`${t.lang.padEnd(6)}${t.phrase}`);
         }
         console.log(`\nTotal: ${filteredTests.length} tests`);
         return;
@@ -457,7 +457,7 @@ async function main() {
     // Build list of all tasks (audio files to process)
     const tasks = [];
     for (const test of filteredTests) {
-        const audioFiles = findAudioFiles(test.lang, test.word);
+        const audioFiles = findAudioFiles(test.lang, test.phrase);
         for (const audioFile of audioFiles) {
             const meta = audioFile.metadata || {};
 
@@ -465,7 +465,7 @@ async function main() {
                 audioPath: audioFile.path,
                 metadataPath: audioFile.metadataPath,
                 expectedIPA: test.ipa || '',
-                word: test.word,
+                phrase: test.phrase,
                 lang: test.lang,
                 source: audioFile.source,
                 metadata: meta
@@ -523,7 +523,7 @@ async function main() {
 
         if (isRegression) {
             regressions.push({
-                word: r.word,
+                phrase: r.phrase,
                 source: r.source,
                 previousSimilarity: r.previousSimilarity,
                 newSimilarity: r.similarity,
@@ -549,7 +549,7 @@ async function main() {
             metadata.similarity = Math.round(r.similarity * 100) / 100; // Round to 2 decimal places
             fs.writeFileSync(r.metadataPath, toYaml(metadata));
             if (isImprovement) {
-                improved.push({ word: r.word, source: r.source, old: r.previousSimilarity, new: r.similarity });
+                improved.push({ phrase: r.phrase, source: r.source, old: r.previousSimilarity, new: r.similarity });
             }
         }
 
@@ -560,7 +560,7 @@ async function main() {
             const newPercent = Math.round(r.similarity * 100);
             if (oldPercent !== newPercent) {
                 degraded.push({
-                    word: r.word,
+                    phrase: r.phrase,
                     source: r.source,
                     previousSimilarity: r.previousSimilarity,
                     newSimilarity: r.similarity,
@@ -573,7 +573,7 @@ async function main() {
         // Track IPA changes with same similarity
         if (isIpaChanged && !isDegraded) {
             ipaChanged.push({
-                word: r.word,
+                phrase: r.phrase,
                 source: r.source,
                 similarity: r.similarity,
                 previousIpa: r.previousRecognizedIpa,
@@ -588,7 +588,7 @@ async function main() {
         for (const imp of improved) {
             const oldPercent = Math.round(imp.old * 100) + '%';
             const newPercent = Math.round(imp.new * 100) + '%';
-            console.log(`  ${imp.word} (${imp.source}): ${oldPercent} -> ${newPercent}`);
+            console.log(`  ${imp.phrase} (${imp.source}): ${oldPercent} -> ${newPercent}`);
         }
     }
 
@@ -599,7 +599,7 @@ async function main() {
             const oldPercent = Math.round(deg.previousSimilarity * 100) + '%';
             const newPercent = Math.round(deg.newSimilarity * 100) + '%';
             const change = Math.round((deg.newSimilarity - deg.previousSimilarity) * 100);
-            console.log(`  ${deg.word} (${deg.source}): ${oldPercent} -> ${newPercent} (${change}%)`);
+            console.log(`  ${deg.phrase} (${deg.source}): ${oldPercent} -> ${newPercent} (${change}%)`);
             if (deg.previousIpa !== deg.newIpa) {
                 console.log(`    IPA: "${deg.previousIpa}" vs "${deg.newIpa}"`);
             }
@@ -611,7 +611,7 @@ async function main() {
         console.log('\nIPA changed (same similarity, not updated):');
         for (const chg of ipaChanged) {
             const simPercent = Math.round(chg.similarity * 100) + '%';
-            console.log(`  ${chg.word} (${chg.source}): ${simPercent}`);
+            console.log(`  ${chg.phrase} (${chg.source}): ${simPercent}`);
             console.log(`    stored:    "${chg.previousIpa}"`);
             console.log(`    extracted: "${chg.newIpa}"`);
         }
@@ -622,14 +622,14 @@ async function main() {
         console.log('\n' + '='.repeat(80));
         console.log('REGRESSIONS DETECTED');
         console.log('='.repeat(80));
-        console.log('Word'.padEnd(15) + 'Source'.padEnd(20) + 'Old'.padEnd(6) + 'New'.padEnd(6) + 'Change');
+        console.log('Phrase'.padEnd(15) + 'Source'.padEnd(20) + 'Old'.padEnd(6) + 'New'.padEnd(6) + 'Change');
         console.log('-'.repeat(80));
         for (const reg of regressions) {
             const oldPercent = Math.round(reg.previousSimilarity * 100) + '%';
             const newPercent = Math.round(reg.newSimilarity * 100) + '%';
             const change = Math.round((reg.newSimilarity - reg.previousSimilarity) * 100) + '%';
             console.log(
-                reg.word.padEnd(15) +
+                reg.phrase.padEnd(15) +
                 reg.source.padEnd(20) +
                 oldPercent.padEnd(6) +
                 newPercent.padEnd(6) +

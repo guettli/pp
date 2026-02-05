@@ -1,94 +1,94 @@
-- word: Katze
+- phrase: Katze
   emoji: 🐱
   ipas:
     - ipa: /ˈkat͡sə/
       category: standard
 
-- word: Hund
+- phrase: Hund
   emoji: 🐕
   ipas:
     - ipa: /hʊnt/
       category: standard
 
-- word: Haus
+- phrase: Haus
   emoji: 🏠
   ipas:
     - ipa: /haʊ̯s/
       category: standard
 
-- word: Baum
+- phrase: Baum
   emoji: 🌳
   ipas:
     - ipa: /baʊ̯m/
       category: standard
 
-- word: Blume
+- phrase: Blume
   emoji: 🌸
   ipas:
     - ipa: /ˈbluːmə/
       category: standard
 
-- word: Sonne
+- phrase: Sonne
   emoji: ☀️
   ipas:
     - ipa: /ˈzɔnə/
       category: standard
 
-- word: Mond
+- phrase: Mond
   emoji: 🌙
   ipas:
     - ipa: /moːnt/
       category: standard
 
-- word: Stern
+- phrase: Stern
   emoji: ⭐
   ipas:
     - ipa: /ʃtɛʁn/
       category: standard
 
-- word: Auto
+- phrase: Auto
   emoji: 🚗
   ipas:
     - ipa: /ˈaʊ̯to/
       category: standard
 
-- word: Ball
+- phrase: Ball
   emoji: ⚽
   ipas:
     - ipa: /bal/
       category: standard
 
-- word: Buch
+- phrase: Buch
   emoji: 📖
   ipas:
     - ipa: /buːx/
       category: standard
 
-- word: Apfel
+- phrase: Apfel
   emoji: 🍎
   ipas:
     - ipa: /ˈap͡fl̩/
       category: standard
 
-- word: Banane
+- phrase: Banane
   emoji: 🍌
   ipas:
     - ipa: /baˈnaːnə/
       category: standard
 
-- word: Brot
+- phrase: Brot
   emoji: 🍞
   ipas:
     - ipa: /bʁoːt/
       category: standard
 
-- word: Fisch
+- phrase: Fisch
   emoji: 🐟
   ipas:
     - ipa: /fɪʃ/
       category: standard
 
-- word: Vogel
+- phrase: Vogel
   emoji: 🐦
   ipas:
     - ipa: /ˈfoːɡəl/
@@ -96,91 +96,85 @@
     - ipa: /ˈfoːɡl̩/
       category: standard
 
-- word: Schmetterling
+- phrase: Schmetterling
   emoji: 🦋
   ipas:
     - ipa: /ˈʃmɛtɐlɪŋ/
       category: standard
 
-- word: Schiff
+- phrase: Schiff
   emoji: 🚢
   ipas:
     - ipa: /ʃɪf/
       category: standard
 
-- word: Flugzeug
+- phrase: Flugzeug
   emoji: ✈️
   ipas:
     - ipa: /ˈfluːkˌt͡sɔɪ̯k/
       category: standard
 
-- word: Zug
+- phrase: Zug
   emoji: 🚂
   ipas:
     - ipa: /t͡suːk/
       category: standard
 
-- word: Fahrrad
+- phrase: Fahrrad
   emoji: 🚲
   ipas:
     - ipa: /ˈfaːɐ̯ˌʁaːt/
       category: standard
 
-- word: Tür
+- phrase: Tür
   emoji: 🚪
   ipas:
     - ipa: /tyːɐ̯/
       category: standard
 
-- word: Fenster
+- phrase: Fenster
   emoji: 🪟
   ipas:
     - ipa: /ˈfɛnstɐ/
       category: standard
 
-- word: Tisch
-  emoji: /icons/table.svg
-  ipas:
-    - ipa: /tɪʃ/
-      category: standard
-
-- word: Bett
+- phrase: Bett
   emoji: 🛏️
   ipas:
     - ipa: /bɛt/
       category: standard
 
-- word: Uhr
+- phrase: Uhr
   emoji: 🕐
   ipas:
     - ipa: /uːɐ̯/
       category: standard
 
-- word: Schlüssel
+- phrase: Schlüssel
   emoji: 🔑
   ipas:
     - ipa: /ˈʃlʏsl̩/
       category: standard
 
-- word: Herz
+- phrase: Herz
   emoji: ❤️
   ipas:
     - ipa: /hɛʁt͡s/
       category: standard
 
-- word: Hand
+- phrase: Hand
   emoji: ✋
   ipas:
     - ipa: /hant/
       category: standard
 
-- word: Fuß
+- phrase: Fuß
   emoji: 🦶
   ipas:
     - ipa: /fuːs/
       category: standard
 
-- word: Der Hase lacht
+- phrase: Der Hase lacht
   emoji: 🐰
   ipas:
     - ipa: /deːɐ̯ ˈhaːzə laxt/

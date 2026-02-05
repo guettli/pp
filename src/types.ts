@@ -8,9 +8,9 @@ export interface IPA {
   category: string;
 }
 
-// Word data
-export interface Word {
-  word: string;
+// Phrase data
+export interface Phrase {
+  phrase: string;
   emoji: string;
   ipas: IPA[];
 }
@@ -69,7 +69,7 @@ export interface LoadingProgress {
 
 // Application state
 export interface AppState {
-  currentWord: Word | null;
+  currentPhrase: Phrase | null;
   isRecording: boolean;
   isProcessing: boolean;
   isModelLoaded: boolean;

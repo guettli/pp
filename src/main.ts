@@ -18,7 +18,7 @@ import {
 import { resetFeedback, setState, state } from './state.js';
 
 // Import utilities
-import { findWordByName, getRandomWord } from './utils/random.js';
+import { findPhraseByName, getRandomPhrase } from './utils/random.js';
 
 // Import audio modules
 import { prepareAudioForWhisper } from './audio/processor.js';
@@ -42,6 +42,7 @@ import {
   showLoading,
   updateLoadingProgress
 } from './ui/loading.js';
+import { displayPhrase } from './ui/phrase-display.js';
 import {
   resetRecordButton,
   setRecordButtonEnabled,
@@ -51,7 +52,6 @@ import {
   showRecordingTooShortError,
   updateRecordButton
 } from './ui/recorder-ui.js';
-import { displayWord } from './ui/word-display.js';
 
 // Track recording state
 let recordingTimer: ReturnType<typeof setInterval> | null = null;
@@ -111,8 +111,8 @@ async function init() {
     // Hide loading, show main content
     hideLoading();
 
-    // Load first word (from query string or random)
-    loadInitialWord();
+    // Load first phrase (from query string or random)
+    loadInitialPhrase();
 
     // Set up event listeners
     setupEventListeners();
@@ -130,7 +130,7 @@ async function init() {
  */
 function setupEventListeners() {
   const recordBtn = document.getElementById('record-btn');
-  const nextWordBtn = document.getElementById('next-word-btn');
+  const nextPhraseBtn = document.getElementById('next-phrase-btn');
   const languageSelect = document.getElementById('language-select');
 
   if (recordBtn) {
@@ -151,8 +151,8 @@ function setupEventListeners() {
     recordBtn.addEventListener('touchcancel', handleRecordStop);
   }
 
-  if (nextWordBtn) {
-    nextWordBtn.addEventListener('click', nextWord);
+  if (nextPhraseBtn) {
+    nextPhraseBtn.addEventListener('click', nextPhrase);
   }
 
   if (languageSelect && languageSelect instanceof HTMLSelectElement) {
@@ -165,7 +165,7 @@ function setupEventListeners() {
     onLanguageChange((language) => {
       languageSelect.value = language;
       resetRecordButton();
-      nextWord();
+      nextPhrase();
       updateWebGpuStatus();
     });
   }
@@ -407,12 +407,12 @@ async function actuallyStopRecording() {
       showProcessing(85);
 
       // Score the pronunciation using PanPhon features
-      if (!state.currentWord) {
-        throw new Error('No current word selected');
+      if (!state.currentPhrase) {
+        throw new Error('No current phrase selected');
       }
-      const currentWord = state.currentWord;
+      const currentPhrase = state.currentPhrase;
       // Try all IPAs and use the best score
-      const scores = currentWord.ipas.map(ipaEntry =>
+      const scores = currentPhrase.ipas.map(ipaEntry =>
         measureSync('processing.step_score', () =>
           scorePronunciation(ipaEntry.ipa, actualIPA)
         )
@@ -431,7 +431,7 @@ async function actuallyStopRecording() {
       setState({ score, actualIPA });
 
       // Display feedback
-      displayFeedback(currentWord, actualIPA, score);
+      displayFeedback(currentPhrase, actualIPA, score);
       showProcessingDetails({
         steps: timingSteps,
         meta: debugMeta,
@@ -466,54 +466,54 @@ async function actuallyStopRecording() {
 }
 
 /**
- * Get word from URL query parameter (?word=...)
- * @returns {Object|null} Word object or null
+ * Get phrase from URL query parameter (?phrase=...)
+ * @returns {Object|null} Phrase object or null
  */
-function getWordFromQueryString() {
+function getPhraseFromQueryString() {
   const params = new URLSearchParams(window.location.search);
-  const wordParam = params.get('word');
-  if (!wordParam) return null;
-  return findWordByName(wordParam, getLanguage());
+  const phraseParam = params.get('phrase');
+  if (!phraseParam) return null;
+  return findPhraseByName(phraseParam, getLanguage());
 }
 
 /**
- * Update URL with current language and word
+ * Update URL with current language and phrase
  */
 function updateURL() {
   const params = new URLSearchParams();
   params.set('lang', getLanguage());
-  if (state.currentWord?.word) {
-    params.set('word', state.currentWord.word);
+  if (state.currentPhrase?.phrase) {
+    params.set('phrase', state.currentPhrase.phrase);
   }
   const newURL = `${window.location.pathname}?${params.toString()}`;
   window.history.replaceState({}, '', newURL);
 }
 
 /**
- * Load initial word (from query string or random)
+ * Load initial phrase (from query string or random)
  */
-function loadInitialWord() {
-  const queryWord = getWordFromQueryString();
-  if (queryWord) {
-    setState({ currentWord: queryWord });
-    displayWord(queryWord);
+function loadInitialPhrase() {
+  const queryPhrase = getPhraseFromQueryString();
+  if (queryPhrase) {
+    setState({ currentPhrase: queryPhrase });
+    displayPhrase(queryPhrase);
     setRecordButtonEnabled(true);
     updateURL();
   } else {
-    nextWord();
+    nextPhrase();
   }
 }
 
 /**
- * Load next random word
+ * Load next random phrase
  */
-function nextWord() {
-  const word = getRandomWord(getLanguage());
-  setState({ currentWord: word });
+function nextPhrase() {
+  const phrase = getRandomPhrase(getLanguage());
+  setState({ currentPhrase: phrase });
   resetFeedback();
 
-  // Display the word
-  displayWord(word);
+  // Display the phrase
+  displayPhrase(phrase);
 
   // Hide feedback
   hideFeedback();

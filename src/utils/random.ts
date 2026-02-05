@@ -1,38 +1,38 @@
-import wordsDeYaml from '../../words-de.yaml?raw';
-import wordsEnYaml from '../../words-en.yaml?raw';
 import { load } from 'js-yaml';
+import phrasesDeYaml from '../../phrases-de.yaml?raw';
+import phrasesEnYaml from '../../phrases-en.yaml?raw';
 import { getLanguage } from '../i18n.js';
-import type { Word, SupportedLanguage } from '../types.js';
+import type { Phrase, SupportedLanguage } from '../types.js';
 
 // Parse YAML files
-const wordsDe: Word[] = load(wordsDeYaml) as Word[];
-const wordsEn: Word[] = load(wordsEnYaml) as Word[];
+const phrasesDe: Phrase[] = load(phrasesDeYaml) as Phrase[];
+const phrasesEn: Phrase[] = load(phrasesEnYaml) as Phrase[];
 
-function getWordList(language: SupportedLanguage = getLanguage()): Word[] {
-  return language === 'de' ? wordsDe : wordsEn;
+function getPhraseList(language: SupportedLanguage = getLanguage()): Phrase[] {
+  return language === 'de' ? phrasesDe : phrasesEn;
 }
 
 /**
- * Get a random word from the word list
+ * Get a random phrase from the phrase list
  */
-export function getRandomWord(language: SupportedLanguage = getLanguage()): Word {
-  const wordsData = getWordList(language);
-  const index = Math.floor(Math.random() * wordsData.length);
-  return wordsData[index];
+export function getRandomPhrase(language: SupportedLanguage = getLanguage()): Phrase {
+  const phrasesData = getPhraseList(language);
+  const index = Math.floor(Math.random() * phrasesData.length);
+  return phrasesData[index];
 }
 
 /**
- * Get the full word list
+ * Get the full phrase list
  */
-export function getAllWords(language: SupportedLanguage = getLanguage()): Word[] {
-  return getWordList(language);
+export function getAllPhrases(language: SupportedLanguage = getLanguage()): Phrase[] {
+  return getPhraseList(language);
 }
 
 /**
- * Find a word by name (case-insensitive)
+ * Find a phrase by name (case-insensitive)
  */
-export function findWordByName(name: string, language: SupportedLanguage = getLanguage()): Word | null {
-  const wordsData = getWordList(language);
+export function findPhraseByName(name: string, language: SupportedLanguage = getLanguage()): Phrase | null {
+  const phrasesData = getPhraseList(language);
   const lowerName = name.toLowerCase();
-  return wordsData.find((w) => w.word.toLowerCase() === lowerName) || null;
+  return phrasesData.find((w) => w.phrase.toLowerCase() === lowerName) || null;
 }

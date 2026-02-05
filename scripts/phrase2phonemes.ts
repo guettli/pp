@@ -1,14 +1,14 @@
 #!/usr/bin/env tsx
 // Extract phonemes from an audio file
-// Usage: tsx scripts/word2phonemes.ts <audio-file>
+// Usage: tsx scripts/phrase2phonemes.ts <audio-file>
 
 import fs from 'fs';
-import { readAudioFile } from './lib/audio.js';
-import { loadPhonemeModel, extractPhonemes } from './lib/phoneme-model.js';
+import { readAudioFile } from './lib/audio.js'; // TODO: fix. this tool
+import { extractPhonemes, loadPhonemeModel } from './lib/phoneme-model.js';
 
 async function main() {
     if (process.argv.length < 3) {
-        console.error('Usage: tsx scripts/word2phonemes.ts <audio-file>');
+        console.error('Usage: tsx scripts/phrase2phonemes.ts <audio-file>');
         process.exit(1);
     }
 

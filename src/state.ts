@@ -5,7 +5,7 @@
 import type { AppState } from './types.js';
 
 export const state: AppState = {
-  currentWord: null,
+  currentPhrase: null,
   isRecording: false,
   isModelLoaded: false,
   isProcessing: false,

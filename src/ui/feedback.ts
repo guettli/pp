@@ -2,10 +2,10 @@
  * Feedback display component
  */
 
-import { t, getLanguage } from '../i18n.js';
-import { state, setState } from '../state.js';
+import { getLanguage, t } from '../i18n.js';
+import { setState, state } from '../state.js';
+import type { PhonemeComparisonItem, Phrase, Score } from '../types.js';
 import { generateExplanationsHTML } from './ipa-helper.js';
-import type { Word, Score, PhonemeComparisonItem } from '../types.js';
 
 // Track current audio playback
 let currentAudio: HTMLAudioElement | null = null;
@@ -14,7 +14,7 @@ let speechSynthesisSupported: boolean | null = null; // null = unknown, true/fal
 /**
  * Display pronunciation feedback with phoneme-level analysis
  */
-export function displayFeedback(targetWord: Word, actualIPA: string, score: Score): void {
+export function displayFeedback(targetPhrase: Phrase, actualIPA: string, score: Score): void {
   const section = document.getElementById('feedback-section');
   const alert = document.getElementById('feedback-alert');
   const targetElement = document.getElementById('feedback-target');
@@ -37,7 +37,7 @@ export function displayFeedback(targetWord: Word, actualIPA: string, score: Scor
   if (alert) {
     alert.className = `alert ${score.bootstrapClass}`;
 
-    // Show similarity only if word was recognized
+    // Show similarity only if phrase was recognized
     const similarityText = score.notFound
       ? ''
       : `<p class="mb-0">${t('feedback.phoneme_similarity')} <strong>${score.similarityPercent}%</strong></p>`;
@@ -54,22 +54,22 @@ export function displayFeedback(targetWord: Word, actualIPA: string, score: Scor
     if (!score.notFound && score.phonemeComparison && score.phonemeComparison.length > 0) {
       comparisonGrid.innerHTML = generatePhonemeComparisonHTML(score.phonemeComparison);
     } else if (score.notFound) {
-      comparisonGrid.innerHTML = `<span class="text-muted">${t('feedback.word_not_in_vocab')}</span>`;
+      comparisonGrid.innerHTML = `<span class="text-muted">${t('feedback.phrase_not_in_vocab')}</span>`;
     } else {
       comparisonGrid.innerHTML = '';
     }
   }
 
   // Update content
-  if (targetElement) targetElement.textContent = targetWord.word;
+  if (targetElement) targetElement.textContent = targetPhrase.phrase;
   if (targetIPAElement) {
     // Use the first (standard) IPA pronunciation
-    targetIPAElement.textContent = targetWord.ipas[0]?.ipa || '';
+    targetIPAElement.textContent = targetPhrase.ipas[0]?.ipa || '';
   }
   if (actualIPAElement) {
-    // Show phonemes if available, or "Not recognized" if word not found
+    // Show phonemes if available, or "Not recognized" if phrase not found
     if (score.notFound) {
-      actualIPAElement.textContent = t('feedback.word_not_in_vocab');
+      actualIPAElement.textContent = t('feedback.phrase_not_in_vocab');
     } else {
       actualIPAElement.textContent = actualIPA || '—';
     }
@@ -87,11 +87,11 @@ export function displayFeedback(targetWord: Word, actualIPA: string, score: Scor
   // Show play target button for desired pronunciation (if supported)
   const playTargetBtn = document.getElementById('play-target-btn');
   const speechHint = document.getElementById('speech-synthesis-hint');
-  if (playTargetBtn && targetWord.word) {
+  if (playTargetBtn && targetPhrase.phrase) {
     void checkSpeechSynthesisSupport().then((supported) => {
       if (supported) {
         playTargetBtn.style.display = 'inline-block';
-        playTargetBtn.onclick = () => playDesiredPronunciation(targetWord.word);
+        playTargetBtn.onclick = () => playDesiredPronunciation(targetPhrase.phrase);
         if (speechHint) speechHint.style.display = 'none';
       } else {
         playTargetBtn.style.display = 'none';
@@ -107,7 +107,7 @@ export function displayFeedback(targetWord: Word, actualIPA: string, score: Scor
   const ipaContent = document.getElementById('ipa-explanations-content');
   if (ipaContent) {
     // Use the first (standard) IPA pronunciation
-    const primaryIPA = targetWord.ipas[0]?.ipa || '';
+    const primaryIPA = targetPhrase.ipas[0]?.ipa || '';
     const explanationsHTML = generateExplanationsHTML(primaryIPA, actualIPA);
     ipaContent.innerHTML = explanationsHTML || t('feedback.no_ipa_help');
   }
@@ -234,13 +234,13 @@ function downloadRecording() {
   const a = document.createElement('a');
   a.href = url;
 
-  // Use current word for filename if available
-  const word = state.currentWord?.word || 'recording';
+  // Use current phrase for filename if available
+  const phrase = state.currentPhrase?.phrase || 'recording';
   const lang = getLanguage();
   const timestamp = new Date().toISOString().slice(0, 19).replace(/[:-]/g, '');
 
   // Include recognized IPA in filename if available
-  let filename = `${word}_${timestamp}_${lang}`;
+  let filename = `${phrase}_${timestamp}_${lang}`;
   if (state.actualIPA) {
     // Remove spaces for cleaner filename
     filename += `_${state.actualIPA.replace(/\s+/g, '')}`;
@@ -345,13 +345,13 @@ function checkSpeechSynthesisSupport() {
 /**
  * Play the desired pronunciation using Web Speech API
  */
-function playDesiredPronunciation(word: string): void {
-  if (!word || !window.speechSynthesis) return;
+function playDesiredPronunciation(phrase: string): void {
+  if (!phrase || !window.speechSynthesis) return;
 
   // Cancel any ongoing speech
   speechSynthesis.cancel();
 
-  const utterance = new SpeechSynthesisUtterance(word);
+  const utterance = new SpeechSynthesisUtterance(phrase);
   utterance.lang = getLanguage() === 'de' ? 'de-DE' : 'en-US';
   utterance.rate = 0.9; // Slightly slower for clarity
 

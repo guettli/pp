@@ -35,20 +35,24 @@ if [ "$RECORD_MODE" == "false" ]; then
     (cd "$PROJECT_DIR" && pnpm build:node)
     echo ""
 
-    # Parse filename: Word_Timestamp_Lang.webm
+    # Parse filename: Phrase_Timestamp_Lang.webm
+    # Phrase can contain underscores, so we split at _YYYYMMDDTHHMMSS_ (timestamp pattern)
     BASENAME=$(basename "$INPUT_FILE" .webm)
-    WORD=$(echo "$BASENAME" | cut -d'_' -f1)
-    TIMESTAMP=$(echo "$BASENAME" | cut -d'_' -f2)
-    LANG=$(echo "$BASENAME" | cut -d'_' -f3)
 
-    if [ -z "$WORD" ] || [ -z "$LANG" ]; then
-        echo "Error: Could not parse filename. Expected format: Word_Timestamp_Lang.webm"
-        echo "Got: WORD=$WORD, TIMESTAMP=$TIMESTAMP, LANG=$LANG"
+    if [[ $BASENAME =~ ^(.*)_([0-9]{8}T[0-9]{6})_([^_]+)$ ]]; then
+        PHRASE="${BASH_REMATCH[1]}"
+        TIMESTAMP="${BASH_REMATCH[2]}"
+        LANG="${BASH_REMATCH[3]}"
+        # Convert underscores in phrase to spaces
+        PHRASE="${PHRASE//_/ }"
+    else
+        echo "Error: Could not parse filename. Expected format: Phrase_YYYYMMDDTHHMMSS_Lang.webm"
+        echo "Example: Hello_World_20260131T073450_de.webm"
         exit 1
     fi
 
     echo "Parsed from filename:"
-    echo "  Word: $WORD"
+    echo "  Phrase: $PHRASE"
     echo "  Language: $LANG"
     echo "  Timestamp: $TIMESTAMP"
     echo ""
@@ -67,9 +71,9 @@ else
     echo ""
 
     # Ask for details first
-    read -r -p "Word to pronounce: " WORD
-    if [ -z "$WORD" ]; then
-        echo "Error: Word is required"
+    read -r -p "Phrase to pronounce: " PHRASE
+    if [ -z "$PHRASE" ]; then
+        echo "Error: Phrase is required"
         exit 1
     fi
 
@@ -88,7 +92,7 @@ else
 
     echo ""
     echo "Recording details:"
-    echo "  Word: $WORD"
+    echo "  Phrase: $PHRASE"
     echo "  Language: $LANG"
     echo "  Timestamp: $TIMESTAMP"
     echo "  Source: $SOURCE"
@@ -158,9 +162,9 @@ else
 fi
 
 # Determine output paths (replace spaces with underscores in filenames and directories)
-WORD_SAFE="${WORD// /_}"
-DATA_DIR="$PROJECT_DIR/tests/data/$LANG/$WORD_SAFE"
-OUTPUT_BASE="$WORD_SAFE-$SOURCE"
+PHRASE_SAFE="${PHRASE// /_}"
+DATA_DIR="$PROJECT_DIR/tests/data/$LANG/$PHRASE_SAFE"
+OUTPUT_BASE="$PHRASE_SAFE-$SOURCE"
 
 FLAC_FILE="$DATA_DIR/$OUTPUT_BASE.flac"
 YAML_FILE="$DATA_DIR/$OUTPUT_BASE.flac.yaml"
@@ -195,7 +199,7 @@ fi
 # Extract phonemes and calculate similarity
 echo ""
 echo "Extracting phonemes and calculating similarity..."
-if PHONEME_RESULT=$(pnpm tsx "$SCRIPT_DIR/extract-and-compare.ts" "$FLAC_FILE" "$WORD" "$LANG" 2>&1); then
+if PHONEME_RESULT=$(pnpm tsx "$SCRIPT_DIR/extract-and-compare.ts" "$FLAC_FILE" "$PHRASE" "$LANG" 2>&1); then
     RECOGNIZED_IPA=$(echo "$PHONEME_RESULT" | grep -o '"recognized_ipa":"[^"]*"' | cut -d'"' -f4)
     SIMILARITY=$(echo "$PHONEME_RESULT" | grep -o '"similarity":"[^"]*"' | cut -d'"' -f4)
     echo "Recognized IPA: $RECOGNIZED_IPA"
@@ -211,7 +215,7 @@ fi
 # Create YAML metadata
 echo "Creating metadata..."
 {
-    echo "word: $WORD"
+    echo "phrase: $PHRASE"
     echo "lang: $LANG"
     echo "source: $SOURCE"
     echo "timestamp: $TIMESTAMP"

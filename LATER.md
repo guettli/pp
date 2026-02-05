@@ -13,6 +13,11 @@ Ask ZIPA authors for update.
 
 ---
 
+i18n.ts: Check for dead entries. Check if there are missing entries.
+How do other projects handle that?
+
+---
+
 Convert more to TS. There are still many JS files.
 
 ---

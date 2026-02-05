@@ -5,7 +5,7 @@ import { parentPort, workerData } from 'worker_threads';
 
 // Import shared libraries from compiled TypeScript
 import { readAudioFile } from '../dist-node/src/lib/audio.js';
-import { loadPhonemeModel, extractPhonemes } from '../dist-node/src/lib/phoneme-model.js';
+import { extractPhonemes, loadPhonemeModel } from '../dist-node/src/lib/phoneme-model.js';
 import { calculatePanPhonDistance } from './panphon-distance-node.js';
 
 let session = null;
@@ -23,7 +23,7 @@ async function initModel(modelPath, vocabPath) {
 }
 
 async function processTask(task) {
-    const { audioPath, metadataPath, expectedIPA, word, lang, source, metadata } = task;
+    const { audioPath, metadataPath, expectedIPA, phrase, lang, source, metadata } = task;
 
     // Get previous values from metadata for regression detection
     const previousSimilarity = metadata?.similarity;
@@ -48,7 +48,7 @@ async function processTask(task) {
         }
 
         return {
-            word,
+            phrase,
             lang,
             source,
             metadataPath,
@@ -61,7 +61,7 @@ async function processTask(task) {
         };
     } catch (error) {
         return {
-            word,
+            phrase,
             lang,
             source,
             metadataPath,
