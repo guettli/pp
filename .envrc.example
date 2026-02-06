@@ -1,2 +1,5 @@
 # shellcheck shell=bash
+
+# Use nix-direnv
+# https://github.com/nix-community/nix-direnv
 use flake

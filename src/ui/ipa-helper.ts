@@ -2,15 +2,15 @@
  * IPA symbol explanation helper
  */
 
-import { getLanguage } from '../i18n.js';
-import ipaExamples from '../data/ipa-examples.json';
+import { getLanguage } from "../i18n.js";
+import ipaExamples from "../data/ipa-examples.json";
 
 interface LanguageExamples {
   de?: string;
   en?: string;
 }
 
-type IPACategory = 'consonants' | 'vowels' | 'diphthongs' | 'modifiers';
+type IPACategory = "consonants" | "vowels" | "diphthongs" | "modifiers";
 
 // Build a flat lookup map from all categories
 const symbolLookup = new Map<string, LanguageExamples>();
@@ -18,7 +18,7 @@ const symbolLookup = new Map<string, LanguageExamples>();
 function buildLookup(): void {
   if (symbolLookup.size > 0) return;
 
-  const categories: IPACategory[] = ['consonants', 'vowels', 'diphthongs', 'modifiers'];
+  const categories: IPACategory[] = ["consonants", "vowels", "diphthongs", "modifiers"];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const examples = ipaExamples as any;
   for (const category of categories) {
@@ -53,7 +53,7 @@ export function extractSymbols(ipaString: string): string[] {
   buildLookup();
 
   // Remove slashes and whitespace
-  const cleaned = ipaString.replace(/[/[\]]/g, '').trim();
+  const cleaned = ipaString.replace(/[/[\]]/g, "").trim();
   if (!cleaned) return [];
 
   const symbols = new Set();
@@ -94,7 +94,7 @@ export function extractSymbols(ipaString: string): string[] {
  * Format symbol explanation with bold markers converted to HTML
  */
 function formatExample(text: string): string {
-  return text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  return text.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
 }
 
 /**
@@ -108,7 +108,7 @@ export function generateExplanationsHTML(targetIPA: string, actualIPA: string): 
   // Combine and deduplicate
   const allSymbols = new Set([...targetSymbols, ...actualSymbols]);
 
-  if (allSymbols.size === 0) return '';
+  if (allSymbols.size === 0) return "";
 
   // Sort symbols for consistent display
   const sortedSymbols = Array.from(allSymbols).sort();
@@ -128,6 +128,6 @@ export function generateExplanationsHTML(targetIPA: string, actualIPA: string): 
     }
   }
 
-  html += '</div>';
+  html += "</div>";
   return html;
 }

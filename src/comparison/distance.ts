@@ -2,7 +2,7 @@
  * IPA distance calculation using Levenshtein distance
  */
 
-import { distance } from 'fastest-levenshtein';
+import { distance } from "fastest-levenshtein";
 
 export interface IPADistanceResult {
   distance: number;
@@ -19,8 +19,8 @@ export interface IPADistanceResult {
 function normalizeIPA(ipa: string): string {
   // Remove slashes, stress marks can optionally be removed for lenient comparison
   return ipa
-    .replace(/[/[\]]/g, '')  // Remove delimiters
-    .replace(/[ˈˌ]/g, '')      // Remove stress marks for lenient comparison
+    .replace(/[/[\]]/g, "") // Remove delimiters
+    .replace(/[ˈˌ]/g, "") // Remove stress marks for lenient comparison
     .trim();
 }
 
@@ -39,13 +39,13 @@ export function calculateIPADistance(target: string, actual: string): IPADistanc
   const maxLen = Math.max(normalizedTarget.length, normalizedActual.length);
 
   // Avoid division by zero
-  const similarity = maxLen === 0 ? 1 : 1 - (dist / maxLen);
+  const similarity = maxLen === 0 ? 1 : 1 - dist / maxLen;
 
   return {
     distance: dist,
-    similarity: Math.max(0, Math.min(1, similarity)),  // Clamp to [0, 1]
+    similarity: Math.max(0, Math.min(1, similarity)), // Clamp to [0, 1]
     maxLength: maxLen,
     targetNormalized: normalizedTarget,
-    actualNormalized: normalizedActual
+    actualNormalized: normalizedActual,
   };
 }

@@ -3,20 +3,21 @@
  * Uses the shared core with Node.js-compatible JSON loading
  */
 
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { createDistanceCalculator } from '../dist-node/src/comparison/panphon-distance-core.js';
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import { createDistanceCalculator } from "../dist-node/src/comparison/panphon-distance-core.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Load PanPhon data directly using fs
-const panphonDataPath = path.join(__dirname, '../src/data/panphon_features.json');
-const panphonData = JSON.parse(fs.readFileSync(panphonDataPath, 'utf8'));
+const panphonDataPath = path.join(__dirname, "../src/data/panphon_features.json");
+const panphonData = JSON.parse(fs.readFileSync(panphonDataPath, "utf8"));
 
 // Polyfill atob for Node.js
-const atobFn = typeof atob !== 'undefined' ? atob : (str) => Buffer.from(str, 'base64').toString('binary');
+const atobFn =
+  typeof atob !== "undefined" ? atob : (str) => Buffer.from(str, "base64").toString("binary");
 
 /**
  * Decode base64 binary features into a lookup table

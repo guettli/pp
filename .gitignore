@@ -1,5 +1,5 @@
 .vscode
-.envrc
+.env
 .direnv/
 .claude
 

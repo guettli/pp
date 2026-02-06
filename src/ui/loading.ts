@@ -2,7 +2,7 @@
  * Loading overlay and progress display
  */
 
-import { t } from '../i18n.js';
+import { t } from "../i18n.js";
 
 // Track last logged progress to throttle console output
 let lastLoggedPercent = -10;
@@ -17,51 +17,61 @@ interface ProgressInfo {
  * Update loading progress
  */
 export function updateLoadingProgress(progress: ProgressInfo): void {
-  const statusElement = document.getElementById('loading-status');
-  const progressBar = document.getElementById('loading-progress');
+  const statusElement = document.getElementById("loading-status");
+  const progressBar = document.getElementById("loading-progress");
 
   if (!progress) return;
 
   // Only log every 10% to reduce console spam
   const currentPercent = progress.progress ? Math.round(progress.progress) : 0;
-  const shouldLog = currentPercent >= lastLoggedPercent + 10 || progress.status !== 'downloading';
+  const shouldLog = currentPercent >= lastLoggedPercent + 10 || progress.status !== "downloading";
 
   // Update status message with detailed information
   if (statusElement) {
-    if (progress.status === 'initiate') {
-      const fileName = progress.file || 'unknown';
-      statusElement.textContent = t('loading.status.initiate', { file: fileName });
+    if (progress.status === "initiate") {
+      const fileName = progress.file || "unknown";
+      statusElement.textContent = t("loading.status.initiate", {
+        file: fileName,
+      });
       if (shouldLog) console.log(statusElement.textContent);
-    } else if (progress.status === 'download') {
+    } else if (progress.status === "download") {
       const percent = progress.progress ? Math.round(progress.progress) : 0;
-      const fileName = progress.file || 'model';
-      statusElement.textContent = t('loading.status.download', { file: fileName, percent });
+      const fileName = progress.file || "model";
+      statusElement.textContent = t("loading.status.download", {
+        file: fileName,
+        percent,
+      });
       if (shouldLog) console.log(statusElement.textContent);
-    } else if (progress.status === 'done') {
-      const fileName = progress.file || 'file';
-      statusElement.textContent = t('loading.status.done', { file: fileName });
+    } else if (progress.status === "done") {
+      const fileName = progress.file || "file";
+      statusElement.textContent = t("loading.status.done", { file: fileName });
       if (shouldLog) console.log(statusElement.textContent);
-    } else if (progress.status === 'progress') {
+    } else if (progress.status === "progress") {
       const percent = progress.progress ? Math.round(progress.progress) : 0;
-      const fileName = progress.file || 'model';
-      statusElement.textContent = t('loading.status.progress', { file: fileName, percent });
+      const fileName = progress.file || "model";
+      statusElement.textContent = t("loading.status.progress", {
+        file: fileName,
+        percent,
+      });
       if (shouldLog) console.log(statusElement.textContent);
-    } else if (progress.status === 'downloading') {
+    } else if (progress.status === "downloading") {
       const percent = progress.progress ? Math.round(progress.progress) : 0;
-      statusElement.textContent = t('loading.status.downloading_model', { percent });
+      statusElement.textContent = t("loading.status.downloading_model", {
+        percent,
+      });
       if (shouldLog) {
         console.log(statusElement.textContent);
         lastLoggedPercent = currentPercent;
       }
-    } else if (progress.status === 'loading') {
-      statusElement.textContent = t('loading.status.loading_model');
+    } else if (progress.status === "loading") {
+      statusElement.textContent = t("loading.status.loading_model");
       if (shouldLog) console.log(statusElement.textContent);
-    } else if (progress.status === 'ready') {
-      statusElement.textContent = t('loading.status.ready');
+    } else if (progress.status === "ready") {
+      statusElement.textContent = t("loading.status.ready");
       if (shouldLog) console.log(statusElement.textContent);
     } else {
-      const msg = progress.status || t('loading.initializing');
-      statusElement.textContent = t('loading.status.fallback', { status: msg });
+      const msg = progress.status || t("loading.initializing");
+      statusElement.textContent = t("loading.status.fallback", { status: msg });
       if (shouldLog) console.log(statusElement.textContent);
     }
   }
@@ -70,7 +80,7 @@ export function updateLoadingProgress(progress: ProgressInfo): void {
   if (progressBar && progress.progress !== undefined) {
     const percent = Math.round(progress.progress);
     progressBar.style.width = `${percent}%`;
-    progressBar.setAttribute('aria-valuenow', String(percent));
+    progressBar.setAttribute("aria-valuenow", String(percent));
     progressBar.textContent = `${percent}%`;
   }
 }
@@ -79,22 +89,22 @@ export function updateLoadingProgress(progress: ProgressInfo): void {
  * Show loading overlay
  */
 export function showLoading() {
-  const overlay = document.getElementById('loading-overlay');
-  const mainContent = document.getElementById('main-content');
+  const overlay = document.getElementById("loading-overlay");
+  const mainContent = document.getElementById("main-content");
 
-  if (overlay) overlay.style.display = 'block';
-  if (mainContent) mainContent.style.display = 'none';
+  if (overlay) overlay.style.display = "block";
+  if (mainContent) mainContent.style.display = "none";
 }
 
 /**
  * Hide loading overlay and show main content
  */
 export function hideLoading() {
-  const overlay = document.getElementById('loading-overlay');
-  const mainContent = document.getElementById('main-content');
+  const overlay = document.getElementById("loading-overlay");
+  const mainContent = document.getElementById("main-content");
 
-  if (overlay) overlay.style.display = 'none';
-  if (mainContent) mainContent.style.display = 'block';
+  if (overlay) overlay.style.display = "none";
+  if (mainContent) mainContent.style.display = "block";
 }
 
 /**
@@ -102,10 +112,10 @@ export function hideLoading() {
  */
 export function showError(error: unknown): void {
   const err = error as Error;
-  const overlay = document.getElementById('loading-overlay');
+  const overlay = document.getElementById("loading-overlay");
   if (overlay) {
-    const errorMessage = err.message || t('errors.unknown');
-    const errorStack = err.stack || t('errors.no_stack');
+    const errorMessage = err.message || t("errors.unknown");
+    const errorStack = err.stack || t("errors.no_stack");
 
     overlay.innerHTML = `
       <div class="card-body py-5">
@@ -115,17 +125,17 @@ export function showError(error: unknown): void {
             <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z"/>
           </svg>
         </div>
-        <h5 class="text-center mb-3">${t('errors.title')}</h5>
+        <h5 class="text-center mb-3">${t("errors.title")}</h5>
         <div class="alert alert-danger" role="alert">
-          <strong>${t('errors.message_label')}</strong> ${errorMessage}
+          <strong>${t("errors.message_label")}</strong> ${errorMessage}
         </div>
         <details class="mb-3">
-          <summary class="btn btn-sm btn-outline-secondary">${t('errors.show_details')}</summary>
+          <summary class="btn btn-sm btn-outline-secondary">${t("errors.show_details")}</summary>
           <pre class="mt-2 p-3 bg-light border rounded text-start" style="overflow-x: auto; font-size: 0.85rem;">${errorStack}</pre>
         </details>
         <div class="text-center">
           <button class="btn btn-primary" onclick="location.reload()">
-            ${t('errors.reload')}
+            ${t("errors.reload")}
           </button>
         </div>
       </div>
@@ -138,28 +148,28 @@ export function showError(error: unknown): void {
  */
 export function showInlineError(error: unknown): void {
   const err = error as Error;
-  const feedbackSection = document.getElementById('feedback-section');
+  const feedbackSection = document.getElementById("feedback-section");
   if (!feedbackSection) return;
 
-  const errorMessage = err.message || t('errors.unknown');
-  const errorStack = err.stack || t('errors.no_stack');
+  const errorMessage = err.message || t("errors.unknown");
+  const errorStack = err.stack || t("errors.no_stack");
 
-  feedbackSection.style.display = 'block';
+  feedbackSection.style.display = "block";
   feedbackSection.innerHTML = `
     <div class="alert alert-danger" role="alert">
       <h5 class="alert-heading">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-circle-fill me-2" viewBox="0 0 16 16">
           <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
         </svg>
-        ${t('errors.title')}
+        ${t("errors.title")}
       </h5>
-      <p><strong>${t('errors.message_label')}</strong> ${errorMessage}</p>
+      <p><strong>${t("errors.message_label")}</strong> ${errorMessage}</p>
       <details>
-        <summary class="btn btn-sm btn-outline-danger">${t('errors.show_details')}</summary>
+        <summary class="btn btn-sm btn-outline-danger">${t("errors.show_details")}</summary>
         <pre class="mt-2 p-2 bg-light border rounded" style="overflow-x: auto; font-size: 0.8rem; max-height: 300px;">${errorStack}</pre>
       </details>
     </div>
   `;
 
-  feedbackSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  feedbackSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }

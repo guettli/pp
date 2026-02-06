@@ -107,7 +107,7 @@ export interface DebugMeta {
 }
 
 // Supported languages
-export type SupportedLanguage = 'de' | 'en';
+export type SupportedLanguage = "de" | "en";
 
 // Translation key type (partial, for type safety without exhaustive listing)
 export type TranslationKey = string;

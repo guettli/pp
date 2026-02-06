@@ -3,7 +3,12 @@
  * Shared between browser and Node.js environments
  */
 
-import type { AlignmentItem, PanPhonDistanceResult, PhonemeComparisonItem, PhonemeFeatureTable } from '../types.js';
+import type {
+  AlignmentItem,
+  PanPhonDistanceResult,
+  PhonemeComparisonItem,
+  PhonemeFeatureTable,
+} from "../types.js";
 
 export interface DistanceCalculator {
   calculatePanPhonDistance: (target: string, actual: string) => PanPhonDistanceResult;
@@ -58,9 +63,9 @@ function parseIPAWord(cleaned: string, panphonFeatures: PhonemeFeatureTable): st
   // Combine vowels with following length mark (ː)
   const combined: string[] = [];
   for (let j = 0; j < phonemes.length; j++) {
-    if (phonemes[j] === 'ː' && combined.length > 0) {
+    if (phonemes[j] === "ː" && combined.length > 0) {
       // Append length mark to previous token
-      combined[combined.length - 1] += 'ː';
+      combined[combined.length - 1] += "ː";
     } else {
       combined.push(phonemes[j]);
     }
@@ -124,29 +129,29 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
     // - Expand rhoticity hook (U+02DE): V˞ → Vɹ (e.g., ʊ˞ → ʊɹ)
     // - Expand rhotic vowel ɝ (U+025D) → ɜ ɹ
     const cleaned = ipa
-      .replace(/[/[\]ˈˌ]/g, '')
-      .replace(/\u0361/g, '')  // Remove tie bar
-      .replace(/(.)\u0329/g, 'ə$1')  // Syllabic consonant → schwa + consonant
-      .replace(/\u0261/g, 'g')  // IPA ɡ → regular g
-      .replace(/\u032F/g, '')  // Remove non-syllabic mark
-      .replace(/\u0334/g, '')  // Remove velarized mark
-      .replace(/(.)\u02DE/g, '$1ɹ')  // Expand rhoticity: V˞ → Vɹ
-      .replace(/\u025D/g, 'ɜɹ')  // Expand rhotic vowel ɝ → ɜɹ
+      .replace(/[/[\]ˈˌ]/g, "")
+      .replace(/\u0361/g, "") // Remove tie bar
+      .replace(/(.)\u0329/g, "ə$1") // Syllabic consonant → schwa + consonant
+      .replace(/\u0261/g, "g") // IPA ɡ → regular g
+      .replace(/\u032F/g, "") // Remove non-syllabic mark
+      .replace(/\u0334/g, "") // Remove velarized mark
+      .replace(/(.)\u02DE/g, "$1ɹ") // Expand rhoticity: V˞ → Vɹ
+      .replace(/\u025D/g, "ɜɹ") // Expand rhotic vowel ɝ → ɜɹ
       .trim();
 
     // If input contains spaces, check if it's already tokenized (single-char tokens)
     // or if it contains multi-word phrases (multi-char tokens that need parsing)
-    if (cleaned.includes(' ')) {
+    if (cleaned.includes(" ")) {
       const tokens = cleaned.split(/\s+/).filter((p: string) => p.length > 0);
 
       // Check if all tokens are single characters (already tokenized by phoneme model)
-      const allSingleChar = tokens.every((t: string) => t.length === 1 || t === 'ː');
+      const allSingleChar = tokens.every((t: string) => t.length === 1 || t === "ː");
       if (allSingleChar) {
         // Already tokenized: just combine length marks with previous vowels
         const combined: string[] = [];
         for (let i = 0; i < tokens.length; i++) {
-          if (tokens[i] === 'ː' && combined.length > 0) {
-            combined[combined.length - 1] += 'ː';
+          if (tokens[i] === "ː" && combined.length > 0) {
+            combined[combined.length - 1] += "ː";
           } else {
             combined.push(tokens[i]);
           }
@@ -185,7 +190,10 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
    * phoneme recognizers may naturally add or miss short sounds, and substitutions
    * (wrong phoneme) are more informative errors than insertions/deletions.
    */
-  function alignPhonemes(phonemes1: string[], phonemes2: string[]): { distance: number; alignment: AlignmentItem[] } {
+  function alignPhonemes(
+    phonemes1: string[],
+    phonemes2: string[],
+  ): { distance: number; alignment: AlignmentItem[] } {
     const m = phonemes1.length;
     const n = phonemes2.length;
 
@@ -193,7 +201,9 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
     const indelPenalty = 0.5;
 
     // Create DP table
-    const dp: number[][] = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0) as number[]);
+    const dp: number[][] = Array(m + 1)
+      .fill(null)
+      .map(() => Array(n + 1).fill(0) as number[]);
 
     // Initialize first row and column (insertion/deletion costs)
     for (let i = 1; i <= m; i++) {
@@ -209,9 +219,9 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
         const substitutionCost = alignmentCost(phonemes1[i - 1], phonemes2[j - 1]);
 
         dp[i][j] = Math.min(
-          dp[i - 1][j] + indelPenalty,           // Deletion
-          dp[i][j - 1] + indelPenalty,           // Insertion
-          dp[i - 1][j - 1] + substitutionCost    // Substitution
+          dp[i - 1][j] + indelPenalty, // Deletion
+          dp[i][j - 1] + indelPenalty, // Insertion
+          dp[i - 1][j - 1] + substitutionCost, // Substitution
         );
       }
     }
@@ -229,7 +239,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
           alignment.unshift({
             target: phonemes1[i - 1],
             actual: phonemes2[j - 1],
-            distance: substitutionCost
+            distance: substitutionCost,
           });
           i--;
           j--;
@@ -241,7 +251,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
         alignment.unshift({
           target: phonemes1[i - 1],
           actual: null,
-          distance: indelPenalty
+          distance: indelPenalty,
         });
         i--;
       } else if (j > 0) {
@@ -249,7 +259,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
         alignment.unshift({
           target: null,
           actual: phonemes2[j - 1],
-          distance: indelPenalty
+          distance: indelPenalty,
         });
         j--;
       }
@@ -276,14 +286,14 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
     // Use max length to properly penalize both missing and extra phonemes
     // This ensures that "munda" (5 phonemes) gets a worse score than "mund" (4 phonemes)
     // when compared to "moːnt" (4 phonemes target)
-    const similarity = maxLen === 0 ? 1 : Math.max(0, 1 - (distance / maxLen));
+    const similarity = maxLen === 0 ? 1 : Math.max(0, 1 - distance / maxLen);
 
     // Build phoneme comparison from alignment, adding match flag
-    const phonemeComparison: PhonemeComparisonItem[] = alignment.map(item => ({
+    const phonemeComparison: PhonemeComparisonItem[] = alignment.map((item) => ({
       target: item.target,
       actual: item.actual,
       distance: item.distance,
-      match: item.distance < 0.3  // Consider close matches as acceptable
+      match: item.distance < 0.3, // Consider close matches as acceptable
     }));
 
     return {
@@ -292,7 +302,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
       targetPhonemes,
       actualPhonemes,
       phonemeComparison,
-      maxLength: maxLen
+      maxLength: maxLen,
     };
   }
 
@@ -315,6 +325,6 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
     getPhonemeFeatures,
     isKnownPhoneme,
     splitIntoPhonemes,
-    phonemeFeatureDistance
+    phonemeFeatureDistance,
   };
 }

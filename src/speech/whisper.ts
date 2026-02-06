@@ -2,14 +2,21 @@
  * Whisper model loading and speech recognition
  */
 
-import type { SupportedLanguage } from '../types.js';
+import type { SupportedLanguage } from "../types.js";
 
 interface TransformersPipeline {
-  (audio: Float32Array, options?: Record<string, unknown>): Promise<{ text: string; [key: string]: unknown }>;
+  (
+    audio: Float32Array,
+    options?: Record<string, unknown>,
+  ): Promise<{ text: string; [key: string]: unknown }>;
 }
 
 interface TransformersModule {
-  pipeline: (task: string, model: string, options?: Record<string, unknown>) => Promise<TransformersPipeline>;
+  pipeline: (
+    task: string,
+    model: string,
+    options?: Record<string, unknown>,
+  ) => Promise<TransformersPipeline>;
   env: {
     allowLocalModels: boolean;
     remoteURL?: string;
@@ -48,96 +55,100 @@ export const WHISPER_STRIDE_LENGTH_S = 5;
 /**
  * Load Whisper model for German speech recognition
  */
-export async function loadWhisper(progressCallback: (progress: ProgressInfo) => void): Promise<TransformersPipeline> {
+export async function loadWhisper(
+  progressCallback: (progress: ProgressInfo) => void,
+): Promise<TransformersPipeline> {
   // Wait for transformers.js to be loaded from CDN
-  console.log('Waiting for transformers.js...');
+  console.log("Waiting for transformers.js...");
   while (!window.transformers) {
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await new Promise((resolve) => setTimeout(resolve, 100));
   }
 
-  console.log('Transformers.js available, configuring environment...');
+  console.log("Transformers.js available, configuring environment...");
   const { pipeline, env } = window.transformers;
   env.allowLocalModels = false;
-  const webgpuAvailable = typeof navigator !== 'undefined' && !!navigator.gpu;
+  const webgpuAvailable = typeof navigator !== "undefined" && !!navigator.gpu;
   if (env.backends?.onnx) {
-    env.backends.onnx.preferredBackend = webgpuAvailable ? 'webgpu' : 'wasm';
+    env.backends.onnx.preferredBackend = webgpuAvailable ? "webgpu" : "wasm";
     if (env.backends.onnx.wasm) {
       env.backends.onnx.wasm.numThreads = navigator.hardwareConcurrency || 4;
     }
   }
   // Use default HuggingFace CDN
-  console.log('allowLocalModels: ', env.allowLocalModels);
-  console.log('Using default HuggingFace CDN');
-  console.log('remoteURL:', env.remoteURL);
-  console.log('remotePathTemplate:', env.remotePathTemplate);
-  console.log('allowLocalModels:', env.allowLocalModels);
-  console.log('useBrowserCache:', env.useBrowserCache);
-  console.log('webgpuAvailable:', webgpuAvailable);
+  console.log("allowLocalModels: ", env.allowLocalModels);
+  console.log("Using default HuggingFace CDN");
+  console.log("remoteURL:", env.remoteURL);
+  console.log("remotePathTemplate:", env.remotePathTemplate);
+  console.log("allowLocalModels:", env.allowLocalModels);
+  console.log("useBrowserCache:", env.useBrowserCache);
+  console.log("webgpuAvailable:", webgpuAvailable);
 
-  console.log('Starting pipeline initialization...');
+  console.log("Starting pipeline initialization...");
 
   try {
     // Use wavLM+ model with fp16 for all languages
     // Model: microsoft/wavlm-plus-base-sd (or latest available)
     // See: https://huggingface.co/microsoft/wavlm-plus-base-sd
-    transcriber = await pipeline(
-      'automatic-speech-recognition',
-      'microsoft/wavlm-plus-base-sd',
-      {
-        progress_callback: (progress: ProgressInfo) => {
-          console.log('Pipeline progress:', progress);
-          progressCallback(progress);
-        },
-        dtype: 'float16', // Enable fp16
-      }
-    );
+    transcriber = await pipeline("automatic-speech-recognition", "microsoft/wavlm-plus-base-sd", {
+      progress_callback: (progress: ProgressInfo) => {
+        console.log("Pipeline progress:", progress);
+        progressCallback(progress);
+      },
+      dtype: "float16", // Enable fp16
+    });
 
-    console.log('Pipeline initialized successfully (wavLM+ fp16)');
+    console.log("Pipeline initialized successfully (wavLM+ fp16)");
     return transcriber;
   } catch (err) {
     const error = err as Error;
-    console.error('🚨 PIPELINE LOADING FAILED 🚨');
-    console.error('Error message:', error.message);
-    console.error('Error name:', error.name);
-    console.error('Error stack:', error.stack);
-    console.error('Full error object:', JSON.stringify(error, Object.getOwnPropertyNames(error)));
+    console.error("🚨 PIPELINE LOADING FAILED 🚨");
+    console.error("Error message:", error.message);
+    console.error("Error name:", error.name);
+    console.error("Error stack:", error.stack);
+    console.error("Full error object:", JSON.stringify(error, Object.getOwnPropertyNames(error)));
 
     // Additional context
-    if (error.message?.includes('not valid JSON')) {
-      console.error('');
-      console.error('💡 DIAGNOSIS: A JSON file returned HTML instead of JSON');
-      console.error('   This usually means:');
-      console.error('   1. 🎯 MOST LIKELY: Browser cache has corrupted HTML files');
-      console.error('   2. HuggingFace CDN is down or blocking requests');
-      console.error('   3. Network/firewall is intercepting requests');
-      console.error('');
-      console.error('🔧 IMMEDIATE FIX:');
-      console.error('   1. Press Ctrl+Shift+Delete (or Cmd+Shift+Delete on Mac)');
+    if (error.message?.includes("not valid JSON")) {
+      console.error("");
+      console.error("💡 DIAGNOSIS: A JSON file returned HTML instead of JSON");
+      console.error("   This usually means:");
+      console.error("   1. 🎯 MOST LIKELY: Browser cache has corrupted HTML files");
+      console.error("   2. HuggingFace CDN is down or blocking requests");
+      console.error("   3. Network/firewall is intercepting requests");
+      console.error("");
+      console.error("🔧 IMMEDIATE FIX:");
+      console.error("   1. Press Ctrl+Shift+Delete (or Cmd+Shift+Delete on Mac)");
       console.error('   2. Select "Cached images and files"');
       console.error('   3. Click "Clear data"');
-      console.error('   4. Reload this page with Ctrl+Shift+R');
-      console.error('');
-      console.error('🔄 Attempting to clear transformers.js cache automatically...');
+      console.error("   4. Reload this page with Ctrl+Shift+R");
+      console.error("");
+      console.error("🔄 Attempting to clear transformers.js cache automatically...");
 
       // Try to clear the cache
-      if ('caches' in window) {
-        caches.keys().then(names => {
-          console.log('📦 Found caches:', names);
-          return Promise.all(
-            names.map(name => {
-              console.log('🗑️ Deleting cache:', name);
-              return caches.delete(name);
-            })
-          );
-        }).then(() => {
-          console.log('✅ Cache cleared! Please reload the page now (Ctrl+Shift+R or Cmd+Shift+R)');
-          console.log('');
-        }).catch((err: unknown) => {
-          console.error('❌ Could not clear cache automatically:', err);
-          console.error('   Please clear cache manually as described above');
-        });
+      if ("caches" in window) {
+        caches
+          .keys()
+          .then((names) => {
+            console.log("📦 Found caches:", names);
+            return Promise.all(
+              names.map((name) => {
+                console.log("🗑️ Deleting cache:", name);
+                return caches.delete(name);
+              }),
+            );
+          })
+          .then(() => {
+            console.log(
+              "✅ Cache cleared! Please reload the page now (Ctrl+Shift+R or Cmd+Shift+R)",
+            );
+            console.log("");
+          })
+          .catch((err: unknown) => {
+            console.error("❌ Could not clear cache automatically:", err);
+            console.error("   Please clear cache manually as described above");
+          });
       }
-      console.error('');
+      console.error("");
     }
 
     throw error;
@@ -147,18 +158,21 @@ export async function loadWhisper(progressCallback: (progress: ProgressInfo) => 
 /**
  * Transcribe audio to text
  */
-export async function transcribeAudio(audioData: Float32Array, language: SupportedLanguage = 'de'): Promise<string> {
+export async function transcribeAudio(
+  audioData: Float32Array,
+  language: SupportedLanguage = "de",
+): Promise<string> {
   if (!transcriber) {
-    throw new Error('Model not loaded. Please wait for initialization.');
+    throw new Error("Model not loaded. Please wait for initialization.");
   }
 
-  const whisperLanguage = language === 'de' ? 'german' : 'english';
+  const whisperLanguage = language === "de" ? "german" : "english";
   const result = await transcriber(audioData, {
     language: whisperLanguage,
-    task: 'transcribe',
-    return_timestamps: false,  // We only need text for MVP
+    task: "transcribe",
+    return_timestamps: false, // We only need text for MVP
     chunk_length_s: WHISPER_CHUNK_LENGTH_S,
-    stride_length_s: WHISPER_STRIDE_LENGTH_S
+    stride_length_s: WHISPER_STRIDE_LENGTH_S,
   });
 
   return result.text.trim();

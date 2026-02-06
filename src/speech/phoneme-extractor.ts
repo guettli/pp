@@ -3,8 +3,8 @@
  * Outputs IPA phonemes directly from audio
  */
 
-import { extractLogMelJS } from './mel-js.js';
-import { getModelFromCache, saveModelToCache } from './model-cache.js';
+import { extractLogMelJS } from "./mel-js.js";
+import { getModelFromCache, saveModelToCache } from "./model-cache.js";
 
 // ONNX Runtime types
 interface OrtTensor {
@@ -39,7 +39,7 @@ interface ProgressInfo {
 
 // Model configuration
 // Using your HuggingFace repo for ZIPA small CTC ONNX model
-const MODEL_REPO = 'guettli/zipa-small-ctc-onnx-2026-01-28';
+const MODEL_REPO = "guettli/zipa-small-ctc-onnx-2026-01-28";
 const MODEL_URL = `https://huggingface.co/${MODEL_REPO}/resolve/main/model.onnx`;
 const VOCAB_URL = `https://huggingface.co/${MODEL_REPO}/resolve/main/vocab.json`;
 
@@ -50,23 +50,29 @@ let idToToken: Record<number, string> | null = null;
 /**
  * Load the phoneme extraction model
  */
-export async function loadPhonemeModel(progressCallback: (info: ProgressInfo) => void): Promise<void> {
+export async function loadPhonemeModel(
+  progressCallback: (info: ProgressInfo) => void,
+): Promise<void> {
   // Wait for ONNX Runtime to be available
   while (!window.ort) {
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await new Promise((resolve) => setTimeout(resolve, 100));
   }
 
   const ort = window.ort;
 
   try {
     // Load vocab first (small)
-    progressCallback({ status: 'downloading', name: 'vocab.json', progress: 0 });
+    progressCallback({
+      status: "downloading",
+      name: "vocab.json",
+      progress: 0,
+    });
 
     const vocabResponse = await fetch(VOCAB_URL);
     if (!vocabResponse.ok) {
       throw new Error(`Failed to fetch vocab: ${vocabResponse.status}`);
     }
-    vocab = await vocabResponse.json() as Record<string, number>;
+    vocab = (await vocabResponse.json()) as Record<string, number>;
 
     // Create reverse mapping (id -> token)
     idToToken = {};
@@ -74,14 +80,15 @@ export async function loadPhonemeModel(progressCallback: (info: ProgressInfo) =>
       idToToken[id as unknown as number] = token;
     }
 
-
-    progressCallback({ status: 'downloading', name: 'model.onnx', progress: 10 });
+    progressCallback({
+      status: "downloading",
+      name: "model.onnx",
+      progress: 10,
+    });
 
     // Configure ONNX Runtime - prefer WebGPU
-    const webgpuAvailable = typeof navigator !== 'undefined' && !!navigator.gpu;
-    const executionProviders = webgpuAvailable
-      ? ['webgpu', 'wasm']
-      : ['wasm'];
+    const webgpuAvailable = typeof navigator !== "undefined" && !!navigator.gpu;
+    const executionProviders = webgpuAvailable ? ["webgpu", "wasm"] : ["wasm"];
 
     // Try to load model from IndexedDB cache first
     let modelArrayBuffer = await getModelFromCache(MODEL_URL);
@@ -94,12 +101,12 @@ export async function loadPhonemeModel(progressCallback: (info: ProgressInfo) =>
         throw new Error(`Failed to fetch model: ${modelResponse.status}`);
       }
 
-      const contentLength = modelResponse.headers.get('content-length');
+      const contentLength = modelResponse.headers.get("content-length");
       const totalBytes = contentLength ? parseInt(contentLength, 10) : 0;
 
       // Read response as stream for progress tracking
       if (!modelResponse.body) {
-        throw new Error('Model response body is null');
+        throw new Error("Model response body is null");
       }
       const reader = modelResponse.body.getReader();
       const chunks: Uint8Array[] = [];
@@ -115,11 +122,11 @@ export async function loadPhonemeModel(progressCallback: (info: ProgressInfo) =>
         if (totalBytes > 0) {
           const progress = 10 + (loadedBytes / totalBytes) * 80;
           progressCallback({
-            status: 'downloading',
-            name: 'model.onnx',
+            status: "downloading",
+            name: "model.onnx",
             progress: Math.round(progress),
             loaded: loadedBytes,
-            total: totalBytes
+            total: totalBytes,
           });
         }
       }
@@ -139,18 +146,17 @@ export async function loadPhonemeModel(progressCallback: (info: ProgressInfo) =>
     // Use cached or freshly downloaded model
     const modelBuffer = new Uint8Array(modelArrayBuffer);
 
-    progressCallback({ status: 'initializing', progress: 90 });
+    progressCallback({ status: "initializing", progress: 90 });
 
     // Create inference session
     session = await ort.InferenceSession.create(modelBuffer.buffer, {
       executionProviders,
-      graphOptimizationLevel: 'all',
+      graphOptimizationLevel: "all",
     });
 
-    progressCallback({ status: 'ready', progress: 100 });
-
+    progressCallback({ status: "ready", progress: 100 });
   } catch (error) {
-    console.error('Failed to load phoneme model:', error);
+    console.error("Failed to load phoneme model:", error);
     throw error;
   }
 }
@@ -160,12 +166,12 @@ export async function loadPhonemeModel(progressCallback: (info: ProgressInfo) =>
  */
 export async function extractPhonemes(audioData: Float32Array): Promise<string> {
   if (!session) {
-    throw new Error('Phoneme model not loaded');
+    throw new Error("Phoneme model not loaded");
   }
 
   const ort = window.ort;
   if (!ort) {
-    throw new Error('ONNX Runtime not loaded');
+    throw new Error("ONNX Runtime not loaded");
   }
 
   // Extract log-mel features (shape: [frames, 80])
@@ -173,9 +179,9 @@ export async function extractPhonemes(audioData: Float32Array): Promise<string> 
   const melFeatures = extractLogMelJS(audioData, melBands);
   const numFrames = melFeatures.length / melBands;
   // Reshape to [1, numFrames, 80]
-  const inputTensor = new ort.Tensor('float32', melFeatures, [1, numFrames, melBands]);
+  const inputTensor = new ort.Tensor("float32", melFeatures, [1, numFrames, melBands]);
   // Prepare x_lens tensor (number of frames)
-  const xLensTensor = new ort.Tensor('int64', new BigInt64Array([BigInt(numFrames)]), [1]);
+  const xLensTensor = new ort.Tensor("int64", new BigInt64Array([BigInt(numFrames)]), [1]);
   // Run inference
   const feeds = { x: inputTensor, x_lens: xLensTensor };
   const results = await session.run(feeds);
@@ -186,7 +192,9 @@ export async function extractPhonemes(audioData: Float32Array): Promise<string> 
     logits = results[firstKey];
   }
   if (!logits) {
-    throw new Error('No logits output found in ONNX results. Available keys: ' + Object.keys(results).join(', '));
+    throw new Error(
+      "No logits output found in ONNX results. Available keys: " + Object.keys(results).join(", "),
+    );
   }
   const logitsData = logits.data as Float32Array;
   const [, seqLen, vocabSize] = logits.dims;
@@ -209,7 +217,7 @@ export async function extractPhonemes(audioData: Float32Array): Promise<string> 
   // CTC decode: remove consecutive duplicates and blanks
   const phonemes = ctcDecode(predictedIds);
 
-  return phonemes.join('');
+  return phonemes.join("");
 }
 
 /**
@@ -226,7 +234,15 @@ function ctcDecode(ids: number[]): string[] {
 
     // Skip special tokens (including sentence boundary marker ▁)
     const token = idToToken?.[id];
-    if (!token || token === '<pad>' || token === '<s>' || token === '</s>' || token === '<unk>' || token === '<blk>' || token === '▁') {
+    if (
+      !token ||
+      token === "<pad>" ||
+      token === "<s>" ||
+      token === "</s>" ||
+      token === "<unk>" ||
+      token === "<blk>" ||
+      token === "▁"
+    ) {
       continue;
     }
 

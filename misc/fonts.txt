@@ -1,0 +1,64 @@
+Goal: Easy to read Font. Il1 need to be easily distinguishable.
+
+
+---
+
+Your requirements are clear and well-structured! Here are a few suggestions to improve clarity and completeness:
+
+---
+
+
+I am looking for an open source font which is easy to read for children.
+
+**Character differentiation (hard requirements):**
+- `I` `l` `1` must be easy to differentiate
+- Lowercase `l`: must have a curved tail (hooks to the right at the bottom)
+- Uppercase `I`: must have horizontal strokes at top and bottom (serifs), with rounded ends
+- Number `1`: should have a flag/serif at the top or a base to distinguish it
+
+**Style:**
+- Serif, but slightly and rounded.
+- Slightly rounded terminals/corners
+- Should not look handwritten or overly playful
+
+**Technical:**
+- Open source (e.g., SIL Open Font License)
+- Easily embeddable into HTML (e.g., available on Google Fonts)
+
+
+---
+
+Il1 123456790 abcde fghij klmno pqrst uvwxyz ABCDE FGHIJ KLMO PQRST UVWXYZ
+
+---
+
+https://fontlibrary.org/en/font/libre-baskerville
+
+https://fontlibrary.org/en/font/thai-font
+
+
+---
+
+
+Maybe a bit like this font: https://opendyslexic.org/
+
+But it looks too strange/different.
+
+"Grounding" would be good, so that the chars look stable. Imagine the chars a real world shapes.
+They should not fall over when wind comes.
+
+Overview:
+
+
+https://fonts.google.com/?preview.text=Il1%20oO0%20abcdefg%20hijklm%20opqrst%20uvwxyz%20ABCDEFG%20HIJKLMN%20OPQRST%20UVWXYZ%201234%205678%2090&preview.size=28
+
+
+# No round corners.
+https://fonts.google.com/specimen/Atkinson+Hyperlegible?specimen.preview.text=Il1+123456790+abcde+fghij+klmno+pqrst+uvwxyz+ABCDE+FGHIJ+KLMO+PQRST+UVWXYZ
+
+
+https://opendyslexic.org/
+
+
+
+https://fonts.google.com/specimen/SN+Pro?preview.text=Il1%20oO0%20abcdefg%20hijklm%20opqrst%20uvwxyz%20ABCDEFG%20HIJKLMN%20OPQRST%20UVWXYZ%201234%205678%2090&specimen.preview.text=Il1+oO0+abcdefg+hijklm+opqrst+uvwxyz+ABCDEFG+HIJKLMN+OPQRST+UVWXYZ+1234+5678+90&preview.size=28

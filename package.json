@@ -15,7 +15,7 @@
     "test:phrases": "tsc -p tsconfig.build.json && node tests/all-phrases.test.js",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit",
-    "check": "concurrently -n lint,types,phrases,e2e -c blue,cyan,yellow,magenta \"pnpm lint\" \"pnpm typecheck\" \"pnpm test:phrases\" \"pnpm test\""
+    "check": "./scripts/lint.sh && concurrently -n types,phrases,e2e -c cyan,yellow,magenta \"pnpm typecheck\" \"pnpm test:phrases\" \"pnpm test\""
   },
   "keywords": [
     "pronunciation",
@@ -34,6 +34,7 @@
     "@typescript-eslint/parser": "^8.54.0",
     "concurrently": "^9.2.1",
     "eslint": "^9.39.2",
+    "prettier": "^3.8.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.1"

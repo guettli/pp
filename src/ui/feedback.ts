@@ -2,10 +2,10 @@
  * Feedback display component
  */
 
-import { getLanguage, t } from '../i18n.js';
-import { setState, state } from '../state.js';
-import type { PhonemeComparisonItem, Phrase, Score } from '../types.js';
-import { generateExplanationsHTML } from './ipa-helper.js';
+import { getLanguage, t } from "../i18n.js";
+import { setState, state } from "../state.js";
+import type { PhonemeComparisonItem, Phrase, Score } from "../types.js";
+import { generateExplanationsHTML } from "./ipa-helper.js";
 
 // Track current audio playback
 let currentAudio: HTMLAudioElement | null = null;
@@ -15,23 +15,19 @@ let speechSynthesisSupported: boolean | null = null; // null = unknown, true/fal
  * Display pronunciation feedback with phoneme-level analysis
  */
 export function displayFeedback(targetPhrase: Phrase, actualIPA: string, score: Score): void {
-  const section = document.getElementById('feedback-section');
-  const alert = document.getElementById('feedback-alert');
-  const targetElement = document.getElementById('feedback-target');
-  const targetIPAElement = document.getElementById('feedback-target-ipa');
-  const actualIPAElement = document.getElementById('feedback-actual-ipa');
-  const scoreElement = document.getElementById('feedback-score');
-  const messageElement = document.getElementById('feedback-message');
+  const section = document.getElementById("feedback-section");
+  const alert = document.getElementById("feedback-alert");
+  const targetElement = document.getElementById("feedback-target");
+  const targetIPAElement = document.getElementById("feedback-target-ipa");
+  const actualIPAElement = document.getElementById("feedback-actual-ipa");
+  const scoreElement = document.getElementById("feedback-score");
+  const messageElement = document.getElementById("feedback-message");
 
   // Show feedback section
-  if (section) section.style.display = 'block';
+  if (section) section.style.display = "block";
 
   // Increment recording count and hide tips after 3 recordings
   setState({ recordingCount: state.recordingCount + 1 });
-  if (state.recordingCount >= 3) {
-    const tipsSection = document.getElementById('tips-section');
-    if (tipsSection) tipsSection.style.display = 'none';
-  }
 
   // Update alert styling
   if (alert) {
@@ -39,8 +35,8 @@ export function displayFeedback(targetPhrase: Phrase, actualIPA: string, score: 
 
     // Show similarity only if phrase was recognized
     const similarityText = score.notFound
-      ? ''
-      : `<p class="mb-0">${t('feedback.phoneme_similarity')} <strong>${score.similarityPercent}%</strong></p>`;
+      ? ""
+      : `<p class="mb-0">${t("feedback.phoneme_similarity")} <strong>${score.similarityPercent}%</strong></p>`;
 
     alert.innerHTML = `
       <h4 class="alert-heading">${score.grade}</h4>
@@ -49,14 +45,19 @@ export function displayFeedback(targetPhrase: Phrase, actualIPA: string, score: 
   }
 
   // Generate side-by-side phoneme comparison
-  const comparisonGrid = document.getElementById('phoneme-comparison-grid');
+  const comparisonGrid = document.getElementById("phoneme-comparison-grid");
   if (comparisonGrid) {
-    if (!score.notFound && score.phonemeComparison && score.phonemeComparison.length > 0) {
+    if (
+      !score.notFound &&
+      score.phonemeComparison &&
+      Array.isArray(score.phonemeComparison) &&
+      score.phonemeComparison.length > 0
+    ) {
       comparisonGrid.innerHTML = generatePhonemeComparisonHTML(score.phonemeComparison);
     } else if (score.notFound) {
-      comparisonGrid.innerHTML = `<span class="text-muted">${t('feedback.phrase_not_in_vocab')}</span>`;
+      comparisonGrid.innerHTML = `<span class="text-muted">${t("feedback.phrase_not_in_vocab")}</span>`;
     } else {
-      comparisonGrid.innerHTML = '';
+      comparisonGrid.innerHTML = "";
     }
   }
 
@@ -64,76 +65,76 @@ export function displayFeedback(targetPhrase: Phrase, actualIPA: string, score: 
   if (targetElement) targetElement.textContent = targetPhrase.phrase;
   if (targetIPAElement) {
     // Use the first (standard) IPA pronunciation
-    targetIPAElement.textContent = targetPhrase.ipas[0]?.ipa || '';
+    targetIPAElement.textContent = targetPhrase.ipas[0]?.ipa || "";
   }
   if (actualIPAElement) {
     // Show phonemes if available, or "Not recognized" if phrase not found
     if (score.notFound) {
-      actualIPAElement.textContent = t('feedback.phrase_not_in_vocab');
+      actualIPAElement.textContent = t("feedback.phrase_not_in_vocab");
     } else {
-      actualIPAElement.textContent = actualIPA || '—';
+      actualIPAElement.textContent = actualIPA || "—";
     }
   }
   if (scoreElement) scoreElement.textContent = score.grade;
   if (messageElement) messageElement.textContent = score.message;
 
   // Show play button if recording is available
-  const playBtn = document.getElementById('play-recording-btn');
+  const playBtn = document.getElementById("play-recording-btn");
   if (playBtn && state.lastRecordingBlob) {
-    playBtn.style.display = 'inline-block';
+    playBtn.style.display = "inline-block";
     setupPlayButton(playBtn);
   }
 
   // Show play target button for desired pronunciation (if supported)
-  const playTargetBtn = document.getElementById('play-target-btn');
-  const speechHint = document.getElementById('speech-synthesis-hint');
+  const playTargetBtn = document.getElementById("play-target-btn");
+  const speechHint = document.getElementById("speech-synthesis-hint");
   if (playTargetBtn && targetPhrase.phrase) {
     void checkSpeechSynthesisSupport().then((supported) => {
       if (supported) {
-        playTargetBtn.style.display = 'inline-block';
+        playTargetBtn.style.display = "inline-block";
         playTargetBtn.onclick = () => playDesiredPronunciation(targetPhrase.phrase);
-        if (speechHint) speechHint.style.display = 'none';
+        if (speechHint) speechHint.style.display = "none";
       } else {
-        playTargetBtn.style.display = 'none';
+        playTargetBtn.style.display = "none";
         if (speechHint) {
-          speechHint.style.display = 'inline';
-          speechHint.textContent = t('feedback.speech_not_supported');
+          speechHint.style.display = "inline";
+          speechHint.textContent = t("feedback.speech_not_supported");
         }
       }
     });
   }
 
   // Populate IPA explanations
-  const ipaContent = document.getElementById('ipa-explanations-content');
+  const ipaContent = document.getElementById("ipa-explanations-content");
   if (ipaContent) {
     // Use the first (standard) IPA pronunciation
-    const primaryIPA = targetPhrase.ipas[0]?.ipa || '';
+    const primaryIPA = targetPhrase.ipas[0]?.ipa || "";
     const explanationsHTML = generateExplanationsHTML(primaryIPA, actualIPA);
-    ipaContent.innerHTML = explanationsHTML || t('feedback.no_ipa_help');
+    ipaContent.innerHTML = explanationsHTML || t("feedback.no_ipa_help");
   }
 
   // Set up IPA help toggle (collapse initially)
-  const ipaToggle = document.getElementById('ipa-help-toggle');
-  const ipaExplanations = document.getElementById('ipa-explanations');
-  const ipaChevron = document.getElementById('ipa-help-chevron');
+  const ipaToggle = document.getElementById("ipa-help-toggle");
+  const ipaExplanations = document.getElementById("ipa-explanations");
+  const ipaChevron = document.getElementById("ipa-help-chevron");
   if (ipaToggle && ipaExplanations) {
-    ipaExplanations.style.display = 'none';
+    ipaExplanations.style.display = "none";
     if (ipaChevron) {
-      ipaChevron.className = 'bi bi-chevron-down ms-1';
+      ipaChevron.className = "bi bi-chevron-down ms-1";
     }
     ipaToggle.onclick = (e) => {
       e.preventDefault();
-      const isHidden = ipaExplanations.style.display === 'none';
-      ipaExplanations.style.display = isHidden ? 'block' : 'none';
+      const isHidden = ipaExplanations.style.display === "none";
+      ipaExplanations.style.display = isHidden ? "block" : "none";
       if (ipaChevron) {
-        ipaChevron.className = isHidden ? 'bi bi-chevron-up ms-1' : 'bi bi-chevron-down ms-1';
+        ipaChevron.className = isHidden ? "bi bi-chevron-up ms-1" : "bi bi-chevron-down ms-1";
       }
     };
   }
 
   // Scroll to feedback
   if (section) {
-    section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    section.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 }
 
@@ -141,24 +142,24 @@ export function displayFeedback(targetPhrase: Phrase, actualIPA: string, score: 
  * Hide feedback section
  */
 export function hideFeedback() {
-  const section = document.getElementById('feedback-section');
-  if (section) section.style.display = 'none';
+  const section = document.getElementById("feedback-section");
+  if (section) section.style.display = "none";
 
   // Hide play buttons
-  const playBtn = document.getElementById('play-recording-btn');
-  if (playBtn) playBtn.style.display = 'none';
+  const playBtn = document.getElementById("play-recording-btn");
+  if (playBtn) playBtn.style.display = "none";
 
-  const playTargetBtn = document.getElementById('play-target-btn');
-  if (playTargetBtn) playTargetBtn.style.display = 'none';
+  const playTargetBtn = document.getElementById("play-target-btn");
+  if (playTargetBtn) playTargetBtn.style.display = "none";
 
-  const speechHint = document.getElementById('speech-synthesis-hint');
-  if (speechHint) speechHint.style.display = 'none';
+  const speechHint = document.getElementById("speech-synthesis-hint");
+  if (speechHint) speechHint.style.display = "none";
 
   // Collapse IPA explanations
-  const ipaExplanations = document.getElementById('ipa-explanations');
-  if (ipaExplanations) ipaExplanations.style.display = 'none';
-  const ipaChevron = document.getElementById('ipa-help-chevron');
-  if (ipaChevron) ipaChevron.className = 'bi bi-chevron-down ms-1';
+  const ipaExplanations = document.getElementById("ipa-explanations");
+  if (ipaExplanations) ipaExplanations.style.display = "none";
+  const ipaChevron = document.getElementById("ipa-help-chevron");
+  if (ipaChevron) ipaChevron.className = "bi bi-chevron-down ms-1";
 
   // Cancel any ongoing speech
   if (window.speechSynthesis) {
@@ -208,20 +209,20 @@ function setupPlayButton(playBtn: HTMLElement): void {
   }
 
   // Mouse events
-  newBtn.addEventListener('mousedown', handlePressStart);
-  newBtn.addEventListener('mouseup', handlePressEnd);
-  newBtn.addEventListener('mouseleave', handlePressCancel);
+  newBtn.addEventListener("mousedown", handlePressStart);
+  newBtn.addEventListener("mouseup", handlePressEnd);
+  newBtn.addEventListener("mouseleave", handlePressCancel);
 
   // Touch events
-  newBtn.addEventListener('touchstart', (e: Event) => {
+  newBtn.addEventListener("touchstart", (e: Event) => {
     e.preventDefault();
     handlePressStart();
   });
-  newBtn.addEventListener('touchend', (e: Event) => {
+  newBtn.addEventListener("touchend", (e: Event) => {
     e.preventDefault();
     handlePressEnd();
   });
-  newBtn.addEventListener('touchcancel', handlePressCancel);
+  newBtn.addEventListener("touchcancel", handlePressCancel);
 }
 
 /**
@@ -231,19 +232,19 @@ function downloadRecording() {
   if (!state.lastRecordingBlob) return;
 
   const url = URL.createObjectURL(state.lastRecordingBlob);
-  const a = document.createElement('a');
+  const a = document.createElement("a");
   a.href = url;
 
   // Use current phrase for filename if available
-  const phrase = state.currentPhrase?.phrase || 'recording';
+  const phrase = state.currentPhrase?.phrase || "recording";
   const lang = getLanguage();
-  const timestamp = new Date().toISOString().slice(0, 19).replace(/[:-]/g, '');
+  const timestamp = new Date().toISOString().slice(0, 19).replace(/[:-]/g, "");
 
   // Include recognized IPA in filename if available
   let filename = `${phrase}_${timestamp}_${lang}`;
   if (state.actualIPA) {
     // Remove spaces for cleaner filename
-    filename += `_${state.actualIPA.replace(/\s+/g, '')}`;
+    filename += `_${state.actualIPA.replace(/\s+/g, "")}`;
   }
   a.download = `${filename}.webm`;
 
@@ -256,7 +257,7 @@ function downloadRecording() {
 /**
  * Play the last recorded audio
  */
-function playRecording() {
+export function playRecording() {
   if (!state.lastRecordingBlob) return;
 
   // Stop any currently playing audio
@@ -278,19 +279,19 @@ function playRecording() {
   currentAudio.onerror = () => {
     URL.revokeObjectURL(url);
     currentAudio = null;
-    console.error('Audio playback error');
+    console.error("Audio playback error");
   };
 
   // Wait for audio to be ready before playing (fixes Android issues)
   currentAudio.oncanplay = () => {
     if (currentAudio) {
-      currentAudio.play().catch((error) => {
-        console.error('Failed to play audio:', error);
+      currentAudio.play().catch((error: unknown) => {
+        console.error("Failed to play audio:", error);
         // Retry once on Android
         setTimeout(() => {
           if (currentAudio) {
-            currentAudio.play().catch((retryError) => {
-              console.error('Retry failed:', retryError);
+            currentAudio.play().catch((retryError: unknown) => {
+              console.error("Retry failed:", retryError);
             });
           }
         }, 100);
@@ -345,42 +346,103 @@ function checkSpeechSynthesisSupport() {
 /**
  * Play the desired pronunciation using Web Speech API
  */
-function playDesiredPronunciation(phrase: string): void {
-  if (!phrase || !window.speechSynthesis) return;
+export function playDesiredPronunciation(phrase: string): void {
+  if (!phrase || !window.speechSynthesis) {
+    console.log("Speech synthesis not available");
+    return;
+  }
 
-  // Cancel any ongoing speech
-  speechSynthesis.cancel();
+  console.log("playDesiredPronunciation called with phrase:", phrase);
 
-  const utterance = new SpeechSynthesisUtterance(phrase);
-  utterance.lang = getLanguage() === 'de' ? 'de-DE' : 'en-US';
-  utterance.rate = 0.9; // Slightly slower for clarity
+  // Function to actually speak once voices are ready
+  const speakPhrase = () => {
+    // Cancel any ongoing speech
+    speechSynthesis.cancel();
 
-  speechSynthesis.speak(utterance);
+    const utterance = new SpeechSynthesisUtterance(phrase);
+    const lang = getLanguage();
+    utterance.lang = lang === "de" ? "de-DE" : "en-US";
+
+    // Adjust for maximum clarity
+    utterance.rate = 0.65; // Slower for better comprehension
+    utterance.pitch = 0.95; // Slightly lower pitch for clarity
+    utterance.volume = 1.0; // Full volume
+
+    console.log("Speaking phrase:", phrase, "with language:", utterance.lang);
+
+    utterance.onstart = () => console.log("Speech started");
+    utterance.onend = () => console.log("Speech ended");
+    utterance.onerror = (e) => console.error("Speech error:", e);
+
+    speechSynthesis.speak(utterance);
+  };
+
+  // Check if voices are already loaded
+  const voices = speechSynthesis.getVoices();
+  console.log("Available voices:", voices.length);
+
+  if (voices.length > 0) {
+    // Voices ready, speak immediately
+    console.log("Voices already loaded, speaking immediately");
+    speakPhrase();
+  } else {
+    // Wait for voices to load (happens on first page load)
+    console.log("Waiting for speech synthesis voices to load...");
+    let hasSpoken = false;
+
+    const onVoicesChanged = () => {
+      console.log("Voices loaded via event, speaking now");
+      if (!hasSpoken) {
+        hasSpoken = true;
+        speechSynthesis.removeEventListener("voiceschanged", onVoicesChanged);
+        speakPhrase();
+      }
+    };
+    speechSynthesis.addEventListener("voiceschanged", onVoicesChanged);
+
+    // Fallback timeout in case voiceschanged never fires
+    setTimeout(() => {
+      const voicesNow = speechSynthesis.getVoices();
+      console.log("Timeout check: voices available:", voicesNow.length);
+      if (voicesNow.length > 0 && !hasSpoken) {
+        hasSpoken = true;
+        speechSynthesis.removeEventListener("voiceschanged", onVoicesChanged);
+        speakPhrase();
+      } else if (!hasSpoken) {
+        console.warn("No voices available after timeout");
+      }
+    }, 500);
+  }
 }
 
 /**
  * Generate HTML for side-by-side phoneme comparison using table layout
  */
 function generatePhonemeComparisonHTML(phonemeComparison: PhonemeComparisonItem[]): string {
+  // Guard against undefined or non-array input
+  if (!phonemeComparison || !Array.isArray(phonemeComparison) || phonemeComparison.length === 0) {
+    return "";
+  }
+
   // Build class and tooltip data for each column
   const columns = phonemeComparison.map((comp: PhonemeComparisonItem) => {
-    const target = comp.target || '—';
-    const actual = comp.actual || '—';
+    const target = comp.target || "—";
+    const actual = comp.actual || "—";
 
-    let pairClass = 'match';
+    let pairClass = "match";
     if (!comp.match) {
       if (comp.target && !comp.actual) {
-        pairClass = 'missing';
+        pairClass = "missing";
       } else if (!comp.target && comp.actual) {
-        pairClass = 'extra';
+        pairClass = "extra";
       } else {
-        pairClass = 'mismatch';
+        pairClass = "mismatch";
       }
     }
 
     const tooltip = comp.match
-      ? t('feedback.phoneme_match')
-      : `${t('feedback.distance')}: ${comp.distance.toFixed(2)}`;
+      ? t("feedback.phoneme_match")
+      : `${t("feedback.distance")}: ${comp.distance.toFixed(2)}`;
 
     return { target, actual, pairClass, tooltip };
   });
@@ -393,15 +455,15 @@ function generatePhonemeComparisonHTML(phonemeComparison: PhonemeComparisonItem[
   for (const col of columns) {
     html += `<td class="phoneme-cell ${col.pairClass}" title="${col.tooltip}">${col.target}</td>`;
   }
-  html += '</tr>';
+  html += "</tr>";
 
   // Actual row
   html += '<tr class="phoneme-row-actual">';
   for (const col of columns) {
     html += `<td class="phoneme-cell ${col.pairClass}" title="${col.tooltip}">${col.actual}</td>`;
   }
-  html += '</tr>';
+  html += "</tr>";
 
-  html += '</tbody></table>';
+  html += "</tbody></table>";
   return html;
 }

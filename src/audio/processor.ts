@@ -13,7 +13,7 @@ export async function prepareAudioForWhisper(audioBlob: Blob): Promise<Float32Ar
   // Create audio context with 16kHz sample rate (Whisper requirement)
   const AudioContextClass = window.AudioContext || window.webkitAudioContext;
   const audioContext = new AudioContextClass({
-    sampleRate: 16000
+    sampleRate: 16000,
   });
 
   // Decode audio data
@@ -39,13 +39,13 @@ export async function prepareAudioForWhisper(audioBlob: Blob): Promise<Float32Ar
 async function resampleAudio(
   audioData: Float32Array,
   originSampleRate: number,
-  targetSampleRate: number
+  targetSampleRate: number,
 ): Promise<Float32Array> {
   // Create offline audio context for resampling
   const offlineContext = new OfflineAudioContext(
     1, // mono
-    Math.ceil(audioData.length * targetSampleRate / originSampleRate),
-    targetSampleRate
+    Math.ceil((audioData.length * targetSampleRate) / originSampleRate),
+    targetSampleRate,
   );
 
   // Create buffer source

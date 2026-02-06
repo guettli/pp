@@ -2,11 +2,11 @@
  * Load and decode PanPhon binary feature data
  */
 
-import type { PhonemeFeatureTable } from '../types.js';
+import type { PhonemeFeatureTable } from "../types.js";
 
 // For browser: Vite bundles this JSON import at build time
 // For Node.js: the test workers handle JSON loading separately
-import panphonData from '../data/panphon_features.json';
+import panphonData from "../data/panphon_features.json";
 
 interface PanphonData {
   phonemes: string[];

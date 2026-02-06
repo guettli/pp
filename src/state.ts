@@ -2,7 +2,7 @@
  * Application state management
  */
 
-import type { AppState } from './types.js';
+import type { AppState } from "./types.js";
 
 export const state: AppState = {
   currentPhrase: null,
@@ -16,7 +16,7 @@ export const state: AppState = {
   webgpuBackend: null,
   lastRecordingBlob: null,
   recordingCount: 0,
-  actualIPA: null
+  actualIPA: null,
 };
 
 /**
@@ -32,6 +32,6 @@ export function setState(updates: Partial<AppState>): void {
 export function resetFeedback(): void {
   setState({
     score: null,
-    actualIPA: null
+    actualIPA: null,
   });
 }

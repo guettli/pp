@@ -1,29 +1,29 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
 
 export default defineConfig({
-  base: './',
+  base: "./",
   build: {
-    target: 'esnext',
-    outDir: 'dist',
+    target: "esnext",
+    outDir: "dist",
   },
   optimizeDeps: {
     esbuildOptions: {
-      target: 'esnext'
-    }
+      target: "esnext",
+    },
   },
   worker: {
-    format: 'es'
+    format: "es",
   },
   server: {
     fs: {
-      strict: false
+      strict: false,
     },
     watch: {
-      ignored: ['**/.venv/**', '**/onnx/**']
+      ignored: ["**/.venv/**", "**/onnx/**"],
     },
     headers: {
-      'Cross-Origin-Opener-Policy': 'same-origin',
-      'Cross-Origin-Embedder-Policy': 'require-corp'
-    }
-  }
+      "Cross-Origin-Opener-Policy": "same-origin",
+      "Cross-Origin-Embedder-Policy": "require-corp",
+    },
+  },
 });

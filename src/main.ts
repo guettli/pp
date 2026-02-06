@@ -4,45 +4,41 @@
  */
 
 // Import styles
-import './styles/main.css';
+import "./styles/main.css";
 
-import {
-  getLanguage,
-  initI18n,
-  onLanguageChange,
-  setLanguage,
-  t
-} from './i18n.js';
+import { getLanguage, initI18n, onLanguageChange, setLanguage, t } from "./i18n.js";
 
 // Import state management
-import { resetFeedback, setState, state } from './state.js';
+import { resetFeedback, setState, state } from "./state.js";
 
 // Import utilities
-import { findPhraseByName, getRandomPhrase } from './utils/random.js';
+import { findPhraseByName, getRandomPhrase } from "./utils/random.js";
 
 // Import audio modules
-import { prepareAudioForWhisper } from './audio/processor.js';
-import { AudioRecorder } from './audio/recorder.js';
+import { prepareAudioForWhisper } from "./audio/processor.js";
+import { AudioRecorder } from "./audio/recorder.js";
 
 // Import phoneme extraction (direct IPA output)
-import {
-  extractPhonemes,
-  loadPhonemeModel
-} from './speech/phoneme-extractor.js';
+import { extractPhonemes, loadPhonemeModel } from "./speech/phoneme-extractor.js";
 
 // Import comparison logic
-import { scorePronunciation } from './comparison/scorer.js';
+import { scorePronunciation } from "./comparison/scorer.js";
 
 // Import UI components
-import { displayFeedback, hideFeedback } from './ui/feedback.js';
+import {
+  displayFeedback,
+  hideFeedback,
+  playDesiredPronunciation,
+  playRecording,
+} from "./ui/feedback.js";
 import {
   hideLoading,
   showError,
   showInlineError,
   showLoading,
-  updateLoadingProgress
-} from './ui/loading.js';
-import { displayPhrase } from './ui/phrase-display.js';
+  updateLoadingProgress,
+} from "./ui/loading.js";
+import { displayPhrase } from "./ui/phrase-display.js";
 import {
   resetRecordButton,
   setRecordButtonEnabled,
@@ -50,8 +46,8 @@ import {
   showProcessing,
   showProcessingDetails,
   showRecordingTooShortError,
-  updateRecordButton
-} from './ui/recorder-ui.js';
+  updateRecordButton,
+} from "./ui/recorder-ui.js";
 
 // Track recording state
 let recordingTimer: ReturnType<typeof setInterval> | null = null;
@@ -62,10 +58,12 @@ let pendingStopTimer: ReturnType<typeof setTimeout> | null = null;
  */
 async function init() {
   try {
-    console.log('Initializing Phoneme Party...');
+    console.log("Initializing Phoneme Party...");
 
     initI18n();
-    setState({ webgpuAvailable: typeof navigator !== 'undefined' && !!navigator.gpu });
+    setState({
+      webgpuAvailable: typeof navigator !== "undefined" && !!navigator.gpu,
+    });
     updateWebGpuStatus();
 
     // Show loading overlay
@@ -75,17 +73,19 @@ async function init() {
     let heartbeatCount = 0;
     const heartbeat = setInterval(() => {
       heartbeatCount++;
-      console.log(`💓 Heartbeat ${heartbeatCount} - Still loading... (${heartbeatCount * 5}s elapsed)`);
+      console.log(
+        `💓 Heartbeat ${heartbeatCount} - Still loading... (${heartbeatCount * 5}s elapsed)`,
+      );
     }, 5000);
 
     // Initialize audio recorder
     setState({ recorder: new AudioRecorder() });
-    console.log('Audio recorder initialized');
+    console.log("Audio recorder initialized");
 
     // Load phoneme extraction model
-    console.log('Starting to load phoneme model...');
-    console.log('⏱️ This may take 30-60 seconds for first load (downloading ~230MB)');
-    updateLoadingProgress({ status: 'downloading', progress: 0 });
+    console.log("Starting to load phoneme model...");
+    console.log("⏱️ This may take 30-60 seconds for first load (downloading ~230MB)");
+    updateLoadingProgress({ status: "downloading", progress: 0 });
 
     const loadStart = performance.now();
     await loadPhonemeModel((progress: { status: string; progress: number }) => {
@@ -96,15 +96,15 @@ async function init() {
     // Stop heartbeat
     clearInterval(heartbeat);
 
-    console.log('Phoneme model loaded successfully');
+    console.log("Phoneme model loaded successfully");
     console.log(`Model load time: ${modelLoadMs.toFixed(0)}ms`);
 
     // Check if WebGPU is being used
-    const webgpuBackend = state.webgpuAvailable ? 'webgpu' : 'wasm';
+    const webgpuBackend = state.webgpuAvailable ? "webgpu" : "wasm";
     setState({
       isModelLoaded: true,
       modelLoadMs,
-      webgpuBackend
+      webgpuBackend,
     });
     updateWebGpuStatus();
 
@@ -117,10 +117,9 @@ async function init() {
     // Set up event listeners
     setupEventListeners();
 
-    console.log('Application initialized successfully');
-
+    console.log("Application initialized successfully");
   } catch (error) {
-    console.error('Initialization error:', error);
+    console.error("Initialization error:", error);
     showError(error);
   }
 }
@@ -129,35 +128,35 @@ async function init() {
  * Set up event listeners for UI interactions
  */
 function setupEventListeners() {
-  const recordBtn = document.getElementById('record-btn');
-  const nextPhraseBtn = document.getElementById('next-phrase-btn');
-  const languageSelect = document.getElementById('language-select');
+  const recordBtn = document.getElementById("record-btn");
+  const nextPhraseBtn = document.getElementById("next-phrase-btn");
+  const languageSelect = document.getElementById("language-select");
 
   if (recordBtn) {
     // Use mousedown/mouseup for press-and-hold recording
-    recordBtn.addEventListener('mousedown', handleRecordStart);
-    recordBtn.addEventListener('mouseup', handleRecordStop);
-    recordBtn.addEventListener('mouseleave', handleRecordStop);
+    recordBtn.addEventListener("mousedown", handleRecordStart);
+    recordBtn.addEventListener("mouseup", handleRecordStop);
+    recordBtn.addEventListener("mouseleave", handleRecordStop);
 
     // Also support touch events for mobile
-    recordBtn.addEventListener('touchstart', (e) => {
+    recordBtn.addEventListener("touchstart", (e) => {
       e.preventDefault();
       void handleRecordStart();
     });
-    recordBtn.addEventListener('touchend', (e) => {
+    recordBtn.addEventListener("touchend", (e) => {
       e.preventDefault();
       void handleRecordStop();
     });
-    recordBtn.addEventListener('touchcancel', handleRecordStop);
+    recordBtn.addEventListener("touchcancel", handleRecordStop);
   }
 
   if (nextPhraseBtn) {
-    nextPhraseBtn.addEventListener('click', nextPhrase);
+    nextPhraseBtn.addEventListener("click", nextPhrase);
   }
 
   if (languageSelect && languageSelect instanceof HTMLSelectElement) {
     languageSelect.value = getLanguage();
-    languageSelect.addEventListener('change', (event) => {
+    languageSelect.addEventListener("change", (event) => {
       const target = event.target as HTMLSelectElement;
       setLanguage(target.value);
     });
@@ -171,36 +170,35 @@ function setupEventListeners() {
   }
 }
 
-
 function updateWebGpuStatus() {
-  const status = document.getElementById('webgpu-status');
+  const status = document.getElementById("webgpu-status");
   if (!status) return;
 
   if (!state.webgpuAvailable) {
-    status.textContent = t('footer.webgpu_status_unavailable');
-    status.classList.add('text-warning');
+    status.textContent = t("footer.webgpu_status_unavailable");
+    status.classList.add("text-warning");
     // Show prominent warning
-    console.warn('⚠️ WebGPU not available - using WASM fallback (slower)');
+    console.warn("⚠️ WebGPU not available - using WASM fallback (slower)");
     return;
   }
 
-  if (state.webgpuBackend === 'webgpu') {
-    status.textContent = t('footer.webgpu_status_active');
-    status.classList.remove('text-warning');
+  if (state.webgpuBackend === "webgpu") {
+    status.textContent = t("footer.webgpu_status_active");
+    status.classList.remove("text-warning");
     return;
   }
 
   if (state.webgpuBackend) {
-    status.textContent = t('footer.webgpu_status_fallback', {
-      backend: state.webgpuBackend
+    status.textContent = t("footer.webgpu_status_fallback", {
+      backend: state.webgpuBackend,
     });
-    if (state.webgpuBackend !== 'webgpu') {
-      status.classList.add('text-warning');
+    if (state.webgpuBackend !== "webgpu") {
+      status.classList.add("text-warning");
     }
     return;
   }
 
-  status.textContent = t('footer.webgpu_status_available');
+  status.textContent = t("footer.webgpu_status_available");
 }
 
 /**
@@ -225,7 +223,7 @@ async function handleRecordStart() {
 
     // Start recording
     if (!state.recorder) {
-      throw new Error('Audio recorder not initialized');
+      throw new Error("Audio recorder not initialized");
     }
     await state.recorder.start(() => {
       // Auto-stop callback when max duration reached - stop immediately
@@ -243,9 +241,8 @@ async function handleRecordStart() {
         updateRecordButton(true, duration);
       }
     }, 100);
-
   } catch (error) {
-    console.error('Recording start error:', error);
+    console.error("Recording start error:", error);
     showInlineError(error);
     setState({ isRecording: false });
     resetRecordButton();
@@ -259,13 +256,13 @@ async function shouldDeferForMicrophonePermission() {
 
   let status = null;
   try {
-    status = await navigator.permissions.query({ name: 'microphone' });
+    status = await navigator.permissions.query({ name: "microphone" });
   } catch (error) {
-    console.warn('Microphone permission check failed:', error);
+    console.warn("Microphone permission check failed:", error);
     return false;
   }
 
-  if (status.state === 'prompt' && state.recorder) {
+  if (status.state === "prompt" && state.recorder) {
     await state.recorder.requestPermission();
     showMicrophonePermissionNotice();
     resetRecordButton();
@@ -321,7 +318,7 @@ async function actuallyStopRecording() {
 
     // Stop recording and get blob with duration
     if (!state.recorder) {
-      throw new Error('Audio recorder not initialized');
+      throw new Error("Audio recorder not initialized");
     }
     const { blob: audioBlob, duration } = await state.recorder.stop();
     setState({ isRecording: false, lastRecordingBlob: audioBlob });
@@ -335,6 +332,9 @@ async function actuallyStopRecording() {
       resetRecordButton();
       return;
     }
+
+    // Play back the recording immediately
+    playRecording();
 
     // Set processing state
     setState({ isProcessing: true });
@@ -371,18 +371,18 @@ async function actuallyStopRecording() {
     const debugMeta: DebugMeta[] = [];
     if (state.modelLoadMs !== null && Number.isFinite(state.modelLoadMs)) {
       debugMeta.push({
-        labelKey: 'processing.meta_model_load',
-        value: `${state.modelLoadMs.toFixed(0)} ms`
+        labelKey: "processing.meta_model_load",
+        value: `${state.modelLoadMs.toFixed(0)} ms`,
       });
     }
     const audioDurationSec = duration / 1000;
     debugMeta.push({
-      labelKey: 'processing.meta_audio_duration',
-      value: `${audioDurationSec.toFixed(1)} s`
+      labelKey: "processing.meta_audio_duration",
+      value: `${audioDurationSec.toFixed(1)} s`,
     });
     debugMeta.push({
-      labelKey: 'processing.meta_backend',
-      value: state.webgpuBackend || 'wasm'
+      labelKey: "processing.meta_backend",
+      value: state.webgpuBackend || "wasm",
     });
 
     const progressInterval = setInterval(() => {
@@ -394,37 +394,42 @@ async function actuallyStopRecording() {
 
     try {
       // Process the audio
-      const audioData = await measureAsync('processing.step_prepare', () =>
-        prepareAudioForWhisper(audioBlob)
+      const audioData = await measureAsync("processing.step_prepare", () =>
+        prepareAudioForWhisper(audioBlob),
       );
       showProcessing(30);
 
       // Extract phonemes directly using phoneme model
-      const actualIPA = await measureAsync('processing.step_phonemes', () =>
-        extractPhonemes(audioData)
+      const actualIPA = await measureAsync("processing.step_phonemes", () =>
+        extractPhonemes(audioData),
       );
-      console.log('Extracted IPA phonemes:', actualIPA);
+      console.log("Extracted IPA phonemes:", actualIPA);
       showProcessing(85);
 
       // Score the pronunciation using PanPhon features
       if (!state.currentPhrase) {
-        throw new Error('No current phrase selected');
+        throw new Error("No current phrase selected");
       }
       const currentPhrase = state.currentPhrase;
+
+      // Check if ipas array exists and is not empty
+      if (!currentPhrase.ipas || currentPhrase.ipas.length === 0) {
+        throw new Error(`No IPA pronunciation data available for phrase: ${currentPhrase.phrase}`);
+      }
+
       // Try all IPAs and use the best score
-      const scores = currentPhrase.ipas.map(ipaEntry =>
-        measureSync('processing.step_score', () =>
-          scorePronunciation(ipaEntry.ipa, actualIPA)
-        )
+      const scores = currentPhrase.ipas.map((ipaEntry) =>
+        measureSync("processing.step_score", () => scorePronunciation(ipaEntry.ipa, actualIPA)),
       );
       // Use the score with the highest similarity
-      const score = scores.reduce((best, current) =>
-        current.similarity > best.similarity ? current : best
-      , scores[0] || scorePronunciation('', actualIPA));
-      console.log('Score:', score);
-      console.log('Target phonemes:', score.targetPhonemes);
-      console.log('Actual phonemes:', score.actualPhonemes);
-      console.log('Phoneme comparison:', score.phonemeComparison);
+      const score = scores.reduce(
+        (best, current) => (current.similarity > best.similarity ? current : best),
+        scores[0] || scorePronunciation("", actualIPA),
+      );
+      console.log("Score:", score);
+      console.log("Target phonemes:", score.targetPhonemes);
+      console.log("Actual phonemes:", score.actualPhonemes);
+      console.log("Phoneme comparison:", score.phonemeComparison);
       showProcessing(95);
 
       // Update state
@@ -435,7 +440,7 @@ async function actuallyStopRecording() {
       showProcessingDetails({
         steps: timingSteps,
         meta: debugMeta,
-        totalMs: performance.now() - timingStart
+        totalMs: performance.now() - timingStart,
       });
       showProcessing(100);
 
@@ -447,14 +452,12 @@ async function actuallyStopRecording() {
         resetRecordButton();
         setState({ isProcessing: false });
       }, 500);
-
     } catch (error) {
       clearInterval(progressInterval);
       throw error;
     }
-
   } catch (error) {
-    console.error('Recording processing error:', error);
+    console.error("Recording processing error:", error);
 
     // Show error in UI
     showInlineError(error);
@@ -471,7 +474,7 @@ async function actuallyStopRecording() {
  */
 function getPhraseFromQueryString() {
   const params = new URLSearchParams(window.location.search);
-  const phraseParam = params.get('phrase');
+  const phraseParam = params.get("phrase");
   if (!phraseParam) return null;
   return findPhraseByName(phraseParam, getLanguage());
 }
@@ -481,12 +484,12 @@ function getPhraseFromQueryString() {
  */
 function updateURL() {
   const params = new URLSearchParams();
-  params.set('lang', getLanguage());
+  params.set("lang", getLanguage());
   if (state.currentPhrase?.phrase) {
-    params.set('phrase', state.currentPhrase.phrase);
+    params.set("phrase", state.currentPhrase.phrase);
   }
   const newURL = `${window.location.pathname}?${params.toString()}`;
-  window.history.replaceState({}, '', newURL);
+  window.history.replaceState({}, "", newURL);
 }
 
 /**
@@ -496,11 +499,12 @@ function loadInitialPhrase() {
   const queryPhrase = getPhraseFromQueryString();
   if (queryPhrase) {
     setState({ currentPhrase: queryPhrase });
-    displayPhrase(queryPhrase);
+    displayPhrase(queryPhrase, () => playDesiredPronunciation(queryPhrase.phrase), false);
     setRecordButtonEnabled(true);
     updateURL();
   } else {
-    nextPhrase();
+    // On initial load, don't show any phrase - wait for user to click "Next Phrase"
+    setRecordButtonEnabled(false);
   }
 }
 
@@ -513,7 +517,7 @@ function nextPhrase() {
   resetFeedback();
 
   // Display the phrase
-  displayPhrase(phrase);
+  displayPhrase(phrase, () => playDesiredPronunciation(phrase.phrase), true);
 
   // Hide feedback
   hideFeedback();
@@ -523,11 +527,14 @@ function nextPhrase() {
 
   // Update URL
   updateURL();
+
+  // Play pronunciation automatically (works because of user interaction)
+  playDesiredPronunciation(phrase.phrase);
 }
 
 // Initialize the app when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => void init());
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => void init());
 } else {
   void init();
 }

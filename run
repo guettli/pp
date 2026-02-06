@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Bash Strict Mode: https://github.com/guettli/bash-strict-mode
+trap 'echo -e "\n🤷 🚨 🔥 Warning: A command has failed. Exiting the script. Line was ($0:$LINENO): $(sed -n "${LINENO}p" "$0" 2>/dev/null || true) 🔥 🚨 🤷 "; exit 3' ERR
+set -Eeuo pipefail
+
+# Show usage if no args or first arg starts with -
+if [[ $# -eq 0 ]] || [[ "${1:-}" == -* ]]; then
+    echo "Usage: run <command> [args...]" >&2
+    echo "Example: run tsx scripts/update-ipa.ts phrases-de.yaml" >&2
+    exit 1
+fi
+
+if [[ -z ${DIRENV_DIR:-} ]]; then
+    # Execute the command with direnv environment loaded
+    exec direnv exec . "$@"
+fi
+
+exec "$@"
