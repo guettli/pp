@@ -3,14 +3,24 @@
  */
 
 /* Import Bootstrap */
-@import 'bootstrap/dist/css/bootstrap.min.css';
+@import "bootstrap/dist/css/bootstrap.min.css";
 
 /* Global styles */
 body {
   background: GoldenRod;
   min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family:
+    "Shantell Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
     sans-serif;
 }
 
@@ -23,7 +33,8 @@ body {
   font-size: 8rem;
   line-height: 1;
   animation: fadeIn 0.5s ease-in;
-  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
+  font-family:
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
 }
 
 /* Recording pulse animation */
@@ -134,7 +145,7 @@ button {
 }
 
 .phoneme-cell {
-  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-family: "Segoe UI", system-ui, sans-serif;
   font-size: 1.1rem;
   line-height: 1.4;
   min-width: 2rem;

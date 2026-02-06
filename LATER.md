@@ -1,7 +1,45 @@
-Gamification: jump+run Game or similar. More fun, not theory
+Get Domain "DerHaseLacht.de"
+
 ---
 
-Upload current Audio via web (with a textbox for hints)
+Use pouchdb for local DB
+
+Store every result of a phrase.
+
+Only choose phrase which match the current state.
+
+Use spaced repitition, so that words which were done good, will not be shown for a longer time.
+
+
+
+----
+
+scripts/update-difficulty.py:
+
+ü is more difficult than a.
+
+---
+
+Gamification: jump+run Game or similar. More fun, not theory
+
+---
+
+
+From single word phrases to three word phrases: How to detect if the user is able to switch to
+higher level?
+
+Check which sounds he is able to do. Then look for phrases which contain these sounds.
+
+Then sometimes show single words with sounds he can't pronounce yet.
+
+---
+
+Fast counting N.Ns when recording is too "noisy".
+
+
+---
+
+Auto play phrase after playing the recorded phrase. For "this was expected" feedback.
 
 ---
 
@@ -13,8 +51,28 @@ Ask ZIPA authors for update.
 
 ---
 
+phrase_difficulty.py:
+
+Words like "the" do not exist.
+
+Verbs: Get to base form (laughs is not in Glasgow-norm, but "laugh" is)
+
+---
+
+Let the user choose a speaker voice (web speech api)
+
+---
+
 i18n.ts: Check for dead entries. Check if there are missing entries.
 How do other projects handle that?
+
+---
+
+try:
+....
+except ImportError:
+
+--> No, avoid that. Check via linter.
 
 ---
 
@@ -49,22 +107,22 @@ Talk to Goethe Institut: I want feedback (not money)
 
 Form before start: Allowed to use recordings for training?
 
-----
+---
 
 It should be possible to test exactly one word.
 Example:
 
-Mond           Thomas              80%   /moːnt/             m u n d a
+Mond Thomas 80% /moːnt/ m u n d a
 
 ---
 
 Why is there an "a" at the end?
 
-Mond           Thomas              80%   /moːnt/             m u n d a
+Mond Thomas 80% /moːnt/ m u n d a
 
 - Ich sage bewusst "Mand" anstatt "Mond". Warum 100% korrekt?
-m oː n t
-m a n d
+  m oː n t
+  m a n d
 
 - Check browser warnings.
 - Linux shows a square, not a heart: <https://thomas-guettler.de/phoneme-party/?lang=de&word=Herz>

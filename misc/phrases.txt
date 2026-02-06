@@ -1,0 +1,12 @@
+# Ideas about Phrases
+
+times: Like half past seven. Then show a Clock the the matchine time. Either as a watch or digital
+numbers (xor, not both, too confusing)
+
+Quark macht stark.
+
+Pizza, Nudeln raus.
+
+Der Forsch hüpft!
+
+Die Kuh ... Gibt Milch öä

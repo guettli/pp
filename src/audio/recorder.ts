@@ -8,7 +8,7 @@ export class AudioRecorder {
   private chunks: Blob[] = [];
   private startTime: number | null = null;
   public readonly maxDuration: number = 4000; // 4 seconds in milliseconds
-  public readonly minDuration: number = 500;  // 0.5 seconds minimum
+  public readonly minDuration: number = 500; // 0.5 seconds minimum
   private autoStopTimer: ReturnType<typeof setTimeout> | null = null;
 
   /**
@@ -20,14 +20,12 @@ export class AudioRecorder {
         channelCount: 1,
         sampleRate: 16000,
         echoCancellation: true,
-        noiseSuppression: true
-      }
+        noiseSuppression: true,
+      },
     });
 
     // Use webm format (widely supported)
-    const mimeType = MediaRecorder.isTypeSupported('audio/webm')
-      ? 'audio/webm'
-      : 'audio/mp4';
+    const mimeType = MediaRecorder.isTypeSupported("audio/webm") ? "audio/webm" : "audio/mp4";
 
     this.mediaRecorder = new MediaRecorder(this.stream, { mimeType });
     this.chunks = [];
@@ -44,7 +42,7 @@ export class AudioRecorder {
     // Auto-stop after max duration
     this.autoStopTimer = setTimeout(() => {
       if (this.isRecording()) {
-        console.log('Auto-stopping recording after max duration');
+        console.log("Auto-stopping recording after max duration");
         if (onAutoStop) {
           onAutoStop();
         }
@@ -61,11 +59,11 @@ export class AudioRecorder {
         channelCount: 1,
         sampleRate: 16000,
         echoCancellation: true,
-        noiseSuppression: true
-      }
+        noiseSuppression: true,
+      },
     });
 
-    stream.getTracks().forEach(track => track.stop());
+    stream.getTracks().forEach((track) => track.stop());
   }
 
   /**
@@ -74,7 +72,7 @@ export class AudioRecorder {
   async stop(): Promise<{ blob: Blob; duration: number }> {
     return new Promise((resolve, reject) => {
       if (!this.mediaRecorder) {
-        reject(new Error('No active recording'));
+        reject(new Error("No active recording"));
         return;
       }
 
@@ -101,7 +99,7 @@ export class AudioRecorder {
 
       // Stop all tracks
       if (this.stream) {
-        this.stream.getTracks().forEach(track => track.stop());
+        this.stream.getTracks().forEach((track) => track.stop());
         this.stream = null;
       }
     });
@@ -125,6 +123,6 @@ export class AudioRecorder {
    * Check if currently recording
    */
   isRecording(): boolean {
-    return this.mediaRecorder !== null && this.mediaRecorder.state === 'recording';
+    return this.mediaRecorder !== null && this.mediaRecorder.state === "recording";
   }
 }

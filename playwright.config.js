@@ -1,12 +1,12 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices } from "@playwright/test";
 
 /**
  * Playwright configuration for Phoneme Party
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
-  testDir: './tests',
-  testMatch: '**/*.spec.js',
+  testDir: "./tests",
+  testMatch: "**/*.spec.js",
 
   // Maximum time one test can run for
   timeout: 30000,
@@ -24,32 +24,32 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
 
   // Reporter to use
-  reporter: 'html',
+  reporter: "html",
 
   // Shared settings for all the projects below
   use: {
     // Base URL to use in actions like `await page.goto('/')`
-    baseURL: 'http://localhost:5173',
+    baseURL: "http://localhost:5173",
 
     // Collect trace when retrying the failed test
-    trace: 'on-first-retry',
+    trace: "on-first-retry",
 
     // Screenshot on failure
-    screenshot: 'only-on-failure',
+    screenshot: "only-on-failure",
   },
 
   // Configure projects for major browsers
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: "chromium",
+      use: { ...devices["Desktop Chrome"] },
     },
   ],
 
   // Run your local dev server before starting the tests
   webServer: {
-    command: 'pnpm run dev',
-    url: 'http://localhost:5173',
+    command: "pnpm run dev",
+    url: "http://localhost:5173",
     reuseExistingServer: true,
     timeout: 5000,
   },

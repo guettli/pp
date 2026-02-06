@@ -3,169 +3,141 @@
   ipas:
     - ipa: /kæt/
       category: standard
-
 - phrase: Dog
   emoji: 🐕
   ipas:
-    - ipa: /dɔɡ/
+    - ipa: /dɒɡ/
       category: standard
-
 - phrase: House
   emoji: 🏠
   ipas:
     - ipa: /haʊs/
       category: standard
-
 - phrase: Tree
   emoji: 🌳
   ipas:
-    - ipa: /triː/
+    - ipa: /tɹiː/
       category: standard
-
 - phrase: Flower
   emoji: 🌸
   ipas:
-    - ipa: /ˈflaʊər/
+    - ipa: /ˈflaʊ.ə/
       category: standard
-
 - phrase: Sun
   emoji: ☀️
   ipas:
     - ipa: /sʌn/
       category: standard
-
 - phrase: Moon
   emoji: 🌙
   ipas:
     - ipa: /muːn/
       category: standard
-
 - phrase: Star
   emoji: ⭐
   ipas:
-    - ipa: /stɑr/
+    - ipa: /stɑː(ɹ)/
       category: standard
-
 - phrase: Car
   emoji: 🚗
   ipas:
-    - ipa: /kɑr/
+    - ipa: /kɑː/
       category: standard
-
 - phrase: Ball
   emoji: ⚽
   ipas:
     - ipa: /bɔl/
       category: standard
-
 - phrase: Book
   emoji: 📖
   ipas:
     - ipa: /bʊk/
       category: standard
-
 - phrase: Apple
   emoji: 🍎
   ipas:
-    - ipa: /ˈæpəl/
+    - ipa: /ˈæp.əl/
       category: standard
-
 - phrase: Banana
   emoji: 🍌
   ipas:
-    - ipa: /bəˈnænə/
+    - ipa: /bəˈnɑː.nə/
       category: standard
-
 - phrase: Bread
   emoji: 🍞
   ipas:
     - ipa: /brɛd/
       category: standard
-
 - phrase: Fish
   emoji: 🐟
   ipas:
     - ipa: /fɪʃ/
       category: standard
-
 - phrase: Bird
   emoji: 🐦
   ipas:
-    - ipa: /bɝd/
+    - ipa: /bɜːd/
       category: standard
-
 - phrase: Butterfly
   emoji: 🦋
   ipas:
-    - ipa: /ˈbʌtərflaɪ/
+    - ipa: /ˈbʌ.tə(ɹ).flaɪ/
       category: standard
-
 - phrase: Ship
   emoji: 🚢
   ipas:
     - ipa: /ʃɪp/
       category: standard
-
 - phrase: Airplane
   emoji: ✈️
   ipas:
-    - ipa: /ˈɛrpleɪn/
+    - ipa: /ˈɛəˌpleɪ̯n/
       category: standard
-
 - phrase: Train
   emoji: 🚂
   ipas:
-    - ipa: /treɪn/
+    - ipa: /tɹeɪn/
       category: standard
-
 - phrase: Bicycle
   emoji: 🚲
   ipas:
-    - ipa: /ˈbaɪsɪkəl/
+    - ipa: /ˈbaɪsɪk(ə)l/
       category: standard
-
 - phrase: Door
   emoji: 🚪
   ipas:
-    - ipa: /dɔr/
+    - ipa: /do(ː)ɹ/
       category: standard
-
 - phrase: Window
   emoji: 🪟
   ipas:
-    - ipa: /ˈwɪndoʊ/
+    - ipa: /ˈwɪndəʊ/
       category: standard
-
 - phrase: Bed
   emoji: 🛏️
   ipas:
     - ipa: /bɛd/
       category: standard
-
 - phrase: Clock
   emoji: 🕐
   ipas:
-    - ipa: /klɑk/
+    - ipa: /klɒk/
       category: standard
-
 - phrase: Key
   emoji: 🔑
   ipas:
     - ipa: /kiː/
       category: standard
-
 - phrase: Heart
   emoji: ❤️
   ipas:
-    - ipa: /hɑrt/
+    - ipa: /hɑːt/
       category: standard
-
 - phrase: Hand
   emoji: ✋
   ipas:
     - ipa: /hænd/
       category: standard
-
 - phrase: Foot
   emoji: 🦶
   ipas:

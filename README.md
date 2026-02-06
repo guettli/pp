@@ -8,11 +8,9 @@ Demo: <https://thomas-guettler.de/phoneme-party/>
 
 Build on:
 
-* [ONNX](https://onnx.ai/)
-* [huggingface/transformers.js: State-of-the-art Machine Learning for the web. Run 🤗 Transformers
-  directly in your browser, with no need for a
-  server!](https://github.com/huggingface/transformers.js)
-* [ZIPA: A family of efficient speech models for multilingual phone recognition](https://github.com/lingjzhu/zipa)
+- [ONNX](https://onnx.ai/)
+- [huggingface/transformers.js: State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server!](https://github.com/huggingface/transformers.js)
+- [ZIPA: A family of efficient speech models for multilingual phone recognition](https://github.com/lingjzhu/zipa)
 
 Github: <https://github.com/guettli/pp>
 
@@ -20,10 +18,10 @@ Built as static web-site. No server required!
 
 First Steps:
 
-* Application has a set of well known phrases and the desired pronounciation.
-* User sees a random phrase, and the corresponding picture.
-* User records his/her voice.
-* The distance between desired and actual phonemes gets shown.
+- Application has a set of well known phrases and the desired pronounciation.
+- User sees a random phrase, and the corresponding picture.
+- User records his/her voice.
+- The distance between desired and actual phonemes gets shown.
 
 ## Technical Architecture
 
@@ -33,52 +31,51 @@ sending data to external servers.
 ### How It Works
 
 1. **Text to Phonemes (Target)**
-   * User inputs a German phrase or sentence
-   * A phonetic dictionary or text-to-phoneme model converts the text into the expected phoneme
+   - User inputs a German phrase or sentence
+   - A phonetic dictionary or text-to-phoneme model converts the text into the expected phoneme
      sequence
-   * For German, this uses IPA (International Phonetic Alphabet) or similar phonetic representation
+   - For German, this uses IPA (International Phonetic Alphabet) or similar phonetic representation
 
 2. **Audio Recording**
-   * User's voice is captured via the browser's Web Audio API
-   * Audio is recorded as PCM data in the browser
+   - User's voice is captured via the browser's Web Audio API
+   - Audio is recorded as PCM data in the browser
 
 3. **Speech to Phonemes (Actual)**
-   * The recorded audio is processed using transformers.js
-   * An automatic speech recognition (ASR) model runs locally in the
-     browser
-   * The model outputs either:
-     * Transcribed text (converted to phonemes)
-     * Direct phoneme predictions with forced alignment
+   - The recorded audio is processed using transformers.js
+   - An automatic speech recognition (ASR) model runs locally in the browser
+   - The model outputs either:
+     - Transcribed text (converted to phonemes)
+     - Direct phoneme predictions with forced alignment
 
 4. **Phoneme Comparison**
-   * The target phoneme sequence is aligned with the actual phoneme sequence
-   * Distance metrics calculate pronunciation accuracy:
-     * **Phoneme Error Rate (PER)**: percentage of incorrect phonemes
-     * **Edit distance**: insertions, deletions, and substitutions needed
-     * **Per-phoneme scoring**: identifies which specific sounds were mispronounced
+   - The target phoneme sequence is aligned with the actual phoneme sequence
+   - Distance metrics calculate pronunciation accuracy:
+     - **Phoneme Error Rate (PER)**: percentage of incorrect phonemes
+     - **Edit distance**: insertions, deletions, and substitutions needed
+     - **Per-phoneme scoring**: identifies which specific sounds were mispronounced
 
 5. **Visual Feedback**
-   * Results displayed in a user-friendly format
-   * Color-coded phonemes (green = correct, yellow = close, red = incorrect)
-   * Suggestions for improvement on specific sounds
+   - Results displayed in a user-friendly format
+   - Color-coded phonemes (green = correct, yellow = close, red = incorrect)
+   - Suggestions for improvement on specific sounds
 
 ### Key Technologies
 
-* **TypeScript**: Strict type-checked codebase
-* **Vite**: Fast development server and build tool
-* **transformers.js**: Runs Hugging Face transformer models directly in the browser
-* **Web Audio API**: Captures and processes audio client-side
-* **ONNX Runtime**: Optimized inference for neural networks in JavaScript
-* **PanPhon**: Phonological feature-based distance calculation for phoneme comparison
+- **TypeScript**: Strict type-checked codebase
+- **Vite**: Fast development server and build tool
+- **transformers.js**: Runs Hugging Face transformer models directly in the browser
+- **Web Audio API**: Captures and processes audio client-side
+- **ONNX Runtime**: Optimized inference for neural networks in JavaScript
+- **PanPhon**: Phonological feature-based distance calculation for phoneme comparison
 
 ## Development
 
 ### Prerequisites
 
-* Node.js (v20+)
-* pnpm
-* ffmpeg (for audio processing in tests)
-* edge-tts (only needed for generating new TTS audio): `pip install edge-tts`
+- Node.js (v20+)
+- pnpm
+- ffmpeg (for audio processing in tests)
+- edge-tts (only needed for generating new TTS audio): `pip install edge-tts`
 
 ### Install Dependencies
 
@@ -138,16 +135,16 @@ Test phoneme similarity calculations directly without audio processing:
 
 This is useful for:
 
-* Understanding how similarity scores are calculated
-* Testing the PanPhon distance algorithm
-* Debugging phoneme alignment without running the full model
+- Understanding how similarity scores are calculated
+- Testing the PanPhon distance algorithm
+- Debugging phoneme alignment without running the full model
 
 The test:
 
-* Downloads the ONNX model (cached in `~/.cache/phoneme-party/`)
-* Uses pre-generated TTS audio from `tests/data/` (committed to git)
-* Only generates new audio via edge-tts if files are missing
-* Runs phoneme extraction and compares results
+- Downloads the ONNX model (cached in `~/.cache/phoneme-party/`)
+- Uses pre-generated TTS audio from `tests/data/` (committed to git)
+- Only generates new audio via edge-tts if files are missing
+- Runs phoneme extraction and compares results
 
 ### Test Data Structure
 
@@ -167,8 +164,8 @@ tests/data/
     └── ...
 ```
 
-Each phrase can have multiple audio files from different sources. The YAML metadata records the audio
-provenance (TTS voice, creation date, format).
+Each phrase can have multiple audio files from different sources. The YAML metadata records the
+audio provenance (TTS voice, creation date, format).
 
 ## License
 

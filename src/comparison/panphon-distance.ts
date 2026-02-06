@@ -3,8 +3,8 @@
  * Uses articulatory features for more accurate phonetic distance
  */
 
-import panphonFeatures from './panphon-loader.js';
-import { createDistanceCalculator } from './panphon-distance-core.js';
+import panphonFeatures from "./panphon-loader.js";
+import { createDistanceCalculator } from "./panphon-distance-core.js";
 
 const calculator = createDistanceCalculator(panphonFeatures);
 
