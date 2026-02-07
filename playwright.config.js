@@ -1,4 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
+import path from "path";
+import os from "os";
 
 /**
  * Playwright configuration for Phoneme Party
@@ -10,6 +12,9 @@ export default defineConfig({
 
   // Grep to exclude slow tests by default (override with --grep)
   grep: process.env.RUN_SLOW_TESTS ? undefined : /^(?!.*@slow)/,
+
+  // Global setup to pre-load ML model (optional, set USE_GLOBAL_SETUP=1)
+  globalSetup: process.env.USE_GLOBAL_SETUP ? "./tests/global-setup.js" : undefined,
 
   // Maximum time one test can run for (increased for model loading)
   timeout: 120000, // 2 minutes to allow for ML model download
@@ -48,7 +53,15 @@ export default defineConfig({
   projects: [
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      use: {
+        ...devices["Desktop Chrome"],
+        // When using global setup, also use persistent context to reuse cached model
+        ...(process.env.USE_GLOBAL_SETUP && {
+          launchOptions: {
+            args: [`--user-data-dir=${path.join(os.tmpdir(), "playwright-phoneme-party-cache")}`],
+          },
+        }),
+      },
     },
   ],
 
