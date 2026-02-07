@@ -26,11 +26,7 @@ except ImportError:
 
 # Optional: Text-to-IPA for phoneme analysis
 try:
-    import warnings
-    # Suppress epitran flite warnings
-    with warnings.catch_warnings():
-        warnings.filterwarnings("ignore", message=".*lex_lookup.*")
-        import epitran
+    import epitran
 
     EPITRAN_AVAILABLE = True
 except ImportError:
@@ -44,6 +40,17 @@ class PhraseDifficultyAnalyzer:
         self.ft = panphon.FeatureTable()
         self.aoa_cache_dir = None  # Will be set by _load_aoa_data
         self._load_aoa_data()
+
+        # Manual translation overrides for ambiguous words
+        # These take precedence over automatic translation
+        self.translation_overrides = {
+            "de": {
+                "blatt": "leaf",  # Not "sheet" - prefer the botanical meaning
+                "blätter": "leaves",
+                # Add more overrides here as needed
+            },
+            # Add overrides for other languages as needed
+        }
 
         # Translation cache directory
         self.translation_cache_dir = self._get_cache_dir() / "translations-to-en"
@@ -205,6 +212,14 @@ class PhraseDifficultyAnalyzer:
         """
         if source_lang == "en":
             return word.lower()
+
+        # Check manual translation overrides first
+        word_lower = word.lower()
+        if source_lang in self.translation_overrides:
+            if word_lower in self.translation_overrides[source_lang]:
+                override = self.translation_overrides[source_lang][word_lower]
+                print(f"  [Translation override: {word} -> {override}]", file=sys.stderr)
+                return override
 
         if not TRANSLATOR_AVAILABLE:
             return word.lower()

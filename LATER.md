@@ -2,6 +2,14 @@ Get Domain "DerHaseLacht.de"
 
 ---
 
+Plural dazu: Zwei Mäuse, Vier Stühle...
+
+---
+
+Cache dont use ~/.cache/pp use ~/.cache/phoneme-party
+
+---
+
 Use pouchdb for local DB
 
 Store every result of a phrase.

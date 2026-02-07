@@ -110,27 +110,26 @@ def main():
         print("Error: Invalid YAML format - expected list of entries", file=sys.stderr)
         sys.exit(1)
 
-    # Handle --list mode: recalculate and display phrases sorted by difficulty
+    # Handle --list mode: use existing difficulty scores from YAML
     if args.list:
-        num_cores = cpu_count()
-        print(f"\n🔄 Recalculating difficulty for all {len(phrases)} entries using {num_cores} cores...\n")
+        print(f"\n📊 Listing {len(phrases)} phrases by difficulty...\n")
 
-        # Prepare arguments for parallel processing
-        phrase_args = [(entry.get("phrase", ""), lang) for entry in phrases]
+        # Extract existing difficulty scores from entries
+        phrase_results = []
+        for entry in phrases:
+            phrase_text = entry.get("phrase", "")
+            difficulty = entry.get("difficulty", {})
 
-        # Process in parallel using all CPU cores
-        with Pool(processes=num_cores) as pool:
-            phrase_results = pool.map(calculate_phrase_difficulty, phrase_args)
-
-        # Filter out errors and report them
-        successful_results = []
-        for result in phrase_results:
-            if result.get("success"):
-                successful_results.append(result)
+            if difficulty and isinstance(difficulty, dict):
+                phrase_results.append({
+                    "phrase": phrase_text,
+                    "score": difficulty.get("score", 0),
+                    "level": difficulty.get("level", "Unknown"),
+                    "success": True,
+                })
             else:
-                print(f"⚠️  Error calculating {result['phrase']}: {result.get('error')}", file=sys.stderr)
-
-        phrase_results = successful_results
+                # Skip phrases without difficulty data
+                print(f"⚠️  No difficulty data for: {phrase_text}", file=sys.stderr)
 
         # Sort by difficulty score (ascending)
         sorted_results = sorted(phrase_results, key=lambda p: p["score"])
@@ -139,39 +138,11 @@ def main():
         print(f"Phrases sorted by difficulty (total: {len(sorted_results)})")
         print(f"{'='*70}\n")
 
-        for i, result in enumerate(sorted_results, 1):
+        for result in sorted_results:
             score = result["score"]
             phrase = result["phrase"]
-            level = result["level"]
-            avg_aoa = result.get("avg_aoa", 0)
-            word_count = result["word_count"]
-            components = result.get("score_components", {})
 
-            print(f"{i:2d}. {score:5.1f} ({level:10s}): {phrase}")
-
-            # Show score breakdown
-            print(f"    Score breakdown (total: {score:.1f}/100):")
-            print(f"       • AoA:      {components.get('aoa_score', 0):4.1f}/40  (avg: {avg_aoa:.1f} years)")
-            print(f"       • Length:   {components.get('length_score', 0):4.1f}/25  (avg: {result['avg_word_length']:.1f} chars/word)")
-            print(f"       • Phoneme:  {components.get('phoneme_score', 0):4.1f}/15  (complexity: {result.get('phoneme_complexity', 0):.2f})")
-            print(f"       • Syllable: {components.get('syllable_score', 0):4.1f}/10  (total: {result.get('total_syllables', 0)})")
-            print(f"       • Words:    {components.get('word_count_score', 0):4.1f}/10  (count: {word_count})")
-
-            # Show per-word breakdown
-            print(f"    Word breakdown:")
-            for wd in result["word_details"]:
-                word = wd["word"]
-                lemma = wd.get("lemma")
-                english = wd.get("english")
-                aoa = wd.get("aoa", 0)
-
-                if lemma:
-                    print(f"       • {word} → {lemma} → {english}: AoA {aoa:.1f}")
-                elif english:
-                    print(f"       • {word} → {english}: AoA {aoa:.1f}")
-                else:
-                    print(f"       • {word}: AoA {aoa:.1f}")
-            print()
+            print(f"{score:5.1f} {phrase}")
 
         sys.exit(0)
 

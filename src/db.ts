@@ -2,11 +2,10 @@
  * Database module using PouchDB for local storage with sync capability
  */
 
-import PouchDB from "pouchdb-browser";
-import PouchDBFind from "pouchdb-find";
+import { PouchDB, find } from "@svouch/pouchdb";
 
-// Add pouchdb-find plugin
-PouchDB.plugin(PouchDBFind);
+// Apply the find plugin to enable createIndex and find methods
+PouchDB.plugin(find);
 
 export interface PhraseResultDoc {
   _id: string; // Format: "result_{timestamp}_{language}_{phrase}"
@@ -112,8 +111,9 @@ class PhonemePartyDB {
     this.remoteDB = new PouchDB(remoteUrl, opts);
 
     // Live, bidirectional sync
+    // Note: this.remoteDB is guaranteed to be defined here as we just assigned it
     this.syncHandler = this.db
-      .sync(this.remoteDB, {
+      .sync(this.remoteDB as PouchDB.Database, {
         live: true,
         retry: true,
       })

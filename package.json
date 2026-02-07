@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "@svouch/pouchdb": "0.0.1-0",
     "@types/js-yaml": "^4.0.9",
     "bootstrap": "^5.3.8",
     "fastest-levenshtein": "^1.0.16",
@@ -49,8 +50,6 @@
     "js-yaml": "^4.1.1",
     "onnxruntime-node": "^1.23.2",
     "onnxruntime-web": "^1.23.2",
-    "pouchdb-browser": "^9.0.0",
-    "pouchdb-find": "^9.0.0",
     "wav-encoder": "^1.3.0"
   }
 }

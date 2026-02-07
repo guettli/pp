@@ -427,6 +427,14 @@ async function actuallyStopRecording() {
       }
       const currentPhrase = state.currentPhrase;
 
+      // Add phrase difficulty to debug metadata
+      if (currentPhrase.difficulty) {
+        debugMeta.push({
+          labelKey: "processing.meta_phrase_difficulty",
+          value: `${currentPhrase.difficulty.score} (${currentPhrase.difficulty.level})`,
+        });
+      }
+
       // Check if ipas array exists and is not empty
       if (!currentPhrase.ipas || currentPhrase.ipas.length === 0) {
         throw new Error(`No IPA pronunciation data available for phrase: ${currentPhrase.phrase}`);

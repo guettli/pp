@@ -43,6 +43,7 @@ const translations: Translations = {
     "processing.meta_audio_duration": "Audio-Dauer",
     "processing.meta_asr_chunks": "ASR-Chunks (geschätzt)",
     "processing.meta_backend": "Backend",
+    "processing.meta_phrase_difficulty": "Phrasen-Schwierigkeit",
     "processing.step_prepare": "Audio-Vorbereitung",
     "processing.step_transcribe": "Spracherkennung",
     "processing.step_ipa": "IPA-Konvertierung",

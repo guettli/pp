@@ -13,6 +13,10 @@ export interface Phrase {
   phrase: string;
   emoji: string;
   ipas: IPA[];
+  difficulty?: {
+    score: number;
+    level: string;
+  };
 }
 
 // Phoneme comparison result

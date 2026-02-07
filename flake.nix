@@ -28,6 +28,7 @@
             nodePackages.pnpm
             ripgrep
             pythonEnv
+            flite  # Speech synthesis system with lex_lookup for epitran
             stdenv.cc.cc.lib  # Provides libstdc++.so.6 for onnxruntime
             zlib  # Provides libz.so.1 for numpy
           ];
