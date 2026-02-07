@@ -167,6 +167,8 @@
           const clearBtn = document.getElementById("clear-console");
           const copyBtn = document.getElementById("copy-console");
           const consoleOutput = document.getElementById("console-output");
+          const consoleCollapse = document.getElementById("console-body-collapse");
+          const consoleChevron = document.getElementById("console-chevron");
 
           if (clearBtn && consoleOutput) {
             clearBtn.addEventListener("click", function () {
@@ -192,6 +194,19 @@
                   copyBtn.textContent = t("console.copy");
                 }, 2000);
               }
+            });
+          }
+
+          // Toggle chevron icon when console is expanded/collapsed
+          if (consoleCollapse && consoleChevron) {
+            consoleCollapse.addEventListener("shown.bs.collapse", function () {
+              consoleChevron.classList.remove("bi-chevron-down");
+              consoleChevron.classList.add("bi-chevron-up");
+            });
+
+            consoleCollapse.addEventListener("hidden.bs.collapse", function () {
+              consoleChevron.classList.remove("bi-chevron-up");
+              consoleChevron.classList.add("bi-chevron-down");
             });
           }
 
@@ -412,9 +427,6 @@
           </div>
         </div>
 
-        <!-- Processing Debug (shown after processing) -->
-        <div id="processing-debug" class="processing-debug mt-4" style="display: none"></div>
-
         <!-- History Section -->
         <div class="card shadow-sm mt-4">
           <div class="card-header">
@@ -442,18 +454,33 @@
             </div>
           </div>
         </div>
+
+        <!-- Processing Debug (shown after processing) -->
+        <div id="processing-debug" class="processing-debug mt-4" style="display: none"></div>
       </div>
 
       <!-- Console Output -->
       <div class="card mb-4 bg-dark text-light">
-        <div class="card-header d-flex justify-content-between align-items-center">
-          <strong data-i18n="console.title">Console Output</strong>
+        <div
+          class="card-header d-flex justify-content-between align-items-center"
+          style="cursor: pointer"
+          id="console-header"
+          data-bs-toggle="collapse"
+          data-bs-target="#console-body-collapse"
+          aria-expanded="false"
+          aria-controls="console-body-collapse"
+        >
+          <div>
+            <strong data-i18n="console.title">Console Output</strong>
+            <i id="console-chevron" class="bi bi-chevron-down ms-2"></i>
+          </div>
           <div class="btn-group btn-group-sm">
             <button
               id="copy-console"
               class="btn btn-outline-light"
               data-i18n="console.copy"
               data-i18n-attr="title:console.copy_title"
+              onclick="event.stopPropagation()"
             >
               Copy
             </button>
@@ -462,22 +489,25 @@
               class="btn btn-outline-light"
               data-i18n="console.clear"
               data-i18n-attr="title:console.clear_title"
+              onclick="event.stopPropagation()"
             >
               Clear
             </button>
           </div>
         </div>
-        <div class="card-body">
-          <pre
-            id="console-output"
-            style="
-              max-height: 300px;
-              overflow-y: auto;
-              margin: 0;
-              font-size: 0.85rem;
-              white-space: pre-wrap;
-            "
-          ></pre>
+        <div id="console-body-collapse" class="collapse">
+          <div class="card-body">
+            <pre
+              id="console-output"
+              style="
+                max-height: 300px;
+                overflow-y: auto;
+                margin: 0;
+                font-size: 0.85rem;
+                white-space: pre-wrap;
+              "
+            ></pre>
+          </div>
         </div>
       </div>
 

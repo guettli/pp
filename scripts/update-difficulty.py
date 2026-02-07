@@ -183,7 +183,6 @@ def main():
             updates.append({
                 "phrase": phrase,
                 "difficulty_score": score,
-                "difficulty_level": level,
             })
         else:
             print(f'  ✗ "{phrase}": {result.get("error")}')
@@ -204,7 +203,6 @@ def main():
         if entry:
             entry["difficulty"] = {
                 "score": update["difficulty_score"],
-                "level": update["difficulty_level"],
             }
 
     # Write back to file

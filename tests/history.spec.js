@@ -1,8 +1,64 @@
 import { expect, test } from "@playwright/test";
 
-// FIXME: Tests time out waiting for model to load (>120s) in CI environment
-// App and history feature work fine when tested manually
-test.describe.skip("History - Infinite Scroll", () => {
+test.describe("History - Database Functionality", () => {
+  test("should test database operations without loading full app", async ({ page }) => {
+    // Create a minimal test page that only tests the database
+    await page.goto("/");
+
+    // Wait for page to start loading
+    await page.waitForLoadState("domcontentloaded");
+
+    // Test database directly without waiting for model
+    const dbTest = await page.evaluate(async () => {
+      try {
+        // Import database module
+        const { db } = await import("/src/db.ts");
+
+        // Clear existing data - this recreates the database and indexes
+        await db.clearAll();
+
+        // Test 1: Add a test result
+        await db.savePhraseResult("TestPhrase", "de", 85, "/test/", "/target/", 1000);
+
+        // Small delay to ensure write is complete
+        await new Promise((resolve) => setTimeout(resolve, 100));
+
+        // Test 2: Try to retrieve history
+        const history = await db.getHistory("de", 20, 0);
+
+        return {
+          success: true,
+          historyCount: history.docs.length,
+          totalCount: history.totalCount,
+          hasMore: history.hasMore,
+          firstItem: history.docs[0],
+        };
+      } catch (error) {
+        return {
+          success: false,
+          error: error.message,
+          stack: error.stack,
+        };
+      }
+    });
+
+    // Verify test results
+    if (!dbTest.success) {
+      console.error("Database test failed:", dbTest.error);
+      console.error("Stack:", dbTest.stack);
+      throw new Error(`Database test failed: ${dbTest.error}\n${dbTest.stack}`);
+    }
+    expect(dbTest.success).toBe(true);
+    expect(dbTest.historyCount).toBe(1);
+    expect(dbTest.totalCount).toBe(1);
+    expect(dbTest.hasMore).toBe(false);
+    expect(dbTest.firstItem.phrase).toBe("TestPhrase");
+    expect(dbTest.firstItem.score).toBe(85);
+  });
+});
+
+// Full integration tests - may be slow due to model loading
+test.describe.skip("History - Infinite Scroll (Full App)", () => {
   test("should display history and support infinite scroll", async ({ page }) => {
     // Go to the app
     await page.goto("/");

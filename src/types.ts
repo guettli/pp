@@ -15,8 +15,18 @@ export interface Phrase {
   ipas: IPA[];
   difficulty?: {
     score: number;
-    level: string;
   };
+}
+
+/**
+ * Get difficulty level from numeric score
+ */
+export function getDifficultyLevel(score: number): string {
+  if (score < 20) return "Very Easy";
+  if (score < 40) return "Easy";
+  if (score < 60) return "Medium";
+  if (score < 80) return "Hard";
+  return "Very Hard";
 }
 
 // Phoneme comparison result

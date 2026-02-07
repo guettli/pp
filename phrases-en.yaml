@@ -3,2143 +3,3001 @@
   ipas:
     - ipa: /kæt/
       category: standard
+  difficulty:
+    score: 19.1
 - phrase: Dog
   emoji: 🐕
   ipas:
     - ipa: /dɒɡ/
       category: standard
+  difficulty:
+    score: 19.1
 - phrase: House
   emoji: 🏠
   ipas:
     - ipa: /haʊs/
       category: standard
+  difficulty:
+    score: 25.7
 - phrase: Tree
   emoji: 🌳
   ipas:
     - ipa: /tɹiː/
       category: standard
+  difficulty:
+    score: 21.2
 - phrase: Flower
   emoji: 🌸
   ipas:
     - ipa: /ˈflaʊ.ə/
       category: standard
+  difficulty:
+    score: 26.7
 - phrase: Sun
   emoji: ☀️
   ipas:
     - ipa: /sʌn/
       category: standard
+  difficulty:
+    score: 18.8
 - phrase: Moon
   emoji: 🌙
   ipas:
     - ipa: /muːn/
       category: standard
+  difficulty:
+    score: 21.9
 - phrase: Star
   emoji: ⭐
   ipas:
     - ipa: /stɑː(ɹ)/
       category: standard
+  difficulty:
+    score: 21.3
 - phrase: Car
   emoji: 🚗
   ipas:
     - ipa: /kɑː/
       category: standard
+  difficulty:
+    score: 19.7
 - phrase: Ball
   emoji: ⚽
   ipas:
     - ipa: /bɔl/
       category: standard
+  difficulty:
+    score: 20.9
 - phrase: Book
   emoji: 📖
   ipas:
     - ipa: /bʊk/
       category: standard
+  difficulty:
+    score: 21.2
 - phrase: Apple
   emoji: 🍎
   ipas:
     - ipa: /ˈæp.əl/
       category: standard
+  difficulty:
+    score: 24.4
 - phrase: Banana
   emoji: 🍌
   ipas:
     - ipa: /bəˈnɑː.nə/
       category: standard
+  difficulty:
+    score: 29.6
 - phrase: Bread
   emoji: 🍞
   ipas:
     - ipa: /brɛd/
       category: standard
+  difficulty:
+    score: 23.4
 - phrase: Fish
   emoji: 🐟
   ipas:
     - ipa: /fɪʃ/
       category: standard
+  difficulty:
+    score: 21.1
 - phrase: Bird
   emoji: 🐦
   ipas:
     - ipa: /bɜːd/
       category: standard
+  difficulty:
+    score: 21.7
 - phrase: Butterfly
   emoji: 🦋
   ipas:
     - ipa: /ˈbʌ.tə(ɹ).flaɪ/
       category: standard
+  difficulty:
+    score: 32.4
 - phrase: Ship
   emoji: 🚢
   ipas:
     - ipa: /ʃɪp/
       category: standard
+  difficulty:
+    score: 21.9
 - phrase: Airplane
   emoji: ✈️
   ipas:
     - ipa: /ˈɛəˌpleɪ̯n/
       category: standard
+  difficulty:
+    score: 33.5
 - phrase: Train
   emoji: 🚂
   ipas:
     - ipa: /tɹeɪn/
       category: standard
+  difficulty:
+    score: 23.3
 - phrase: Bicycle
   emoji: 🚲
   ipas:
     - ipa: /ˈbaɪsɪk(ə)l/
       category: standard
+  difficulty:
+    score: 29.9
 - phrase: Door
   emoji: 🚪
   ipas:
     - ipa: /do(ː)ɹ/
       category: standard
+  difficulty:
+    score: 20.7
 - phrase: Window
   emoji: 🪟
   ipas:
     - ipa: /ˈwɪndəʊ/
       category: standard
+  difficulty:
+    score: 26.7
 - phrase: Bed
   emoji: 🛏️
   ipas:
     - ipa: /bɛd/
       category: standard
+  difficulty:
+    score: 18.6
 - phrase: Clock
   emoji: 🕐
   ipas:
     - ipa: /klɒk/
       category: standard
+  difficulty:
+    score: 24.2
 - phrase: Key
   emoji: 🔑
   ipas:
     - ipa: /kiː/
       category: standard
+  difficulty:
+    score: 21.0
 - phrase: Heart
   emoji: ❤️
   ipas:
     - ipa: /hɑːt/
       category: standard
+  difficulty:
+    score: 24.4
 - phrase: Hand
   emoji: ✋
   ipas:
     - ipa: /hænd/
       category: standard
+  difficulty:
+    score: 20.7
 - phrase: Foot
   emoji: 🦶
   ipas:
     - ipa: /fʊt/
       category: standard
+  difficulty:
+    score: 21.3
 - phrase: accept
   emoji: 🉑
   ipas:
     - ipa: /əkˈsɛpt/
       category: standard
+  difficulty:
+    score: 32.8
 - phrase: ambulance
   emoji: 🚑
   ipas:
     - ipa: /ˈæm.bjə.ləns/
       category: standard
+  difficulty:
+    score: 39.5
 - phrase: anchor
   emoji: ⚓
   ipas:
     - ipa: /ˈæŋ.kə/
       category: standard
+  difficulty:
+    score: 31.2
 - phrase: angel
   emoji: 👼
   ipas:
     - ipa: /ˈeɪn.d͡ʒl̩/
       category: standard
+  difficulty:
+    score: 27.3
 - phrase: anger
   emoji: 💢
   ipas:
     - ipa: /ˈæŋɡə(ɹ)/
       category: standard
+  difficulty:
+    score: 27.6
 - phrase: ant
   emoji: 🐜
   ipas:
     - ipa: /ænt/
       category: standard
+  difficulty:
+    score: 19.8
 - phrase: archery
   emoji: 🏹
   ipas:
     - ipa: /ˈɑɹt͡ʃəɹiː/
       category: standard
+  difficulty:
+    score: 36.1
 - phrase: arm
   emoji: 🦾
   ipas:
     - ipa: /ɑːm/
       category: standard
+  difficulty:
+    score: 18.4
 - phrase: arts
   emoji: ❓
   ipas:
     - ipa: /ɑɹts/
       category: standard
+  difficulty:
+    score: 26.0
 - phrase: atom
   emoji: ⚛️
   ipas:
     - ipa: /ˈætəm/
       category: standard
+  difficulty:
+    score: 33.7
 - phrase: axe
   emoji: 🪓
   ipas:
     - ipa: /æks/
       category: standard
+  difficulty:
+    score: 25.9
 - phrase: baby
   emoji: 🚼
   ipas:
     - ipa: /ˈbeɪ̯.bi/
       category: standard
+  difficulty:
+    score: 21.0
 - phrase: bacon
   emoji: 🥓
   ipas:
     - ipa: /ˈbeɪ.kən/
       category: standard
+  difficulty:
+    score: 26.9
 - phrase: bag
   emoji: 👜
   ipas:
     - ipa: /ˈbæɡ/
       category: standard
+  difficulty:
+    score: 20.6
 - phrase: baggage
   emoji: 🛄
   ipas:
     - ipa: /ˈbæɡɪd͡ʒ/
       category: standard
+  difficulty:
+    score: 37.4
 - phrase: balloon
   emoji: ❓
   ipas:
     - ipa: /bəˈluːn/
       category: standard
+  difficulty:
+    score: 29.3
 - phrase: bamboo
   emoji: ❓
   ipas:
     - ipa: /bæmˈbu/
       category: standard
+  difficulty:
+    score: 32.5
 - phrase: bandage
   emoji: 🩹
   ipas:
     - ipa: /ˈbændɪd͡ʒ/
       category: standard
+  difficulty:
+    score: 33.7
 - phrase: banjo
   emoji: 🪕
   ipas:
     - ipa: /ˈbæn.dʒəʊ/
       category: standard
+  difficulty:
+    score: 32.5
 - phrase: bank
   emoji: 🏦
   ipas:
     - ipa: /bæŋk/
       category: standard
+  difficulty:
+    score: 24.6
 - phrase: basket
   emoji: 🧺
   ipas:
     - ipa: /ˈbɑːs.kɪt/
       category: standard
+  difficulty:
+    score: 27.8
 - phrase: basketball
   emoji: 🏀
   ipas:
     - ipa: /ˈbɑːs.kɪt.bɔːl/
       category: standard
+  difficulty:
+    score: 39.7
 - phrase: bat
   emoji: 🦇
   ipas:
     - ipa: /bæt/
       category: standard
+  difficulty:
+    score: 21.1
 - phrase: bath
   emoji: 🛀
   ipas:
     - ipa: /bɑːθ/
       category: standard
+  difficulty:
+    score: 21.1
 - phrase: battery
   emoji: 🔋
   ipas:
     - ipa: /ˈbæt.(ə)ɹi/
       category: standard
+  difficulty:
+    score: 32.3
 - phrase: beach
   emoji: 🏖️
   ipas:
     - ipa: /biːt͡ʃ/
       category: standard
+  difficulty:
+    score: 24.4
 - phrase: bear
   emoji: 🐻
   ipas:
     - ipa: /bɛə/
       category: standard
+  difficulty:
+    score: 22.1
 - phrase: bee
   emoji: 🐝
   ipas:
     - ipa: /ˈbiː/
       category: standard
+  difficulty:
+    score: 20.0
 - phrase: beer
   emoji: 🍺
   ipas:
     - ipa: /bɪə/ [bɪː]/
       category: standard
+  difficulty:
+    score: 26.8
 - phrase: bike
   emoji: 🚴
   ipas:
     - ipa: /baɪk/
       category: standard
+  difficulty:
+    score: 24.8
 - phrase: blind
   emoji: 👨‍🦯
   ipas:
     - ipa: /blaɪnd/
       category: standard
+  difficulty:
+    score: 26.2
 - phrase: boat
   emoji: 🚤
   ipas:
     - ipa: /bəʊt/
       category: standard
+  difficulty:
+    score: 21.9
 - phrase: bomb
   emoji: 💣
   ipas:
     - ipa: /bɒm/
       category: standard
+  difficulty:
+    score: 26.3
 - phrase: bone
   emoji: 🦴
   ipas:
     - ipa: /bəʊn/
       category: standard
+  difficulty:
+    score: 25.1
 - phrase: boot
   emoji: 👢
   ipas:
     - ipa: /buːt/
       category: standard
+  difficulty:
+    score: 22.6
 - phrase: bottle
   emoji: 🍼
   ipas:
     - ipa: /ˈbɒt.l̩/
       category: standard
+  difficulty:
+    score: 27.6
 - phrase: bow
   emoji: 🙇
   ipas:
     - ipa: /bəʊ/
       category: standard
+  difficulty:
+    score: 22.0
 - phrase: box
   emoji: 🗃️
   ipas:
     - ipa: /bɒks/
       category: standard
+  difficulty:
+    score: 19.8
 - phrase: boxing
   emoji: 🥊
   ipas:
     - ipa: /ˈbɒksɪŋ/
       category: standard
+  difficulty:
+    score: 31.8
 - phrase: boy
   emoji: 👦
   ipas:
     - ipa: /bɔɪ/
       category: standard
+  difficulty:
+    score: 18.3
 - phrase: bride
   emoji: 👰
   ipas:
     - ipa: /bɹaɪd/
       category: standard
+  difficulty:
+    score: 28.2
 - phrase: bright
   emoji: ❓
   ipas:
     - ipa: /bɹaɪt/
       category: standard
+  difficulty:
+    score: 26.5
 - phrase: broccoli
   emoji: 🥦
   ipas:
     - ipa: /ˈbɹɒ.kə.li/
       category: standard
+  difficulty:
+    score: 35.4
 - phrase: broom
   emoji: 🧹
   ipas:
     - ipa: /bɹuːm/
       category: standard
+  difficulty:
+    score: 25.2
 - phrase: brush
   emoji: 🖌️
   ipas:
     - ipa: /bɹʌʃ/
       category: standard
+  difficulty:
+    score: 24.5
 - phrase: buffalo
   emoji: 🐃
   ipas:
     - ipa: /ˈbʌf.əl.əʊ/
       category: standard
+  difficulty:
+    score: 35.3
 - phrase: building
   emoji: 🏗️
   ipas:
     - ipa: /ˈbɪl.dɪŋ/
       category: standard
+  difficulty:
+    score: 32.3
 - phrase: bulb
   emoji: 💡
   ipas:
     - ipa: /ˈbʌlb/
       category: standard
+  difficulty:
+    score: 24.2
 - phrase: bunny
   emoji: 👯
   ipas:
     - ipa: /ˈbʌni/
       category: standard
+  difficulty:
+    score: 22.1
 - phrase: burger
   emoji: 🍔
   ipas:
     - ipa: /ˈbɜː.(ɹ)ɡə(ɹ)/
       category: standard
+  difficulty:
+    score: 29.0
 - phrase: bus
   emoji: 🚌
   ipas:
     - ipa: /bʌs/
       category: standard
+  difficulty:
+    score: 19.6
 - phrase: bust
   emoji: 👤
   ipas:
     - ipa: /ˈbʌst/
       category: standard
+  difficulty:
+    score: 30.3
 - phrase: cabinet
   emoji: 🗄️
   ipas:
     - ipa: /ˈkæb.ɪ.nɪt/
       category: standard
+  difficulty:
+    score: 36.2
 - phrase: cactus
   emoji: 🌵
   ipas:
     - ipa: /ˈkæktəs/
       category: standard
+  difficulty:
+    score: 30.8
 - phrase: cake
   emoji: 🍰
   ipas:
     - ipa: /keɪk/
       category: standard
+  difficulty:
+    score: 24.1
 - phrase: calendar
   emoji: 📅
   ipas:
     - ipa: /ˈkæl.ən.də/
       category: standard
+  difficulty:
+    score: 36.4
 - phrase: call
   emoji: 🤙
   ipas:
     - ipa: /kɔːl/
       category: standard
+  difficulty:
+    score: 22.9
 - phrase: camel
   emoji: 🐪
   ipas:
     - ipa: /ˈkæml̩/
       category: standard
+  difficulty:
+    score: 28.4
 - phrase: camera
   emoji: 📷
   ipas:
     - ipa: /ˈkæm.ə.ɹə/
       category: standard
+  difficulty:
+    score: 31.8
 - phrase: cancer
   emoji: ♋
   ipas:
     - ipa: /ˈkænsə/
       category: standard
+  difficulty:
+    score: 34.1
 - phrase: candle
   emoji: 🕯️
   ipas:
     - ipa: /ˈkændl̩/
       category: standard
+  difficulty:
+    score: 29.9
 - phrase: candy
   emoji: 🍭
   ipas:
     - ipa: /ˈkæn.di/
       category: standard
+  difficulty:
+    score: 24.8
 - phrase: cane
   emoji: 🦯
   ipas:
     - ipa: /keɪn/
       category: standard
+  difficulty:
+    score: 29.1
 - phrase: canoe
   emoji: 🛶
   ipas:
     - ipa: /kəˈnuː/
       category: standard
+  difficulty:
+    score: 32.1
 - phrase: cap
   emoji: 🧢
   ipas:
     - ipa: /kæp/
       category: standard
+  difficulty:
+    score: 22.0
 - phrase: card
   emoji: 💳
   ipas:
     - ipa: /kɑːd/
       category: standard
+  difficulty:
+    score: 22.9
 - phrase: carp
   emoji: 🎏
   ipas:
     - ipa: /ˈkɑːp/
       category: standard
+  difficulty:
+    score: 29.8
 - phrase: carrot
   emoji: 🥕
   ipas:
     - ipa: /ˈkæɹ.ət/
       category: standard
+  difficulty:
+    score: 28.2
 - phrase: caterpillar
   emoji: 🐛
   ipas:
     - ipa: /ˈkætəˌpɪlə/
       category: standard
+  difficulty:
+    score: 41.6
 - phrase: chain
   emoji: ⛓️
   ipas:
     - ipa: /ˈt͡ʃeɪn/
       category: standard
+  difficulty:
+    score: 25.9
 - phrase: chair
   emoji: 🪑
   ipas:
     - ipa: /t͡ʃɛə/
       category: standard
+  difficulty:
+    score: 23.4
 - phrase: check
   emoji: ✅
   ipas:
     - ipa: /t͡ʃɛk/
       category: standard
+  difficulty:
+    score: 26.5
 - phrase: cheese
   emoji: 🧀
   ipas:
     - ipa: /t͡ʃiːz/
       category: standard
+  difficulty:
+    score: 27.7
 - phrase: cherry
   emoji: 🍒
   ipas:
     - ipa: /ˈt͡ʃɛɹi/
       category: standard
+  difficulty:
+    score: 26.9
 - phrase: chestnut
   emoji: 🌰
   ipas:
     - ipa: /ˈt͡ʃɛs(t)nʌt/
       category: standard
+  difficulty:
+    score: 34.2
 - phrase: child
   emoji: 🧒
   ipas:
     - ipa: /tʃaɪld/
       category: standard
+  difficulty:
+    score: 24.3
 - phrase: children
   emoji: 🚸
   ipas:
     - ipa: /ˈt͡ʃɪldɹən/
       category: standard
+  difficulty:
+    score: 31.3
 - phrase: chime
   emoji: 🎐
   ipas:
     - ipa: /tʃaɪm/
       category: standard
+  difficulty:
+    score: 32.2
 - phrase: chocolate
   emoji: 🍫
   ipas:
     - ipa: /ˈt͡ʃɒk.(ə.)lɪt/
       category: standard
+  difficulty:
+    score: 37.2
 - phrase: church
   emoji: 💒
   ipas:
     - ipa: /t͡ʃɜːt͡ʃ/
       category: standard
+  difficulty:
+    score: 26.9
 - phrase: cigarette
   emoji: 🚬
   ipas:
     - ipa: /ˈsɪ.ɡə.ɹɛt/
       category: standard
+  difficulty:
+    score: 41.6
 - phrase: cinema
   emoji: 🎦
   ipas:
     - ipa: /ˈsɪn.ə.mə/
       category: standard
+  difficulty:
+    score: 32.6
 - phrase: circle
   emoji: ⭕
   ipas:
     - ipa: /ˈsɜɹkəl/
       category: standard
+  difficulty:
+    score: 27.8
 - phrase: circus
   emoji: 🎪
   ipas:
     - ipa: /ˈsɜːkəs/
       category: standard
+  difficulty:
+    score: 28.4
 - phrase: climb
   emoji: 🧗
   ipas:
     - ipa: /klaɪm/
       category: standard
+  difficulty:
+    score: 25.1
 - phrase: cloud
   emoji: ☁️
   ipas:
     - ipa: /klaʊd/
       category: standard
+  difficulty:
+    score: 23.2
 - phrase: clover
   emoji: ☘️
   ipas:
     - ipa: /ˈkləʊ.və(ɹ)/
       category: standard
+  difficulty:
+    score: 31.4
 - phrase: clutch
   emoji: 👝
   ipas:
     - ipa: /klʌt͡ʃ/
       category: standard
+  difficulty:
+    score: 32.3
 - phrase: coaster
   emoji: 🎢
   ipas:
     - ipa: /ˈkəʊ̯s.tə/
       category: standard
+  difficulty:
+    score: 33.9
 - phrase: coat
   emoji: 🥼
   ipas:
     - ipa: /koʊt/
       category: standard
+  difficulty:
+    score: 21.4
 - phrase: cocktail
   emoji: 🍸
   ipas:
     - ipa: /ˈkɒk.teɪl/
       category: standard
+  difficulty:
+    score: 40.9
 - phrase: coffee
   emoji: ☕
   ipas:
     - ipa: /ˈkɒf.i/
       category: standard
+  difficulty:
+    score: 31.2
 - phrase: coffin
   emoji: ⚰️
   ipas:
     - ipa: /ˈkɒfɪn/
       category: standard
+  difficulty:
+    score: 31.6
 - phrase: comet
   emoji: ☄️
   ipas:
     - ipa: /ˈkɒmɪt/
       category: standard
+  difficulty:
+    score: 31.0
 - phrase: compass
   emoji: 🧭
   ipas:
     - ipa: /ˈkʌmpəs/
       category: standard
+  difficulty:
+    score: 35.2
 - phrase: computer
   emoji: 💻
   ipas:
     - ipa: /kəmˈpjuːtə/
       category: standard
+  difficulty:
+    score: 37.0
 - phrase: confetti
   emoji: 🎊
   ipas:
     - ipa: /kənˈfɛ.ti/
       category: standard
+  difficulty:
+    score: 37.9
 - phrase: construction
   emoji: 🚧
   ipas:
     - ipa: /kənˈstɹʌkʃən/
       category: standard
+  difficulty:
+    score: 46.7
 - phrase: cool
   emoji: 🆒
   ipas:
     - ipa: /kuːl/
       category: standard
+  difficulty:
+    score: 24.1
 - phrase: corn
   emoji: 🌽
   ipas:
     - ipa: /kɔːn/
       category: standard
+  difficulty:
+    score: 23.7
 - phrase: couple
   emoji: 👫
   ipas:
     - ipa: /ˈkʌp.əl/
       category: standard
+  difficulty:
+    score: 32.2
 - phrase: cow
   emoji: 🐮
   ipas:
     - ipa: /kʰæʊː/
       category: standard
+  difficulty:
+    score: 19.1
 - phrase: crab
   emoji: 🦀
   ipas:
     - ipa: /kɹæb/
       category: standard
+  difficulty:
+    score: 22.8
 - phrase: crayon
   emoji: 🖍️
   ipas:
     - ipa: /ˈkɹeɪ.ɒn/
       category: standard
+  difficulty:
+    score: 26.7
 - phrase: cricket
   emoji: 🏏
   ipas:
     - ipa: /ˈkɹɪkᵻt/
       category: standard
+  difficulty:
+    score: 33.5
 - phrase: crocodile
   emoji: 🐊
   ipas:
     - ipa: /ˈkɹɑkədaɪl/
       category: standard
+  difficulty:
+    score: 38.1
 - phrase: cross
   emoji: ✝️
   ipas:
     - ipa: /kɹɒs/
       category: standard
+  difficulty:
+    score: 25.2
 - phrase: crown
   emoji: 👑
   ipas:
     - ipa: /kɹaʊn/
       category: standard
+  difficulty:
+    score: 24.3
 - phrase: curry
   emoji: 🍛
   ipas:
     - ipa: /ˈkʌ.ɹi/<aa:<<RP>>; <<US,non-hurry-furry>>>/
       category: standard
+  difficulty:
+    score: 28.3
 - phrase: cyclone
   emoji: 🌀
   ipas:
     - ipa: /ˈsaɪ.kloʊn/
       category: standard
+  difficulty:
+    score: 37.7
 - phrase: dance
   emoji: 💃
   ipas:
     - ipa: /dɑːns/
       category: standard
+  difficulty:
+    score: 26.9
 - phrase: deaf
   emoji: 🧏
   ipas:
     - ipa: /dɛf/
       category: standard
+  difficulty:
+    score: 24.5
 - phrase: deer
   emoji: 🦌
   ipas:
     - ipa: /dɪə/
       category: standard
+  difficulty:
+    score: 23.5
 - phrase: diamond
   emoji: ❓
   ipas:
     - ipa: /ˈdaɪ.ə.mənd/
       category: standard
+  difficulty:
+    score: 33.1
 - phrase: dice
   emoji: 🎲
   ipas:
     - ipa: /daɪs/
       category: standard
+  difficulty:
+    score: 26.5
 - phrase: dim
   emoji: ❓
   ipas:
     - ipa: /dɪm/
       category: standard
+  difficulty:
+    score: 24.5
 - phrase: dinosaur
   emoji: 🦖
   ipas:
     - ipa: /ˈdaɪnəsɔː(ɹ)/
       category: standard
+  difficulty:
+    score: 34.0
 - phrase: dizzy
   emoji: 💫
   ipas:
     - ipa: /ˈdɪzi/
       category: standard
+  difficulty:
+    score: 26.3
 - phrase: dollar
   emoji: 💵
   ipas:
     - ipa: /ˈdɒl.ə/
       category: standard
+  difficulty:
+    score: 31.6
 - phrase: dolls
   emoji: 🎎
   ipas:
     - ipa: /dˈɔls/
       category: standard
+  difficulty:
+    score: 22.5
 - phrase: dolphin
   emoji: 🐬
   ipas:
     - ipa: /ˈdɒlf.ɪn/
       category: standard
+  difficulty:
+    score: 30.2
 - phrase: dove
   emoji: 🕊️
   ipas:
     - ipa: /dʌv/
       category: standard
+  difficulty:
+    score: 26.5
 - phrase: down
   emoji: 👇
   ipas:
     - ipa: /daʊn/
       category: standard
+  difficulty:
+    score: 20.9
 - phrase: dress
   emoji: 👗
   ipas:
     - ipa: /dɹes/
       category: standard
+  difficulty:
+    score: 23.2
 - phrase: drum
   emoji: 🛢️
   ipas:
     - ipa: /ˈdɹʌm/
       category: standard
+  difficulty:
+    score: 22.8
 - phrase: duck
   emoji: 🦆
   ipas:
     - ipa: /dʌk/
       category: standard
+  difficulty:
+    score: 20.9
 - phrase: eagle
   emoji: 🦅
   ipas:
     - ipa: /ˈiːɡəl/
       category: standard
+  difficulty:
+    score: 27.9
 - phrase: ear
   emoji: 👂
   ipas:
     - ipa: /ɪə̯/
       category: standard
+  difficulty:
+    score: 19.2
 - phrase: elephant
   emoji: 🐘
   ipas:
     - ipa: /ˈɛl.ɪ.fənt/
       category: standard
+  difficulty:
+    score: 33.6
 - phrase: elevator
   emoji: 🛗
   ipas:
     - ipa: /ˈɛləˌveɪtə/
       category: standard
+  difficulty:
+    score: 40.7
 - phrase: elf
   emoji: 🧝
   ipas:
     - ipa: /ɛlf/
       category: standard
+  difficulty:
+    score: 20.6
 - phrase: entry
   emoji: ⛔
   ipas:
     - ipa: /ˈɛntɹi/
       category: standard
+  difficulty:
+    score: 27.7
 - phrase: envelope
   emoji: 🧧
   ipas:
     - ipa: /ˈɛnvələʊp/
       category: standard
+  difficulty:
+    score: 39.0
 - phrase: eye
   emoji: 👁️
   ipas:
     - ipa: /aɪ/
       category: standard
+  difficulty:
+    score: 21.8
 - phrase: eyes
   emoji: 👀
   ipas:
     - ipa: /aɪz/
       category: standard
+  difficulty:
+    score: 23.3
 - phrase: factory
   emoji: 🏭
   ipas:
     - ipa: /ˈfæk.tə.ɹi/
       category: standard
+  difficulty:
+    score: 33.3
 - phrase: fairy
   emoji: 🧚
   ipas:
     - ipa: /ˈfɛəɹi/
       category: standard
+  difficulty:
+    score: 23.6
 - phrase: family
   emoji: 👪
   ipas:
     - ipa: /ˈfæ.m(ɪ.)li/
       category: standard
+  difficulty:
+    score: 27.3
 - phrase: fence
   emoji: 🤺
   ipas:
     - ipa: /fɛns/
       category: standard
+  difficulty:
+    score: 27.8
 - phrase: ferry
   emoji: ⛴️
   ipas:
     - ipa: /ˈfɛɹ.i/
       category: standard
+  difficulty:
+    score: 27.1
 - phrase: film
   emoji: 🎞️
   ipas:
     - ipa: /fɪlm/
       category: standard
+  difficulty:
+    score: 23.3
 - phrase: finger
   emoji: 🖕
   ipas:
     - ipa: /ˈfɪŋɡə/
       category: standard
+  difficulty:
+    score: 26.3
 - phrase: fingers
   emoji: 🤞
   ipas:
     - ipa: /ˈfɪŋɡɚz/
       category: standard
+  difficulty:
+    score: 28.8
 - phrase: fire
   emoji: 🧯
   ipas:
     - ipa: /ˈfaɪ.ə/
       category: standard
+  difficulty:
+    score: 24.1
 - phrase: fist
   emoji: 👊
   ipas:
     - ipa: /fɪst/
       category: standard
+  difficulty:
+    score: 24.4
 - phrase: folder
   emoji: 📁
   ipas:
     - ipa: /ˈfoʊɫdɚ/
       category: standard
+  difficulty:
+    score: 31.2
 - phrase: football
   emoji: 🏈
   ipas:
     - ipa: /ˈfʊtbɔːl/
       category: standard
+  difficulty:
+    score: 32.1
 - phrase: fountain
   emoji: ⛲
   ipas:
     - ipa: /ˈfaʊn.tɪn/
       category: standard
+  difficulty:
+    score: 34.4
 - phrase: fox
   emoji: 🦊
   ipas:
     - ipa: /fɒks/
       category: standard
+  difficulty:
+    score: 20.1
 - phrase: free
   emoji: 🆓
   ipas:
     - ipa: /fɹiː/
       category: standard
+  difficulty:
+    score: 23.3
 - phrase: frog
   emoji: 🐸
   ipas:
     - ipa: /fɹɒɡ/
       category: standard
+  difficulty:
+    score: 21.9
 - phrase: frown
   emoji: 🙍
   ipas:
     - ipa: /fɹaʊn/
       category: standard
+  difficulty:
+    score: 26.1
 - phrase: fuel
   emoji: ⛽
   ipas:
     - ipa: /ˈfjuːəl/
       category: standard
+  difficulty:
+    score: 26.2
 - phrase: full
   emoji: 🈵
   ipas:
     - ipa: /fʊl/
       category: standard
+  difficulty:
+    score: 21.6
 - phrase: game
   emoji: 🎮
   ipas:
     - ipa: /ɡeɪm/
       category: standard
+  difficulty:
+    score: 23.6
 - phrase: garlic
   emoji: 🧄
   ipas:
     - ipa: /ˈɡɑːlɪk/
       category: standard
+  difficulty:
+    score: 31.9
 - phrase: gear
   emoji: ⚙️
   ipas:
     - ipa: /ɡɪə/
       category: standard
+  difficulty:
+    score: 26.9
 - phrase: gem
   emoji: 💎
   ipas:
     - ipa: /d͡ʒɛm/
       category: standard
+  difficulty:
+    score: 23.9
 - phrase: gift
   emoji: 🎁
   ipas:
     - ipa: /ɡɪft/
       category: standard
+  difficulty:
+    score: 23.4
 - phrase: giraffe
   emoji: 🦒
   ipas:
     - ipa: /dʒɪˈɹɑːf/
       category: standard
+  difficulty:
+    score: 32.4
 - phrase: girl
   emoji: 👧
   ipas:
     - ipa: /ˈɡɜːl/
       category: standard
+  difficulty:
+    score: 21.3
 - phrase: glasses
   emoji: 👓
   ipas:
     - ipa: /ˈɡlɑːsɪz/
       category: standard
+  difficulty:
+    score: 31.0
 - phrase: globe
   emoji: ❓
   ipas:
     - ipa: /ɡləʊb/
       category: standard
+  difficulty:
+    score: 30.1
 - phrase: gloves
   emoji: 🧤
   ipas:
     - ipa: /ɡlʌvz/
       category: standard
+  difficulty:
+    score: 27.8
 - phrase: goal
   emoji: 🥅
   ipas:
     - ipa: /ɡəʊl/
       category: standard
+  difficulty:
+    score: 24.2
 - phrase: goat
   emoji: 🐐
   ipas:
     - ipa: /ɡəʊt/
       category: standard
+  difficulty:
+    score: 22.5
 - phrase: goggles
   emoji: 🥽
   ipas:
     - ipa: /ˈɡɑ.ɡəlz/
       category: standard
+  difficulty:
+    score: 32.4
 - phrase: golf
   emoji: ⛳
   ipas:
     - ipa: /ɡɒlf/
       category: standard
+  difficulty:
+    score: 24.7
 - phrase: gorilla
   emoji: 🦍
   ipas:
     - ipa: /ɡəˈɹɪl.ə/
       category: standard
+  difficulty:
+    score: 33.5
 - phrase: grapes
   emoji: 🍇
   ipas:
     - ipa: /ɡɹeɪps/
       category: standard
+  difficulty:
+    score: 27.8
 - phrase: guard
   emoji: 💂
   ipas:
     - ipa: /ɡɑːd/
       category: standard
+  difficulty:
+    score: 27.9
 - phrase: guitar
   emoji: 🎸
   ipas:
     - ipa: /ɡɪˈtɑː(ɹ)/
       category: standard
+  difficulty:
+    score: 30.3
 - phrase: gun
   emoji: 🔫
   ipas:
     - ipa: /ɡʌn/
       category: standard
+  difficulty:
+    score: 21.9
 - phrase: hammer
   emoji: 🔨
   ipas:
     - ipa: /ˈhæm.ə(ɹ)/
       category: standard
+  difficulty:
+    score: 29.2
 - phrase: hamster
   emoji: 🐹
   ipas:
     - ipa: /ˈhæm(p)stɚ/
       category: standard
+  difficulty:
+    score: 29.6
 - phrase: hands
   emoji: 🤲
   ipas:
     - ipa: /hæn(d)z/
       category: standard
+  difficulty:
+    score: 23.1
 - phrase: hat
   emoji: 👒
   ipas:
     - ipa: /hæt/
       category: standard
+  difficulty:
+    score: 19.7
 - phrase: heel
   emoji: 👠
   ipas:
     - ipa: /hiːl/
       category: standard
+  difficulty:
+    score: 23.6
 - phrase: helicopter
   emoji: 🚁
   ipas:
     - ipa: /ˈheliˌkɔptə(ɹ)/
       category: standard
+  difficulty:
+    score: 40.9
 - phrase: herb
   emoji: 🌿
   ipas:
     - ipa: /hɜːb/
       category: standard
+  difficulty:
+    score: 26.3
 - phrase: hippo
   emoji: 🦛
   ipas:
     - ipa: /ˈhɪpəʊ/
       category: standard
+  difficulty:
+    score: 26.9
 - phrase: hockey
   emoji: 🏒
   ipas:
     - ipa: /ˈhɒki/
       category: standard
+  difficulty:
+    score: 31.9
 - phrase: honey
   emoji: 🍯
   ipas:
     - ipa: /ˈhʌni/
       category: standard
+  difficulty:
+    score: 27.1
 - phrase: horse
   emoji: 🐴
   ipas:
     - ipa: /hɔːs/
       category: standard
+  difficulty:
+    score: 26.1
 - phrase: hospital
   emoji: 🏥
   ipas:
     - ipa: /ˈhɒs.pɪ.tl̩/
       category: standard
+  difficulty:
+    score: 34.6
 - phrase: hotel
   emoji: 🏨
   ipas:
     - ipa: /həʊˈtɛl/
       category: standard
+  difficulty:
+    score: 28.1
 - phrase: ice
   emoji: 🍧
   ipas:
     - ipa: /aɪs/
       category: standard
+  difficulty:
+    score: 23.2
 - phrase: island
   emoji: 🏝️
   ipas:
     - ipa: /ˈaɪlənd/
       category: standard
+  difficulty:
+    score: 29.9
 - phrase: jeans
   emoji: 👖
   ipas:
     - ipa: /d͡ʒiːnz/
       category: standard
+  difficulty:
+    score: 26.9
 - phrase: juggle
   emoji: 🤹
   ipas:
     - ipa: /ˈd͡ʒʌɡəl/
       category: standard
+  difficulty:
+    score: 30.9
 - phrase: keyboard
   emoji: ⌨️
   ipas:
     - ipa: /ˈki.bɔɹd/
       category: standard
+  difficulty:
+    score: 34.8
 - phrase: kiss
   emoji: 💏
   ipas:
     - ipa: /kɪs/
       category: standard
+  difficulty:
+    score: 21.6
 - phrase: kiwi
   emoji: 🥝
   ipas:
     - ipa: /ˈkiːwi/
       category: standard
+  difficulty:
+    score: 27.6
 - phrase: kneel
   emoji: 🧎
   ipas:
     - ipa: /niːl/
       category: standard
+  difficulty:
+    score: 25.4
 - phrase: knife
   emoji: 🔪
   ipas:
     - ipa: /naɪf/
       category: standard
+  difficulty:
+    score: 27.1
 - phrase: koala
   emoji: 🐨
   ipas:
     - ipa: /koʊˈɑː.lə/
       category: standard
+  difficulty:
+    score: 29.3
 - phrase: label
   emoji: 🏷️
   ipas:
     - ipa: /ˈleɪ.bəl/
       category: standard
+  difficulty:
+    score: 30.1
 - phrase: ladder
   emoji: 🪜
   ipas:
     - ipa: /ˈlad.ə/
       category: standard
+  difficulty:
+    score: 29.5
 - phrase: lamp
   emoji: 🪔
   ipas:
     - ipa: /læmp/
       category: standard
+  difficulty:
+    score: 22.6
 - phrase: leaf
   emoji: 🍁
   ipas:
     - ipa: /liːf/
       category: standard
+  difficulty:
+    score: 21.7
 - phrase: leg
   emoji: 🦵
   ipas:
     - ipa: /lɛɡ/
       category: standard
+  difficulty:
+    score: 18.9
 - phrase: lemon
   emoji: 🍋
   ipas:
     - ipa: /ˈlɛmən/
       category: standard
+  difficulty:
+    score: 27.6
 - phrase: leopard
   emoji: 🐆
   ipas:
     - ipa: /ˈlɛp.əd/
       category: standard
+  difficulty:
+    score: 31.6
 - phrase: lettuce
   emoji: 🥬
   ipas:
     - ipa: /ˈlɛt.ɪs/
       category: standard
+  difficulty:
+    score: 34.1
 - phrase: liberty
   emoji: 🗽
   ipas:
     - ipa: /ˈlɪb.ɪ.ti/
       category: standard
+  difficulty:
+    score: 38.3
 - phrase: lift
   emoji: ❓
   ipas:
     - ipa: /lɪft/
       category: standard
+  difficulty:
+    score: 23.5
 - phrase: light
   emoji: 🚦
   ipas:
     - ipa: /laɪt/
       category: standard
+  difficulty:
+    score: 23.3
 - phrase: lightning
   emoji: 🌩️
   ipas:
     - ipa: /ˈlaɪt.nɪŋ/
       category: standard
+  difficulty:
+    score: 34.3
 - phrase: lion
   emoji: 🦁
   ipas:
     - ipa: /ˈlaɪən/
       category: standard
+  difficulty:
+    score: 21.5
 - phrase: lipstick
   emoji: 💄
   ipas:
     - ipa: /ˈlɪpˌstɪk/
       category: standard
+  difficulty:
+    score: 34.1
 - phrase: litter
   emoji: 🚯
   ipas:
     - ipa: /ˈlɪt.ɚ/
       category: standard
+  difficulty:
+    score: 30.2
 - phrase: lizard
   emoji: 🦎
   ipas:
     - ipa: /ˈlɪz.əd/
       category: standard
+  difficulty:
+    score: 28.7
 - phrase: lock
   emoji: 🔒
   ipas:
     - ipa: /lɒk/
       category: standard
+  difficulty:
+    score: 23.7
 - phrase: love
   emoji: 🤟
   ipas:
     - ipa: /lʌv/
       category: standard
+  difficulty:
+    score: 23.7
 - phrase: luggage
   emoji: 🛅
   ipas:
     - ipa: /ˈlʌɡɪd͡ʒ/
       category: standard
+  difficulty:
+    score: 36.3
 - phrase: man
   emoji: 👨
   ipas:
     - ipa: /mæn/
       category: standard
+  difficulty:
+    score: 18.9
 - phrase: martial
   emoji: 🥋
   ipas:
     - ipa: /ˈmɑːʃəl/
       category: standard
+  difficulty:
+    score: 38.0
 - phrase: mate
   emoji: ❓
   ipas:
     - ipa: /meɪt/
       category: standard
+  difficulty:
+    score: 27.7
 - phrase: meat
   emoji: 🍖
   ipas:
     - ipa: /miːt/
       category: standard
+  difficulty:
+    score: 22.3
 - phrase: melon
   emoji: 🍈
   ipas:
     - ipa: /ˈmɛlən/
       category: standard
+  difficulty:
+    score: 28.5
 - phrase: microphone
   emoji: 🎙️
   ipas:
     - ipa: /ˈmaɪ.kɹəˌfəʊn/
       category: standard
+  difficulty:
+    score: 42.5
 - phrase: microscope
   emoji: 🔬
   ipas:
     - ipa: /ˈmaɪ.kɹəˌskəʊp/
       category: standard
+  difficulty:
+    score: 45.8
 - phrase: milk
   emoji: 🥛
   ipas:
     - ipa: /mɪlk/
       category: standard
+  difficulty:
+    score: 20.8
 - phrase: mirror
   emoji: 🪞
   ipas:
     - ipa: /ˈmɪɹ.ɐ/
       category: standard
+  difficulty:
+    score: 28.1
 - phrase: money
   emoji: 💰
   ipas:
     - ipa: /ˈmʌn.i/
       category: standard
+  difficulty:
+    score: 27.1
 - phrase: monkey
   emoji: 🐵
   ipas:
     - ipa: /ˈmʌŋki/
       category: standard
+  difficulty:
+    score: 27.5
 - phrase: mosque
   emoji: 🕌
   ipas:
     - ipa: /mɑsk/
       category: standard
+  difficulty:
+    score: 35.8
 - phrase: mountain
   emoji: ❓
   ipas:
     - ipa: /ˈmaʊn.tɪn/
       category: standard
+  difficulty:
+    score: 33.2
 - phrase: mouse
   emoji: 🖱️
   ipas:
     - ipa: /maʊs/
       category: standard
+  difficulty:
+    score: 25.4
 - phrase: mouth
   emoji: 👄
   ipas:
     - ipa: /maʊθ/
       category: standard
+  difficulty:
+    score: 23.1
 - phrase: muscle
   emoji: 💪
   ipas:
     - ipa: /ˈmʌs.əl/
       category: standard
+  difficulty:
+    score: 31.5
 - phrase: museum
   emoji: 🏛️
   ipas:
     - ipa: /mjuːˈziːəm/
       category: standard
+  difficulty:
+    score: 31.3
 - phrase: name
   emoji: 📛
   ipas:
     - ipa: /neɪm/
       category: standard
+  difficulty:
+    score: 22.7
 - phrase: new
   emoji: 🆕
   ipas:
     - ipa: /njuː/
       category: standard
+  difficulty:
+    score: 20.1
 - phrase: nose
   emoji: 👃
   ipas:
     - ipa: /nəʊ̯z/
       category: standard
+  difficulty:
+    score: 23.8
 - phrase: note
   emoji: 🎵
   ipas:
     - ipa: /nəʊt/
       category: standard
+  difficulty:
+    score: 27.2
 - phrase: notebook
   emoji: 📔
   ipas:
     - ipa: /ˈnəʊtˌbʊk/
       category: standard
+  difficulty:
+    score: 36.4
 - phrase: notepad
   emoji: 🗒️
   ipas:
     - ipa: /(en)nˈəʊtpad(de)/
       category: standard
+  difficulty:
+    score: 35.5
 - phrase: octopus
   emoji: 🐙
   ipas:
     - ipa: /ˈɒktəpʊs/
       category: standard
+  difficulty:
+    score: 34.0
 - phrase: office
   emoji: 🏢
   ipas:
     - ipa: /ˈɒf.ɪs/
       category: standard
+  difficulty:
+    score: 33.2
 - phrase: older
   emoji: 🧓
   ipas:
     - ipa: /ˈəʊldə/
       category: standard
+  difficulty:
+    score: 27.3
 - phrase: onion
   emoji: 🧅
   ipas:
     - ipa: /ˈʌn.jən/
       category: standard
+  difficulty:
+    score: 27.7
 - phrase: orange
   emoji: 🍊
   ipas:
     - ipa: /ˈɒɹ.ɪnd͡ʒ/
       category: standard
+  difficulty:
+    score: 29.7
 - phrase: owl
   emoji: 🦉
   ipas:
     - ipa: /aʊ(ə)l/
       category: standard
+  difficulty:
+    score: 20.1
 - phrase: page
   emoji: 📃
   ipas:
     - ipa: /peɪd͡ʒ/
       category: standard
+  difficulty:
+    score: 25.5
 - phrase: pancake
   emoji: 🥞
   ipas:
     - ipa: /ˈpæn.keɪk/
       category: standard
+  difficulty:
+    score: 33.0
 - phrase: panda
   emoji: 🐼
   ipas:
     - ipa: /ˈpændə/
       category: standard
+  difficulty:
+    score: 28.0
 - phrase: paper
   emoji: 🧻
   ipas:
     - ipa: /ˈpeɪ̯.pə/
       category: standard
+  difficulty:
+    score: 26.3
 - phrase: parachute
   emoji: 🪂
   ipas:
     - ipa: /ˈpæɹəʃuːt/
       category: standard
+  difficulty:
+    score: 40.8
 - phrase: parrot
   emoji: 🦜
   ipas:
     - ipa: /ˈpæɹət/
       category: standard
+  difficulty:
+    score: 28.4
 - phrase: party
   emoji: 🎉
   ipas:
     - ipa: /ˈpɑː.ti/
       category: standard
+  difficulty:
+    score: 24.2
 - phrase: pass
   emoji: 🈴
   ipas:
     - ipa: /pɑːs/
       category: standard
+  difficulty:
+    score: 23.7
 - phrase: pasta
   emoji: 🍝
   ipas:
     - ipa: /ˈpæstə/
       category: standard
+  difficulty:
+    score: 27.3
 - phrase: peace
   emoji: ☮️
   ipas:
     - ipa: /piːs/
       category: standard
+  difficulty:
+    score: 29.4
 - phrase: peach
   emoji: 🍑
   ipas:
     - ipa: /piːt͡ʃ/
       category: standard
+  difficulty:
+    score: 24.4
 - phrase: peacock
   emoji: 🦚
   ipas:
     - ipa: /ˈpikɑk/
       category: standard
+  difficulty:
+    score: 32.4
 - phrase: peanut
   emoji: 🥜
   ipas:
     - ipa: /ˈpiːnʌt/
       category: standard
+  difficulty:
+    score: 29.9
 - phrase: pen
   emoji: 🖊️
   ipas:
     - ipa: /pɛn/
       category: standard
+  difficulty:
+    score: 20.3
 - phrase: pencil
   emoji: ✏️
   ipas:
     - ipa: /ˈpɛnsəl/
       category: standard
+  difficulty:
+    score: 28.2
 - phrase: penguin
   emoji: 🐧
   ipas:
     - ipa: /ˈpɛŋ.ɡwɪn/
       category: standard
+  difficulty:
+    score: 30.7
 - phrase: pepper
   emoji: 🌶️
   ipas:
     - ipa: /ˈpɛp.ə/
       category: standard
+  difficulty:
+    score: 29.7
 - phrase: person
   emoji: 🧑
   ipas:
     - ipa: /ˈpɜː.sən/
       category: standard
+  difficulty:
+    score: 28.2
 - phrase: phone
   emoji: 📱
   ipas:
     - ipa: /fəʊ̯n/
       category: standard
+  difficulty:
+    score: 27.2
 - phrase: pick
   emoji: ⛏️
   ipas:
     - ipa: /pɪk/
       category: standard
+  difficulty:
+    score: 22.2
 - phrase: pie
   emoji: 🥧
   ipas:
     - ipa: /paɪ/
       category: standard
+  difficulty:
+    score: 20.4
 - phrase: pig
   emoji: 🐷
   ipas:
     - ipa: /pɪɡ/
       category: standard
+  difficulty:
+    score: 20.0
 - phrase: pill
   emoji: 💊
   ipas:
     - ipa: /pɪl/
       category: standard
+  difficulty:
+    score: 25.7
 - phrase: pin
   emoji: 🧷
   ipas:
     - ipa: /pɪn/
       category: standard
+  difficulty:
+    score: 21.8
 - phrase: pinch
   emoji: 🤏
   ipas:
     - ipa: /pɪnt͡ʃ/
       category: standard
+  difficulty:
+    score: 25.1
 - phrase: pineapple
   emoji: 🍍
   ipas:
     - ipa: /ˈpaɪnæpəl/
       category: standard
+  difficulty:
+    score: 36.1
 - phrase: pizza
   emoji: 🍕
   ipas:
     - ipa: /ˈpiːtsə/
       category: standard
+  difficulty:
+    score: 27.8
 - phrase: plug
   emoji: 🔌
   ipas:
     - ipa: /plʌɡ/
       category: standard
+  difficulty:
+    score: 23.2
 - phrase: police
   emoji: 🚓
   ipas:
     - ipa: /pəˈliːs/
       category: standard
+  difficulty:
+    score: 32.0
 - phrase: poodle
   emoji: 🐩
   ipas:
     - ipa: /ˈpuː.dəl/
       category: standard
+  difficulty:
+    score: 29.8
 - phrase: pool
   emoji: 🎱
   ipas:
     - ipa: /puːl/
       category: standard
+  difficulty:
+    score: 23.0
 - phrase: post
   emoji: 🏣
   ipas:
     - ipa: /pəʊst/
       category: standard
+  difficulty:
+    score: 23.4
 - phrase: potato
   emoji: 🥔
   ipas:
     - ipa: /pəˈteɪ.təʊ/
       category: standard
+  difficulty:
+    score: 30.6
 - phrase: pound
   emoji: 💷
   ipas:
     - ipa: /paʊnd/
       category: standard
+  difficulty:
+    score: 24.6
 - phrase: pray
   emoji: 🙏
   ipas:
     - ipa: /pɹeɪ/
       category: standard
+  difficulty:
+    score: 23.5
 - phrase: pretzel
   emoji: 🥨
   ipas:
     - ipa: /ˈpɹɛt.səl/
       category: standard
+  difficulty:
+    score: 36.3
 - phrase: prince
   emoji: 🤴
   ipas:
     - ipa: /pɹɪns/
       category: standard
+  difficulty:
+    score: 28.1
 - phrase: princess
   emoji: 👸
   ipas:
     - ipa: /pɹɪnˈsɛs/
       category: standard
+  difficulty:
+    score: 30.4
 - phrase: projector
   emoji: 📽️
   ipas:
     - ipa: /pɹəˈd͡ʒɛktə/
       category: standard
+  difficulty:
+    score: 41.4
 - phrase: pudding
   emoji: 🍮
   ipas:
     - ipa: /ˈpʊd.ɪŋ/
       category: standard
+  difficulty:
+    score: 29.2
 - phrase: purse
   emoji: 👛
   ipas:
     - ipa: /pɜːs/
       category: standard
+  difficulty:
+    score: 28.0
 - phrase: question
   emoji: ❓
   ipas:
     - ipa: /ˈkwɛs.tʃən/
       category: standard
+  difficulty:
+    score: 31.9
 - phrase: rabbit
   emoji: 🐰
   ipas:
     - ipa: /ˈɹæbɪt/
       category: standard
+  difficulty:
+    score: 26.6
 - phrase: radio
   emoji: 📻
   ipas:
     - ipa: /ˈɹeɪdiˌəʊ/
       category: standard
+  difficulty:
+    score: 28.2
 - phrase: rain
   emoji: 🌧️
   ipas:
     - ipa: /ɹeɪn/
       category: standard
+  difficulty:
+    score: 21.4
 - phrase: rainbow
   emoji: 🌈
   ipas:
     - ipa: /ˈɹeɪnboʊ/
       category: standard
+  difficulty:
+    score: 29.6
 - phrase: raise
   emoji: 🙋
   ipas:
     - ipa: /ɹeɪz/
       category: standard
+  difficulty:
+    score: 30.0
 - phrase: razor
   emoji: 🪒
   ipas:
     - ipa: /ˈɹeɪzə/
       category: standard
+  difficulty:
+    score: 31.3
 - phrase: reserved
   emoji: 🈯
   ipas:
     - ipa: /ɹɪˈzɝvd/
       category: standard
+  difficulty:
+    score: 41.4
 - phrase: rhino
   emoji: 🦏
   ipas:
     - ipa: /ˈɹaɪ.nəʊ/
       category: standard
+  difficulty:
+    score: 27.4
 - phrase: rice
   emoji: 🍙
   ipas:
     - ipa: /ɹaɪs/
       category: standard
+  difficulty:
+    score: 24.6
 - phrase: right
   emoji: 👉
   ipas:
     - ipa: /ˈɹaɪt/
       category: standard
+  difficulty:
+    score: 23.0
 - phrase: ring
   emoji: 💍
   ipas:
     - ipa: /ɹɪŋ/
       category: standard
+  difficulty:
+    score: 23.1
 - phrase: rock
   emoji: 🤘
   ipas:
     - ipa: /ɹɒk/
       category: standard
+  difficulty:
+    score: 22.0
 - phrase: rocket
   emoji: 🚀
   ipas:
     - ipa: /ˈɹɒk.ɪt/
       category: standard
+  difficulty:
+    score: 28.8
 - phrase: rooster
   emoji: 🐓
   ipas:
     - ipa: /ˈɹuːstə/
       category: standard
+  difficulty:
+    score: 31.8
 - phrase: rose
   emoji: 🌹
   ipas:
     - ipa: /ɹəʊz/
       category: standard
+  difficulty:
+    score: 26.3
 - phrase: rugby
   emoji: 🏉
   ipas:
     - ipa: /ˈɹʌɡbi/
       category: standard
+  difficulty:
+    score: 28.1
 - phrase: ruler
   emoji: 📏
   ipas:
     - ipa: /ˈɹuːlə(ɹ)/
       category: standard
+  difficulty:
+    score: 27.7
 - phrase: run
   emoji: 🏃
   ipas:
     - ipa: /ɹʌn/
       category: standard
+  difficulty:
+    score: 19.3
 - phrase: salad
   emoji: 🥗
   ipas:
     - ipa: /ˈsæl.əd/
       category: standard
+  difficulty:
+    score: 29.1
 - phrase: sandwich
   emoji: 🥪
   ipas:
     - ipa: /ˈsæn.wɪd͡ʒ/
       category: standard
+  difficulty:
+    score: 31.3
 - phrase: sauna
   emoji: 🧖
   ipas:
     - ipa: /ˈsɔː.nə/
       category: standard
+  difficulty:
+    score: 34.3
 - phrase: saxophone
   emoji: 🎷
   ipas:
     - ipa: /ˈsæksəfoʊn/
       category: standard
+  difficulty:
+    score: 42.4
 - phrase: scale
   emoji: ⚖️
   ipas:
     - ipa: /skeɪl/
       category: standard
+  difficulty:
+    score: 31.5
 - phrase: scarf
   emoji: 🧣
   ipas:
     - ipa: /skɑːf/
       category: standard
+  difficulty:
+    score: 24.6
 - phrase: school
   emoji: 🏫
   ipas:
     - ipa: /skuːl/
       category: standard
+  difficulty:
+    score: 25.0
 - phrase: scissors
   emoji: ✂️
   ipas:
     - ipa: /ˈsɪzɚz/
       category: standard
+  difficulty:
+    score: 32.1
 - phrase: scooter
   emoji: 🛴
   ipas:
     - ipa: /ˈskuːtə(ɹ)/
       category: standard
+  difficulty:
+    score: 32.9
 - phrase: score
   emoji: 🎼
   ipas:
     - ipa: /skɔː/
       category: standard
+  difficulty:
+    score: 28.5
 - phrase: scorpion
   emoji: 🦂
   ipas:
     - ipa: /ˈskɔː.pi.ən/
       category: standard
+  difficulty:
+    score: 34.4
 - phrase: seat
   emoji: 💺
   ipas:
     - ipa: /siːt/
       category: standard
+  difficulty:
+    score: 22.0
 - phrase: service
   emoji: 🈂️
   ipas:
     - ipa: /ˈsɜː.vɪs/
       category: standard
+  difficulty:
+    score: 37.7
 - phrase: shark
   emoji: 🦈
   ipas:
     - ipa: /ʃɑːk/
       category: standard
+  difficulty:
+    score: 24.7
 - phrase: sheep
   emoji: 🐑
   ipas:
     - ipa: /ʃiːp/
       category: standard
+  difficulty:
+    score: 23.0
 - phrase: shield
   emoji: 🛡️
   ipas:
     - ipa: /ʃiːld/
       category: standard
+  difficulty:
+    score: 29.3
 - phrase: shirt
   emoji: 🎽
   ipas:
     - ipa: /ʃɜːt/
       category: standard
+  difficulty:
+    score: 24.4
 - phrase: shoe
   emoji: 👞
   ipas:
     - ipa: /ˈʃuː/
       category: standard
+  difficulty:
+    score: 20.9
 - phrase: shrimp
   emoji: 🍤
   ipas:
     - ipa: /ʃɹɪmp/
       category: standard
+  difficulty:
+    score: 29.0
 - phrase: shrug
   emoji: 🤷
   ipas:
     - ipa: /ʃɹʌɡ/
       category: standard
+  difficulty:
+    score: 28.6
 - phrase: signal
   emoji: 📶
   ipas:
     - ipa: /ˈsɪɡnəl/
       category: standard
+  difficulty:
+    score: 31.4
 - phrase: ski
   emoji: 🎿
   ipas:
     - ipa: /skiː/
       category: standard
+  difficulty:
+    score: 23.7
 - phrase: sleep
   emoji: 💤
   ipas:
     - ipa: /sliːp/
       category: standard
+  difficulty:
+    score: 22.3
 - phrase: snail
   emoji: 🐌
   ipas:
     - ipa: /sneɪl/
       category: standard
+  difficulty:
+    score: 24.0
 - phrase: snake
   emoji: 🐍
   ipas:
     - ipa: /sneɪk/
       category: standard
+  difficulty:
+    score: 26.9
 - phrase: snow
   emoji: 🌨️
   ipas:
     - ipa: /snəʊ̯/
       category: standard
+  difficulty:
+    score: 21.4
 - phrase: snowman
   emoji: ☃️
   ipas:
     - ipa: /ˈsnəʊ.mæn/
       category: standard
+  difficulty:
+    score: 29.5
 - phrase: sofa
   emoji: ❓
   ipas:
     - ipa: /ˈsəʊfə/
       category: standard
+  difficulty:
+    score: 25.9
 - phrase: sparkle
   emoji: ✨
   ipas:
     - ipa: /ˈspɑː.kəl/
       category: standard
+  difficulty:
+    score: 30.5
 - phrase: speak
   emoji: 🗣️
   ipas:
     - ipa: /spiːk/
       category: standard
+  difficulty:
+    score: 23.9
 - phrase: spider
   emoji: 🕷️
   ipas:
     - ipa: /ˈspaɪ̯də/
       category: standard
+  difficulty:
+    score: 27.2
 - phrase: sponge
   emoji: 🧽
   ipas:
     - ipa: /spʌnd͡ʒ/
       category: standard
+  difficulty:
+    score: 28.8
 - phrase: squid
   emoji: 🦑
   ipas:
     - ipa: /skwɪd/
       category: standard
+  difficulty:
+    score: 27.6
 - phrase: stand
   emoji: 🧍
   ipas:
     - ipa: /stænd/
       category: standard
+  difficulty:
+    score: 24.7
 - phrase: statue
   emoji: 🗿
   ipas:
     - ipa: /ˈstæt͡ʃ.uː/
       category: standard
+  difficulty:
+    score: 30.0
 - phrase: steak
   emoji: 🥩
   ipas:
     - ipa: /steɪk/
       category: standard
+  difficulty:
+    score: 28.3
 - phrase: stethoscope
   emoji: 🩺
   ipas:
     - ipa: /ˈstɛθəskəʊp/
       category: standard
+  difficulty:
+    score: 48.3
 - phrase: stop
   emoji: 🚏
   ipas:
     - ipa: /stɒp/
       category: standard
+  difficulty:
+    score: 21.0
 - phrase: store
   emoji: 🏬
   ipas:
     - ipa: /stɔː/
       category: standard
+  difficulty:
+    score: 29.0
 - phrase: storm
   emoji: ⛈️
   ipas:
     - ipa: /stɔːm/
       category: standard
+  difficulty:
+    score: 25.8
 - phrase: strawberry
   emoji: 🍓
   ipas:
     - ipa: /ˈstɹɔːb(ə)ɹi/
       category: standard
+  difficulty:
+    score: 34.9
 - phrase: suit
   emoji: 🕴️
   ipas:
     - ipa: /suːt/
       category: standard
+  difficulty:
+    score: 24.9
 - phrase: surf
   emoji: 🏄
   ipas:
     - ipa: /sɜːf/
       category: standard
+  difficulty:
+    score: 26.0
 - phrase: swan
   emoji: 🦢
   ipas:
     - ipa: /swɒn/
       category: standard
+  difficulty:
+    score: 22.7
 - phrase: swim
   emoji: 🏊
   ipas:
     - ipa: /swɪm/
       category: standard
+  difficulty:
+    score: 22.3
 - phrase: sword
   emoji: 🗡️
   ipas:
     - ipa: /sɔɹd/
       category: standard
+  difficulty:
+    score: 24.8
 - phrase: synagogue
   emoji: 🕍
   ipas:
     - ipa: /ˈsɪnəɡɒɡ/
       category: standard
+  difficulty:
+    score: 44.3
 - phrase: syringe
   emoji: 💉
   ipas:
     - ipa: /sɪˈɹɪn(d)ʒ/
       category: standard
+  difficulty:
+    score: 36.3
 - phrase: tape
   emoji: 📼
   ipas:
     - ipa: /teɪ̯p/
       category: standard
+  difficulty:
+    score: 26.3
 - phrase: taxi
   emoji: 🚕
   ipas:
     - ipa: /ˈtæk.si/
       category: standard
+  difficulty:
+    score: 28.0
 - phrase: telescope
   emoji: 🔭
   ipas:
     - ipa: /ˈtɛl.ɪ.skəʊp/
       category: standard
+  difficulty:
+    score: 42.8
 - phrase: temple
   emoji: 🛕
   ipas:
     - ipa: /ˈtɛm.pl̩/
       category: standard
+  difficulty:
+    score: 32.6
 - phrase: tennis
   emoji: 🎾
   ipas:
     - ipa: /ˈtɛnɪs/
       category: standard
+  difficulty:
+    score: 30.7
 - phrase: tie
   emoji: 👔
   ipas:
     - ipa: /taɪ/
       category: standard
+  difficulty:
+    score: 21.6
 - phrase: tiger
   emoji: 🦁
   ipas:
     - ipa: /ˈtaɪɡə/
       category: standard
+  difficulty:
+    score: 25.7
 - phrase: toilet
   emoji: 🚽
   ipas:
     - ipa: /ˈtɔɪ.lət/
       category: standard
+  difficulty:
+    score: 26.4
 - phrase: tomato
   emoji: 🍅
   ipas:
     - ipa: /təˈmɑː.təʊ/
       category: standard
+  difficulty:
+    score: 30.0
 - phrase: tongue
   emoji: 👅
   ipas:
     - ipa: /tʌŋ/
       category: standard
+  difficulty:
+    score: 27.9
 - phrase: tooth
   emoji: 🦷
   ipas:
     - ipa: /tuːθ/
       category: standard
+  difficulty:
+    score: 23.2
 - phrase: tornado
   emoji: 🌪️
   ipas:
     - ipa: /tɔː(ɹ)ˈneɪ.dəʊ/
       category: standard
+  difficulty:
+    score: 36.9
 - phrase: tower
   emoji: 🗼
   ipas:
     - ipa: /ˈtaʊ.ə(ɹ)/
       category: standard
+  difficulty:
+    score: 27.4
 - phrase: tractor
   emoji: 🚜
   ipas:
     - ipa: /ˈtɹæktə/
       category: standard
+  difficulty:
+    score: 29.3
 - phrase: tram
   emoji: 🚋
   ipas:
     - ipa: /tɹæm/
       category: standard
+  difficulty:
+    score: 27.5
 - phrase: trash
   emoji: 🗑️
   ipas:
     - ipa: /tɹæʃ/
       category: standard
+  difficulty:
+    score: 28.5
 - phrase: triangle
   emoji: 📐
   ipas:
     - ipa: /ˈtɹaɪəŋɡəl/
       category: standard
+  difficulty:
+    score: 31.2
 - phrase: truck
   emoji: 🚛
   ipas:
     - ipa: /tɹʌk/
       category: standard
+  difficulty:
+    score: 23.8
 - phrase: trumpet
   emoji: 🎺
   ipas:
     - ipa: /ˈtɹʌmpɪt/
       category: standard
+  difficulty:
+    score: 32.3
 - phrase: tulip
   emoji: 🌷
   ipas:
     - ipa: /ˈtulɪp/
       category: standard
+  difficulty:
+    score: 29.2
 - phrase: turtle
   emoji: 🐢
   ipas:
     - ipa: /ˈtɜːtl̩/
       category: standard
+  difficulty:
+    score: 28.9
 - phrase: tv
   emoji: 📺
   ipas:
     - ipa: /tiviː/
       category: standard
+  difficulty:
+    score: 18.6
 - phrase: umbrella
   emoji: ⛱️
   ipas:
     - ipa: /ʌmˈbɹɛl.ə/
       category: standard
+  difficulty:
+    score: 34.2
 - phrase: unicorn
   emoji: 🦄
   ipas:
     - ipa: /ˈjuː.nɪ.kɔːn/
       category: standard
+  difficulty:
+    score: 33.9
 - phrase: up
   emoji: 🆙
   ipas:
     - ipa: /ʌp/
       category: standard
+  difficulty:
+    score: 16.8
 - phrase: vampire
   emoji: 🧛
   ipas:
     - ipa: /ˈvæm.paɪ.ə(ɹ)/
       category: standard
+  difficulty:
+    score: 36.1
 - phrase: van
   emoji: 🚐
   ipas:
     - ipa: /væn/
       category: standard
+  difficulty:
+    score: 20.7
 - phrase: vest
   emoji: 🦺
   ipas:
     - ipa: /vɛst/
       category: standard
+  difficulty:
+    score: 23.6
 - phrase: victory
   emoji: ✌️
   ipas:
     - ipa: /ˈvɪk.tə.ɹi/
       category: standard
+  difficulty:
+    score: 35.1
 - phrase: video
   emoji: 📹
   ipas:
     - ipa: /ˈvɪd.i.əʊ/
       category: standard
+  difficulty:
+    score: 28.2
 - phrase: violin
   emoji: 🎻
   ipas:
     - ipa: /ˌvaɪ.əˈlɪn/
       category: standard
+  difficulty:
+    score: 30.7
 - phrase: warning
   emoji: ⚠️
   ipas:
     - ipa: /ˈwɔɹnɪŋ/
       category: standard
+  difficulty:
+    score: 32.6
 - phrase: watch
   emoji: ⌚
   ipas:
     - ipa: /ˈwɒt͡ʃ/
       category: standard
+  difficulty:
+    score: 24.7
 - phrase: water
   emoji: 🚱
   ipas:
     - ipa: /ˈwɔ.təɹ/
       category: standard
+  difficulty:
+    score: 24.3
 - phrase: wave
   emoji: 👋
   ipas:
     - ipa: /weɪv/
       category: standard
+  difficulty:
+    score: 24.9
 - phrase: whale
   emoji: 🐳
   ipas:
     - ipa: /weɪl/
       category: standard
+  difficulty:
+    score: 27.4
 - phrase: wheat
   emoji: 🌾
   ipas:
     - ipa: /wiːt/
       category: standard
+  difficulty:
+    score: 29.3
 - phrase: wheel
   emoji: 🎡
   ipas:
     - ipa: /wiːl/
       category: standard
+  difficulty:
+    score: 22.7
 - phrase: wind
   emoji: 🌬️
   ipas:
     - ipa: /wɪnd/
       category: standard
+  difficulty:
+    score: 21.6
 - phrase: wine
   emoji: 🍷
   ipas:
     - ipa: /waɪn/
       category: standard
+  difficulty:
+    score: 29.7
 - phrase: wolf
   emoji: 🐺
   ipas:
     - ipa: /wʊlf/
       category: standard
+  difficulty:
+    score: 22.7
 - phrase: woman
   emoji: 👩
   ipas:
     - ipa: /ˈwʊm.ən/
       category: standard
+  difficulty:
+    score: 25.6
 - phrase: women
   emoji: 🚺
   ipas:
     - ipa: /ˈwɪm.ɪn/
       category: standard
+  difficulty:
+    score: 26.7
 - phrase: worship
   emoji: 🛐
   ipas:
     - ipa: /ˈwɜː.ʃɪp/
       category: standard
+  difficulty:
+    score: 34.2
 - phrase: wrench
   emoji: 🔧
   ipas:
     - ipa: /ɹɛnt͡ʃ/
       category: standard
+  difficulty:
+    score: 31.8
 - phrase: wrestle
   emoji: ❓
   ipas:
     - ipa: /ˈɹɛsl̩/
       category: standard
+  difficulty:
+    score: 33.3
 - phrase: write
   emoji: ✍️
   ipas:
     - ipa: /ɹaɪt/
       category: standard
+  difficulty:
+    score: 27.2
 - phrase: zero
   emoji: 0️⃣
   ipas:
     - ipa: /ˈzɪəɹəʊ/
       category: standard
+  difficulty:
+    score: 25.5

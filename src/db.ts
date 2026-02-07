@@ -62,17 +62,20 @@ class PhonemePartyDB {
   private remoteDB?: PouchDB.Database;
   // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   private syncHandler?: PouchDB.Replication.Sync<{}>;
+  private indexesReady: Promise<void>;
 
   constructor() {
     // Local database
     this.db = new PouchDB("phoneme-party");
 
-    // Create indexes for efficient queries (async, but don't block constructor)
-    void this.initIndexes();
+    // Create indexes for efficient queries and track when they're ready
+    this.indexesReady = this.initIndexes();
   }
 
   private async initIndexes() {
     try {
+      console.log("Creating PouchDB indexes...");
+
       // Index for getting phrases by language and next review date
       await this.db.createIndex({
         index: {
@@ -87,14 +90,19 @@ class PhonemePartyDB {
         },
       });
 
-      // Index for history queries (by timestamp descending)
+      // Index for history queries (by timestamp)
+      // PouchDB requires all selector fields + sort fields in the index
       await this.db.createIndex({
         index: {
+          name: "history-index",
           fields: ["type", "language", "timestamp"],
         },
       });
+
+      console.log("PouchDB indexes created successfully");
     } catch (error) {
       console.error("Error creating indexes:", error);
+      throw error; // Propagate error so callers know initialization failed
     }
   }
 
@@ -265,6 +273,9 @@ class PhonemePartyDB {
    * Get phrases that are due for review
    */
   async getPhrasesForReview(language: string, limit = 10): Promise<PhraseStateDoc[]> {
+    // Wait for indexes to be ready before querying
+    await this.indexesReady;
+
     const now = Date.now();
 
     const result = await this.db.find({
@@ -284,6 +295,9 @@ class PhonemePartyDB {
    * Get all phrase states for a language
    */
   async getAllPhraseStates(language: string): Promise<PhraseStateDoc[]> {
+    // Wait for indexes to be ready before querying
+    await this.indexesReady;
+
     const result = await this.db.find({
       selector: {
         type: "phrase_state",
@@ -317,6 +331,9 @@ class PhonemePartyDB {
     limit = 20,
     skip = 0,
   ): Promise<PaginationResult<PhraseResultDoc>> {
+    // Wait for indexes to be ready before querying
+    await this.indexesReady;
+
     // Get total count first
     const countResult = await this.db.find({
       selector: {
@@ -329,12 +346,15 @@ class PhonemePartyDB {
     const totalCount = countResult.docs.length;
 
     // Get paginated results
+    // Note: PouchDB requires sorting by all index fields in order
+    // Index is ["type", "language", "timestamp"], so we sort by all three
     const result = await this.db.find({
       selector: {
         type: "phrase_result",
         language: language,
+        timestamp: { $exists: true }, // Ensure timestamp field is in selector to match index
       },
-      sort: [{ timestamp: "desc" }],
+      sort: [{ type: "asc" }, { language: "asc" }, { timestamp: "desc" }],
       limit: limit,
       skip: skip,
     });
@@ -351,6 +371,9 @@ class PhonemePartyDB {
    * Get stats for a specific phrase
    */
   async getPhraseStats(phrase: string, language: string) {
+    // Wait for indexes to be ready before querying
+    await this.indexesReady;
+
     const state = await this.getPhraseState(phrase, language);
 
     if (!state) {
@@ -394,7 +417,8 @@ class PhonemePartyDB {
     await this.db.destroy();
     // Recreate
     this.db = new PouchDB("phoneme-party");
-    await this.initIndexes();
+    this.indexesReady = this.initIndexes();
+    await this.indexesReady;
   }
 
   /**

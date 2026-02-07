@@ -8,6 +8,9 @@ import "./styles/main.css";
 
 import { getLanguage, initI18n, onLanguageChange, setLanguage, t } from "./i18n.js";
 
+// Import types
+import { getDifficultyLevel } from "./types.js";
+
 // Import state management
 import { resetFeedback, setState, state } from "./state.js";
 
@@ -429,9 +432,10 @@ async function actuallyStopRecording() {
 
       // Add phrase difficulty to debug metadata
       if (currentPhrase.difficulty) {
+        const level = getDifficultyLevel(currentPhrase.difficulty.score);
         debugMeta.push({
           labelKey: "processing.meta_phrase_difficulty",
-          value: `${currentPhrase.difficulty.score} (${currentPhrase.difficulty.level})`,
+          value: `${currentPhrase.difficulty.score} (${level})`,
         });
       }
 
