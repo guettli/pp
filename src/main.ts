@@ -168,7 +168,7 @@ function setupEventListeners() {
   }
 
   if (nextPhraseBtn) {
-    nextPhraseBtn.addEventListener("click", nextPhrase);
+    nextPhraseBtn.addEventListener("click", () => void nextPhrase());
   }
 
   if (languageSelect && languageSelect instanceof HTMLSelectElement) {
@@ -181,7 +181,7 @@ function setupEventListeners() {
     onLanguageChange((language) => {
       languageSelect.value = language;
       resetRecordButton();
-      nextPhrase();
+      void nextPhrase();
       updateWebGpuStatus();
       refreshHistory();
     });
@@ -556,8 +556,19 @@ function loadInitialPhrase() {
 /**
  * Load next random phrase
  */
-function nextPhrase() {
-  const phrase = getRandomPhrase(getLanguage());
+async function nextPhrase() {
+  const language = getLanguage();
+
+  // Get user level to select appropriate difficulty
+  let userLevel = 1; // Default to beginner level
+  try {
+    const stats = await db.getUserStats(language);
+    userLevel = stats.userLevel;
+  } catch (error) {
+    console.warn("Could not get user stats, defaulting to level 1:", error);
+  }
+
+  const phrase = getRandomPhrase(language, userLevel);
   setState({ currentPhrase: phrase });
   resetFeedback();
 
