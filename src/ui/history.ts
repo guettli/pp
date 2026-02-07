@@ -4,6 +4,8 @@
 
 import { db, type PhraseResultDoc } from "../db.js";
 import { getLanguage, t } from "../i18n.js";
+import { findPhraseByName } from "../utils/random.js";
+import type { SupportedLanguage } from "../types.js";
 
 const ITEMS_PER_PAGE = 20;
 let currentPage = 0;
@@ -58,6 +60,8 @@ async function loadHistory(reset: boolean) {
     if (historyList) {
       historyList.innerHTML = "";
     }
+    // Load and display user stats on initial load
+    void loadUserStats();
   }
 
   isLoading = true;
@@ -93,6 +97,52 @@ async function loadHistory(reset: boolean) {
 }
 
 /**
+ * Load and display user statistics
+ */
+async function loadUserStats() {
+  try {
+    const language = getLanguage();
+    const stats = await db.getUserStats(language);
+
+    // Update or create stats panel
+    let statsPanel = document.getElementById("user-stats-panel");
+    if (!statsPanel) {
+      statsPanel = document.createElement("div");
+      statsPanel.id = "user-stats-panel";
+      statsPanel.className = "card mb-3 bg-light";
+
+      // Insert at the top of history container, before history-list
+      const historyContainer = document.getElementById("history-container");
+      const historyList = document.getElementById("history-list");
+      if (historyContainer && historyList) {
+        historyContainer.insertBefore(statsPanel, historyList);
+      }
+    }
+
+    // Build stats HTML
+    const levelBadgeClass =
+      stats.userLevel >= 500 ? "bg-danger" : stats.userLevel >= 300 ? "bg-warning" : "bg-success";
+
+    statsPanel.innerHTML = `
+      <div class="card-body py-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h6 class="mb-1">Your Level</h6>
+            <div class="small text-muted">Based on recent performance</div>
+          </div>
+          <div class="text-end">
+            <div class="badge ${levelBadgeClass} fs-4 px-3 py-2">${stats.userLevel}</div>
+            <div class="small text-muted mt-1">${stats.masteredCount}/${stats.totalInWindow} mastered (≥95%)</div>
+          </div>
+        </div>
+      </div>
+    `;
+  } catch (error) {
+    console.error("Error loading user stats:", error);
+  }
+}
+
+/**
  * Render history items to the DOM
  */
 function renderHistoryItems(items: PhraseResultDoc[]) {
@@ -116,10 +166,17 @@ function createHistoryItem(item: PhraseResultDoc): HTMLElement {
   const scorePercent = Math.round(item.score);
   const scoreClass = getScoreClass(scorePercent);
 
+  // Get phrase level from phrase data
+  const phrase = findPhraseByName(item.phrase, item.language as SupportedLanguage);
+  const phraseLevel = phrase?.level;
+  const levelBadge = phraseLevel
+    ? `<span class="badge bg-secondary ms-2" title="Phrase level">L${phraseLevel}</span>`
+    : "";
+
   div.innerHTML = `
     <div class="d-flex justify-content-between align-items-start">
       <div class="flex-grow-1">
-        <h6 class="mb-1">${escapeHtml(item.phrase)}</h6>
+        <h6 class="mb-1">${escapeHtml(item.phrase)}${levelBadge}</h6>
         <div class="small text-muted">
           <span>${item.targetIPA}</span>
           <span class="mx-2">→</span>

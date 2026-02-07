@@ -9,7 +9,7 @@ import "./styles/main.css";
 import { getLanguage, initI18n, onLanguageChange, setLanguage, t } from "./i18n.js";
 
 // Import types
-import { getDifficultyLevel } from "./types.js";
+import { getLevelText } from "./types.js";
 
 // Import state management
 import { resetFeedback, setState, state } from "./state.js";
@@ -430,12 +430,12 @@ async function actuallyStopRecording() {
       }
       const currentPhrase = state.currentPhrase;
 
-      // Add phrase difficulty to debug metadata
-      if (currentPhrase.difficulty) {
-        const level = getDifficultyLevel(currentPhrase.difficulty.score);
+      // Add phrase level to debug metadata
+      if (currentPhrase.level) {
+        const levelText = getLevelText(currentPhrase.level);
         debugMeta.push({
-          labelKey: "processing.meta_phrase_difficulty",
-          value: `${currentPhrase.difficulty.score} (${level})`,
+          labelKey: "processing.meta_level",
+          value: `${currentPhrase.level}/1000 (${levelText})`,
         });
       }
 

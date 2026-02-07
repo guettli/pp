@@ -13,19 +13,17 @@ export interface Phrase {
   phrase: string;
   emoji: string;
   ipas: IPA[];
-  difficulty?: {
-    score: number;
-  };
+  level?: number; // 1-1000 difficulty level
 }
 
 /**
- * Get difficulty level from numeric score
+ * Get difficulty level text from numeric level (1-1000)
  */
-export function getDifficultyLevel(score: number): string {
-  if (score < 20) return "Very Easy";
-  if (score < 40) return "Easy";
-  if (score < 60) return "Medium";
-  if (score < 80) return "Hard";
+export function getLevelText(level: number): string {
+  if (level < 200) return "Very Easy";
+  if (level < 400) return "Easy";
+  if (level < 600) return "Medium";
+  if (level < 800) return "Hard";
   return "Very Hard";
 }
 
@@ -125,6 +123,14 @@ export type SupportedLanguage = "de" | "en";
 
 // Translation key type (partial, for type safety without exhaustive listing)
 export type TranslationKey = string;
+
+// User statistics based on training history
+export interface UserStats {
+  userLevel: number; // 80th percentile of last 30 mastered phrase levels
+  masteredCount: number; // Count with score ≥95% in last 30
+  totalInWindow: number; // Total attempts in window (≤30)
+  language: string;
+}
 
 // ONNX Runtime types (minimal)
 export interface OnnxTensor {

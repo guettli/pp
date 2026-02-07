@@ -3,6 +3,8 @@
  */
 
 import { PouchDB, find } from "@svouch/pouchdb";
+import type { SupportedLanguage, UserStats } from "./types.js";
+import { findPhraseByName } from "./utils/random.js";
 
 // Apply the find plugin to enable createIndex and find methods
 PouchDB.plugin(find);
@@ -393,6 +395,58 @@ class PhonemePartyDB {
     return {
       state,
       history: results.docs as PhraseResultDoc[],
+    };
+  }
+
+  /**
+   * Get user statistics based on last 30 attempts
+   * User level is calculated as the 80th percentile of mastered phrase levels
+   */
+  async getUserStats(language: SupportedLanguage): Promise<UserStats> {
+    // Wait for indexes to be ready
+    await this.indexesReady;
+
+    // Get last 30 results
+    const result = await this.db.find({
+      selector: {
+        type: "phrase_result",
+        language: language,
+        timestamp: { $exists: true },
+      },
+      sort: [{ type: "asc" }, { language: "asc" }, { timestamp: "desc" }],
+      limit: 30,
+    });
+
+    const docs = result.docs as PhraseResultDoc[];
+
+    // Filter for mastered phrases (score ≥95%)
+    const mastered = docs.filter((doc) => doc.score >= 95);
+
+    // Get phrase levels for mastered phrases
+    const levels: number[] = [];
+    for (const doc of mastered) {
+      const phrase = findPhraseByName(doc.phrase, language);
+      if (phrase?.level) {
+        levels.push(phrase.level);
+      }
+    }
+
+    // Calculate 80th percentile
+    let userLevel = 1; // Default to level 1
+    if (levels.length > 0) {
+      // Sort levels in ascending order
+      levels.sort((a, b) => a - b);
+
+      // Calculate 80th percentile index
+      const index = Math.ceil(levels.length * 0.8) - 1;
+      userLevel = levels[Math.max(0, index)];
+    }
+
+    return {
+      userLevel,
+      masteredCount: mastered.length,
+      totalInWindow: docs.length,
+      language,
     };
   }
 

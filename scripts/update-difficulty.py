@@ -20,6 +20,30 @@ from multiprocessing import Pool, cpu_count
 from phrase_difficulty import PhraseDifficultyAnalyzer
 
 
+def score_to_level(score: float, lang: str) -> int:
+    """Convert difficulty score to level (1-1000) using per-language mapping."""
+    # Score ranges determined from actual data
+    score_ranges = {
+        "en": {"min": 16.8, "max": 48.3},
+        "de": {"min": 22.8, "max": 66.0},
+    }
+
+    if lang not in score_ranges:
+        # Fallback for unsupported languages
+        return max(1, min(1000, round(score * 10)))
+
+    min_score = score_ranges[lang]["min"]
+    max_score = score_ranges[lang]["max"]
+
+    # Linear mapping: score range -> 1-1000
+    # Formula: level = round((score - min) / (max - min) * 999) + 1
+    normalized = (score - min_score) / (max_score - min_score)
+    level = round(normalized * 999) + 1
+
+    # Clamp to 1-1000 range
+    return max(1, min(1000, level))
+
+
 def calculate_phrase_difficulty(args):
     """Worker function to calculate difficulty for a single phrase."""
     phrase, lang = args
@@ -37,10 +61,14 @@ def calculate_phrase_difficulty(args):
             sys.stderr.close()
             sys.stderr = old_stderr
 
+        score = result["difficulty_score"]
+        level = score_to_level(score, lang)
+
         return {
             "phrase": phrase,
-            "score": result["difficulty_score"],
-            "level": result["difficulty_level"],
+            "score": score,
+            "level": level,
+            "level_text": result["difficulty_level"],
             "avg_aoa": result.get("avg_aoa"),
             "word_count": result["word_count"],
             "avg_word_length": result["avg_word_length"],
@@ -114,35 +142,46 @@ def main():
     if args.list:
         print(f"\n📊 Listing {len(phrases)} phrases by difficulty...\n")
 
-        # Extract existing difficulty scores from entries
+        # Extract existing level data from entries
         phrase_results = []
         for entry in phrases:
             phrase_text = entry.get("phrase", "")
-            difficulty = entry.get("difficulty", {})
 
-            if difficulty and isinstance(difficulty, dict):
+            # Check for new format (level)
+            if "level" in entry and isinstance(entry["level"], (int, float)):
                 phrase_results.append({
                     "phrase": phrase_text,
-                    "score": difficulty.get("score", 0),
-                    "level": difficulty.get("level", "Unknown"),
+                    "level": entry["level"],
                     "success": True,
                 })
+            # Check for old format (difficulty.score)
+            elif "difficulty" in entry:
+                difficulty = entry.get("difficulty", {})
+                if isinstance(difficulty, dict) and "score" in difficulty:
+                    # Convert old score to level for display
+                    score = difficulty.get("score", 0)
+                    level = score_to_level(score, lang)
+                    phrase_results.append({
+                        "phrase": phrase_text,
+                        "level": level,
+                        "success": True,
+                    })
             else:
                 # Skip phrases without difficulty data
-                print(f"⚠️  No difficulty data for: {phrase_text}", file=sys.stderr)
+                print(f"⚠️  No level data for: {phrase_text}", file=sys.stderr)
 
-        # Sort by difficulty score (ascending)
-        sorted_results = sorted(phrase_results, key=lambda p: p["score"])
+        # Sort by level (ascending)
+        sorted_results = sorted(phrase_results, key=lambda p: p["level"])
 
         print(f"{'='*70}")
-        print(f"Phrases sorted by difficulty (total: {len(sorted_results)})")
+        print(f"Phrases sorted by level (total: {len(sorted_results)})")
         print(f"{'='*70}\n")
 
         for result in sorted_results:
-            score = result["score"]
+            level = result["level"]
             phrase = result["phrase"]
 
-            print(f"{score:5.1f} {phrase}")
+            print(f"{level:4d} {phrase}")
 
         sys.exit(0)
 
@@ -151,15 +190,15 @@ def main():
         print(f"\n🔄 Updating ALL {len(phrases)} entries...\n")
         entries_to_update = phrases
     else:
-        # Find entries with missing difficulty
-        entries_to_update = [p for p in phrases if "difficulty" not in p]
+        # Find entries with missing level data
+        entries_to_update = [p for p in phrases if "level" not in p]
 
         if len(entries_to_update) == 0:
-            print("✅ All entries have difficulty data!")
-            print("💡 Use --update-all to recalculate all difficulty scores")
+            print("✅ All entries have level data!")
+            print("💡 Use --update-all to recalculate all levels")
             sys.exit(0)
 
-        print(f"\n🔍 Found {len(entries_to_update)} entries with missing difficulty:\n")
+        print(f"\n🔍 Found {len(entries_to_update)} entries with missing level:\n")
 
     # Initialize analyzer
     num_cores = cpu_count()
@@ -177,12 +216,12 @@ def main():
     for result in results:
         phrase = result["phrase"]
         if result.get("success"):
-            score = result["score"]
             level = result["level"]
-            print(f'  ✓ "{phrase}": {score}/100 ({level})')
+            level_text = result.get("level_text", "")
+            print(f'  ✓ "{phrase}": Level {level}/1000 ({level_text})')
             updates.append({
                 "phrase": phrase,
-                "difficulty_score": score,
+                "level": level,
             })
         else:
             print(f'  ✗ "{phrase}": {result.get("error")}')
@@ -193,7 +232,7 @@ def main():
 
     # Display results summary
     print(f"\n{'=' * 60}")
-    print(f"Calculated difficulty for {len(updates)}/{len(entries_to_update)} entries\n")
+    print(f"Calculated levels for {len(updates)}/{len(entries_to_update)} entries\n")
 
     # Update the phrases array
     print("✍️  Updating file...")
@@ -201,9 +240,11 @@ def main():
     for update in updates:
         entry = next((p for p in phrases if p.get("phrase") == update["phrase"]), None)
         if entry:
-            entry["difficulty"] = {
-                "score": update["difficulty_score"],
-            }
+            # Remove old difficulty field if it exists
+            if "difficulty" in entry:
+                del entry["difficulty"]
+            # Set new level field
+            entry["level"] = update["level"]
 
     # Write back to file
     with open(file_path, "w", encoding="utf-8") as f:
@@ -216,7 +257,7 @@ def main():
             width=100,
         )
 
-    print(f"✅ Updated {file_path} with {len(updates)} difficulty entries")
+    print(f"✅ Updated {file_path} with {len(updates)} level entries")
 
 
 if __name__ == "__main__":
