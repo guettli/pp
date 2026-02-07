@@ -14,7 +14,8 @@ import re
 import os
 from pathlib import Path
 import yaml
-from multiprocessing import Pool, cpu_count
+from concurrent.futures import ThreadPoolExecutor
+import time
 
 # Import the analyzer from phrase_difficulty.py
 from phrase_difficulty import PhraseDifficultyAnalyzer
@@ -44,12 +45,23 @@ def score_to_level(score: float, lang: str) -> int:
     return max(1, min(1000, level))
 
 
+# Global analyzer instance (initialized once and reused)
+_analyzer_instance = None
+
+def get_analyzer():
+    """Get or create the global analyzer instance."""
+    global _analyzer_instance
+    if _analyzer_instance is None:
+        _analyzer_instance = PhraseDifficultyAnalyzer()
+    return _analyzer_instance
+
+
 def calculate_phrase_difficulty(args):
     """Worker function to calculate difficulty for a single phrase."""
     phrase, lang = args
     try:
-        # Each process needs its own analyzer instance
-        analyzer = PhraseDifficultyAnalyzer()
+        # Reuse global analyzer instance instead of creating new one
+        analyzer = get_analyzer()
 
         # Suppress stderr
         old_stderr = sys.stderr
@@ -100,6 +112,16 @@ def main():
         "--list",
         action="store_true",
         help="List all phrases sorted by difficulty (lowest to highest)",
+    )
+    parser.add_argument(
+        "--phrase",
+        type=str,
+        help="Update only a specific phrase (e.g., 'Katze')",
+    )
+    parser.add_argument(
+        "--profile",
+        action="store_true",
+        help="Enable profiling to measure performance",
     )
 
     args = parser.parse_args()
@@ -186,7 +208,15 @@ def main():
         sys.exit(0)
 
     # Determine which entries to update
-    if args.update_all:
+    if args.phrase:
+        # Update only the specified phrase
+        matching = [p for p in phrases if p.get("phrase") == args.phrase]
+        if not matching:
+            print(f"❌ Phrase not found: {args.phrase}")
+            sys.exit(1)
+        entries_to_update = matching
+        print(f"\n🔄 Updating phrase: {args.phrase}\n")
+    elif args.update_all:
         print(f"\n🔄 Updating ALL {len(phrases)} entries...\n")
         entries_to_update = phrases
     else:
@@ -200,16 +230,23 @@ def main():
 
         print(f"\n🔍 Found {len(entries_to_update)} entries with missing level:\n")
 
-    # Initialize analyzer
-    num_cores = cpu_count()
-    print(f"Processing {len(entries_to_update)} phrases using {num_cores} CPU cores...")
+    # Initialize threading
+    num_workers = min(8, len(entries_to_update))  # Limit to 8 threads max
+    print(f"Processing {len(entries_to_update)} phrases using {num_workers} threads...")
 
     # Prepare arguments for parallel processing
     phrase_args = [(entry.get("phrase", ""), lang) for entry in entries_to_update]
 
-    # Process in parallel using all CPU cores
-    with Pool(processes=num_cores) as pool:
-        results = pool.map(calculate_phrase_difficulty, phrase_args)
+    # Profile if requested
+    start_time = time.time() if args.profile else None
+
+    # Process in parallel using thread pool
+    with ThreadPoolExecutor(max_workers=num_workers) as executor:
+        results = list(executor.map(lambda args: calculate_phrase_difficulty(args), phrase_args))
+
+    if args.profile:
+        elapsed = time.time() - start_time
+        print(f"\n⏱️  Processing took {elapsed:.2f}s ({elapsed/len(entries_to_update):.3f}s per phrase)")
 
     # Display results and collect updates
     updates = []

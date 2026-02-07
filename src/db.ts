@@ -350,18 +350,21 @@ class PhonemePartyDB {
     // Get paginated results
     // Note: PouchDB requires sorting by all index fields in order
     // Index is ["type", "language", "timestamp"], so we sort by all three
+    // PouchDB limitation: all sort directions must be the same, so we fetch in asc order
+    // and reverse manually to get newest first
     const result = await this.db.find({
       selector: {
         type: "phrase_result",
         language: language,
         timestamp: { $exists: true }, // Ensure timestamp field is in selector to match index
       },
-      sort: [{ type: "asc" }, { language: "asc" }, { timestamp: "desc" }],
+      sort: [{ type: "asc" }, { language: "asc" }, { timestamp: "asc" }],
       limit: limit,
       skip: skip,
     });
 
-    const docs = result.docs as PhraseResultDoc[];
+    // Reverse to get newest first (since PouchDB returned oldest first)
+    const docs = (result.docs as PhraseResultDoc[]).reverse();
     return {
       docs,
       hasMore: skip + docs.length < totalCount,

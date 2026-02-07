@@ -1,6 +1,52 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("History - Database Functionality", () => {
+  test("should verify history is sorted with newest first", async ({ page }) => {
+    await page.goto("/");
+    await page.waitForLoadState("domcontentloaded");
+
+    const sortTest = await page.evaluate(async () => {
+      const { db } = await import("/src/db.ts");
+      await db.clearAll();
+
+      // Add 5 items with specific timestamps
+      const now = Date.now();
+      await db.savePhraseResult("Oldest", "de", 85, "/test/", "/target/", 1000);
+      await new Promise((resolve) => setTimeout(resolve, 10));
+
+      await db.savePhraseResult("Old", "de", 85, "/test/", "/target/", 1000);
+      await new Promise((resolve) => setTimeout(resolve, 10));
+
+      await db.savePhraseResult("Middle", "de", 85, "/test/", "/target/", 1000);
+      await new Promise((resolve) => setTimeout(resolve, 10));
+
+      await db.savePhraseResult("New", "de", 85, "/test/", "/target/", 1000);
+      await new Promise((resolve) => setTimeout(resolve, 10));
+
+      await db.savePhraseResult("Newest", "de", 85, "/test/", "/target/", 1000);
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      const history = await db.getHistory("de", 20, 0);
+
+      return {
+        phrases: history.docs.map((d) => ({ phrase: d.phrase, timestamp: d.timestamp })),
+        firstPhrase: history.docs[0].phrase,
+        lastPhrase: history.docs[history.docs.length - 1].phrase,
+      };
+    });
+
+    // First item should be "Newest", last should be "Oldest"
+    expect(sortTest.firstPhrase).toBe("Newest");
+    expect(sortTest.lastPhrase).toBe("Oldest");
+
+    // Verify timestamps are in descending order
+    for (let i = 0; i < sortTest.phrases.length - 1; i++) {
+      expect(sortTest.phrases[i].timestamp).toBeGreaterThanOrEqual(
+        sortTest.phrases[i + 1].timestamp,
+      );
+    }
+  });
+
   test("should test database operations without loading full app", async ({ page }) => {
     // Create a minimal test page that only tests the database
     await page.goto("/");

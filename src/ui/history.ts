@@ -73,6 +73,22 @@ async function loadHistory(reset: boolean) {
 
     const result = await db.getHistory(language, ITEMS_PER_PAGE, skip);
 
+    // Debug: Verify sort order (newest should be first)
+    if (result.docs.length > 0 && currentPage === 0) {
+      console.log(
+        "[History] First item:",
+        new Date(result.docs[0].timestamp).toISOString(),
+        result.docs[0].phrase,
+      );
+      if (result.docs.length > 1) {
+        console.log(
+          "[History] Last item:",
+          new Date(result.docs[result.docs.length - 1].timestamp).toISOString(),
+          result.docs[result.docs.length - 1].phrase,
+        );
+      }
+    }
+
     if (result.docs.length === 0 && currentPage === 0) {
       showEmptyState(true);
       showLoadingIndicator(false);
