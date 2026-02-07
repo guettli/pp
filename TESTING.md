@@ -1,6 +1,7 @@
 # Testing Guide
 
-This document explains how to run tests for Phoneme Party, including strategies for handling the ML model download.
+This document explains how to run tests for Phoneme Party, including strategies for handling the ML
+model download.
 
 ## Quick Start
 
@@ -17,10 +18,13 @@ This document explains how to run tests for Phoneme Party, including strategies 
 
 ## ML Model Caching
 
-The app uses an ML model that downloads from HuggingFace (~50-100MB). The model is cached in the browser's Cache API, but by default Playwright uses a fresh browser profile for each test run.
+The app uses an ML model that downloads from HuggingFace (~50-100MB). The model is cached in the
+browser's Cache API, but by default Playwright uses a fresh browser profile for each test run.
 
 ### Problem: Slow Tests
-Without caching, each test run re-downloads the model, taking **~2-3 minutes**. The `@slow` tests include this loading time.
+
+Without caching, each test run re-downloads the model, taking **~2-3 minutes**. The `@slow` tests
+include this loading time.
 
 ### Solution: Pre-cache the Model
 
@@ -35,6 +39,7 @@ Use the **global setup** feature to download the model once and reuse it:
 ```
 
 **How it works:**
+
 1. Global setup script (`tests/global-setup.js`) runs once before all tests
 2. It loads the app in a persistent browser context
 3. Model downloads and is cached in `/tmp/playwright-phoneme-party-cache/`
@@ -53,7 +58,9 @@ Use the **global setup** feature to download the model once and reuse it:
 ## Test Categories
 
 ### Fast Tests (Default)
+
 Run automatically by `pnpm test` and `pnpm check`:
+
 - `tests/app.spec.js` - Basic app loading
 - `tests/history.spec.js` - History functionality
 - `tests/voice-selection-unit.spec.js` - Voice selection logic
@@ -62,10 +69,13 @@ Run automatically by `pnpm test` and `pnpm check`:
 These tests are **excluded from slow tests** via the `@slow` tag filter.
 
 ### Slow Tests (@slow tag)
+
 Require full app initialization with model loading:
+
 - `tests/voice-selection.spec.js` - Full E2E voice selection testing
 
 **Run with:**
+
 ```bash
 RUN_SLOW_TESTS=1 ./run pnpm test
 # or
@@ -121,17 +131,17 @@ View detailed test results with screenshots:
 
 ## npm Scripts Reference
 
-| Script | Description | Speed |
-|--------|-------------|-------|
-| `pnpm test` | Fast tests only | ~5 sec |
-| `pnpm test:slow` | All tests including @slow | 2-3 min |
-| `pnpm test:slow:cached` | All tests with model caching | 30 sec |
-| `pnpm test:voice` | Voice selection tests | 2-3 min |
-| `pnpm test:voice:cached` | Voice tests with caching | 30 sec |
-| `pnpm test:headed` | Run with visible browser | - |
-| `pnpm test:ui` | Interactive debug mode | - |
-| `pnpm test:report` | View test results | - |
-| `pnpm check` | Lint + typecheck + fast tests | ~10 sec |
+| Script                   | Description                   | Speed   |
+| ------------------------ | ----------------------------- | ------- |
+| `pnpm test`              | Fast tests only               | ~5 sec  |
+| `pnpm test:slow`         | All tests including @slow     | 2-3 min |
+| `pnpm test:slow:cached`  | All tests with model caching  | 30 sec  |
+| `pnpm test:voice`        | Voice selection tests         | 2-3 min |
+| `pnpm test:voice:cached` | Voice tests with caching      | 30 sec  |
+| `pnpm test:headed`       | Run with visible browser      | -       |
+| `pnpm test:ui`           | Interactive debug mode        | -       |
+| `pnpm test:report`       | View test results             | -       |
+| `pnpm check`             | Lint + typecheck + fast tests | ~10 sec |
 
 ## CI/CD Considerations
 
@@ -139,6 +149,7 @@ For continuous integration:
 
 1. **Use global setup** to cache model across test runs
 2. **Cache the browser profile** between CI runs:
+
    ```yaml
    # GitHub Actions example
    - name: Cache Playwright model
@@ -153,20 +164,24 @@ For continuous integration:
 ## Troubleshooting
 
 ### "No tests found" error
+
 - Make sure you're in the project root
 - Use `./run pnpm test` not just `pnpm test`
 - Check that test files exist in `tests/` directory
 
 ### Tests timeout on model loading
+
 - Increase timeout in `playwright.config.js`
 - Use cached model approach (`test:slow:cached`)
 - Check network connection to HuggingFace CDN
 
 ### Voice tests fail in headless mode
+
 - Headless Chrome has no speech synthesis voices
 - Use `--headed` mode or manual testing for voice features
 
 ### Model cache not working
+
 - Clear the cache: `rm -rf /tmp/playwright-phoneme-party-cache`
 - Try running with `USE_GLOBAL_SETUP=1` explicitly
 - Check that `tests/global-setup.js` exists
