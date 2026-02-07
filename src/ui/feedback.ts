@@ -256,8 +256,9 @@ function downloadRecording() {
 
 /**
  * Play the last recorded audio
+ * @param autoPlayDesired - If true, automatically play desired pronunciation after recording ends
  */
-export function playRecording() {
+export function playRecording(autoPlayDesired = false) {
   if (!state.lastRecordingBlob) return;
 
   // Stop any currently playing audio
@@ -273,6 +274,12 @@ export function playRecording() {
   currentAudio.onended = () => {
     URL.revokeObjectURL(url);
     currentAudio = null;
+
+    // Automatically play desired pronunciation after recording ends
+    if (autoPlayDesired && state.currentPhrase?.phrase) {
+      console.log("Recording ended, playing desired pronunciation...");
+      playDesiredPronunciation(state.currentPhrase.phrase);
+    }
   };
 
   // Clean up on error too

@@ -351,8 +351,8 @@ async function actuallyStopRecording() {
       return;
     }
 
-    // Play back the recording immediately
-    playRecording();
+    // Play back the recording immediately, then auto-play desired pronunciation
+    playRecording(true);
 
     // Set processing state
     setState({ isProcessing: true });
