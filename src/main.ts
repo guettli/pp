@@ -544,7 +544,7 @@ function loadInitialPhrase() {
   const queryPhrase = getPhraseFromQueryString();
   if (queryPhrase) {
     setState({ currentPhrase: queryPhrase });
-    displayPhrase(queryPhrase, () => playDesiredPronunciation(queryPhrase.phrase), false);
+    displayPhrase(queryPhrase, () => void playDesiredPronunciation(queryPhrase.phrase), false);
     setRecordButtonEnabled(true);
     updateURL();
   } else {
@@ -573,7 +573,7 @@ async function nextPhrase() {
   resetFeedback();
 
   // Display the phrase
-  displayPhrase(phrase, () => playDesiredPronunciation(phrase.phrase), true);
+  displayPhrase(phrase, () => void playDesiredPronunciation(phrase.phrase), true);
 
   // Hide feedback
   hideFeedback();
@@ -585,7 +585,7 @@ async function nextPhrase() {
   updateURL();
 
   // Play pronunciation automatically (works because of user interaction)
-  playDesiredPronunciation(phrase.phrase);
+  void playDesiredPronunciation(phrase.phrase);
 }
 
 // Initialize the app when DOM is ready

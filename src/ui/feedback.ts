@@ -6,6 +6,7 @@ import { getLanguage, t } from "../i18n.js";
 import { setState, state } from "../state.js";
 import type { PhonemeComparisonItem, Phrase, Score } from "../types.js";
 import { generateExplanationsHTML } from "./ipa-helper.js";
+import { db } from "../db.js";
 
 // Track current audio playback
 let currentAudio: HTMLAudioElement | null = null;
@@ -92,7 +93,7 @@ export function displayFeedback(targetPhrase: Phrase, actualIPA: string, score: 
     void checkSpeechSynthesisSupport().then((supported) => {
       if (supported) {
         playTargetBtn.style.display = "inline-block";
-        playTargetBtn.onclick = () => playDesiredPronunciation(targetPhrase.phrase);
+        playTargetBtn.onclick = () => void playDesiredPronunciation(targetPhrase.phrase);
         if (speechHint) speechHint.style.display = "none";
       } else {
         playTargetBtn.style.display = "none";
@@ -280,7 +281,7 @@ export function playRecording(scorePercent?: number) {
       console.log(
         `Recording ended, score ${scorePercent}% < 95%, playing desired pronunciation...`,
       );
-      playDesiredPronunciation(state.currentPhrase.phrase);
+      void playDesiredPronunciation(state.currentPhrase.phrase);
     } else if (scorePercent !== undefined && scorePercent >= 95) {
       console.log(`Recording ended, score ${scorePercent}% >= 95%, skipping desired pronunciation`);
     }
@@ -357,13 +358,22 @@ function checkSpeechSynthesisSupport() {
 /**
  * Play the desired pronunciation using Web Speech API
  */
-export function playDesiredPronunciation(phrase: string): void {
+export async function playDesiredPronunciation(phrase: string): Promise<void> {
   if (!phrase || !window.speechSynthesis) {
     console.log("Speech synthesis not available");
     return;
   }
 
   console.log("playDesiredPronunciation called with phrase:", phrase);
+
+  // Get user level to adjust speech rate
+  let userLevel = 1;
+  try {
+    const stats = await db.getUserStats(getLanguage());
+    userLevel = stats.userLevel;
+  } catch (error) {
+    console.warn("Could not get user stats for speech rate, using default:", error);
+  }
 
   // Function to actually speak once voices are ready
   const speakPhrase = () => {
@@ -380,27 +390,57 @@ export function playDesiredPronunciation(phrase: string): void {
       voice.lang.startsWith(lang === "de" ? "de" : "en"),
     );
 
+    // Log all available voices for debugging
+    console.log(`Total voices available: ${voices.length}`);
+    console.log(`Language-matched voices (${lang}):`, languageVoices.length);
+    languageVoices.forEach((voice) => {
+      console.log(`  - ${voice.name} (${voice.lang}) | Local: ${voice.localService}`);
+    });
+
     // Prefer offline voices (localService = true), but fall back to all voices if none available
     let availableVoices = languageVoices.filter((voice) => voice.localService);
     if (availableVoices.length === 0) {
       availableVoices = languageVoices;
       console.log("No offline voices available, using all voices");
     } else {
-      console.log(`Found ${availableVoices.length} offline voices`);
+      console.log(
+        `Using ${availableVoices.length} offline voices out of ${languageVoices.length} total`,
+      );
     }
 
     if (availableVoices.length > 0) {
       const randomVoice = availableVoices[Math.floor(Math.random() * availableVoices.length)];
       utterance.voice = randomVoice;
-      console.log("Using random voice:", randomVoice.name, "| Offline:", randomVoice.localService);
+      console.log("✓ Selected voice:", randomVoice.name, "| Offline:", randomVoice.localService);
+    } else {
+      console.warn("⚠ No voices available for this language");
     }
 
-    // Adjust for maximum clarity
-    utterance.rate = 0.65; // Slower for better comprehension
+    // Adjust speech rate based on user level
+    // Level 1-599: Scale from 0.5 (very slow) to 1.0 (normal)
+    // Level 600+: 1.0 (normal speed)
+    let rate: number;
+    if (userLevel < 600) {
+      // Linear scaling: 0.5 at level 1, approaching 1.0 at level 600
+      rate = 0.5 + (userLevel / 600) * 0.5;
+    } else {
+      rate = 1.0;
+    }
+    utterance.rate = rate;
     utterance.pitch = 0.95; // Slightly lower pitch for clarity
     utterance.volume = 1.0; // Full volume
 
-    console.log("Speaking phrase:", phrase, "with language:", utterance.lang);
+    console.log(
+      "Speaking phrase:",
+      phrase,
+      "with language:",
+      utterance.lang,
+      "| Rate:",
+      rate.toFixed(2),
+      "(Level:",
+      userLevel,
+      ")",
+    );
 
     utterance.onstart = () => console.log("Speech started");
     utterance.onend = () => console.log("Speech ended");
