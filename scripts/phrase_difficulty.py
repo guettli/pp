@@ -26,7 +26,11 @@ except ImportError:
 
 # Optional: Text-to-IPA for phoneme analysis
 try:
-    import epitran
+    import warnings
+    # Suppress epitran flite warnings
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", message=".*lex_lookup.*")
+        import epitran
 
     EPITRAN_AVAILABLE = True
 except ImportError:
