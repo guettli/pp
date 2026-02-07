@@ -351,10 +351,7 @@ async function actuallyStopRecording() {
       return;
     }
 
-    // Play back the recording immediately, then auto-play desired pronunciation
-    playRecording(true);
-
-    // Set processing state
+    // Set processing state (play recording after we have the score)
     setState({ isProcessing: true });
 
     // Show processing with simulated progress
@@ -461,6 +458,9 @@ async function actuallyStopRecording() {
 
       // Update state
       setState({ score, actualIPA });
+
+      // Play back the recording with score, which will auto-play desired pronunciation if score < 95%
+      playRecording(score.similarityPercent);
 
       // Save result to database (non-blocking, errors won't crash app)
       try {

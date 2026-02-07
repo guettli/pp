@@ -256,9 +256,9 @@ function downloadRecording() {
 
 /**
  * Play the last recorded audio
- * @param autoPlayDesired - If true, automatically play desired pronunciation after recording ends
+ * @param scorePercent - Optional score percentage (0-100). If provided and < 95, auto-play desired pronunciation
  */
-export function playRecording(autoPlayDesired = false) {
+export function playRecording(scorePercent?: number) {
   if (!state.lastRecordingBlob) return;
 
   // Stop any currently playing audio
@@ -275,10 +275,14 @@ export function playRecording(autoPlayDesired = false) {
     URL.revokeObjectURL(url);
     currentAudio = null;
 
-    // Automatically play desired pronunciation after recording ends
-    if (autoPlayDesired && state.currentPhrase?.phrase) {
-      console.log("Recording ended, playing desired pronunciation...");
+    // Automatically play desired pronunciation after recording ends, but only if score < 95%
+    if (scorePercent !== undefined && scorePercent < 95 && state.currentPhrase?.phrase) {
+      console.log(
+        `Recording ended, score ${scorePercent}% < 95%, playing desired pronunciation...`,
+      );
       playDesiredPronunciation(state.currentPhrase.phrase);
+    } else if (scorePercent !== undefined && scorePercent >= 95) {
+      console.log(`Recording ended, score ${scorePercent}% >= 95%, skipping desired pronunciation`);
     }
   };
 
@@ -369,6 +373,27 @@ export function playDesiredPronunciation(phrase: string): void {
     const utterance = new SpeechSynthesisUtterance(phrase);
     const lang = getLanguage();
     utterance.lang = lang === "de" ? "de-DE" : "en-US";
+
+    // Select a random voice for the target language, preferring offline voices
+    const voices = speechSynthesis.getVoices();
+    const languageVoices = voices.filter((voice) =>
+      voice.lang.startsWith(lang === "de" ? "de" : "en"),
+    );
+
+    // Prefer offline voices (localService = true), but fall back to all voices if none available
+    let availableVoices = languageVoices.filter((voice) => voice.localService);
+    if (availableVoices.length === 0) {
+      availableVoices = languageVoices;
+      console.log("No offline voices available, using all voices");
+    } else {
+      console.log(`Found ${availableVoices.length} offline voices`);
+    }
+
+    if (availableVoices.length > 0) {
+      const randomVoice = availableVoices[Math.floor(Math.random() * availableVoices.length)];
+      utterance.voice = randomVoice;
+      console.log("Using random voice:", randomVoice.name, "| Offline:", randomVoice.localService);
+    }
 
     // Adjust for maximum clarity
     utterance.rate = 0.65; // Slower for better comprehension
