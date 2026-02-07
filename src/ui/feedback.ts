@@ -577,12 +577,19 @@ function generatePhonemeComparisonHTML(phonemeComparison: PhonemeComparisonItem[
 export function setupVoiceSelectionButton(buttonIds: string[] = ["play-target-btn"]): void {
   buttonIds.forEach((buttonId) => {
     const button = document.getElementById(buttonId);
-    if (!button) return;
+    if (!button) {
+      console.warn(`Voice selection: Button not found: ${buttonId}`);
+      return;
+    }
 
     let pressTimer: number | null = null;
+    let longPressTriggered = false;
 
     const startPress = () => {
+      longPressTriggered = false;
       pressTimer = window.setTimeout(() => {
+        longPressTriggered = true;
+        console.log("Long press detected, showing voice selection dialog");
         void showVoiceSelectionDialog();
       }, 500); // 500ms for long press
     };
@@ -592,7 +599,16 @@ export function setupVoiceSelectionButton(buttonIds: string[] = ["play-target-bt
         clearTimeout(pressTimer);
         pressTimer = null;
       }
-      // Short press is handled by the onclick handler
+    };
+
+    // Intercept click to prevent default action if long press occurred
+    const handleClick = (e: Event) => {
+      if (longPressTriggered) {
+        e.preventDefault();
+        e.stopPropagation();
+        longPressTriggered = false;
+        return false;
+      }
     };
 
     button.addEventListener("mousedown", startPress);
@@ -601,6 +617,9 @@ export function setupVoiceSelectionButton(buttonIds: string[] = ["play-target-bt
     button.addEventListener("touchstart", startPress);
     button.addEventListener("touchend", endPress);
     button.addEventListener("touchcancel", endPress);
+    button.addEventListener("click", handleClick, true); // Use capture phase
+
+    console.log(`Voice selection long-press handler attached to: ${buttonId}`);
   });
 }
 
@@ -613,88 +632,108 @@ async function showVoiceSelectionDialog(): Promise<void> {
   if (!modal || !voiceList) return;
 
   const lang = getLanguage();
+
+  // Function to populate the voice list once voices are available
+  const populateVoiceList = async () => {
+    const voices = speechSynthesis.getVoices();
+    const languageVoices = voices.filter((voice) =>
+      voice.lang.startsWith(lang === "de" ? "de" : "en"),
+    );
+
+    // Get current preferred voice
+    const preferredVoiceName = await db.getPreferredVoice(lang);
+
+    // Clear and populate voice list
+    voiceList.innerHTML = "";
+
+    for (const voice of languageVoices) {
+      const item = document.createElement("div");
+      item.className = "list-group-item";
+      item.style.cursor = "pointer";
+
+      // Create 3-column layout
+      const row = document.createElement("div");
+      row.className = "d-flex justify-content-between align-items-center gap-3";
+
+      // Column 1: Voice name (clickable)
+      const nameSpan = document.createElement("span");
+      nameSpan.textContent = voice.name;
+      nameSpan.className = "voice-name";
+      nameSpan.style.flex = "1";
+      nameSpan.style.minWidth = "0"; // Allow text truncation
+
+      // Column 2: Offline/Online badge
+      const statusBadge = document.createElement("span");
+      statusBadge.className = `badge ${voice.localService ? "bg-success" : "bg-secondary"}`;
+      statusBadge.textContent = voice.localService ? "Offline" : "Online";
+      statusBadge.style.minWidth = "70px";
+      statusBadge.style.textAlign = "center";
+
+      // Column 3: Checkbox
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.className = "form-check-input";
+      checkbox.checked = voice.name === preferredVoiceName;
+      checkbox.style.cursor = "pointer";
+
+      // Play phrase when clicking the row (but not checkbox)
+      const playVoice = () => {
+        if (state.currentPhrase?.phrase) {
+          void playWithSpecificVoice(state.currentPhrase.phrase, voice);
+        }
+      };
+
+      item.onclick = playVoice;
+      nameSpan.onclick = playVoice;
+      statusBadge.onclick = playVoice;
+
+      // Save preference when checkbox is clicked
+      checkbox.onclick = async (e) => {
+        e.stopPropagation();
+        if (checkbox.checked) {
+          await db.savePreferredVoice(lang, voice.name);
+          // Uncheck all other checkboxes
+          voiceList.querySelectorAll("input[type='checkbox']").forEach((cb) => {
+            if (cb !== checkbox) {
+              (cb as HTMLInputElement).checked = false;
+            }
+          });
+        } else {
+          // If unchecking, clear the preference
+          await db.savePreferredVoice(lang, "");
+        }
+      };
+
+      row.appendChild(nameSpan);
+      row.appendChild(statusBadge);
+      row.appendChild(checkbox);
+      item.appendChild(row);
+      voiceList.appendChild(item);
+    }
+
+    // Show modal using Bootstrap
+    const bootstrap = (
+      window as { bootstrap?: { Modal: new (el: Element) => { show: () => void } } }
+    ).bootstrap;
+    if (bootstrap) {
+      const bsModal = new bootstrap.Modal(modal);
+      bsModal.show();
+    }
+  };
+
+  // Check if voices are already loaded
   const voices = speechSynthesis.getVoices();
-  const languageVoices = voices.filter((voice) =>
-    voice.lang.startsWith(lang === "de" ? "de" : "en"),
-  );
+  console.log(`Voice selection: Found ${voices.length} voices initially`);
 
-  // Get current preferred voice
-  const preferredVoiceName = await db.getPreferredVoice(lang);
-
-  // Clear and populate voice list
-  voiceList.innerHTML = "";
-
-  for (const voice of languageVoices) {
-    const item = document.createElement("div");
-    item.className = "list-group-item";
-    item.style.cursor = "pointer";
-
-    // Create 3-column layout
-    const row = document.createElement("div");
-    row.className = "d-flex justify-content-between align-items-center gap-3";
-
-    // Column 1: Voice name (clickable)
-    const nameSpan = document.createElement("span");
-    nameSpan.textContent = voice.name;
-    nameSpan.className = "voice-name";
-    nameSpan.style.flex = "1";
-    nameSpan.style.minWidth = "0"; // Allow text truncation
-
-    // Column 2: Offline/Online badge
-    const statusBadge = document.createElement("span");
-    statusBadge.className = `badge ${voice.localService ? "bg-success" : "bg-secondary"}`;
-    statusBadge.textContent = voice.localService ? "Offline" : "Online";
-    statusBadge.style.minWidth = "70px";
-    statusBadge.style.textAlign = "center";
-
-    // Column 3: Checkbox
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.className = "form-check-input";
-    checkbox.checked = voice.name === preferredVoiceName;
-    checkbox.style.cursor = "pointer";
-
-    // Play phrase when clicking the row (but not checkbox)
-    const playVoice = () => {
-      if (state.currentPhrase?.phrase) {
-        void playWithSpecificVoice(state.currentPhrase.phrase, voice);
-      }
+  if (voices.length > 0) {
+    await populateVoiceList();
+  } else {
+    // Wait for voices to load
+    console.log("Voice selection: Waiting for voices to load...");
+    speechSynthesis.onvoiceschanged = () => {
+      console.log("Voice selection: Voices loaded via onvoiceschanged event");
+      void populateVoiceList();
     };
-
-    item.onclick = playVoice;
-    nameSpan.onclick = playVoice;
-    statusBadge.onclick = playVoice;
-
-    // Save preference when checkbox is clicked
-    checkbox.onclick = async (e) => {
-      e.stopPropagation();
-      if (checkbox.checked) {
-        await db.savePreferredVoice(lang, voice.name);
-        // Uncheck all other checkboxes
-        voiceList.querySelectorAll("input[type='checkbox']").forEach((cb) => {
-          if (cb !== checkbox) {
-            (cb as HTMLInputElement).checked = false;
-          }
-        });
-      } else {
-        // If unchecking, clear the preference
-        await db.savePreferredVoice(lang, "");
-      }
-    };
-
-    row.appendChild(nameSpan);
-    row.appendChild(statusBadge);
-    row.appendChild(checkbox);
-    item.appendChild(row);
-    voiceList.appendChild(item);
-  }
-
-  // Show modal using Bootstrap
-  const bootstrap = (window as { bootstrap?: { Modal: new (el: Element) => { show: () => void } } })
-    .bootstrap;
-  if (bootstrap) {
-    const bsModal = new bootstrap.Modal(modal);
-    bsModal.show();
   }
 }
 
