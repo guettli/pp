@@ -6,6 +6,10 @@
 // Import styles
 import "./styles/main.css";
 
+// Import Bootstrap JavaScript for interactive components (collapse, modals, etc.)
+// Using side-effect import to initialize Bootstrap's data-bs-* attributes
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
 import { getLanguage, initI18n, onLanguageChange, setLanguage, t } from "./i18n.js";
 
 // Import types
@@ -39,6 +43,7 @@ import {
   hideFeedback,
   playDesiredPronunciation,
   playRecording,
+  setupVoiceSelectionButton,
 } from "./ui/feedback.js";
 import {
   hideLoading,
@@ -125,6 +130,9 @@ async function init() {
 
     // Set up event listeners
     setupEventListeners();
+
+    // Setup voice selection dialog on long press for both play buttons
+    setupVoiceSelectionButton(["play-target-btn", "replay-phrase-btn"]);
 
     // Initialize history view (non-blocking, errors won't crash app)
     try {

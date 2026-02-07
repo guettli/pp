@@ -2,11 +2,11 @@
  * Feedback display component
  */
 
+import { db } from "../db.js";
 import { getLanguage, t } from "../i18n.js";
 import { setState, state } from "../state.js";
 import type { PhonemeComparisonItem, Phrase, Score } from "../types.js";
 import { generateExplanationsHTML } from "./ipa-helper.js";
-import { db } from "../db.js";
 
 // Track current audio playback
 let currentAudio: HTMLAudioElement | null = null;
@@ -162,10 +162,12 @@ export function hideFeedback() {
   const ipaChevron = document.getElementById("ipa-help-chevron");
   if (ipaChevron) ipaChevron.className = "bi bi-chevron-down ms-1";
 
-  // Cancel any ongoing speech
-  if (window.speechSynthesis) {
-    speechSynthesis.cancel();
-  }
+  // Note: We intentionally DON'T cancel speech here because it can interfere
+  // with the next phrase's playDesiredPronunciation() call on Chrome Linux.
+  // The playDesiredPronunciation() function handles cancel() with proper timing.
+  // if (window.speechSynthesis) {
+  //   speechSynthesis.cancel();
+  // }
 }
 
 // Long-press threshold in milliseconds
@@ -366,11 +368,14 @@ export async function playDesiredPronunciation(phrase: string): Promise<void> {
 
   console.log("playDesiredPronunciation called with phrase:", phrase);
 
-  // Get user level to adjust speech rate
+  // Get user level to adjust speech rate and preferred voice
   let userLevel = 1;
+  let preferredVoiceName: string | null = null;
+  const lang = getLanguage();
   try {
-    const stats = await db.getUserStats(getLanguage());
+    const stats = await db.getUserStats(lang);
     userLevel = stats.userLevel;
+    preferredVoiceName = await db.getPreferredVoice(lang);
   } catch (error) {
     console.warn("Could not get user stats for speech rate, using default:", error);
   }
@@ -380,73 +385,98 @@ export async function playDesiredPronunciation(phrase: string): Promise<void> {
     // Cancel any ongoing speech
     speechSynthesis.cancel();
 
-    const utterance = new SpeechSynthesisUtterance(phrase);
-    const lang = getLanguage();
-    utterance.lang = lang === "de" ? "de-DE" : "en-US";
+    // CRITICAL: Small delay to avoid Chrome Linux bug where cancel() interferes with speak()
+    setTimeout(() => {
+      const utterance = new SpeechSynthesisUtterance(phrase);
+      utterance.lang = lang === "de" ? "de-DE" : "en-US";
 
-    // Select a random voice for the target language, preferring offline voices
-    const voices = speechSynthesis.getVoices();
-    const languageVoices = voices.filter((voice) =>
-      voice.lang.startsWith(lang === "de" ? "de" : "en"),
-    );
-
-    // Log all available voices for debugging
-    console.log(`Total voices available: ${voices.length}`);
-    console.log(`Language-matched voices (${lang}):`, languageVoices.length);
-    languageVoices.forEach((voice) => {
-      console.log(`  - ${voice.name} (${voice.lang}) | Local: ${voice.localService}`);
-    });
-
-    // Prefer offline voices (localService = true), but fall back to all voices if none available
-    let availableVoices = languageVoices.filter((voice) => voice.localService);
-    if (availableVoices.length === 0) {
-      availableVoices = languageVoices;
-      console.log("No offline voices available, using all voices");
-    } else {
-      console.log(
-        `Using ${availableVoices.length} offline voices out of ${languageVoices.length} total`,
+      // Get available voices
+      const voices = speechSynthesis.getVoices();
+      const languageVoices = voices.filter((voice) =>
+        voice.lang.startsWith(lang === "de" ? "de" : "en"),
       );
-    }
 
-    if (availableVoices.length > 0) {
-      const randomVoice = availableVoices[Math.floor(Math.random() * availableVoices.length)];
-      utterance.voice = randomVoice;
-      console.log("✓ Selected voice:", randomVoice.name, "| Offline:", randomVoice.localService);
-    } else {
-      console.warn("⚠ No voices available for this language");
-    }
+      // Log all available voices for debugging
+      console.log(`Total voices available: ${voices.length}`);
+      console.log(`Language-matched voices (${lang}):`, languageVoices.length);
+      languageVoices.forEach((voice) => {
+        console.log(`  - ${voice.name} (${voice.lang}) | Local: ${voice.localService}`);
+      });
 
-    // Adjust speech rate based on user level
-    // Level 1-599: Scale from 0.5 (very slow) to 1.0 (normal)
-    // Level 600+: 1.0 (normal speed)
-    let rate: number;
-    if (userLevel < 600) {
-      // Linear scaling: 0.5 at level 1, approaching 1.0 at level 600
-      rate = 0.5 + (userLevel / 600) * 0.5;
-    } else {
-      rate = 1.0;
-    }
-    utterance.rate = rate;
-    utterance.pitch = 0.95; // Slightly lower pitch for clarity
-    utterance.volume = 1.0; // Full volume
+      let selectedVoice: SpeechSynthesisVoice | undefined;
 
-    console.log(
-      "Speaking phrase:",
-      phrase,
-      "with language:",
-      utterance.lang,
-      "| Rate:",
-      rate.toFixed(2),
-      "(Level:",
-      userLevel,
-      ")",
-    );
+      // First, try to use preferred voice if set
+      if (preferredVoiceName) {
+        selectedVoice = languageVoices.find((voice) => voice.name === preferredVoiceName);
+        if (selectedVoice) {
+          console.log("✓ Using preferred voice:", selectedVoice.name);
+        } else {
+          console.warn("Preferred voice not found:", preferredVoiceName);
+        }
+      }
 
-    utterance.onstart = () => console.log("Speech started");
-    utterance.onend = () => console.log("Speech ended");
-    utterance.onerror = (e) => console.error("Speech error:", e);
+      // If no preferred voice or not found, select randomly from offline voices
+      if (!selectedVoice) {
+        // Prefer offline voices (localService = true), but fall back to all voices if none available
+        let availableVoices = languageVoices.filter((voice) => voice.localService);
+        if (availableVoices.length === 0) {
+          availableVoices = languageVoices;
+          console.log("No offline voices available, using all voices");
+        } else {
+          console.log(
+            `Using ${availableVoices.length} offline voices out of ${languageVoices.length} total`,
+          );
+        }
 
-    speechSynthesis.speak(utterance);
+        if (availableVoices.length > 0) {
+          selectedVoice = availableVoices[Math.floor(Math.random() * availableVoices.length)];
+          console.log(
+            "✓ Selected random voice:",
+            selectedVoice.name,
+            "| Offline:",
+            selectedVoice.localService,
+          );
+        } else {
+          console.warn("⚠ No voices available for this language");
+        }
+      }
+
+      if (selectedVoice) {
+        utterance.voice = selectedVoice;
+      }
+
+      // Adjust speech rate based on user level
+      // Level 1-599: Scale from 0.5 (very slow) to 1.0 (normal)
+      // Level 600+: 1.0 (normal speed)
+      let rate: number;
+      if (userLevel < 600) {
+        // Linear scaling: 0.5 at level 1, approaching 1.0 at level 600
+        rate = 0.5 + (userLevel / 600) * 0.5;
+      } else {
+        rate = 1.0;
+      }
+      utterance.rate = rate;
+      utterance.pitch = 0.95; // Slightly lower pitch for clarity
+      utterance.volume = 1.0; // Full volume
+
+      console.log(
+        "Speaking phrase:",
+        phrase,
+        "with language:",
+        utterance.lang,
+        "| Rate:",
+        rate.toFixed(2),
+        "(Level:",
+        userLevel,
+        ")",
+      );
+
+      utterance.onstart = () => console.log("Speech started");
+      utterance.onend = () => console.log("Speech ended");
+      utterance.onerror = (e) => console.error("Speech error:", e);
+
+      speechSynthesis.speak(utterance);
+    }, 100); // 100ms delay to avoid Chrome Linux cancel/speak bug
   };
 
   // Check if voices are already loaded
@@ -538,4 +568,167 @@ function generatePhonemeComparisonHTML(phonemeComparison: PhonemeComparisonItem[
 
   html += "</tbody></table>";
   return html;
+}
+
+/**
+ * Setup long press detection for voice selection dialog
+ * @param buttonIds - Array of button element IDs to attach long press to
+ */
+export function setupVoiceSelectionButton(buttonIds: string[] = ["play-target-btn"]): void {
+  buttonIds.forEach((buttonId) => {
+    const button = document.getElementById(buttonId);
+    if (!button) return;
+
+    let pressTimer: number | null = null;
+
+    const startPress = () => {
+      pressTimer = window.setTimeout(() => {
+        void showVoiceSelectionDialog();
+      }, 500); // 500ms for long press
+    };
+
+    const endPress = () => {
+      if (pressTimer) {
+        clearTimeout(pressTimer);
+        pressTimer = null;
+      }
+      // Short press is handled by the onclick handler
+    };
+
+    button.addEventListener("mousedown", startPress);
+    button.addEventListener("mouseup", endPress);
+    button.addEventListener("mouseleave", endPress);
+    button.addEventListener("touchstart", startPress);
+    button.addEventListener("touchend", endPress);
+    button.addEventListener("touchcancel", endPress);
+  });
+}
+
+/**
+ * Show voice selection dialog
+ */
+async function showVoiceSelectionDialog(): Promise<void> {
+  const modal = document.getElementById("voice-selection-modal");
+  const voiceList = document.getElementById("voice-list");
+  if (!modal || !voiceList) return;
+
+  const lang = getLanguage();
+  const voices = speechSynthesis.getVoices();
+  const languageVoices = voices.filter((voice) =>
+    voice.lang.startsWith(lang === "de" ? "de" : "en"),
+  );
+
+  // Get current preferred voice
+  const preferredVoiceName = await db.getPreferredVoice(lang);
+
+  // Clear and populate voice list
+  voiceList.innerHTML = "";
+
+  for (const voice of languageVoices) {
+    const item = document.createElement("div");
+    item.className = "list-group-item";
+    item.style.cursor = "pointer";
+
+    // Create 3-column layout
+    const row = document.createElement("div");
+    row.className = "d-flex justify-content-between align-items-center gap-3";
+
+    // Column 1: Voice name (clickable)
+    const nameSpan = document.createElement("span");
+    nameSpan.textContent = voice.name;
+    nameSpan.className = "voice-name";
+    nameSpan.style.flex = "1";
+    nameSpan.style.minWidth = "0"; // Allow text truncation
+
+    // Column 2: Offline/Online badge
+    const statusBadge = document.createElement("span");
+    statusBadge.className = `badge ${voice.localService ? "bg-success" : "bg-secondary"}`;
+    statusBadge.textContent = voice.localService ? "Offline" : "Online";
+    statusBadge.style.minWidth = "70px";
+    statusBadge.style.textAlign = "center";
+
+    // Column 3: Checkbox
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.className = "form-check-input";
+    checkbox.checked = voice.name === preferredVoiceName;
+    checkbox.style.cursor = "pointer";
+
+    // Play phrase when clicking the row (but not checkbox)
+    const playVoice = () => {
+      if (state.currentPhrase?.phrase) {
+        void playWithSpecificVoice(state.currentPhrase.phrase, voice);
+      }
+    };
+
+    item.onclick = playVoice;
+    nameSpan.onclick = playVoice;
+    statusBadge.onclick = playVoice;
+
+    // Save preference when checkbox is clicked
+    checkbox.onclick = async (e) => {
+      e.stopPropagation();
+      if (checkbox.checked) {
+        await db.savePreferredVoice(lang, voice.name);
+        // Uncheck all other checkboxes
+        voiceList.querySelectorAll("input[type='checkbox']").forEach((cb) => {
+          if (cb !== checkbox) {
+            (cb as HTMLInputElement).checked = false;
+          }
+        });
+      } else {
+        // If unchecking, clear the preference
+        await db.savePreferredVoice(lang, "");
+      }
+    };
+
+    row.appendChild(nameSpan);
+    row.appendChild(statusBadge);
+    row.appendChild(checkbox);
+    item.appendChild(row);
+    voiceList.appendChild(item);
+  }
+
+  // Show modal using Bootstrap
+  const bootstrap = (window as { bootstrap?: { Modal: new (el: Element) => { show: () => void } } })
+    .bootstrap;
+  if (bootstrap) {
+    const bsModal = new bootstrap.Modal(modal);
+    bsModal.show();
+  }
+}
+
+/**
+ * Play phrase with a specific voice
+ */
+async function playWithSpecificVoice(phrase: string, voice: SpeechSynthesisVoice): Promise<void> {
+  if (!phrase || !window.speechSynthesis) return;
+
+  // Get user level for rate adjustment
+  let userLevel = 1;
+  try {
+    const stats = await db.getUserStats(getLanguage());
+    userLevel = stats.userLevel;
+  } catch (error) {
+    console.warn("Could not get user stats for speech rate:", error);
+  }
+
+  // Calculate speech rate
+  let rate: number;
+  if (userLevel < 600) {
+    rate = 0.5 + (userLevel / 600) * 0.5;
+  } else {
+    rate = 1.0;
+  }
+
+  speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(phrase);
+  utterance.voice = voice;
+  utterance.rate = rate;
+  utterance.pitch = 0.95;
+  utterance.volume = 1.0;
+
+  console.log("Playing with voice:", voice.name, "| Rate:", rate.toFixed(2));
+  speechSynthesis.speak(utterance);
 }

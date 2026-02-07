@@ -352,6 +352,13 @@ class PhonemePartyDB {
     // Index is ["type", "language", "timestamp"], so we sort by all three
     // PouchDB limitation: all sort directions must be the same, so we fetch in asc order
     // and reverse manually to get newest first
+    //
+    // To get newest-first pagination, we need to calculate skip from the end:
+    // - For skip=0, limit=20: we want items at positions [totalCount-20, totalCount)
+    // - For skip=20, limit=20: we want items at positions [totalCount-40, totalCount-20)
+    const adjustedSkip = Math.max(0, totalCount - skip - limit);
+    const adjustedLimit = Math.min(limit, totalCount - skip);
+
     const result = await this.db.find({
       selector: {
         type: "phrase_result",
@@ -359,8 +366,8 @@ class PhonemePartyDB {
         timestamp: { $exists: true }, // Ensure timestamp field is in selector to match index
       },
       sort: [{ type: "asc" }, { language: "asc" }, { timestamp: "asc" }],
-      limit: limit,
-      skip: skip,
+      limit: adjustedLimit,
+      skip: adjustedSkip,
     });
 
     // Reverse to get newest first (since PouchDB returned oldest first)
@@ -483,6 +490,44 @@ class PhonemePartyDB {
    */
   async getInfo(): Promise<PouchDB.Core.DatabaseInfo> {
     return await this.db.info();
+  }
+
+  /**
+   * Save preferred voice for a language
+   */
+  async savePreferredVoice(language: SupportedLanguage, voiceName: string): Promise<void> {
+    const docId = `voice_pref_${language}`;
+    try {
+      // Try to get existing doc
+      const existingDoc = await this.db.get(docId);
+      await this.db.put({
+        ...existingDoc,
+        voiceName,
+        timestamp: Date.now(),
+      });
+    } catch {
+      // Create new doc if doesn't exist
+      await this.db.put({
+        _id: docId,
+        type: "voice_preference",
+        language,
+        voiceName,
+        timestamp: Date.now(),
+      });
+    }
+  }
+
+  /**
+   * Get preferred voice for a language
+   */
+  async getPreferredVoice(language: SupportedLanguage): Promise<string | null> {
+    const docId = `voice_pref_${language}`;
+    try {
+      const doc = (await this.db.get(docId)) as { voiceName: string };
+      return doc.voiceName;
+    } catch {
+      return null; // No preference saved
+    }
   }
 }
 

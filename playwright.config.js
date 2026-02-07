@@ -8,8 +8,14 @@ export default defineConfig({
   testDir: "./tests",
   testMatch: "**/*.spec.js",
 
+  // Grep to exclude slow tests by default (override with --grep)
+  grep: process.env.RUN_SLOW_TESTS ? undefined : /^(?!.*@slow)/,
+
   // Maximum time one test can run for (increased for model loading)
   timeout: 120000, // 2 minutes to allow for ML model download
+
+  // Global timeout for the entire test run
+  globalTimeout: 600000, // 10 minutes for all tests
 
   // Run tests in files in parallel
   fullyParallel: true,
