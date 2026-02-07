@@ -8,8 +8,8 @@ export default defineConfig({
   testDir: "./tests",
   testMatch: "**/*.spec.js",
 
-  // Maximum time one test can run for
-  timeout: 30000,
+  // Maximum time one test can run for (increased for model loading)
+  timeout: 120000, // 2 minutes to allow for ML model download
 
   // Run tests in files in parallel
   fullyParallel: true,
@@ -48,9 +48,9 @@ export default defineConfig({
 
   // Run your local dev server before starting the tests
   webServer: {
-    command: "pnpm run dev",
+    command: "./run pnpm dev",
     url: "http://localhost:5173",
     reuseExistingServer: true,
-    timeout: 5000,
+    timeout: 10000, // Increased timeout for model loading
   },
 });

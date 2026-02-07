@@ -1,432 +1,432 @@
 - phrase: Katze
   emoji: 🐱
   ipas:
-  - ipa: /ˈkatsə/
-    category: standard
+    - ipa: /ˈkatsə/
+      category: standard
   difficulty:
     score: 28.7
     level: Easy
 - phrase: Hund
   emoji: 🐕
   ipas:
-  - ipa: /hʊnt/
-    category: standard
+    - ipa: /hʊnt/
+      category: standard
   difficulty:
     score: 24.5
     level: Easy
 - phrase: Haus
   emoji: 🏠
   ipas:
-  - ipa: /haʊ̯s/
-    category: standard
+    - ipa: /haʊ̯s/
+      category: standard
   difficulty:
     score: 25.2
     level: Easy
 - phrase: Baum
   emoji: 🌳
   ipas:
-  - ipa: /baʊ̯m/
-    category: standard
+    - ipa: /baʊ̯m/
+      category: standard
   difficulty:
     score: 24.9
     level: Easy
 - phrase: Blume
   emoji: 🌸
   ipas:
-  - ipa: /ˈbluːmə/
-    category: standard
+    - ipa: /ˈbluːmə/
+      category: standard
   difficulty:
     score: 28.8
     level: Easy
 - phrase: Sonne
   emoji: ☀️
   ipas:
-  - ipa: /ˈzɔnə/
-    category: standard
+    - ipa: /ˈzɔnə/
+      category: standard
   difficulty:
     score: 28.4
     level: Easy
 - phrase: Mond
   emoji: 🌙
   ipas:
-  - ipa: /moːnt/
-    category: standard
+    - ipa: /moːnt/
+      category: standard
   difficulty:
     score: 25.6
     level: Easy
 - phrase: Stern
   emoji: ⭐
   ipas:
-  - ipa: /ʃtɛʁn/
-    category: standard
+    - ipa: /ʃtɛʁn/
+      category: standard
   difficulty:
     score: 26.8
     level: Easy
 - phrase: Auto
   emoji: 🚗
   ipas:
-  - ipa: /ˈaʊ̯to/
-    category: standard
+    - ipa: /ˈaʊ̯to/
+      category: standard
   difficulty:
     score: 27.6
     level: Easy
 - phrase: Ball
   emoji: ⚽
   ipas:
-  - ipa: /bal/
-    category: standard
+    - ipa: /bal/
+      category: standard
   difficulty:
     score: 24.7
     level: Easy
 - phrase: Buch
   emoji: 📖
   ipas:
-  - ipa: /buːx/
-    category: standard
+    - ipa: /buːx/
+      category: standard
   difficulty:
     score: 24.9
     level: Easy
 - phrase: Apfel
   emoji: 🍎
   ipas:
-  - ipa: /ˈapfəl/
-    category: standard
+    - ipa: /ˈapfəl/
+      category: standard
   difficulty:
     score: 28.2
     level: Easy
 - phrase: Banane
   emoji: 🍌
   ipas:
-  - ipa: /baˈnaːnə/
-    category: standard
+    - ipa: /baˈnaːnə/
+      category: standard
   difficulty:
     score: 33.4
     level: Easy
 - phrase: Brot
   emoji: 🍞
   ipas:
-  - ipa: /bʁoːt/
-    category: standard
+    - ipa: /bʁoːt/
+      category: standard
   difficulty:
     score: 25.5
     level: Easy
 - phrase: Fisch
   emoji: 🐟
   ipas:
-  - ipa: /fɪʃ/
-    category: standard
+    - ipa: /fɪʃ/
+      category: standard
   difficulty:
     score: 26.5
     level: Easy
 - phrase: Vogel
   emoji: 🐦
   ipas:
-  - ipa: /ˈfoːɡəl/
-    category: standard
+    - ipa: /ˈfoːɡəl/
+      category: standard
   difficulty:
     score: 29.6
     level: Easy
 - phrase: Schmetterling
   emoji: 🦋
   ipas:
-  - ipa: /ˈʃmɛtərlɪŋ/
-    category: standard
+    - ipa: /ˈʃmɛtərlɪŋ/
+      category: standard
   difficulty:
     score: 45.3
     level: Medium
 - phrase: Schiff
   emoji: 🚢
   ipas:
-  - ipa: /ʃɪf/
-    category: standard
+    - ipa: /ʃɪf/
+      category: standard
   difficulty:
     score: 28.9
     level: Easy
 - phrase: Flugzeug
   emoji: ✈️
   ipas:
-  - ipa: /ˈfluːktsɔʏ̯k/
-    category: standard
+    - ipa: /ˈfluːktsɔʏ̯k/
+      category: standard
   difficulty:
     score: 34.8
     level: Easy
 - phrase: Zug
   emoji: 🚂
   ipas:
-  - ipa: /t͡suːk/
-    category: standard
+    - ipa: /t͡suːk/
+      category: standard
   difficulty:
     score: 23.7
     level: Easy
 - phrase: Fahrrad
   emoji: 🚲
   ipas:
-  - ipa: /ˈfaːrˌra(ː)t/
-    category: standard
+    - ipa: /ˈfaːrˌra(ː)t/
+      category: standard
   difficulty:
     score: 33.6
     level: Easy
 - phrase: Tür
   emoji: 🚪
   ipas:
-  - ipa: /tyːr/
-    category: standard
+    - ipa: /tyːr/
+      category: standard
   difficulty:
     score: 22.8
     level: Easy
 - phrase: Fenster
   emoji: 🪟
   ipas:
-  - ipa: /ˈfɛnstɐ/
-    category: standard
+    - ipa: /ˈfɛnstɐ/
+      category: standard
   difficulty:
     score: 32.1
     level: Easy
 - phrase: Bett
   emoji: 🛏️
   ipas:
-  - ipa: /bɛt/
-    category: standard
+    - ipa: /bɛt/
+      category: standard
   difficulty:
     score: 24.0
     level: Easy
 - phrase: Uhr
   emoji: 🕐
   ipas:
-  - ipa: /uːr/
-    category: standard
+    - ipa: /uːr/
+      category: standard
   difficulty:
     score: 24.6
     level: Easy
 - phrase: Schlüssel
   emoji: 🔑
   ipas:
-  - ipa: /ˈʃlʏsl̩/
-    category: standard
+    - ipa: /ˈʃlʏsl̩/
+      category: standard
   difficulty:
     score: 37.2
     level: Easy
 - phrase: Herz
   emoji: ❤️
   ipas:
-  - ipa: /hɛrts/
-    category: standard
+    - ipa: /hɛrts/
+      category: standard
   difficulty:
     score: 26.5
     level: Easy
 - phrase: Hand
   emoji: ✋
   ipas:
-  - ipa: /hant/
-    category: standard
+    - ipa: /hant/
+      category: standard
   difficulty:
     score: 24.5
     level: Easy
 - phrase: Fuß
   emoji: 🦶
   ipas:
-  - ipa: /fuːs/
-    category: standard
+    - ipa: /fuːs/
+      category: standard
   difficulty:
     score: 23.4
     level: Easy
 - phrase: Der Hase lacht
   emoji: 🐰
   ipas:
-  - ipa: /deːɐ̯ ˈhaːzə laxt/
-    category: standard
+    - ipa: /deːɐ̯ ˈhaːzə laxt/
+      category: standard
   difficulty:
     score: 63.0
     level: Hard
 - phrase: Die Kuh muht
   emoji: 🐄
   ipas:
-  - ipa: /diː kuː mˈuːt/
-    category: standard
+    - ipa: /diː kuː mˈuːt/
+      category: standard
   difficulty:
     score: 49.2
     level: Medium
 - phrase: Der Frosch quakt
   emoji: 🐸
   ipas:
-  - ipa: /deːɐ̯ fʁɔʃ kvˈakt/
-    category: standard
+    - ipa: /deːɐ̯ fʁɔʃ kvˈakt/
+      category: standard
   difficulty:
     score: 51.8
     level: Medium
 - phrase: Die Biene summt
   emoji: 🐝
   ipas:
-  - ipa: /diː ˈbiːnə zˈʊmt/
-    category: standard
+    - ipa: /diː ˈbiːnə zˈʊmt/
+      category: standard
   difficulty:
     score: 52.0
     level: Medium
 - phrase: Das Baby weint
   emoji: 👶
   ipas:
-  - ipa: /das ˈbeːbi vˈaɪnt/
-    category: standard
+    - ipa: /das ˈbeːbi vˈaɪnt/
+      category: standard
   difficulty:
     score: 50.4
     level: Medium
 - phrase: Der Regen fällt
   emoji: 🌧️
   ipas:
-  - ipa: /deːɐ̯ ˈreːɡən fɛlt/
-    category: standard
+    - ipa: /deːɐ̯ ˈreːɡən fɛlt/
+      category: standard
   difficulty:
     score: 51.9
     level: Medium
 - phrase: Der Schnee fällt
   emoji: ❄️
   ipas:
-  - ipa: /deːɐ̯ ʃneː fɛlt/
-    category: standard
+    - ipa: /deːɐ̯ ʃneː fɛlt/
+      category: standard
   difficulty:
     score: 51.6
     level: Medium
 - phrase: Der Regenbogen leuchtet
   emoji: 🌈
   ipas:
-  - ipa: /deːɐ̯ ˈʁeːɡənˌboːɡən lˈɔøçtət/
-    category: standard
+    - ipa: /deːɐ̯ ˈʁeːɡənˌboːɡən lˈɔøçtət/
+      category: standard
   difficulty:
     score: 59.1
     level: Medium
 - phrase: Die Wolke zieht
   emoji: ☁️
   ipas:
-  - ipa: /diː ˈvɔlkə tsiːt/
-    category: standard
+    - ipa: /diː ˈvɔlkə tsiːt/
+      category: standard
   difficulty:
     score: 51.9
     level: Medium
 - phrase: Der Wind weht
   emoji: 💨
   ipas:
-  - ipa: /deːɐ̯ vɪnt vˈeːt/
-    category: standard
+    - ipa: /deːɐ̯ vɪnt vˈeːt/
+      category: standard
   difficulty:
     score: 50.0
     level: Medium
 - phrase: Das Feuer brennt
   emoji: 🔥
   ipas:
-  - ipa: /das ˈfɔʏ̯ər bɾˈɛnt/
-    category: standard
+    - ipa: /das ˈfɔʏ̯ər bɾˈɛnt/
+      category: standard
   difficulty:
     score: 51.7
     level: Medium
 - phrase: Die Pizza schmeckt
   emoji: 🍕
   ipas:
-  - ipa: /diː ˈpɪtsa ʃmˈɛkt/
-    category: standard
+    - ipa: /diː ˈpɪtsa ʃmˈɛkt/
+      category: standard
   difficulty:
     score: 54.3
     level: Medium
 - phrase: Der Kuchen ist süß
   emoji: 🍰
   ipas:
-  - ipa: /deːɐ̯ ˈkuːxən ɪst zyːs/
-    category: standard
+    - ipa: /deːɐ̯ ˈkuːxən ɪst zyːs/
+      category: standard
   difficulty:
     score: 45.9
     level: Medium
 - phrase: Das Eis schmilzt
   emoji: 🍦
   ipas:
-  - ipa: /das aɪ̯s ʃmˈɪltst/
-    category: standard
+    - ipa: /das aɪ̯s ʃmˈɪltst/
+      category: standard
   difficulty:
     score: 51.9
     level: Medium
 - phrase: Die Milch ist weiß
   emoji: 🥛
   ipas:
-  - ipa: /diː mɪlç ɪst vaɪ̯s/
-    category: standard
+    - ipa: /diː mɪlç ɪst vaɪ̯s/
+      category: standard
   difficulty:
     score: 45.1
     level: Medium
 - phrase: Das Wasser fließt
   emoji: 💧
   ipas:
-  - ipa: /das ˈva.sər flˈiːst/
-    category: standard
+    - ipa: /das ˈva.sər flˈiːst/
+      category: standard
   difficulty:
     score: 52.6
     level: Medium
 - phrase: Die Maus piepst
   emoji: 🐭
   ipas:
-  - ipa: /diː maʊ̯s pˈiːpst/
-    category: standard
+    - ipa: /diː maʊ̯s pˈiːpst/
+      category: standard
   difficulty:
     score: 51.0
     level: Medium
 - phrase: Die Giraffe ist groß
   emoji: 🦒
   ipas:
-  - ipa: /diː ɡiˈʁafə ɪst ɡʁoːs/
-    category: standard
+    - ipa: /diː ɡiˈʁafə ɪst ɡʁoːs/
+      category: standard
   difficulty:
     score: 48.0
     level: Medium
 - phrase: Der Elefant ist schwer
   emoji: 🐘
   ipas:
-  - ipa: /deːɐ̯ eləˈfant ɪst ʃveːɐ̯/
-    category: standard
+    - ipa: /deːɐ̯ eləˈfant ɪst ʃveːɐ̯/
+      category: standard
   difficulty:
     score: 57.1
     level: Medium
 - phrase: Der Affe klettert
   emoji: 🐵
   ipas:
-  - ipa: /deːɐ̯ ˈafə ˈklɛtɐt/
-    category: standard
+    - ipa: /deːɐ̯ ˈafə ˈklɛtɐt/
+      category: standard
   difficulty:
     score: 54.5
     level: Medium
 - phrase: Das Pferd rennt
   emoji: 🐴
   ipas:
-  - ipa: /das pfeːrt rˈɛnt/
-    category: standard
+    - ipa: /das pfeːrt rˈɛnt/
+      category: standard
   difficulty:
     score: 51.2
     level: Medium
 - phrase: Das Schwein grunzt
   emoji: 🐷
   ipas:
-  - ipa: /das ʃvaɪ̯n ɡɾˈʊntst/
-    category: standard
+    - ipa: /das ʃvaɪ̯n ɡɾˈʊntst/
+      category: standard
   difficulty:
     score: 52.8
     level: Medium
 - phrase: Die Ente quakt
   emoji: 🦆
   ipas:
-  - ipa: /diː ˈɛntə kvˈakt/
-    category: standard
+    - ipa: /diː ˈɛntə kvˈakt/
+      category: standard
   difficulty:
     score: 51.2
     level: Medium
 - phrase: Der Löwe brüllt
   emoji: 🦁
   ipas:
-  - ipa: /deːɐ̯ ˈløːvə bɾˈylt/
-    category: standard
+    - ipa: /deːɐ̯ ˈløːvə bɾˈylt/
+      category: standard
   difficulty:
     score: 51.9
     level: Medium
 - phrase: Die Schildkröte kriecht
   emoji: 🐢
   ipas:
-  - ipa: /diː ˈʃɪltˌkʁøːtə kɾˈiːçt/
-    category: standard
+    - ipa: /diː ˈʃɪltˌkʁøːtə kɾˈiːçt/
+      category: standard
   difficulty:
     score: 58.1
     level: Medium

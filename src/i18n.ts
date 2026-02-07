@@ -94,6 +94,11 @@ const translations: Translations = {
     "errors.no_stack": "Kein Stacktrace verfügbar",
     "errors.show_details": "Fehlerdetails anzeigen",
     "errors.reload": "Seite neu laden",
+    "history.title": "Trainings-Historie",
+    "history.loading": "Lädt mehr...",
+    "history.empty": "Noch keine Trainings-Historie. Fang an zu üben!",
+    "history.score": "Punkte",
+    "history.time": "vor {time}",
   },
   en: {
     "app.title": "Phoneme Party - Pronunciation Practice",
@@ -181,6 +186,11 @@ const translations: Translations = {
     "errors.no_stack": "No stack trace available",
     "errors.show_details": "Show Full Error Details",
     "errors.reload": "Reload Page",
+    "history.title": "Training History",
+    "history.loading": "Loading more...",
+    "history.empty": "No training history yet. Start practicing!",
+    "history.score": "Score",
+    "history.time": "{time} ago",
   },
 };
 

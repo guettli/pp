@@ -11,6 +11,12 @@ import { getLanguage, initI18n, onLanguageChange, setLanguage, t } from "./i18n.
 // Import state management
 import { resetFeedback, setState, state } from "./state.js";
 
+// Import database
+import { db } from "./db.js";
+
+// Import history UI
+import { initHistory, refreshHistory } from "./ui/history.js";
+
 // Import utilities
 import { findPhraseByName, getRandomPhrase } from "./utils/random.js";
 
@@ -117,6 +123,14 @@ async function init() {
     // Set up event listeners
     setupEventListeners();
 
+    // Initialize history view (non-blocking, errors won't crash app)
+    try {
+      initHistory();
+    } catch (error) {
+      console.error("Failed to initialize history:", error);
+      // Continue anyway - history is not critical for app to function
+    }
+
     console.log("Application initialized successfully");
   } catch (error) {
     console.error("Initialization error:", error);
@@ -166,6 +180,7 @@ function setupEventListeners() {
       resetRecordButton();
       nextPhrase();
       updateWebGpuStatus();
+      refreshHistory();
     });
   }
 }
@@ -434,6 +449,24 @@ async function actuallyStopRecording() {
 
       // Update state
       setState({ score, actualIPA });
+
+      // Save result to database (non-blocking, errors won't crash app)
+      try {
+        await db.savePhraseResult(
+          currentPhrase.phrase,
+          getLanguage(),
+          score.similarity * 100, // Convert 0-1 to 0-100
+          actualIPA,
+          currentPhrase.ipas[0].ipa,
+          duration,
+        );
+
+        // Refresh history to show new result
+        refreshHistory();
+      } catch (error) {
+        console.error("Failed to save result to database:", error);
+        // Continue anyway - saving is not critical for app to function
+      }
 
       // Display feedback
       displayFeedback(currentPhrase, actualIPA, score);

@@ -18,7 +18,7 @@ This ensures the environment is set up.
 
 ## Code Quality
 
-Before considering any task complete, run `./run pnpm check` to autoformat,  lint and run tests. Fix
+Before considering any task complete, run `./run pnpm check` to autoformat, lint and run tests. Fix
 any errors found by the script.
 
 ## Code Duplication

@@ -414,6 +414,34 @@
 
         <!-- Processing Debug (shown after processing) -->
         <div id="processing-debug" class="processing-debug mt-4" style="display: none"></div>
+
+        <!-- History Section -->
+        <div class="card shadow-sm mt-4">
+          <div class="card-header">
+            <h5 class="mb-0" data-i18n="history.title">Training History</h5>
+          </div>
+          <div class="card-body">
+            <div id="history-container" style="max-height: 500px; overflow-y: auto">
+              <div id="history-list">
+                <!-- History items will be dynamically inserted here -->
+              </div>
+              <div id="history-loading" class="text-center py-3" style="display: none">
+                <div class="spinner-border spinner-border-sm text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <span class="ms-2 small text-muted" data-i18n="history.loading"
+                  >Loading more...</span
+                >
+              </div>
+              <div id="history-empty" class="text-center py-4 text-muted" style="display: none">
+                <i class="bi bi-inbox fs-1"></i>
+                <p class="mt-2" data-i18n="history.empty">
+                  No training history yet. Start practicing!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Console Output -->
