@@ -243,8 +243,11 @@ function downloadRecording() {
   const lang = getLanguage();
   const timestamp = new Date().toISOString().slice(0, 19).replace(/[:-]/g, "");
 
+  // Replace spaces with underscores in phrase for clean filenames
+  const phraseSafe = phrase.replace(/\s+/g, "_");
+
   // Include recognized IPA in filename if available
-  let filename = `${phrase}_${timestamp}_${lang}`;
+  let filename = `${phraseSafe}_${timestamp}_${lang}`;
   if (state.actualIPA) {
     // Remove spaces for cleaner filename
     filename += `_${state.actualIPA.replace(/\s+/g, "")}`;
