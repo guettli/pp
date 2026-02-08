@@ -93,6 +93,8 @@ export interface AppState {
   recorder: AudioRecorderInstance | null;
   lastRecordingBlob: Blob | null;
   actualIPA: string | null;
+  userLevel: number; // User's effective level (1-1000)
+  actualUserLevel: number; // User's real level based on performance (1-1000)
 }
 
 // Audio recorder interface

@@ -17,6 +17,8 @@ export const state: AppState = {
   lastRecordingBlob: null,
   recordingCount: 0,
   actualIPA: null,
+  userLevel: 1,
+  actualUserLevel: 1,
 };
 
 /**

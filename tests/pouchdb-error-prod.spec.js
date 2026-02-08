@@ -19,7 +19,7 @@ test.describe("PouchDB Loading Bug - Production Build", () => {
     });
 
     // Navigate to the production build served from dist
-    await page.goto("http://localhost:8080");
+    await page.goto("/");
 
     // Wait a bit for initialization
     await page.waitForTimeout(2000);

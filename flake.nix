@@ -1,10 +1,6 @@
 {
   description = "Phoneme Party development environment";
 
-  nixConfig = {
-    warn-dirty = false;
-  };
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     flake-utils.url = "github:numtide/flake-utils";

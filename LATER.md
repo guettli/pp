@@ -1,3 +1,33 @@
+
+❯ ./run scripts/add-test-recording.sh ~/Downloads/Der\ Hamster_20260208T173641_de_deːɾhaɾmstɛr.webm
+Building dist-node...
+
+> phoneme-party@0.1.0 build:node /home/guettli/projects/pp
+> tsc -p tsconfig.build.json
+
+src/main.ts:30:3 - error TS6133: 'adjustUserLevel' is declared but its value is never read.
+
+30   adjustUserLevel,
+     ~~~~~~~~~~~~~~~
+
+src/utils/level-adjustment.ts:22:3 - error TS6133: 'phraseLevel' is declared but its value is never read.
+
+22   phraseLevel: number,
+     ~~~~~~~~~~~
+
+
+Found 2 errors in 2 files.
+
+Errors  Files
+     1  src/main.ts:30
+     1  src/utils/level-adjustment.ts:22
+ ELIFECYCLE  Command failed with exit code 2.
+
+
+---
+
+
+
 Get Domain "DerHaseLacht.de"
 
 ---

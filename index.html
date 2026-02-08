@@ -262,6 +262,38 @@
             <option value="en" data-i18n="language.en">English</option>
           </select>
         </div>
+
+        <!-- Level Control -->
+        <div
+          class="card mt-3 shadow-sm"
+          style="max-width: 600px; margin-left: auto; margin-right: auto"
+        >
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <label for="level-slider" class="form-label mb-0 fw-bold" data-i18n="level.title"
+                >Your Level</label
+              >
+              <span id="level-value" class="badge bg-primary">1</span>
+            </div>
+            <input
+              type="range"
+              class="form-range"
+              id="level-slider"
+              min="1"
+              max="1000"
+              value="1"
+              step="1"
+            />
+            <div class="d-flex justify-content-between text-muted small">
+              <span>1</span>
+              <span id="level-text">Very Easy</span>
+              <span>1000</span>
+            </div>
+            <p class="text-muted small mb-0 mt-2" data-i18n="level.description">
+              Your level will be automatically adjusted based on your performance
+            </p>
+          </div>
+        </div>
       </header>
 
       <!-- Loading Overlay -->

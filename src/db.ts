@@ -529,6 +529,44 @@ class PhonemePartyDB {
       return null; // No preference saved
     }
   }
+
+  /**
+   * Save user's manual level preference for a language
+   */
+  async saveUserLevel(language: SupportedLanguage, userLevel: number): Promise<void> {
+    const docId = `user_level_${language}`;
+    try {
+      // Try to get existing doc
+      const existingDoc = await this.db.get(docId);
+      await this.db.put({
+        ...existingDoc,
+        userLevel,
+        timestamp: Date.now(),
+      });
+    } catch {
+      // Create new doc if doesn't exist
+      await this.db.put({
+        _id: docId,
+        type: "user_level_preference",
+        language,
+        userLevel,
+        timestamp: Date.now(),
+      });
+    }
+  }
+
+  /**
+   * Get user's manual level preference for a language
+   */
+  async getUserLevel(language: SupportedLanguage): Promise<number | null> {
+    const docId = `user_level_${language}`;
+    try {
+      const doc = (await this.db.get(docId)) as { userLevel: number };
+      return doc.userLevel;
+    } catch {
+      return null; // No preference saved
+    }
+  }
 }
 
 // Export singleton instance

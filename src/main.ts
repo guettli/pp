@@ -13,7 +13,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { getLanguage, initI18n, onLanguageChange, setLanguage, t } from "./i18n.js";
 
 // Import types
-import { getLevelText } from "./types.js";
+import { getLevelText, type SupportedLanguage } from "./types.js";
 
 // Import state management
 import { resetFeedback, setState, state } from "./state.js";
@@ -26,6 +26,7 @@ import { initHistory, refreshHistory } from "./ui/history.js";
 
 // Import utilities
 import { findPhraseByName, getRandomPhrase } from "./utils/random.js";
+import { adjustUserLevel, loadUserLevel, saveUserLevel } from "./utils/level-adjustment.js";
 
 // Import audio modules
 import { prepareAudioForWhisper } from "./audio/processor.js";
@@ -142,6 +143,14 @@ async function init() {
       // Continue anyway - history is not critical for app to function
     }
 
+    // Load user level (non-blocking, errors won't crash app)
+    try {
+      await loadAndUpdateUserLevel(getLanguage());
+    } catch (error) {
+      console.error("Failed to load user level:", error);
+      // Continue anyway - level is not critical for app to function
+    }
+
     console.log("Application initialized successfully");
   } catch (error) {
     console.error("Initialization error:", error);
@@ -156,6 +165,7 @@ function setupEventListeners() {
   const recordBtn = document.getElementById("record-btn");
   const nextPhraseBtn = document.getElementById("next-phrase-btn");
   const languageSelect = document.getElementById("language-select");
+  const levelSlider = document.getElementById("level-slider");
 
   if (recordBtn) {
     // Use mousedown/mouseup for press-and-hold recording
@@ -192,6 +202,22 @@ function setupEventListeners() {
       void nextPhrase();
       updateWebGpuStatus();
       refreshHistory();
+      void loadAndUpdateUserLevel(language);
+    });
+  }
+
+  if (levelSlider && levelSlider instanceof HTMLInputElement) {
+    levelSlider.addEventListener("input", (event) => {
+      const target = event.target as HTMLInputElement;
+      const level = parseInt(target.value, 10);
+      setState({ userLevel: level });
+      updateLevelDisplay(level);
+    });
+
+    levelSlider.addEventListener("change", (event) => {
+      const target = event.target as HTMLInputElement;
+      const level = parseInt(target.value, 10);
+      void saveUserLevel(getLanguage(), level);
     });
   }
 }
@@ -225,6 +251,59 @@ function updateWebGpuStatus() {
   }
 
   status.textContent = t("footer.webgpu_status_available");
+}
+
+/**
+ * Update level display in UI
+ */
+function updateLevelDisplay(level: number) {
+  const levelValue = document.getElementById("level-value");
+  const levelText = document.getElementById("level-text");
+  const levelSlider = document.getElementById("level-slider");
+
+  if (levelValue) {
+    levelValue.textContent = level.toString();
+  }
+
+  if (levelText) {
+    levelText.textContent = getLevelText(level);
+  }
+
+  if (levelSlider && levelSlider instanceof HTMLInputElement) {
+    levelSlider.value = level.toString();
+  }
+}
+
+/**
+ * Load user level from database and update UI
+ */
+async function loadAndUpdateUserLevel(language: SupportedLanguage) {
+  try {
+    // Get actual user level from performance stats
+    const stats = await db.getUserStats(language);
+    const actualLevel = stats.userLevel;
+
+    // Get user's manual level preference (or use actual level if not set)
+    const savedLevel = await loadUserLevel(language);
+    const userLevel = savedLevel !== null ? savedLevel : actualLevel;
+
+    // Update state
+    setState({
+      userLevel,
+      actualUserLevel: actualLevel,
+    });
+
+    // Update UI
+    updateLevelDisplay(userLevel);
+
+    console.log(
+      `User level loaded: manual=${userLevel}, actual=${actualLevel}, mastered=${stats.masteredCount}/${stats.totalInWindow}`,
+    );
+  } catch (error) {
+    console.warn("Could not load user level, using default:", error);
+    setState({ userLevel: 1, actualUserLevel: 1 });
+    updateLevelDisplay(1);
+  }
 }
 
 /**
@@ -481,8 +560,27 @@ async function actuallyStopRecording() {
           duration,
         );
 
-        // Refresh history to show new result
+        // Apply level adjustment based on performance
+        const phraseLevel = currentPhrase.level || 1;
+        const newUserLevel = adjustUserLevel(
+          state.userLevel,
+          state.actualUserLevel,
+          score.similarity * 100,
+          phraseLevel,
+        );
+
+        if (newUserLevel !== state.userLevel) {
+          console.log(
+            `Level adjusted: ${state.userLevel} -> ${newUserLevel} (actual: ${state.actualUserLevel}, score: ${(score.similarity * 100).toFixed(0)}%)`,
+          );
+          setState({ userLevel: newUserLevel });
+          updateLevelDisplay(newUserLevel);
+          await saveUserLevel(getLanguage(), newUserLevel);
+        }
+
+        // Refresh history to show new result and update actual level
         refreshHistory();
+        await loadAndUpdateUserLevel(getLanguage());
       } catch (error) {
         console.error("Failed to save result to database:", error);
         // Continue anyway - saving is not critical for app to function
@@ -567,14 +665,8 @@ function loadInitialPhrase() {
 async function nextPhrase() {
   const language = getLanguage();
 
-  // Get user level to select appropriate difficulty
-  let userLevel = 1; // Default to beginner level
-  try {
-    const stats = await db.getUserStats(language);
-    userLevel = stats.userLevel;
-  } catch (error) {
-    console.warn("Could not get user stats, defaulting to level 1:", error);
-  }
+  // Use user's current level from state
+  const userLevel = state.userLevel || 1;
 
   const phrase = getRandomPhrase(language, userLevel);
   setState({ currentPhrase: phrase });

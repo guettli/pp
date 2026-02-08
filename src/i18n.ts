@@ -100,6 +100,10 @@ const translations: Translations = {
     "history.empty": "Noch keine Trainings-Historie. Fang an zu üben!",
     "history.score": "Punkte",
     "history.time": "vor {time}",
+    "level.title": "Dein Level",
+    "level.label": "Schwierigkeit: {level}/1000",
+    "level.description": "Dein Level wird automatisch angepasst basierend auf deiner Leistung",
+    "level.actual": "Tatsächliches Level: {level}",
   },
   en: {
     "app.title": "Phoneme Party - Pronunciation Practice",
@@ -193,6 +197,10 @@ const translations: Translations = {
     "history.empty": "No training history yet. Start practicing!",
     "history.score": "Score",
     "history.time": "{time} ago",
+    "level.title": "Your Level",
+    "level.label": "Difficulty: {level}/1000",
+    "level.description": "Your level will be automatically adjusted based on your performance",
+    "level.actual": "Actual level: {level}",
   },
 };
 

@@ -62,14 +62,31 @@ export default defineConfig({
           },
         }),
       },
+      testIgnore: "**/pouchdb-error-prod.spec.js", // Skip production tests in dev project
+    },
+    {
+      name: "chromium-production",
+      use: {
+        ...devices["Desktop Chrome"],
+        baseURL: "http://localhost:8080",
+      },
+      testMatch: "**/pouchdb-error-prod.spec.js", // Only run production tests
     },
   ],
 
-  // Run your local dev server before starting the tests
-  webServer: {
-    command: "./run pnpm dev",
-    url: "http://localhost:5173",
-    reuseExistingServer: true,
-    timeout: 10000, // Increased timeout for model loading
-  },
+  // Run both dev and production servers before starting the tests
+  webServer: [
+    {
+      command: "./run pnpm dev",
+      url: "http://localhost:5173",
+      reuseExistingServer: true,
+      timeout: 10000, // Increased timeout for model loading
+    },
+    {
+      command: "./run pnpm preview --port 8080 --strictPort",
+      url: "http://localhost:8080",
+      reuseExistingServer: true,
+      timeout: 10000,
+    },
+  ],
 });

@@ -3,7 +3,7 @@ set -euo pipefail
 
 if [[ -z ${DIRENV_DIR:-} ]]; then
     # Execute the command with direnv environment loaded
-    exec direnv exec . "$@"
+    exec direnv exec . "$0" "$@"
 fi
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
