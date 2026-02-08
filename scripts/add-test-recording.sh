@@ -35,11 +35,11 @@ if [ "$RECORD_MODE" == "false" ]; then
     (cd "$PROJECT_DIR" && pnpm build:node)
     echo ""
 
-    # Parse filename: Phrase_Timestamp_Lang.webm
+    # Parse filename: Phrase_Timestamp_Lang.webm (optional IPA notation after lang)
     # Phrase can contain underscores, so we split at _YYYYMMDDTHHMMSS_ (timestamp pattern)
     BASENAME=$(basename "$INPUT_FILE" .webm)
 
-    if [[ $BASENAME =~ ^(.*)_([0-9]{8}T[0-9]{6})_([^_]+)$ ]]; then
+    if [[ $BASENAME =~ ^(.*)_([0-9]{8}T[0-9]{6})_([a-z]{2,3})(_.*)?$ ]]; then
         PHRASE="${BASH_REMATCH[1]}"
         TIMESTAMP="${BASH_REMATCH[2]}"
         LANG="${BASH_REMATCH[3]}"
