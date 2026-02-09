@@ -191,7 +191,12 @@ describe("German phoneme equivalence rules", () => {
   console.log(`  ɐ̯ ↔ r: similarity = ${(test5.similarity * 100).toFixed(1)}%`);
   assert(test5.similarity === 1.0, "ɐ̯ and r should be 100% similar (treated as equal)");
 
-  // Test 6: Real world example from phrases-de.yaml: "Der Hamster"
+  // Test 6: ɛʁ should be equivalent to ɐ
+  const test6 = calculator.calculatePanPhonDistance("hamɐ", "hamɛʁ");
+  console.log(`  ɐ ↔ ɛʁ: similarity = ${(test6.similarity * 100).toFixed(1)}%`);
+  assert(test6.similarity === 1.0, "ɐ and ɛʁ should be 100% similar (treated as equal)");
+
+  // Test 7: Real world example from phrases-de.yaml: "Der Hamster"
   const hamster = calculator.calculatePanPhonDistance("deːɐ̯ hamstɐ", "deːr hamstər");
   console.log(
     `  Real example "Der Hamster": similarity = ${(hamster.similarity * 100).toFixed(1)}%`,

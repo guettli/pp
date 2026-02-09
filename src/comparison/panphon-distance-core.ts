@@ -157,7 +157,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
     // - Remove velarized/dark l mark (U+0334): l̴ → l
     // - Expand rhoticity hook (U+02DE): V˞ → Vɹ (e.g., ʊ˞ → ʊɹ)
     // - Expand rhotic vowel ɝ (U+025D) → ɜ ɹ
-    // - German normalization: ər → ɐ (r-vocalization)
+    // - German normalization: ər → ɐ, ɛʁ → ɐ (r-vocalization)
     const cleaned = ipa
       .replace(/[/[\]ˈˌ]/g, "")
       .replace(/\u0361/g, "") // Remove tie bar
@@ -167,6 +167,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
       .replace(/\u0334/g, "") // Remove velarized mark
       .replace(/(.)\u02DE/g, "$1ɹ") // Expand rhoticity: V˞ → Vɹ
       .replace(/\u025D/g, "ɜɹ") // Expand rhotic vowel ɝ → ɜɹ
+      .replace(/ɛʁ/g, "ɐ") // German: normalize ɛʁ sequence to ɐ
       .replace(/ər/g, "ɐ") // German: normalize ər sequence to ɐ
       .trim();
 
