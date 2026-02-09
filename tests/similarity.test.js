@@ -165,6 +165,43 @@ describe("Single phoneme change should have high similarity", () => {
   );
 });
 
+describe("German phoneme equivalence rules", () => {
+  // Test 1: ɐ should be equivalent to ər
+  const test1 = calculator.calculatePanPhonDistance("hamɐ", "hamər");
+  console.log(`  ɐ ↔ ər: similarity = ${(test1.similarity * 100).toFixed(1)}%`);
+  assert(test1.similarity === 1.0, "ɐ and ər should be 100% similar (treated as equal)");
+
+  // Test 2: ə should be equivalent to ɛ
+  const test2 = calculator.calculatePanPhonDistance("bətə", "bɛtɛ");
+  console.log(`  ə ↔ ɛ: similarity = ${(test2.similarity * 100).toFixed(1)}%`);
+  assert(test2.similarity === 1.0, "ə and ɛ should be 100% similar (treated as equal)");
+
+  // Test 3: ʁ should be equivalent to r
+  const test3 = calculator.calculatePanPhonDistance("ʁot", "rot");
+  console.log(`  ʁ ↔ r: similarity = ${(test3.similarity * 100).toFixed(1)}%`);
+  assert(test3.similarity === 1.0, "ʁ and r should be 100% similar (treated as equal)");
+
+  // Test 4: z should be equivalent to s
+  const test4 = calculator.calculatePanPhonDistance("zun", "sun");
+  console.log(`  z ↔ s: similarity = ${(test4.similarity * 100).toFixed(1)}%`);
+  assert(test4.similarity === 1.0, "z and s should be 100% similar (treated as equal)");
+
+  // Test 5: ɐ̯ should be equivalent to r
+  const test5 = calculator.calculatePanPhonDistance("dɐ̯", "dr");
+  console.log(`  ɐ̯ ↔ r: similarity = ${(test5.similarity * 100).toFixed(1)}%`);
+  assert(test5.similarity === 1.0, "ɐ̯ and r should be 100% similar (treated as equal)");
+
+  // Test 6: Real world example from phrases-de.yaml: "Der Hamster"
+  const hamster = calculator.calculatePanPhonDistance("deːɐ̯ hamstɐ", "deːr hamstər");
+  console.log(
+    `  Real example "Der Hamster": similarity = ${(hamster.similarity * 100).toFixed(1)}%`,
+  );
+  assert(
+    hamster.similarity === 1.0,
+    "Equivalent phonemes in multi-phoneme words should still be 100% similar",
+  );
+});
+
 // Summary
 console.log("\n" + "=".repeat(50));
 console.log(`SUMMARY: ${testsPassed} passed, ${testsFailed} failed`);

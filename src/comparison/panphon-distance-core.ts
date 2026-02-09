@@ -76,10 +76,39 @@ function parseIPAWord(cleaned: string, panphonFeatures: PhonemeFeatureTable): st
 
 export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): DistanceCalculator {
   /**
+   * German phoneme equivalence rules
+   * Maps phonemes that should be treated as equal for German pronunciation
+   * Note: "ər" sequences are normalized to "ɐ" before phoneme splitting
+   */
+  const germanEquivalences: Array<Set<string>> = [
+    new Set(["ɐ", "r"]), // r-vocalization: ɐ (and ɐ̯ after normalization) ↔ r
+    new Set(["ə", "ɛ"]), // schwa variations
+    new Set(["ʁ", "r"]), // uvular vs alveolar r
+    new Set(["z", "s"]), // voiced vs voiceless s
+  ];
+
+  /**
+   * Check if two phonemes are equivalent according to German phoneme rules
+   */
+  function areGermanEquivalent(p1: string, p2: string): boolean {
+    for (const equivalenceSet of germanEquivalences) {
+      if (equivalenceSet.has(p1) && equivalenceSet.has(p2)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
    * Calculate distance between two phonemes based on their articulatory features
    */
   function phonemeFeatureDistance(phoneme1: string, phoneme2: string): number {
     if (phoneme1 === phoneme2) {
+      return 0;
+    }
+
+    // Check German equivalence rules
+    if (areGermanEquivalent(phoneme1, phoneme2)) {
       return 0;
     }
 
@@ -128,6 +157,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
     // - Remove velarized/dark l mark (U+0334): l̴ → l
     // - Expand rhoticity hook (U+02DE): V˞ → Vɹ (e.g., ʊ˞ → ʊɹ)
     // - Expand rhotic vowel ɝ (U+025D) → ɜ ɹ
+    // - German normalization: ər → ɐ (r-vocalization)
     const cleaned = ipa
       .replace(/[/[\]ˈˌ]/g, "")
       .replace(/\u0361/g, "") // Remove tie bar
@@ -137,6 +167,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
       .replace(/\u0334/g, "") // Remove velarized mark
       .replace(/(.)\u02DE/g, "$1ɹ") // Expand rhoticity: V˞ → Vɹ
       .replace(/\u025D/g, "ɜɹ") // Expand rhotic vowel ɝ → ɜɹ
+      .replace(/ər/g, "ɐ") // German: normalize ər sequence to ɐ
       .trim();
 
     // If input contains spaces, check if it's already tokenized (single-char tokens)
