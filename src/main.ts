@@ -34,6 +34,7 @@ import { AudioRecorder } from "./audio/recorder.js";
 
 // Import phoneme extraction (direct IPA output)
 import { extractPhonemes, loadPhonemeModel } from "./speech/phoneme-extractor.js";
+import { RealTimePhonemeDetector } from "./speech/realtime-phoneme-detector.js";
 
 // Import comparison logic
 import { scorePronunciation } from "./comparison/scorer.js";
@@ -67,6 +68,7 @@ import {
 // Track recording state
 let recordingTimer: ReturnType<typeof setInterval> | null = null;
 let pendingStopTimer: ReturnType<typeof setTimeout> | null = null;
+let realtimeDetector: RealTimePhonemeDetector | null = null;
 
 /**
  * Initialize the application
@@ -326,14 +328,59 @@ async function handleRecordStart() {
       return;
     }
 
-    // Start recording
+    // Get target IPA for real-time detection
+    if (!state.currentPhrase?.ipas || state.currentPhrase.ipas.length === 0) {
+      throw new Error("No target phrase available for recording");
+    }
+    const targetIPA = state.currentPhrase.ipas[0].ipa;
+
+    // Create real-time phoneme detector
+    realtimeDetector = new RealTimePhonemeDetector(
+      {
+        targetIPA,
+        threshold: 1.0, // 100% similarity threshold for auto-stop
+        minChunksBeforeCheck: 2, // Wait for at least 2 chunks before checking
+        silenceThreshold: 0.01, // RMS volume threshold for silence
+        silenceDuration: 1500, // Stop after 1.5 seconds of silence
+      },
+      {
+        onPhonemeUpdate: (phonemes, similarity) => {
+          console.log(
+            `Real-time phonemes: ${phonemes} (similarity: ${(similarity * 100).toFixed(1)}%)`,
+          );
+        },
+        onTargetMatched: (phonemes, similarity) => {
+          console.log(
+            `Target matched! Phonemes: ${phonemes} (similarity: ${(similarity * 100).toFixed(1)}%)`,
+          );
+          // Auto-stop recording when target is matched
+          void actuallyStopRecording();
+        },
+        onSilenceDetected: () => {
+          console.log("Silence detected - stopping recording");
+          // Auto-stop recording after silence
+          void actuallyStopRecording();
+        },
+      },
+    );
+
+    // Start recording with streaming
     if (!state.recorder) {
       throw new Error("Audio recorder not initialized");
     }
-    await state.recorder.start(() => {
-      // Auto-stop callback when max duration reached - stop immediately
-      void actuallyStopRecording();
-    });
+    await state.recorder.start(
+      () => {
+        // Auto-stop callback when max duration reached - stop immediately
+        void actuallyStopRecording();
+      },
+      (chunk: Blob) => {
+        // Stream audio chunks to the detector
+        if (realtimeDetector) {
+          void realtimeDetector.addChunk(chunk);
+        }
+      },
+      500, // Request data every 500ms
+    );
 
     setState({ isRecording: true });
     updateRecordButton(true, 0);
@@ -351,6 +398,7 @@ async function handleRecordStart() {
     showInlineError(error);
     setState({ isRecording: false });
     resetRecordButton();
+    realtimeDetector = null;
   }
 }
 
@@ -428,6 +476,10 @@ async function actuallyStopRecording() {
     const { blob: audioBlob, duration } = await state.recorder.stop();
     setState({ isRecording: false, lastRecordingBlob: audioBlob });
 
+    // Clean up real-time detector
+    const detector = realtimeDetector;
+    realtimeDetector = null;
+
     console.log(`Recording stopped. Duration: ${duration}ms`);
 
     // Check if recording meets minimum duration
@@ -495,18 +547,36 @@ async function actuallyStopRecording() {
     }, 100);
 
     try {
-      // Process the audio
-      const audioData = await measureAsync("processing.step_prepare", () =>
-        prepareAudioForWhisper(audioBlob),
-      );
-      showProcessing(30);
+      let actualIPA: string;
 
-      // Extract phonemes directly using phoneme model
-      const actualIPA = await measureAsync("processing.step_phonemes", () =>
-        extractPhonemes(audioData),
-      );
+      // Check if we can use real-time detector's results
+      if (detector && detector.getLastPhonemes()) {
+        console.log("Using phonemes from real-time detector");
+        actualIPA = detector.getLastPhonemes();
+        debugMeta.push({
+          labelKey: "processing.meta_realtime",
+          value: "Yes (auto-detected)",
+        });
+        showProcessing(85);
+      } else {
+        // Process the audio normally
+        const audioData = await measureAsync("processing.step_prepare", () =>
+          prepareAudioForWhisper(audioBlob),
+        );
+        showProcessing(30);
+
+        // Extract phonemes directly using phoneme model
+        actualIPA = await measureAsync("processing.step_phonemes", () =>
+          extractPhonemes(audioData),
+        );
+        debugMeta.push({
+          labelKey: "processing.meta_realtime",
+          value: "No (post-processing)",
+        });
+        showProcessing(85);
+      }
+
       console.log("Extracted IPA phonemes:", actualIPA);
-      showProcessing(85);
 
       // Score the pronunciation using PanPhon features
       if (!state.currentPhrase) {

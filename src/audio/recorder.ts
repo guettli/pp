@@ -10,11 +10,19 @@ export class AudioRecorder {
   public readonly maxDuration: number = 4000; // 4 seconds in milliseconds
   public readonly minDuration: number = 500; // 0.5 seconds minimum
   private autoStopTimer: ReturnType<typeof setTimeout> | null = null;
+  private onDataCallback: ((chunk: Blob) => void) | null = null;
 
   /**
    * Start recording audio
+   * @param onAutoStop - Callback when max duration is reached
+   * @param onDataAvailable - Callback for each audio chunk (for streaming)
+   * @param streamingInterval - Interval in ms for streaming chunks (default: 500ms)
    */
-  async start(onAutoStop: (() => void) | null = null): Promise<void> {
+  async start(
+    onAutoStop: (() => void) | null = null,
+    onDataAvailable: ((chunk: Blob) => void) | null = null,
+    streamingInterval = 500,
+  ): Promise<void> {
     this.stream = await navigator.mediaDevices.getUserMedia({
       audio: {
         channelCount: 1,
@@ -30,14 +38,24 @@ export class AudioRecorder {
     this.mediaRecorder = new MediaRecorder(this.stream, { mimeType });
     this.chunks = [];
     this.startTime = Date.now();
+    this.onDataCallback = onDataAvailable;
 
     this.mediaRecorder.ondataavailable = (e: BlobEvent) => {
       if (e.data.size > 0) {
         this.chunks.push(e.data);
+        // Call streaming callback if provided
+        if (this.onDataCallback) {
+          this.onDataCallback(e.data);
+        }
       }
     };
 
-    this.mediaRecorder.start();
+    // Start recording with timeslice for streaming
+    if (onDataAvailable) {
+      this.mediaRecorder.start(streamingInterval);
+    } else {
+      this.mediaRecorder.start();
+    }
 
     // Auto-stop after max duration
     this.autoStopTimer = setTimeout(() => {

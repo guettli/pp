@@ -99,7 +99,11 @@ export interface AppState {
 
 // Audio recorder interface
 export interface AudioRecorderInstance {
-  start(onAutoStop?: () => void): Promise<void>;
+  start(
+    onAutoStop?: (() => void) | null,
+    onDataAvailable?: ((chunk: Blob) => void) | null,
+    streamingInterval?: number,
+  ): Promise<void>;
   stop(): Promise<{ blob: Blob; duration: number }>;
   requestPermission(): Promise<void>;
   isRecording(): boolean;

@@ -5,6 +5,7 @@
 
 import { extractLogMelJS } from "./mel-js.js";
 import { getModelFromCache, saveModelToCache } from "./model-cache.js";
+import { decodePhonemes } from "./phoneme-decoder.js";
 
 // ONNX Runtime types
 interface OrtTensor {
@@ -199,57 +200,14 @@ export async function extractPhonemes(audioData: Float32Array): Promise<string> 
   const logitsData = logits.data as Float32Array;
   const [, seqLen, vocabSize] = logits.dims;
 
-  // Greedy decode: argmax over vocab dimension
-  const predictedIds = [];
-  for (let t = 0; t < seqLen; t++) {
-    let maxIdx = 0;
-    let maxVal = logitsData[t * vocabSize];
-    for (let v = 1; v < vocabSize; v++) {
-      const val = logitsData[t * vocabSize + v];
-      if (val > maxVal) {
-        maxVal = val;
-        maxIdx = v;
-      }
-    }
-    predictedIds.push(maxIdx);
+  // Use shared decoder with confidence filtering
+  if (!idToToken) {
+    throw new Error("Vocabulary not loaded");
   }
 
-  // CTC decode: remove consecutive duplicates and blanks
-  const phonemes = ctcDecode(predictedIds);
-
-  return phonemes.join("");
-}
-
-/**
- * CTC greedy decode: remove consecutive duplicates and special tokens
- */
-function ctcDecode(ids: number[]): string[] {
-  const phonemes: string[] = [];
-  let prevId = -1;
-
-  for (const id of ids) {
-    // Skip if same as previous (CTC collapse)
-    if (id === prevId) continue;
-    prevId = id;
-
-    // Skip special tokens (including sentence boundary marker ▁)
-    const token = idToToken?.[id];
-    if (
-      !token ||
-      token === "<pad>" ||
-      token === "<s>" ||
-      token === "</s>" ||
-      token === "<unk>" ||
-      token === "<blk>" ||
-      token === "▁"
-    ) {
-      continue;
-    }
-
-    phonemes.push(token);
-  }
-
-  return phonemes;
+  return decodePhonemes(logitsData, seqLen, vocabSize, idToToken, {
+    returnDetails: false,
+  }) as string;
 }
 
 /**
