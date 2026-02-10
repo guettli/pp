@@ -125,6 +125,13 @@ async function init() {
     });
     updateWebGpuStatus();
 
+    // Expose API for testing (only in non-production builds)
+    if (import.meta.env.DEV || import.meta.env.MODE === "test") {
+      (window as Window & { __test_api?: { extractPhonemes: typeof extractPhonemes } }).__test_api = {
+        extractPhonemes,
+      };
+    }
+
     // Hide loading, show main content
     hideLoading();
 

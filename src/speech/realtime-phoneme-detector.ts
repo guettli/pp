@@ -1,0 +1,254 @@
+/**
+ * Real-time phoneme detection during recording
+ * Processes audio chunks as they arrive and detects when target phrase is spoken
+ */
+
+import { extractPhonemes } from "./phoneme-extractor.js";
+import { prepareAudioForWhisper } from "../audio/processor.js";
+import { calculatePanPhonDistance } from "../comparison/panphon-distance.js";
+
+/**
+ * Configuration for real-time detection
+ */
+interface DetectorConfig {
+  /** Target IPA phonemes to match */
+  targetIPA: string;
+  /** Similarity threshold to trigger auto-stop (0-1) */
+  threshold?: number;
+  /** Minimum number of chunks before checking */
+  minChunksBeforeCheck?: number;
+  /** Silence threshold (RMS volume below this is considered silence, 0-1) */
+  silenceThreshold?: number;
+  /** Duration of silence in ms before triggering stop */
+  silenceDuration?: number;
+}
+
+/**
+ * Callback types for real-time detection events
+ */
+export interface DetectorCallbacks {
+  /** Called when phonemes are detected */
+  onPhonemeUpdate?: (phonemes: string, similarity: number) => void;
+  /** Called when target phrase is matched */
+  onTargetMatched?: (phonemes: string, similarity: number) => void;
+  /** Called when silence is detected for configured duration */
+  onSilenceDetected?: () => void;
+}
+
+/**
+ * Real-time phoneme detector for streaming audio
+ */
+export class RealTimePhonemeDetector {
+  private config: Required<DetectorConfig>;
+  private callbacks: DetectorCallbacks;
+  private audioChunks: Blob[] = [];
+  private chunkCount = 0;
+  private isProcessing = false;
+  private lastExtractedPhonemes = "";
+  private lastSimilarity = 0;
+  private hasMatched = false;
+  private silenceStartTime: number | null = null;
+  private hasSilenceTriggered = false;
+  private audioContextForRMS: AudioContext | null = null;
+
+  constructor(config: DetectorConfig, callbacks: DetectorCallbacks = {}) {
+    this.config = {
+      targetIPA: config.targetIPA,
+      threshold: config.threshold ?? 1.0, // Default to 100% similarity
+      minChunksBeforeCheck: config.minChunksBeforeCheck ?? 2, // Wait for at least 2 chunks
+      silenceThreshold: config.silenceThreshold ?? 0.01, // RMS threshold for silence
+      silenceDuration: config.silenceDuration ?? 1500, // 1.5 seconds of silence
+    };
+    this.callbacks = callbacks;
+  }
+
+  /**
+   * Add an audio chunk for processing
+   */
+  async addChunk(chunk: Blob): Promise<void> {
+    // Ignore empty chunks
+    if (chunk.size === 0) return;
+
+    this.audioChunks.push(chunk);
+    this.chunkCount++;
+
+    // Check for silence
+    await this.checkSilence(chunk);
+
+    // Only check after minimum number of chunks
+    if (this.chunkCount < this.config.minChunksBeforeCheck) {
+      return;
+    }
+
+    // Don't process if already processing or already matched
+    if (this.isProcessing || this.hasMatched) {
+      return;
+    }
+
+    // Process accumulated audio
+    await this.processAccumulatedAudio();
+  }
+
+  /**
+   * Check if the audio chunk contains silence
+   */
+  private async checkSilence(chunk: Blob): Promise<void> {
+    // Skip if already triggered
+    if (this.hasSilenceTriggered) return;
+
+    try {
+      // Calculate RMS volume of the chunk
+      const rms = await this.calculateRMS(chunk);
+
+      const now = Date.now();
+
+      // Check if this chunk is silent
+      if (rms < this.config.silenceThreshold) {
+        // Start tracking silence if not already
+        if (this.silenceStartTime === null) {
+          this.silenceStartTime = now;
+        } else {
+          // Check if silence duration exceeded
+          const silenceDuration = now - this.silenceStartTime;
+          if (silenceDuration >= this.config.silenceDuration) {
+            this.hasSilenceTriggered = true;
+            if (this.callbacks.onSilenceDetected) {
+              this.callbacks.onSilenceDetected();
+            }
+          }
+        }
+      } else {
+        // Reset silence tracking if sound detected
+        this.silenceStartTime = null;
+      }
+    } catch (error) {
+      console.error("Error checking silence:", error);
+    }
+  }
+
+  /**
+   * Calculate RMS (Root Mean Square) volume of an audio chunk
+   */
+  private async calculateRMS(chunk: Blob): Promise<number> {
+    try {
+      // Convert blob to array buffer
+      const arrayBuffer = await chunk.arrayBuffer();
+
+      // Create or reuse audio context
+      if (!this.audioContextForRMS) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        this.audioContextForRMS = new AudioContextClass({ sampleRate: 16000 });
+      }
+
+      // Decode audio data
+      const audioBuffer = await this.audioContextForRMS.decodeAudioData(arrayBuffer);
+
+      // Get channel data
+      const channelData = audioBuffer.getChannelData(0);
+
+      // Calculate RMS
+      let sum = 0;
+      for (let i = 0; i < channelData.length; i++) {
+        sum += channelData[i] * channelData[i];
+      }
+      const rms = Math.sqrt(sum / channelData.length);
+
+      return rms;
+    } catch (error) {
+      console.error("Error calculating RMS:", error);
+      return 0;
+    }
+  }
+
+  /**
+   * Process all accumulated audio chunks
+   */
+  private async processAccumulatedAudio(): Promise<void> {
+    if (this.audioChunks.length === 0) return;
+
+    this.isProcessing = true;
+
+    try {
+      // Combine all chunks into a single blob
+      const combinedBlob = new Blob(this.audioChunks, { type: this.audioChunks[0].type });
+
+      // Prepare audio for model
+      const audioData = await prepareAudioForWhisper(combinedBlob);
+
+      // Extract phonemes
+      const phonemes = await extractPhonemes(audioData);
+      this.lastExtractedPhonemes = phonemes;
+
+      // Calculate similarity with target
+      const result = calculatePanPhonDistance(this.config.targetIPA, phonemes);
+      this.lastSimilarity = result.similarity;
+
+      // Notify listeners
+      if (this.callbacks.onPhonemeUpdate) {
+        this.callbacks.onPhonemeUpdate(phonemes, result.similarity);
+      }
+
+      // Check if target is matched
+      if (result.similarity >= this.config.threshold && !this.hasMatched) {
+        this.hasMatched = true;
+        if (this.callbacks.onTargetMatched) {
+          this.callbacks.onTargetMatched(phonemes, result.similarity);
+        }
+      }
+    } catch (error) {
+      console.error("Error processing audio chunk:", error);
+      // Continue processing future chunks even if one fails
+    } finally {
+      this.isProcessing = false;
+    }
+  }
+
+  /**
+   * Get the last extracted phonemes
+   */
+  getLastPhonemes(): string {
+    return this.lastExtractedPhonemes;
+  }
+
+  /**
+   * Get the last similarity score
+   */
+  getLastSimilarity(): number {
+    return this.lastSimilarity;
+  }
+
+  /**
+   * Check if target has been matched
+   */
+  hasTargetMatched(): boolean {
+    return this.hasMatched;
+  }
+
+  /**
+   * Get all accumulated audio as a single blob
+   */
+  getAccumulatedAudio(): Blob | null {
+    if (this.audioChunks.length === 0) return null;
+    return new Blob(this.audioChunks, { type: this.audioChunks[0].type });
+  }
+
+  /**
+   * Reset the detector state
+   */
+  reset(): void {
+    this.audioChunks = [];
+    this.chunkCount = 0;
+    this.isProcessing = false;
+    this.lastExtractedPhonemes = "";
+    this.lastSimilarity = 0;
+    this.hasMatched = false;
+    this.silenceStartTime = null;
+    this.hasSilenceTriggered = false;
+
+    // Clean up audio context
+    if (this.audioContextForRMS) {
+      void this.audioContextForRMS.close();
+      this.audioContextForRMS = null;
+    }
+  }
+}

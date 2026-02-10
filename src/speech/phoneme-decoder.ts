@@ -1,0 +1,131 @@
+/**
+ * Shared phoneme decoding logic for both web and Node.js
+ * Platform-agnostic CTC decoding with confidence filtering
+ */
+
+interface TokenWithConfidence {
+  tokenId: number;
+  symbol: string;
+  confidence: number;
+}
+
+interface GroupedPhoneme {
+  tokenId: number;
+  symbol: string;
+  duration: number;
+  confidences: number[];
+  avgConfidence: number;
+}
+
+export interface PhonemeWithConfidence {
+  symbol: string;
+  confidence: number;
+  duration: number;
+}
+
+export interface PhonemeDecoderOptions {
+  /** Minimum confidence for boundary phonemes (default: 0.54) */
+  minConfidence?: number;
+  /** Return detailed phoneme info instead of just string */
+  returnDetails?: boolean;
+}
+
+/**
+ * Decode phonemes from logits with confidence filtering
+ * @param logitsData - Flat array of logits [seqLen * vocabSize]
+ * @param seqLen - Sequence length (number of time steps)
+ * @param vocabSize - Vocabulary size
+ * @param idToToken - Mapping from token ID to symbol
+ * @param options - Decoding options
+ * @returns Decoded phoneme string or array of phoneme details
+ */
+export function decodePhonemes(
+  logitsData: ArrayLike<number>,
+  seqLen: number,
+  vocabSize: number,
+  idToToken: Record<number, string>,
+  options: PhonemeDecoderOptions = {},
+): string | PhonemeWithConfidence[] {
+  const { minConfidence = 0.54, returnDetails = false } = options;
+
+  // Greedy decode with confidence tracking
+  const tokens: TokenWithConfidence[] = [];
+  for (let t = 0; t < seqLen; t++) {
+    let maxIdx = 0;
+    let maxLogit = logitsData[t * vocabSize];
+    for (let v = 1; v < vocabSize; v++) {
+      const val = logitsData[t * vocabSize + v];
+      if (val > maxLogit) {
+        maxLogit = val;
+        maxIdx = v;
+      }
+    }
+
+    // Convert logit to confidence (using exp for relative comparison)
+    const confidence = Math.exp(maxLogit);
+
+    tokens.push({
+      tokenId: maxIdx,
+      symbol: idToToken[maxIdx] || "",
+      confidence,
+    });
+  }
+
+  // Group consecutive duplicates and calculate statistics
+  const grouped: GroupedPhoneme[] = [];
+  let currentGroup: GroupedPhoneme | null = null;
+
+  for (const token of tokens) {
+    if (!currentGroup || currentGroup.tokenId !== token.tokenId) {
+      if (currentGroup) {
+        grouped.push(currentGroup);
+      }
+      currentGroup = {
+        tokenId: token.tokenId,
+        symbol: token.symbol,
+        duration: 1,
+        confidences: [token.confidence],
+        avgConfidence: token.confidence,
+      };
+    } else {
+      currentGroup.duration++;
+      currentGroup.confidences.push(token.confidence);
+    }
+  }
+  if (currentGroup) {
+    grouped.push(currentGroup);
+  }
+
+  // Calculate average confidence for each group
+  for (const group of grouped) {
+    group.avgConfidence = group.confidences.reduce((a, b) => a + b, 0) / group.confidences.length;
+  }
+
+  // Filter out special tokens (including blank and sentence boundary)
+  const nonSpecialTokens = grouped.filter(
+    (g) => g.tokenId !== 0 && g.symbol !== "<blk>" && g.symbol !== "▁",
+  );
+
+  // Apply boundary filtering with confidence threshold
+  const filteredPhonemes = nonSpecialTokens.filter((g, idx) => {
+    const isFirstOrLast = idx === 0 || idx === nonSpecialTokens.length - 1;
+
+    if (isFirstOrLast && g.duration === 1) {
+      // At boundaries, filter very short phonemes with low confidence (likely noise)
+      return g.avgConfidence >= minConfidence;
+    }
+
+    // Keep all other phonemes (middle phonemes, or boundary phonemes with duration > 1)
+    return true;
+  });
+
+  if (returnDetails) {
+    return filteredPhonemes.map((g) => ({
+      symbol: g.symbol,
+      confidence: g.avgConfidence,
+      duration: g.duration,
+    }));
+  }
+
+  return filteredPhonemes.map((g) => g.symbol).join("");
+}
