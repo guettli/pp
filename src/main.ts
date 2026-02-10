@@ -127,9 +127,10 @@ async function init() {
 
     // Expose API for testing (only in non-production builds)
     if (import.meta.env.DEV || import.meta.env.MODE === "test") {
-      (window as Window & { __test_api?: { extractPhonemes: typeof extractPhonemes } }).__test_api = {
-        extractPhonemes,
-      };
+      (window as Window & { __test_api?: { extractPhonemes: typeof extractPhonemes } }).__test_api =
+        {
+          extractPhonemes,
+        };
     }
 
     // Hide loading, show main content
@@ -196,6 +197,11 @@ function setupEventListeners() {
 
   if (nextPhraseBtn) {
     nextPhraseBtn.addEventListener("click", () => void nextPhrase());
+  }
+
+  const reprocessBtn = document.getElementById("reprocess-recording-btn");
+  if (reprocessBtn) {
+    reprocessBtn.addEventListener("click", () => void reprocessRecording());
   }
 
   if (languageSelect && languageSelect instanceof HTMLSelectElement) {
@@ -693,6 +699,88 @@ async function actuallyStopRecording() {
     // Reset states
     setState({ isRecording: false, isProcessing: false });
     resetRecordButton();
+  }
+}
+
+/**
+ * Reprocess the last recording with fresh IPA detection
+ */
+async function reprocessRecording() {
+  if (!state.lastRecordingBlob) {
+    console.warn("No recording available to reprocess");
+    return;
+  }
+
+  if (!state.currentPhrase) {
+    console.warn("No current phrase to score against");
+    return;
+  }
+
+  try {
+    console.log("Reprocessing recording...");
+    setState({ isProcessing: true });
+
+    // Show processing
+    let progress = 0;
+    showProcessing(progress);
+
+    const progressInterval = setInterval(() => {
+      progress += 5;
+      if (progress <= 95) {
+        showProcessing(progress);
+      }
+    }, 100);
+
+    try {
+      // Extract phonemes from the stored recording
+      const audioData = await prepareAudioForWhisper(state.lastRecordingBlob);
+      showProcessing(30);
+
+      const actualIPA = await extractPhonemes(audioData);
+      showProcessing(85);
+
+      console.log("Re-extracted IPA phonemes:", actualIPA);
+
+      // Score the pronunciation
+      const currentPhrase = state.currentPhrase;
+      if (!currentPhrase.ipas || currentPhrase.ipas.length === 0) {
+        throw new Error(`No IPA pronunciation data available for phrase: ${currentPhrase.phrase}`);
+      }
+
+      // Try all IPAs and use the best score
+      const scores = currentPhrase.ipas.map((ipaEntry) =>
+        scorePronunciation(ipaEntry.ipa, actualIPA),
+      );
+      const score = scores.reduce(
+        (best, current) => (current.similarity > best.similarity ? current : best),
+        scores[0] || scorePronunciation("", actualIPA),
+      );
+
+      console.log("Re-scored:", score);
+      showProcessing(95);
+
+      // Update state
+      setState({ score, actualIPA });
+
+      // Display updated feedback
+      displayFeedback(currentPhrase, actualIPA, score);
+      showProcessing(100);
+
+      // Clear progress interval
+      clearInterval(progressInterval);
+
+      // Reset processing state
+      setTimeout(() => {
+        setState({ isProcessing: false });
+      }, 500);
+    } catch (error) {
+      clearInterval(progressInterval);
+      throw error;
+    }
+  } catch (error) {
+    console.error("Reprocessing error:", error);
+    showInlineError(error);
+    setState({ isProcessing: false });
   }
 }
 

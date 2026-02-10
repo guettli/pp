@@ -137,52 +137,67 @@ button {
   animation: fadeIn 0.5s ease-in;
 }
 
-/* Phoneme comparison table */
-.phoneme-table {
-  border-collapse: separate;
-  border-spacing: 0.25rem;
-  margin: 0 auto;
+/* Phoneme comparison wrapper - allows wrapping like words */
+.phoneme-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-.phoneme-cell {
+/* Each phoneme pair is a vertical block */
+.phoneme-pair {
+  display: flex;
+  flex-direction: column;
+  min-width: 2.5rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+/* Target phoneme (top row) */
+.phoneme-target {
   font-family: "Segoe UI", system-ui, sans-serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.4;
-  min-width: 2rem;
   padding: 0.25rem 0.5rem;
   text-align: center;
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
-}
-
-.phoneme-row-target .phoneme-cell {
   color: #495057;
-  border-radius: 0.375rem 0.375rem 0 0;
   border-bottom: 1px dashed #adb5bd;
+  background: inherit;
 }
 
-.phoneme-row-actual .phoneme-cell {
+/* Actual phoneme (bottom row) */
+.phoneme-actual {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  padding: 0.25rem 0.5rem;
+  text-align: center;
   color: #212529;
   font-weight: 500;
-  border-radius: 0 0 0.375rem 0.375rem;
+  background: inherit;
 }
 
-.phoneme-cell.match {
+/* Color coding for matches/mismatches */
+.phoneme-pair.match {
   background: #d1e7dd;
   border-color: #badbcc;
 }
 
-.phoneme-cell.mismatch {
+.phoneme-pair.mismatch {
   background: #fff3cd;
   border-color: #ffecb5;
 }
 
-.phoneme-cell.missing {
+.phoneme-pair.missing {
   background: #f8d7da;
   border-color: #f5c2c7;
 }
 
-.phoneme-cell.extra {
+.phoneme-pair.extra {
   background: #cfe2ff;
   border-color: #b6d4fe;
 }

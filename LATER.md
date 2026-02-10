@@ -1,3 +1,12 @@
+Running tests takes long. Why, how to improve speed?
+
+      [14/14] [chromium-production] › tests/pouchdb-error-prod.spec.js:4:3 › PouchDB Loading Bug - Production Build › should not have any conso
+      [chromium] › tests/streaming-vs-direct.spec.js:11:3 › Streaming vs Direct Detection › Die_Rose-Thomas.flac: streaming should match direct extraction
+[e2e] Model loaded
+
+
+---
+
 
 ❯ ./run scripts/add-test-recording.sh ~/Downloads/Der\ Hamster_20260208T173641_de_deːɾhaɾmstɛr.webm
 Building dist-node...

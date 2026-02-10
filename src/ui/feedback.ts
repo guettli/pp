@@ -86,6 +86,12 @@ export function displayFeedback(targetPhrase: Phrase, actualIPA: string, score: 
     setupPlayButton(playBtn);
   }
 
+  // Show reprocess button if recording is available
+  const reprocessBtn = document.getElementById("reprocess-recording-btn");
+  if (reprocessBtn && state.lastRecordingBlob) {
+    reprocessBtn.style.display = "inline-block";
+  }
+
   // Show play target button for desired pronunciation (if supported)
   const playTargetBtn = document.getElementById("play-target-btn");
   const speechHint = document.getElementById("speech-synthesis-hint");
@@ -149,6 +155,9 @@ export function hideFeedback() {
   // Hide play buttons
   const playBtn = document.getElementById("play-recording-btn");
   if (playBtn) playBtn.style.display = "none";
+
+  const reprocessBtn = document.getElementById("reprocess-recording-btn");
+  if (reprocessBtn) reprocessBtn.style.display = "none";
 
   const playTargetBtn = document.getElementById("play-target-btn");
   if (playTargetBtn) playTargetBtn.style.display = "none";
@@ -521,7 +530,7 @@ export async function playDesiredPronunciation(phrase: string): Promise<void> {
 }
 
 /**
- * Generate HTML for side-by-side phoneme comparison using table layout
+ * Generate HTML for phoneme comparison with vertical pairs that wrap
  */
 function generatePhonemeComparisonHTML(phonemeComparison: PhonemeComparisonItem[]): string {
   // Guard against undefined or non-array input
@@ -529,8 +538,10 @@ function generatePhonemeComparisonHTML(phonemeComparison: PhonemeComparisonItem[
     return "";
   }
 
-  // Build class and tooltip data for each column
-  const columns = phonemeComparison.map((comp: PhonemeComparisonItem) => {
+  // Build HTML with each phoneme comparison as a vertical pair
+  let html = '<div class="phoneme-wrapper">';
+
+  for (const comp of phonemeComparison) {
     const target = comp.target || "—";
     const actual = comp.actual || "—";
 
@@ -549,27 +560,14 @@ function generatePhonemeComparisonHTML(phonemeComparison: PhonemeComparisonItem[
       ? t("feedback.phoneme_match")
       : `${t("feedback.distance")}: ${comp.distance.toFixed(2)}`;
 
-    return { target, actual, pairClass, tooltip };
-  });
-
-  // Build table with two rows for proper text selection
-  let html = '<table class="phoneme-table"><tbody>';
-
-  // Target row
-  html += '<tr class="phoneme-row-target">';
-  for (const col of columns) {
-    html += `<td class="phoneme-cell ${col.pairClass}" title="${col.tooltip}">${col.target}</td>`;
+    // Each phoneme comparison is a vertical pair
+    html += `<div class="phoneme-pair ${pairClass}" title="${tooltip}">`;
+    html += `<div class="phoneme-target">${target}</div>`;
+    html += `<div class="phoneme-actual">${actual}</div>`;
+    html += "</div>";
   }
-  html += "</tr>";
 
-  // Actual row
-  html += '<tr class="phoneme-row-actual">';
-  for (const col of columns) {
-    html += `<td class="phoneme-cell ${col.pairClass}" title="${col.tooltip}">${col.actual}</td>`;
-  }
-  html += "</tr>";
-
-  html += "</tbody></table>";
+  html += "</div>";
   return html;
 }
 

@@ -10,10 +10,7 @@ import yaml from "js-yaml";
 test.describe("Streaming vs Direct Detection", () => {
   test("Die_Rose-Thomas.flac: streaming should match direct extraction", async ({ page }) => {
     // Load expected data
-    const yamlPath = path.join(
-      process.cwd(),
-      "tests/data/de/Die_Rose/Die_Rose-Thomas.flac.yaml",
-    );
+    const yamlPath = path.join(process.cwd(), "tests/data/de/Die_Rose/Die_Rose-Thomas.flac.yaml");
     const yamlContent = fs.readFileSync(yamlPath, "utf8");
     const expectedData = yaml.load(yamlContent);
 
@@ -24,10 +21,7 @@ test.describe("Streaming vs Direct Detection", () => {
     console.log(`Expected IPA: ${expectedIPA}\n`);
 
     // Load audio file
-    const audioPath = path.join(
-      process.cwd(),
-      "tests/data/de/Die_Rose/Die_Rose-Thomas.flac",
-    );
+    const audioPath = path.join(process.cwd(), "tests/data/de/Die_Rose/Die_Rose-Thomas.flac");
     const audioBuffer = fs.readFileSync(audioPath);
 
     // Navigate to app
@@ -75,9 +69,8 @@ test.describe("Streaming vs Direct Detection", () => {
           };
         }
 
-        const { RealTimePhonemeDetector } = await import(
-          "/src/speech/realtime-phoneme-detector.js"
-        );
+        const { RealTimePhonemeDetector } =
+          await import("/src/speech/realtime-phoneme-detector.js");
         const { prepareAudioForWhisper } = await import("/src/audio/processor.js");
 
         let autoStopTriggered = false;

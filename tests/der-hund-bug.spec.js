@@ -9,10 +9,7 @@ import yaml from "js-yaml";
 test.describe("Der_Hund Bug", () => {
   test("Der_Hund-Thomas.flac: web should match Node.js extraction", async ({ page }) => {
     // Load expected data
-    const yamlPath = path.join(
-      process.cwd(),
-      "tests/data/de/Der_Hund/Der_Hund-Thomas.flac.yaml",
-    );
+    const yamlPath = path.join(process.cwd(), "tests/data/de/Der_Hund/Der_Hund-Thomas.flac.yaml");
     const yamlContent = fs.readFileSync(yamlPath, "utf8");
     const expectedData = yaml.load(yamlContent);
 
@@ -24,10 +21,7 @@ test.describe("Der_Hund Bug", () => {
     console.log(`User reported via web: ejahoni\n`);
 
     // Load audio file
-    const audioPath = path.join(
-      process.cwd(),
-      "tests/data/de/Der_Hund/Der_Hund-Thomas.flac",
-    );
+    const audioPath = path.join(process.cwd(), "tests/data/de/Der_Hund/Der_Hund-Thomas.flac");
     const audioBuffer = fs.readFileSync(audioPath);
 
     // Navigate to app
