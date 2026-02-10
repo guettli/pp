@@ -50,12 +50,13 @@ export class RealTimePhonemeDetector {
   private silenceStartTime: number | null = null;
   private hasSilenceTriggered = false;
   private audioContextForRMS: AudioContext | null = null;
+  private lastProcessedChunkCount = 0; // Track how many chunks were in last successful processing
 
   constructor(config: DetectorConfig, callbacks: DetectorCallbacks = {}) {
     this.config = {
       targetIPA: config.targetIPA,
       threshold: config.threshold ?? 1.0, // Default to 100% similarity
-      minChunksBeforeCheck: config.minChunksBeforeCheck ?? 2, // Wait for at least 2 chunks
+      minChunksBeforeCheck: config.minChunksBeforeCheck ?? 3, // Wait for at least 3 chunks (1.5 seconds)
       silenceThreshold: config.silenceThreshold ?? 0.01, // RMS threshold for silence
       silenceDuration: config.silenceDuration ?? 1500, // 1.5 seconds of silence
     };
@@ -80,8 +81,14 @@ export class RealTimePhonemeDetector {
       return;
     }
 
-    // Don't process if already processing or already matched
-    if (this.isProcessing || this.hasMatched) {
+    // Don't process if already matched
+    if (this.hasMatched) {
+      return;
+    }
+
+    // Don't process if already processing (but don't skip the chunks - they're already accumulated)
+    // This avoids overlapping processing attempts, but ensures chunks keep accumulating
+    if (this.isProcessing) {
       return;
     }
 
@@ -166,6 +173,14 @@ export class RealTimePhonemeDetector {
   private async processAccumulatedAudio(): Promise<void> {
     if (this.audioChunks.length === 0) return;
 
+    // Skip if we haven't accumulated enough NEW chunks since last processing
+    // This avoids reprocessing the same incomplete data
+    const newChunkCount = this.audioChunks.length - this.lastProcessedChunkCount;
+    if (newChunkCount < 2 && this.lastProcessedChunkCount > 0) {
+      // Need at least 2 new chunks to try again after a previous attempt
+      return;
+    }
+
     this.isProcessing = true;
 
     try {
@@ -178,6 +193,9 @@ export class RealTimePhonemeDetector {
       // Extract phonemes
       const phonemes = await extractPhonemes(audioData);
       this.lastExtractedPhonemes = phonemes;
+
+      // Track that we successfully processed these chunks
+      this.lastProcessedChunkCount = this.audioChunks.length;
 
       // Calculate similarity with target
       const result = calculatePanPhonDistance(this.config.targetIPA, phonemes);
@@ -196,8 +214,12 @@ export class RealTimePhonemeDetector {
         }
       }
     } catch (error) {
-      console.error("Error processing audio chunk:", error);
-      // Continue processing future chunks even if one fails
+      console.error(
+        `Error processing accumulated audio (${this.audioChunks.length} chunks):`,
+        error,
+      );
+      // Don't update lastProcessedChunkCount on error - we'll retry with more chunks
+      // Continue processing future chunks - more data might make it decodable
     } finally {
       this.isProcessing = false;
     }
@@ -244,6 +266,7 @@ export class RealTimePhonemeDetector {
     this.hasMatched = false;
     this.silenceStartTime = null;
     this.hasSilenceTriggered = false;
+    this.lastProcessedChunkCount = 0;
 
     // Clean up audio context
     if (this.audioContextForRMS) {

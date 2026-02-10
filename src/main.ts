@@ -352,7 +352,7 @@ async function handleRecordStart() {
       {
         targetIPA,
         threshold: 1.0, // 100% similarity threshold for auto-stop
-        minChunksBeforeCheck: 2, // Wait for at least 2 chunks before checking
+        minChunksBeforeCheck: 3, // Wait for at least 3 chunks (1.5s) before first check
         silenceThreshold: 0.01, // RMS volume threshold for silence
         silenceDuration: 1500, // Stop after 1.5 seconds of silence
       },
