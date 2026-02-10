@@ -41,8 +41,22 @@ interface ProgressInfo {
 // Model configuration
 // Using your HuggingFace repo for ZIPA small CTC ONNX model
 const MODEL_REPO = "guettli/zipa-small-ctc-onnx-2026-01-28";
-const MODEL_URL = `https://huggingface.co/${MODEL_REPO}/resolve/main/model.onnx`;
-const VOCAB_URL = `https://huggingface.co/${MODEL_REPO}/resolve/main/vocab.json`;
+const MODEL_NAME = "zipa-small-ctc-onnx-2026-01-28"; // Local directory name (without username)
+
+// Use local model when running on localhost in DEV mode to speed up loading
+// In production builds, always use CDN
+const IS_DEV_LOCALHOST =
+  import.meta.env.DEV &&
+  typeof window !== "undefined" &&
+  (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
+
+const MODEL_URL = IS_DEV_LOCALHOST
+  ? `/onnx/${MODEL_NAME}/model.onnx`
+  : `https://huggingface.co/${MODEL_REPO}/resolve/main/model.onnx`;
+
+const VOCAB_URL = IS_DEV_LOCALHOST
+  ? `/onnx/${MODEL_NAME}/vocab.json`
+  : `https://huggingface.co/${MODEL_REPO}/resolve/main/vocab.json`;
 
 let session: OrtInferenceSession | null = null;
 let vocab: Record<string, number> | null = null;

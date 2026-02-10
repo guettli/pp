@@ -14,4 +14,4 @@ pnpm build
 
 pnpm check
 
-rsync -avz --delete "${DIST_DIR}/" "${DESTINATION}"
+rsync -avz --delete --exclude='onnx' "${DIST_DIR}/" "${DESTINATION}"
