@@ -49,7 +49,6 @@ export class RealTimePhonemeDetector {
   private hasMatched = false;
   private silenceStartTime: number | null = null;
   private hasSilenceTriggered = false;
-  private audioContextForRMS: AudioContext | null = null;
   private lastProcessedChunkCount = 0; // Track how many chunks were in last successful processing
 
   constructor(config: DetectorConfig, callbacks: DetectorCallbacks = {}) {
@@ -73,8 +72,9 @@ export class RealTimePhonemeDetector {
     this.audioChunks.push(chunk);
     this.chunkCount++;
 
-    // Check for silence
-    await this.checkSilence(chunk);
+    // Note: We don't check for silence on individual chunks because MediaRecorder chunks
+    // are streaming fragments that can't be decoded individually. Instead, we check for
+    // silence when processing accumulated chunks in processAccumulatedAudio().
 
     // Only check after minimum number of chunks
     if (this.chunkCount < this.config.minChunksBeforeCheck) {
@@ -97,19 +97,24 @@ export class RealTimePhonemeDetector {
   }
 
   /**
-   * Check if the audio chunk contains silence
+   * Check for silence in already-decoded audio data
+   * This is called after successfully decoding accumulated chunks
    */
-  private async checkSilence(chunk: Blob): Promise<void> {
+  private async checkSilenceFromAudioData(audioData: Float32Array): Promise<void> {
     // Skip if already triggered
     if (this.hasSilenceTriggered) return;
 
     try {
-      // Calculate RMS volume of the chunk
-      const rms = await this.calculateRMS(chunk);
+      // Calculate RMS volume from the decoded audio
+      let sum = 0;
+      for (let i = 0; i < audioData.length; i++) {
+        sum += audioData[i] * audioData[i];
+      }
+      const rms = Math.sqrt(sum / audioData.length);
 
       const now = Date.now();
 
-      // Check if this chunk is silent
+      // Check if the audio is silent
       if (rms < this.config.silenceThreshold) {
         // Start tracking silence if not already
         if (this.silenceStartTime === null) {
@@ -130,40 +135,6 @@ export class RealTimePhonemeDetector {
       }
     } catch (error) {
       console.error("Error checking silence:", error);
-    }
-  }
-
-  /**
-   * Calculate RMS (Root Mean Square) volume of an audio chunk
-   */
-  private async calculateRMS(chunk: Blob): Promise<number> {
-    try {
-      // Convert blob to array buffer
-      const arrayBuffer = await chunk.arrayBuffer();
-
-      // Create or reuse audio context
-      if (!this.audioContextForRMS) {
-        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-        this.audioContextForRMS = new AudioContextClass({ sampleRate: 16000 });
-      }
-
-      // Decode audio data
-      const audioBuffer = await this.audioContextForRMS.decodeAudioData(arrayBuffer);
-
-      // Get channel data
-      const channelData = audioBuffer.getChannelData(0);
-
-      // Calculate RMS
-      let sum = 0;
-      for (let i = 0; i < channelData.length; i++) {
-        sum += channelData[i] * channelData[i];
-      }
-      const rms = Math.sqrt(sum / channelData.length);
-
-      return rms;
-    } catch (error) {
-      console.error("Error calculating RMS:", error);
-      return 0;
     }
   }
 
@@ -189,6 +160,9 @@ export class RealTimePhonemeDetector {
 
       // Prepare audio for model
       const audioData = await prepareAudioForWhisper(combinedBlob);
+
+      // Check for silence on the decoded audio (not on individual chunks)
+      await this.checkSilenceFromAudioData(audioData);
 
       // Extract phonemes
       const phonemes = await extractPhonemes(audioData);
@@ -267,11 +241,5 @@ export class RealTimePhonemeDetector {
     this.silenceStartTime = null;
     this.hasSilenceTriggered = false;
     this.lastProcessedChunkCount = 0;
-
-    // Clean up audio context
-    if (this.audioContextForRMS) {
-      void this.audioContextForRMS.close();
-      this.audioContextForRMS = null;
-    }
   }
 }
