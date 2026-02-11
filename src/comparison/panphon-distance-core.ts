@@ -11,11 +11,11 @@ import type {
 } from "../types.js";
 
 export interface DistanceCalculator {
-  calculatePanPhonDistance: (target: string, actual: string) => PanPhonDistanceResult;
+  calculatePanPhonDistance: (target: string, actual: string, lang: string) => PanPhonDistanceResult;
   getPhonemeFeatures: (phoneme: string) => number[] | null;
   isKnownPhoneme: (phoneme: string) => boolean;
-  splitIntoPhonemes: (ipa: string) => string[];
-  phonemeFeatureDistance: (phoneme1: string, phoneme2: string) => number;
+  splitIntoPhonemes: (ipa: string, lang: string) => string[];
+  phonemeFeatureDistance: (phoneme1: string, phoneme2: string, lang: string) => number;
 }
 
 /**
@@ -102,13 +102,13 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
   /**
    * Calculate distance between two phonemes based on their articulatory features
    */
-  function phonemeFeatureDistance(phoneme1: string, phoneme2: string): number {
+  function phonemeFeatureDistance(phoneme1: string, phoneme2: string, lang: string): number {
     if (phoneme1 === phoneme2) {
       return 0;
     }
 
-    // Check German equivalence rules
-    if (areGermanEquivalent(phoneme1, phoneme2)) {
+    // Check German equivalence rules (only for German language)
+    if (lang === "de" && areGermanEquivalent(phoneme1, phoneme2)) {
       return 0;
     }
 
@@ -147,9 +147,9 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
   /**
    * Split IPA string into individual phonemes
    */
-  function splitIntoPhonemes(ipa: string): string[] {
+  function splitIntoPhonemes(ipa: string, lang: string): string[] {
     // Normalize IPA for comparison:
-    // - Remove stress marks and delimiters
+    // - Remove stress marks, delimiters, and structural markers (., ˈ, ˌ)
     // - Remove tie bars (U+0361) to split affricates: t͡s → ts
     // - Expand syllabic consonants: l̩ → əl, n̩ → ən (U+0329 = syllabic mark)
     // - Normalize IPA g (U+0261) to regular g
@@ -157,19 +157,26 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
     // - Remove velarized/dark l mark (U+0334): l̴ → l
     // - Expand rhoticity hook (U+02DE): V˞ → Vɹ (e.g., ʊ˞ → ʊɹ)
     // - Expand rhotic vowel ɝ (U+025D) → ɜ ɹ
-    // - German normalization: ər → ɐ, ɛʁ → ɐ (r-vocalization)
-    const cleaned = ipa
-      .replace(/[/[\]ˈˌ]/g, "")
+    // - German normalization (only for lang=de): ər → ɐ, ɛʁ → ɐ (r-vocalization)
+    let cleaned = ipa
+      .replace(/[/[\]ˈˌ]/g, "") // Remove delimiters and stress marks
+      .replace(/\./g, "") // Remove syllable boundaries
       .replace(/\u0361/g, "") // Remove tie bar
       .replace(/(.)\u0329/g, "ə$1") // Syllabic consonant → schwa + consonant
       .replace(/\u0261/g, "g") // IPA ɡ → regular g
       .replace(/\u032F/g, "") // Remove non-syllabic mark
       .replace(/\u0334/g, "") // Remove velarized mark
       .replace(/(.)\u02DE/g, "$1ɹ") // Expand rhoticity: V˞ → Vɹ
-      .replace(/\u025D/g, "ɜɹ") // Expand rhotic vowel ɝ → ɜɹ
-      .replace(/ɛʁ/g, "ɐ") // German: normalize ɛʁ sequence to ɐ
-      .replace(/ər/g, "ɐ") // German: normalize ər sequence to ɐ
-      .trim();
+      .replace(/\u025D/g, "ɜɹ"); // Expand rhotic vowel ɝ → ɜɹ
+
+    // Apply German-specific normalization only for German language
+    if (lang === "de") {
+      cleaned = cleaned
+        .replace(/ɛʁ/g, "ɐ") // German: normalize ɛʁ sequence to ɐ
+        .replace(/ər/g, "ɐ"); // German: normalize ər sequence to ɐ
+    }
+
+    cleaned = cleaned.trim();
 
     // If input contains spaces, check if it's already tokenized (single-char tokens)
     // or if it contains multi-word phrases (multi-char tokens that need parsing)
@@ -208,8 +215,8 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
   /**
    * Calculate alignment cost for dynamic programming
    */
-  function alignmentCost(p1: string, p2: string): number {
-    return phonemeFeatureDistance(p1, p2);
+  function alignmentCost(p1: string, p2: string, lang: string): number {
+    return phonemeFeatureDistance(p1, p2, lang);
   }
 
   /**
@@ -225,6 +232,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
   function alignPhonemes(
     phonemes1: string[],
     phonemes2: string[],
+    lang: string,
   ): { distance: number; alignment: AlignmentItem[] } {
     const m = phonemes1.length;
     const n = phonemes2.length;
@@ -248,7 +256,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
     // Fill DP table
     for (let i = 1; i <= m; i++) {
       for (let j = 1; j <= n; j++) {
-        const substitutionCost = alignmentCost(phonemes1[i - 1], phonemes2[j - 1]);
+        const substitutionCost = alignmentCost(phonemes1[i - 1], phonemes2[j - 1], lang);
 
         dp[i][j] = Math.min(
           dp[i - 1][j] + indelPenalty, // Deletion
@@ -265,7 +273,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
 
     while (i > 0 || j > 0) {
       if (i > 0 && j > 0) {
-        const substitutionCost = alignmentCost(phonemes1[i - 1], phonemes2[j - 1]);
+        const substitutionCost = alignmentCost(phonemes1[i - 1], phonemes2[j - 1], lang);
         if (dp[i][j] === dp[i - 1][j - 1] + substitutionCost) {
           // Substitution or match
           alignment.unshift({
@@ -303,13 +311,17 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
   /**
    * Calculate distance between two IPA strings using PanPhon features
    */
-  function calculatePanPhonDistance(target: string, actual: string): PanPhonDistanceResult {
+  function calculatePanPhonDistance(
+    target: string,
+    actual: string,
+    lang: string,
+  ): PanPhonDistanceResult {
     // Split into phonemes
-    const targetPhonemes = splitIntoPhonemes(target);
-    const actualPhonemes = splitIntoPhonemes(actual);
+    const targetPhonemes = splitIntoPhonemes(target, lang);
+    const actualPhonemes = splitIntoPhonemes(actual, lang);
 
     // Calculate alignment distance and get optimal alignment
-    const { distance, alignment } = alignPhonemes(targetPhonemes, actualPhonemes);
+    const { distance, alignment } = alignPhonemes(targetPhonemes, actualPhonemes, lang);
 
     // Calculate max length for normalization
     const maxLen = Math.max(targetPhonemes.length, actualPhonemes.length);

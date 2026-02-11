@@ -363,6 +363,7 @@ async function handleRecordStart() {
     realtimeDetector = new RealTimePhonemeDetector(
       {
         targetIPA,
+        lang: getLanguage(),
         threshold: 1.0, // 100% similarity threshold for auto-stop
         minChunksBeforeCheck: 3, // Wait for at least 3 chunks (1.5s) before first check
         silenceThreshold: 0.01, // RMS volume threshold for silence
@@ -570,13 +571,16 @@ async function actuallyStopRecording() {
       }
 
       // Try all IPAs and use the best score
+      const lang = getLanguage();
       const scores = currentPhrase.ipas.map((ipaEntry) =>
-        measureSync("processing.step_score", () => scorePronunciation(ipaEntry.ipa, actualIPA)),
+        measureSync("processing.step_score", () =>
+          scorePronunciation(ipaEntry.ipa, actualIPA, lang),
+        ),
       );
       // Use the score with the highest similarity
       const score = scores.reduce(
         (best, current) => (current.similarity > best.similarity ? current : best),
-        scores[0] || scorePronunciation("", actualIPA),
+        scores[0] || scorePronunciation("", actualIPA, lang),
       );
       showProcessing(95);
 
@@ -696,12 +700,13 @@ async function reprocessRecording() {
       }
 
       // Try all IPAs and use the best score
+      const lang = getLanguage();
       const scores = currentPhrase.ipas.map((ipaEntry) =>
-        scorePronunciation(ipaEntry.ipa, actualIPA),
+        scorePronunciation(ipaEntry.ipa, actualIPA, lang),
       );
       const score = scores.reduce(
         (best, current) => (current.similarity > best.similarity ? current : best),
-        scores[0] || scorePronunciation("", actualIPA),
+        scores[0] || scorePronunciation("", actualIPA, lang),
       );
       showProcessing(95);
 

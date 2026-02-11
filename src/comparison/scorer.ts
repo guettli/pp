@@ -10,9 +10,9 @@ import type { Score } from "../types.js";
 /**
  * Score pronunciation based on phoneme feature similarity using PanPhon
  */
-export function scorePronunciation(targetIPA: string, actualIPA: string): Score {
+export function scorePronunciation(targetIPA: string, actualIPA: string, lang: string): Score {
   // Use PanPhon-based phoneme distance for more accurate scoring
-  const panphonResult = calculatePanPhonDistance(targetIPA, actualIPA);
+  const panphonResult = calculatePanPhonDistance(targetIPA, actualIPA, lang);
   const { distance: dist, similarity, phonemeComparison } = panphonResult;
 
   // Also calculate basic Levenshtein for fallback/comparison

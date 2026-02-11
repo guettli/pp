@@ -8,6 +8,8 @@ import { createDistanceCalculator } from "./panphon-distance-core.js";
 
 const calculator = createDistanceCalculator(panphonFeatures);
 
-export const calculatePanPhonDistance = calculator.calculatePanPhonDistance;
+// Re-export with explicit signatures to ensure lang parameter is required
+export const calculatePanPhonDistance = (target: string, actual: string, lang: string) =>
+  calculator.calculatePanPhonDistance(target, actual, lang);
 export const getPhonemeFeatures = calculator.getPhonemeFeatures;
 export const isKnownPhoneme = calculator.isKnownPhoneme;

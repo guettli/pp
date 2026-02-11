@@ -48,4 +48,6 @@ function decodePanphonFeatures() {
 const panphonFeatures = decodePanphonFeatures();
 const calculator = createDistanceCalculator(panphonFeatures);
 
-export const calculatePanPhonDistance = calculator.calculatePanPhonDistance;
+// Re-export with explicit signature to ensure lang parameter is required
+export const calculatePanPhonDistance = (target, actual, lang) =>
+  calculator.calculatePanPhonDistance(target, actual, lang);
