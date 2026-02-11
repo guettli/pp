@@ -225,6 +225,142 @@ export async function extractPhonemes(audioData: Float32Array): Promise<string> 
 }
 
 /**
+ * Extract phonemes from audio data with full details (for debugging/visualization)
+ */
+export async function extractPhonemesDetailed(audioData: Float32Array): Promise<{
+  phonemes: string;
+  details: Array<{
+    symbol: string;
+    confidence: number;
+    duration: number;
+  }>;
+  raw: {
+    frames: number;
+    vocabSize: number;
+    frameData: Array<{
+      frameIndex: number;
+      topPredictions: Array<{
+        symbol: string;
+        tokenId: number;
+        logit: number;
+        probability: number;
+      }>;
+    }>;
+  };
+}> {
+  if (!session) {
+    throw new Error("Phoneme model not loaded");
+  }
+
+  const ort = window.ort;
+  if (!ort) {
+    throw new Error("ONNX Runtime not loaded");
+  }
+
+  if (!idToToken) {
+    throw new Error("Vocabulary not loaded");
+  }
+
+  // Create a non-null reference for TypeScript
+  const tokenMap = idToToken;
+
+  // Extract log-mel features (shape: [frames, 80])
+  const melBands = 80;
+  const melFeatures = extractLogMelJS(audioData, melBands);
+  const numFrames = melFeatures.length / melBands;
+
+  // Reshape to [1, numFrames, 80]
+  const inputTensor = new ort.Tensor("float32", melFeatures, [1, numFrames, melBands]);
+
+  // Prepare x_lens tensor (number of frames)
+  const xLensTensor = new ort.Tensor("int64", new BigInt64Array([BigInt(numFrames)]), [1]);
+
+  // Run inference
+  const feeds = { x: inputTensor, x_lens: xLensTensor };
+  const results = await session.run(feeds);
+
+  let logits = results.logits || results.log_probs;
+  if (!logits) {
+    const firstKey = Object.keys(results)[0];
+    logits = results[firstKey];
+  }
+  if (!logits) {
+    throw new Error(
+      "No logits output found in ONNX results. Available keys: " + Object.keys(results).join(", "),
+    );
+  }
+
+  const logitsData = logits.data as Float32Array;
+  const [, seqLen, vocabSize] = logits.dims;
+
+  // Get detailed phoneme information
+  const detailedPhonemes = decodePhonemes(logitsData, seqLen, vocabSize, tokenMap, {
+    returnDetails: true,
+  }) as Array<{ symbol: string; confidence: number; duration: number }>;
+
+  // Get simple phoneme string
+  const phonemeString = decodePhonemes(logitsData, seqLen, vocabSize, tokenMap, {
+    returnDetails: false,
+  }) as string;
+
+  // Extract top-k predictions for each frame (for visualization)
+  const topK = 5;
+  const frameData: Array<{
+    frameIndex: number;
+    topPredictions: Array<{
+      symbol: string;
+      tokenId: number;
+      logit: number;
+      probability: number;
+    }>;
+  }> = [];
+
+  // Sample every Nth frame to avoid too much data (sample every 10th frame)
+  const sampleRate = 10;
+  for (let t = 0; t < seqLen; t += sampleRate) {
+    const frameOffset = t * vocabSize;
+
+    // Get all logits for this frame
+    const frameLogits: Array<{ tokenId: number; logit: number }> = [];
+    for (let v = 0; v < vocabSize; v++) {
+      frameLogits.push({
+        tokenId: v,
+        logit: logitsData[frameOffset + v],
+      });
+    }
+
+    // Sort by logit (descending)
+    frameLogits.sort((a, b) => b.logit - a.logit);
+
+    // Take top-k
+    const topPredictions = frameLogits.slice(0, topK).map((item) => {
+      const probability = Math.exp(item.logit);
+      return {
+        symbol: tokenMap[item.tokenId] || "<unk>",
+        tokenId: item.tokenId,
+        logit: item.logit,
+        probability,
+      };
+    });
+
+    frameData.push({
+      frameIndex: t,
+      topPredictions,
+    });
+  }
+
+  return {
+    phonemes: phonemeString,
+    details: detailedPhonemes,
+    raw: {
+      frames: seqLen,
+      vocabSize,
+      frameData,
+    },
+  };
+}
+
+/**
  * Check if model is loaded
  * @returns {boolean}
  */

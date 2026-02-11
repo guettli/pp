@@ -94,6 +94,12 @@ export function displayFeedback(targetPhrase: Phrase, actualIPA: string, score: 
     reprocessBtn.style.display = "inline-block";
   }
 
+  // Show model details button if recording is available
+  const showModelDetailsBtn = document.getElementById("show-model-details-btn");
+  if (showModelDetailsBtn && state.lastRecordingBlob) {
+    showModelDetailsBtn.style.display = "inline-block";
+  }
+
   // Show play target button for desired pronunciation (if supported)
   const playTargetBtn = document.getElementById("play-target-btn");
   const speechHint = document.getElementById("speech-synthesis-hint");
@@ -166,6 +172,13 @@ export function hideFeedback() {
 
   const speechHint = document.getElementById("speech-synthesis-hint");
   if (speechHint) speechHint.style.display = "none";
+
+  // Hide model details button and section
+  const showModelDetailsBtn = document.getElementById("show-model-details-btn");
+  if (showModelDetailsBtn) showModelDetailsBtn.style.display = "none";
+
+  const modelDetails = document.getElementById("model-details");
+  if (modelDetails) modelDetails.style.display = "none";
 
   // Collapse IPA explanations
   const ipaExplanations = document.getElementById("ipa-explanations");
