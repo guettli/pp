@@ -24,7 +24,7 @@ export interface PhonemeWithConfidence {
 }
 
 export interface PhonemeDecoderOptions {
-  /** Minimum confidence for boundary phonemes (default: 0.54) */
+  /** Minimum confidence for short-duration phonemes (default: 0.54) */
   minConfidence?: number;
   /** Return detailed phoneme info instead of just string */
   returnDetails?: boolean;
@@ -106,16 +106,14 @@ export function decodePhonemes(
     (g) => g.tokenId !== 0 && g.symbol !== "<blk>" && g.symbol !== "▁",
   );
 
-  // Apply boundary filtering with confidence threshold
-  const filteredPhonemes = nonSpecialTokens.filter((g, idx) => {
-    const isFirstOrLast = idx === 0 || idx === nonSpecialTokens.length - 1;
-
-    if (isFirstOrLast && g.duration === 1) {
-      // At boundaries, filter very short phonemes with low confidence (likely noise)
-      return g.avgConfidence >= minConfidence;
+  // Apply confidence filtering for short-duration phonemes
+  const filteredPhonemes = nonSpecialTokens.filter((g) => {
+    // Filter all very short phonemes (duration=1) with low confidence throughout sequence
+    // These are often artifacts or noise from the model, particularly in the middle
+    if (g.duration === 1 && g.avgConfidence < minConfidence) {
+      return false;
     }
 
-    // Keep all other phonemes (middle phonemes, or boundary phonemes with duration > 1)
     return true;
   });
 

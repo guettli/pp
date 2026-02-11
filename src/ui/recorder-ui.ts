@@ -24,7 +24,7 @@ interface ProcessingTimings {
 /**
  * Update record button to show recording state
  */
-export function updateRecordButton(isRecording: boolean, duration = 0): void {
+export function updateRecordButton(isRecording: boolean): void {
   const button = document.getElementById("record-btn");
   const icon = document.getElementById("record-icon");
   const text = document.getElementById("record-text");
@@ -35,8 +35,7 @@ export function updateRecordButton(isRecording: boolean, duration = 0): void {
     button.classList.remove("btn-danger");
     button.classList.add("btn-warning", "pulse");
     if (icon) icon.textContent = "🎤";
-    const seconds = (duration / 1000).toFixed(1);
-    if (text) text.textContent = t("record.recording", { seconds });
+    if (text) text.textContent = t("record.recording");
   } else {
     button.classList.remove("btn-warning", "pulse");
     button.classList.add("btn-danger");

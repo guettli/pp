@@ -393,7 +393,7 @@ async function handleRecordStart() {
     );
 
     setState({ isRecording: true });
-    updateRecordButton(true, 0);
+    updateRecordButton(true);
   } catch (error) {
     console.error("Recording start error:", error);
     showInlineError(error);
