@@ -98,8 +98,16 @@ export function showProcessing(progress = 0) {
  */
 export function hideProcessingProgress() {
   const progressContainer = document.getElementById("processing-progress");
+  const progressBar = document.getElementById("processing-progress-bar");
+
   if (progressContainer) {
     progressContainer.style.display = "none";
+  }
+
+  // Reset progress bar to 0% to prevent it from being stuck at 100%
+  if (progressBar) {
+    progressBar.style.width = "0%";
+    progressBar.setAttribute("aria-valuenow", "0");
   }
 }
 

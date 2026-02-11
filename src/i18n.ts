@@ -34,7 +34,7 @@ const translations: Translations = {
     "loading.status.loading_model": "Modell wird in den Speicher geladen...",
     "loading.status.ready": "Bereit!",
     "loading.status.fallback": "{status}",
-    "record.hold": "Zum Aufnehmen halten",
+    "record.hold": "Zum Aufnehmen klicken",
     "record.recording": "Aufnahme... {seconds}s",
     "record.processing": "Verarbeite... {percent}%",
     "record.processing_plain": "Verarbeite...",
@@ -56,7 +56,7 @@ const translations: Translations = {
       "Bitte erlaube den Mikrofonzugriff im Browser. Danach den Button erneut drücken.",
     "record.too_short_title": "Aufnahme zu kurz!",
     "record.too_short_body":
-      "Bitte halte den Button gedrückt, während du sprichst, um deine Aussprache aufzunehmen.",
+      "Bitte klicke auf den Button und sprich, um deine Aussprache aufzunehmen. Klicke erneut zum Beenden.",
     "buttons.next_phrase": "Weiter ->",
     "buttons.close": "Schließen",
     "buttons.press_to_play": "Drücken zum Spielen",
@@ -105,6 +105,8 @@ const translations: Translations = {
     "level.label": "Schwierigkeit: {level}/1000",
     "level.description": "Dein Level wird automatisch angepasst basierend auf deiner Leistung",
     "level.actual": "Tatsächliches Level: {level}",
+    "level.change_confirm":
+      "Möchtest du wirklich von Level {oldLevel} zu {newLevel} wechseln? Eine neue Phrase wird geladen.",
   },
   en: {
     "app.title": "Phoneme Party - Pronunciation Practice",
@@ -132,7 +134,7 @@ const translations: Translations = {
     "loading.status.loading_model": "Loading model into memory...",
     "loading.status.ready": "Ready!",
     "loading.status.fallback": "{status}",
-    "record.hold": "Hold to Record",
+    "record.hold": "Click to Record",
     "record.recording": "Recording... {seconds}s",
     "record.processing": "Processing... {percent}%",
     "record.processing_plain": "Processing...",
@@ -154,7 +156,7 @@ const translations: Translations = {
       "Please allow microphone access in the browser, then press the button again.",
     "record.too_short_title": "Recording too short!",
     "record.too_short_body":
-      "Please hold down the button while speaking to record your pronunciation.",
+      "Please click the button and speak to record your pronunciation. Click again to stop.",
     "buttons.next_phrase": "Next ->",
     "buttons.close": "Close",
     "buttons.press_to_play": "Press to Play",
@@ -203,6 +205,8 @@ const translations: Translations = {
     "level.label": "Difficulty: {level}/1000",
     "level.description": "Your level will be automatically adjusted based on your performance",
     "level.actual": "Actual level: {level}",
+    "level.change_confirm":
+      "Do you really want to change from level {oldLevel} to {newLevel}? A new phrase will be loaded.",
   },
 };
 

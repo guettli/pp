@@ -59,12 +59,9 @@ export async function loadWhisper(
   progressCallback: (progress: ProgressInfo) => void,
 ): Promise<TransformersPipeline> {
   // Wait for transformers.js to be loaded from CDN
-  console.log("Waiting for transformers.js...");
   while (!window.transformers) {
     await new Promise((resolve) => setTimeout(resolve, 100));
   }
-
-  console.log("Transformers.js available, configuring environment...");
   const { pipeline, env } = window.transformers;
   env.allowLocalModels = false;
   const webgpuAvailable = typeof navigator !== "undefined" && !!navigator.gpu;
@@ -74,16 +71,6 @@ export async function loadWhisper(
       env.backends.onnx.wasm.numThreads = navigator.hardwareConcurrency || 4;
     }
   }
-  // Use default HuggingFace CDN
-  console.log("allowLocalModels: ", env.allowLocalModels);
-  console.log("Using default HuggingFace CDN");
-  console.log("remoteURL:", env.remoteURL);
-  console.log("remotePathTemplate:", env.remotePathTemplate);
-  console.log("allowLocalModels:", env.allowLocalModels);
-  console.log("useBrowserCache:", env.useBrowserCache);
-  console.log("webgpuAvailable:", webgpuAvailable);
-
-  console.log("Starting pipeline initialization...");
 
   try {
     // Use wavLM+ model with fp16 for all languages
@@ -91,13 +78,11 @@ export async function loadWhisper(
     // See: https://huggingface.co/microsoft/wavlm-plus-base-sd
     transcriber = await pipeline("automatic-speech-recognition", "microsoft/wavlm-plus-base-sd", {
       progress_callback: (progress: ProgressInfo) => {
-        console.log("Pipeline progress:", progress);
         progressCallback(progress);
       },
       dtype: "float16", // Enable fp16
     });
 
-    console.log("Pipeline initialized successfully (wavLM+ fp16)");
     return transcriber;
   } catch (err) {
     const error = err as Error;
@@ -129,19 +114,7 @@ export async function loadWhisper(
         caches
           .keys()
           .then((names) => {
-            console.log("📦 Found caches:", names);
-            return Promise.all(
-              names.map((name) => {
-                console.log("🗑️ Deleting cache:", name);
-                return caches.delete(name);
-              }),
-            );
-          })
-          .then(() => {
-            console.log(
-              "✅ Cache cleared! Please reload the page now (Ctrl+Shift+R or Cmd+Shift+R)",
-            );
-            console.log("");
+            return Promise.all(names.map((name) => caches.delete(name)));
           })
           .catch((err: unknown) => {
             console.error("❌ Could not clear cache automatically:", err);

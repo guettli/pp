@@ -66,17 +66,16 @@ import {
 } from "./ui/recorder-ui.js";
 
 // Track recording state
-let recordingTimer: ReturnType<typeof setInterval> | null = null;
-let pendingStopTimer: ReturnType<typeof setTimeout> | null = null;
 let realtimeDetector: RealTimePhonemeDetector | null = null;
+
+// Track previous level for confirmation dialog
+let previousLevel: number | null = null;
 
 /**
  * Initialize the application
  */
 async function init() {
   try {
-    console.log("Initializing Phoneme Party...");
-
     initI18n();
     setState({
       webgpuAvailable: typeof navigator !== "undefined" && !!navigator.gpu,
@@ -86,22 +85,10 @@ async function init() {
     // Show loading overlay
     showLoading();
 
-    // Start a heartbeat to show the page is still alive
-    let heartbeatCount = 0;
-    const heartbeat = setInterval(() => {
-      heartbeatCount++;
-      console.log(
-        `💓 Heartbeat ${heartbeatCount} - Still loading... (${heartbeatCount * 5}s elapsed)`,
-      );
-    }, 5000);
-
     // Initialize audio recorder
     setState({ recorder: new AudioRecorder() });
-    console.log("Audio recorder initialized");
 
     // Load phoneme extraction model
-    console.log("Starting to load phoneme model...");
-    console.log("⏱️ This may take 30-60 seconds for first load (downloading ~230MB)");
     updateLoadingProgress({ status: "downloading", progress: 0 });
 
     const loadStart = performance.now();
@@ -109,12 +96,6 @@ async function init() {
       updateLoadingProgress(progress);
     });
     const modelLoadMs = performance.now() - loadStart;
-
-    // Stop heartbeat
-    clearInterval(heartbeat);
-
-    console.log("Phoneme model loaded successfully");
-    console.log(`Model load time: ${modelLoadMs.toFixed(0)}ms`);
 
     // Check if WebGPU is being used
     const webgpuBackend = state.webgpuAvailable ? "webgpu" : "wasm";
@@ -160,8 +141,6 @@ async function init() {
       console.error("Failed to load user level:", error);
       // Continue anyway - level is not critical for app to function
     }
-
-    console.log("Application initialized successfully");
   } catch (error) {
     console.error("Initialization error:", error);
     showError(error);
@@ -178,21 +157,8 @@ function setupEventListeners() {
   const levelSlider = document.getElementById("level-slider");
 
   if (recordBtn) {
-    // Use mousedown/mouseup for press-and-hold recording
-    recordBtn.addEventListener("mousedown", handleRecordStart);
-    recordBtn.addEventListener("mouseup", handleRecordStop);
-    recordBtn.addEventListener("mouseleave", handleRecordStop);
-
-    // Also support touch events for mobile
-    recordBtn.addEventListener("touchstart", (e) => {
-      e.preventDefault();
-      void handleRecordStart();
-    });
-    recordBtn.addEventListener("touchend", (e) => {
-      e.preventDefault();
-      void handleRecordStop();
-    });
-    recordBtn.addEventListener("touchcancel", handleRecordStop);
+    // Use click for toggle recording (click to start, click to stop)
+    recordBtn.addEventListener("click", handleRecordToggle);
   }
 
   if (nextPhraseBtn) {
@@ -222,6 +188,9 @@ function setupEventListeners() {
   }
 
   if (levelSlider && levelSlider instanceof HTMLInputElement) {
+    // Store initial level
+    previousLevel = state.userLevel;
+
     levelSlider.addEventListener("input", (event) => {
       const target = event.target as HTMLInputElement;
       const level = parseInt(target.value, 10);
@@ -229,10 +198,36 @@ function setupEventListeners() {
       updateLevelDisplay(level);
     });
 
-    levelSlider.addEventListener("change", (event) => {
+    levelSlider.addEventListener("change", async (event) => {
       const target = event.target as HTMLInputElement;
-      const level = parseInt(target.value, 10);
-      void saveUserLevel(getLanguage(), level);
+      const newLevel = parseInt(target.value, 10);
+
+      // Check if level actually changed
+      if (previousLevel === newLevel) {
+        return;
+      }
+
+      // Show confirmation dialog
+      const confirmed = window.confirm(
+        t("level.change_confirm", {
+          oldLevel: previousLevel?.toString() || "1",
+          newLevel: newLevel.toString(),
+        }),
+      );
+
+      if (confirmed) {
+        // Save the new level
+        await saveUserLevel(getLanguage(), newLevel);
+        previousLevel = newLevel;
+
+        // Load next phrase with new level
+        await nextPhrase();
+      } else {
+        // Revert to previous level
+        setState({ userLevel: previousLevel || 1 });
+        updateLevelDisplay(previousLevel || 1);
+        target.value = (previousLevel || 1).toString();
+      }
     });
   }
 }
@@ -311,27 +306,35 @@ async function loadAndUpdateUserLevel(language: SupportedLanguage) {
     // Update UI
     updateLevelDisplay(userLevel);
 
-    console.log(
-      `User level loaded: manual=${userLevel}, actual=${actualLevel}, mastered=${stats.masteredCount}/${stats.totalInWindow}`,
-    );
+    // Update previous level for confirmation dialog
+    previousLevel = userLevel;
   } catch (error) {
     console.warn("Could not load user level, using default:", error);
     setState({ userLevel: 1, actualUserLevel: 1 });
     updateLevelDisplay(1);
+    previousLevel = 1;
   }
 }
 
 /**
- * Handle record button press (start recording)
+ * Handle record button click (toggle recording on/off)
+ */
+async function handleRecordToggle() {
+  // If recording, stop it
+  if (state.isRecording) {
+    await actuallyStopRecording();
+    return;
+  }
+
+  // Otherwise, start recording
+  await handleRecordStart();
+}
+
+/**
+ * Start recording
  */
 async function handleRecordStart() {
   try {
-    // Cancel any pending stop timer
-    if (pendingStopTimer) {
-      clearTimeout(pendingStopTimer);
-      pendingStopTimer = null;
-    }
-
     // Don't start if already recording or processing
     if (state.isRecording || state.isProcessing) {
       return;
@@ -357,20 +360,14 @@ async function handleRecordStart() {
         silenceDuration: 1500, // Stop after 1.5 seconds of silence
       },
       {
-        onPhonemeUpdate: (phonemes, similarity) => {
-          console.log(
-            `Real-time phonemes: ${phonemes} (similarity: ${(similarity * 100).toFixed(1)}%)`,
-          );
+        onPhonemeUpdate: () => {
+          // Real-time phoneme updates
         },
-        onTargetMatched: (phonemes, similarity) => {
-          console.log(
-            `Target matched! Phonemes: ${phonemes} (similarity: ${(similarity * 100).toFixed(1)}%)`,
-          );
+        onTargetMatched: () => {
           // Auto-stop recording when target is matched
           void actuallyStopRecording();
         },
         onSilenceDetected: () => {
-          console.log("Silence detected - stopping recording");
           // Auto-stop recording after silence
           void actuallyStopRecording();
         },
@@ -397,15 +394,6 @@ async function handleRecordStart() {
 
     setState({ isRecording: true });
     updateRecordButton(true, 0);
-
-    // Update UI with duration every 100ms
-    const recorder = state.recorder;
-    recordingTimer = setInterval(() => {
-      if (recorder.isRecording()) {
-        const duration = recorder.getDuration();
-        updateRecordButton(true, duration);
-      }
-    }, 100);
   } catch (error) {
     console.error("Recording start error:", error);
     showInlineError(error);
@@ -439,47 +427,13 @@ async function shouldDeferForMicrophonePermission() {
 }
 
 /**
- * Handle record button release (stop recording and process)
- * Continues recording for 500ms after release to capture trailing audio
- */
-async function handleRecordStop() {
-  // Only process if actually recording
-  if (!state.isRecording) {
-    return;
-  }
-
-  // If already pending stop, don't schedule another
-  if (pendingStopTimer) {
-    return;
-  }
-
-  // Delay stop by 500ms to capture trailing audio
-  pendingStopTimer = setTimeout(() => {
-    pendingStopTimer = null;
-    void actuallyStopRecording();
-  }, 500);
-}
-
-/**
  * Actually stop recording and process the audio
  */
 async function actuallyStopRecording() {
   try {
-    // Clear any pending stop timer
-    if (pendingStopTimer) {
-      clearTimeout(pendingStopTimer);
-      pendingStopTimer = null;
-    }
-
     // Only process if actually recording
     if (!state.isRecording) {
       return;
-    }
-
-    // Clear the recording timer
-    if (recordingTimer) {
-      clearInterval(recordingTimer);
-      recordingTimer = null;
     }
 
     // Stop recording and get blob with duration
@@ -492,8 +446,6 @@ async function actuallyStopRecording() {
     // Clean up real-time detector
     const detector = realtimeDetector;
     realtimeDetector = null;
-
-    console.log(`Recording stopped. Duration: ${duration}ms`);
 
     // Check if recording meets minimum duration
     if (duration < state.recorder.minDuration) {
@@ -564,7 +516,6 @@ async function actuallyStopRecording() {
 
       // Check if we can use real-time detector's results
       if (detector && detector.getLastPhonemes()) {
-        console.log("Using phonemes from real-time detector");
         actualIPA = detector.getLastPhonemes();
         debugMeta.push({
           labelKey: "processing.meta_realtime",
@@ -588,8 +539,6 @@ async function actuallyStopRecording() {
         });
         showProcessing(85);
       }
-
-      console.log("Extracted IPA phonemes:", actualIPA);
 
       // Score the pronunciation using PanPhon features
       if (!state.currentPhrase) {
@@ -620,10 +569,6 @@ async function actuallyStopRecording() {
         (best, current) => (current.similarity > best.similarity ? current : best),
         scores[0] || scorePronunciation("", actualIPA),
       );
-      console.log("Score:", score);
-      console.log("Target phonemes:", score.targetPhonemes);
-      console.log("Actual phonemes:", score.actualPhonemes);
-      console.log("Phoneme comparison:", score.phonemeComparison);
       showProcessing(95);
 
       // Update state
@@ -653,9 +598,6 @@ async function actuallyStopRecording() {
         );
 
         if (newUserLevel !== state.userLevel) {
-          console.log(
-            `Level adjusted: ${state.userLevel} -> ${newUserLevel} (actual: ${state.actualUserLevel}, score: ${(score.similarity * 100).toFixed(0)}%)`,
-          );
           setState({ userLevel: newUserLevel });
           updateLevelDisplay(newUserLevel);
           await saveUserLevel(getLanguage(), newUserLevel);
@@ -717,7 +659,6 @@ async function reprocessRecording() {
   }
 
   try {
-    console.log("Reprocessing recording...");
     setState({ isProcessing: true });
 
     // Show processing
@@ -739,8 +680,6 @@ async function reprocessRecording() {
       const actualIPA = await extractPhonemes(audioData);
       showProcessing(85);
 
-      console.log("Re-extracted IPA phonemes:", actualIPA);
-
       // Score the pronunciation
       const currentPhrase = state.currentPhrase;
       if (!currentPhrase.ipas || currentPhrase.ipas.length === 0) {
@@ -755,8 +694,6 @@ async function reprocessRecording() {
         (best, current) => (current.similarity > best.similarity ? current : best),
         scores[0] || scorePronunciation("", actualIPA),
       );
-
-      console.log("Re-scored:", score);
       showProcessing(95);
 
       // Update state
