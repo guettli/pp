@@ -37,12 +37,12 @@ body {
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
 }
 
-/* Phrase text - ensure long words fit */
+/* Phrase text - wrap at spaces only, no mid-word breaks */
 #phrase-text {
   max-width: 100%;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
+  overflow-wrap: normal;
+  word-break: normal;
+  white-space: normal;
 }
 
 /* Recording pulse animation */

@@ -570,25 +570,39 @@ function generatePhonemeComparisonHTML(
   // Calculate word boundaries by matching phoneme targets to words
   const wordPhonemeIndices: number[] = [];
 
-  for (const word of words) {
-    // Find how many comparison items we need to cover this word's characters
-    let phonemeCount = 0;
-    let coveredChars = 0;
+  // Simple approach: detect word boundaries by looking for next word start
+  let phonemeIdx = 0;
 
-    for (
-      let i = wordPhonemeIndices.reduce((sum, count) => sum + count, 0);
-      i < phonemeComparison.length && coveredChars < word.length;
-      i++
-    ) {
-      phonemeCount++;
+  for (let wordIdx = 0; wordIdx < words.length; wordIdx++) {
+    const word = words[wordIdx];
+    const nextWord = wordIdx < words.length - 1 ? words[wordIdx + 1] : null;
 
-      // Count characters from target phonemes
-      if (phonemeComparison[i].target !== null) {
-        coveredChars += (phonemeComparison[i].target || "").length;
+    // Count phonemes until we've covered this word
+    const startIdx = phonemeIdx;
+    let charsMatched = 0;
+
+    while (phonemeIdx < phonemeComparison.length && charsMatched < word.length) {
+      const phoneme = phonemeComparison[phonemeIdx].target || "";
+
+      // Check if this phoneme starts the next word (word boundary detection)
+      if (nextWord && phoneme.length > 0 && nextWord.startsWith(phoneme)) {
+        // We've reached the next word, stop here
+        break;
+      }
+
+      charsMatched += phoneme.length;
+      phonemeIdx++;
+
+      // Stop if we've matched enough and the next phoneme starts the next word
+      if (charsMatched >= word.length - 1 && nextWord && phonemeIdx < phonemeComparison.length) {
+        const nextPhoneme = phonemeComparison[phonemeIdx].target || "";
+        if (nextWord.startsWith(nextPhoneme)) {
+          break;
+        }
       }
     }
 
-    wordPhonemeIndices.push(phonemeCount);
+    wordPhonemeIndices.push(phonemeIdx - startIdx);
   }
 
   // Group phoneme comparisons by words
@@ -634,11 +648,11 @@ function generateWordBlock(comparisons: PhonemeComparisonItem[]): string {
       }
     }
 
-    const tooltip = comp.match
-      ? t("feedback.phoneme_match")
-      : `${t("feedback.distance")}: ${comp.distance.toFixed(2)}`;
+    const tooltip = comp.match ? "" : `${t("feedback.distance")}: ${comp.distance.toFixed(2)}`;
 
-    html += `<span class="phoneme-char ${pairClass}" title="${tooltip}">${target}</span>`;
+    html += tooltip
+      ? `<span class="phoneme-char ${pairClass}" title="${tooltip}">${target}</span>`
+      : `<span class="phoneme-char ${pairClass}">${target}</span>`;
   }
   html += "</div>";
 
@@ -657,11 +671,11 @@ function generateWordBlock(comparisons: PhonemeComparisonItem[]): string {
       }
     }
 
-    const tooltip = comp.match
-      ? t("feedback.phoneme_match")
-      : `${t("feedback.distance")}: ${comp.distance.toFixed(2)}`;
+    const tooltip = comp.match ? "" : `${t("feedback.distance")}: ${comp.distance.toFixed(2)}`;
 
-    html += `<span class="phoneme-char ${pairClass}" title="${tooltip}">${actual}</span>`;
+    html += tooltip
+      ? `<span class="phoneme-char ${pairClass}" title="${tooltip}">${actual}</span>`
+      : `<span class="phoneme-char ${pairClass}">${actual}</span>`;
   }
   html += "</div>";
 
