@@ -75,7 +75,10 @@ export function decodePhonemes(
     const frameOffset = t * vocabSize;
 
     // First pass: find all probabilities and group by phoneme class
-    const classProbs = new Map<number, { totalProb: number; members: Array<{ id: number; prob: number }> }>();
+    const classProbs = new Map<
+      number,
+      { totalProb: number; members: Array<{ id: number; prob: number }> }
+    >();
     const ungroupedProbs: Array<{ id: number; prob: number }> = [];
 
     for (let v = 0; v < vocabSize; v++) {
@@ -86,10 +89,11 @@ export function decodePhonemes(
 
       if (classIdx !== undefined) {
         // This symbol belongs to a phoneme class
-        if (!classProbs.has(classIdx)) {
-          classProbs.set(classIdx, { totalProb: 0, members: [] });
+        let classData = classProbs.get(classIdx);
+        if (!classData) {
+          classData = { totalProb: 0, members: [] };
+          classProbs.set(classIdx, classData);
         }
-        const classData = classProbs.get(classIdx)!;
         classData.totalProb += prob;
         classData.members.push({ id: v, prob });
       } else {
@@ -109,7 +113,7 @@ export function decodePhonemes(
         maxProb = classData.totalProb;
         // Pick the member with highest individual probability as representative
         const bestMember = classData.members.reduce((best, curr) =>
-          curr.prob > best.prob ? curr : best
+          curr.prob > best.prob ? curr : best,
         );
         selectedTokenId = bestMember.id;
         selectedProb = classData.totalProb; // Use merged probability
