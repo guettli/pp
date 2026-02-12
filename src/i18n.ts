@@ -328,7 +328,3 @@ export function initI18n(): SupportedLanguage {
   applyTranslations();
   return currentLanguage;
 }
-
-export function getWhisperLanguage(): string {
-  return currentLanguage === "de" ? "german" : "english";
-}

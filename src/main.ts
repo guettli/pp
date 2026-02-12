@@ -29,7 +29,7 @@ import { findPhraseByName, getRandomPhrase } from "./utils/random.js";
 import { adjustUserLevel, loadUserLevel, saveUserLevel } from "./utils/level-adjustment.js";
 
 // Import audio modules
-import { prepareAudioForWhisper } from "./audio/processor.js";
+import { prepareAudioForModel } from "./audio/processor.js";
 import { AudioRecorder } from "./audio/recorder.js";
 
 // Import phoneme extraction (direct IPA output)
@@ -535,7 +535,7 @@ async function actuallyStopRecording() {
       } else {
         // Process the audio normally
         const audioData = await measureAsync("processing.step_prepare", () =>
-          prepareAudioForWhisper(audioBlob),
+          prepareAudioForModel(audioBlob),
         );
         showProcessing(30);
 
@@ -687,7 +687,7 @@ async function reprocessRecording() {
 
     try {
       // Extract phonemes from the stored recording
-      const audioData = await prepareAudioForWhisper(state.lastRecordingBlob);
+      const audioData = await prepareAudioForModel(state.lastRecordingBlob);
       showProcessing(30);
 
       const actualIPA = await extractPhonemes(audioData);
@@ -755,7 +755,7 @@ async function showModelDetails() {
     detailsSection.style.display = "block";
 
     // Extract detailed phoneme information
-    const audioData = await prepareAudioForWhisper(state.lastRecordingBlob);
+    const audioData = await prepareAudioForModel(state.lastRecordingBlob);
     const detailed = await extractPhonemesDetailed(audioData);
 
     // Build visualization HTML

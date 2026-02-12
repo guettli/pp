@@ -1,16 +1,16 @@
 /**
- * Audio preprocessing for Whisper model
- * Whisper expects 16kHz mono audio
+ * Audio preprocessing for phoneme extraction model
+ * Model expects 16kHz mono audio
  */
 
 /**
- * Convert audio blob to format expected by Whisper
+ * Convert audio blob to format expected by the model (16kHz mono)
  */
-export async function prepareAudioForWhisper(audioBlob: Blob): Promise<Float32Array> {
+export async function prepareAudioForModel(audioBlob: Blob): Promise<Float32Array> {
   // Convert blob to ArrayBuffer
   const arrayBuffer = await audioBlob.arrayBuffer();
 
-  // Create audio context with 16kHz sample rate (Whisper requirement)
+  // Create audio context with 16kHz sample rate (model requirement)
   const AudioContextClass = window.AudioContext || window.webkitAudioContext;
   const audioContext = new AudioContextClass({
     sampleRate: 16000,
@@ -19,7 +19,7 @@ export async function prepareAudioForWhisper(audioBlob: Blob): Promise<Float32Ar
   // Decode audio data
   const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
 
-  // Get mono channel data (Whisper expects mono)
+  // Get mono channel data (model expects mono)
   let audioData: Float32Array = audioBuffer.getChannelData(0);
 
   // If the audio buffer sample rate is not 16kHz, we need to resample

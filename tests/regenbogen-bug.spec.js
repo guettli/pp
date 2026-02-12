@@ -44,10 +44,10 @@ test.describe("Regenbogen Bug Detection", () => {
           return { ipa: "SKIP", error: "Test API not available" };
         }
 
-        const { prepareAudioForWhisper } = await import("/src/audio/processor.js");
+        const { prepareAudioForModel } = await import("/src/audio/processor.js");
 
         const blob = new Blob([new Uint8Array(audioData)], { type: "audio/flac" });
-        const audioFloat32 = await prepareAudioForWhisper(blob);
+        const audioFloat32 = await prepareAudioForModel(blob);
         const ipa = await window.__test_api.extractPhonemes(audioFloat32);
 
         return { ipa };

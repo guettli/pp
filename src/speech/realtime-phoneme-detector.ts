@@ -4,7 +4,7 @@
  */
 
 import { extractPhonemes } from "./phoneme-extractor.js";
-import { prepareAudioForWhisper } from "../audio/processor.js";
+import { prepareAudioForModel } from "../audio/processor.js";
 import { calculatePanPhonDistance } from "../comparison/panphon-distance.js";
 
 /**
@@ -162,7 +162,7 @@ export class RealTimePhonemeDetector {
       const combinedBlob = new Blob(this.audioChunks, { type: this.audioChunks[0].type });
 
       // Prepare audio for model
-      const audioData = await prepareAudioForWhisper(combinedBlob);
+      const audioData = await prepareAudioForModel(combinedBlob);
 
       // Check for silence on the decoded audio (not on individual chunks)
       await this.checkSilenceFromAudioData(audioData);

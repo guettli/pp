@@ -40,10 +40,10 @@ test.describe("Streaming vs Direct Detection", () => {
           return { ipa: "SKIP", error: "Test API not available" };
         }
 
-        const { prepareAudioForWhisper } = await import("/src/audio/processor.js");
+        const { prepareAudioForModel } = await import("/src/audio/processor.js");
 
         const blob = new Blob([new Uint8Array(audioData)], { type: "audio/flac" });
-        const audioFloat32 = await prepareAudioForWhisper(blob);
+        const audioFloat32 = await prepareAudioForModel(blob);
         const ipa = await window.__test_api.extractPhonemes(audioFloat32);
 
         return { ipa };
@@ -71,7 +71,7 @@ test.describe("Streaming vs Direct Detection", () => {
 
         const { RealTimePhonemeDetector } =
           await import("/src/speech/realtime-phoneme-detector.js");
-        const { prepareAudioForWhisper } = await import("/src/audio/processor.js");
+        const { prepareAudioForModel } = await import("/src/audio/processor.js");
 
         let autoStopTriggered = false;
         let autoStopReason = null;
@@ -127,7 +127,7 @@ test.describe("Streaming vs Direct Detection", () => {
         const detectorSimilarity = detector.getLastSimilarity();
 
         // Also do direct extraction of full audio (for comparison)
-        const audioFloat32 = await prepareAudioForWhisper(fullBlob);
+        const audioFloat32 = await prepareAudioForModel(fullBlob);
         const finalIPA = await window.__test_api.extractPhonemes(audioFloat32);
 
         return {

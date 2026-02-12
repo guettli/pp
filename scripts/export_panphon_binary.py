@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Export PanPhon features as compact binary format:
-- Keeps ALL phonemes (for any language Whisper might output)
+- Keeps ALL phonemes (for any language the model might output)
 - Uses Int8 array (1 byte per feature: -1, 0, 1)
 - Much smaller than JSON (149 KB vs 734 KB)
 """
