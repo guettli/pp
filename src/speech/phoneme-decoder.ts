@@ -104,7 +104,7 @@ export function decodePhonemes(
     let selectedProb = 0;
 
     // Check phoneme classes (use sum of probabilities)
-    for (const [classIdx, classData] of classProbs.entries()) {
+    for (const classData of classProbs.values()) {
       if (classData.totalProb > maxProb) {
         maxProb = classData.totalProb;
         // Pick the member with highest individual probability as representative
