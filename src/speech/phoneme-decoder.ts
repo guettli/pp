@@ -35,12 +35,12 @@ export interface PhonemeDecoderOptions {
  * When similar phonemes split probability, merge them before decoding
  */
 const PHONEME_CLASSES: Array<Set<string>> = [
-  new Set(["e", "ɛ"]), // close-mid vs open-mid front vowels
+  new Set(["e"]), // close-mid front vowel (ɛ moved to schwa class for German)
   new Set(["o", "ɔ"]), // close-mid vs open-mid back vowels
   new Set(["a", "ɑ"]), // front vs back open vowels
   new Set(["i", "ɪ"]), // close vs near-close front vowels
   new Set(["u", "ʊ"]), // close vs near-close back vowels
-  new Set(["ə", "ɐ"]), // schwa variations
+  new Set(["ə", "ɐ", "ɛ", "e"]), // schwa class - includes ɛ and e which are often confused with schwa in German -er endings
 ];
 
 /**
@@ -173,9 +173,13 @@ export function decodePhonemes(
 
   // Apply confidence filtering for short-duration phonemes
   const filteredPhonemes = nonSpecialTokens.filter((g) => {
+    // Schwas (ə, ɐ) are naturally weak/quiet sounds - use lower threshold
+    const isSchwa = g.symbol === "ə" || g.symbol === "ɐ";
+    const threshold = isSchwa ? minConfidence * 0.7 : minConfidence; // 70% of normal threshold for schwas
+
     // Filter all very short phonemes (duration=1) with low confidence throughout sequence
     // These are often artifacts or noise from the model, particularly in the middle
-    if (g.duration === 1 && g.avgConfidence < minConfidence) {
+    if (g.duration === 1 && g.avgConfidence < threshold) {
       return false;
     }
 
