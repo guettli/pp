@@ -189,10 +189,15 @@ function createHistoryItem(item: PhraseResultDoc): HTMLElement {
     ? `<span class="badge bg-secondary ms-2" title="Phrase level">L${phraseLevel}</span>`
     : "";
 
+  // Create URL for phrase replay
+  const phraseUrl = `?lang=${encodeURIComponent(item.language)}&phrase=${encodeURIComponent(item.phrase)}`;
+
   div.innerHTML = `
     <div class="d-flex justify-content-between align-items-start">
       <div class="flex-grow-1">
-        <h6 class="mb-1">${escapeHtml(item.phrase)}${levelBadge}</h6>
+        <h6 class="mb-1">
+          <a href="${phraseUrl}" class="text-decoration-none text-reset">${escapeHtml(item.phrase)}</a>${levelBadge}
+        </h6>
         <div class="small text-muted">
           <span>${item.targetIPA}</span>
           <span class="mx-2">→</span>
