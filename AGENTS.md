@@ -1,20 +1,20 @@
 # Project Guidelines for Claude
 
-## Dependencies
-
-- pnpm for JS/TS
-- pyproject.toml for Python
-- flake.nix for system stuff.
-
 ## Running Scripts
 
-Execute scripts via `./run`. Example:
+Execute scripts via `./run cmd arg1 arg2 ...`. Example:
 
 ```console
 ./run tsx scripts/update-ipa.ts phrases-de.yaml
 ```
 
-This ensures the environment is set up.
+`./run` ensures the environment is set up.
+
+## Dependencies
+
+- pnpm for JS/TS
+- pyproject.toml for Python
+- flake.nix for system stuff.
 
 ## Code Quality
 
