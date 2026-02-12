@@ -2,7 +2,7 @@
 
 ## Running Scripts
 
-Execute scripts via `./run cmd arg1 arg2 ...`. Example:
+Execute all scripts via `./run cmd arg1 arg2 ...`. Example:
 
 ```console
 ./run tsx scripts/update-ipa.ts phrases-de.yaml
