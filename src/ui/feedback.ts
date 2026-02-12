@@ -5,8 +5,9 @@
 import { db } from "../db.js";
 import { getLanguage, t } from "../i18n.js";
 import { setState, state } from "../state.js";
-import type { PhonemeComparisonItem, Phrase, Score } from "../types.js";
+import type { Phrase, Score } from "../types.js";
 import { generateExplanationsHTML } from "./ipa-helper.js";
+import { generatePhonemeComparisonHTML } from "./phoneme-comparison-view.js";
 
 // Track current audio playback
 let currentAudio: HTMLAudioElement | null = null;
@@ -56,7 +57,11 @@ export function displayFeedback(targetPhrase: Phrase, actualIPA: string, score: 
     ) {
       // Pass the target IPA to detect word boundaries
       const targetIPA = targetPhrase.ipas[0]?.ipa || "";
-      comparisonGrid.innerHTML = generatePhonemeComparisonHTML(score.phonemeComparison, targetIPA);
+      comparisonGrid.innerHTML = generatePhonemeComparisonHTML(
+        score.phonemeComparison,
+        targetIPA,
+        t,
+      );
     } else if (score.notFound) {
       comparisonGrid.innerHTML = `<span class="text-muted">${t("feedback.phrase_not_in_vocab")}</span>`;
     } else {
@@ -544,157 +549,7 @@ export async function playDesiredPronunciation(phrase: string): Promise<void> {
   }
 }
 
-/**
- * Normalize IPA string the same way splitIntoPhonemes does for comparison
- * This removes slashes, stress marks, and other markers
- */
-function normalizeIPAForComparison(ipa: string): string {
-  return ipa
-    .replace(/[/[\]ˈˌ]/g, "") // Remove slashes and stress marks
-    .replace(/\u0361/g, "") // Remove tie bar
-    .replace(/\u032F/g, "") // Remove non-syllabic mark
-    .replace(/\u0334/g, "") // Remove velarized mark
-    .trim();
-}
-
-/**
- * Generate HTML for phoneme comparison grouped by words
- */
-function generatePhonemeComparisonHTML(
-  phonemeComparison: PhonemeComparisonItem[],
-  targetIPA: string,
-): string {
-  // Guard against undefined or non-array input
-  if (!phonemeComparison || !Array.isArray(phonemeComparison) || phonemeComparison.length === 0) {
-    return "";
-  }
-
-  // Normalize the IPA to match how phonemeComparison was created
-  const normalizedIPA = normalizeIPAForComparison(targetIPA);
-
-  // Split normalized IPA by spaces to detect word boundaries
-  const words = normalizedIPA.split(/\s+/).filter((w) => w.length > 0);
-
-  // If no word boundaries or single word, group all phonemes together
-  if (words.length <= 1) {
-    return generateWordBlock(phonemeComparison);
-  }
-
-  // Calculate word boundaries by matching phoneme targets to words
-  const wordPhonemeIndices: number[] = [];
-
-  // Simple approach: detect word boundaries by looking for next word start
-  let phonemeIdx = 0;
-
-  for (let wordIdx = 0; wordIdx < words.length; wordIdx++) {
-    const word = words[wordIdx];
-    const nextWord = wordIdx < words.length - 1 ? words[wordIdx + 1] : null;
-
-    // Count phonemes until we've covered this word
-    const startIdx = phonemeIdx;
-    let charsMatched = 0;
-
-    while (phonemeIdx < phonemeComparison.length && charsMatched < word.length) {
-      const phoneme = phonemeComparison[phonemeIdx].target || "";
-
-      // Check if this phoneme starts the next word (word boundary detection)
-      if (nextWord && phoneme.length > 0 && nextWord.startsWith(phoneme)) {
-        // We've reached the next word, stop here
-        break;
-      }
-
-      charsMatched += phoneme.length;
-      phonemeIdx++;
-
-      // Stop if we've matched enough and the next phoneme starts the next word
-      if (charsMatched >= word.length - 1 && nextWord && phonemeIdx < phonemeComparison.length) {
-        const nextPhoneme = phonemeComparison[phonemeIdx].target || "";
-        if (nextWord.startsWith(nextPhoneme)) {
-          break;
-        }
-      }
-    }
-
-    wordPhonemeIndices.push(phonemeIdx - startIdx);
-  }
-
-  // Group phoneme comparisons by words
-  let html = '<div class="phoneme-words-wrapper">';
-  let phonemeIndex = 0;
-
-  for (const wordLength of wordPhonemeIndices) {
-    if (wordLength > 0) {
-      const wordComparisons = phonemeComparison.slice(phonemeIndex, phonemeIndex + wordLength);
-      html += generateWordBlock(wordComparisons);
-      phonemeIndex += wordLength;
-    }
-  }
-
-  // Handle any remaining phonemes (in case of extra insertions at the end)
-  if (phonemeIndex < phonemeComparison.length) {
-    const remainingComparisons = phonemeComparison.slice(phonemeIndex);
-    html += generateWordBlock(remainingComparisons);
-  }
-
-  html += "</div>";
-  return html;
-}
-
-/**
- * Generate HTML block for a single word's phoneme comparison
- */
-function generateWordBlock(comparisons: PhonemeComparisonItem[]): string {
-  let html = '<div class="phoneme-word-block">';
-
-  // Target row
-  html += '<div class="phoneme-word-row phoneme-word-target">';
-  for (const comp of comparisons) {
-    const target = comp.target || "—";
-    let pairClass = "match";
-    if (!comp.match) {
-      if (comp.target && !comp.actual) {
-        pairClass = "missing";
-      } else if (!comp.target && comp.actual) {
-        pairClass = "extra";
-      } else {
-        pairClass = "mismatch";
-      }
-    }
-
-    const tooltip = comp.match ? "" : `${t("feedback.distance")}: ${comp.distance.toFixed(2)}`;
-
-    html += tooltip
-      ? `<span class="phoneme-char ${pairClass}" title="${tooltip}">${target}</span>`
-      : `<span class="phoneme-char ${pairClass}">${target}</span>`;
-  }
-  html += "</div>";
-
-  // Actual row
-  html += '<div class="phoneme-word-row phoneme-word-actual">';
-  for (const comp of comparisons) {
-    const actual = comp.actual || "—";
-    let pairClass = "match";
-    if (!comp.match) {
-      if (comp.target && !comp.actual) {
-        pairClass = "missing";
-      } else if (!comp.target && comp.actual) {
-        pairClass = "extra";
-      } else {
-        pairClass = "mismatch";
-      }
-    }
-
-    const tooltip = comp.match ? "" : `${t("feedback.distance")}: ${comp.distance.toFixed(2)}`;
-
-    html += tooltip
-      ? `<span class="phoneme-char ${pairClass}" title="${tooltip}">${actual}</span>`
-      : `<span class="phoneme-char ${pairClass}">${actual}</span>`;
-  }
-  html += "</div>";
-
-  html += "</div>";
-  return html;
-}
+// Note: phoneme comparison HTML generation moved to phoneme-comparison-view.ts for reuse
 
 /**
  * Setup long press detection for voice selection dialog

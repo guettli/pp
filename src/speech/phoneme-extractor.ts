@@ -315,9 +315,8 @@ export async function extractPhonemesDetailed(audioData: Float32Array): Promise<
     }>;
   }> = [];
 
-  // Sample every Nth frame to avoid too much data (sample every 10th frame)
-  const sampleRate = 10;
-  for (let t = 0; t < seqLen; t += sampleRate) {
+  // Show ALL frames (no sampling)
+  for (let t = 0; t < seqLen; t++) {
     const frameOffset = t * vocabSize;
 
     // Get all logits for this frame

@@ -6,6 +6,7 @@ import { db, type PhraseResultDoc } from "../db.js";
 import { getLanguage, t } from "../i18n.js";
 import { findPhraseByName } from "../utils/random.js";
 import type { SupportedLanguage } from "../types.js";
+import escapeHtml from "escape-html";
 
 const ITEMS_PER_PAGE = 20;
 let currentPage = 0;
@@ -268,14 +269,7 @@ function showEmptyState(show: boolean) {
   }
 }
 
-/**
- * Escape HTML to prevent XSS
- */
-function escapeHtml(text: string): string {
-  const div = document.createElement("div");
-  div.textContent = text;
-  return div.innerHTML;
-}
+// Note: HTML escaping uses the standard 'escape-html' package
 
 /**
  * Refresh history (call after language change or new result)

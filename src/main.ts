@@ -68,6 +68,7 @@ import {
   showRecordingTooShortError,
   updateRecordButton,
 } from "./ui/recorder-ui.js";
+import { generateModelDetailsHTML } from "./ui/model-details-view.js";
 
 // Track recording state
 let realtimeDetector: RealTimePhonemeDetector | null = null;
@@ -758,90 +759,8 @@ async function showModelDetails() {
     const audioData = await prepareAudioForModel(state.lastRecordingBlob);
     const detailed = await extractPhonemesDetailed(audioData);
 
-    // Build visualization HTML
-    let html = "";
-
-    // Summary
-    html += '<div class="mb-4">';
-    html += '<h6 class="fw-bold text-primary">Summary</h6>';
-    html += `<div class="small"><strong>Detected IPA:</strong> <code class="fs-6">${detailed.phonemes}</code></div>`;
-    html += `<div class="small"><strong>Total Frames:</strong> ${detailed.raw.frames}</div>`;
-    html += `<div class="small"><strong>Vocabulary Size:</strong> ${detailed.raw.vocabSize}</div>`;
-    html += `<div class="small"><strong>Phonemes Detected:</strong> ${detailed.details.length}</div>`;
-    html += "</div>";
-
-    // Phoneme details with confidence and duration
-    html += '<div class="mb-4">';
-    html +=
-      '<h6 class="fw-bold text-primary">Phoneme Details (After CTC Decoding & Filtering)</h6>';
-    html += '<div class="table-responsive">';
-    html += '<table class="table table-sm table-striped">';
-    html +=
-      "<thead><tr><th>Symbol</th><th>Confidence</th><th>Duration (frames)</th><th>Confidence Bar</th></tr></thead>";
-    html += "<tbody>";
-
-    for (const phoneme of detailed.details) {
-      const confidencePercent = Math.min(100, (phoneme.confidence / 10) * 100); // Normalize exp(logit)
-      const confidenceColor =
-        confidencePercent > 80 ? "success" : confidencePercent > 50 ? "warning" : "danger";
-
-      html += "<tr>";
-      html += `<td><code class="fs-6 fw-bold">${phoneme.symbol}</code></td>`;
-      html += `<td>${phoneme.confidence.toFixed(3)}</td>`;
-      html += `<td>${phoneme.duration}</td>`;
-      html += `<td><div class="progress" style="height: 20px;"><div class="progress-bar bg-${confidenceColor}" style="width: ${confidencePercent}%">${confidencePercent.toFixed(0)}%</div></div></td>`;
-      html += "</tr>";
-    }
-
-    html += "</tbody></table>";
-    html += "</div>";
-    html += "</div>";
-
-    // Frame-by-frame top predictions (sampled)
-    html += '<div class="mb-3">';
-    html += '<h6 class="fw-bold text-primary">Frame-by-Frame Top Predictions (Sampled)</h6>';
-    html += '<p class="small text-muted">Showing top 5 predictions for every 10th frame</p>';
-    html += '<div class="accordion" id="frameAccordion">';
-
-    for (let i = 0; i < Math.min(20, detailed.raw.frameData.length); i++) {
-      const frame = detailed.raw.frameData[i];
-      const collapseId = `frame-${i}`;
-
-      html += '<div class="accordion-item">';
-      html += '<h2 class="accordion-header">';
-      html += `<button class="accordion-button collapsed small" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}">`;
-      html += `Frame ${frame.frameIndex} - Top: <code class="ms-2">${frame.topPredictions[0].symbol}</code> (${frame.topPredictions[0].probability.toFixed(2)})`;
-      html += "</button>";
-      html += "</h2>";
-      html += `<div id="${collapseId}" class="accordion-collapse collapse" data-bs-parent="#frameAccordion">`;
-      html += '<div class="accordion-body p-2">';
-      html += '<table class="table table-sm table-bordered mb-0">';
-      html +=
-        "<thead><tr><th>Rank</th><th>Symbol</th><th>Token ID</th><th>Logit</th><th>Probability</th></tr></thead>";
-      html += "<tbody>";
-
-      frame.topPredictions.forEach((pred, rank: number) => {
-        html += "<tr>";
-        html += `<td>${(rank + 1).toString()}</td>`;
-        html += `<td><code>${pred.symbol}</code></td>`;
-        html += `<td>${pred.tokenId}</td>`;
-        html += `<td>${pred.logit.toFixed(3)}</td>`;
-        html += `<td>${pred.probability.toFixed(3)}</td>`;
-        html += "</tr>";
-      });
-
-      html += "</tbody></table>";
-      html += "</div>";
-      html += "</div>";
-      html += "</div>";
-    }
-
-    if (detailed.raw.frameData.length > 20) {
-      html += `<div class="text-muted small mt-2">... and ${detailed.raw.frameData.length - 20} more frames (showing first 20 of ${detailed.raw.frameData.length})</div>`;
-    }
-
-    html += "</div>";
-    html += "</div>";
+    // Generate visualization HTML using shared function
+    const html = generateModelDetailsHTML(detailed);
 
     detailsContent.innerHTML = html;
   } catch (error) {

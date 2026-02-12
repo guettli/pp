@@ -33,6 +33,7 @@
   "devDependencies": {
     "@eslint/js": "^9.39.2",
     "@playwright/test": "^1.58.0",
+    "@types/escape-html": "^1.0.4",
     "@types/node": "^25.1.0",
     "@types/pouchdb": "^6.4.2",
     "@typescript-eslint/eslint-plugin": "^8.54.0",
@@ -49,6 +50,7 @@
     "@svouch/pouchdb": "0.0.1-0",
     "@types/js-yaml": "^4.0.9",
     "bootstrap": "^5.3.8",
+    "escape-html": "^1.0.3",
     "fastest-levenshtein": "^1.0.16",
     "flac-bindings": "^4.1.0",
     "js-yaml": "^4.1.1",

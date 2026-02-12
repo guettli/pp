@@ -1,6 +1,6 @@
-recognized_ipa: diːɛːɐtbɛɾə
+tests/data/de/Der_Mann/Der_Mann-Thomas.flac.yaml
 
-Die Erdbeere: no space...
+Doppeltes "n". Sollte voll ok sein.
 
 ---
 

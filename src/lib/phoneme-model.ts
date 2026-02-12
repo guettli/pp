@@ -123,3 +123,115 @@ export async function extractPhonemes(
     returnDetails,
   });
 }
+
+/**
+ * Extract phonemes with full details (for debugging/visualization)
+ */
+export async function extractPhonemesDetailed(
+  audioData: Float32Array,
+  session: ort.InferenceSession,
+  idToToken: Record<number, string>,
+): Promise<{
+  phonemes: string;
+  details: PhonemeWithConfidence[];
+  raw: {
+    frames: number;
+    vocabSize: number;
+    frameData: Array<{
+      frameIndex: number;
+      topPredictions: Array<{
+        symbol: string;
+        tokenId: number;
+        logit: number;
+        probability: number;
+      }>;
+    }>;
+  };
+}> {
+  // Import mel extraction - use relative import for compiled code
+  const { extractLogMelJS } = await import("../speech/mel-js.js");
+
+  const melBands = 80;
+  const melFeatures = extractLogMelJS(audioData, melBands);
+  const numFrames = melFeatures.length / melBands;
+
+  const x = new ort.Tensor("float32", melFeatures, [1, numFrames, melBands]);
+  const x_lens = new ort.Tensor("int64", new BigInt64Array([BigInt(numFrames)]), [1]);
+
+  const feeds = { x, x_lens };
+  const results = await session.run(feeds);
+
+  // Handle different possible output names
+  const logitsTensor = results.logits || results.log_probs || results[Object.keys(results)[0]];
+  if (!logitsTensor) {
+    throw new Error(`No output tensor found. Available keys: ${Object.keys(results).join(", ")}`);
+  }
+  const logits = logitsTensor.data as Float32Array;
+  const seqLen = logitsTensor.dims[1];
+  const vocabSize = logitsTensor.dims[2];
+
+  // Get detailed phoneme information
+  const detailedPhonemes = decodePhonemes(logits, seqLen, vocabSize, idToToken, {
+    returnDetails: true,
+  }) as PhonemeWithConfidence[];
+
+  // Get simple phoneme string
+  const phonemeString = decodePhonemes(logits, seqLen, vocabSize, idToToken, {
+    returnDetails: false,
+  }) as string;
+
+  // Extract top-k predictions for each frame (for visualization)
+  const topK = 5;
+  const frameData: Array<{
+    frameIndex: number;
+    topPredictions: Array<{
+      symbol: string;
+      tokenId: number;
+      logit: number;
+      probability: number;
+    }>;
+  }> = [];
+
+  // Show ALL frames (no sampling)
+  for (let t = 0; t < seqLen; t++) {
+    const frameOffset = t * vocabSize;
+
+    // Get all logits for this frame
+    const frameLogits: Array<{ tokenId: number; logit: number }> = [];
+    for (let v = 0; v < vocabSize; v++) {
+      frameLogits.push({
+        tokenId: v,
+        logit: logits[frameOffset + v],
+      });
+    }
+
+    // Sort by logit (descending)
+    frameLogits.sort((a, b) => b.logit - a.logit);
+
+    // Take top-k
+    const topPredictions = frameLogits.slice(0, topK).map((item) => {
+      const probability = Math.exp(item.logit);
+      return {
+        symbol: idToToken[item.tokenId] || "<unk>",
+        tokenId: item.tokenId,
+        logit: item.logit,
+        probability,
+      };
+    });
+
+    frameData.push({
+      frameIndex: t,
+      topPredictions,
+    });
+  }
+
+  return {
+    phonemes: phonemeString,
+    details: detailedPhonemes,
+    raw: {
+      frames: seqLen,
+      vocabSize,
+      frameData,
+    },
+  };
+}
