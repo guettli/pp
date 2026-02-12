@@ -117,13 +117,29 @@ export function decodePhonemes(
     return true;
   });
 
+  // Post-process: Collapse consecutive duplicate phonemes
+  // This handles cases where duplicates were separated by blanks: "n <blk> n" → "n"
+  const collapsedPhonemes: GroupedPhoneme[] = [];
+  for (const phoneme of filteredPhonemes) {
+    const lastPhoneme = collapsedPhonemes[collapsedPhonemes.length - 1];
+    if (lastPhoneme && lastPhoneme.symbol === phoneme.symbol) {
+      // Merge with previous phoneme
+      lastPhoneme.duration += phoneme.duration;
+      lastPhoneme.confidences.push(...phoneme.confidences);
+      lastPhoneme.avgConfidence =
+        lastPhoneme.confidences.reduce((a, b) => a + b, 0) / lastPhoneme.confidences.length;
+    } else {
+      collapsedPhonemes.push(phoneme);
+    }
+  }
+
   if (returnDetails) {
-    return filteredPhonemes.map((g) => ({
+    return collapsedPhonemes.map((g) => ({
       symbol: g.symbol,
       confidence: g.avgConfidence,
       duration: g.duration,
     }));
   }
 
-  return filteredPhonemes.map((g) => g.symbol).join("");
+  return collapsedPhonemes.map((g) => g.symbol).join("");
 }

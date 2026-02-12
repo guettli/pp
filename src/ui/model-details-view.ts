@@ -75,14 +75,16 @@ export function generateModelDetailsHTML(detailed: DetailedPhonemeData): string 
   // Frame-by-frame top predictions (vertical alignment view)
   html += '<div class="mb-3">';
   html += '<h6 class="fw-bold text-primary">Frame-by-Frame Top Predictions</h6>';
-  html += '<p class="small text-muted">Symbols align vertically when they continue across frames. Probability shown as percentage (01-99).</p>';
+  html +=
+    '<p class="small text-muted">Symbols align vertically when they continue across frames. Probability shown as percentage (01-99).</p>';
 
   // Build vertical alignment visualization
   const frameViz = buildFrameVisualization(detailed.raw.frameData);
 
-  html += '<pre style="font-family: monospace; font-size: 0.85rem; line-height: 1.3; background: #f8f9fa; padding: 1rem; border-radius: 0.25rem; overflow-x: auto;">';
+  html +=
+    '<pre style="font-family: monospace; font-size: 0.85rem; line-height: 1.3; background: #f8f9fa; padding: 1rem; border-radius: 0.25rem; overflow-x: auto;">';
   html += frameViz;
-  html += '</pre>';
+  html += "</pre>";
 
   html += "</div>";
 
@@ -106,11 +108,11 @@ function buildFrameVisualization(frameData: FrameData[]): string {
   for (const frame of frameData) {
     // Get top predictions sorted by probability, filter out low confidence predictions
     const predictions = [...frame.topPredictions]
-      .filter(p => p.probability >= 0.14)  // Hide symbols with prob < 14%
+      .filter((p) => p.probability >= 0.08) // Hide symbols with prob < 8%
       .sort((a, b) => b.probability - a.probability);
 
     // Update column assignments
-    const currentSymbols = new Set(predictions.map(p => p.symbol));
+    const currentSymbols = new Set(predictions.map((p) => p.symbol));
 
     // Remove symbols that are no longer in top predictions
     for (const [symbol] of columnMap.entries()) {
@@ -133,20 +135,21 @@ function buildFrameVisualization(frameData: FrameData[]): string {
     // Build row with symbols in their assigned columns
     const columns: Array<{ symbol: string; prob: number }> = [];
     for (const pred of predictions) {
-      const col = columnMap.get(pred.symbol)!;
+      const col = columnMap.get(pred.symbol);
+      if (col === undefined) continue; // Should not happen, but satisfy linter
       while (columns.length <= col) {
         columns.push({ symbol: "", prob: 0 });
       }
       columns[col] = {
         symbol: pred.symbol,
-        prob: Math.min(99, Math.round(pred.probability * 100))
+        prob: Math.min(99, Math.round(pred.probability * 100)),
       };
     }
 
     // Format row
     const frameNum = frame.frameIndex.toString().padStart(5, " ");
     const cells = columns
-      .map(c => c.symbol ? `${c.symbol}:${c.prob.toString().padStart(2, "0")}` : "     ")
+      .map((c) => (c.symbol ? `${c.symbol}:${c.prob.toString().padStart(2, "0")}` : "     "))
       .join(" ");
 
     rows.push(`${frameNum} | ${cells}`);

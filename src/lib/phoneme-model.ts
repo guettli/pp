@@ -181,7 +181,7 @@ export async function extractPhonemesDetailed(
   }) as string;
 
   // Extract top-k predictions for each frame (for visualization)
-  const topK = 5;
+  const topK = 7;
   const frameData: Array<{
     frameIndex: number;
     topPredictions: Array<{
