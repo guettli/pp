@@ -150,6 +150,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
   function splitIntoPhonemes(ipa: string, lang: string): string[] {
     // Normalize IPA for comparison:
     // - Remove stress marks, delimiters, and structural markers (., ˈ, ˌ)
+    // - Remove glottal stop (ʔ, U+0294) - model cannot reliably detect it
     // - Remove tie bars (U+0361) to split affricates: t͡s → ts
     // - Expand syllabic consonants: l̩ → əl, n̩ → ən (U+0329 = syllabic mark)
     // - Normalize IPA g (U+0261) to regular g
@@ -161,6 +162,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
     let cleaned = ipa
       .replace(/[/[\]ˈˌ]/g, "") // Remove delimiters and stress marks
       .replace(/\./g, "") // Remove syllable boundaries
+      .replace(/ʔ/g, "") // Remove glottal stop (U+0294) - not reliably detected
       .replace(/\u0361/g, "") // Remove tie bar
       .replace(/(.)\u0329/g, "ə$1") // Syllabic consonant → schwa + consonant
       .replace(/\u0261/g, "g") // IPA ɡ → regular g
