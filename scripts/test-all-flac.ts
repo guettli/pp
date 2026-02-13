@@ -385,12 +385,17 @@ async function main() {
         newIpa: r.actual,
       });
     } else if (isDegraded) {
-      degraded.push({
-        phrase: r.phrase,
-        source: r.source,
-        old: r.previousSimilarity,
-        new: r.similarity,
-      });
+      // Only track degradation if the rounded percentages actually differ
+      const oldPercent = Math.round(r.previousSimilarity * 100);
+      const newPercent = Math.round(r.similarity * 100);
+      if (newPercent < oldPercent) {
+        degraded.push({
+          phrase: r.phrase,
+          source: r.source,
+          old: r.previousSimilarity,
+          new: r.similarity,
+        });
+      }
     } else if (isIpaChanged) {
       ipaChanged.push({
         phrase: r.phrase,

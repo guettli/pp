@@ -44,6 +44,89 @@ const PHONEME_CLASSES: Array<Set<string>> = [
 ];
 
 /**
+ * Phoneme-specific confidence thresholds based on acoustic properties
+ * Different phonemes have different acoustic characteristics and signal strength
+ */
+// Schwas and approximants are genuinely weak and need permissive thresholds
+const VERY_WEAK_PHONEMES = new Set([
+  // Schwas (naturally weak/reduced vowels)
+  "ə",
+  "ɐ",
+  // Approximants/semivowels (vowel-like consonants, can be weak)
+  "w",
+  "j",
+  "ʋ",
+  "ɹ",
+  "ɻ",
+]);
+
+// Fricatives can be weak but also prone to noise/artifacts
+const FRICATIVES = new Set(["f", "v", "s", "z", "ʃ", "ʒ", "θ", "ð", "x", "ç", "h"]);
+
+const STRONG_PHONEMES = new Set([
+  // Full vowels (high energy, clear formants)
+  "a",
+  "e",
+  "i",
+  "o",
+  "u",
+  "ɑ",
+  "ɛ",
+  "ɪ",
+  "ɔ",
+  "ʊ",
+  "æ",
+  "ʌ",
+  "ɒ",
+  "aː",
+  "eː",
+  "iː",
+  "oː",
+  "uː",
+  "ɑː",
+  "ɛː",
+  "ɪː",
+  "ɔː",
+  "ʊː",
+  // Stops/plosives (high energy bursts)
+  "p",
+  "b",
+  "t",
+  "d",
+  "k",
+  "g",
+  "ʔ",
+  // Affricates (combination of stop + fricative)
+  "t͡s",
+  "d͡z",
+  "t͡ʃ",
+  "d͡ʒ",
+]);
+
+// Medium phonemes (nasals, liquids) use the base threshold
+
+/**
+ * Get confidence threshold for a specific phoneme based on its acoustic properties
+ */
+function getPhonemeThreshold(symbol: string, baseThreshold: number): number {
+  // Very weak phonemes (schwas, approximants) need most permissive threshold
+  if (VERY_WEAK_PHONEMES.has(symbol)) {
+    return baseThreshold * 0.7; // 70% of base threshold
+  }
+  // Fricatives need moderate threshold (can be weak but also prone to artifacts)
+  if (FRICATIVES.has(symbol)) {
+    return baseThreshold * 0.72; // 72% of base threshold
+  }
+  // Strong phonemes stay at base threshold - they don't need stricter filtering
+  // since they're naturally louder and more reliable
+  if (STRONG_PHONEMES.has(symbol)) {
+    return baseThreshold; // Use base threshold
+  }
+  // Medium phonemes (nasals, liquids, etc.) use base threshold
+  return baseThreshold;
+}
+
+/**
  * Decode phonemes from logits with confidence filtering
  * @param logitsData - Flat array of logits [seqLen * vocabSize]
  * @param seqLen - Sequence length (number of time steps)
@@ -173,9 +256,8 @@ export function decodePhonemes(
 
   // Apply confidence filtering for short-duration phonemes
   const filteredPhonemes = nonSpecialTokens.filter((g) => {
-    // Schwas (ə, ɐ) are naturally weak/quiet sounds - use lower threshold
-    const isSchwa = g.symbol === "ə" || g.symbol === "ɐ";
-    const threshold = isSchwa ? minConfidence * 0.7 : minConfidence; // 70% of normal threshold for schwas
+    // Get phoneme-specific threshold based on acoustic properties
+    const threshold = getPhonemeThreshold(g.symbol, minConfidence);
 
     // Filter all very short phonemes (duration=1) with low confidence throughout sequence
     // These are often artifacts or noise from the model, particularly in the middle

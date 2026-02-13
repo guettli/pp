@@ -10,6 +10,14 @@ Execute all scripts via `./run cmd arg1 arg2 ...`. Example:
 
 `./run` ensures the environment is set up.
 
+## Performance Guidelines
+
+When running scripts:
+
+1. Run ONCE and save output to `/tmp/script-output-$$.txt`
+2. Then analyze the tempfile with grep/tail/head as needed
+3. Don't re-run the same command multiple times with different pipes
+
 ## Dependencies
 
 - pnpm for JS/TS

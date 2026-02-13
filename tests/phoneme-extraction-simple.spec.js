@@ -22,15 +22,18 @@ test.describe("Phoneme Extraction - Improved Filtering", () => {
     console.log(`Phrase: ${expectedData.phrase}\n`);
 
     // This test verifies:
-    // Both Node.js and web now use shared confidence filtering (minConfidence=0.50)
-    // The shared decoder filters short-duration (duration=1) phonemes with low confidence
-    // This removes spurious phonemes like the "əɾ" that appeared in earlier versions
+    // Both Node.js and web now use shared confidence filtering with phoneme-specific thresholds
+    // The decoder uses different thresholds based on acoustic properties:
+    // - Very weak (schwas, approximants): 0.70 * base
+    // - Fricatives: 0.72 * base
+    // - Strong/medium phonemes: 1.0 * base
 
     expect(expectedIPA).toBe("diːhiːəoːzə");
 
     console.log("\nIMPROVED DETECTION:");
     console.log("- Both web and Node.js use src/speech/phoneme-decoder.ts");
-    console.log("- Confidence filtering (minConfidence=0.50) applied to all short phonemes");
+    console.log("- Phoneme-specific confidence thresholds based on acoustic properties");
+    console.log("- Base threshold: 0.50, adjusted per phoneme type");
     console.log("- Similarity: 86%\n");
   });
 });
