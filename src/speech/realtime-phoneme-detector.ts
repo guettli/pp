@@ -203,6 +203,28 @@ export class RealTimePhonemeDetector {
   }
 
   /**
+   * Finalize processing - ensures all accumulated audio is processed
+   * Call this after recording stops to get the final, complete results
+   * @returns Promise that resolves when processing is complete
+   */
+  async finalize(): Promise<void> {
+    // Wait for any ongoing processing to complete
+    while (this.isProcessing) {
+      await new Promise((resolve) => setTimeout(resolve, 50));
+    }
+
+    // Force processing of any remaining chunks
+    if (this.audioChunks.length > this.lastProcessedChunkCount) {
+      await this.processAccumulatedAudio();
+    }
+
+    // Wait again in case processing started
+    while (this.isProcessing) {
+      await new Promise((resolve) => setTimeout(resolve, 50));
+    }
+  }
+
+  /**
    * Get the last extracted phonemes
    */
   getLastPhonemes(): string {

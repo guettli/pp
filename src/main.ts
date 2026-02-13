@@ -525,28 +525,52 @@ async function actuallyStopRecording() {
     try {
       let actualIPA: string;
 
-      // Check if we can use real-time detector's results
-      if (detector && detector.getLastPhonemes()) {
-        actualIPA = detector.getLastPhonemes();
-        debugMeta.push({
-          labelKey: "processing.meta_realtime",
-          value: "Yes (auto-detected)",
-        });
-        showProcessing(85);
+      // If we have a real-time detector, finalize it to ensure complete processing
+      if (detector) {
+        // Finalize real-time detector to process any remaining chunks
+        const finalizeStart = performance.now();
+        await detector.finalize();
+        recordTiming("processing.step_finalize", finalizeStart, performance.now());
+
+        const realtimeIPA = detector.getLastPhonemes();
+
+        if (realtimeIPA) {
+          // Use real-time results if available
+          actualIPA = realtimeIPA;
+          debugMeta.push({
+            labelKey: "processing.meta_realtime",
+            value: "Yes (continuous processing)",
+          });
+          showProcessing(85);
+        } else {
+          // Fallback to whole-blob processing if real-time failed
+          const audioData = await measureAsync("processing.step_prepare", () =>
+            prepareAudioForModel(audioBlob),
+          );
+          showProcessing(30);
+
+          actualIPA = await measureAsync("processing.step_phonemes", () =>
+            extractPhonemes(audioData),
+          );
+          debugMeta.push({
+            labelKey: "processing.meta_realtime",
+            value: "No (fallback to post-processing)",
+          });
+          showProcessing(85);
+        }
       } else {
-        // Process the audio normally
+        // No real-time detector, process the audio normally
         const audioData = await measureAsync("processing.step_prepare", () =>
           prepareAudioForModel(audioBlob),
         );
         showProcessing(30);
 
-        // Extract phonemes directly using phoneme model
         actualIPA = await measureAsync("processing.step_phonemes", () =>
           extractPhonemes(audioData),
         );
         debugMeta.push({
           labelKey: "processing.meta_realtime",
-          value: "No (post-processing)",
+          value: "No real-time detection",
         });
         showProcessing(85);
       }
