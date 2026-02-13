@@ -1,6 +1,7 @@
 #!/usr/bin/env tsx
 // Extract phonemes from audio and compare with expected IPA
 // Usage: tsx scripts/extract-and-compare.ts <flac-yaml-file>
+//    OR: tsx scripts/extract-and-compare.ts <audio-file> <phrase> <lang>
 
 import fs from "fs";
 import yaml from "js-yaml";
@@ -11,17 +12,22 @@ import { calculatePanPhonDistance } from "../tests/panphon-distance-node.js";
 
 function printHelp() {
   console.log(`Usage: ./run tsx scripts/extract-and-compare.ts <flac-yaml-file>
+      OR ./run tsx scripts/extract-and-compare.ts <audio-file> <phrase> <lang>
 
 Extract IPA phonemes from audio and compare with expected IPA from phrase data.
 
 Arguments:
   <flac-yaml-file>    Path to a .flac.yaml metadata file
+  <audio-file>        Path to an audio file (.flac, .wav, etc.)
+  <phrase>            The phrase being pronounced
+  <lang>              Language code (e.g., de, en)
 
 Options:
   -h, --help          Show this help message
 
-Example:
+Examples:
   ./run tsx scripts/extract-and-compare.ts tests/data/de/Flugzeug/Flugzeug-Thomas2.flac.yaml
+  ./run tsx scripts/extract-and-compare.ts audio.flac "Der Regen" de
 
 Output:
   JSON with phrase info, recognized IPA, expected IPA, and similarity scores.
@@ -37,38 +43,62 @@ async function main() {
     process.exit(args.length === 0 ? 1 : 0);
   }
 
-  const yamlFile = args[0];
-
-  if (!fs.existsSync(yamlFile)) {
-    console.error(`Error: YAML file not found: ${yamlFile}`);
-    console.error("\nRun with -h or --help for usage information.");
-    process.exit(1);
-  }
-
-  if (!yamlFile.endsWith(".yaml") && !yamlFile.endsWith(".yml")) {
-    console.error(`Error: Input file must be a .yaml or .yml file: ${yamlFile}`);
-    console.error("\nRun with -h or --help for usage information.");
-    process.exit(1);
-  }
-
-  // Read YAML metadata
-  const yamlContent = fs.readFileSync(yamlFile, "utf8");
-  const metadata = yaml.load(yamlContent) as {
+  let audioFile: string;
+  let phrase: string;
+  let lang: string;
+  let metadata: {
     phrase: string;
     lang: string;
     source?: string;
     recognized_ipa?: string;
     similarity?: number;
-  };
+  } | null = null;
 
-  if (!metadata.phrase || !metadata.lang) {
-    console.error(`Error: YAML file must contain 'phrase' and 'lang' fields`);
+  // Check if this is the YAML mode or direct mode
+  if (args.length === 1) {
+    // YAML mode
+    const yamlFile = args[0];
+
+    if (!fs.existsSync(yamlFile)) {
+      console.error(`Error: YAML file not found: ${yamlFile}`);
+      console.error("\nRun with -h or --help for usage information.");
+      process.exit(1);
+    }
+
+    if (!yamlFile.endsWith(".yaml") && !yamlFile.endsWith(".yml")) {
+      console.error(`Error: Input file must be a .yaml or .yml file: ${yamlFile}`);
+      console.error("\nRun with -h or --help for usage information.");
+      process.exit(1);
+    }
+
+    // Read YAML metadata
+    const yamlContent = fs.readFileSync(yamlFile, "utf8");
+    metadata = yaml.load(yamlContent) as {
+      phrase: string;
+      lang: string;
+      source?: string;
+      recognized_ipa?: string;
+      similarity?: number;
+    };
+
+    if (!metadata.phrase || !metadata.lang) {
+      console.error(`Error: YAML file must contain 'phrase' and 'lang' fields`);
+      process.exit(1);
+    }
+
+    phrase = metadata.phrase;
+    lang = metadata.lang;
+    audioFile = yamlFile.replace(/\.yaml$/, "");
+  } else if (args.length === 3) {
+    // Direct mode: audio file, phrase, lang
+    audioFile = args[0];
+    phrase = args[1];
+    lang = args[2];
+  } else {
+    console.error(`Error: Invalid number of arguments`);
+    console.error("\nRun with -h or --help for usage information.");
     process.exit(1);
   }
-
-  const phrase = metadata.phrase;
-  const lang = metadata.lang;
-  const audioFile = yamlFile.replace(/\.yaml$/, "");
 
   if (!fs.existsSync(audioFile)) {
     console.error(`Error: Audio file not found: ${audioFile}`);
@@ -116,15 +146,15 @@ async function main() {
       recognized_ipa: recognizedIPA,
     };
 
-    if (metadata.source) {
+    if (metadata?.source) {
       output.source = metadata.source;
     }
 
-    if (metadata.recognized_ipa) {
+    if (metadata?.recognized_ipa) {
       output.previous_ipa = metadata.recognized_ipa;
     }
 
-    if (metadata.similarity !== undefined) {
+    if (metadata && metadata.similarity !== undefined) {
       output.previous_similarity = metadata.similarity;
     }
 

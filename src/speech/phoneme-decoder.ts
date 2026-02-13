@@ -62,7 +62,7 @@ const VERY_WEAK_PHONEMES = new Set([
 ]);
 
 // Fricatives can be weak but also prone to noise/artifacts
-const FRICATIVES = new Set(["f", "v", "s", "z", "ʃ", "ʒ", "θ", "ð", "x", "ç", "h"]);
+const FRICATIVES = new Set(["f", "v", "s", "z", "ʃ", "ʒ", "θ", "ð", "x", "ç", "h", "ʁ", "ʀ"]);
 
 const STRONG_PHONEMES = new Set([
   // Full vowels (high energy, clear formants)

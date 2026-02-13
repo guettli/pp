@@ -200,8 +200,8 @@ fi
 echo ""
 echo "Extracting phonemes and calculating similarity..."
 if PHONEME_RESULT=$(pnpm tsx "$SCRIPT_DIR/extract-and-compare.ts" "$FLAC_FILE" "$PHRASE" "$LANG" 2>&1); then
-    RECOGNIZED_IPA=$(echo "$PHONEME_RESULT" | grep -o '"recognized_ipa":"[^"]*"' | cut -d'"' -f4)
-    SIMILARITY=$(echo "$PHONEME_RESULT" | grep -o '"similarity":"[^"]*"' | cut -d'"' -f4)
+    RECOGNIZED_IPA=$(echo "$PHONEME_RESULT" | jq -r '.recognized_ipa // empty')
+    SIMILARITY=$(echo "$PHONEME_RESULT" | jq -r '.similarity // empty')
     echo "Recognized IPA: $RECOGNIZED_IPA"
     if [ -n "$SIMILARITY" ]; then
         echo "Similarity: $SIMILARITY"
