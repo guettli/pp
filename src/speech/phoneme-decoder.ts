@@ -41,6 +41,7 @@ const PHONEME_CLASSES: Array<Set<string>> = [
   new Set(["i", "ɪ"]), // close vs near-close front vowels
   new Set(["u", "ʊ"]), // close vs near-close back vowels
   new Set(["ə", "ɐ"]), // schwa variations
+  new Set(["ø", "ʏ", "œ", "y"]), // front rounded vowels (German ö/ü sounds)
 ];
 
 /**
