@@ -24,7 +24,7 @@ export interface PhonemeWithConfidence {
 }
 
 export interface PhonemeDecoderOptions {
-  /** Minimum confidence for short-duration phonemes (default: 0.54) */
+  /** Minimum confidence for short-duration phonemes (default: 0.45) */
   minConfidence?: number;
   /** Return detailed phoneme info instead of just string */
   returnDetails?: boolean;
@@ -35,12 +35,12 @@ export interface PhonemeDecoderOptions {
  * When similar phonemes split probability, merge them before decoding
  */
 const PHONEME_CLASSES: Array<Set<string>> = [
-  new Set(["e"]), // close-mid front vowel (ɛ moved to schwa class for German)
+  new Set(["e", "ɛ"]), // close-mid vs open-mid front vowels
   new Set(["o", "ɔ"]), // close-mid vs open-mid back vowels
   new Set(["a", "ɑ"]), // front vs back open vowels
   new Set(["i", "ɪ"]), // close vs near-close front vowels
   new Set(["u", "ʊ"]), // close vs near-close back vowels
-  new Set(["ə", "ɐ", "ɛ", "e"]), // schwa class - includes ɛ and e which are often confused with schwa in German -er endings
+  new Set(["ə", "ɐ"]), // schwa variations
 ];
 
 /**
@@ -59,7 +59,7 @@ export function decodePhonemes(
   idToToken: Record<number, string>,
   options: PhonemeDecoderOptions = {},
 ): string | PhonemeWithConfidence[] {
-  const { minConfidence = 0.54, returnDetails = false } = options;
+  const { minConfidence = 0.5, returnDetails = false } = options;
 
   // Build reverse mapping: symbol -> phoneme class index
   const symbolToClass = new Map<string, number>();

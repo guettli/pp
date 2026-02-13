@@ -93,7 +93,7 @@ export async function extractPhonemes(
   idToToken: Record<number, string>,
   options: { minConfidence?: number; returnDetails?: boolean } = {},
 ): Promise<string | PhonemeWithConfidence[]> {
-  const { minConfidence = 0.54, returnDetails = false } = options;
+  const { minConfidence = 0.5, returnDetails = false } = options;
 
   // Import mel extraction - use relative import for compiled code
   const { extractLogMelJS } = await import("../speech/mel-js.js");

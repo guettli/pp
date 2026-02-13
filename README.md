@@ -104,22 +104,33 @@ pnpm test
 
 ## Phoneme Extraction Tests
 
+Test IPA extraction on all FLAC files in `tests/data/`:
+
 ```bash
-# Run all phrase tests
-pnpm test:phrases
+# Test all FLAC files (runs in parallel for speed)
+./run tsx scripts/test-all-flac.ts
 
-# List all available tests
-pnpm test:phrases -- --list
+# Update YAML metadata files with new IPA values
+./run tsx scripts/test-all-flac.ts --update
 
-# Run a single test
-pnpm test:phrases -- Brot
+# List all audio files without processing
+./run tsx scripts/test-all-flac.ts --list
 
-# Run tests matching a pattern (case-insensitive)
-pnpm test:phrases -- "A*"
+# Test specific phrase(s)
+./run tsx scripts/test-all-flac.ts Wasser
+./run tsx scripts/test-all-flac.ts "Sch*"
 
 # Show help
-pnpm test:phrases -- --help
+./run tsx scripts/test-all-flac.ts --help
 ```
+
+The script:
+
+- Processes all FLAC/WAV files in parallel using worker threads
+- Extracts IPA phonemes from audio using the ONNX model
+- Compares extracted IPA with expected IPA from phrase lists
+- Detects improvements, regressions, and changes in results
+- Updates YAML metadata files with new values (when `--update` is used or improvements detected)
 
 ## Similarity Testing (without running the model)
 
@@ -127,7 +138,7 @@ Test phoneme similarity calculations directly without audio processing:
 
 ```bash
 # Compare expected IPA to actual phonemes
-./scripts/similarity-test.sh "moːnt" "m u n d"
+./scripts/similarity-test-expected-to-actual-ipa-expected-to-actual-ipa.sh "moːnt" "m u n d"
 
 # Check effect of extra phonemes
 ./scripts/similarity-test.sh "moːnt" "m u n d a"

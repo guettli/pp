@@ -2,5 +2,5 @@ phrase: Auto
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
-recognized_ipa: awto
-similarity: 0.96
+recognized_ipa: atoː
+similarity: 0.86

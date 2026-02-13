@@ -2,5 +2,5 @@ phrase: Katze
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
-recognized_ipa: kats
-similarity: 0.9
+recognized_ipa: katse
+similarity: 0.98

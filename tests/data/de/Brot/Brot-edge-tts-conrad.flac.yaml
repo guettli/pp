@@ -3,4 +3,4 @@ lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
 recognized_ipa: broːt
-similarity: 1
+similarity: 0.91

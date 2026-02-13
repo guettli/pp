@@ -2,5 +2,5 @@ phrase: Flugzeug
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
-recognized_ipa: fluːktsɔʏk
-similarity: 1
+recognized_ipa: fluːktsɔk
+similarity: 0.94
