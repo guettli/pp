@@ -13,7 +13,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { getLanguage, initI18n, onLanguageChange, setLanguage, t } from "./i18n.js";
 
 // Import types
-import { getLevelText, type SupportedLanguage } from "./types.js";
+import { getLevelText, type Phrase, type Score, type SupportedLanguage } from "./types.js";
 
 // Import state management
 import { resetFeedback, setState, state } from "./state.js";
@@ -75,6 +75,21 @@ let realtimeDetector: RealTimePhonemeDetector | null = null;
 
 // Track previous level for confirmation dialog
 let previousLevel: number | null = null;
+
+/**
+ * Helper to score pronunciation against all available IPAs and return the best score
+ */
+function scorePronunciationBest(phrase: Phrase, ipa: string): Score {
+  if (!phrase.ipas || phrase.ipas.length === 0) {
+    throw new Error(`No IPA pronunciation data available for phrase: ${phrase.phrase}`);
+  }
+
+  const lang = getLanguage();
+  const scores = phrase.ipas.map((ipaEntry) => scorePronunciation(ipaEntry.ipa, ipa, lang));
+
+  // Return best score (scores array is guaranteed non-empty due to check above)
+  return scores.reduce((best, current) => (current.similarity > best.similarity ? current : best));
+}
 
 /**
  * Initialize the application
@@ -492,12 +507,23 @@ async function actuallyStopRecording() {
       recordTiming(labelKey, start, performance.now());
       return result;
     };
-    const measureSync = <T>(labelKey: string, action: () => T): T => {
-      const start = performance.now();
-      const result = action();
-      recordTiming(labelKey, start, performance.now());
-      return result;
+
+    // Helper to process audio blob and extract phonemes
+    const processAudioBlob = async (blob: Blob, realtimeStatus: string): Promise<string> => {
+      const audioData = await measureAsync("processing.step_prepare", () =>
+        prepareAudioForModel(blob),
+      );
+      showProcessing(30);
+
+      const ipa = await measureAsync("processing.step_phonemes", () => extractPhonemes(audioData));
+      debugMeta.push({
+        labelKey: "processing.meta_realtime",
+        value: realtimeStatus,
+      });
+      showProcessing(85);
+      return ipa;
     };
+
     const debugMeta: DebugMeta[] = [];
     if (state.modelLoadMs !== null && Number.isFinite(state.modelLoadMs)) {
       debugMeta.push({
@@ -544,35 +570,11 @@ async function actuallyStopRecording() {
           showProcessing(85);
         } else {
           // Fallback to whole-blob processing if real-time failed
-          const audioData = await measureAsync("processing.step_prepare", () =>
-            prepareAudioForModel(audioBlob),
-          );
-          showProcessing(30);
-
-          actualIPA = await measureAsync("processing.step_phonemes", () =>
-            extractPhonemes(audioData),
-          );
-          debugMeta.push({
-            labelKey: "processing.meta_realtime",
-            value: "No (fallback to post-processing)",
-          });
-          showProcessing(85);
+          actualIPA = await processAudioBlob(audioBlob, "No (fallback to post-processing)");
         }
       } else {
         // No real-time detector, process the audio normally
-        const audioData = await measureAsync("processing.step_prepare", () =>
-          prepareAudioForModel(audioBlob),
-        );
-        showProcessing(30);
-
-        actualIPA = await measureAsync("processing.step_phonemes", () =>
-          extractPhonemes(audioData),
-        );
-        debugMeta.push({
-          labelKey: "processing.meta_realtime",
-          value: "No real-time detection",
-        });
-        showProcessing(85);
+        actualIPA = await processAudioBlob(audioBlob, "No real-time detection");
       }
 
       // Score the pronunciation using PanPhon features
@@ -590,23 +592,8 @@ async function actuallyStopRecording() {
         });
       }
 
-      // Check if ipas array exists and is not empty
-      if (!currentPhrase.ipas || currentPhrase.ipas.length === 0) {
-        throw new Error(`No IPA pronunciation data available for phrase: ${currentPhrase.phrase}`);
-      }
-
-      // Try all IPAs and use the best score
-      const lang = getLanguage();
-      const scores = currentPhrase.ipas.map((ipaEntry) =>
-        measureSync("processing.step_score", () =>
-          scorePronunciation(ipaEntry.ipa, actualIPA, lang),
-        ),
-      );
-      // Use the score with the highest similarity
-      const score = scores.reduce(
-        (best, current) => (current.similarity > best.similarity ? current : best),
-        scores[0] || scorePronunciation("", actualIPA, lang),
-      );
+      // Score pronunciation against all available IPAs
+      const score = scorePronunciationBest(currentPhrase, actualIPA);
       showProcessing(95);
 
       // Update state
@@ -720,19 +707,7 @@ async function reprocessRecording() {
 
       // Score the pronunciation
       const currentPhrase = state.currentPhrase;
-      if (!currentPhrase.ipas || currentPhrase.ipas.length === 0) {
-        throw new Error(`No IPA pronunciation data available for phrase: ${currentPhrase.phrase}`);
-      }
-
-      // Try all IPAs and use the best score
-      const lang = getLanguage();
-      const scores = currentPhrase.ipas.map((ipaEntry) =>
-        scorePronunciation(ipaEntry.ipa, actualIPA, lang),
-      );
-      const score = scores.reduce(
-        (best, current) => (current.similarity > best.similarity ? current : best),
-        scores[0] || scorePronunciation("", actualIPA, lang),
-      );
+      const score = scorePronunciationBest(currentPhrase, actualIPA);
       showProcessing(95);
 
       // Update state

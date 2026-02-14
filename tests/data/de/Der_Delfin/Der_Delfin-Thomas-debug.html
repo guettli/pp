@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phoneme Debug: Der Delfin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      padding: 2rem;
+      background: #f8f9fa;
+    }
+    .container {
+      max-width: 1200px;
+      background: white;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+.phoneme-words-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.phoneme-word-block {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+@media (max-width: 576px) {
+  .phoneme-words-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .phoneme-word-block {
+    width: 100%;
+  }
+}
+
+.phoneme-word-row {
+  display: flex;
+  gap: 0.125rem;
+  padding: 0.25rem;
+}
+
+.phoneme-word-target {
+  border-bottom: 1px dashed #adb5bd;
+}
+
+.phoneme-char {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
+  min-width: 1.5rem;
+  padding: 0.125rem 0.25rem;
+  text-align: center;
+  border-radius: 0.25rem;
+}
+
+.phoneme-word-target .phoneme-char {
+  color: #495057;
+}
+
+.phoneme-word-actual .phoneme-char {
+  color: #212529;
+  font-weight: 500;
+}
+
+.phoneme-char.match {
+  background: #d1e7dd;
+}
+
+.phoneme-char.mismatch {
+  background: #fff3cd;
+}
+
+.phoneme-char.missing {
+  background: #f8d7da;
+}
+
+.phoneme-char.extra {
+  background: #cfe2ff;
+}
+
+    .phoneme-words-wrapper {
+      margin: 2rem 0;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.5rem 1rem;
+      margin: 1rem 0;
+    }
+    .info-label {
+      font-weight: 600;
+      color: #495057;
+    }
+    .info-value {
+      color: #212529;
+    }
+    .similarity-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.25rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .similarity-good { background: #d1e7dd; color: #0f5132; }
+    .similarity-fair { background: #fff3cd; color: #997404; }
+    .similarity-poor { background: #f8d7da; color: #842029; }
+    table {
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mb-4">🔍 Phoneme Extraction Debug</h1>
+
+    <div class="info-grid">
+      <span class="info-label">Phrase:</span>
+      <span class="info-value"><strong>Der Delfin</strong></span>
+
+      <span class="info-label">Language:</span>
+      <span class="info-value">de</span>
+
+      <span class="info-label">Source:</span>
+      <span class="info-value">Thomas</span>
+
+      <span class="info-label">Audio File:</span>
+      <span class="info-value"><code>Der_Delfin-Thomas.flac</code></span>
+
+      <span class="info-label">Duration:</span>
+      <span class="info-value">3.66s</span>
+    </div>
+
+    <hr class="my-4">
+
+    <h2 class="mb-3">Phoneme Comparison</h2>
+
+    <div class="info-grid mb-4">
+      <span class="info-label">Expected IPA:</span>
+      <span class="info-value"><code style="font-size: 1.2rem">deːɐ̯ dˈɛlfɪn</code></span>
+
+      <span class="info-label">Recognized IPA:</span>
+      <span class="info-value"><code style="font-size: 1.2rem">deːdɛlfiːn</code></span>
+
+      <span class="info-label">Similarity:</span>
+      <span class="info-value">
+        <span class="similarity-badge similarity-good">
+          93.5%
+        </span>
+      </span>
+    </div>
+
+    <div class="phoneme-words-wrapper"><div class="phoneme-word-block"><div class="phoneme-word-row phoneme-word-target"><span class="phoneme-char match">d</span><span class="phoneme-char match">eː</span><span class="phoneme-char missing" title="distance: 0.50">ɐ</span><span class="phoneme-char match">d</span><span class="phoneme-char match">ɛ</span></div><div class="phoneme-word-row phoneme-word-actual"><span class="phoneme-char match">d</span><span class="phoneme-char match">eː</span><span class="phoneme-char missing" title="distance: 0.50">—</span><span class="phoneme-char match">d</span><span class="phoneme-char match">ɛ</span></div></div><div class="phoneme-word-block"><div class="phoneme-word-row phoneme-word-target"><span class="phoneme-char match">l</span><span class="phoneme-char match">f</span><span class="phoneme-char match">ɪ</span><span class="phoneme-char match">n</span></div><div class="phoneme-word-row phoneme-word-actual"><span class="phoneme-char match">l</span><span class="phoneme-char match">f</span><span class="phoneme-char match">iː</span><span class="phoneme-char match">n</span></div></div></div>
+
+    <hr class="my-4">
+
+    <h2 class="mb-3">Model Details</h2>
+
+    <div class="mb-4"><h6 class="fw-bold text-primary">Summary</h6><div class="small"><strong>Detected IPA:</strong> <code class="fs-6">deːdɛlfiːn</code></div><div class="small"><strong>Total Frames:</strong> 178</div><div class="small"><strong>Vocabulary Size:</strong> 127</div><div class="small"><strong>Phonemes Detected:</strong> 10</div></div><div class="mb-4"><h6 class="fw-bold text-primary">Phoneme Details (After CTC Decoding & Filtering)</h6><div class="table-responsive"><table class="table table-sm table-striped"><thead><tr><th>Symbol</th><th>Confidence</th><th>Duration (frames)</th><th>Confidence Bar</th></tr></thead><tbody><tr><td><code class="fs-6 fw-bold">d</code></td><td>0.951</td><td>1</td><td><div class="progress" style="height: 20px;"><div class="progress-bar bg-danger" style="width: 9.511419680791946%">10%</div></div></td></tr><tr><td><code class="fs-6 fw-bold">e</code></td><td>0.737</td><td>2</td><td><div class="progress" style="height: 20px;"><div class="progress-bar bg-danger" style="width: 7.370274582682061%">7%</div></div></td></tr><tr><td><code class="fs-6 fw-bold">ː</code></td><td>0.740</td><td>2</td><td><div class="progress" style="height: 20px;"><div class="progress-bar bg-danger" style="width: 7.395219433858028%">7%</div></div></td></tr><tr><td><code class="fs-6 fw-bold">d</code></td><td>0.717</td><td>2</td><td><div class="progress" style="height: 20px;"><div class="progress-bar bg-danger" style="width: 7.173270458954398%">7%</div></div></td></tr><tr><td><code class="fs-6 fw-bold">ɛ</code></td><td>0.854</td><td>1</td><td><div class="progress" style="height: 20px;"><div class="progress-bar bg-danger" style="width: 8.544859366476471%">9%</div></div></td></tr><tr><td><code class="fs-6 fw-bold">l</code></td><td>0.757</td><td>2</td><td><div class="progress" style="height: 20px;"><div class="progress-bar bg-danger" style="width: 7.569773937364162%">8%</div></div></td></tr><tr><td><code class="fs-6 fw-bold">f</code></td><td>0.628</td><td>3</td><td><div class="progress" style="height: 20px;"><div class="progress-bar bg-danger" style="width: 6.278305870423423%">6%</div></div></td></tr><tr><td><code class="fs-6 fw-bold">i</code></td><td>0.877</td><td>1</td><td><div class="progress" style="height: 20px;"><div class="progress-bar bg-danger" style="width: 8.767624166206986%">9%</div></div></td></tr><tr><td><code class="fs-6 fw-bold">ː</code></td><td>0.688</td><td>2</td><td><div class="progress" style="height: 20px;"><div class="progress-bar bg-danger" style="width: 6.883325870907486%">7%</div></div></td></tr><tr><td><code class="fs-6 fw-bold">n</code></td><td>0.832</td><td>2</td><td><div class="progress" style="height: 20px;"><div class="progress-bar bg-danger" style="width: 8.322390998889393%">8%</div></div></td></tr></tbody></table></div></div><div class="mb-3"><h6 class="fw-bold text-primary">Frame-by-Frame Top Predictions</h6><p class="small text-muted">Symbols align vertically when they continue across frames. Probability shown as percentage (01-99).</p><pre style="font-family: monospace; font-size: 0.85rem; line-height: 1.3; background: #f8f9fa; padding: 1rem; border-radius: 0.25rem; overflow-x: auto;">Frame | Predictions (symbol:prob%)
+------|------------------------------------------------------------
+    0 | ▁:99
+    1 | ▁:99
+    2 | ▁:99
+    3 | ▁:99
+    4 | <blk>:99
+    5 | <blk>:99
+    6 | <blk>:99
+    7 | <blk>:99
+    8 | <blk>:98
+    9 | <blk>:99
+   10 | <blk>:98
+   11 | <blk>:98
+   12 | <blk>:97
+   13 | <blk>:97
+   14 | <blk>:95
+   15 | <blk>:95
+   16 | <blk>:95
+   17 | <blk>:95
+   18 | <blk>:91
+   19 | <blk>:95
+   20 | <blk>:59 d:37
+   21 |       d:95
+   22 | <blk>:74 d:16
+   23 | <blk>:73 e:17
+   24 | ɛ:21 e:71
+   25 | ɛ:14 e:41 <blk>:38
+   26 | ː:76       <blk>:21
+   27 | ː:72       <blk>:20
+   28 | ɐ:23 ɾ:15 <blk>:11 ʁ:11
+   29 |       ɾ:15 <blk>:44
+   30 |             <blk>:81
+   31 |             <blk>:81
+   32 | d:87 t:10
+   33 | d:56 <blk>:34
+   34 |       <blk>:91
+   35 | ɛ:13 <blk>:55 e:12
+   36 | ɛ:75       e:11
+   37 | ɛ:17 <blk>:71
+   38 | ː:26 <blk>:61
+   39 | ː:20 <blk>:57
+   40 | l:69 <blk>:14
+   41 | l:82
+   42 | l:20 <blk>:48
+   43 |       <blk>:78
+   44 |       <blk>:92
+   45 | f:53 <blk>:31
+   46 | f:55 <blk>:28
+   47 |       <blk>:97
+   48 | f:30 <blk>:61
+   49 | f:80 v:09
+   50 | <blk>:72
+   51 | <blk>:84
+   52 | <blk>:56 i:29
+   53 | ɪ:20 i:68
+   54 | ː:67 <blk>:18
+   55 | ː:71 <blk>:27
+   56 | ː:09 <blk>:74
+   57 | ə:11 <blk>:66
+   58 | ə:42 <blk>:43
+   59 | ə:22 <blk>:65
+   60 | n:75 <blk>:18
+   61 | n:92
+   62 | n:24 <blk>:59
+   63 | ə:13 <blk>:77
+   64 | ə:10 <blk>:74
+   65 |       <blk>:87
+   66 |       <blk>:89
+   67 |       <blk>:87
+   68 |       <blk>:90
+   69 |       <blk>:89
+   70 |       <blk>:89
+   71 |       <blk>:89
+   72 |       <blk>:89
+   73 |       <blk>:88
+   74 |       <blk>:88
+   75 |       <blk>:88
+   76 |       <blk>:86
+   77 |       <blk>:86
+   78 |       <blk>:86
+   79 |       <blk>:86
+   80 |       <blk>:89
+   81 |       <blk>:89
+   82 |       <blk>:89
+   83 |       <blk>:88
+   84 |       <blk>:88
+   85 |       <blk>:88
+   86 |       <blk>:88
+   87 |       <blk>:88
+   88 |       <blk>:90
+   89 |       <blk>:90
+   90 |       <blk>:90
+   91 |       <blk>:90
+   92 |       <blk>:90
+   93 |       <blk>:90
+   94 |       <blk>:91
+   95 |       <blk>:91
+   96 |       <blk>:92
+   97 |       <blk>:92
+   98 |       <blk>:92
+   99 |       <blk>:92
+  100 |       <blk>:92
+  101 |       <blk>:92
+  102 |       <blk>:92
+  103 |       <blk>:93
+  104 |       <blk>:94
+  105 |       <blk>:93
+  106 |       <blk>:94
+  107 |       <blk>:93
+  108 |       <blk>:94
+  109 |       <blk>:94
+  110 |       <blk>:94
+  111 |       <blk>:94
+  112 |       <blk>:95
+  113 |       <blk>:95
+  114 |       <blk>:95
+  115 |       <blk>:95
+  116 |       <blk>:95
+  117 |       <blk>:95
+  118 |       <blk>:96
+  119 |       <blk>:96
+  120 |       <blk>:96
+  121 |       <blk>:96
+  122 |       <blk>:97
+  123 |       <blk>:97
+  124 |       <blk>:97
+  125 |       <blk>:97
+  126 |       <blk>:97
+  127 |       <blk>:97
+  128 |       <blk>:98
+  129 |       <blk>:98
+  130 |       <blk>:98
+  131 |       <blk>:98
+  132 |       <blk>:99
+  133 |       <blk>:99
+  134 |       <blk>:99
+  135 |       <blk>:99
+  136 |       <blk>:99
+  137 |       <blk>:99
+  138 |       <blk>:99
+  139 |       <blk>:99
+  140 |       <blk>:99
+  141 |       <blk>:99
+  142 |       <blk>:99
+  143 |       <blk>:99
+  144 |       <blk>:99
+  145 |       <blk>:99
+  146 |       <blk>:99
+  147 |       <blk>:99
+  148 |       <blk>:99
+  149 |       <blk>:99
+  150 |       <blk>:99
+  151 |       <blk>:99
+  152 |       <blk>:99
+  153 |       <blk>:99
+  154 |       <blk>:99
+  155 |       <blk>:99
+  156 |       <blk>:99
+  157 |       <blk>:99
+  158 |       <blk>:99
+  159 |       <blk>:99
+  160 |       <blk>:99
+  161 |       <blk>:99
+  162 |       <blk>:99
+  163 |       <blk>:99
+  164 |       <blk>:99
+  165 |       <blk>:99
+  166 |       <blk>:99
+  167 |       <blk>:99
+  168 |       <blk>:99
+  169 |       <blk>:99
+  170 |       <blk>:99
+  171 |       <blk>:99
+  172 |       <blk>:99
+  173 |       <blk>:99
+  174 |       <blk>:99
+  175 |       <blk>:99
+  176 |       <blk>:99
+  177 |       <blk>:99</pre></div>
+
+    <hr class="my-4">
+
+    <h2 class="mb-3">Legend</h2>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h5>Phoneme Status:</h5>
+        <ul>
+          <li><span class="phoneme-char match">Match</span> - Correct phoneme</li>
+          <li><span class="phoneme-char mismatch">Mismatch</span> - Wrong phoneme</li>
+          <li><span class="phoneme-char missing">Missing</span> - Expected but not detected</li>
+          <li><span class="phoneme-char extra">Extra</span> - Detected but not expected</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="my-4">
+
+    <p class="text-muted">
+      Generated by <code>scripts/generate-debug-html.ts</code> on 2026-02-13T20:45:52.248Z
+    </p>
+  </div>
+</body>
+</html>

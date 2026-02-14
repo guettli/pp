@@ -33,6 +33,7 @@ export interface PhonemeComparisonItem {
   actual: string | null;
   distance: number;
   match: boolean;
+  wordBoundary?: boolean; // True if this phoneme starts a new word
 }
 
 // Score result from pronunciation comparison

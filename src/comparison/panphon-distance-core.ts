@@ -74,6 +74,33 @@ function parseIPAWord(cleaned: string, panphonFeatures: PhonemeFeatureTable): st
   return combined;
 }
 
+/**
+ * Normalize IPA string for comparison
+ * Removes stress marks, delimiters, and other markers that the model cannot reliably detect
+ */
+function normalizeIPA(ipa: string, lang?: string): string {
+  let cleaned = ipa
+    .replace(/[/[\]ˈˌ]/g, "") // Remove delimiters and stress marks
+    .replace(/\./g, "") // Remove syllable boundaries
+    .replace(/ʔ/g, "") // Remove glottal stop (U+0294) - not reliably detected
+    .replace(/\u0361/g, "") // Remove tie bar
+    .replace(/(.)\u0329/g, "ə$1") // Syllabic consonant → schwa + consonant
+    .replace(/\u0261/g, "g") // IPA ɡ → regular g
+    .replace(/\u032F/g, "") // Remove non-syllabic mark
+    .replace(/\u0334/g, "") // Remove velarized mark
+    .replace(/(.)\u02DE/g, "$1ɹ") // Expand rhoticity: V˞ → Vɹ
+    .replace(/\u025D/g, "ɜɹ"); // Expand rhotic vowel ɝ → ɜɹ
+
+  // Apply German-specific normalization only for German language
+  if (lang === "de") {
+    cleaned = cleaned
+      .replace(/ɛʁ/g, "ɐ") // German: normalize ɛʁ sequence to ɐ
+      .replace(/ər/g, "ɐ"); // German: normalize ər sequence to ɐ
+  }
+
+  return cleaned.trim();
+}
+
 export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): DistanceCalculator {
   /**
    * German phoneme equivalence rules
@@ -148,37 +175,8 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
    * Split IPA string into individual phonemes
    */
   function splitIntoPhonemes(ipa: string, lang: string): string[] {
-    // Normalize IPA for comparison:
-    // - Remove stress marks, delimiters, and structural markers (., ˈ, ˌ)
-    // - Remove glottal stop (ʔ, U+0294) - model cannot reliably detect it
-    // - Remove tie bars (U+0361) to split affricates: t͡s → ts
-    // - Expand syllabic consonants: l̩ → əl, n̩ → ən (U+0329 = syllabic mark)
-    // - Normalize IPA g (U+0261) to regular g
-    // - Remove non-syllabic mark (U+032F): a̯ → a
-    // - Remove velarized/dark l mark (U+0334): l̴ → l
-    // - Expand rhoticity hook (U+02DE): V˞ → Vɹ (e.g., ʊ˞ → ʊɹ)
-    // - Expand rhotic vowel ɝ (U+025D) → ɜ ɹ
-    // - German normalization (only for lang=de): ər → ɐ, ɛʁ → ɐ (r-vocalization)
-    let cleaned = ipa
-      .replace(/[/[\]ˈˌ]/g, "") // Remove delimiters and stress marks
-      .replace(/\./g, "") // Remove syllable boundaries
-      .replace(/ʔ/g, "") // Remove glottal stop (U+0294) - not reliably detected
-      .replace(/\u0361/g, "") // Remove tie bar
-      .replace(/(.)\u0329/g, "ə$1") // Syllabic consonant → schwa + consonant
-      .replace(/\u0261/g, "g") // IPA ɡ → regular g
-      .replace(/\u032F/g, "") // Remove non-syllabic mark
-      .replace(/\u0334/g, "") // Remove velarized mark
-      .replace(/(.)\u02DE/g, "$1ɹ") // Expand rhoticity: V˞ → Vɹ
-      .replace(/\u025D/g, "ɜɹ"); // Expand rhotic vowel ɝ → ɜɹ
-
-    // Apply German-specific normalization only for German language
-    if (lang === "de") {
-      cleaned = cleaned
-        .replace(/ɛʁ/g, "ɐ") // German: normalize ɛʁ sequence to ɐ
-        .replace(/ər/g, "ɐ"); // German: normalize ər sequence to ɐ
-    }
-
-    cleaned = cleaned.trim();
+    // Normalize IPA for comparison
+    const cleaned = normalizeIPA(ipa, lang);
 
     // If input contains spaces, check if it's already tokenized (single-char tokens)
     // or if it contains multi-word phrases (multi-char tokens that need parsing)
@@ -334,12 +332,30 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
     // when compared to "moːnt" (4 phonemes target)
     const similarity = maxLen === 0 ? 1 : Math.max(0, 1 - distance / maxLen);
 
-    // Build phoneme comparison from alignment, adding match flag
-    const phonemeComparison: PhonemeComparisonItem[] = alignment.map((item) => ({
+    // Detect word boundaries from target IPA (spaces mark word boundaries)
+    const wordBoundaryIndices = new Set<number>();
+    const normalizedTarget = normalizeIPA(target, lang);
+
+    if (normalizedTarget.includes(" ")) {
+      // Split by spaces and calculate phoneme count for each word
+      const words = normalizedTarget.split(/\s+/).filter((w) => w.length > 0);
+      let phonemeIndex = 0;
+      for (let i = 0; i < words.length; i++) {
+        if (i > 0) {
+          wordBoundaryIndices.add(phonemeIndex); // Mark start of new word
+        }
+        const wordPhonemes = parseIPAWord(words[i], panphonFeatures);
+        phonemeIndex += wordPhonemes.length;
+      }
+    }
+
+    // Build phoneme comparison from alignment, adding match flag and word boundaries
+    const phonemeComparison: PhonemeComparisonItem[] = alignment.map((item, index) => ({
       target: item.target,
       actual: item.actual,
       distance: item.distance,
       match: item.distance < 0.3, // Consider close matches as acceptable
+      wordBoundary: wordBoundaryIndices.has(index), // Mark word boundaries
     }));
 
     return {

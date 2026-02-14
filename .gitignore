@@ -22,7 +22,7 @@ pnpm-lock.yaml
 panphon_features.generated.json
 
 # Python
-.venv/
+.venv
 venv/
 __pycache__/
 *.pyc

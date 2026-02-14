@@ -15,4 +15,6 @@ pnpm exec prettier --write --log-level warn .
 echo "🔍 Running ESLint..."
 pnpm lint
 
+./scripts/test-code-duplication.sh
+
 echo "✅ Format and lint complete!"

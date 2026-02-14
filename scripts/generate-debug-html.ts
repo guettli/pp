@@ -57,7 +57,6 @@ function generateHTML(data: {
 }): string {
   const phonemeComparisonHTML = generatePhonemeComparisonHTML(
     data.phonemeComparison,
-    data.expectedIPA,
     (key: string) => key.split(".").pop() || key, // Simple translation function for CLI
   );
 

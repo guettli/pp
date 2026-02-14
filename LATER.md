@@ -182,3 +182,9 @@ Mond Thomas 80% /moːnt/ m u n d a
 - More rounded corners. More child friendly
 - Positive feedback.
 - collect phonemes metrics: Which are often correct, which are often wrong?
+
+---
+
+❯ ./run scripts/test-code-duplication.sh
+
+integrate that into lint.sh

@@ -55,13 +55,8 @@ export function displayFeedback(targetPhrase: Phrase, actualIPA: string, score: 
       Array.isArray(score.phonemeComparison) &&
       score.phonemeComparison.length > 0
     ) {
-      // Pass the target IPA to detect word boundaries
-      const targetIPA = targetPhrase.ipas[0]?.ipa || "";
-      comparisonGrid.innerHTML = generatePhonemeComparisonHTML(
-        score.phonemeComparison,
-        targetIPA,
-        t,
-      );
+      // Generate phoneme comparison HTML (word boundaries are embedded in phonemeComparison)
+      comparisonGrid.innerHTML = generatePhonemeComparisonHTML(score.phonemeComparison, t);
     } else if (score.notFound) {
       comparisonGrid.innerHTML = `<span class="text-muted">${t("feedback.phrase_not_in_vocab")}</span>`;
     } else {

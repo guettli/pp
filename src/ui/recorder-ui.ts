@@ -187,15 +187,20 @@ export function resetRecordButton() {
 }
 
 /**
- * Show error message for too-short recording
+ * Helper to show an alert message below the record button
  */
-export function showRecordingTooShortError() {
+function showRecorderAlert(
+  titleKey: string,
+  bodyKey: string,
+  alertType: "info" | "warning",
+  autoDismissMs: number,
+): void {
   const alert = document.createElement("div");
-  alert.className = "alert alert-info alert-dismissible fade show mt-3";
+  alert.className = `alert alert-${alertType} alert-dismissible fade show mt-3`;
   alert.role = "alert";
   alert.innerHTML = `
-    <strong>${t("record.too_short_title")}</strong>
-    <p class="mb-0 mt-1">${t("record.too_short_body")}</p>
+    <strong>${t(titleKey)}</strong>
+    <p class="mb-0 mt-1">${t(bodyKey)}</p>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="${t("buttons.close")}"></button>
   `;
 
@@ -205,37 +210,24 @@ export function showRecordingTooShortError() {
   if (mainContent && recordBtn && recordBtn.parentNode) {
     recordBtn.parentNode.insertBefore(alert, recordBtn.nextSibling);
 
-    // Auto-dismiss after 5 seconds
+    // Auto-dismiss after specified time
     setTimeout(() => {
       alert.classList.remove("show");
       setTimeout(() => alert.remove(), 150);
-    }, 5000);
+    }, autoDismissMs);
   }
+}
+
+/**
+ * Show error message for too-short recording
+ */
+export function showRecordingTooShortError() {
+  showRecorderAlert("record.too_short_title", "record.too_short_body", "info", 5000);
 }
 
 /**
  * Show info message when requesting microphone permission
  */
 export function showMicrophonePermissionNotice(): void {
-  const alert = document.createElement("div");
-  alert.className = "alert alert-warning alert-dismissible fade show mt-3";
-  alert.role = "alert";
-  alert.innerHTML = `
-    <strong>${t("record.permission_title")}</strong>
-    <p class="mb-0 mt-1">${t("record.permission_body")}</p>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="${t("buttons.close")}"></button>
-  `;
-
-  const mainContent = document.getElementById("main-content");
-  const recordBtn = document.getElementById("record-btn");
-
-  if (mainContent && recordBtn && recordBtn.parentNode) {
-    recordBtn.parentNode.insertBefore(alert, recordBtn.nextSibling);
-
-    // Auto-dismiss after 7 seconds
-    setTimeout(() => {
-      alert.classList.remove("show");
-      setTimeout(() => alert.remove(), 150);
-    }, 7000);
-  }
+  showRecorderAlert("record.permission_title", "record.permission_body", "warning", 7000);
 }
