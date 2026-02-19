@@ -2,5 +2,5 @@ phrase: Schiff
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
-recognized_ipa: ʃɪf
-similarity: 1
+recognized_ipa: ʃif
+similarity: 0.99

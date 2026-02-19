@@ -2,5 +2,5 @@ phrase: Tür
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
-recognized_ipa: tyː
-similarity: 0.83
+recognized_ipa: tyə
+similarity: 0.85

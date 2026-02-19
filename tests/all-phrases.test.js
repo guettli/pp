@@ -7,14 +7,14 @@ import os from "os";
 import path from "path";
 import { fileURLToPath } from "url";
 import { Worker } from "worker_threads";
+import { HF_REPO } from "../src/lib/model-config.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Model configuration
-const MODEL_REPO = "guettli/zipa-small-ctc-onnx-2026-01-28";
-const MODEL_URL = `https://huggingface.co/${MODEL_REPO}/resolve/main/model.onnx`;
-const VOCAB_URL = `https://huggingface.co/${MODEL_REPO}/resolve/main/vocab.json`;
+const MODEL_URL = `https://huggingface.co/${HF_REPO}/resolve/main/model.onnx`;
+const VOCAB_URL = `https://huggingface.co/${HF_REPO}/resolve/main/vocab.json`;
 
 // XDG Base Directory standard: use $XDG_CACHE_HOME or ~/.cache
 const XDG_CACHE_HOME = process.env.XDG_CACHE_HOME || path.join(process.env.HOME, ".cache");

@@ -71,7 +71,7 @@ class PhraseDifficultyAnalyzer:
 
     def _get_cache_dir(self) -> Path:
         """Get cache directory for AoA data."""
-        cache_dir = Path.home() / ".cache" / "pp"
+        cache_dir = Path.home() / ".cache" / "phoneme-party"
         cache_dir.mkdir(parents=True, exist_ok=True)
         return cache_dir
 

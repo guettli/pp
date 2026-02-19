@@ -3,7 +3,8 @@
  * Outputs IPA phonemes directly from audio
  */
 
-import { extractLogMelJS } from "./mel-js.js";
+import { extractKaldiFbank } from "../../wasm/kaldi-fbank/index.js";
+import { MODEL_NAME, HF_REPO } from "../lib/model-config.js";
 import { getModelFromCache, saveModelToCache } from "./model-cache.js";
 import { decodePhonemes } from "./phoneme-decoder.js";
 
@@ -38,11 +39,6 @@ interface ProgressInfo {
   total?: number;
 }
 
-// Model configuration
-// Using your HuggingFace repo for ZIPA small CTC ONNX model
-const MODEL_REPO = "guettli/zipa-small-ctc-onnx-2026-01-28";
-const MODEL_NAME = "zipa-small-ctc-onnx-2026-01-28"; // Local directory name (without username)
-
 // Use local model when running on localhost in DEV mode to speed up loading
 // In production builds, always use CDN
 const IS_DEV_LOCALHOST =
@@ -52,11 +48,11 @@ const IS_DEV_LOCALHOST =
 
 const MODEL_URL = IS_DEV_LOCALHOST
   ? `/onnx/${MODEL_NAME}/model.onnx`
-  : `https://huggingface.co/${MODEL_REPO}/resolve/main/model.onnx`;
+  : `https://huggingface.co/${HF_REPO}/resolve/main/model.onnx`;
 
 const VOCAB_URL = IS_DEV_LOCALHOST
   ? `/onnx/${MODEL_NAME}/vocab.json`
-  : `https://huggingface.co/${MODEL_REPO}/resolve/main/vocab.json`;
+  : `https://huggingface.co/${HF_REPO}/resolve/main/tokens.txt`;
 
 let session: OrtInferenceSession | null = null;
 let vocab: Record<string, number> | null = null;
@@ -79,7 +75,7 @@ export async function loadPhonemeModel(
     // Load vocab first (small)
     progressCallback({
       status: "downloading",
-      name: "vocab.json",
+      name: "vocab",
       progress: 0,
     });
 
@@ -87,12 +83,28 @@ export async function loadPhonemeModel(
     if (!vocabResponse.ok) {
       throw new Error(`Failed to fetch vocab: ${vocabResponse.status}`);
     }
-    vocab = (await vocabResponse.json()) as Record<string, number>;
 
-    // Create reverse mapping (id -> token)
+    // Parse tokens.txt (CDN) or vocab.json (local dev): build id->token map
     idToToken = {};
-    for (const [token, id] of Object.entries(vocab)) {
-      idToToken[id as unknown as number] = token;
+    vocab = {};
+    const vocabText = await vocabResponse.text();
+    if (VOCAB_URL.endsWith(".txt")) {
+      // tokens.txt format: "token id" per line
+      for (const line of vocabText.split("\n")) {
+        const parts = line.trim().split(" ");
+        if (parts.length === 2) {
+          const token = parts[0];
+          const id = parseInt(parts[1], 10);
+          vocab[token] = id;
+          idToToken[id] = token;
+        }
+      }
+    } else {
+      // vocab.json format: {"token": id, ...}
+      vocab = JSON.parse(vocabText) as Record<string, number>;
+      for (const [token, id] of Object.entries(vocab)) {
+        idToToken[id as unknown as number] = token;
+      }
     }
 
     progressCallback({
@@ -189,9 +201,9 @@ export async function extractPhonemes(audioData: Float32Array): Promise<string> 
     throw new Error("ONNX Runtime not loaded");
   }
 
-  // Extract log-mel features (shape: [frames, 80])
+  // Extract Kaldi Fbank features (shape: [frames, 80]) - matches ZIPA Python
   const melBands = 80;
-  const melFeatures = extractLogMelJS(audioData, melBands);
+  const melFeatures = await extractKaldiFbank(audioData);
   const numFrames = melFeatures.length / melBands;
   // Reshape to [1, numFrames, 80]
   const inputTensor = new ort.Tensor("float32", melFeatures, [1, numFrames, melBands]);
@@ -264,9 +276,9 @@ export async function extractPhonemesDetailed(audioData: Float32Array): Promise<
   // Create a non-null reference for TypeScript
   const tokenMap = idToToken;
 
-  // Extract log-mel features (shape: [frames, 80])
+  // Extract Kaldi Fbank features (shape: [frames, 80]) - matches ZIPA Python
   const melBands = 80;
-  const melFeatures = extractLogMelJS(audioData, melBands);
+  const melFeatures = await extractKaldiFbank(audioData);
   const numFrames = melFeatures.length / melBands;
 
   // Reshape to [1, numFrames, 80]

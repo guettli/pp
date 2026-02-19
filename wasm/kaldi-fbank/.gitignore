@@ -1,0 +1,3 @@
+# Zig internal directories (build/ is gitignored at project root)
+zig-out/
+.zig-cache/

@@ -1,11 +1,9 @@
 import fs from "fs";
+import os from "os";
 import * as ort from "onnxruntime-node";
 import path from "path";
-import { fileURLToPath } from "url";
+import { MODEL_NAME } from "./model-config.js";
 import { decodePhonemes, type PhonemeWithConfidence } from "../speech/phoneme-decoder.js";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 // Polyfill atob for Node.js
 if (typeof globalThis.atob === "undefined") {
@@ -43,12 +41,9 @@ export async function loadPhonemeModel(options: LoadModelOptions = {}): Promise<
   }
 
   // Determine paths
-  const modelPath =
-    customModelPath ||
-    path.resolve(__dirname, "../../onnx/zipa-small-ctc-onnx-2026-01-28/model.onnx");
-  const vocabPath =
-    customVocabPath ||
-    path.resolve(__dirname, "../../onnx/zipa-small-ctc-onnx-2026-01-28/vocab.json");
+  const cacheDir = path.join(os.homedir(), ".cache", "phoneme-party", "models");
+  const modelPath = customModelPath || path.join(cacheDir, `${MODEL_NAME}.onnx`);
+  const vocabPath = customVocabPath || path.join(cacheDir, `${MODEL_NAME}.vocab.json`);
 
   if (!fs.existsSync(modelPath) || !fs.existsSync(vocabPath)) {
     throw new Error(`ONNX model or vocab not found at: ${modelPath}`);
@@ -95,11 +90,11 @@ export async function extractPhonemes(
 ): Promise<string | PhonemeWithConfidence[]> {
   const { minConfidence = 0.5, returnDetails = false } = options;
 
-  // Import mel extraction - use relative import for compiled code
-  const { extractLogMelJS } = await import("../speech/mel-js.js");
+  // Import Kaldi Fbank extraction - matches ZIPA's Python/Lhotse implementation
+  const { extractKaldiFbank } = await import("../../wasm/kaldi-fbank/index.js");
 
   const melBands = 80;
-  const melFeatures = extractLogMelJS(audioData, melBands);
+  const melFeatures = await extractKaldiFbank(audioData);
   const numFrames = melFeatures.length / melBands;
 
   const x = new ort.Tensor("float32", melFeatures, [1, numFrames, melBands]);
@@ -148,11 +143,11 @@ export async function extractPhonemesDetailed(
     }>;
   };
 }> {
-  // Import mel extraction - use relative import for compiled code
-  const { extractLogMelJS } = await import("../speech/mel-js.js");
+  // Import Kaldi Fbank extraction - matches ZIPA's Python/Lhotse implementation
+  const { extractKaldiFbank } = await import("../../wasm/kaldi-fbank/index.js");
 
   const melBands = 80;
-  const melFeatures = extractLogMelJS(audioData, melBands);
+  const melFeatures = await extractKaldiFbank(audioData);
   const numFrames = melFeatures.length / melBands;
 
   const x = new ort.Tensor("float32", melFeatures, [1, numFrames, melBands]);

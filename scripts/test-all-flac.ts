@@ -25,20 +25,34 @@ import path from "path";
 import os from "os";
 import { fileURLToPath } from "url";
 import { Worker } from "worker_threads";
+import { parseArgs } from "util";
 import yaml from "js-yaml";
+import { MODEL_NAME, HF_REPO } from "../src/lib/model-config.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, "..");
 
 // Model configuration
-const MODEL_REPO = "guettli/zipa-small-ctc-onnx-2026-01-28";
+const MODEL_REPO = HF_REPO;
 const MODEL_URL = `https://huggingface.co/${MODEL_REPO}/resolve/main/model.onnx`;
-const VOCAB_URL = `https://huggingface.co/${MODEL_REPO}/resolve/main/vocab.json`;
+const VOCAB_URL = `https://huggingface.co/${MODEL_REPO}/resolve/main/tokens.txt`;
+const LOCAL_MODEL = path.join(
+  process.env.XDG_CACHE_HOME || path.join(process.env.HOME!, ".cache"),
+  "phoneme-party",
+  "models",
+  `${MODEL_NAME}.onnx`,
+);
+const LOCAL_VOCAB = path.join(
+  process.env.XDG_CACHE_HOME || path.join(process.env.HOME!, ".cache"),
+  "phoneme-party",
+  "models",
+  `${MODEL_NAME}.vocab.json`,
+);
 
 // Cache directory
 const XDG_CACHE_HOME = process.env.XDG_CACHE_HOME || path.join(process.env.HOME!, ".cache");
-const CACHE_DIR = path.join(XDG_CACHE_HOME, "phoneme-party");
+const CACHE_DIR = path.join(XDG_CACHE_HOME, "phoneme-party", "models");
 const DATA_DIR = path.join(PROJECT_ROOT, "tests", "data");
 
 interface AudioFile {
@@ -93,8 +107,30 @@ async function downloadIfNeeded(url: string, filename: string): Promise<string> 
 }
 
 async function downloadModelFiles() {
-  const modelPath = await downloadIfNeeded(MODEL_URL, "model.onnx");
-  const vocabPath = await downloadIfNeeded(VOCAB_URL, "vocab.json");
+  // Use local cache files if already present (avoids HuggingFace download)
+  const modelPath = fs.existsSync(LOCAL_MODEL)
+    ? LOCAL_MODEL
+    : await downloadIfNeeded(MODEL_URL, `${MODEL_NAME}.onnx`);
+
+  let vocabPath = LOCAL_VOCAB;
+  if (!fs.existsSync(LOCAL_VOCAB)) {
+    // Download tokens.txt and convert to vocab.json format
+    console.log("Downloading tokens.txt...");
+    const response = await fetch(VOCAB_URL);
+    if (!response.ok) {
+      throw new Error(`Failed to download vocab: ${response.status}`);
+    }
+    const text = await response.text();
+    const vocab: Record<string, number> = {};
+    for (const line of text.split("\n")) {
+      const parts = line.trim().split(" ");
+      if (parts.length === 2) {
+        vocab[parts[0]] = parseInt(parts[1], 10);
+      }
+    }
+    fs.writeFileSync(LOCAL_VOCAB, JSON.stringify(vocab));
+  }
+
   return { modelPath, vocabPath };
 }
 
@@ -274,12 +310,29 @@ Examples:
 }
 
 async function main() {
-  const args = process.argv.slice(2);
+  let values: { list?: boolean; help?: boolean; update?: boolean };
+  let positionals: string[];
+  try {
+    ({ values, positionals } = parseArgs({
+      args: process.argv.slice(2),
+      options: {
+        list: { type: "boolean", short: "l" },
+        help: { type: "boolean", short: "h" },
+        update: { type: "boolean", short: "u" },
+      },
+      allowPositionals: true,
+      strict: true,
+    }));
+  } catch (e) {
+    console.error((e as Error).message);
+    console.error("Run with --help for usage.");
+    process.exit(1);
+  }
 
-  const showList = args.includes("--list") || args.includes("-l");
-  const showHelp = args.includes("--help") || args.includes("-h");
-  const updateYaml = args.includes("--update") || args.includes("-u");
-  const pattern = args.find((a) => !a.startsWith("-")) || "*";
+  const showList = values.list;
+  const showHelp = values.help;
+  const updateYaml = values.update;
+  const pattern = positionals[0] || "*";
 
   if (showHelp) {
     printHelp();
@@ -457,7 +510,13 @@ async function main() {
     console.log("\n" + "=".repeat(80));
     console.log("❌ REGRESSIONS DETECTED");
     console.log("=".repeat(80));
-    for (const reg of regressions) {
+    // Sort by delta percent: smallest (most negative) at bottom = biggest regression at bottom
+    const sortedRegressions = [...regressions].sort((a, b) => {
+      const deltaA = a.new - a.old;
+      const deltaB = b.new - b.old;
+      return deltaB - deltaA; // Descending order (least negative first)
+    });
+    for (const reg of sortedRegressions) {
       const oldPercent = Math.round(reg.old * 100) + "%";
       const newPercent = Math.round(reg.new * 100) + "%";
       const change = Math.round((reg.new - reg.old) * 100) + "%";

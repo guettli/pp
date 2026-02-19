@@ -2,5 +2,5 @@ phrase: Bett
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
-recognized_ipa: bɛt
-similarity: 1
+recognized_ipa: pɛts
+similarity: 0.86

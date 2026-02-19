@@ -88,15 +88,15 @@ export function displayFeedback(targetPhrase: Phrase, actualIPA: string, score: 
     setupPlayButton(playBtn);
   }
 
-  // Show reprocess button if recording is available
+  // Show reprocess button if processed audio data is available
   const reprocessBtn = document.getElementById("reprocess-recording-btn");
-  if (reprocessBtn && state.lastRecordingBlob) {
+  if (reprocessBtn && state.lastRecordingAudioData) {
     reprocessBtn.style.display = "inline-block";
   }
 
-  // Show model details button if recording is available
+  // Show model details button if processed audio data is available
   const showModelDetailsBtn = document.getElementById("show-model-details-btn");
-  if (showModelDetailsBtn && state.lastRecordingBlob) {
+  if (showModelDetailsBtn && state.lastRecordingAudioData) {
     showModelDetailsBtn.style.display = "inline-block";
   }
 

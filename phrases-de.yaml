@@ -121,7 +121,9 @@
 - phrase: Fahrrad
   emoji: 🚲
   ipas:
-    - ipa: /ˈfaːrˌra(ː)t/
+    - ipa: /ˈfaːrˌraːt/
+      category: standard
+    - ipa: /ˈfaːrˌrat/
       category: standard
   level: 251
 - phrase: Tür
@@ -337,7 +339,9 @@
 - phrase: Ameise
   emoji: 🐜
   ipas:
-    - ipa: /ˈaː.(ˌ)maɪ̯.zə/
+    - ipa: /ˈaː.ˌmaɪ̯.zə/
+      category: standard
+    - ipa: /ˈaː.maɪ̯.zə/
       category: standard
   level: 248
 - phrase: Auge
@@ -487,7 +491,9 @@
 - phrase: Das Fahrrad
   emoji: 🚲
   ipas:
-    - ipa: /das ˈfaːrˌra(ː)t/
+    - ipa: /das ˈfaːrˌraːt/
+      category: standard
+    - ipa: /das ˈfaːrˌrat/
       category: standard
   level: 563
 - phrase: Das Fenster
@@ -937,7 +943,9 @@
 - phrase: Die Ameise
   emoji: 🐜
   ipas:
-    - ipa: /diː ˈaː.(ˌ)maɪ̯.zə/
+    - ipa: /diː ˈaː.ˌmaɪ̯.zə/
+      category: standard
+    - ipa: /diː ˈaː.maɪ̯.zə/
       category: standard
   level: 561
 - phrase: Die Banane

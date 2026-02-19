@@ -3,4 +3,4 @@ lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
 recognized_ipa: fɑɾɑt
-similarity: 0.8
+similarity: 0.9

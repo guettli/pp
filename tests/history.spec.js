@@ -104,7 +104,7 @@ test.describe("History - Database Functionality", () => {
 });
 
 // Full integration tests - may be slow due to model loading
-test.describe.skip("History - Infinite Scroll (Full App)", () => {
+test.describe("History - Infinite Scroll (Full App)", () => {
   test("should display history and support infinite scroll", async ({ page }) => {
     // Go to the app
     await page.goto("/");
@@ -134,16 +134,18 @@ test.describe.skip("History - Infinite Scroll (Full App)", () => {
       console.log("Added 50 test history items");
     });
 
-    // Wait a moment for the history to render
-    await page.waitForTimeout(500);
+    // Reload history view with the newly injected data
+    await page.evaluate(async () => {
+      const { initHistory } = await import("/src/ui/history.ts");
+      initHistory();
+    });
+
+    // Wait for history items to appear
+    await page.locator(".history-item").first().waitFor({ timeout: 5000 });
 
     // Check that history section is visible
     const historyContainer = page.locator("#history-container");
     await expect(historyContainer).toBeVisible();
-
-    // Check that history list exists
-    const historyList = page.locator("#history-list");
-    await expect(historyList).toBeVisible();
 
     // Check that initial items are loaded (should be at least 20)
     const initialItems = await page.locator(".history-item").count();
@@ -153,15 +155,18 @@ test.describe.skip("History - Infinite Scroll (Full App)", () => {
     // Get the history container for scrolling
     const container = page.locator("#history-container");
 
-    // Scroll down to trigger loading more items
+    // Scroll down to trigger loading more items (dispatch scroll event explicitly for reliability)
     await container.evaluate((el) => {
       el.scrollTop = el.scrollHeight;
+      el.dispatchEvent(new Event("scroll"));
     });
 
-    // Wait for loading indicator to appear and disappear
-    const loadingIndicator = page.locator("#history-loading");
-    await expect(loadingIndicator).toBeVisible({ timeout: 2000 });
-    await expect(loadingIndicator).toBeHidden({ timeout: 5000 });
+    // Wait for more items to load (infinite scroll loaded next page)
+    await page.waitForFunction(
+      (count) => document.querySelectorAll(".history-item").length > count,
+      initialItems,
+      { timeout: 5000 },
+    );
 
     // Check that more items have been loaded
     const afterScrollItems = await page.locator(".history-item").count();
@@ -171,13 +176,16 @@ test.describe.skip("History - Infinite Scroll (Full App)", () => {
     // Verify that we have loaded more items (should be around 40 now)
     expect(afterScrollItems).toBeGreaterThanOrEqual(40);
 
-    // Scroll to the bottom again
+    // Scroll to the bottom again to load the last page
     await container.evaluate((el) => {
       el.scrollTop = el.scrollHeight;
+      el.dispatchEvent(new Event("scroll"));
     });
 
-    // Wait a moment for potential loading
-    await page.waitForTimeout(1000);
+    // Wait for all 50 items to load
+    await page.waitForFunction(() => document.querySelectorAll(".history-item").length >= 50, {
+      timeout: 5000,
+    });
 
     // Check final count (should have all 50 items)
     const finalItems = await page.locator(".history-item").count();

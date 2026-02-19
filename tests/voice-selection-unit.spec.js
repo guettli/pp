@@ -69,7 +69,7 @@ test.describe("Voice Selection - Unit Tests", () => {
     // The important thing is that our loading logic handles both cases correctly
   });
 
-  // Skipped: Console logs don't work reliably in test environment
+  // Skipped: Console logs don't capture reliably in Playwright test environment
   test.skip("should verify voice selection setup is called", async ({ page }) => {
     const logs = [];
     page.on("console", (msg) => {

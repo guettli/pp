@@ -118,7 +118,7 @@ async function main() {
 
     try {
       expectedIPA = getExpectedIPA(phrase, lang);
-      const result = calculatePanPhonDistance(expectedIPA, recognizedIPA);
+      const result = calculatePanPhonDistance(expectedIPA, recognizedIPA, lang);
       similarity = result.similarity.toFixed(2);
     } catch (error) {
       // phrase not found in phrase data - this is OK for new phrases

@@ -1,0 +1,8 @@
+.{
+    .name = .kaldi_fbank,
+    .fingerprint = 0xc40142b070bc8c04,
+    .version = "0.1.0",
+    .minimum_zig_version = "0.13.0",
+    .dependencies = .{},
+    .paths = .{""},
+}

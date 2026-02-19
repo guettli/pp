@@ -5,17 +5,18 @@
 import { calculatePanPhonDistance } from "../tests/panphon-distance-node.js";
 
 async function main() {
-  if (process.argv.length < 4) {
-    console.error("Usage: tsx scripts/compare-ipa.ts <expected-ipa> <recognized-ipa>");
-    console.error('Example: tsx scripts/compare-ipa.ts "ˈfaːɐ̯ʁaːt" "faːʁaːt"');
+  if (process.argv.length < 5) {
+    console.error("Usage: tsx scripts/compare-ipa.ts <expected-ipa> <recognized-ipa> <lang>");
+    console.error('Example: tsx scripts/compare-ipa.ts "ˈfaːɐ̯ʁaːt" "faːʁaːt" de');
     process.exit(1);
   }
 
   const expectedIPA = process.argv[2];
   const recognizedIPA = process.argv[3];
+  const lang = process.argv[4];
 
   try {
-    const result = calculatePanPhonDistance(expectedIPA, recognizedIPA);
+    const result = calculatePanPhonDistance(expectedIPA, recognizedIPA, lang);
 
     // Output as JSON
     console.log(

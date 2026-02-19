@@ -2,5 +2,5 @@ phrase: Vogel
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
-recognized_ipa: foge
-similarity: 0.88
+recognized_ipa: fog
+similarity: 0.79

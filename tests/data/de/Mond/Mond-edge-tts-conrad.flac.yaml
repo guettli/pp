@@ -2,5 +2,5 @@ phrase: Mond
 lang: de
 source: edge-tts
 voice: de-DE-ConradNeural
-recognized_ipa: mɔnts
-similarity: 0.88
+recognized_ipa: mons
+similarity: 0.97

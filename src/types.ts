@@ -93,6 +93,7 @@ export interface AppState {
   modelLoadMs: number | null;
   recorder: AudioRecorderInstance | null;
   lastRecordingBlob: Blob | null;
+  lastRecordingAudioData: Float32Array | null; // Cached processed audio to ensure deterministic reprocessing
   actualIPA: string | null;
   userLevel: number; // User's effective level (1-1000)
   actualUserLevel: number; // User's real level based on performance (1-1000)

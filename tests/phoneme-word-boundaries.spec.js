@@ -4,8 +4,8 @@ test.describe("Phoneme Word Boundaries", () => {
   test('should correctly group phonemes by words for "Das Feuer brennt"', async ({ page }) => {
     await page.goto("/");
 
-    // Wait for app to load
-    await page.waitForSelector("#record-btn", { timeout: 10000 });
+    // Wait for app to load (WASM model loading can take a while)
+    await page.locator("#loading-overlay").waitFor({ state: "hidden", timeout: 180000 });
 
     // Inject test data to simulate the phrase "Das Feuer brennt" feedback
     const testResult = await page.evaluate(() => {

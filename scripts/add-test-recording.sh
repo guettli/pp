@@ -30,9 +30,9 @@ if [ "$RECORD_MODE" == "false" ]; then
         exit 1
     fi
 
-    # Ensure dist-node is built
-    echo "Building dist-node..."
-    (cd "$PROJECT_DIR" && pnpm build:node)
+    # Ensure build/node is built
+    echo "Building build/node..."
+    (cd "$PROJECT_DIR" && ./run task node)
     echo ""
 
     # Parse filename: Phrase_Timestamp_Lang.webm (optional IPA notation after lang)
@@ -65,9 +65,9 @@ else
     echo "=== Recording Mode ==="
     echo ""
 
-    # Ensure dist-node is built
-    echo "Building dist-node..."
-    (cd "$PROJECT_DIR" && pnpm build:node)
+    # Ensure build/node is built
+    echo "Building build/node..."
+    (cd "$PROJECT_DIR" && ./run task node)
     echo ""
 
     # Ask for details first

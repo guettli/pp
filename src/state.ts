@@ -15,6 +15,7 @@ export const state: AppState = {
   webgpuAvailable: false,
   webgpuBackend: null,
   lastRecordingBlob: null,
+  lastRecordingAudioData: null,
   recordingCount: 0,
   actualIPA: null,
   userLevel: 1,

@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "noEmit": false,
-    "outDir": "./dist-node",
+    "outDir": "./build/node",
     "rootDir": ".",
     "declaration": true,
     "moduleResolution": "node"

@@ -1,9 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("Phoneme Party - Pronunciation Practice", () => {
-  // FIXME: Test times out waiting for model to load (>120s) in CI environment
-  // App works fine when tested manually with ./run pnpm dev
-  test.skip("should load without console errors", async ({ page }) => {
+  test("should load without console errors", async ({ page }) => {
     const errors = [];
 
     // Capture console errors
@@ -20,15 +18,8 @@ test.describe("Phoneme Party - Pronunciation Practice", () => {
 
     await page.goto("/");
 
-    // Wait for console output element to be visible (max 5 seconds)
-    await page.locator("#console-output").waitFor({ timeout: 5000 });
-
-    // Read the console output from the page itself
-    const consoleText = await page.locator("#console-output").textContent();
-
-    console.log("\n=== Console Output from Page ===");
-    console.log(consoleText);
-    console.log("=== End ===\n");
+    // Wait for app to finish loading (model served locally in DEV mode)
+    await page.locator("#main-content").waitFor({ state: "visible", timeout: 120000 });
 
     // This test will fail if there are errors
     if (errors.length > 0) {

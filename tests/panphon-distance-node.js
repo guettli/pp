@@ -6,13 +6,13 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { createDistanceCalculator } from "../dist-node/src/comparison/panphon-distance-core.js";
+import { createDistanceCalculator } from "../build/node/src/comparison/panphon-distance-core.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Load PanPhon data directly using fs
-const panphonDataPath = path.join(__dirname, "../src/data/panphon_features.json");
+const panphonDataPath = path.join(__dirname, "../build/data/panphon_features.json");
 const panphonData = JSON.parse(fs.readFileSync(panphonDataPath, "utf8"));
 
 // Polyfill atob for Node.js

@@ -16,24 +16,25 @@ test.describe("Phoneme Extraction - Improved Filtering", () => {
     const yamlContent = fs.readFileSync(yamlPath, "utf8");
     const expectedData = yaml.load(yamlContent);
 
-    const expectedIPA = expectedData.recognized_ipa; // diːhiːəoːzə (improved)
+    const expectedIPA = expectedData.recognized_ipa;
 
-    console.log(`\nExpected IPA (with improved filtering): ${expectedIPA}`);
+    console.log(`\nExpected IPA (with WASM Kaldi Fbank): ${expectedIPA}`);
     console.log(`Phrase: ${expectedData.phrase}\n`);
 
     // This test verifies:
-    // Both Node.js and web now use shared confidence filtering with phoneme-specific thresholds
-    // The decoder uses different thresholds based on acoustic properties:
-    // - Very weak (schwas, approximants): 0.70 * base
-    // - Fricatives: 0.72 * base
-    // - Strong/medium phonemes: 1.0 * base
+    // Both Node.js and web now use WASM Kaldi Fbank feature extraction
+    // Matches ZIPA's Python/Lhotse implementation with:
+    // - Proper Cooley-Tukey FFT (not naive DFT)
+    // - Pre-emphasis coefficient 0.97
+    // - Kaldi Povey window, fractional mel bins
+    // - Energy floor for silent frame detection
 
-    expect(expectedIPA).toBe("diːhiːəoːzə");
+    expect(expectedIPA).toBe("diːoːzə");
 
-    console.log("\nIMPROVED DETECTION:");
-    console.log("- Both web and Node.js use src/speech/phoneme-decoder.ts");
-    console.log("- Phoneme-specific confidence thresholds based on acoustic properties");
-    console.log("- Base threshold: 0.50, adjusted per phoneme type");
-    console.log("- Similarity: 86%\n");
+    console.log("\nWASM KALDI FBANK:");
+    console.log("- Both web and Node.js use wasm/kaldi-fbank (matches Python ZIPA)");
+    console.log("- Proper FFT with 0.1% mean difference vs Python/Lhotse");
+    console.log("- Pre-emphasis 0.97, Povey window, fractional mel bins");
+    console.log("- Energy floor for silent frames\n");
   });
 });

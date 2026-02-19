@@ -43,7 +43,9 @@
 - phrase: Star
   emoji: ⭐
   ipas:
-    - ipa: /stɑː(ɹ)/
+    - ipa: /stɑːɹ/
+      category: standard
+    - ipa: /stɑː/
       category: standard
   level: 144
 - phrase: Car
@@ -97,7 +99,9 @@
 - phrase: Butterfly
   emoji: 🦋
   ipas:
-    - ipa: /ˈbʌ.tə(ɹ).flaɪ/
+    - ipa: /ˈbʌ.təɹ.flaɪ/
+      category: standard
+    - ipa: /ˈbʌ.tə.flaɪ/
       category: standard
   level: 496
 - phrase: Ship
@@ -121,13 +125,17 @@
 - phrase: Bicycle
   emoji: 🚲
   ipas:
-    - ipa: /ˈbaɪsɪk(ə)l/
+    - ipa: /ˈbaɪsɪkəl/
+      category: standard
+    - ipa: /ˈbaɪsɪkl/
       category: standard
   level: 416
 - phrase: Door
   emoji: 🚪
   ipas:
-    - ipa: /do(ː)ɹ/
+    - ipa: /doːɹ/
+      category: standard
+    - ipa: /doɹ/
       category: standard
   level: 125
 - phrase: Window
@@ -199,7 +207,9 @@
 - phrase: anger
   emoji: 💢
   ipas:
-    - ipa: /ˈæŋɡə(ɹ)/
+    - ipa: /ˈæŋɡəɹ/
+      category: standard
+    - ipa: /ˈæŋɡə/
       category: standard
   level: 344
 - phrase: ant
@@ -319,7 +329,9 @@
 - phrase: battery
   emoji: 🔋
   ipas:
-    - ipa: /ˈbæt.(ə)ɹi/
+    - ipa: /ˈbæt.əɹi/
+      category: standard
+    - ipa: /ˈbæt.ɹi/
       category: standard
   level: 493
 - phrase: beach
@@ -469,7 +481,9 @@
 - phrase: burger
   emoji: 🍔
   ipas:
-    - ipa: /ˈbɜː.(ɹ)ɡə(ɹ)/
+    - ipa: /ˈbɜː.ɹɡəɹ/
+      category: standard
+    - ipa: /ˈbɜː.ɡə/
       category: standard
   level: 388
 - phrase: bus
@@ -619,7 +633,9 @@
 - phrase: chestnut
   emoji: 🌰
   ipas:
-    - ipa: /ˈt͡ʃɛs(t)nʌt/
+    - ipa: /ˈt͡ʃɛstnʌt/
+      category: standard
+    - ipa: /ˈt͡ʃɛsnʌt/
       category: standard
   level: 553
 - phrase: child
@@ -643,7 +659,9 @@
 - phrase: chocolate
   emoji: 🍫
   ipas:
-    - ipa: /ˈt͡ʃɒk.(ə.)lɪt/
+    - ipa: /ˈt͡ʃɒk.ə.lɪt/
+      category: standard
+    - ipa: /ˈt͡ʃɒk.lɪt/
       category: standard
   level: 648
 - phrase: church
@@ -691,7 +709,9 @@
 - phrase: clover
   emoji: ☘️
   ipas:
-    - ipa: /ˈkləʊ.və(ɹ)/
+    - ipa: /ˈkləʊ.vəɹ/
+      category: standard
+    - ipa: /ˈkləʊ.və/
       category: standard
   level: 464
 - phrase: clutch
@@ -871,7 +891,9 @@
 - phrase: dinosaur
   emoji: 🦖
   ipas:
-    - ipa: /ˈdaɪnəsɔː(ɹ)/
+    - ipa: /ˈdaɪnəsɔːɹ/
+      category: standard
+    - ipa: /ˈdaɪnəsɔː/
       category: standard
   level: 546
 - phrase: dizzy
@@ -997,7 +1019,9 @@
 - phrase: family
   emoji: 👪
   ipas:
-    - ipa: /ˈfæ.m(ɪ.)li/
+    - ipa: /ˈfæ.mɪ.li/
+      category: standard
+    - ipa: /ˈfæ.mli/
       category: standard
   level: 334
 - phrase: fence
@@ -1201,7 +1225,9 @@
 - phrase: guitar
   emoji: 🎸
   ipas:
-    - ipa: /ɡɪˈtɑː(ɹ)/
+    - ipa: /ɡɪˈtɑːɹ/
+      category: standard
+    - ipa: /ɡɪˈtɑː/
       category: standard
   level: 429
 - phrase: gun
@@ -1213,19 +1239,25 @@
 - phrase: hammer
   emoji: 🔨
   ipas:
-    - ipa: /ˈhæm.ə(ɹ)/
+    - ipa: /ˈhæm.əɹ/
+      category: standard
+    - ipa: /ˈhæm.ə/
       category: standard
   level: 394
 - phrase: hamster
   emoji: 🐹
   ipas:
-    - ipa: /ˈhæm(p)stɚ/
+    - ipa: /ˈhæmpstɚ/
+      category: standard
+    - ipa: /ˈhæmstɚ/
       category: standard
   level: 407
 - phrase: hands
   emoji: 🤲
   ipas:
-    - ipa: /hæn(d)z/
+    - ipa: /hændz/
+      category: standard
+    - ipa: /hænz/
       category: standard
   level: 201
 - phrase: hat
@@ -1243,7 +1275,9 @@
 - phrase: helicopter
   emoji: 🚁
   ipas:
-    - ipa: /ˈheliˌkɔptə(ɹ)/
+    - ipa: /ˈheliˌkɔptəɹ/
+      category: standard
+    - ipa: /ˈheliˌkɔptə/
       category: standard
   level: 765
 - phrase: herb
@@ -1597,7 +1631,7 @@
 - phrase: notepad
   emoji: 🗒️
   ipas:
-    - ipa: /(en)nˈəʊtpad(de)/
+    - ipa: /nˈəʊtpad/
       category: standard
   level: 594
 - phrase: octopus
@@ -1633,7 +1667,9 @@
 - phrase: owl
   emoji: 🦉
   ipas:
-    - ipa: /aʊ(ə)l/
+    - ipa: /aʊəl/
+      category: standard
+    - ipa: /aʊl/
       category: standard
   level: 106
 - phrase: page
@@ -1987,7 +2023,9 @@
 - phrase: ruler
   emoji: 📏
   ipas:
-    - ipa: /ˈɹuːlə(ɹ)/
+    - ipa: /ˈɹuːləɹ/
+      category: standard
+    - ipa: /ˈɹuːlə/
       category: standard
   level: 347
 - phrase: run
@@ -2047,7 +2085,9 @@
 - phrase: scooter
   emoji: 🛴
   ipas:
-    - ipa: /ˈskuːtə(ɹ)/
+    - ipa: /ˈskuːtəɹ/
+      category: standard
+    - ipa: /ˈskuːtə/
       category: standard
   level: 512
 - phrase: score
@@ -2239,7 +2279,9 @@
 - phrase: strawberry
   emoji: 🍓
   ipas:
-    - ipa: /ˈstɹɔːb(ə)ɹi/
+    - ipa: /ˈstɹɔːbəɹi/
+      category: standard
+    - ipa: /ˈstɹɔːbɹi/
       category: standard
   level: 575
 - phrase: suit
@@ -2281,7 +2323,9 @@
 - phrase: syringe
   emoji: 💉
   ipas:
-    - ipa: /sɪˈɹɪn(d)ʒ/
+    - ipa: /sɪˈɹɪndʒ/
+      category: standard
+    - ipa: /sɪˈɹɪnʒ/
       category: standard
   level: 619
 - phrase: tape
@@ -2353,13 +2397,17 @@
 - phrase: tornado
   emoji: 🌪️
   ipas:
-    - ipa: /tɔː(ɹ)ˈneɪ.dəʊ/
+    - ipa: /tɔːɹˈneɪ.dəʊ/
+      category: standard
+    - ipa: /tɔːˈneɪ.dəʊ/
       category: standard
   level: 638
 - phrase: tower
   emoji: 🗼
   ipas:
-    - ipa: /ˈtaʊ.ə(ɹ)/
+    - ipa: /ˈtaʊ.əɹ/
+      category: standard
+    - ipa: /ˈtaʊ.ə/
       category: standard
   level: 337
 - phrase: tractor
@@ -2437,7 +2485,9 @@
 - phrase: vampire
   emoji: 🧛
   ipas:
-    - ipa: /ˈvæm.paɪ.ə(ɹ)/
+    - ipa: /ˈvæm.paɪ.əɹ/
+      category: standard
+    - ipa: /ˈvæm.paɪ.ə/
       category: standard
   level: 613
 - phrase: van

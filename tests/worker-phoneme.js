@@ -4,8 +4,8 @@
 import { parentPort, workerData } from "worker_threads";
 
 // Import shared libraries from compiled TypeScript
-import { readAudioFile } from "../dist-node/src/lib/audio.js";
-import { extractPhonemes, loadPhonemeModel } from "../dist-node/src/lib/phoneme-model.js";
+import { readAudioFile } from "../build/node/src/lib/audio.js";
+import { extractPhonemes, loadPhonemeModel } from "../build/node/src/lib/phoneme-model.js";
 import { calculatePanPhonDistance } from "./panphon-distance-node.js";
 
 let session = null;
@@ -40,7 +40,7 @@ async function processTask(task) {
 
     // Try each expected IPA and use the best match
     for (const ipa of expectedIPAs) {
-      const panphonResult = calculatePanPhonDistance(ipa, extractedPhonemes);
+      const panphonResult = calculatePanPhonDistance(ipa, extractedPhonemes, lang);
       if (panphonResult.similarity > bestSimilarity) {
         bestSimilarity = panphonResult.similarity;
         bestResult = panphonResult;

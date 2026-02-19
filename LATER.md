@@ -1,9 +1,50 @@
+When downloading model fails (network error), then auto-resume. Even after reload of page, should
+re-start at last byte.
+
+---
+
+Which files get ignored by git ? Keep list small. Use build dir.
+
+---
+
+re-run sometimes does shows better results.
+
+---
+
+CI: New Linux user, Checkout git ....
+
+---
+
+chrome devtools, look at "Issues" (right top).
+Warning about Buffer usage.
+
+
+---
+
+all ts scripts should use parseArgs with strict.
+
+---
+
+Audio zweimal ins Model geben? Ggf braucht das Model etwas mehr Input um sich an den Sprecher zu
+gewöhnen?
+
+---
+
+Ensure expected_ipa never contains ().
+When fetching ipa, create two (or more) ipa entries.
+
+---
+
+
 tests/data/de/Der_Mann/Der_Mann-Thomas.flac.yaml
 
 Doppeltes "n". Sollte voll ok sein.
 
 ---
 
+Gameification: Resolve things - like Tetris. Continous doing, resolving, doing...
+
+---
 
 ❯ ./run scripts/add-test-recording.sh ~/Downloads/Der\ Hamster_20260208T173641_de_deːɾhaɾmstɛr.webm
 Building dist-node...
@@ -39,10 +80,6 @@ Get Domain "DerHaseLacht.de"
 ---
 
 Plural dazu: Zwei Mäuse, Vier Stühle...
-
----
-
-Cache dont use ~/.cache/pp use ~/.cache/phoneme-party
 
 ---
 

@@ -1,0 +1,82 @@
+version: "3"
+
+tasks:
+  default:
+    desc: Build everything (WASM, PanPhon data, TypeScript)
+    deps: [ts]
+
+  _nix-check:
+    internal: true
+    run: once
+    preconditions:
+      - sh: test -n "${DIRENV_DIR:-}"
+        msg: "Not in nix dev shell. Run via: ./run task"
+
+  wasm:
+    desc: Build kaldi-fbank WASM via Zig
+    deps: [_nix-check]
+    dir: wasm/kaldi-fbank
+    cmds:
+      - zig build -Drelease=true
+    sources:
+      - fbank-standalone.zig
+      - build.zig
+      - build.zig.zon
+    generates:
+      - build/kaldi-fbank.wasm
+
+  panphon:
+    desc: Generate PanPhon feature data into build/data/
+    deps: [_nix-check]
+    cmds:
+      - mkdir -p build/data
+      - python scripts/export_panphon_features.py
+    sources:
+      - scripts/export_panphon_features.py
+    generates:
+      - build/data/panphon_features.json
+
+  ts:
+    desc: Build TypeScript (depends on panphon data and WASM)
+    deps: [_nix-check, panphon, wasm]
+    cmds:
+      - pnpm build
+
+  node:
+    desc: Compile TypeScript for Node.js into build/node/
+    deps: [_nix-check]
+    cmds:
+      - tsc -p tsconfig.build.json
+    sources:
+      - src/**/*.ts
+      - tsconfig.build.json
+    generates:
+      - build/node/src/**/*.js
+
+  lint:
+    desc: Format and lint
+    deps: [_nix-check]
+    cmds:
+      - ./scripts/lint.sh
+
+  typecheck:
+    desc: TypeScript type check
+    deps: [_nix-check]
+    cmds:
+      - pnpm typecheck
+
+  test:
+    desc: Run e2e tests (requires built dist/)
+    deps: [_nix-check, ts]
+    cmds:
+      - pnpm test
+
+  check:
+    desc: Run all checks (lint + typecheck + e2e), concurrent where possible
+    deps: [lint, typecheck, test]
+
+  deploy:
+    desc: Build, check and deploy to server
+    deps: [check]
+    cmds:
+      - rsync -avz --delete --exclude='onnx' dist/ tg:public_html/phoneme-party/

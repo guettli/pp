@@ -508,22 +508,6 @@ async function actuallyStopRecording() {
       return result;
     };
 
-    // Helper to process audio blob and extract phonemes
-    const processAudioBlob = async (blob: Blob, realtimeStatus: string): Promise<string> => {
-      const audioData = await measureAsync("processing.step_prepare", () =>
-        prepareAudioForModel(blob),
-      );
-      showProcessing(30);
-
-      const ipa = await measureAsync("processing.step_phonemes", () => extractPhonemes(audioData));
-      debugMeta.push({
-        labelKey: "processing.meta_realtime",
-        value: realtimeStatus,
-      });
-      showProcessing(85);
-      return ipa;
-    };
-
     const debugMeta: DebugMeta[] = [];
     if (state.modelLoadMs !== null && Number.isFinite(state.modelLoadMs)) {
       debugMeta.push({
@@ -549,6 +533,13 @@ async function actuallyStopRecording() {
     }, 100);
 
     try {
+      // Always process and cache the audio data for deterministic reprocessing
+      const audioData = await measureAsync("processing.step_prepare", () =>
+        prepareAudioForModel(audioBlob),
+      );
+      setState({ lastRecordingAudioData: audioData });
+      showProcessing(30);
+
       let actualIPA: string;
 
       // If we have a real-time detector, finalize it to ensure complete processing
@@ -570,11 +561,27 @@ async function actuallyStopRecording() {
           showProcessing(85);
         } else {
           // Fallback to whole-blob processing if real-time failed
-          actualIPA = await processAudioBlob(audioBlob, "No (fallback to post-processing)");
+          const ipa = await measureAsync("processing.step_phonemes", () =>
+            extractPhonemes(audioData),
+          );
+          debugMeta.push({
+            labelKey: "processing.meta_realtime",
+            value: "No (fallback to post-processing)",
+          });
+          showProcessing(85);
+          actualIPA = ipa;
         }
       } else {
-        // No real-time detector, process the audio normally
-        actualIPA = await processAudioBlob(audioBlob, "No real-time detection");
+        // No real-time detector, extract phonemes from processed audio
+        const ipa = await measureAsync("processing.step_phonemes", () =>
+          extractPhonemes(audioData),
+        );
+        debugMeta.push({
+          labelKey: "processing.meta_realtime",
+          value: "No real-time detection",
+        });
+        showProcessing(85);
+        actualIPA = ipa;
       }
 
       // Score the pronunciation using PanPhon features
@@ -673,8 +680,8 @@ async function actuallyStopRecording() {
  * Reprocess the last recording with fresh IPA detection
  */
 async function reprocessRecording() {
-  if (!state.lastRecordingBlob) {
-    console.warn("No recording available to reprocess");
+  if (!state.lastRecordingAudioData) {
+    console.warn("No processed audio data available to reprocess");
     return;
   }
 
@@ -698,8 +705,8 @@ async function reprocessRecording() {
     }, 100);
 
     try {
-      // Extract phonemes from the stored recording
-      const audioData = await prepareAudioForModel(state.lastRecordingBlob);
+      // Use cached processed audio data for deterministic reprocessing
+      const audioData = state.lastRecordingAudioData;
       showProcessing(30);
 
       const actualIPA = await extractPhonemes(audioData);
@@ -739,8 +746,8 @@ async function reprocessRecording() {
  * Show detailed model output for visualization
  */
 async function showModelDetails() {
-  if (!state.lastRecordingBlob) {
-    console.warn("No recording available to analyze");
+  if (!state.lastRecordingAudioData) {
+    console.warn("No processed audio data available to analyze");
     return;
   }
 
@@ -754,8 +761,8 @@ async function showModelDetails() {
       '<div class="text-center"><div class="spinner-border spinner-border-sm"></div> Analyzing...</div>';
     detailsSection.style.display = "block";
 
-    // Extract detailed phoneme information
-    const audioData = await prepareAudioForModel(state.lastRecordingBlob);
+    // Use cached processed audio data for deterministic analysis
+    const audioData = state.lastRecordingAudioData;
     const detailed = await extractPhonemesDetailed(audioData);
 
     // Generate visualization HTML using shared function

@@ -4,22 +4,10 @@
 .claude
 
 # This is git repo, upload via commit and push to higgingface
-onnx/zipa-small-ctc-onnx-2026-01-28/
-
-onnx/wav2vec2-espeak-*/
-onnx/zipa-repo/
-onnx/zipa-small-ctc/
-onnx/zipa-small-ctc-int8/
-onnx/zipa-small-ctc-onnx/
-onnx/zipa-download/
-onnx/zipa-onnx/
-onnx/zipa-export*
 
 # Node.js
 node_modules/
 pnpm-lock.yaml
-# PanPhon feature export (generated)
-panphon_features.generated.json
 
 # Python
 .venv
@@ -33,12 +21,16 @@ __pycache__/
 # Temporary files
 tmp/
 
+# Task runner cache
+.task/
+
 # Build output
 dist/
-dist-node/
 build/
 
 # Playwright
 test-results/
 playwright-report/
 playwright/.cache/
+
+*-debug.html

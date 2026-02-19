@@ -37,10 +37,10 @@ export interface PhonemeDecoderOptions {
 const PHONEME_CLASSES: Array<Set<string>> = [
   new Set(["e", "ɛ"]), // close-mid vs open-mid front vowels
   new Set(["o", "ɔ"]), // close-mid vs open-mid back vowels
-  new Set(["a", "ɑ"]), // front vs back open vowels
+  new Set(["a", "ɑ", "ɐ"]), // open/near-open vowels (model splits probability between these)
   new Set(["i", "ɪ"]), // close vs near-close front vowels
   new Set(["u", "ʊ"]), // close vs near-close back vowels
-  new Set(["ə", "ɐ"]), // schwa variations
+  new Set(["ə"]), // schwa
   new Set(["ø", "ʏ", "œ", "y"]), // front rounded vowels (German ö/ü sounds)
 ];
 

@@ -1,3 +1,6 @@
+import fs from "fs";
+import os from "os";
+import path from "path";
 import { defineConfig } from "vite";
 
 // Custom plugin to suppress PouchDB externalization warnings
@@ -17,6 +20,35 @@ const suppressPouchDBWarnings = () => {
         }
         originalWarn(msg, options);
       };
+    },
+  };
+};
+
+// Serve ONNX model files from XDG cache so no local onnx/ directory is needed
+const serveModelFromCache = () => {
+  const XDG_CACHE_HOME = process.env.XDG_CACHE_HOME || path.join(os.homedir(), ".cache");
+  const MODEL_CACHE_DIR = path.join(XDG_CACHE_HOME, "phoneme-party", "models");
+
+  return {
+    name: "serve-model-from-cache",
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        const match = req.url?.match(/^\/onnx\/([^/]+)\/(model\.onnx|vocab\.json)$/);
+        if (!match) return next();
+
+        const [, modelName, filename] = match;
+        const cacheFile =
+          filename === "vocab.json" ? `${modelName}.vocab.json` : `${modelName}.onnx`;
+        const cachePath = path.join(MODEL_CACHE_DIR, cacheFile);
+
+        if (!fs.existsSync(cachePath)) return next();
+
+        res.setHeader(
+          "Content-Type",
+          filename === "vocab.json" ? "application/json" : "application/octet-stream",
+        );
+        fs.createReadStream(cachePath).pipe(res);
+      });
     },
   };
 };
@@ -57,5 +89,5 @@ export default defineConfig({
       "Cross-Origin-Embedder-Policy": "require-corp",
     },
   },
-  plugins: [suppressPouchDBWarnings()],
+  plugins: [suppressPouchDBWarnings(), serveModelFromCache()],
 });
