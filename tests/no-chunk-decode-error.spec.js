@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixtures.js";
 import path from "path";
 import fs from "fs";
 import yaml from "js-yaml";
@@ -14,7 +14,7 @@ import yaml from "js-yaml";
  */
 test.describe("No Individual Chunk Decode Errors", () => {
   test("Should not produce 'Unable to decode audio data' errors during streaming", async ({
-    page,
+    modelPage: page,
   }) => {
     // Load test data
     const yamlPath = path.join(process.cwd(), "tests/data/de/Die_Rose/Die_Rose-Thomas.flac.yaml");
@@ -31,23 +31,13 @@ test.describe("No Individual Chunk Decode Errors", () => {
     const audioPath = path.join(process.cwd(), "tests/data/de/Die_Rose/Die_Rose-Thomas.flac");
     const audioBuffer = fs.readFileSync(audioPath);
 
-    // Navigate to app
-    await page.goto("/");
-
-    // Capture console errors
+    // Capture console errors (model already loaded via modelPage fixture)
     const consoleErrors = [];
     page.on("console", (msg) => {
       if (msg.type() === "error") {
         consoleErrors.push(msg.text());
       }
     });
-
-    await page.locator("#loading-overlay").waitFor({ state: "hidden", timeout: 180000 });
-
-    console.log("Model loaded\n");
-
-    // Clear any errors that occurred during loading
-    consoleErrors.length = 0;
 
     // Process audio through detector
     const result = await page.evaluate(

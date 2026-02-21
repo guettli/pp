@@ -1,15 +1,12 @@
 // @ts-check
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures.js";
 
 /**
  * Unit tests for voice selection functionality
  * These tests focus on testing the voice selection logic in isolation
  */
 test.describe("Voice Selection - Unit Tests", () => {
-  test("should ensure voices loading mechanism works correctly", async ({ page }) => {
-    // Navigate to page
-    await page.goto("http://localhost:5173?lang=en");
-
+  test("should ensure voices loading mechanism works correctly", async ({ modelPage: page }) => {
     // Inject a test script to verify voice loading logic
     const result = await page.evaluate(() => {
       return new Promise((resolve) => {
@@ -70,7 +67,7 @@ test.describe("Voice Selection - Unit Tests", () => {
   });
 
   // Skipped: Console logs don't capture reliably in Playwright test environment
-  test.skip("should verify voice selection setup is called", async ({ page }) => {
+  test.skip("should verify voice selection setup is called", async ({ modelPage: page }) => {
     const logs = [];
     page.on("console", (msg) => {
       if (msg.type() === "log" && msg.text().includes("Voice selection")) {
@@ -78,11 +75,8 @@ test.describe("Voice Selection - Unit Tests", () => {
       }
     });
 
-    // Navigate to page
-    await page.goto("http://localhost:5173?lang=en");
-
-    // Wait for app initialization (logs should appear during init)
-    await page.waitForTimeout(3000);
+    // App already loaded via modelPage fixture
+    await page.waitForTimeout(500);
 
     console.log("Voice selection logs:", logs);
 
@@ -96,9 +90,7 @@ test.describe("Voice Selection - Unit Tests", () => {
     expect(attachmentLogs.length).toBeGreaterThanOrEqual(1);
   });
 
-  test("should have voice selection modal in DOM", async ({ page }) => {
-    await page.goto("http://localhost:5173?lang=en");
-
+  test("should have voice selection modal in DOM", async ({ modelPage: page }) => {
     // Check if modal exists
     const modalExists = await page.locator("#voice-selection-modal").count();
     expect(modalExists).toBe(1);

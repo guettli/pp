@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixtures.js";
 import path from "path";
 import fs from "fs";
 import yaml from "js-yaml";
@@ -7,7 +7,7 @@ import yaml from "js-yaml";
  * Test for Der_Hund bug: web produces "ejahoni" instead of "ejahond"
  */
 test.describe("Der_Hund Bug", () => {
-  test("Der_Hund-Thomas.flac: web should match Node.js extraction", async ({ page }) => {
+  test("Der_Hund-Thomas.flac: web should match Node.js extraction", async ({ modelPage: page }) => {
     // Load expected data
     const yamlPath = path.join(process.cwd(), "tests/data/de/Der_Hund/Der_Hund-Thomas.flac.yaml");
     const yamlContent = fs.readFileSync(yamlPath, "utf8");
@@ -23,12 +23,6 @@ test.describe("Der_Hund Bug", () => {
     // Load audio file
     const audioPath = path.join(process.cwd(), "tests/data/de/Der_Hund/Der_Hund-Thomas.flac");
     const audioBuffer = fs.readFileSync(audioPath);
-
-    // Navigate to app
-    await page.goto("/");
-    await page.locator("#loading-overlay").waitFor({ state: "hidden", timeout: 180000 });
-
-    console.log("Model loaded\n");
 
     // Test: Extract IPA using web UI's loaded model
     const webResult = await page.evaluate(

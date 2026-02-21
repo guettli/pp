@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixtures.js";
 import path from "path";
 import fs from "fs";
 import yaml from "js-yaml";
@@ -8,7 +8,7 @@ import yaml from "js-yaml";
  * to identify if RealTimePhonemeDetector affects final results
  */
 test.describe("Streaming vs Direct Detection", () => {
-  test("Die_Rose-Thomas.flac: streaming should match direct extraction", async ({ page }) => {
+  test("Die_Rose-Thomas.flac: streaming should match direct extraction", async ({ modelPage: page }) => {
     // Load expected data
     const yamlPath = path.join(process.cwd(), "tests/data/de/Die_Rose/Die_Rose-Thomas.flac.yaml");
     const yamlContent = fs.readFileSync(yamlPath, "utf8");
@@ -23,12 +23,6 @@ test.describe("Streaming vs Direct Detection", () => {
     // Load audio file
     const audioPath = path.join(process.cwd(), "tests/data/de/Die_Rose/Die_Rose-Thomas.flac");
     const audioBuffer = fs.readFileSync(audioPath);
-
-    // Navigate to app
-    await page.goto("/");
-    await page.locator("#loading-overlay").waitFor({ state: "hidden", timeout: 180000 });
-
-    console.log("Model loaded\n");
 
     // Test 1: Direct extraction (no streaming)
     // Use window.__app_extractPhonemes if available, otherwise skip direct test

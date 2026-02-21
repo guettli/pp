@@ -1,9 +1,7 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures.js";
 
 test.describe("History - Database Functionality", () => {
-  test("should verify history is sorted with newest first", async ({ page }) => {
-    await page.goto("/");
-    await page.waitForLoadState("domcontentloaded");
+  test("should verify history is sorted with newest first", async ({ modelPage: page }) => {
 
     const sortTest = await page.evaluate(async () => {
       const { db } = await import("/src/db.ts");
@@ -47,14 +45,8 @@ test.describe("History - Database Functionality", () => {
     }
   });
 
-  test("should test database operations without loading full app", async ({ page }) => {
-    // Create a minimal test page that only tests the database
-    await page.goto("/");
-
-    // Wait for page to start loading
-    await page.waitForLoadState("domcontentloaded");
-
-    // Test database directly without waiting for model
+  test("should test database operations without loading full app", async ({ modelPage: page }) => {
+    // Test database directly
     const dbTest = await page.evaluate(async () => {
       try {
         // Import database module
@@ -105,12 +97,7 @@ test.describe("History - Database Functionality", () => {
 
 // Full integration tests - may be slow due to model loading
 test.describe("History - Infinite Scroll (Full App)", () => {
-  test("should display history and support infinite scroll", async ({ page }) => {
-    // Go to the app
-    await page.goto("/");
-
-    // Wait for app to load (model can take 60-90 seconds on first load)
-    await page.locator("#main-content").waitFor({ state: "visible", timeout: 120000 });
+  test("should display history and support infinite scroll", async ({ modelPage: page }) => {
 
     // Inject test data into PouchDB
     await page.evaluate(async () => {
@@ -202,12 +189,7 @@ test.describe("History - Infinite Scroll (Full App)", () => {
     await expect(emptyState).toBeHidden();
   });
 
-  test("should show empty state when no history", async ({ page }) => {
-    // Go to the app
-    await page.goto("/");
-
-    // Wait for app to load (model can take 60-90 seconds on first load)
-    await page.locator("#main-content").waitFor({ state: "visible", timeout: 120000 });
+  test("should show empty state when no history", async ({ modelPage: page }) => {
 
     // Clear all data
     await page.evaluate(async () => {
@@ -233,12 +215,7 @@ test.describe("History - Infinite Scroll (Full App)", () => {
     await expect(emptyState).toContainText("No training history");
   });
 
-  test("should update history after new recording", async ({ page }) => {
-    // Go to the app
-    await page.goto("/");
-
-    // Wait for app to load (model can take 60-90 seconds on first load)
-    await page.locator("#main-content").waitFor({ state: "visible", timeout: 120000 });
+  test("should update history after new recording", async ({ modelPage: page }) => {
 
     // Clear existing data
     await page.evaluate(async () => {

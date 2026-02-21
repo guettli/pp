@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixtures.js";
 import path from "path";
 import fs from "fs";
 import yaml from "js-yaml";
@@ -9,7 +9,7 @@ import yaml from "js-yaml";
  * This test DETECTS the bug - it should FAIL until the bug is fixed.
  */
 test.describe("Regenbogen Bug Detection", () => {
-  test("Regenbogen-Thomas.flac: web produces wrong IPA", async ({ page }) => {
+  test("Regenbogen-Thomas.flac: web produces wrong IPA", async ({ modelPage: page }) => {
     // Load expected data from Node.js extraction
     const yamlPath = path.join(
       process.cwd(),
@@ -30,12 +30,6 @@ test.describe("Regenbogen Bug Detection", () => {
     // Load audio file
     const audioPath = path.join(process.cwd(), "tests/data/de/Regenbogen/Regenbogen-Thomas.flac");
     const audioBuffer = fs.readFileSync(audioPath);
-
-    // Navigate to app
-    await page.goto("/");
-    await page.locator("#loading-overlay").waitFor({ state: "hidden", timeout: 180000 });
-
-    console.log("Model loaded\n");
 
     // Extract IPA using web UI's loaded model
     const webResult = await page.evaluate(

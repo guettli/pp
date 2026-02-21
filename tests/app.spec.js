@@ -1,27 +1,23 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures.js";
 
 test.describe("Phoneme Party - Pronunciation Practice", () => {
-  test("should load without console errors", async ({ page }) => {
+  test("should load without console errors", async ({ modelPage: page }) => {
     const errors = [];
 
-    // Capture console errors
+    // Capture errors that occur after the model has loaded
     page.on("console", (msg) => {
       if (msg.type() === "error") {
         errors.push(msg.text());
       }
     });
 
-    // Capture page errors (these include SyntaxError, etc.)
     page.on("pageerror", (error) => {
       errors.push(`${error.message}\n${error.stack}`);
     });
 
-    await page.goto("/");
+    // Model is already loaded via the shared fixture — just verify the loaded state is error-free
+    await page.locator("#main-content").waitFor({ state: "visible", timeout: 10000 });
 
-    // Wait for app to finish loading (model served locally in DEV mode)
-    await page.locator("#main-content").waitFor({ state: "visible", timeout: 120000 });
-
-    // This test will fail if there are errors
     if (errors.length > 0) {
       console.log("\n=== Captured Errors ===");
       errors.forEach((err, i) => console.log(`\nError ${i + 1}:\n${err}`));

@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixtures.js";
 import path from "path";
 import fs from "fs";
 import yaml from "js-yaml";
@@ -10,7 +10,7 @@ import yaml from "js-yaml";
  */
 test.describe("Streaming Chunk Decode Bug", () => {
   test("RealTimePhonemeDetector should process accumulated chunks, not individual fragments", async ({
-    page,
+    modelPage: page,
   }) => {
     // Load test data
     const yamlPath = path.join(process.cwd(), "tests/data/de/Die_Rose/Die_Rose-Thomas.flac.yaml");
@@ -26,12 +26,6 @@ test.describe("Streaming Chunk Decode Bug", () => {
     // Load audio file
     const audioPath = path.join(process.cwd(), "tests/data/de/Die_Rose/Die_Rose-Thomas.flac");
     const audioBuffer = fs.readFileSync(audioPath);
-
-    // Navigate to app
-    await page.goto("/");
-    await page.locator("#loading-overlay").waitFor({ state: "hidden", timeout: 180000 });
-
-    console.log("Model loaded\n");
 
     // Test: simulate MediaRecorder-style chunks (fragments of the stream, not complete files)
     const result = await page.evaluate(

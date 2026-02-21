@@ -6,6 +6,20 @@ No code duplication!
 
 ---
 
+remove these tests?
+
+pouchdb-error-prod.spec.js — different browser project (production URL), only waits 2s, never fully
+loads the model. Unavoidable since it needs its own URL.
+
+voice-selection.spec.js — marked @slow, excluded from normal pnpm check by the grep filter in
+playwright.config.js.
+
+---
+
+"Der Panda". Per Zippa wird das letzte A erkannt. Bei mir nur mit Tricks. Wieso?
+
+---
+
 Compare again with ZIPA. Are there differences in:
 
 - Output of pre-processing
@@ -23,14 +37,6 @@ Warum ist "Die Mölch" 99% gleich zu "Die Milch" ?
 
 diːmœlç
 
----
-
-"Der Panda". Per Zippa wird das letzte A erkannt. Bei mir nur mit Tricks. Wieso?
-
----
-
-When downloading model fails (network error), then auto-resume. Even after reload of page, should
-re-start at last byte.
 
 ---
 

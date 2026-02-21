@@ -1,12 +1,7 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures.js";
 
 test.describe("Phoneme Word Boundaries", () => {
-  test('should correctly group phonemes by words for "Das Feuer brennt"', async ({ page }) => {
-    await page.goto("/");
-
-    // Wait for app to load (WASM model loading can take a while)
-    await page.locator("#loading-overlay").waitFor({ state: "hidden", timeout: 180000 });
-
+  test('should correctly group phonemes by words for "Das Feuer brennt"', async ({ modelPage: page }) => {
     // Inject test data to simulate the phrase "Das Feuer brennt" feedback
     const testResult = await page.evaluate(() => {
       // Import the feedback display function (accessing internal module)
@@ -116,8 +111,7 @@ test.describe("Phoneme Word Boundaries", () => {
     expect(testResult.wordPhonemeIndices.reduce((a, b) => a + b, 0)).toBe(12);
   });
 
-  test("should not include title attribute for matching phonemes", async ({ page }) => {
-    await page.goto("/");
+  test("should not include title attribute for matching phonemes", async ({ modelPage: page }) => {
 
     // Inject HTML with phoneme comparison to check for title attributes
     await page.evaluate(() => {

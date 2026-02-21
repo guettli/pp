@@ -1,10 +1,10 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures.js";
 
 test.describe("PouchDB Loading Bug", () => {
-  test("should not have any console errors", async ({ page }) => {
+  test("should not have any console errors", async ({ modelPage: page }) => {
     const errors = [];
 
-    // Capture console errors
+    // Model already loaded — capture any runtime errors
     page.on("console", (msg) => {
       if (msg.type() === "error") {
         const text = msg.text();
@@ -12,17 +12,13 @@ test.describe("PouchDB Loading Bug", () => {
       }
     });
 
-    // Capture page errors (including TypeError from class extension)
     page.on("pageerror", (error) => {
       const errorText = `${error.message}\n${error.stack}`;
       errors.push(errorText);
     });
 
-    // Navigate to the app
-    await page.goto("/");
-
-    // Wait a bit for initialization (PouchDB loads early)
-    await page.waitForTimeout(2000);
+    // Brief pause to catch any deferred errors
+    await page.waitForTimeout(500);
 
     // Log all errors for debugging
     if (errors.length > 0) {

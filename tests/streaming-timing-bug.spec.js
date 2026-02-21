@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./fixtures.js";
 import path from "path";
 import fs from "fs";
 import yaml from "js-yaml";
@@ -9,7 +9,7 @@ import yaml from "js-yaml";
  * the detector hasn't processed anything yet. This causes the fallback to always be used.
  */
 test.describe("Streaming Timing Bug", () => {
-  test("Detector should have processed chunks before recording completes", async ({ page }) => {
+  test("Detector should have processed chunks before recording completes", async ({ modelPage: page }) => {
     // Load test data
     const yamlPath = path.join(process.cwd(), "tests/data/de/Die_Rose/Die_Rose-Thomas.flac.yaml");
     const yamlContent = fs.readFileSync(yamlPath, "utf8");
@@ -24,12 +24,6 @@ test.describe("Streaming Timing Bug", () => {
     // Load audio file
     const audioPath = path.join(process.cwd(), "tests/data/de/Die_Rose/Die_Rose-Thomas.flac");
     const audioBuffer = fs.readFileSync(audioPath);
-
-    // Navigate to app
-    await page.goto("/");
-    await page.locator("#loading-overlay").waitFor({ state: "hidden", timeout: 180000 });
-
-    console.log("Model loaded\n");
 
     // Simulate the EXACT flow from main.ts: create detector, add chunks quickly, then immediately check results
     const result = await page.evaluate(
