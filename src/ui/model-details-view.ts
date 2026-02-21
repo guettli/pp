@@ -105,13 +105,22 @@ export function buildFrameText(frameData: FrameData[]): string {
       .filter((p) => p.probability >= 0.08)
       .sort((a, b) => b.probability - a.probability);
 
-    const text = predictions
+    // First column: blank/silence token (always), or 4 spaces for alignment
+    const blankPred = predictions.find((p) => BLANK_SYMBOLS.has(p.symbol));
+    const nonBlankPreds = predictions.filter((p) => !BLANK_SYMBOLS.has(p.symbol));
+
+    const firstCol = blankPred
+      ? `${BLANK_DISPLAY}:${Math.min(99, Math.floor(blankPred.probability * 100)).toString().padStart(2, "0")}`
+      : "    "; // 4 spaces matches width of "⎵:NN"
+
+    const rest = nonBlankPreds
       .map((p) => {
-        const display = BLANK_SYMBOLS.has(p.symbol) ? BLANK_DISPLAY : p.symbol;
-        const pct = Math.min(99, Math.round(p.probability * 100));
-        return `${display}:${pct.toString().padStart(2, "0")}`;
+        const pct = Math.min(99, Math.floor(p.probability * 100));
+        return `${p.symbol}:${pct.toString().padStart(2, "0")}`;
       })
       .join("  ");
+
+    const text = rest ? `${firstCol}  ${rest}` : firstCol.trimEnd();
 
     const isBlankOnly =
       predictions.length === 0 || predictions.every((p) => BLANK_SYMBOLS.has(p.symbol));
