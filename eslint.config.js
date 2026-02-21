@@ -44,6 +44,8 @@ export default [
         Promise: "readonly",
         IDBDatabase: "readonly",
         Buffer: "readonly",
+        crossOriginIsolated: "readonly",
+        self: "readonly",
       },
     },
     plugins: {

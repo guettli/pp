@@ -3,33 +3,23 @@
  * Outputs IPA phonemes directly from audio
  */
 
-import { extractKaldiFbank } from "../../wasm/kaldi-fbank/index.js";
+import * as ort from "onnxruntime-web";
+import { buildPhonemeFeeds } from "./phoneme-feeds.js";
 import { MODEL_NAME, HF_REPO } from "../lib/model-config.js";
-import { getModelFromCache, saveModelToCache } from "./model-cache.js";
+import {
+  clearPartialDownload,
+  getModelFromCache,
+  getPartialDownload,
+  saveModelToCache,
+  savePartialDownload,
+} from "./model-cache.js";
 import { decodePhonemes } from "./phoneme-decoder.js";
 
-// ONNX Runtime types
-interface OrtTensor {
-  data: Float32Array | BigInt64Array;
-  dims: number[];
-}
-
-interface OrtInferenceSession {
-  run(feeds: Record<string, OrtTensor>): Promise<Record<string, OrtTensor>>;
-}
-
-interface OrtRuntime {
-  InferenceSession: {
-    create(buffer: ArrayBuffer, options?: Record<string, unknown>): Promise<OrtInferenceSession>;
-  };
-  Tensor: new (type: string, data: Float32Array | BigInt64Array, dims: number[]) => OrtTensor;
-}
-
-declare global {
-  interface Window {
-    ort?: OrtRuntime;
-  }
-}
+// Point WASM binaries to CDN — Vite does not bundle .wasm files automatically
+ort.env.wasm.wasmPaths = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.23.2/dist/";
+ort.env.wasm.numThreads = self.crossOriginIsolated ? navigator.hardwareConcurrency || 4 : 1;
+// Suppress non-critical ORT warnings (e.g. CPU vendor detection in sandboxed environments)
+ort.env.logLevel = "error";
 
 interface ProgressInfo {
   status: string;
@@ -37,6 +27,118 @@ interface ProgressInfo {
   progress: number;
   loaded?: number;
   total?: number;
+  attempt?: number;
+  max?: number;
+}
+
+const MAX_DOWNLOAD_RETRIES = 5;
+// Save partial download to IndexedDB every 5 MB to limit write overhead
+const PARTIAL_SAVE_INTERVAL = 5 * 1024 * 1024;
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function combineBuffers(
+  initial: ArrayBuffer | undefined,
+  chunks: Uint8Array[],
+  totalLoaded: number,
+): ArrayBuffer {
+  const combined = new Uint8Array(totalLoaded);
+  let offset = 0;
+  if (initial) {
+    combined.set(new Uint8Array(initial), 0);
+    offset = initial.byteLength;
+  }
+  for (const chunk of chunks) {
+    combined.set(chunk, offset);
+    offset += chunk.length;
+  }
+  return combined.buffer;
+}
+
+async function attemptDownload(
+  url: string,
+  onProgress: (loaded: number, total: number) => void,
+): Promise<ArrayBuffer> {
+  const partial = await getPartialDownload(url);
+  const resumeFrom: number = partial != null ? partial.data.byteLength : 0;
+
+  const headers: Record<string, string> = {};
+  if (resumeFrom > 0) {
+    headers["Range"] = `bytes=${resumeFrom}-`;
+  }
+
+  const response = await fetch(url, { headers });
+  if (!response.ok && response.status !== 206) {
+    throw new Error(`Failed to fetch model: ${response.status}`);
+  }
+
+  const isResume = response.status === 206;
+
+  // Server ignored Range request — discard stale partial data
+  if (resumeFrom > 0 && !isResume) {
+    void clearPartialDownload(url);
+  }
+
+  const contentLength = response.headers.get("content-length");
+  const remainingBytes: number = contentLength ? parseInt(contentLength, 10) : 0;
+  const startByte: number = isResume ? resumeFrom : 0;
+  const totalBytes: number = remainingBytes > 0 ? startByte + remainingBytes : 0;
+
+  if (!response.body) {
+    throw new Error("Model response body is null");
+  }
+
+  const reader = response.body.getReader();
+  const newChunks: Uint8Array[] = [];
+  let loadedBytes: number = startByte;
+  let lastSavedAt: number = startByte;
+  const initialBuffer = isResume && partial != null ? partial.data : undefined;
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    const chunk = value as Uint8Array;
+    newChunks.push(chunk);
+    loadedBytes += chunk.length;
+    onProgress(loadedBytes, totalBytes);
+
+    // Periodically persist partial progress (fire-and-forget)
+    if (loadedBytes - lastSavedAt >= PARTIAL_SAVE_INTERVAL) {
+      const partialData = combineBuffers(initialBuffer, newChunks, loadedBytes);
+      void savePartialDownload(url, { data: partialData, total: totalBytes });
+      lastSavedAt = loadedBytes;
+    }
+  }
+
+  return combineBuffers(initialBuffer, newChunks, loadedBytes);
+}
+
+async function downloadWithRetryAndResume(
+  url: string,
+  onProgress: (loaded: number, total: number) => void,
+  onRetry: (attempt: number, maxRetries: number) => void,
+): Promise<ArrayBuffer> {
+  let lastError: unknown;
+  for (let attempt = 0; attempt <= MAX_DOWNLOAD_RETRIES; attempt++) {
+    if (attempt > 0) {
+      const delayMs = Math.min(1000 * Math.pow(2, attempt - 1), 30000);
+      onRetry(attempt, MAX_DOWNLOAD_RETRIES);
+      await sleep(delayMs);
+    }
+    try {
+      return await attemptDownload(url, onProgress);
+    } catch (error) {
+      lastError = error;
+      console.warn(
+        `Model download attempt ${attempt + 1}/${MAX_DOWNLOAD_RETRIES + 1} failed:`,
+        error,
+      );
+    }
+  }
+  throw lastError;
 }
 
 // Use local model when running on localhost in DEV mode to speed up loading
@@ -54,7 +156,7 @@ const VOCAB_URL = IS_DEV_LOCALHOST
   ? `/onnx/${MODEL_NAME}/vocab.json`
   : `https://huggingface.co/${HF_REPO}/resolve/main/tokens.txt`;
 
-let session: OrtInferenceSession | null = null;
+let session: ort.InferenceSession | null = null;
 let vocab: Record<string, number> | null = null;
 let idToToken: Record<number, string> | null = null;
 
@@ -64,13 +166,6 @@ let idToToken: Record<number, string> | null = null;
 export async function loadPhonemeModel(
   progressCallback: (info: ProgressInfo) => void,
 ): Promise<void> {
-  // Wait for ONNX Runtime to be available
-  while (!window.ort) {
-    await new Promise((resolve) => setTimeout(resolve, 100));
-  }
-
-  const ort = window.ort;
-
   try {
     // Load vocab first (small)
     progressCallback({
@@ -120,54 +215,35 @@ export async function loadPhonemeModel(
     // Try to load model from IndexedDB cache first
     let modelArrayBuffer = await getModelFromCache(MODEL_URL);
     if (!modelArrayBuffer) {
-      // Not cached: download and cache
-
-      // Load model with progress tracking
-      const modelResponse = await fetch(MODEL_URL);
-      if (!modelResponse.ok) {
-        throw new Error(`Failed to fetch model: ${modelResponse.status}`);
-      }
-
-      const contentLength = modelResponse.headers.get("content-length");
-      const totalBytes = contentLength ? parseInt(contentLength, 10) : 0;
-
-      // Read response as stream for progress tracking
-      if (!modelResponse.body) {
-        throw new Error("Model response body is null");
-      }
-      const reader = modelResponse.body.getReader();
-      const chunks: Uint8Array[] = [];
-      let loadedBytes = 0;
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-
-        chunks.push(value);
-        loadedBytes += value.length;
-
-        if (totalBytes > 0) {
-          const progress = 10 + (loadedBytes / totalBytes) * 80;
+      // Not cached: download with automatic retry and resume support
+      modelArrayBuffer = await downloadWithRetryAndResume(
+        MODEL_URL,
+        (loaded, total) => {
+          if (total > 0) {
+            const progress = 10 + (loaded / total) * 80;
+            progressCallback({
+              status: "downloading",
+              name: "model.onnx",
+              progress: Math.round(progress),
+              loaded,
+              total,
+            });
+          }
+        },
+        (attempt, maxRetries) => {
           progressCallback({
-            status: "downloading",
+            status: "retrying",
             name: "model.onnx",
-            progress: Math.round(progress),
-            loaded: loadedBytes,
-            total: totalBytes,
+            progress: 10,
+            attempt,
+            max: maxRetries,
           });
-        }
-      }
+        },
+      );
 
-      // Combine chunks into single ArrayBuffer
-      const combinedArray = new Uint8Array(loadedBytes);
-      let offset = 0;
-      for (const chunk of chunks) {
-        combinedArray.set(chunk, offset);
-        offset += chunk.length;
-      }
-      // Save to IndexedDB cache
-      await saveModelToCache(MODEL_URL, combinedArray.buffer);
-      modelArrayBuffer = combinedArray.buffer;
+      // Persist complete download and drop the partial-download entry
+      await saveModelToCache(MODEL_URL, modelArrayBuffer);
+      void clearPartialDownload(MODEL_URL);
     }
 
     // Use cached or freshly downloaded model
@@ -196,21 +272,7 @@ export async function extractPhonemes(audioData: Float32Array): Promise<string> 
     throw new Error("Phoneme model not loaded");
   }
 
-  const ort = window.ort;
-  if (!ort) {
-    throw new Error("ONNX Runtime not loaded");
-  }
-
-  // Extract Kaldi Fbank features (shape: [frames, 80]) - matches ZIPA Python
-  const melBands = 80;
-  const melFeatures = await extractKaldiFbank(audioData);
-  const numFrames = melFeatures.length / melBands;
-  // Reshape to [1, numFrames, 80]
-  const inputTensor = new ort.Tensor("float32", melFeatures, [1, numFrames, melBands]);
-  // Prepare x_lens tensor (number of frames)
-  const xLensTensor = new ort.Tensor("int64", new BigInt64Array([BigInt(numFrames)]), [1]);
-  // Run inference
-  const feeds = { x: inputTensor, x_lens: xLensTensor };
+  const feeds = await buildPhonemeFeeds(audioData, ort.Tensor);
   const results = await session.run(feeds);
   let logits = results.logits || results.log_probs;
   if (!logits) {
@@ -264,11 +326,6 @@ export async function extractPhonemesDetailed(audioData: Float32Array): Promise<
     throw new Error("Phoneme model not loaded");
   }
 
-  const ort = window.ort;
-  if (!ort) {
-    throw new Error("ONNX Runtime not loaded");
-  }
-
   if (!idToToken) {
     throw new Error("Vocabulary not loaded");
   }
@@ -276,19 +333,7 @@ export async function extractPhonemesDetailed(audioData: Float32Array): Promise<
   // Create a non-null reference for TypeScript
   const tokenMap = idToToken;
 
-  // Extract Kaldi Fbank features (shape: [frames, 80]) - matches ZIPA Python
-  const melBands = 80;
-  const melFeatures = await extractKaldiFbank(audioData);
-  const numFrames = melFeatures.length / melBands;
-
-  // Reshape to [1, numFrames, 80]
-  const inputTensor = new ort.Tensor("float32", melFeatures, [1, numFrames, melBands]);
-
-  // Prepare x_lens tensor (number of frames)
-  const xLensTensor = new ort.Tensor("int64", new BigInt64Array([BigInt(numFrames)]), [1]);
-
-  // Run inference
-  const feeds = { x: inputTensor, x_lens: xLensTensor };
+  const feeds = await buildPhonemeFeeds(audioData, ort.Tensor);
   const results = await session.run(feeds);
 
   let logits = results.logits || results.log_probs;

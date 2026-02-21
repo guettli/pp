@@ -1,3 +1,34 @@
+---
+
+There are four matches. I think I want exactly one match.
+
+No code duplication!
+
+---
+
+Compare again with ZIPA. Are there differences in:
+
+- Output of pre-processing
+- Output of mode
+- Output of post-processing
+
+
+---
+
+nach .onnx suchen. Da gibt es komischen code mit int8 usw.
+
+---
+
+Warum ist "Die Mölch" 99% gleich zu "Die Milch" ?
+
+diːmœlç
+
+---
+
+"Der Panda". Per Zippa wird das letzte A erkannt. Bei mir nur mit Tricks. Wieso?
+
+---
+
 When downloading model fails (network error), then auto-resume. Even after reload of page, should
 re-start at last byte.
 

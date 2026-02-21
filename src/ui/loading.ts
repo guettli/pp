@@ -11,6 +11,8 @@ interface ProgressInfo {
   status?: string;
   progress?: number;
   file?: string;
+  attempt?: number;
+  max?: number;
 }
 
 /**
@@ -63,6 +65,11 @@ export function updateLoadingProgress(progress: ProgressInfo): void {
         console.log(statusElement.textContent);
         lastLoggedPercent = currentPercent;
       }
+    } else if (progress.status === "retrying") {
+      const attempt = progress.attempt ?? 1;
+      const max = progress.max ?? 5;
+      statusElement.textContent = t("loading.status.retrying", { attempt, max });
+      if (shouldLog) console.log(statusElement.textContent);
     } else if (progress.status === "loading") {
       statusElement.textContent = t("loading.status.loading_model");
       if (shouldLog) console.log(statusElement.textContent);

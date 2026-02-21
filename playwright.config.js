@@ -25,14 +25,13 @@ export default defineConfig({
   // Run tests in files in parallel
   fullyParallel: true,
 
-  // Fail the build on CI if you accidentally left test.only in the source code
-  forbidOnly: !!process.env.CI,
+  forbidOnly: false,
+  retries: 0,
 
-  // Retry on CI only
-  retries: process.env.CI ? 2 : 0,
-
-  // Opt out of parallel tests on CI
-  workers: process.env.CI ? 1 : undefined,
+  // 1 worker: each Chrome loads the ONNX model into ~6GB WASM heap.
+  // 2 workers peaks at 26GB system-wide (measured), which OOMs on 31GB machines
+  // when VSCode + Claude Code (~4GB combined) are also running.
+  workers: 1,
 
   // Reporter to use
   reporter: "html",

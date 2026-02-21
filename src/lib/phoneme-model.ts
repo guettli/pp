@@ -3,6 +3,7 @@ import os from "os";
 import * as ort from "onnxruntime-node";
 import path from "path";
 import { MODEL_NAME } from "./model-config.js";
+import { buildPhonemeFeeds } from "../speech/phoneme-feeds.js";
 import { decodePhonemes, type PhonemeWithConfidence } from "../speech/phoneme-decoder.js";
 
 // Polyfill atob for Node.js
@@ -90,17 +91,7 @@ export async function extractPhonemes(
 ): Promise<string | PhonemeWithConfidence[]> {
   const { minConfidence = 0.5, returnDetails = false } = options;
 
-  // Import Kaldi Fbank extraction - matches ZIPA's Python/Lhotse implementation
-  const { extractKaldiFbank } = await import("../../wasm/kaldi-fbank/index.js");
-
-  const melBands = 80;
-  const melFeatures = await extractKaldiFbank(audioData);
-  const numFrames = melFeatures.length / melBands;
-
-  const x = new ort.Tensor("float32", melFeatures, [1, numFrames, melBands]);
-  const x_lens = new ort.Tensor("int64", new BigInt64Array([BigInt(numFrames)]), [1]);
-
-  const feeds = { x, x_lens };
+  const feeds = await buildPhonemeFeeds(audioData, ort.Tensor);
   const results = await session.run(feeds);
 
   // Handle different possible output names
@@ -143,17 +134,7 @@ export async function extractPhonemesDetailed(
     }>;
   };
 }> {
-  // Import Kaldi Fbank extraction - matches ZIPA's Python/Lhotse implementation
-  const { extractKaldiFbank } = await import("../../wasm/kaldi-fbank/index.js");
-
-  const melBands = 80;
-  const melFeatures = await extractKaldiFbank(audioData);
-  const numFrames = melFeatures.length / melBands;
-
-  const x = new ort.Tensor("float32", melFeatures, [1, numFrames, melBands]);
-  const x_lens = new ort.Tensor("int64", new BigInt64Array([BigInt(numFrames)]), [1]);
-
-  const feeds = { x, x_lens };
+  const feeds = await buildPhonemeFeeds(audioData, ort.Tensor);
   const results = await session.run(feeds);
 
   // Handle different possible output names
