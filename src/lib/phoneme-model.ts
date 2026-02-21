@@ -2,7 +2,7 @@ import fs from "fs";
 import os from "os";
 import * as ort from "onnxruntime-node";
 import path from "path";
-import { MODEL_NAME } from "./model-config.js";
+import { MODEL_NAME, MODEL_FILE } from "./model-config.js";
 import { buildPhonemeFeeds } from "../speech/phoneme-feeds.js";
 import { decodePhonemes, type PhonemeWithConfidence } from "../speech/phoneme-decoder.js";
 
@@ -43,7 +43,7 @@ export async function loadPhonemeModel(options: LoadModelOptions = {}): Promise<
 
   // Determine paths
   const cacheDir = path.join(os.homedir(), ".cache", "phoneme-party", "models");
-  const modelPath = customModelPath || path.join(cacheDir, `${MODEL_NAME}.onnx`);
+  const modelPath = customModelPath || path.join(cacheDir, MODEL_FILE.replace("model", MODEL_NAME));
   const vocabPath = customVocabPath || path.join(cacheDir, `${MODEL_NAME}.vocab.json`);
 
   if (!fs.existsSync(modelPath) || !fs.existsSync(vocabPath)) {

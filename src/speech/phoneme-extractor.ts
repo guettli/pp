@@ -5,7 +5,7 @@
 
 import * as ort from "onnxruntime-web";
 import { buildPhonemeFeeds } from "./phoneme-feeds.js";
-import { MODEL_NAME, HF_REPO } from "../lib/model-config.js";
+import { MODEL_NAME, HF_REPO, MODEL_FILE } from "../lib/model-config.js";
 import {
   clearPartialDownload,
   deleteModelFromCache,
@@ -159,7 +159,7 @@ const IS_DEV_LOCALHOST =
   (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
 
 /**
- * Fetch the expected SHA-256 of model.onnx from HuggingFace tree API.
+ * Fetch the expected SHA-256 of the model file from HuggingFace tree API.
  * Returns null in dev mode or if the request fails (e.g. offline).
  */
 async function fetchHFChecksum(): Promise<string | null> {
@@ -168,7 +168,7 @@ async function fetchHFChecksum(): Promise<string | null> {
     const resp = await fetch(`https://huggingface.co/api/models/${HF_REPO}/tree/main`);
     if (!resp.ok) return null;
     const files = (await resp.json()) as Array<{ path: string; lfs?: { oid: string } }>;
-    const entry = files.find((f) => f.path === "model.onnx");
+    const entry = files.find((f) => f.path === MODEL_FILE);
     return entry?.lfs?.oid ?? null;
   } catch {
     return null;
@@ -176,8 +176,8 @@ async function fetchHFChecksum(): Promise<string | null> {
 }
 
 const MODEL_URL = IS_DEV_LOCALHOST
-  ? `/onnx/${MODEL_NAME}/model.onnx`
-  : `https://huggingface.co/${HF_REPO}/resolve/main/model.onnx`;
+  ? `/onnx/${MODEL_NAME}/${MODEL_FILE}`
+  : `https://huggingface.co/${HF_REPO}/resolve/main/${MODEL_FILE}`;
 
 const VOCAB_URL = IS_DEV_LOCALHOST
   ? `/onnx/${MODEL_NAME}/vocab.json`
@@ -235,13 +235,8 @@ export async function loadPhonemeModel(
       progress: 10,
     });
 
-    // Configure ONNX Runtime - prefer WebGPU on desktop only.
-    // ort 1.20+ selects fp16 WebGPU kernels internally on capable hardware (all mobile GPUs).
-    // WebGpuExecutionProviderOption only exposes preferredLayout — no precision override exists.
-    // WASM on mobile ensures correct fp32 inference.
-    const isMobile =
-      typeof navigator !== "undefined" && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const webgpuAvailable = !isMobile && typeof navigator !== "undefined" && !!navigator.gpu;
+    // Configure ONNX Runtime - prefer WebGPU (fp16 model matches WebGPU fp16 kernels).
+    const webgpuAvailable = typeof navigator !== "undefined" && !!navigator.gpu;
     const executionProviders = webgpuAvailable ? ["webgpu", "wasm"] : ["wasm"];
 
     // Try to load model from IndexedDB cache first

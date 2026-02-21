@@ -33,12 +33,12 @@ const serveModelFromCache = () => {
     name: "serve-model-from-cache",
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
-        const match = req.url?.match(/^\/onnx\/([^/]+)\/(model\.onnx|vocab\.json)$/);
+        const match = req.url?.match(/^\/onnx\/([^/]+)\/(model(?:\.\w+)?\.onnx|vocab\.json)$/);
         if (!match) return next();
 
         const [, modelName, filename] = match;
         const cacheFile =
-          filename === "vocab.json" ? `${modelName}.vocab.json` : `${modelName}.onnx`;
+          filename === "vocab.json" ? `${modelName}.vocab.json` : `${modelName}.${filename.replace("model.", "")}`;
         const cachePath = path.join(MODEL_CACHE_DIR, cacheFile);
 
         if (!fs.existsSync(cachePath)) return next();
