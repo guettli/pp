@@ -8,7 +8,9 @@ import yaml from "js-yaml";
  * to identify if RealTimePhonemeDetector affects final results
  */
 test.describe("Streaming vs Direct Detection", () => {
-  test("Die_Rose-Thomas.flac: streaming should match direct extraction", async ({ modelPage: page }) => {
+  test("Die_Rose-Thomas.flac: streaming should match direct extraction", async ({
+    modelPage: page,
+  }) => {
     // Load expected data
     const yamlPath = path.join(process.cwd(), "tests/data/de/Die_Rose/Die_Rose-Thomas.flac.yaml");
     const yamlContent = fs.readFileSync(yamlPath, "utf8");

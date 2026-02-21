@@ -9,7 +9,7 @@ tasks:
     internal: true
     run: once
     preconditions:
-      - sh: test -n "${DIRENV_DIR:-}"
+      - sh: test "${DIRENV_DIR#-}" = "{{.TASKFILE_DIR}}"
         msg: "Not in nix dev shell. Run via: ./run task"
 
   wasm:

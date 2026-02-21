@@ -2,7 +2,6 @@ import { expect, test } from "./fixtures.js";
 
 test.describe("History - Database Functionality", () => {
   test("should verify history is sorted with newest first", async ({ modelPage: page }) => {
-
     const sortTest = await page.evaluate(async () => {
       const { db } = await import("/src/db.ts");
       await db.clearAll();
@@ -98,7 +97,6 @@ test.describe("History - Database Functionality", () => {
 // Full integration tests - may be slow due to model loading
 test.describe("History - Infinite Scroll (Full App)", () => {
   test("should display history and support infinite scroll", async ({ modelPage: page }) => {
-
     // Inject test data into PouchDB
     await page.evaluate(async () => {
       // Import db module
@@ -190,7 +188,6 @@ test.describe("History - Infinite Scroll (Full App)", () => {
   });
 
   test("should show empty state when no history", async ({ modelPage: page }) => {
-
     // Clear all data
     await page.evaluate(async () => {
       const { db } = await import("/src/db.ts");
@@ -216,7 +213,6 @@ test.describe("History - Infinite Scroll (Full App)", () => {
   });
 
   test("should update history after new recording", async ({ modelPage: page }) => {
-
     // Clear existing data
     await page.evaluate(async () => {
       const { db } = await import("/src/db.ts");

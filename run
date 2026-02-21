@@ -10,7 +10,7 @@ if [[ $# -eq 0 ]] || [[ "${1:-}" == -* ]]; then
     exit 1
 fi
 
-if [[ -z ${DIRENV_DIR:-} ]]; then
+if [[ "${DIRENV_DIR#-}" != "$(cd "$(dirname "$0")" && pwd)" ]]; then
     # Execute the command with direnv environment loaded
     exec direnv exec . "$@"
 fi

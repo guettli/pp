@@ -1,7 +1,9 @@
 import { expect, test } from "./fixtures.js";
 
 test.describe("Phoneme Word Boundaries", () => {
-  test('should correctly group phonemes by words for "Das Feuer brennt"', async ({ modelPage: page }) => {
+  test('should correctly group phonemes by words for "Das Feuer brennt"', async ({
+    modelPage: page,
+  }) => {
     // Inject test data to simulate the phrase "Das Feuer brennt" feedback
     const testResult = await page.evaluate(() => {
       // Import the feedback display function (accessing internal module)
@@ -112,7 +114,6 @@ test.describe("Phoneme Word Boundaries", () => {
   });
 
   test("should not include title attribute for matching phonemes", async ({ modelPage: page }) => {
-
     // Inject HTML with phoneme comparison to check for title attributes
     await page.evaluate(() => {
       const feedbackSection = document.getElementById("phoneme-comparison-grid");

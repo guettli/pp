@@ -9,7 +9,9 @@ import yaml from "js-yaml";
  * the detector hasn't processed anything yet. This causes the fallback to always be used.
  */
 test.describe("Streaming Timing Bug", () => {
-  test("Detector should have processed chunks before recording completes", async ({ modelPage: page }) => {
+  test("Detector should have processed chunks before recording completes", async ({
+    modelPage: page,
+  }) => {
     // Load test data
     const yamlPath = path.join(process.cwd(), "tests/data/de/Die_Rose/Die_Rose-Thomas.flac.yaml");
     const yamlContent = fs.readFileSync(yamlPath, "utf8");
