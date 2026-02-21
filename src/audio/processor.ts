@@ -19,6 +19,17 @@ export async function prepareAudioForModel(audioBlob: Blob): Promise<Float32Arra
   // Decode audio data
   const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
 
+  console.log(
+    "[audio-diag] ctx rate:",
+    audioContext.sampleRate,
+    "buf rate:",
+    audioBuffer.sampleRate,
+    "samples:",
+    audioBuffer.length,
+    "expected ~",
+    Math.round(audioBuffer.duration * 16000),
+  );
+
   // Get mono channel data (model expects mono)
   let audioData: Float32Array = audioBuffer.getChannelData(0);
 

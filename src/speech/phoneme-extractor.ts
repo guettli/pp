@@ -8,8 +8,11 @@ import { buildPhonemeFeeds } from "./phoneme-feeds.js";
 import { MODEL_NAME, HF_REPO } from "../lib/model-config.js";
 import {
   clearPartialDownload,
+  deleteModelFromCache,
+  getModelChecksum,
   getModelFromCache,
   getPartialDownload,
+  saveModelChecksum,
   saveModelToCache,
   savePartialDownload,
 } from "./model-cache.js";
@@ -37,6 +40,13 @@ const PARTIAL_SAVE_INTERVAL = 5 * 1024 * 1024;
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function computeSHA256(buffer: ArrayBuffer): Promise<string> {
+  const hashBuffer = await globalThis.crypto.subtle.digest("SHA-256", buffer);
+  return Array.from(new Uint8Array(hashBuffer))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
 }
 
 function combineBuffers(
@@ -148,6 +158,23 @@ const IS_DEV_LOCALHOST =
   typeof window !== "undefined" &&
   (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
 
+/**
+ * Fetch the expected SHA-256 of model.onnx from HuggingFace tree API.
+ * Returns null in dev mode or if the request fails (e.g. offline).
+ */
+async function fetchHFChecksum(): Promise<string | null> {
+  if (IS_DEV_LOCALHOST) return null;
+  try {
+    const resp = await fetch(`https://huggingface.co/api/models/${HF_REPO}/tree/main`);
+    if (!resp.ok) return null;
+    const files = (await resp.json()) as Array<{ path: string; lfs?: { oid: string } }>;
+    const entry = files.find((f) => f.path === "model.onnx");
+    return entry?.lfs?.oid ?? null;
+  } catch {
+    return null;
+  }
+}
+
 const MODEL_URL = IS_DEV_LOCALHOST
   ? `/onnx/${MODEL_NAME}/model.onnx`
   : `https://huggingface.co/${HF_REPO}/resolve/main/model.onnx`;
@@ -204,18 +231,37 @@ export async function loadPhonemeModel(
 
     progressCallback({
       status: "downloading",
-      name: "model.onnx",
+      name: MODEL_NAME,
       progress: 10,
     });
 
-    // Configure ONNX Runtime - prefer WebGPU
-    const webgpuAvailable = typeof navigator !== "undefined" && !!navigator.gpu;
+    // Configure ONNX Runtime - prefer WebGPU on desktop only.
+    // ort 1.20+ selects fp16 WebGPU kernels internally on capable hardware (all mobile GPUs).
+    // WebGpuExecutionProviderOption only exposes preferredLayout — no precision override exists.
+    // WASM on mobile ensures correct fp32 inference.
+    const isMobile =
+      typeof navigator !== "undefined" && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const webgpuAvailable = !isMobile && typeof navigator !== "undefined" && !!navigator.gpu;
     const executionProviders = webgpuAvailable ? ["webgpu", "wasm"] : ["wasm"];
 
     // Try to load model from IndexedDB cache first
     let modelArrayBuffer = await getModelFromCache(MODEL_URL);
+    if (modelArrayBuffer) {
+      // Verify checksum: prefer remote (detects HF updates), fall back to stored (detects corruption)
+      const [storedChecksum, remoteChecksum, actualChecksum] = await Promise.all([
+        getModelChecksum(MODEL_URL),
+        fetchHFChecksum(),
+        computeSHA256(modelArrayBuffer),
+      ]);
+      const referenceChecksum = remoteChecksum ?? storedChecksum;
+      if (!referenceChecksum || actualChecksum !== referenceChecksum) {
+        console.warn("Cached model checksum mismatch — redownloading");
+        await deleteModelFromCache(MODEL_URL);
+        modelArrayBuffer = null;
+      }
+    }
     if (!modelArrayBuffer) {
-      // Not cached: download with automatic retry and resume support
+      // Not cached (or evicted): download with automatic retry and resume support
       modelArrayBuffer = await downloadWithRetryAndResume(
         MODEL_URL,
         (loaded, total) => {
@@ -223,7 +269,7 @@ export async function loadPhonemeModel(
             const progress = 10 + (loaded / total) * 80;
             progressCallback({
               status: "downloading",
-              name: "model.onnx",
+              name: MODEL_NAME,
               progress: Math.round(progress),
               loaded,
               total,
@@ -233,7 +279,7 @@ export async function loadPhonemeModel(
         (attempt, maxRetries) => {
           progressCallback({
             status: "retrying",
-            name: "model.onnx",
+            name: MODEL_NAME,
             progress: 10,
             attempt,
             max: maxRetries,
@@ -241,8 +287,9 @@ export async function loadPhonemeModel(
         },
       );
 
-      // Persist complete download and drop the partial-download entry
+      // Persist complete download, store checksum, drop partial-download entry
       await saveModelToCache(MODEL_URL, modelArrayBuffer);
+      await saveModelChecksum(MODEL_URL, await computeSHA256(modelArrayBuffer));
       void clearPartialDownload(MODEL_URL);
     }
 
@@ -262,6 +309,55 @@ export async function loadPhonemeModel(
     console.error("Failed to load phoneme model:", error);
     throw error;
   }
+}
+
+/**
+ * Extract phonemes and count trailing frames where the blank token (CTC ⎵) has high confidence.
+ * Used to detect end-of-speech: chars detected followed by N blank frames.
+ */
+export async function extractPhonemesWithBlankInfo(
+  audioData: Float32Array,
+  blankConfidenceThreshold = 0.95,
+): Promise<{ phonemes: string; trailingBlankFrames: number }> {
+  if (!session) {
+    throw new Error("Phoneme model not loaded");
+  }
+  if (!idToToken) {
+    throw new Error("Vocabulary not loaded");
+  }
+
+  const feeds = await buildPhonemeFeeds(audioData, ort.Tensor);
+  const results = await session.run(feeds);
+  let logits = results.logits || results.log_probs;
+  if (!logits) {
+    const firstKey = Object.keys(results)[0];
+    logits = results[firstKey];
+  }
+  if (!logits) {
+    throw new Error(
+      "No logits output found in ONNX results. Available keys: " + Object.keys(results).join(", "),
+    );
+  }
+
+  const logitsData = logits.data as Float32Array;
+  const [, seqLen, vocabSize] = logits.dims;
+
+  const phonemes = decodePhonemes(logitsData, seqLen, vocabSize, idToToken, {
+    returnDetails: false,
+  }) as string;
+
+  // Count trailing frames where blank token (ID=0) probability exceeds threshold
+  let trailingBlankFrames = 0;
+  for (let t = seqLen - 1; t >= 0; t--) {
+    const blankProb = Math.exp(logitsData[t * vocabSize]); // token ID 0 is <blk>
+    if (blankProb > blankConfidenceThreshold) {
+      trailingBlankFrames++;
+    } else {
+      break;
+    }
+  }
+
+  return { phonemes, trailingBlankFrames };
 }
 
 /**

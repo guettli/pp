@@ -397,6 +397,10 @@ async function handleRecordStart() {
           // Auto-stop recording after silence
           void actuallyStopRecording();
         },
+        onBlankTrailDetected: () => {
+          // Auto-stop recording after chars detected + blank trail
+          void actuallyStopRecording();
+        },
       },
     );
 

@@ -11,6 +11,9 @@ interface ProgressInfo {
   status?: string;
   progress?: number;
   file?: string;
+  name?: string;
+  loaded?: number;
+  total?: number;
   attempt?: number;
   max?: number;
 }
@@ -57,10 +60,15 @@ export function updateLoadingProgress(progress: ProgressInfo): void {
       });
       if (shouldLog) console.log(statusElement.textContent);
     } else if (progress.status === "downloading") {
-      const percent = progress.progress ? Math.round(progress.progress) : 0;
-      statusElement.textContent = t("loading.status.downloading_model", {
-        percent,
-      });
+      const name =
+        (progress.name ?? progress.file ?? "model.onnx").split("/").pop() ?? "model.onnx";
+      const size =
+        progress.loaded && progress.total && progress.total > 0
+          ? `${Math.round(progress.loaded / 1024 / 1024)} MB / ${Math.round(progress.total / 1024 / 1024)} MB`
+          : progress.loaded
+            ? `${Math.round(progress.loaded / 1024 / 1024)} MB`
+            : `${Math.round(progress.progress ?? 0)}%`;
+      statusElement.textContent = t("loading.status.downloading_model", { name, size });
       if (shouldLog) {
         console.log(statusElement.textContent);
         lastLoggedPercent = currentPercent;

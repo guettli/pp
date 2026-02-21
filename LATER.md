@@ -1,15 +1,6 @@
-Stop recording, when some chars got detected, and then 15 frames with space and >95%.
-
----
-
-./run scripts/show-frames.ts tests/data/de/Der_Panda/Der_Panda-Thomas.flac.yaml
-
-If a space was detected, then put that in the first column.
-If no space was detect print "    " so that <pre> text aligns.
-
-Same for:
-
-❯ python ./inference/inference.py --model-path ~/.cache/phoneme-party/models/zipa-small-crctc-ns-700k.onnx ~/projects/pp/tests/data/de/Der_Panda/Der_Panda-Thomas.flac --debug-frames > ~/tmp/panda-py.ipas
+    // Configure ONNX Runtime - prefer WebGPU on desktop only.
+    // Mobile GPUs (Android/iOS) default to fp16 WebGPU kernels in ort 1.20+,
+    // which produces garbage output for this float32 model.
 
 ---
 

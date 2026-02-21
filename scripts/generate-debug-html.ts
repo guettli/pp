@@ -4,6 +4,7 @@
 
 import fs from "fs";
 import path from "path";
+import { execSync } from "child_process";
 import yaml from "js-yaml";
 import { readAudioFile } from "../src/lib/audio.js";
 import { loadPhonemeModel, extractPhonemesDetailed } from "../src/lib/phoneme-model.js";
@@ -188,15 +189,19 @@ function generateHTML(data: {
 }
 
 async function main() {
-  const yamlFile = process.argv[2];
+  let yamlFile = process.argv[2];
   const outputFile = process.argv[3];
 
   if (!yamlFile) {
-    console.error("Usage: tsx scripts/generate-debug-html.ts <yaml-file> [output.html]");
+    console.error("Usage: tsx scripts/generate-debug-html.ts <flac-or-yaml-file> [output.html]");
     console.error(
       "Example: tsx scripts/generate-debug-html.ts tests/data/de/Erdbeere/Erdbeere-Thomas.flac.yaml debug.html",
     );
     process.exit(1);
+  }
+
+  if (yamlFile.endsWith(".flac")) {
+    yamlFile = yamlFile + ".yaml";
   }
 
   if (!fs.existsSync(yamlFile)) {
@@ -252,8 +257,9 @@ async function main() {
   const output = outputFile || yamlFile.replace(".flac.yaml", "-debug.html");
   fs.writeFileSync(output, html);
 
-  console.log(`\n✅ HTML debug page generated: ${output}`);
-  console.log(`Open it in your browser to visualize the phoneme extraction.`);
+  const absolutePath = path.resolve(output);
+  console.log(`\n✅ HTML debug page generated: file://${absolutePath}`);
+  execSync(`xdg-open "${absolutePath}"`);
 }
 
 main();

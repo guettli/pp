@@ -3,7 +3,7 @@
  * Processes audio chunks as they arrive and detects when target phrase is spoken
  */
 
-import { extractPhonemes } from "./phoneme-extractor.js";
+import { extractPhonemesWithBlankInfo } from "./phoneme-extractor.js";
 import { prepareAudioForModel } from "../audio/processor.js";
 import { calculatePanPhonDistance } from "../comparison/panphon-distance.js";
 
@@ -23,6 +23,10 @@ interface DetectorConfig {
   silenceThreshold?: number;
   /** Duration of silence in ms before triggering stop */
   silenceDuration?: number;
+  /** Number of trailing blank frames required to trigger stop after chars detected (default: 15) */
+  blankTrailFrames?: number;
+  /** Minimum blank token probability to count as a trailing blank frame (default: 0.95) */
+  blankTrailConfidence?: number;
 }
 
 /**
@@ -35,6 +39,8 @@ export interface DetectorCallbacks {
   onTargetMatched?: (phonemes: string, similarity: number) => void;
   /** Called when silence is detected for configured duration */
   onSilenceDetected?: () => void;
+  /** Called when chars were detected and then N blank frames follow (end-of-speech) */
+  onBlankTrailDetected?: () => void;
 }
 
 /**
@@ -52,6 +58,8 @@ export class RealTimePhonemeDetector {
   private silenceStartTime: number | null = null;
   private hasSilenceTriggered = false;
   private lastProcessedChunkCount = 0; // Track how many chunks were in last successful processing
+  private hasDetectedChars = false;
+  private hasBlankTrailTriggered = false;
 
   constructor(config: DetectorConfig, callbacks: DetectorCallbacks = {}) {
     this.config = {
@@ -61,6 +69,8 @@ export class RealTimePhonemeDetector {
       minChunksBeforeCheck: config.minChunksBeforeCheck ?? 3, // Wait for at least 3 chunks (1.5 seconds)
       silenceThreshold: config.silenceThreshold ?? 0.01, // RMS threshold for silence
       silenceDuration: config.silenceDuration ?? 1500, // 1.5 seconds of silence
+      blankTrailFrames: config.blankTrailFrames ?? 15,
+      blankTrailConfidence: config.blankTrailConfidence ?? 0.95,
     };
     this.callbacks = callbacks;
   }
@@ -167,9 +177,16 @@ export class RealTimePhonemeDetector {
       // Check for silence on the decoded audio (not on individual chunks)
       await this.checkSilenceFromAudioData(audioData);
 
-      // Extract phonemes
-      const phonemes = await extractPhonemes(audioData);
+      // Extract phonemes and check for trailing blank frames
+      const { phonemes, trailingBlankFrames } = await extractPhonemesWithBlankInfo(
+        audioData,
+        this.config.blankTrailConfidence,
+      );
       this.lastExtractedPhonemes = phonemes;
+
+      if (phonemes.length > 0) {
+        this.hasDetectedChars = true;
+      }
 
       // Track that we successfully processed these chunks
       this.lastProcessedChunkCount = this.audioChunks.length;
@@ -189,6 +206,16 @@ export class RealTimePhonemeDetector {
         if (this.callbacks.onTargetMatched) {
           this.callbacks.onTargetMatched(phonemes, result.similarity);
         }
+      }
+
+      // Check blank trail stop: chars detected, then N frames of high-confidence blank
+      if (
+        !this.hasBlankTrailTriggered &&
+        this.hasDetectedChars &&
+        trailingBlankFrames >= this.config.blankTrailFrames
+      ) {
+        this.hasBlankTrailTriggered = true;
+        this.callbacks.onBlankTrailDetected?.();
       }
     } catch (error) {
       console.error(
@@ -266,5 +293,7 @@ export class RealTimePhonemeDetector {
     this.silenceStartTime = null;
     this.hasSilenceTriggered = false;
     this.lastProcessedChunkCount = 0;
+    this.hasDetectedChars = false;
+    this.hasBlankTrailTriggered = false;
   }
 }

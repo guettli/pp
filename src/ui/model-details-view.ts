@@ -110,7 +110,9 @@ export function buildFrameText(frameData: FrameData[]): string {
     const nonBlankPreds = predictions.filter((p) => !BLANK_SYMBOLS.has(p.symbol));
 
     const firstCol = blankPred
-      ? `${BLANK_DISPLAY}:${Math.min(99, Math.floor(blankPred.probability * 100)).toString().padStart(2, "0")}`
+      ? `${BLANK_DISPLAY}:${Math.min(99, Math.floor(blankPred.probability * 100))
+          .toString()
+          .padStart(2, "0")}`
       : "    "; // 4 spaces matches width of "⎵:NN"
 
     const rest = nonBlankPreds
@@ -129,9 +131,7 @@ export function buildFrameText(frameData: FrameData[]): string {
   });
 
   // Locate first / last non-blank frame
-  const nonBlankIndices = lines
-    .map((l, i) => (l.isBlankOnly ? -1 : i))
-    .filter((i) => i >= 0);
+  const nonBlankIndices = lines.map((l, i) => (l.isBlankOnly ? -1 : i)).filter((i) => i >= 0);
   const firstNonBlank = nonBlankIndices.length > 0 ? nonBlankIndices[0] : lines.length;
   const lastNonBlank =
     nonBlankIndices.length > 0 ? nonBlankIndices[nonBlankIndices.length - 1] : -1;
@@ -142,15 +142,11 @@ export function buildFrameText(frameData: FrameData[]): string {
     const from = t.toString().padStart(3, "0");
     if (t < firstNonBlank) {
       const end = firstNonBlank - 1;
-      rows.push(
-        t < end ? `${from}..${end.toString().padStart(3, "0")}: empty` : `${from}: empty`,
-      );
+      rows.push(t < end ? `${from}..${end.toString().padStart(3, "0")}: empty` : `${from}: empty`);
       t = firstNonBlank;
     } else if (t > lastNonBlank) {
       const end = lines.length - 1;
-      rows.push(
-        t < end ? `${from}..${end.toString().padStart(3, "0")}: empty` : `${from}: empty`,
-      );
+      rows.push(t < end ? `${from}..${end.toString().padStart(3, "0")}: empty` : `${from}: empty`);
       break;
     } else {
       rows.push(`${from}: ${lines[t].text}`);
