@@ -72,18 +72,15 @@ export function generateModelDetailsHTML(detailed: DetailedPhonemeData): string 
   html += "</div>";
   html += "</div>";
 
-  // Frame-by-frame top predictions (vertical alignment view)
+  // Frame-by-frame top predictions
   html += '<div class="mb-3">';
   html += '<h6 class="fw-bold text-primary">Frame-by-Frame Top Predictions</h6>';
   html +=
-    '<p class="small text-muted">Symbols align vertically when they continue across frames. Probability shown as percentage (01-99).</p>';
-
-  // Build vertical alignment visualization
-  const frameViz = buildFrameVisualization(detailed.raw.frameData);
+    '<p class="small text-muted">Probability shown as percentage (01-99). ⎵ = blank/silence. Leading and trailing blank frames are collapsed.</p>';
 
   html +=
     '<pre style="font-family: monospace; font-size: 0.85rem; line-height: 1.3; background: #f8f9fa; padding: 1rem; border-radius: 0.25rem; overflow-x: auto;">';
-  html += frameViz;
+  html += buildFrameText(detailed.raw.frameData);
   html += "</pre>";
 
   html += "</div>";
@@ -91,68 +88,65 @@ export function generateModelDetailsHTML(detailed: DetailedPhonemeData): string 
   return html;
 }
 
+const BLANK_SYMBOLS = new Set(["<blk>", "▁"]);
+const BLANK_DISPLAY = "⎵"; // visually similar to |_|, represents blank/silence
+
 /**
- * Build vertical frame-by-frame visualization where symbols align in columns
+ * Build plain-text frame-by-frame visualization.
+ * Leading and trailing blank-only frames are collapsed to a single "empty" line.
+ * Exported for reuse by CLI scripts.
  */
-function buildFrameVisualization(frameData: FrameData[]): string {
+export function buildFrameText(frameData: FrameData[]): string {
   if (frameData.length === 0) return "No frame data";
 
-  // Track column assignments: Map<symbol, columnIndex>
-  const columnMap = new Map<string, number>();
-  const rows: string[] = [];
-
-  // Header
-  rows.push("Frame | Predictions (symbol:prob%)");
-  rows.push("------|" + "-".repeat(60));
-
-  for (const frame of frameData) {
-    // Get top predictions sorted by probability, filter out low confidence predictions
+  // Build one entry per frame: the formatted text and whether it is blank-only
+  const lines = frameData.map((frame) => {
     const predictions = [...frame.topPredictions]
-      .filter((p) => p.probability >= 0.08) // Hide symbols with prob < 8%
+      .filter((p) => p.probability >= 0.08)
       .sort((a, b) => b.probability - a.probability);
 
-    // Update column assignments
-    const currentSymbols = new Set(predictions.map((p) => p.symbol));
+    const text = predictions
+      .map((p) => {
+        const display = BLANK_SYMBOLS.has(p.symbol) ? BLANK_DISPLAY : p.symbol;
+        const pct = Math.min(99, Math.round(p.probability * 100));
+        return `${display}:${pct.toString().padStart(2, "0")}`;
+      })
+      .join("  ");
 
-    // Remove symbols that are no longer in top predictions
-    for (const [symbol] of columnMap.entries()) {
-      if (!currentSymbols.has(symbol)) {
-        columnMap.delete(symbol);
-      }
+    const isBlankOnly =
+      predictions.length === 0 || predictions.every((p) => BLANK_SYMBOLS.has(p.symbol));
+
+    return { text, isBlankOnly };
+  });
+
+  // Locate first / last non-blank frame
+  const nonBlankIndices = lines
+    .map((l, i) => (l.isBlankOnly ? -1 : i))
+    .filter((i) => i >= 0);
+  const firstNonBlank = nonBlankIndices.length > 0 ? nonBlankIndices[0] : lines.length;
+  const lastNonBlank =
+    nonBlankIndices.length > 0 ? nonBlankIndices[nonBlankIndices.length - 1] : -1;
+
+  const rows: string[] = [];
+  let t = 0;
+  while (t < lines.length) {
+    const from = t.toString().padStart(3, "0");
+    if (t < firstNonBlank) {
+      const end = firstNonBlank - 1;
+      rows.push(
+        t < end ? `${from}..${end.toString().padStart(3, "0")}: empty` : `${from}: empty`,
+      );
+      t = firstNonBlank;
+    } else if (t > lastNonBlank) {
+      const end = lines.length - 1;
+      rows.push(
+        t < end ? `${from}..${end.toString().padStart(3, "0")}: empty` : `${from}: empty`,
+      );
+      break;
+    } else {
+      rows.push(`${from}: ${lines[t].text}`);
+      t++;
     }
-
-    // Assign columns to new symbols
-    for (const pred of predictions) {
-      if (!columnMap.has(pred.symbol)) {
-        // Find lowest available column
-        const usedColumns = new Set(columnMap.values());
-        let col = 0;
-        while (usedColumns.has(col)) col++;
-        columnMap.set(pred.symbol, col);
-      }
-    }
-
-    // Build row with symbols in their assigned columns
-    const columns: Array<{ symbol: string; prob: number }> = [];
-    for (const pred of predictions) {
-      const col = columnMap.get(pred.symbol);
-      if (col === undefined) continue; // Should not happen, but satisfy linter
-      while (columns.length <= col) {
-        columns.push({ symbol: "", prob: 0 });
-      }
-      columns[col] = {
-        symbol: pred.symbol,
-        prob: Math.min(99, Math.round(pred.probability * 100)),
-      };
-    }
-
-    // Format row
-    const frameNum = frame.frameIndex.toString().padStart(5, " ");
-    const cells = columns
-      .map((c) => (c.symbol ? `${c.symbol}:${c.prob.toString().padStart(2, "0")}` : "     "))
-      .join(" ");
-
-    rows.push(`${frameNum} | ${cells}`);
   }
 
   return rows.join("\n");
