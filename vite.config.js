@@ -38,7 +38,9 @@ const serveModelFromCache = () => {
 
         const [, modelName, filename] = match;
         const cacheFile =
-          filename === "vocab.json" ? `${modelName}.vocab.json` : `${modelName}.${filename.replace("model.", "")}`;
+          filename === "vocab.json"
+            ? `${modelName}.vocab.json`
+            : `${modelName}.${filename.replace("model.", "")}`;
         const cachePath = path.join(MODEL_CACHE_DIR, cacheFile);
 
         if (!fs.existsSync(cachePath)) return next();

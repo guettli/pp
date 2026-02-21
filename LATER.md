@@ -1,8 +1,4 @@
-    // Configure ONNX Runtime - prefer WebGPU on desktop only.
-    // Mobile GPUs (Android/iOS) default to fp16 WebGPU kernels in ort 1.20+,
-    // which produces garbage output for this float32 model.
 
----
 
 Compare post-processing of zipa python script and ts.
 Which treshold does zipa python code use? Do they check phoneme similarity?
