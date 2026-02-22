@@ -37,6 +37,7 @@ import {
   extractPhonemes,
   extractPhonemesDetailed,
   loadPhonemeModel,
+  wasWebGpuValidationFailed,
 } from "./speech/phoneme-extractor.js";
 import { RealTimePhonemeDetector } from "./speech/realtime-phoneme-detector.js";
 
@@ -131,6 +132,8 @@ async function init() {
       }
       if (localStorage.getItem("webgpu-disabled") === "true") {
         webgpuBackend = "wasm";
+      } else if (wasWebGpuValidationFailed()) {
+        webgpuBackend = "wasm";
       } else {
         webgpuBackend = shaderF16 ? "webgpu" : "wasm";
       }
@@ -140,6 +143,7 @@ async function init() {
       modelLoadMs,
       webgpuBackend,
       shaderF16,
+      webgpuValidationFailed: wasWebGpuValidationFailed(),
     });
     updateWebGpuStatus();
 
@@ -332,6 +336,9 @@ async function collectDeviceDetails(): Promise<string> {
 
   lines.push("\n=== Model ===");
   lines.push(`Execution backend: ${state.webgpuBackend || "wasm"}`);
+  if (state.webgpuValidationFailed) {
+    lines.push(`WebGPU validation: FAILED (NaN detected, fell back to WASM)`);
+  }
   lines.push(
     `Model load time: ${state.modelLoadMs ? `${Math.round(state.modelLoadMs)} ms` : "unknown"}`,
   );
@@ -415,6 +422,10 @@ function updateWebGpuStatus() {
 
   if (localStorage.getItem("webgpu-disabled") === "true") {
     status.textContent = t("footer.webgpu_status_disabled_manual");
+    status.classList.add("text-warning");
+    status.classList.remove("text-success");
+  } else if (state.webgpuValidationFailed) {
+    status.textContent = t("footer.webgpu_status_validation_failed");
     status.classList.add("text-warning");
     status.classList.remove("text-success");
   } else if (state.shaderF16) {

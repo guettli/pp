@@ -211,6 +211,38 @@ let session: ort.InferenceSession | null = null;
 let vocab: Record<string, number> | null = null;
 let idToToken: Record<number, string> | null = null;
 
+// Tracks whether the WebGPU session failed validation and was replaced by WASM
+let webgpuValidationFailed = false;
+
+export function wasWebGpuValidationFailed(): boolean {
+  return webgpuValidationFailed;
+}
+
+/**
+ * Run a short silent inference to check if the current session produces sane output.
+ * Some GPUs advertise shader-f16 but produce NaN in fp16 computations.
+ * Returns true if output looks valid, false if NaN/Inf detected.
+ */
+async function validateSession(): Promise<boolean> {
+  if (!session) return false;
+  try {
+    // 1 second of silence at 16 kHz — small enough to be fast, big enough for the model
+    const silence = new Float32Array(16000);
+    const feeds = await buildPhonemeFeeds(silence, ort.Tensor);
+    const results = await session.run(feeds);
+    const logits = results.logits ?? results.log_probs ?? results[Object.keys(results)[0]];
+    if (!logits) return false;
+    const data = logits.data as Float32Array;
+    // Check first 500 values for NaN/Inf — broken fp16 always contaminates these
+    for (let i = 0; i < Math.min(data.length, 500); i++) {
+      if (!isFinite(data[i])) return false;
+    }
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 /**
  * Load the phoneme extraction model
  */
@@ -321,6 +353,17 @@ export async function loadPhonemeModel(
       executionProviders,
       graphOptimizationLevel: "all",
     });
+
+    // Validate output: some GPUs advertise shader-f16 but produce NaN in fp16 computations.
+    // If validation fails, recreate the session with WASM only.
+    if (executionProviders[0] === "webgpu" && !(await validateSession())) {
+      console.warn("WebGPU validation failed (NaN detected) — falling back to WASM");
+      webgpuValidationFailed = true;
+      session = await ort.InferenceSession.create(modelBuffer.buffer, {
+        executionProviders: ["wasm"],
+        graphOptimizationLevel: "all",
+      });
+    }
 
     progressCallback({ status: "ready", progress: 100 });
   } catch (error) {
