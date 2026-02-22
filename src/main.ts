@@ -305,13 +305,38 @@ async function collectDeviceDetails(): Promise<string> {
   lines.push(`navigator.gpu available: ${!!navigator.gpu}`);
   lines.push(`WebGPU manually disabled: ${localStorage.getItem("webgpu-disabled") === "true"}`);
 
+  // WebGL renderer — available on nearly all devices and gives specific GPU names
+  // e.g. "Mali-G77 MC9 r1p0" or "Adreno (TM) 650"
+  try {
+    const canvas = document.createElement("canvas");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const gl: any = canvas.getContext("webgl") ?? canvas.getContext("experimental-webgl");
+    if (gl) {
+      const ext = gl.getExtension("WEBGL_debug_renderer_info");
+      if (ext) {
+        lines.push(`WebGL Vendor: ${gl.getParameter(ext.UNMASKED_VENDOR_WEBGL)}`);
+        lines.push(`WebGL Renderer: ${gl.getParameter(ext.UNMASKED_RENDERER_WEBGL)}`);
+      } else {
+        lines.push(`WebGL Vendor: ${gl.getParameter(gl.VENDOR)} (unmasked ext unavailable)`);
+        lines.push(`WebGL Renderer: ${gl.getParameter(gl.RENDERER)} (unmasked ext unavailable)`);
+      }
+    }
+  } catch {
+    lines.push("WebGL: unavailable");
+  }
+
   if (navigator.gpu) {
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const adapter = await (navigator.gpu as any).requestAdapter();
       if (adapter) {
+        // adapter.info is the newer synchronous API (Chrome 121+)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const info: any = await adapter.requestAdapterInfo?.();
+        const syncInfo: any = adapter.info;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const asyncInfo: any = await adapter.requestAdapterInfo?.();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const info: any = syncInfo ?? asyncInfo;
         if (info) {
           lines.push(`GPU Vendor: ${info.vendor || "unknown"}`);
           lines.push(`GPU Architecture: ${info.architecture || "unknown"}`);
