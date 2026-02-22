@@ -568,9 +568,58 @@
             >WebGPU: checking...</span
           >
           |
+          <label class="d-inline user-select-none" style="cursor: pointer">
+            <input type="checkbox" id="webgpu-disable-toggle" class="me-1" />
+            <span data-i18n="footer.disable_webgpu">Disable WebGPU</span>
+          </label>
+          |
           <a href="attribution.html" data-i18n="footer.attribution">Attribution</a>
+          |
+          <button
+            id="device-details-btn"
+            class="btn btn-sm btn-link p-0 text-muted"
+            data-bs-toggle="modal"
+            data-bs-target="#device-details-modal"
+            data-i18n="footer.device_details"
+          >
+            Device details
+          </button>
         </small>
       </footer>
+    </div>
+
+    <!-- Device Details Modal -->
+    <div class="modal fade" id="device-details-modal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" data-i18n="footer.device_details_title">Device Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p class="text-muted small" data-i18n="footer.device_details_help">
+              Copy this information when filing a bug report on the
+              <a href="https://github.com/microsoft/onnxruntime/issues" target="_blank"
+                >ONNX Runtime issue tracker</a
+              >.
+            </p>
+            <pre
+              id="device-details-text"
+              class="bg-light border rounded p-3 small"
+              style="white-space: pre-wrap; word-break: break-all"
+            >
+Loading...</pre
+            >
+            <button
+              id="device-details-copy-btn"
+              class="btn btn-sm btn-outline-secondary mt-2"
+              data-i18n="footer.copy"
+            >
+              Copy
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Voice Selection Modal -->

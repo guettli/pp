@@ -1,7 +1,17 @@
-
+<!-- markdownlint-disable -->
 
 Compare post-processing of zipa python script and ts.
 Which treshold does zipa python code use? Do they check phoneme similarity?
+
+---
+
+Mali GPU Bug? Show gpu type (like Mali) in the details
+
+---
+
+    if (import.meta.env.DEV || import.meta.env.MODE === "test") {
+
+      env.MODE is never set. Do not invent things which do not exist.
 
 ---
 

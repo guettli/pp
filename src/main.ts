@@ -37,6 +37,7 @@ import {
   extractPhonemes,
   extractPhonemesDetailed,
   loadPhonemeModel,
+  wasWebGpuValidationFailed,
 } from "./speech/phoneme-extractor.js";
 import { RealTimePhonemeDetector } from "./speech/realtime-phoneme-detector.js";
 
@@ -100,6 +101,7 @@ async function init() {
     setState({
       webgpuAvailable: typeof navigator !== "undefined" && !!navigator.gpu,
     });
+    setupWebGpuToggle();
     updateWebGpuStatus();
 
     // Show loading overlay
@@ -117,21 +119,51 @@ async function init() {
     });
     const modelLoadMs = performance.now() - loadStart;
 
-    // Check if WebGPU is being used
-    const webgpuBackend = state.webgpuAvailable ? "webgpu" : "wasm";
+    // Detect actual execution provider: shader-f16 required for WebGPU with fp16 model
+    let shaderF16 = false;
+    let webgpuBackend = "wasm";
+    if (state.webgpuAvailable) {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const adapter = await (navigator.gpu as any).requestAdapter();
+        shaderF16 = !!adapter?.features.has("shader-f16");
+      } catch {
+        // adapter request failed
+      }
+      if (localStorage.getItem("webgpu-disabled") === "true") {
+        webgpuBackend = "wasm";
+      } else if (wasWebGpuValidationFailed()) {
+        webgpuBackend = "wasm";
+      } else {
+        webgpuBackend = shaderF16 ? "webgpu" : "wasm";
+      }
+    }
     setState({
       isModelLoaded: true,
       modelLoadMs,
       webgpuBackend,
+      shaderF16,
+      webgpuValidationFailed: wasWebGpuValidationFailed(),
     });
     updateWebGpuStatus();
 
     // Expose API for testing (only in non-production builds)
     if (import.meta.env.DEV || import.meta.env.MODE === "test") {
-      (window as Window & { __test_api?: { extractPhonemes: typeof extractPhonemes } }).__test_api =
-        {
-          extractPhonemes,
-        };
+      (
+        window as Window & {
+          __test_api?: {
+            extractPhonemes: typeof extractPhonemes;
+            triggerReprocess: () => void;
+            setState: typeof setState;
+            getState: () => typeof state;
+          };
+        }
+      ).__test_api = {
+        extractPhonemes,
+        triggerReprocess: () => void reprocessRecording(),
+        setState,
+        getState: () => state,
+      };
     }
 
     // Hide loading, show main content
@@ -142,6 +174,7 @@ async function init() {
 
     // Set up event listeners
     setupEventListeners();
+    setupDeviceDetailsModal();
 
     // Setup voice selection dialog on long press for both play buttons
     setupVoiceSelectionButton(["play-target-btn", "replay-phrase-btn"]);
@@ -257,35 +290,178 @@ function setupEventListeners() {
   }
 }
 
+async function collectDeviceDetails(): Promise<string> {
+  const lines: string[] = [];
+
+  lines.push("=== Browser ===");
+  lines.push(`User-Agent: ${navigator.userAgent}`);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  lines.push(`Platform: ${(navigator as any).userAgentData?.platform ?? "unknown"}`);
+  lines.push(`Language: ${navigator.language}`);
+  lines.push(`HW Concurrency: ${navigator.hardwareConcurrency}`);
+  lines.push(`Cross-Origin Isolated: ${self.crossOriginIsolated}`);
+
+  lines.push("\n=== WebGPU ===");
+  lines.push(`navigator.gpu available: ${!!navigator.gpu}`);
+  lines.push(`WebGPU manually disabled: ${localStorage.getItem("webgpu-disabled") === "true"}`);
+
+  // WebGL renderer — available on nearly all devices and gives specific GPU names
+  // e.g. "Mali-G77 MC9 r1p0" or "Adreno (TM) 650"
+  try {
+    const canvas = document.createElement("canvas");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const gl: any = canvas.getContext("webgl") ?? canvas.getContext("experimental-webgl");
+    if (gl) {
+      const ext = gl.getExtension("WEBGL_debug_renderer_info");
+      if (ext) {
+        lines.push(`WebGL Vendor: ${gl.getParameter(ext.UNMASKED_VENDOR_WEBGL)}`);
+        lines.push(`WebGL Renderer: ${gl.getParameter(ext.UNMASKED_RENDERER_WEBGL)}`);
+      } else {
+        lines.push(`WebGL Vendor: ${gl.getParameter(gl.VENDOR)} (unmasked ext unavailable)`);
+        lines.push(`WebGL Renderer: ${gl.getParameter(gl.RENDERER)} (unmasked ext unavailable)`);
+      }
+    }
+  } catch {
+    lines.push("WebGL: unavailable");
+  }
+
+  if (navigator.gpu) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const adapter = await (navigator.gpu as any).requestAdapter();
+      if (adapter) {
+        // adapter.info is the newer synchronous API (Chrome 121+)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const syncInfo: any = adapter.info;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const asyncInfo: any = await adapter.requestAdapterInfo?.();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const info: any = syncInfo ?? asyncInfo;
+        if (info) {
+          lines.push(`GPU Vendor: ${info.vendor || "unknown"}`);
+          lines.push(`GPU Architecture: ${info.architecture || "unknown"}`);
+          lines.push(`GPU Device: ${info.device || "unknown"}`);
+          lines.push(`GPU Description: ${info.description || "unknown"}`);
+        }
+        const features = [...adapter.features].sort().join(", ");
+        lines.push(`GPU Features: ${features || "none"}`);
+        lines.push(`shader-f16 supported: ${adapter.features.has("shader-f16")}`);
+        const limits = adapter.limits;
+        if (limits) {
+          lines.push(`maxBufferSize: ${limits.maxBufferSize}`);
+          lines.push(`maxComputeWorkgroupStorageSize: ${limits.maxComputeWorkgroupStorageSize}`);
+        }
+      } else {
+        lines.push("requestAdapter() returned null");
+      }
+    } catch (e) {
+      lines.push(`requestAdapter() error: ${e}`);
+    }
+  }
+
+  lines.push("\n=== Model ===");
+  lines.push(`Execution backend: ${state.webgpuBackend || "wasm"}`);
+  if (state.webgpuValidationFailed) {
+    lines.push(`WebGPU validation: FAILED (NaN detected, fell back to WASM)`);
+  }
+  lines.push(
+    `Model load time: ${state.modelLoadMs ? `${Math.round(state.modelLoadMs)} ms` : "unknown"}`,
+  );
+  lines.push(`onnxruntime-web: 1.24.2`);
+  lines.push(`Model file: model.fp16.onnx`);
+
+  lines.push("\n=== Current Phrase ===");
+  if (state.currentPhrase) {
+    lines.push(`Phrase: ${state.currentPhrase.phrase}`);
+    lines.push(`URL: ${window.location.href}`);
+    const ipas = state.currentPhrase.ipas?.map((i) => i.ipa).join(", ") || "unknown";
+    lines.push(`Expected IPA: ${ipas}`);
+  } else {
+    lines.push("No phrase loaded");
+  }
+
+  if (state.actualIPA) {
+    lines.push(`Actual IPA (last result): ${state.actualIPA}`);
+  }
+
+  return lines.join("\n");
+}
+
+function setupDeviceDetailsModal() {
+  const modal = document.getElementById("device-details-modal");
+  if (!modal) return;
+
+  modal.addEventListener("show.bs.modal", () => {
+    const pre = document.getElementById("device-details-text");
+    if (pre) {
+      pre.textContent = "Loading...";
+      void collectDeviceDetails().then((text) => {
+        pre.textContent = text;
+      });
+    }
+  });
+
+  const copyBtn = document.getElementById("device-details-copy-btn");
+  if (copyBtn) {
+    copyBtn.addEventListener("click", () => {
+      const pre = document.getElementById("device-details-text");
+      if (pre) {
+        void navigator.clipboard.writeText(pre.textContent || "").then(() => {
+          copyBtn.textContent = "Copied!";
+          setTimeout(() => {
+            copyBtn.textContent = "Copy";
+          }, 2000);
+        });
+      }
+    });
+  }
+}
+
+function setupWebGpuToggle() {
+  const toggle = document.getElementById("webgpu-disable-toggle") as HTMLInputElement | null;
+  if (!toggle) return;
+  toggle.checked = localStorage.getItem("webgpu-disabled") === "true";
+  toggle.addEventListener("change", () => {
+    localStorage.setItem("webgpu-disabled", toggle.checked ? "true" : "false");
+    window.location.reload();
+  });
+}
+
 function updateWebGpuStatus() {
   const status = document.getElementById("webgpu-status");
   if (!status) return;
 
+  if (state.shaderF16 === null) {
+    // Still checking (before model load)
+    status.textContent = t("footer.webgpu_status_checking");
+    status.classList.remove("text-warning", "text-success");
+    return;
+  }
+
   if (!state.webgpuAvailable) {
     status.textContent = t("footer.webgpu_status_unavailable");
     status.classList.add("text-warning");
-    // Show prominent warning
-    console.warn("⚠️ WebGPU not available - using WASM fallback (slower)");
+    status.classList.remove("text-success");
     return;
   }
 
-  if (state.webgpuBackend === "webgpu") {
+  if (localStorage.getItem("webgpu-disabled") === "true") {
+    status.textContent = t("footer.webgpu_status_disabled_manual");
+    status.classList.add("text-warning");
+    status.classList.remove("text-success");
+  } else if (state.webgpuValidationFailed) {
+    status.textContent = t("footer.webgpu_status_validation_failed");
+    status.classList.add("text-warning");
+    status.classList.remove("text-success");
+  } else if (state.shaderF16) {
     status.textContent = t("footer.webgpu_status_active");
+    status.classList.add("text-success");
     status.classList.remove("text-warning");
-    return;
+  } else {
+    status.textContent = t("footer.webgpu_status_no_shader_f16");
+    status.classList.add("text-warning");
+    status.classList.remove("text-success");
   }
-
-  if (state.webgpuBackend) {
-    status.textContent = t("footer.webgpu_status_fallback", {
-      backend: state.webgpuBackend,
-    });
-    if (state.webgpuBackend !== "webgpu") {
-      status.classList.add("text-warning");
-    }
-    return;
-  }
-
-  status.textContent = t("footer.webgpu_status_available");
 }
 
 /**
@@ -733,6 +909,7 @@ async function reprocessRecording() {
 
       // Reset processing state
       setTimeout(() => {
+        resetRecordButton();
         setState({ isProcessing: false });
       }, 500);
     } catch (error) {
@@ -742,6 +919,7 @@ async function reprocessRecording() {
   } catch (error) {
     console.error("Reprocessing error:", error);
     showInlineError(error);
+    resetRecordButton();
     setState({ isProcessing: false });
   }
 }

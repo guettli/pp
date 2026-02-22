@@ -1,9 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Add a user recording as a test case
 # Usage: ./scripts/add-test-recording.sh ~/Downloads/Brot_20260131T073450_de.webm
 #    OR: ./scripts/add-test-recording.sh --record
 
-set -e
+# Bash Strict Mode: https://github.com/guettli/bash-strict-mode
+trap 'echo -e "\n🤷 🚨 🔥 Warning: A command has failed. Exiting the script. Line was ($0:$LINENO): $(sed -n "${LINENO}p" "$0" 2>/dev/null || true) 🔥 🚨 🤷 "; exit 3' ERR
+set -Eeuo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
@@ -200,6 +202,8 @@ fi
 echo ""
 echo "Extracting phonemes and calculating similarity..."
 if PHONEME_RESULT=$(pnpm tsx "$SCRIPT_DIR/extract-and-compare.ts" "$FLAC_FILE" "$PHRASE" "$LANG" 2>&1); then
+    echo ---
+    echo "$PHONEME_RESULT"
     RECOGNIZED_IPA=$(echo "$PHONEME_RESULT" | jq -r '.recognized_ipa // empty')
     SIMILARITY=$(echo "$PHONEME_RESULT" | jq -r '.similarity // empty')
     echo "Recognized IPA: $RECOGNIZED_IPA"

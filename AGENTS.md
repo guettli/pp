@@ -8,7 +8,30 @@ Execute all scripts via `./run cmd arg1 arg2 ...`. Example:
 ./run tsx scripts/update-ipa.ts phrases-de.yaml
 ```
 
-`./run` ensures the environment is set up.
+See directory `scripts` for existing CLI scripts. Use `./run scripts/...` to ensure the environment
+is set up.
+
+## Deploy
+
+Deploy via:
+
+```sh
+./run task deploy
+```
+
+## Branches
+
+Use git branch `testing`.
+
+Never use the `main` branch.
+
+## Taskfile
+
+To see availale tasks:
+
+```sh
+❯ ./run task --list
+```
 
 ## Performance Guidelines
 

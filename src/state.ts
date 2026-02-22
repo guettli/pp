@@ -14,6 +14,8 @@ export const state: AppState = {
   modelLoadMs: null,
   webgpuAvailable: false,
   webgpuBackend: null,
+  shaderF16: null,
+  webgpuValidationFailed: false,
   lastRecordingBlob: null,
   lastRecordingAudioData: null,
   recordingCount: 0,
