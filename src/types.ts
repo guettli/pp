@@ -90,6 +90,7 @@ export interface AppState {
   recordingCount: number;
   webgpuAvailable: boolean;
   webgpuBackend: string | null;
+  shaderF16: boolean | null;
   modelLoadMs: number | null;
   recorder: AudioRecorderInstance | null;
   lastRecordingBlob: Blob | null;

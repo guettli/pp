@@ -3,7 +3,7 @@
  * Outputs IPA phonemes directly from audio
  */
 
-import * as ort from "onnxruntime-web";
+import * as ort from "onnxruntime-web/webgpu";
 import { buildPhonemeFeeds } from "./phoneme-feeds.js";
 import { MODEL_NAME, HF_REPO, MODEL_FILE } from "../lib/model-config.js";
 import {
@@ -19,7 +19,7 @@ import {
 import { decodePhonemes } from "./phoneme-decoder.js";
 
 // Point WASM binaries to CDN — Vite does not bundle .wasm files automatically
-ort.env.wasm.wasmPaths = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.23.2/dist/";
+ort.env.wasm.wasmPaths = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.24.2/dist/";
 ort.env.wasm.numThreads = self.crossOriginIsolated ? navigator.hardwareConcurrency || 4 : 1;
 // Suppress non-critical ORT warnings (e.g. CPU vendor detection in sandboxed environments)
 ort.env.logLevel = "error";
@@ -40,6 +40,30 @@ const PARTIAL_SAVE_INTERVAL = 5 * 1024 * 1024;
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/**
+ * Use WebGPU only when the GPU adapter supports shader-f16.
+ * Qualcomm Adreno GPUs (most Android devices) lack Vulkan shader-f16 support,
+ * causing fp16 models to produce garbage output. Fall back to WASM in that case.
+ */
+async function getExecutionProviders(): Promise<string[]> {
+  if (typeof navigator === "undefined" || !navigator.gpu) {
+    return ["wasm"];
+  }
+  if (localStorage.getItem("webgpu-disabled") === "true") {
+    return ["wasm"];
+  }
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const adapter = await (navigator.gpu as any).requestAdapter();
+    if (adapter?.features.has("shader-f16")) {
+      return ["webgpu", "wasm"];
+    }
+  } catch {
+    // WebGPU adapter request failed
+  }
+  return ["wasm"];
 }
 
 async function computeSHA256(buffer: ArrayBuffer): Promise<string> {
@@ -235,9 +259,8 @@ export async function loadPhonemeModel(
       progress: 10,
     });
 
-    // Configure ONNX Runtime - prefer WebGPU (fp16 model matches WebGPU fp16 kernels).
-    const webgpuAvailable = typeof navigator !== "undefined" && !!navigator.gpu;
-    const executionProviders = webgpuAvailable ? ["webgpu", "wasm"] : ["wasm"];
+    // Use WebGPU only when shader-f16 is supported (Qualcomm Adreno lacks it)
+    const executionProviders = await getExecutionProviders();
 
     // Try to load model from IndexedDB cache first
     let modelArrayBuffer = await getModelFromCache(MODEL_URL);
