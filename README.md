@@ -4,12 +4,16 @@ Use AI models on your local device to analyze your pronunciation.
 
 Currently, focused on German beginners/kids.
 
+Two language settings:
+
+- **ui-lang**: language of the UI (auto-detected from browser, changeable)
+- **study-lang**: language being practised (must be chosen explicitly; en-GB or de)
+
 Demo: <https://thomas-guettler.de/phoneme-party/>
 
 Build on:
 
 - [ONNX](https://onnx.ai/)
-- [huggingface/transformers.js: State-of-the-art Machine Learning for the web. Run 🤗 Transformers directly in your browser, with no need for a server!](https://github.com/huggingface/transformers.js)
 - [ZIPA: A family of efficient speech models for multilingual phone recognition](https://github.com/lingjzhu/zipa)
 
 Github: <https://github.com/guettli/pp>
@@ -22,6 +26,22 @@ First Steps:
 - User sees a random phrase, and the corresponding picture.
 - User records his/her voice.
 - The distance between desired and actual phonemes gets shown.
+
+## Goal: Help Children in Developing Countries
+
+My goal is to help children in developing countries to learn reading and speaking.
+
+Currently, learning English and German is worked on.
+
+I was inspired by the book [Moral Ambition](https://www.moralambition.org/book).
+
+## Why British English
+
+Most developing countries in Africa and South Asia use British English in their schools and official
+exams. By using en-GB, my web app helps children pass their classes and succeed in the system they
+already live in. British spelling and grammar are still seen as the "gold standard" for professional
+jobs and higher education in these regions. Choosing this version ensures the web app is a practical
+tool for a child's academic and future career growth.
 
 ## Technical Architecture
 
@@ -38,14 +58,10 @@ sending data to external servers.
 
 2. **Audio Recording**
    - User's voice is captured via the browser's Web Audio API
-   - Audio is recorded as PCM data in the browser
 
 3. **Speech to Phonemes (Actual)**
-   - The recorded audio is processed using transformers.js
    - An automatic speech recognition (ASR) model runs locally in the browser
-   - The model outputs either:
-     - Transcribed text (converted to phonemes)
-     - Direct phoneme predictions with forced alignment
+   - The model outputs IPA symbols
 
 4. **Phoneme Comparison**
    - The target phoneme sequence is aligned with the actual phoneme sequence
@@ -58,15 +74,6 @@ sending data to external servers.
    - Results displayed in a user-friendly format
    - Color-coded phonemes (green = correct, yellow = close, red = incorrect)
    - Suggestions for improvement on specific sounds
-
-### Key Technologies
-
-- **TypeScript**: Strict type-checked codebase
-- **Vite**: Fast development server and build tool
-- **transformers.js**: Runs Hugging Face transformer models directly in the browser
-- **Web Audio API**: Captures and processes audio client-side
-- **ONNX Runtime**: Optimized inference for neural networks in JavaScript
-- **PanPhon**: Phonological feature-based distance calculation for phoneme comparison
 
 ## Development
 
@@ -177,6 +184,21 @@ tests/data/
 
 Each phrase can have multiple audio files from different sources. The YAML metadata records the
 audio provenance (TTS voice, creation date, format).
+
+## Data size
+
+For a good **offline** experience small data size is important.
+
+Example: [👗](https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/1f457.svg) has size of
+~500 Bytes. A jpeg image has usualy a much bigger size.
+
+## Links
+
+### German
+
+IPA API: <https://www.dwds.de/api/ipa/?q=Haus>
+
+List of Words (A1, A2, B1): <https://www.dwds.de/d/api#wb-list-goethe>
 
 ## License
 

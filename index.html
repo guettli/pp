@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="de">
   <head>
+    <!-- Enable cross-origin isolation for WASM multi-threading without server headers -->
+    <script src="coi-serviceworker.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Phoneme Party - Pronunciation Practice</title>
@@ -21,7 +23,7 @@
 
     <!-- Console interceptor to show all console output in UI -->
     <script type="module">
-      import { onLanguageChange, t } from "/src/i18n.ts";
+      import { onUiLangChange, t } from "/src/i18n.ts";
 
       (function () {
         const originalLog = console.log;
@@ -213,7 +215,7 @@
             });
           }
 
-          onLanguageChange(() => {
+          onUiLangChange(() => {
             if (copyBtn) {
               copyBtn.textContent = t("console.copy");
             }
@@ -231,14 +233,27 @@
         <p class="lead text-muted" data-i18n="header.subtitle">
           Practice German pronunciation with AI
         </p>
-        <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
-          <label for="language-select" class="form-label mb-0" data-i18n="language.label"
-            >Language:</label
-          >
-          <select id="language-select" class="form-select form-select-sm w-auto">
-            <option value="de" data-i18n="language.de">German</option>
-            <option value="en" data-i18n="language.en">English</option>
-          </select>
+        <div class="d-flex justify-content-center align-items-center gap-3 mt-3 flex-wrap">
+          <div class="d-flex align-items-center gap-2">
+            <label for="study-lang-select" class="form-label mb-0" data-i18n="study-lang.label"
+              >Study language:</label
+            >
+            <select id="study-lang-select" class="form-select form-select-sm w-auto">
+              <option value="" data-i18n="study-lang.choose">— Choose —</option>
+              <option value="en-GB" data-i18n="study-lang.en-GB">English (British)</option>
+              <option value="de" data-i18n="study-lang.de">German</option>
+            </select>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <label for="ui-lang-select" class="form-label mb-0" data-i18n="ui-lang.label"
+              >Interface:</label
+            >
+            <select id="ui-lang-select" class="form-select form-select-sm w-auto">
+              <option value="auto" data-i18n="ui-lang.auto">Auto</option>
+              <option value="de" data-i18n="language.de">Deutsch</option>
+              <option value="en" data-i18n="language.en">English</option>
+            </select>
+          </div>
         </div>
 
         <!-- Level Control -->
@@ -569,9 +584,12 @@
           >
           |
           <label class="d-inline user-select-none" style="cursor: pointer">
-            <input type="checkbox" id="webgpu-disable-toggle" class="me-1" />
-            <span data-i18n="footer.disable_webgpu">Disable WebGPU</span>
+            <input type="checkbox" id="webgpu-enable-toggle" class="me-1" />
+            <span data-i18n="footer.enable_webgpu">Enable WebGPU</span>
           </label>
+          <span id="coi-warning" style="display: none">
+            | <span class="text-warning">Multi-threading disabled (no cross-origin isolation)</span>
+          </span>
           |
           <a href="attribution.html" data-i18n="footer.attribution">Attribution</a>
           |

@@ -10,10 +10,17 @@ import "./styles/main.css";
 // Using side-effect import to initialize Bootstrap's data-bs-* attributes
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-import { getLanguage, initI18n, onLanguageChange, setLanguage, t } from "./i18n.js";
+import { getUiLang, initI18n, isUiLangAuto, onUiLangChange, setUiLang, t } from "./i18n.js";
+import {
+  getStudyLang,
+  onStudyLangChange,
+  setStudyLang,
+  studyLangToPhraseLang,
+  type StudyLanguage,
+} from "./study-lang.js";
 
 // Import types
-import { getLevelText, type Phrase, type Score, type SupportedLanguage } from "./types.js";
+import { getLevelText, type Phrase, type Score } from "./types.js";
 
 // Import state management
 import { resetFeedback, setState, state } from "./state.js";
@@ -25,8 +32,8 @@ import { db } from "./db.js";
 import { initHistory, refreshHistory } from "./ui/history.js";
 
 // Import utilities
-import { findPhraseByName, getRandomPhrase } from "./utils/random.js";
 import { adjustUserLevel, loadUserLevel, saveUserLevel } from "./utils/level-adjustment.js";
+import { findPhraseByName, getRandomPhrase } from "./utils/random.js";
 
 // Import audio modules
 import { prepareAudioForModel } from "./audio/processor.js";
@@ -50,6 +57,7 @@ import {
   hideFeedback,
   playDesiredPronunciation,
   playRecording,
+  refreshIpaExplanations,
   setupVoiceSelectionButton,
 } from "./ui/feedback.js";
 import {
@@ -59,6 +67,7 @@ import {
   showLoading,
   updateLoadingProgress,
 } from "./ui/loading.js";
+import { generateModelDetailsHTML } from "./ui/model-details-view.js";
 import { displayPhrase } from "./ui/phrase-display.js";
 import {
   resetRecordButton,
@@ -69,7 +78,6 @@ import {
   showRecordingTooShortError,
   updateRecordButton,
 } from "./ui/recorder-ui.js";
-import { generateModelDetailsHTML } from "./ui/model-details-view.js";
 
 // Track recording state
 let realtimeDetector: RealTimePhonemeDetector | null = null;
@@ -85,8 +93,9 @@ function scorePronunciationBest(phrase: Phrase, ipa: string): Score {
     throw new Error(`No IPA pronunciation data available for phrase: ${phrase.phrase}`);
   }
 
-  const lang = getLanguage();
-  const scores = phrase.ipas.map((ipaEntry) => scorePronunciation(ipaEntry.ipa, ipa, lang));
+  const studyLang = getStudyLang();
+  if (!studyLang) throw new Error("No study language selected");
+  const scores = phrase.ipas.map((ipaEntry) => scorePronunciation(ipaEntry.ipa, ipa, studyLang));
 
   // Return best score (scores array is guaranteed non-empty due to check above)
   return scores.reduce((best, current) => (current.similarity > best.similarity ? current : best));
@@ -103,6 +112,10 @@ async function init() {
     });
     setupWebGpuToggle();
     updateWebGpuStatus();
+    if (!self.crossOriginIsolated) {
+      const el = document.getElementById("coi-warning");
+      if (el) el.style.display = "";
+    }
 
     // Show loading overlay
     showLoading();
@@ -130,7 +143,7 @@ async function init() {
       } catch {
         // adapter request failed
       }
-      if (localStorage.getItem("webgpu-disabled") === "true") {
+      if (localStorage.getItem("webgpu-enabled") !== "true") {
         webgpuBackend = "wasm";
       } else if (wasWebGpuValidationFailed()) {
         webgpuBackend = "wasm";
@@ -148,7 +161,8 @@ async function init() {
     updateWebGpuStatus();
 
     // Expose API for testing (only in non-production builds)
-    if (import.meta.env.DEV || import.meta.env.MODE === "test") {
+    if (import.meta.env.DEV) {
+      // env.DEV is set by vite.
       (
         window as Window & {
           __test_api?: {
@@ -189,7 +203,8 @@ async function init() {
 
     // Load user level (non-blocking, errors won't crash app)
     try {
-      await loadAndUpdateUserLevel(getLanguage());
+      const sl = getStudyLang();
+      if (sl) await loadAndUpdateUserLevel(sl);
     } catch (error) {
       console.error("Failed to load user level:", error);
       // Continue anyway - level is not critical for app to function
@@ -206,7 +221,8 @@ async function init() {
 function setupEventListeners() {
   const recordBtn = document.getElementById("record-btn");
   const nextPhraseBtn = document.getElementById("next-phrase-btn");
-  const languageSelect = document.getElementById("language-select");
+  const studyLangSelect = document.getElementById("study-lang-select");
+  const uiLangSelect = document.getElementById("ui-lang-select");
   const levelSlider = document.getElementById("level-slider");
 
   if (recordBtn) {
@@ -228,20 +244,34 @@ function setupEventListeners() {
     showModelDetailsBtn.addEventListener("click", () => void showModelDetails());
   }
 
-  if (languageSelect && languageSelect instanceof HTMLSelectElement) {
-    languageSelect.value = getLanguage();
-    languageSelect.addEventListener("change", (event) => {
-      const target = event.target as HTMLSelectElement;
-      setLanguage(target.value);
+  if (studyLangSelect && studyLangSelect instanceof HTMLSelectElement) {
+    studyLangSelect.value = getStudyLang() ?? "";
+    studyLangSelect.addEventListener("change", (event) => {
+      const val = (event.target as HTMLSelectElement).value;
+      if (val) setStudyLang(val as StudyLanguage);
     });
-
-    onLanguageChange((language) => {
-      languageSelect.value = language;
+    onStudyLangChange(() => {
+      studyLangSelect.value = getStudyLang() ?? "";
       resetRecordButton();
       void nextPhrase();
-      updateWebGpuStatus();
       refreshHistory();
-      void loadAndUpdateUserLevel(language);
+      const sl = getStudyLang();
+      if (sl) void loadAndUpdateUserLevel(sl);
+    });
+  }
+
+  if (uiLangSelect && uiLangSelect instanceof HTMLSelectElement) {
+    uiLangSelect.value = isUiLangAuto() ? "auto" : getUiLang();
+    uiLangSelect.addEventListener("change", (event) => {
+      const val = (event.target as HTMLSelectElement).value;
+      setUiLang(val as "auto" | "de" | "en");
+    });
+    onUiLangChange(() => {
+      uiLangSelect.value = isUiLangAuto() ? "auto" : getUiLang();
+      updateWebGpuStatus();
+      if (state.currentPhrase && state.actualIPA) {
+        refreshIpaExplanations(state.currentPhrase.ipas[0]?.ipa ?? "", state.actualIPA);
+      }
     });
   }
 
@@ -275,7 +305,8 @@ function setupEventListeners() {
 
       if (confirmed) {
         // Save the new level
-        await saveUserLevel(getLanguage(), newLevel);
+        const studyLang = getStudyLang();
+        if (studyLang) await saveUserLevel(studyLang, newLevel);
         previousLevel = newLevel;
 
         // Load next phrase with new level
@@ -394,7 +425,7 @@ function setupDeviceDetailsModal() {
   modal.addEventListener("show.bs.modal", () => {
     const pre = document.getElementById("device-details-text");
     if (pre) {
-      pre.textContent = "Loading...";
+      pre.textContent = t("loading.initializing");
       void collectDeviceDetails().then((text) => {
         pre.textContent = text;
       });
@@ -407,9 +438,9 @@ function setupDeviceDetailsModal() {
       const pre = document.getElementById("device-details-text");
       if (pre) {
         void navigator.clipboard.writeText(pre.textContent || "").then(() => {
-          copyBtn.textContent = "Copied!";
+          copyBtn.textContent = t("console.copy_success");
           setTimeout(() => {
-            copyBtn.textContent = "Copy";
+            copyBtn.textContent = t("footer.copy");
           }, 2000);
         });
       }
@@ -418,11 +449,11 @@ function setupDeviceDetailsModal() {
 }
 
 function setupWebGpuToggle() {
-  const toggle = document.getElementById("webgpu-disable-toggle") as HTMLInputElement | null;
+  const toggle = document.getElementById("webgpu-enable-toggle") as HTMLInputElement | null;
   if (!toggle) return;
-  toggle.checked = localStorage.getItem("webgpu-disabled") === "true";
+  toggle.checked = localStorage.getItem("webgpu-enabled") === "true";
   toggle.addEventListener("change", () => {
-    localStorage.setItem("webgpu-disabled", toggle.checked ? "true" : "false");
+    localStorage.setItem("webgpu-enabled", toggle.checked ? "true" : "false");
     window.location.reload();
   });
 }
@@ -445,7 +476,7 @@ function updateWebGpuStatus() {
     return;
   }
 
-  if (localStorage.getItem("webgpu-disabled") === "true") {
+  if (localStorage.getItem("webgpu-enabled") !== "true") {
     status.textContent = t("footer.webgpu_status_disabled_manual");
     status.classList.add("text-warning");
     status.classList.remove("text-success");
@@ -488,14 +519,14 @@ function updateLevelDisplay(level: number) {
 /**
  * Load user level from database and update UI
  */
-async function loadAndUpdateUserLevel(language: SupportedLanguage) {
+async function loadAndUpdateUserLevel(studyLang: string) {
   try {
     // Get actual user level from performance stats
-    const stats = await db.getUserStats(language);
+    const stats = await db.getUserStats(studyLang);
     const actualLevel = stats.userLevel;
 
     // Get user's manual level preference (or use actual level if not set)
-    const savedLevel = await loadUserLevel(language);
+    const savedLevel = await loadUserLevel(studyLang);
     const userLevel = savedLevel !== null ? savedLevel : actualLevel;
 
     // Update state
@@ -549,13 +580,15 @@ async function handleRecordStart() {
     if (!state.currentPhrase?.ipas || state.currentPhrase.ipas.length === 0) {
       throw new Error("No target phrase available for recording");
     }
+    const studyLang = getStudyLang();
+    if (!studyLang) throw new Error("No study language selected");
     const targetIPA = state.currentPhrase.ipas[0].ipa;
 
     // Create real-time phoneme detector
     realtimeDetector = new RealTimePhonemeDetector(
       {
         targetIPA,
-        lang: getLanguage(),
+        studyLang,
         threshold: 1.0, // 100% similarity threshold for auto-stop
         minChunksBeforeCheck: 3, // Wait for at least 3 chunks (1.5s) before first check
         silenceThreshold: 0.01, // RMS volume threshold for silence
@@ -791,9 +824,11 @@ async function actuallyStopRecording() {
 
       // Save result to database (non-blocking, errors won't crash app)
       try {
+        const studyLang = getStudyLang();
+        if (!studyLang) throw new Error("No study language selected");
         await db.savePhraseResult(
           currentPhrase.phrase,
-          getLanguage(),
+          studyLang,
           score.similarity * 100, // Convert 0-1 to 0-100
           actualIPA,
           currentPhrase.ipas[0].ipa,
@@ -812,12 +847,12 @@ async function actuallyStopRecording() {
         if (newUserLevel !== state.userLevel) {
           setState({ userLevel: newUserLevel });
           updateLevelDisplay(newUserLevel);
-          await saveUserLevel(getLanguage(), newUserLevel);
+          await saveUserLevel(studyLang, newUserLevel);
         }
 
         // Refresh history to show new result and update actual level
         refreshHistory();
-        await loadAndUpdateUserLevel(getLanguage());
+        await loadAndUpdateUserLevel(studyLang);
       } catch (error) {
         console.error("Failed to save result to database:", error);
         // Continue anyway - saving is not critical for app to function
@@ -939,8 +974,7 @@ async function showModelDetails() {
     const detailsSection = document.getElementById("model-details");
     if (!detailsContent || !detailsSection) return;
 
-    detailsContent.innerHTML =
-      '<div class="text-center"><div class="spinner-border spinner-border-sm"></div> Analyzing...</div>';
+    detailsContent.innerHTML = `<div class="text-center"><div class="spinner-border spinner-border-sm"></div> ${t("processing.analyzing")}</div>`;
     detailsSection.style.display = "block";
 
     // Use cached processed audio data for deterministic analysis
@@ -968,7 +1002,9 @@ function getPhraseFromQueryString() {
   const params = new URLSearchParams(window.location.search);
   const phraseParam = params.get("phrase");
   if (!phraseParam) return null;
-  return findPhraseByName(phraseParam, getLanguage());
+  const sl = getStudyLang();
+  if (!sl) return null;
+  return findPhraseByName(phraseParam, studyLangToPhraseLang(sl));
 }
 
 /**
@@ -976,7 +1012,8 @@ function getPhraseFromQueryString() {
  */
 function updateURL() {
   const params = new URLSearchParams();
-  params.set("lang", getLanguage());
+  const sl = getStudyLang();
+  if (sl) params.set("lang", sl);
   if (state.currentPhrase?.phrase) {
     params.set("phrase", state.currentPhrase.phrase);
   }
@@ -1004,12 +1041,13 @@ function loadInitialPhrase() {
  * Load next random phrase
  */
 async function nextPhrase() {
-  const language = getLanguage();
+  const sl = getStudyLang();
+  if (!sl) return;
 
   // Use user's current level from state
   const userLevel = state.userLevel || 1;
 
-  const phrase = getRandomPhrase(language, userLevel);
+  const phrase = getRandomPhrase(studyLangToPhraseLang(sl), userLevel);
   setState({ currentPhrase: phrase });
   resetFeedback();
 

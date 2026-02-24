@@ -81,9 +81,10 @@ function getPhonemeClass(comp: PhonemeComparisonItem): string {
  * Generate HTML for a single phoneme span
  */
 function generatePhonemeSpan(phoneme: string, pairClass: string, tooltip: string): string {
+  const symbolAttr = phoneme !== "—" ? ` data-ipa-symbol="${phoneme.replace(/"/g, "&quot;")}"` : "";
   return tooltip
-    ? `<span class="phoneme-char ${pairClass}" title="${tooltip}">${phoneme}</span>`
-    : `<span class="phoneme-char ${pairClass}">${phoneme}</span>`;
+    ? `<span class="phoneme-char ${pairClass}"${symbolAttr} title="${tooltip}">${phoneme}</span>`
+    : `<span class="phoneme-char ${pairClass}"${symbolAttr}>${phoneme}</span>`;
 }
 
 /**

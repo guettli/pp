@@ -58,6 +58,7 @@ export async function loadPhonemeModel(options: LoadModelOptions = {}): Promise<
 
   const sessionOptions: ort.InferenceSession.SessionOptions = {
     executionProviders: ["cpu"],
+    logSeverityLevel: 3, // ERROR only — suppress onnxruntime [W:] warnings
   };
 
   // For worker threads, use single-threaded mode to avoid contention

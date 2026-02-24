@@ -227,6 +227,38 @@ button {
   background: #cfe2ff;
 }
 
+/* Clickable phoneme chars (those with a known symbol) */
+.phoneme-char[data-ipa-symbol] {
+  cursor: pointer;
+}
+
+.phoneme-char[data-ipa-symbol]:hover {
+  outline: 2px solid #6c757d;
+  outline-offset: 1px;
+}
+
+/* IPA explanation entry highlight when clicked from phoneme grid */
+[data-ipa-symbol].ipa-highlight {
+  border-radius: 0.375rem;
+  outline: 2px solid #ffc107;
+  animation: ipaFlash 0.7s ease forwards;
+}
+
+@keyframes ipaFlash {
+  0% {
+    background: #ffc107;
+    outline-color: #ffc107;
+  }
+  60% {
+    background: #fff3cd;
+    outline-color: #ffc107;
+  }
+  100% {
+    background: transparent;
+    outline-color: #ffc107;
+  }
+}
+
 /* Header styles */
 header h1 {
   color: white;

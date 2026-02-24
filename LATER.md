@@ -1,13 +1,75 @@
 <!-- markdownlint-disable -->
 
+study-lang, ui-lang. Store in pouchdb.
+
+
+---
+
+Data Structure for Phrases.
+
+Languages, dialects, alternative IPAs, ....
+
+Use PouchDB for that, so that sync works?
+
+Tech Q: Unidirectional sync. Alternative to PouchDB?
+
+Phrase Labels: Users can choose to download by label.
+
+One phrase can have several labels (not hierachical)
+
+If a phrase has two labels, the phrase should only download once!
+
+I local DB needs to be created. Maybe sqlite is better than PouchDB here?
+
+Where store the pictures (like SVG/JPG)?
+
+---
+
+Challenges:
+
+word --> ipa:
+Example "read" can be I or AE
+
+When I have the englisch term "read", the pronounciation can  be different: present  /ɹiːd/ or past:
+/ɹɛd/. Given a sentence with the word "read", how can I get (automated) to the correct IPA?
+
+This is G2P: grapheme-to-phoneme (G2P) conversion
+
+---
+
+UI, um neue Sätze zu erstellen.
+
+Mit Wort-Verlinkung.
+
+Wiktionary download integrieren.
+
+das geht dann nicht offline.
+
+---
+
+Käse: mit Ä oder E ausgesprochen? Wikitionary hat beides.
+
+
+---
+
+Ausgezeichnet!
+Perfekte Aussprache! Super gemacht!
+
+visible, when ui-lang is EN?
+
+---
+
+English explanation of ɛː
+care (lang)
+
+"lang" is german"
+
+---
+
 Compare post-processing of zipa python script and ts.
 Which treshold does zipa python code use? Do they check phoneme similarity?
 
 ---
-
-    if (import.meta.env.DEV || import.meta.env.MODE === "test") {
-
-      env.MODE is never set. Do not invent things which do not exist.
 
 ---
 

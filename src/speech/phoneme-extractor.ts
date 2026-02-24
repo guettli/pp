@@ -51,7 +51,7 @@ async function getExecutionProviders(): Promise<string[]> {
   if (typeof navigator === "undefined" || !navigator.gpu) {
     return ["wasm"];
   }
-  if (localStorage.getItem("webgpu-disabled") === "true") {
+  if (localStorage.getItem("webgpu-enabled") !== "true") {
     return ["wasm"];
   }
   try {

@@ -3,7 +3,7 @@
  */
 
 import { PouchDB, find } from "@svouch/pouchdb";
-import type { SupportedLanguage, UserStats } from "./types.js";
+import type { UserStats } from "./types.js";
 import { findPhraseByName } from "./utils/random.js";
 
 // Apply the find plugin to enable createIndex and find methods
@@ -195,7 +195,7 @@ class PhonemePartyDB {
    */
   async savePhraseResult(
     phrase: string,
-    language: string,
+    studyLang: string,
     score: number,
     actualIPA: string,
     targetIPA: string,
@@ -204,7 +204,7 @@ class PhonemePartyDB {
     const timestamp = Date.now();
 
     // Get current phrase state
-    const stateId = `state_${language}_${phrase}`;
+    const stateId = `state_${studyLang}_${phrase}`;
     let state: PhraseStateDoc;
 
     try {
@@ -215,7 +215,7 @@ class PhonemePartyDB {
         _id: stateId,
         type: "phrase_state",
         phrase,
-        language,
+        language: studyLang,
         lastAttempt: 0,
         nextReviewDate: 0,
         interval: 0,
@@ -251,10 +251,10 @@ class PhonemePartyDB {
 
     // Save individual result for history
     const resultDoc: PhraseResultDoc = {
-      _id: `result_${timestamp}_${language}_${phrase}`,
+      _id: `result_${timestamp}_${studyLang}_${phrase}`,
       type: "phrase_result",
       phrase,
-      language,
+      language: studyLang,
       timestamp,
       score,
       actualIPA,
@@ -274,7 +274,7 @@ class PhonemePartyDB {
   /**
    * Get phrases that are due for review
    */
-  async getPhrasesForReview(language: string, limit = 10): Promise<PhraseStateDoc[]> {
+  async getPhrasesForReview(studyLang: string, limit = 10): Promise<PhraseStateDoc[]> {
     // Wait for indexes to be ready before querying
     await this.indexesReady;
 
@@ -283,7 +283,7 @@ class PhonemePartyDB {
     const result = await this.db.find({
       selector: {
         type: "phrase_state",
-        language: language,
+        language: studyLang,
         nextReviewDate: { $lte: now },
       },
       sort: [{ nextReviewDate: "asc" }],
@@ -296,14 +296,14 @@ class PhonemePartyDB {
   /**
    * Get all phrase states for a language
    */
-  async getAllPhraseStates(language: string): Promise<PhraseStateDoc[]> {
+  async getAllPhraseStates(studyLang: string): Promise<PhraseStateDoc[]> {
     // Wait for indexes to be ready before querying
     await this.indexesReady;
 
     const result = await this.db.find({
       selector: {
         type: "phrase_state",
-        language: language,
+        language: studyLang,
       },
     });
 
@@ -313,8 +313,8 @@ class PhonemePartyDB {
   /**
    * Get phrase state for a specific phrase
    */
-  async getPhraseState(phrase: string, language: string): Promise<PhraseStateDoc | null> {
-    const stateId = `state_${language}_${phrase}`;
+  async getPhraseState(phrase: string, studyLang: string): Promise<PhraseStateDoc | null> {
+    const stateId = `state_${studyLang}_${phrase}`;
 
     try {
       const doc = await this.db.get<PhraseStateDoc>(stateId);
@@ -329,7 +329,7 @@ class PhonemePartyDB {
    * Returns newest first (descending by timestamp)
    */
   async getHistory(
-    language: string,
+    studyLang: string,
     limit = 20,
     skip = 0,
   ): Promise<PaginationResult<PhraseResultDoc>> {
@@ -340,7 +340,7 @@ class PhonemePartyDB {
     const countResult = await this.db.find({
       selector: {
         type: "phrase_result",
-        language: language,
+        language: studyLang,
       },
       fields: ["_id"],
     });
@@ -362,7 +362,7 @@ class PhonemePartyDB {
     const result = await this.db.find({
       selector: {
         type: "phrase_result",
-        language: language,
+        language: studyLang,
         timestamp: { $exists: true }, // Ensure timestamp field is in selector to match index
       },
       sort: [{ type: "asc" }, { language: "asc" }, { timestamp: "asc" }],
@@ -382,11 +382,11 @@ class PhonemePartyDB {
   /**
    * Get stats for a specific phrase
    */
-  async getPhraseStats(phrase: string, language: string) {
+  async getPhraseStats(phrase: string, studyLang: string) {
     // Wait for indexes to be ready before querying
     await this.indexesReady;
 
-    const state = await this.getPhraseState(phrase, language);
+    const state = await this.getPhraseState(phrase, studyLang);
 
     if (!state) {
       return null;
@@ -396,7 +396,7 @@ class PhonemePartyDB {
     const results = await this.db.find({
       selector: {
         type: "phrase_result",
-        language: language,
+        language: studyLang,
         phrase: phrase,
       },
       sort: [{ timestamp: "asc" }],
@@ -412,7 +412,7 @@ class PhonemePartyDB {
    * Get user statistics based on last 30 attempts
    * User level is calculated as the 80th percentile of mastered phrase levels
    */
-  async getUserStats(language: SupportedLanguage): Promise<UserStats> {
+  async getUserStats(studyLang: string): Promise<UserStats> {
     // Wait for indexes to be ready
     await this.indexesReady;
 
@@ -420,7 +420,7 @@ class PhonemePartyDB {
     const result = await this.db.find({
       selector: {
         type: "phrase_result",
-        language: language,
+        language: studyLang,
         timestamp: { $exists: true },
       },
       sort: [{ type: "asc" }, { language: "asc" }, { timestamp: "desc" }],
@@ -435,7 +435,7 @@ class PhonemePartyDB {
     // Get phrase levels for mastered phrases
     const levels: number[] = [];
     for (const doc of mastered) {
-      const phrase = findPhraseByName(doc.phrase, language);
+      const phrase = findPhraseByName(doc.phrase, studyLang);
       if (phrase?.level) {
         levels.push(phrase.level);
       }
@@ -456,7 +456,7 @@ class PhonemePartyDB {
       userLevel,
       masteredCount: mastered.length,
       totalInWindow: docs.length,
-      language,
+      language: studyLang,
     };
   }
 
@@ -495,8 +495,8 @@ class PhonemePartyDB {
   /**
    * Save preferred voice for a language
    */
-  async savePreferredVoice(language: SupportedLanguage, voiceName: string): Promise<void> {
-    const docId = `voice_pref_${language}`;
+  async savePreferredVoice(studyLang: string, voiceName: string): Promise<void> {
+    const docId = `voice_pref_${studyLang}`;
     try {
       // Try to get existing doc
       const existingDoc = await this.db.get(docId);
@@ -510,7 +510,7 @@ class PhonemePartyDB {
       await this.db.put({
         _id: docId,
         type: "voice_preference",
-        language,
+        language: studyLang,
         voiceName,
         timestamp: Date.now(),
       });
@@ -520,8 +520,8 @@ class PhonemePartyDB {
   /**
    * Get preferred voice for a language
    */
-  async getPreferredVoice(language: SupportedLanguage): Promise<string | null> {
-    const docId = `voice_pref_${language}`;
+  async getPreferredVoice(studyLang: string): Promise<string | null> {
+    const docId = `voice_pref_${studyLang}`;
     try {
       const doc = (await this.db.get(docId)) as { voiceName: string };
       return doc.voiceName;
@@ -533,8 +533,8 @@ class PhonemePartyDB {
   /**
    * Save user's manual level preference for a language
    */
-  async saveUserLevel(language: SupportedLanguage, userLevel: number): Promise<void> {
-    const docId = `user_level_${language}`;
+  async saveUserLevel(studyLang: string, userLevel: number): Promise<void> {
+    const docId = `user_level_${studyLang}`;
     try {
       // Try to get existing doc
       const existingDoc = await this.db.get(docId);
@@ -548,7 +548,7 @@ class PhonemePartyDB {
       await this.db.put({
         _id: docId,
         type: "user_level_preference",
-        language,
+        language: studyLang,
         userLevel,
         timestamp: Date.now(),
       });
@@ -558,8 +558,8 @@ class PhonemePartyDB {
   /**
    * Get user's manual level preference for a language
    */
-  async getUserLevel(language: SupportedLanguage): Promise<number | null> {
-    const docId = `user_level_${language}`;
+  async getUserLevel(studyLang: string): Promise<number | null> {
+    const docId = `user_level_${studyLang}`;
     try {
       const doc = (await this.db.get(docId)) as { userLevel: number };
       return doc.userLevel;

@@ -3,9 +3,9 @@
  */
 
 import { db, type PhraseResultDoc } from "../db.js";
-import { getLanguage, t } from "../i18n.js";
+import { t } from "../i18n.js";
+import { getStudyLang } from "../study-lang.js";
 import { findPhraseByName } from "../utils/random.js";
-import type { SupportedLanguage } from "../types.js";
 import escapeHtml from "escape-html";
 
 const ITEMS_PER_PAGE = 20;
@@ -69,10 +69,15 @@ async function loadHistory(reset: boolean) {
   showLoadingIndicator(true);
 
   try {
-    const language = getLanguage();
+    const studyLang = getStudyLang();
+    if (!studyLang) {
+      showEmptyState(true);
+      showLoadingIndicator(false);
+      return;
+    }
     const skip = currentPage * ITEMS_PER_PAGE;
 
-    const result = await db.getHistory(language, ITEMS_PER_PAGE, skip);
+    const result = await db.getHistory(studyLang, ITEMS_PER_PAGE, skip);
 
     // Debug: Verify sort order (newest should be first)
     if (result.docs.length > 0 && currentPage === 0) {
@@ -118,8 +123,9 @@ async function loadHistory(reset: boolean) {
  */
 async function loadUserStats() {
   try {
-    const language = getLanguage();
-    const stats = await db.getUserStats(language);
+    const studyLang = getStudyLang();
+    if (!studyLang) return;
+    const stats = await db.getUserStats(studyLang);
 
     // Update or create stats panel
     let statsPanel = document.getElementById("user-stats-panel");
@@ -144,12 +150,12 @@ async function loadUserStats() {
       <div class="card-body py-3">
         <div class="d-flex justify-content-between align-items-center">
           <div>
-            <h6 class="mb-1">Your Level</h6>
-            <div class="small text-muted">Based on recent performance</div>
+            <h6 class="mb-1">${t("level.title")}</h6>
+            <div class="small text-muted">${t("level.stats_subtitle")}</div>
           </div>
           <div class="text-end">
             <div class="badge ${levelBadgeClass} fs-4 px-3 py-2">${stats.userLevel}</div>
-            <div class="small text-muted mt-1">${stats.masteredCount}/${stats.totalInWindow} mastered (≥95%)</div>
+            <div class="small text-muted mt-1">${t("level.mastered", { mastered: stats.masteredCount, total: stats.totalInWindow })}</div>
           </div>
         </div>
       </div>
@@ -184,7 +190,7 @@ function createHistoryItem(item: PhraseResultDoc): HTMLElement {
   const scoreClass = getScoreClass(scorePercent);
 
   // Get phrase level from phrase data
-  const phrase = findPhraseByName(item.phrase, item.language as SupportedLanguage);
+  const phrase = findPhraseByName(item.phrase, item.language);
   const phraseLevel = phrase?.level;
   const levelBadge = phraseLevel
     ? `<span class="badge bg-secondary ms-2" title="Phrase level">L${phraseLevel}</span>`

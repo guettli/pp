@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Add a user recording as a test case
-# Usage: ./scripts/add-test-recording.sh ~/Downloads/Brot_20260131T073450_de.webm
-#    OR: ./scripts/add-test-recording.sh --record
+# Usage: ./scripts/add-test-recording.sh ~/Downloads/Brot_20260131T073450_de.webm [--source <name>]
+#    OR: ./scripts/add-test-recording.sh --record --phrase <phrase> --lang <lang> [--source <name>]
 
 # Bash Strict Mode: https://github.com/guettli/bash-strict-mode
 trap 'echo -e "\n🤷 🚨 🔥 Warning: A command has failed. Exiting the script. Line was ($0:$LINENO): $(sed -n "${LINENO}p" "$0" 2>/dev/null || true) 🔥 🚨 🤷 "; exit 3' ERR
@@ -10,22 +10,52 @@ set -Eeuo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 
-# Check if recording mode
+# Parse arguments
 RECORD_MODE=false
-if [ "$1" == "--record" ]; then
-    RECORD_MODE=true
-fi
+INPUT_FILE=""
+SOURCE="$(id -un)"
+PHRASE=""
+LANG=""
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --record)
+            RECORD_MODE=true
+            shift
+            ;;
+        --source)
+            SOURCE="$2"
+            shift 2
+            ;;
+        --phrase)
+            PHRASE="$2"
+            shift 2
+            ;;
+        --lang)
+            LANG="$2"
+            shift 2
+            ;;
+        -*)
+            echo "Error: Unknown option: $1"
+            echo "Usage: $0 <recording-file> [--source <name>]"
+            echo "   OR: $0 --record --phrase <phrase> --lang <lang> [--source <name>]"
+            exit 1
+            ;;
+        *)
+            INPUT_FILE="$1"
+            shift
+            ;;
+    esac
+done
 
 if [ "$RECORD_MODE" == "false" ]; then
     # File mode
-    if [ -z "$1" ]; then
-        echo "Usage: $0 <recording-file>"
-        echo "   OR: $0 --record"
+    if [ -z "$INPUT_FILE" ]; then
+        echo "Usage: $0 <recording-file> [--source <name>]"
+        echo "   OR: $0 --record --phrase <phrase> --lang <lang> [--source <name>]"
         echo "Example: $0 ~/Downloads/Brot_20260131T073450_de.webm"
         exit 1
     fi
-
-    INPUT_FILE="$1"
 
     if [ ! -f "$INPUT_FILE" ]; then
         echo "Error: File not found: $INPUT_FILE"
@@ -58,12 +88,19 @@ if [ "$RECORD_MODE" == "false" ]; then
     echo "  Language: $LANG"
     echo "  Timestamp: $TIMESTAMP"
     echo ""
-
-    # Ask for source name
-    read -r -p "Source name (default: user-recording): " SOURCE
-    SOURCE=${SOURCE:-user-recording}
 else
     # Recording mode
+    if [ -z "$PHRASE" ]; then
+        echo "Error: --phrase is required in record mode"
+        echo "Usage: $0 --record --phrase <phrase> --lang <lang> [--source <name>]"
+        exit 1
+    fi
+    if [ -z "$LANG" ]; then
+        echo "Error: --lang is required in record mode"
+        echo "Usage: $0 --record --phrase <phrase> --lang <lang> [--source <name>]"
+        exit 1
+    fi
+
     echo "=== Recording Mode ==="
     echo ""
 
@@ -72,27 +109,9 @@ else
     (cd "$PROJECT_DIR" && ./run task node)
     echo ""
 
-    # Ask for details first
-    read -r -p "Phrase to pronounce: " PHRASE
-    if [ -z "$PHRASE" ]; then
-        echo "Error: Phrase is required"
-        exit 1
-    fi
-
-    read -r -p "Language code (e.g., de, en): " LANG
-    if [ -z "$LANG" ]; then
-        echo "Error: Language is required"
-        exit 1
-    fi
-
     # Generate timestamp
     TIMESTAMP=$(date +%Y%m%dT%H%M%S)
 
-    # Ask for source name
-    read -r -p "Source name (default: user-recording): " SOURCE
-    SOURCE=${SOURCE:-user-recording}
-
-    echo ""
     echo "Recording details:"
     echo "  Phrase: $PHRASE"
     echo "  Language: $LANG"
@@ -112,9 +131,6 @@ else
     echo ""
 
     # Record audio
-    echo "Press ENTER when ready to start recording..."
-    read -r
-    echo ""
     echo "Recording... Press Ctrl+C when done."
     echo ""
 
@@ -171,14 +187,10 @@ OUTPUT_BASE="$PHRASE_SAFE-$SOURCE"
 FLAC_FILE="$DATA_DIR/$OUTPUT_BASE.flac"
 YAML_FILE="$DATA_DIR/$OUTPUT_BASE.flac.yaml"
 
-# Check if files already exist
+# Fail if file already exists
 if [ -f "$FLAC_FILE" ]; then
-    echo "Warning: $FLAC_FILE already exists"
-    read -r -p "Overwrite? [y/N]: " OVERWRITE
-    if [[ ! "$OVERWRITE" =~ ^[Yy] ]]; then
-        echo "Aborted."
-        exit 1
-    fi
+    echo "Error: $FLAC_FILE already exists"
+    exit 1
 fi
 
 # Create directory if needed
@@ -201,7 +213,7 @@ fi
 # Extract phonemes and calculate similarity
 echo ""
 echo "Extracting phonemes and calculating similarity..."
-if PHONEME_RESULT=$(pnpm tsx "$SCRIPT_DIR/extract-and-compare.ts" "$FLAC_FILE" "$PHRASE" "$LANG" 2>&1); then
+if PHONEME_RESULT=$(pnpm tsx "$SCRIPT_DIR/extract-and-compare.ts" "$FLAC_FILE" "$PHRASE" "$LANG"); then
     echo ---
     echo "$PHONEME_RESULT"
     RECOGNIZED_IPA=$(echo "$PHONEME_RESULT" | jq -r '.recognized_ipa // empty')

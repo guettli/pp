@@ -64,6 +64,9 @@ const VERY_WEAK_PHONEMES = new Set([
 // Fricatives can be weak but also prone to noise/artifacts
 const FRICATIVES = new Set(["f", "v", "s", "z", "ʃ", "ʒ", "θ", "ð", "x", "ç", "h", "ʁ", "ʀ"]);
 
+// Stops/plosives: brief acoustic bursts, often appear as single frames with moderate confidence
+const STOPS = new Set(["p", "b", "t", "d", "k", "g", "ʔ", "t͡s", "d͡z", "t͡ʃ", "d͡ʒ"]);
+
 const STRONG_PHONEMES = new Set([
   // Full vowels (high energy, clear formants)
   "a",
@@ -89,19 +92,6 @@ const STRONG_PHONEMES = new Set([
   "ɪː",
   "ɔː",
   "ʊː",
-  // Stops/plosives (high energy bursts)
-  "p",
-  "b",
-  "t",
-  "d",
-  "k",
-  "g",
-  "ʔ",
-  // Affricates (combination of stop + fricative)
-  "t͡s",
-  "d͡z",
-  "t͡ʃ",
-  "d͡ʒ",
 ]);
 
 // Medium phonemes (nasals, liquids) use the base threshold
@@ -118,10 +108,13 @@ function getPhonemeThreshold(symbol: string, baseThreshold: number): number {
   if (FRICATIVES.has(symbol)) {
     return baseThreshold * 0.72; // 72% of base threshold
   }
-  // Strong phonemes stay at base threshold - they don't need stricter filtering
-  // since they're naturally louder and more reliable
+  // Stops/plosives are brief bursts and often appear as single frames with ~40% confidence
+  if (STOPS.has(symbol)) {
+    return baseThreshold * 0.8; // 80% of base threshold (0.4 with default 0.5)
+  }
+  // Strong vowels stay at base threshold - high energy, very reliable
   if (STRONG_PHONEMES.has(symbol)) {
-    return baseThreshold; // Use base threshold
+    return baseThreshold;
   }
   // Medium phonemes (nasals, liquids, etc.) use base threshold
   return baseThreshold;

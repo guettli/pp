@@ -24,6 +24,28 @@ const suppressPouchDBWarnings = () => {
   };
 };
 
+// Serve coi-serviceworker.js from node_modules (dev) and emit it to dist root (build)
+const coiServiceWorker = () => {
+  const swPath = path.resolve("node_modules/coi-serviceworker/coi-serviceworker.js");
+  return {
+    name: "coi-serviceworker",
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        if (req.url !== "/coi-serviceworker.js") return next();
+        res.setHeader("Content-Type", "application/javascript");
+        fs.createReadStream(swPath).pipe(res);
+      });
+    },
+    generateBundle() {
+      this.emitFile({
+        type: "asset",
+        fileName: "coi-serviceworker.js",
+        source: fs.readFileSync(swPath, "utf-8"),
+      });
+    },
+  };
+};
+
 // Serve ONNX model files from XDG cache so no local onnx/ directory is needed
 const serveModelFromCache = () => {
   const XDG_CACHE_HOME = process.env.XDG_CACHE_HOME || path.join(os.homedir(), ".cache");
@@ -91,5 +113,5 @@ export default defineConfig({
       "Cross-Origin-Embedder-Policy": "require-corp",
     },
   },
-  plugins: [suppressPouchDBWarnings(), serveModelFromCache()],
+  plugins: [suppressPouchDBWarnings(), coiServiceWorker(), serveModelFromCache()],
 });

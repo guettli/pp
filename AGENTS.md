@@ -1,4 +1,19 @@
-# Project Guidelines for Claude
+# Project Guidelines for AI Agents
+
+## Language Terminology
+
+- **ui-lang**: language of the UI (`"de"` | `"en"`). Auto-detected from browser; user can override.
+- **study-lang**: language being practised (`"en-GB"` | `"de"`). Must be set explicitly; no default.
+
+Never name a variable or function "lang" or "language". Use uiLang/studyLang or ui_lang/study_lang.
+
+## English: en-GB, not en-US
+
+Use en-GB only. en-US is not supported.
+
+## No fall-backs
+
+I prefer explicit code. Avoid things like `getStudyLang() ?? "de"`.
 
 ## Running Scripts
 
@@ -18,6 +33,16 @@ Deploy via:
 ```sh
 ./run task deploy
 ```
+
+## Deploy instead of `pnpm check`
+
+When the agent has done his work, run:
+
+```sh
+./run task deploy
+```
+
+This runs check and deploys to a demo page.
 
 ## Branches
 

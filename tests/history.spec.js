@@ -97,8 +97,11 @@ test.describe("History - Database Functionality", () => {
 // Full integration tests - may be slow due to model loading
 test.describe("History - Infinite Scroll (Full App)", () => {
   test("should display history and support infinite scroll", async ({ modelPage: page }) => {
-    // Inject test data into PouchDB
+    // Set study lang and inject test data into PouchDB
     await page.evaluate(async () => {
+      const { setStudyLang } = await import("/src/study-lang.ts");
+      setStudyLang("en-GB");
+
       // Import db module
       const { db } = await import("/src/db.ts");
 
@@ -107,13 +110,13 @@ test.describe("History - Infinite Scroll (Full App)", () => {
 
       // Add 50 test results for testing infinite scroll
       const phrase = "Test";
-      const language = "en";
+      const studyLang = "en-GB";
 
       for (let i = 0; i < 50; i++) {
         const timestamp = Date.now() - i * 60000; // Each result 1 minute apart
         const score = 50 + (i % 50); // Varying scores from 50-99
 
-        await db.savePhraseResult(`${phrase}${i}`, language, score, "/test/", "/test/", 1000);
+        await db.savePhraseResult(`${phrase}${i}`, studyLang, score, "/test/", "/test/", 1000);
       }
 
       console.log("Added 50 test history items");
@@ -213,8 +216,10 @@ test.describe("History - Infinite Scroll (Full App)", () => {
   });
 
   test("should update history after new recording", async ({ modelPage: page }) => {
-    // Clear existing data
+    // Set study lang and clear existing data
     await page.evaluate(async () => {
+      const { setStudyLang } = await import("/src/study-lang.ts");
+      setStudyLang("en-GB");
       const { db } = await import("/src/db.ts");
       await db.clearAll();
     });
@@ -236,7 +241,7 @@ test.describe("History - Infinite Scroll (Full App)", () => {
     // Add a new result directly via DB
     await page.evaluate(async () => {
       const { db } = await import("/src/db.ts");
-      await db.savePhraseResult("NewPhrase", "en", 85, "/test/", "/test/", 1000);
+      await db.savePhraseResult("NewPhrase", "en-GB", 85, "/test/", "/test/", 1000);
 
       // Refresh history
       const { refreshHistory } = await import("/src/ui/history.ts");

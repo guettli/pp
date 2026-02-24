@@ -3,7 +3,8 @@
  */
 
 import { db } from "../db.js";
-import { getLanguage, t } from "../i18n.js";
+import { getUiLang, t } from "../i18n.js";
+import { getStudyLang } from "../study-lang.js";
 import { setState, state } from "../state.js";
 import type { Phrase, Score } from "../types.js";
 import { generateExplanationsHTML } from "./ipa-helper.js";
@@ -12,6 +13,9 @@ import { generatePhonemeComparisonHTML } from "./phoneme-comparison-view.js";
 // Track current audio playback
 let currentAudio: HTMLAudioElement | null = null;
 let speechSynthesisSupported: boolean | null = null; // null = unknown, true/false after check
+
+// Track whether the IPA click listener has been set up
+let ipaClickListenerSetup = false;
 
 /**
  * Display pronunciation feedback with phoneme-level analysis
@@ -124,7 +128,7 @@ export function displayFeedback(targetPhrase: Phrase, actualIPA: string, score: 
   if (ipaContent) {
     // Use the first (standard) IPA pronunciation
     const primaryIPA = targetPhrase.ipas[0]?.ipa || "";
-    const explanationsHTML = generateExplanationsHTML(primaryIPA, actualIPA);
+    const explanationsHTML = generateExplanationsHTML(primaryIPA, actualIPA, getUiLang());
     ipaContent.innerHTML = explanationsHTML || t("feedback.no_ipa_help");
   }
 
@@ -147,6 +151,9 @@ export function displayFeedback(targetPhrase: Phrase, actualIPA: string, score: 
     };
   }
 
+  // Set up phoneme click → highlight explanation (once)
+  setupIPAClickHandler();
+
   // Scroll to feedback
   if (section) {
     section.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -154,8 +161,81 @@ export function displayFeedback(targetPhrase: Phrase, actualIPA: string, score: 
 }
 
 /**
+ * Set up event delegation so clicking a phoneme in the comparison grid
+ * expands the IPA explanations panel and highlights the matching entry.
+ * Only attaches the listener once.
+ */
+function setupIPAClickHandler(): void {
+  if (ipaClickListenerSetup) return;
+
+  const comparisonGrid = document.getElementById("phoneme-comparison-grid");
+  if (!comparisonGrid) return;
+
+  comparisonGrid.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    const symbolEl = target.closest("[data-ipa-symbol]");
+    if (!symbolEl) return;
+    const symbol = symbolEl.getAttribute("data-ipa-symbol");
+    if (!symbol) return;
+
+    // Expand IPA explanations if collapsed
+    const ipaExplanations = document.getElementById("ipa-explanations");
+    const ipaChevron = document.getElementById("ipa-help-chevron");
+    const wasCollapsed = ipaExplanations?.style.display === "none";
+    if (ipaExplanations && wasCollapsed) {
+      ipaExplanations.style.display = "block";
+      if (ipaChevron) ipaChevron.className = "bi bi-chevron-up ms-1";
+    }
+
+    // Find and highlight the explanation entry
+    const ipaContent = document.getElementById("ipa-explanations-content");
+    if (ipaContent) {
+      // Remove existing highlights
+      ipaContent
+        .querySelectorAll(".ipa-highlight")
+        .forEach((el) => el.classList.remove("ipa-highlight"));
+
+      // Find the entry by looping (avoids CSS.escape issues with special chars)
+      let entry: Element | null = null;
+      for (const el of ipaContent.querySelectorAll("[data-ipa-symbol]")) {
+        if (el.getAttribute("data-ipa-symbol") === symbol) {
+          entry = el;
+          break;
+        }
+      }
+
+      if (entry) {
+        const highlightEntry = entry;
+        highlightEntry.classList.add("ipa-highlight");
+        const doScroll = () =>
+          highlightEntry.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        // Delay scroll slightly when panel was just expanded
+        if (wasCollapsed) {
+          setTimeout(doScroll, 50);
+        } else {
+          doScroll();
+        }
+      }
+    }
+  });
+
+  ipaClickListenerSetup = true;
+}
+
+/**
  * Hide feedback section
  */
+/**
+ * Re-render just the IPA symbol explanations using the current ui-lang.
+ * Call this when the ui-lang changes while feedback is on screen.
+ */
+export function refreshIpaExplanations(targetIPA: string, actualIPA: string): void {
+  const ipaContent = document.getElementById("ipa-explanations-content");
+  if (!ipaContent) return;
+  const html = generateExplanationsHTML(targetIPA, actualIPA, getUiLang());
+  ipaContent.innerHTML = html || t("feedback.no_ipa_help");
+}
+
 export function hideFeedback() {
   const section = document.getElementById("feedback-section");
   if (section) section.style.display = "none";
@@ -264,14 +344,15 @@ function downloadRecording() {
 
   // Use current phrase for filename if available
   const phrase = state.currentPhrase?.phrase || "recording";
-  const lang = getLanguage();
+  const studyLang = getStudyLang();
+  if (!studyLang) return;
   const timestamp = new Date().toISOString().slice(0, 19).replace(/[:-]/g, "");
 
   // Replace spaces with underscores in phrase for clean filenames
   const phraseSafe = phrase.replace(/\s+/g, "_");
 
   // Include recognized IPA in filename if available
-  let filename = `${phraseSafe}_${timestamp}_${lang}`;
+  let filename = `${phraseSafe}_${timestamp}_${studyLang}`;
   if (state.actualIPA) {
     // Remove spaces for cleaner filename
     filename += `_${state.actualIPA.replace(/\s+/g, "")}`;
@@ -398,112 +479,132 @@ export async function playDesiredPronunciation(phrase: string): Promise<void> {
   // Get user level to adjust speech rate and preferred voice
   let userLevel = 1;
   let preferredVoiceName: string | null = null;
-  const lang = getLanguage();
+  const studyLang = getStudyLang();
+  if (!studyLang) return;
   try {
-    const stats = await db.getUserStats(lang);
+    const stats = await db.getUserStats(studyLang);
     userLevel = stats.userLevel;
-    preferredVoiceName = await db.getPreferredVoice(lang);
+    preferredVoiceName = await db.getPreferredVoice(studyLang);
   } catch (error) {
     console.warn("Could not get user stats for speech rate, using default:", error);
   }
 
   // Function to actually speak once voices are ready
   const speakPhrase = () => {
-    // Cancel any ongoing speech
-    speechSynthesis.cancel();
+    // Only cancel if something is currently speaking/pending.
+    // Chrome 130+ regression: calling cancel() on an empty queue corrupts TTS state
+    // and causes synthesis-failed on the next speak() call.
+    const wasActive = speechSynthesis.speaking || speechSynthesis.pending;
+    if (wasActive) {
+      speechSynthesis.cancel();
+    }
 
-    // CRITICAL: Small delay to avoid Chrome Linux bug where cancel() interferes with speak()
-    setTimeout(() => {
-      const utterance = new SpeechSynthesisUtterance(phrase);
-      utterance.lang = lang === "de" ? "de-DE" : "en-US";
+    // Delay after cancel to let Chrome process it; no delay needed if nothing was playing.
+    setTimeout(
+      () => {
+        const utterance = new SpeechSynthesisUtterance(phrase);
+        utterance.lang = studyLang === "de" ? "de-DE" : "en-GB";
 
-      // Get available voices
-      const voices = speechSynthesis.getVoices();
-      const languageVoices = voices.filter((voice) =>
-        voice.lang.startsWith(lang === "de" ? "de" : "en"),
-      );
+        // Get available voices — may be empty on some Linux systems even when TTS works
+        const voices = speechSynthesis.getVoices();
+        console.log(`Total voices available: ${voices.length}`);
 
-      // Log all available voices for debugging
-      console.log(`Total voices available: ${voices.length}`);
-      console.log(`Language-matched voices (${lang}):`, languageVoices.length);
-      languageVoices.forEach((voice) => {
-        console.log(`  - ${voice.name} (${voice.lang}) | Local: ${voice.localService}`);
-      });
+        const languageVoices = voices.filter((voice) =>
+          voice.lang.startsWith(studyLang === "de" ? "de" : "en"),
+        );
+        console.log(`Language-matched voices (${studyLang}):`, languageVoices.length);
+        languageVoices.forEach((voice) => {
+          console.log(`  - ${voice.name} (${voice.lang}) | Local: ${voice.localService}`);
+        });
 
-      let selectedVoice: SpeechSynthesisVoice | undefined;
+        let selectedVoice: SpeechSynthesisVoice | undefined;
 
-      // First, try to use preferred voice if set
-      if (preferredVoiceName) {
-        selectedVoice = languageVoices.find((voice) => voice.name === preferredVoiceName);
-        if (selectedVoice) {
-          console.log("✓ Using preferred voice:", selectedVoice.name);
-        } else {
-          console.warn("Preferred voice not found:", preferredVoiceName);
+        // First, try to use preferred voice if set
+        if (preferredVoiceName) {
+          selectedVoice = languageVoices.find((voice) => voice.name === preferredVoiceName);
+          if (selectedVoice) {
+            console.log("✓ Using preferred voice:", selectedVoice.name);
+          } else {
+            console.warn("Preferred voice not found:", preferredVoiceName);
+          }
         }
-      }
 
-      // If no preferred voice or not found, select randomly from offline voices
-      if (!selectedVoice) {
-        // Prefer offline voices (localService = true), but fall back to all voices if none available
-        let availableVoices = languageVoices.filter((voice) => voice.localService);
-        if (availableVoices.length === 0) {
-          availableVoices = languageVoices;
-          console.log("No offline voices available, using all voices");
-        } else {
+        // If no preferred voice or not found, select randomly from offline voices
+        if (!selectedVoice && languageVoices.length > 0) {
+          // Prefer offline voices (localService = true), fall back to all language voices
+          const offlineVoices = languageVoices.filter((voice) => voice.localService);
+          const pool = offlineVoices.length > 0 ? offlineVoices : languageVoices;
           console.log(
-            `Using ${availableVoices.length} offline voices out of ${languageVoices.length} total`,
+            `Using ${pool.length} ${offlineVoices.length > 0 ? "offline" : "online"} voices`,
           );
-        }
-
-        if (availableVoices.length > 0) {
-          selectedVoice = availableVoices[Math.floor(Math.random() * availableVoices.length)];
+          selectedVoice = pool[Math.floor(Math.random() * pool.length)];
           console.log(
             "✓ Selected random voice:",
             selectedVoice.name,
             "| Offline:",
             selectedVoice.localService,
           );
-        } else {
-          console.warn("⚠ No voices available for this language");
         }
-      }
 
-      if (selectedVoice) {
-        utterance.voice = selectedVoice;
-      }
+        if (languageVoices.length === 0) {
+          console.warn(
+            `⚠ No voices listed for ${studyLang} — attempting speak() anyway (browser may use OS TTS)`,
+          );
+        }
 
-      // Adjust speech rate based on user level
-      // Level 1-599: Scale from 0.5 (very slow) to 1.0 (normal)
-      // Level 600+: 1.0 (normal speed)
-      let rate: number;
-      if (userLevel < 600) {
-        // Linear scaling: 0.5 at level 1, approaching 1.0 at level 600
-        rate = 0.5 + (userLevel / 600) * 0.5;
-      } else {
-        rate = 1.0;
-      }
-      utterance.rate = rate;
-      utterance.pitch = 0.95; // Slightly lower pitch for clarity
-      utterance.volume = 1.0; // Full volume
+        if (selectedVoice) {
+          utterance.voice = selectedVoice;
+        }
+        // If no voice found, utterance.lang is still set — browser picks its own default
 
-      console.log(
-        "Speaking phrase:",
-        phrase,
-        "with language:",
-        utterance.lang,
-        "| Rate:",
-        rate.toFixed(2),
-        "(Level:",
-        userLevel,
-        ")",
-      );
+        // Adjust speech rate based on user level
+        // Level 1-599: Scale from 0.5 (very slow) to 1.0 (normal)
+        // Level 600+: 1.0 (normal speed)
+        let rate: number;
+        if (userLevel < 600) {
+          // Linear scaling: 0.5 at level 1, approaching 1.0 at level 600
+          rate = 0.5 + (userLevel / 600) * 0.5;
+        } else {
+          rate = 1.0;
+        }
+        utterance.rate = rate;
+        utterance.pitch = 0.95; // Slightly lower pitch for clarity
+        utterance.volume = 1.0; // Full volume
 
-      utterance.onstart = () => console.log("Speech started");
-      utterance.onend = () => console.log("Speech ended");
-      utterance.onerror = (e) => console.error("Speech error:", e);
+        console.log(
+          "Speaking phrase:",
+          phrase,
+          "with language:",
+          utterance.lang,
+          "| Rate:",
+          rate.toFixed(2),
+          "(Level:",
+          userLevel,
+          ")",
+        );
 
-      speechSynthesis.speak(utterance);
-    }, 100); // 100ms delay to avoid Chrome Linux cancel/speak bug
+        utterance.onstart = () => console.log("Speech started");
+        utterance.onend = () => console.log("Speech ended");
+        utterance.onerror = (e) => {
+          if (e.error === "interrupted" || e.error === "canceled") {
+            // Normal: fired when speechSynthesis.cancel() is called before speak() finishes
+            console.log("Speech cancelled:", e.error);
+            return;
+          }
+          console.error("❌ Speech error:", e.error, e);
+          if (e.error === "synthesis-failed" || e.error === "synthesis-unavailable") {
+            const speechHintEl = document.getElementById("speech-synthesis-hint");
+            if (speechHintEl) {
+              speechHintEl.style.display = "inline";
+              speechHintEl.textContent = t("feedback.speech_not_supported");
+            }
+          }
+        };
+
+        speechSynthesis.speak(utterance);
+      },
+      wasActive ? 150 : 0,
+    ); // Only delay if we cancelled (Chrome 130+ regression fix)
   };
 
   // Check if voices are already loaded
@@ -531,16 +632,12 @@ export async function playDesiredPronunciation(phrase: string): Promise<void> {
 
     // Fallback timeout in case voiceschanged never fires
     setTimeout(() => {
-      const voicesNow = speechSynthesis.getVoices();
-      console.log("Timeout check: voices available:", voicesNow.length);
-      if (voicesNow.length > 0 && !hasSpoken) {
-        hasSpoken = true;
-        speechSynthesis.removeEventListener("voiceschanged", onVoicesChanged);
-        speakPhrase();
-      } else if (!hasSpoken) {
-        console.warn("No voices available after timeout");
-      }
-    }, 500);
+      if (hasSpoken) return;
+      hasSpoken = true;
+      speechSynthesis.removeEventListener("voiceschanged", onVoicesChanged);
+      // Speak regardless — if no named voices are listed the browser will use its default
+      speakPhrase();
+    }, 1500);
   }
 }
 
@@ -607,17 +704,18 @@ async function showVoiceSelectionDialog(): Promise<void> {
   const voiceList = document.getElementById("voice-list");
   if (!modal || !voiceList) return;
 
-  const lang = getLanguage();
+  const studyLang = getStudyLang();
+  if (!studyLang) return;
 
   // Function to populate the voice list once voices are available
   const populateVoiceList = async () => {
     const voices = speechSynthesis.getVoices();
     const languageVoices = voices.filter((voice) =>
-      voice.lang.startsWith(lang === "de" ? "de" : "en"),
+      voice.lang.startsWith(studyLang === "de" ? "de" : "en"),
     );
 
     // Get current preferred voice
-    const preferredVoiceName = await db.getPreferredVoice(lang);
+    const preferredVoiceName = await db.getPreferredVoice(studyLang);
 
     // Clear and populate voice list
     voiceList.innerHTML = "";
@@ -641,7 +739,7 @@ async function showVoiceSelectionDialog(): Promise<void> {
       // Column 2: Offline/Online badge
       const statusBadge = document.createElement("span");
       statusBadge.className = `badge ${voice.localService ? "bg-success" : "bg-secondary"}`;
-      statusBadge.textContent = voice.localService ? "Offline" : "Online";
+      statusBadge.textContent = voice.localService ? t("voice.offline") : t("voice.online");
       statusBadge.style.minWidth = "70px";
       statusBadge.style.textAlign = "center";
 
@@ -667,7 +765,7 @@ async function showVoiceSelectionDialog(): Promise<void> {
       checkbox.onclick = async (e) => {
         e.stopPropagation();
         if (checkbox.checked) {
-          await db.savePreferredVoice(lang, voice.name);
+          await db.savePreferredVoice(studyLang, voice.name);
           // Uncheck all other checkboxes
           voiceList.querySelectorAll("input[type='checkbox']").forEach((cb) => {
             if (cb !== checkbox) {
@@ -676,7 +774,7 @@ async function showVoiceSelectionDialog(): Promise<void> {
           });
         } else {
           // If unchecking, clear the preference
-          await db.savePreferredVoice(lang, "");
+          await db.savePreferredVoice(studyLang, "");
         }
       };
 
@@ -722,7 +820,9 @@ async function playWithSpecificVoice(phrase: string, voice: SpeechSynthesisVoice
   // Get user level for rate adjustment
   let userLevel = 1;
   try {
-    const stats = await db.getUserStats(getLanguage());
+    const studyLang = getStudyLang();
+    if (!studyLang) return;
+    const stats = await db.getUserStats(studyLang);
     userLevel = stats.userLevel;
   } catch (error) {
     console.warn("Could not get user stats for speech rate:", error);
@@ -736,7 +836,9 @@ async function playWithSpecificVoice(phrase: string, voice: SpeechSynthesisVoice
     rate = 1.0;
   }
 
-  speechSynthesis.cancel();
+  if (speechSynthesis.speaking || speechSynthesis.pending) {
+    speechSynthesis.cancel();
+  }
 
   const utterance = new SpeechSynthesisUtterance(phrase);
   utterance.voice = voice;

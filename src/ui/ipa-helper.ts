@@ -2,7 +2,6 @@
  * IPA symbol explanation helper
  */
 
-import { getLanguage } from "../i18n.js";
 import ipaExamples from "../data/ipa-examples.json";
 
 interface LanguageExamples {
@@ -34,13 +33,23 @@ function buildLookup(): void {
 /**
  * Get explanation for an IPA symbol in the current language
  */
-export function getSymbolExplanation(symbol: string): string | null {
+export function getSymbolExplanation(symbol: string, uiLang: string): string | null {
   buildLookup();
   const examples = symbolLookup.get(symbol);
   if (!examples) return null;
 
-  const lang = getLanguage();
-  return examples[lang] || examples.en || null;
+  return examples[uiLang as keyof LanguageExamples] || examples.en || null;
+}
+
+/**
+ * Get Wiktionary URLs for a symbol in both German and English
+ */
+function getWiktionaryUrls(symbol: string): { de: string; en: string } {
+  const encoded = encodeURIComponent(symbol);
+  return {
+    de: `https://de.wiktionary.org/wiki/${encoded}`,
+    en: `https://en.wiktionary.org/wiki/${encoded}`,
+  };
 }
 
 /**
@@ -100,7 +109,11 @@ function formatExample(text: string): string {
 /**
  * Generate HTML for IPA symbol explanations
  */
-export function generateExplanationsHTML(targetIPA: string, actualIPA: string): string {
+export function generateExplanationsHTML(
+  targetIPA: string,
+  actualIPA: string,
+  lang: string,
+): string {
   // Extract symbols from both strings
   const targetSymbols = extractSymbols(targetIPA);
   const actualSymbols = extractSymbols(actualIPA);
@@ -117,12 +130,16 @@ export function generateExplanationsHTML(targetIPA: string, actualIPA: string): 
   let html = '<div class="row">';
 
   for (const symbol of sortedSymbols) {
-    const explanation = getSymbolExplanation(symbol);
+    const explanation = getSymbolExplanation(symbol, lang);
     if (explanation) {
+      const wikt = getWiktionaryUrls(symbol);
       html += `
-        <div class="col-6 col-md-4 col-lg-3 mb-2">
+        <div class="col-6 col-md-4 col-lg-3 mb-2" data-ipa-symbol="${symbol.replace(/"/g, "&quot;")}">
           <span class="badge bg-light text-dark border me-1" style="font-size: 1.1em;">${symbol}</span>
           <small class="text-muted">${formatExample(explanation)}</small>
+          <div class="mt-1">
+            <a href="${wikt.de}" target="_blank" rel="noopener noreferrer" class="text-muted small me-2" title="Deutsch Wiktionary">de</a><a href="${wikt.en}" target="_blank" rel="noopener noreferrer" class="text-muted small" title="English Wiktionary">en</a>
+          </div>
         </div>
       `;
     }

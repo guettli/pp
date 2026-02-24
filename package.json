@@ -49,6 +49,7 @@
     "@svouch/pouchdb": "0.0.1-0",
     "@types/js-yaml": "^4.0.9",
     "bootstrap": "^5.3.8",
+    "coi-serviceworker": "^0.1.7",
     "escape-html": "^1.0.3",
     "fastest-levenshtein": "^1.0.16",
     "flac-bindings": "^4.1.0",

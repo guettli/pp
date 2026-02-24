@@ -3,7 +3,6 @@
  */
 
 import { db } from "../db.js";
-import type { SupportedLanguage } from "../types.js";
 
 /**
  * Adjust user's level based on their performance
@@ -58,13 +57,13 @@ export function adjustUserLevel(
 /**
  * Load user's manual level preference from database
  */
-export async function loadUserLevel(language: SupportedLanguage): Promise<number | null> {
-  return await db.getUserLevel(language);
+export async function loadUserLevel(studyLang: string): Promise<number | null> {
+  return await db.getUserLevel(studyLang);
 }
 
 /**
  * Save user's manual level preference to database
  */
-export async function saveUserLevel(language: SupportedLanguage, level: number): Promise<void> {
-  await db.saveUserLevel(language, level);
+export async function saveUserLevel(studyLang: string, level: number): Promise<void> {
+  await db.saveUserLevel(studyLang, level);
 }

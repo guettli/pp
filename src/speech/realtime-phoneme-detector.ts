@@ -13,8 +13,8 @@ import { calculatePanPhonDistance } from "../comparison/panphon-distance.js";
 interface DetectorConfig {
   /** Target IPA phonemes to match */
   targetIPA: string;
-  /** Language code for phoneme comparison (e.g., "en", "de") */
-  lang: string;
+  /** Study language code for phoneme comparison (e.g., "en", "de") */
+  studyLang: string;
   /** Similarity threshold to trigger auto-stop (0-1) */
   threshold?: number;
   /** Minimum number of chunks before checking */
@@ -64,7 +64,7 @@ export class RealTimePhonemeDetector {
   constructor(config: DetectorConfig, callbacks: DetectorCallbacks = {}) {
     this.config = {
       targetIPA: config.targetIPA,
-      lang: config.lang,
+      studyLang: config.studyLang,
       threshold: config.threshold ?? 1.0, // Default to 100% similarity
       minChunksBeforeCheck: config.minChunksBeforeCheck ?? 3, // Wait for at least 3 chunks (1.5 seconds)
       silenceThreshold: config.silenceThreshold ?? 0.01, // RMS threshold for silence
@@ -192,7 +192,11 @@ export class RealTimePhonemeDetector {
       this.lastProcessedChunkCount = this.audioChunks.length;
 
       // Calculate similarity with target
-      const result = calculatePanPhonDistance(this.config.targetIPA, phonemes, this.config.lang);
+      const result = calculatePanPhonDistance(
+        this.config.targetIPA,
+        phonemes,
+        this.config.studyLang,
+      );
       this.lastSimilarity = result.similarity;
 
       // Notify listeners

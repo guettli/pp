@@ -1,7 +1,7 @@
 import type { SupportedLanguage } from "./types.js";
 
 const STORAGE_KEY = "phoneme-party-language";
-const SUPPORTED_LANGUAGES: SupportedLanguage[] = ["de", "en"];
+const SUPPORTED_UI_LANGS: SupportedLanguage[] = ["de", "en"];
 const GERMAN_REGIONS = new Set(["de", "at", "ch"]);
 
 type TranslationTable = Record<string, string>;
@@ -15,6 +15,12 @@ const translations: Translations = {
     "language.label": "Sprache:",
     "language.de": "Deutsch",
     "language.en": "Englisch",
+    "ui-lang.label": "Oberfläche:",
+    "ui-lang.auto": "Auto",
+    "study-lang.label": "Lernsprache:",
+    "study-lang.choose": "— Auswählen —",
+    "study-lang.en-GB": "Englisch (Britisch)",
+    "study-lang.de": "Deutsch",
     "console.title": "Konsolen-Ausgabe",
     "console.copy": "Kopieren",
     "console.clear": "Leeren",
@@ -91,9 +97,10 @@ const translations: Translations = {
     "footer.webgpu_status_fallback": "WebGPU: aus ({backend})",
     "footer.webgpu_status_available": "WebGPU: verfügbar",
     "footer.webgpu_status_no_shader_f16": "WebGPU: kein shader-f16 → WASM",
-    "footer.webgpu_status_disabled_manual": "WebGPU: manuell deaktiviert → WASM",
+    "footer.webgpu_status_disabled_manual": "WebGPU: deaktiviert → WASM",
     "footer.webgpu_status_validation_failed": "WebGPU: Validierung fehlgeschlagen → WASM",
     "footer.disable_webgpu": "WebGPU deaktivieren",
+    "footer.enable_webgpu": "WebGPU aktivieren",
     "footer.device_details": "Gerätedetails",
     "footer.device_details_title": "Gerätedetails für Fehlerbericht",
     "footer.device_details_help":
@@ -117,6 +124,11 @@ const translations: Translations = {
     "level.actual": "Tatsächliches Level: {level}",
     "level.change_confirm":
       "Möchtest du wirklich von Level {oldLevel} zu {newLevel} wechseln? Eine neue Phrase wird geladen.",
+    "level.stats_subtitle": "Basierend auf letzter Leistung",
+    "level.mastered": "{mastered}/{total} gemeistert (≥95%)",
+    "processing.analyzing": "Analysiere...",
+    "voice.offline": "Offline",
+    "voice.online": "Online",
   },
   en: {
     "app.title": "Phoneme Party - Pronunciation Practice",
@@ -125,6 +137,12 @@ const translations: Translations = {
     "language.label": "Language:",
     "language.de": "German",
     "language.en": "English",
+    "ui-lang.label": "Interface:",
+    "ui-lang.auto": "Auto",
+    "study-lang.label": "Study language:",
+    "study-lang.choose": "— Choose —",
+    "study-lang.en-GB": "English (British)",
+    "study-lang.de": "German",
     "console.title": "Console Output",
     "console.copy": "Copy",
     "console.clear": "Clear",
@@ -201,9 +219,10 @@ const translations: Translations = {
     "footer.webgpu_status_fallback": "WebGPU: off ({backend})",
     "footer.webgpu_status_available": "WebGPU: available",
     "footer.webgpu_status_no_shader_f16": "WebGPU: no shader-f16 → WASM",
-    "footer.webgpu_status_disabled_manual": "WebGPU: manually disabled → WASM",
+    "footer.webgpu_status_disabled_manual": "WebGPU: disabled → WASM",
     "footer.webgpu_status_validation_failed": "WebGPU: validation failed → WASM",
     "footer.disable_webgpu": "Disable WebGPU",
+    "footer.enable_webgpu": "Enable WebGPU",
     "footer.device_details": "Device details",
     "footer.device_details_title": "Device Details for Bug Report",
     "footer.device_details_help": "Copy this information when filing a bug report.",
@@ -226,32 +245,37 @@ const translations: Translations = {
     "level.actual": "Actual level: {level}",
     "level.change_confirm":
       "Do you really want to change from level {oldLevel} to {newLevel}? A new phrase will be loaded.",
+    "level.stats_subtitle": "Based on recent performance",
+    "level.mastered": "{mastered}/{total} mastered (≥95%)",
+    "processing.analyzing": "Analyzing...",
+    "voice.offline": "Offline",
+    "voice.online": "Online",
   },
 };
 
-type LanguageChangeListener = (language: SupportedLanguage) => void;
+type UiLangChangeListener = (uiLang: SupportedLanguage) => void;
 
-let currentLanguage: SupportedLanguage = resolveInitialLanguage();
-const listeners = new Set<LanguageChangeListener>();
+let currentUiLang: SupportedLanguage = resolveInitialUiLang();
+const listeners = new Set<UiLangChangeListener>();
 
-function resolveInitialLanguage(): SupportedLanguage {
+function resolveInitialUiLang(): SupportedLanguage {
   // First check query string
   if (typeof window !== "undefined" && window.location) {
     const params = new URLSearchParams(window.location.search);
-    const langParam = params.get("lang");
-    if (langParam && SUPPORTED_LANGUAGES.includes(langParam as SupportedLanguage)) {
-      return langParam as SupportedLanguage;
+    const uiLangParam = params.get("lang");
+    if (uiLangParam && SUPPORTED_UI_LANGS.includes(uiLangParam as SupportedLanguage)) {
+      return uiLangParam as SupportedLanguage;
     }
   }
   // Then check localStorage
   const stored = safeGetStorage(STORAGE_KEY);
-  if (stored && SUPPORTED_LANGUAGES.includes(stored as SupportedLanguage)) {
+  if (stored && SUPPORTED_UI_LANGS.includes(stored as SupportedLanguage)) {
     return stored as SupportedLanguage;
   }
-  return detectLanguageFromLocale();
+  return detectUiLangFromLocale();
 }
 
-function detectLanguageFromLocale(): SupportedLanguage {
+function detectUiLangFromLocale(): SupportedLanguage {
   const locales =
     Array.isArray(navigator.languages) && navigator.languages.length
       ? navigator.languages
@@ -260,8 +284,8 @@ function detectLanguageFromLocale(): SupportedLanguage {
   for (const locale of locales) {
     if (!locale) continue;
     const normalized = locale.toLowerCase().replace("_", "-");
-    const [language, region] = normalized.split("-");
-    if (language === "de" || (region && GERMAN_REGIONS.has(region))) {
+    const [tag, region] = normalized.split("-");
+    if (tag === "de" || (region && GERMAN_REGIONS.has(region))) {
       return "de";
     }
   }
@@ -285,8 +309,16 @@ function safeSetStorage(key: string, value: string): void {
   }
 }
 
+function safeRemoveStorage(key: string): void {
+  try {
+    window.localStorage.removeItem(key);
+  } catch {
+    // ignore
+  }
+}
+
 export function t(key: string, variables: Record<string, string | number> = {}): string {
-  const langTable = translations[currentLanguage] || translations.en;
+  const langTable = translations[currentUiLang] || translations.en;
   const template = langTable[key] || translations.en[key] || key;
   return Object.keys(variables).reduce((result, varKey) => {
     const value = variables[varKey];
@@ -294,22 +326,40 @@ export function t(key: string, variables: Record<string, string | number> = {}):
   }, template);
 }
 
-export function getLanguage(): SupportedLanguage {
-  return currentLanguage;
+export function getUiLang(): SupportedLanguage {
+  return currentUiLang;
 }
 
-export function setLanguage(language: string): void {
-  const normalized = SUPPORTED_LANGUAGES.includes(language as SupportedLanguage)
-    ? (language as SupportedLanguage)
+export function isUiLangAuto(): boolean {
+  return safeGetStorage(STORAGE_KEY) === null;
+}
+
+export function setUiLang(value: "auto" | SupportedLanguage): void {
+  if (value === "auto") {
+    safeRemoveStorage(STORAGE_KEY);
+    const detected = detectUiLangFromLocale();
+    if (detected !== currentUiLang) {
+      currentUiLang = detected;
+      applyTranslations();
+      listeners.forEach((l) => l(currentUiLang));
+    }
+  } else {
+    setUiLangValue(value);
+  }
+}
+
+function setUiLangValue(uiLang: string): void {
+  const normalized = SUPPORTED_UI_LANGS.includes(uiLang as SupportedLanguage)
+    ? (uiLang as SupportedLanguage)
     : "en";
-  if (normalized === currentLanguage) return;
-  currentLanguage = normalized;
+  if (normalized === currentUiLang) return;
+  currentUiLang = normalized;
   safeSetStorage(STORAGE_KEY, normalized);
   applyTranslations();
-  listeners.forEach((listener) => listener(currentLanguage));
+  listeners.forEach((listener) => listener(currentUiLang));
 }
 
-export function onLanguageChange(listener: LanguageChangeListener): () => void {
+export function onUiLangChange(listener: UiLangChangeListener): () => void {
   listeners.add(listener);
   return () => listeners.delete(listener);
 }
@@ -317,7 +367,7 @@ export function onLanguageChange(listener: LanguageChangeListener): () => void {
 export function applyTranslations(root: Document | Element = document): void {
   if (!root) return;
   if (document?.documentElement) {
-    document.documentElement.lang = currentLanguage;
+    document.documentElement.lang = currentUiLang;
   }
   if (document?.title) {
     document.title = t("app.title");
@@ -345,5 +395,5 @@ export function applyTranslations(root: Document | Element = document): void {
 
 export function initI18n(): SupportedLanguage {
   applyTranslations();
-  return currentLanguage;
+  return currentUiLang;
 }

@@ -128,8 +128,11 @@ export interface DebugMeta {
   value: string;
 }
 
-// Supported languages
+// Supported UI languages (for translations)
 export type SupportedLanguage = "de" | "en";
+
+// Supported study languages (for phrase content)
+export type StudyLanguage = "en-GB" | "de";
 
 // Translation key type (partial, for type safety without exhaustive listing)
 export type TranslationKey = string;

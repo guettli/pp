@@ -20,15 +20,18 @@ async function main() {
     process.exit(1);
   }
 
-  if (!fs.existsSync(yamlFile)) {
-    console.error(`File not found: ${yamlFile}`);
+  // Accept either a .flac file or a .flac.yaml file
+  const resolvedYamlFile = yamlFile.endsWith(".yaml") ? yamlFile : yamlFile + ".yaml";
+
+  if (!fs.existsSync(resolvedYamlFile)) {
+    console.error(`File not found: ${resolvedYamlFile}`);
     process.exit(1);
   }
 
-  const content = fs.readFileSync(yamlFile, "utf8");
+  const content = fs.readFileSync(resolvedYamlFile, "utf8");
   const yamlData = yaml.load(content) as { phrase?: string; lang?: string };
 
-  const flacFile = yamlFile.replace(".yaml", "");
+  const flacFile = resolvedYamlFile.replace(".yaml", "");
   if (!fs.existsSync(flacFile)) {
     console.error(`Audio file not found: ${flacFile}`);
     process.exit(1);
