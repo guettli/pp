@@ -2,6 +2,24 @@
 
 study-lang, ui-lang. Store in pouchdb.
 
+---
+
+I dont understand this IPA symbol: ɾ
+
+I am looking at https://en.wiktionary.org/wiki/%C9%BE
+
+And listen to the audio sample. Sounds like a "r" to me.
+
+Then I look at https://en.wikipedia.org/wiki/Voiced_dental_and_alveolar_taps_and_flaps
+
+There "be*tt*er" is an example for the symbol ɾ
+
+Zipa detects: https://en.wikipedia.org/wiki/Voiced_alveolar_approximant
+
+Is the recording for ɾ ok ?
+https://en.wikipedia.org/wiki/File:Alveolar_tap.ogg
+
+... asked at reddit.
 
 ---
 
