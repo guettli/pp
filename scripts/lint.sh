@@ -17,4 +17,11 @@ pnpm lint
 
 ./scripts/test-code-duplication.sh
 
+# Fail if deprecated 'base' from $app/paths is used in Svelte files
+echo "🔎 Checking for deprecated 'base' from \$app/paths..."
+if grep -rn "import {[^}]*\bbase\b[^}]*} from \"\\\$app/paths\"" src/ --include="*.svelte"; then
+    echo "❌ Error: 'base' from \$app/paths is deprecated. Use resolve() instead."
+    exit 1
+fi
+
 echo "✅ Format and lint complete!"

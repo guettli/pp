@@ -1,9 +1,13 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { base } from "$app/paths";
-  import { goto } from "$app/navigation";
+  import { resolve } from "$app/paths";
   import { getUiLang, initI18n, t } from "../../i18n.js";
   import { HF_REPO } from "../../lib/model-config.js";
+
+  // TypeScript's conditional type resolution incorrectly requires 2 args for routes
+  // with no URL params. This is a SvelteKit type system quirk, not a runtime issue.
+  // @ts-expect-error TS2554
+  const homeHref: string = resolve("/");
   import ipaExamples from "../../data/ipa-examples.json";
 
   type CategoryKey = "consonants" | "vowels" | "diphthongs" | "modifiers";
@@ -129,9 +133,7 @@
 
 <div class="container py-5">
   <header class="mb-4">
-    <button class="btn btn-sm btn-outline-secondary mb-3" onclick={() => void goto(`${base}/`)}
-      >{t("ipa.back")}</button
-    >
+    <a href={homeHref} class="btn btn-sm btn-outline-secondary mb-3">{t("ipa.back")}</a>
     <h1 class="display-5 fw-bold">{t("ipa.title")}</h1>
     <p class="lead text-muted">{t("ipa.subtitle")}</p>
     {#if !isLoading && !loadError}

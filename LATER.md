@@ -1,30 +1,6 @@
 <!-- markdownlint-disable -->
 
-After deploy:Check if prod is ok via playwright.
-
-Example: coi serviceworker war nicht verfügbar.
-
----
-
-Svelte: Links should work, no buttons please:
-
-<a href="{base}/" class="btn btn-sm btn-outline-secondary mb-3">{t("ipa.back")}</a>
-    <button class="btn btn-sm btn-outline-secondary mb-3" onclick={() => void goto(`${base}/`)}
-      >{t("ipa.back")}</button
-    >
-
----
-
-At the bottom show date of last Build.
-
----
-
-Create Page with all IPA Symbols. Show it in uiLang.
-
----
-
-
-Svelte warnings on deploy: Should be gone
+reply on recording works on PC, but not on mobile...
 
 ---
 

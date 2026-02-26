@@ -1,6 +1,11 @@
 <script lang="ts">
   import { onMount, tick } from "svelte";
-  import { base } from "$app/paths";
+  import { resolve } from "$app/paths";
+
+  // TypeScript's conditional type resolution incorrectly requires 2 args for routes
+  // with no URL params. This is a SvelteKit type system quirk, not a runtime issue.
+  // @ts-expect-error TS2554
+  const ipaSymbolsHref: string = resolve("/ipa-symbols");
   import "../styles/main.css";
   import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
@@ -1404,7 +1409,7 @@
                   </div>
                 </div>
 
-                <!-- eslint-disable-next-line svelte/no-static-element-interactions -->
+                <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
                 <div
                   id="phoneme-comparison-grid"
                   role="group"
@@ -1448,7 +1453,7 @@
                       {@html ipaExplanationsHTML || t("feedback.no_ipa_help")}
                     </div>
                     <div class="mt-2 text-end">
-                      <a href="{base}/ipa-symbols" class="small text-muted">
+                      <a href={ipaSymbolsHref} class="small text-muted">
                         <i class="bi bi-list-ul me-1"></i>{t("buttons.see_all_ipa")}
                       </a>
                     </div>

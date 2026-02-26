@@ -85,6 +85,9 @@ const serveModelFromCache = () => {
 
 export default defineConfig({
   plugins: [sveltekit(), suppressPouchDBWarnings(), coiServiceWorker(), serveModelFromCache()],
+  define: {
+    __BUILD_DATE__: JSON.stringify(new Date().toISOString()),
+  },
   build: {
     target: "esnext",
     sourcemap: true,
