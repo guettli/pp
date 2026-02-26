@@ -21,7 +21,7 @@ test.describe("Re-run button bug", () => {
         try {
           if (!window.__test_api) throw new Error("Test API not available");
 
-          const { prepareAudioForModel } = await import("/src/audio/processor.js");
+          const { prepareAudioForModel } = await import("/phoneme-party/src/audio/processor.js");
           const blob = new Blob([new Uint8Array(audioData)], { type: "audio/flac" });
           const audioFloat32 = await prepareAudioForModel(blob);
 
@@ -33,7 +33,7 @@ test.describe("Re-run button bug", () => {
 
           // Ensure a phrase is loaded (use test API getState to check)
           if (!window.__test_api.getState().currentPhrase) {
-            const { getRandomPhrase } = await import("/src/utils/random.js");
+            const { getRandomPhrase } = await import("/phoneme-party/src/utils/random.js");
             const phrase = getRandomPhrase("de", 1);
             window.__test_api.setState({ currentPhrase: phrase });
           }

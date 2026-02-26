@@ -43,7 +43,7 @@ test.describe("No Individual Chunk Decode Errors", () => {
     const result = await page.evaluate(
       async ({ audioData, targetIPA }) => {
         const { RealTimePhonemeDetector } =
-          await import("/src/speech/realtime-phoneme-detector.js");
+          await import("/phoneme-party/src/speech/realtime-phoneme-detector.js");
 
         // Track console errors within the page context
         const pageErrors = [];

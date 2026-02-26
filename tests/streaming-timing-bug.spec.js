@@ -31,7 +31,7 @@ test.describe("Streaming Timing Bug", () => {
     const result = await page.evaluate(
       async ({ audioData, targetIPA }) => {
         const { RealTimePhonemeDetector } =
-          await import("/src/speech/realtime-phoneme-detector.js");
+          await import("/phoneme-party/src/speech/realtime-phoneme-detector.js");
 
         let phonemeUpdates = [];
 

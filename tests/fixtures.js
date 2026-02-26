@@ -25,6 +25,8 @@ export const test = base.extend({
       const context = await browser.newContext();
       const page = await context.newPage();
       await page.goto("/");
+      // Wait for Svelte to render the loading overlay, then wait for it to disappear when done
+      await page.waitForSelector("#loading-overlay", { state: "visible", timeout: 30000 });
       await page.locator("#loading-overlay").waitFor({ state: "hidden", timeout: 180000 });
       await use(page);
       await context.close();

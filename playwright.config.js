@@ -39,7 +39,7 @@ export default defineConfig({
   // Shared settings for all the projects below
   use: {
     // Base URL to use in actions like `await page.goto('/')`
-    baseURL: "http://localhost:5173",
+    baseURL: "http://localhost:5173/phoneme-party",
 
     // Collect trace when retrying the failed test
     trace: "on-first-retry",
@@ -61,15 +61,20 @@ export default defineConfig({
           },
         }),
       },
-      testIgnore: "**/pouchdb-error-prod.spec.js", // Skip production tests in dev project
+      testIgnore: ["**/pouchdb-error-prod.spec.js", "**/prod-smoke.spec.js"],
     },
     {
       name: "chromium-production",
       use: {
         ...devices["Desktop Chrome"],
-        baseURL: "http://localhost:8080",
+        baseURL: "http://localhost:8080/phoneme-party",
       },
       testMatch: "**/pouchdb-error-prod.spec.js", // Only run production tests
+    },
+    {
+      name: "prod",
+      use: { ...devices["Desktop Chrome"] },
+      testMatch: "**/prod-smoke.spec.js",
     },
   ],
 

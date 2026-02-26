@@ -1,2 +1,5 @@
 LATER.md
 tests/data/**/*.html
+.svelte-kit/
+dist/
+build/

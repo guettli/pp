@@ -75,8 +75,15 @@ tasks:
     desc: Run all checks (lint + typecheck + e2e), concurrent where possible
     deps: [lint, typecheck, test]
 
+  check-prod:
+    desc: Run smoke tests against the live production site
+    deps: [_nix-check]
+    cmds:
+      - pnpm playwright test --project=prod
+
   deploy:
-    desc: Build, check and deploy to server
+    desc: Build, check, deploy to server, and verify prod is up
     deps: [check]
     cmds:
       - rsync -avz --delete --exclude='onnx' dist/ tg:public_html/phoneme-party/
+      - task: check-prod

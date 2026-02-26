@@ -297,6 +297,7 @@ export async function loadPhonemeModel(
     // Try to load model from IndexedDB cache first
     let modelArrayBuffer = await getModelFromCache(MODEL_URL);
     if (modelArrayBuffer) {
+      progressCallback({ status: "loading_from_cache", progress: 20 });
       // Verify checksum: prefer remote (detects HF updates), fall back to stored (detects corruption)
       const [storedChecksum, remoteChecksum, actualChecksum] = await Promise.all([
         getModelChecksum(MODEL_URL),

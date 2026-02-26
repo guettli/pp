@@ -36,7 +36,7 @@ test.describe("Streaming vs Direct Detection", () => {
           return { ipa: "SKIP", error: "Test API not available" };
         }
 
-        const { prepareAudioForModel } = await import("/src/audio/processor.js");
+        const { prepareAudioForModel } = await import("/phoneme-party/src/audio/processor.js");
 
         const blob = new Blob([new Uint8Array(audioData)], { type: "audio/flac" });
         const audioFloat32 = await prepareAudioForModel(blob);
@@ -66,8 +66,8 @@ test.describe("Streaming vs Direct Detection", () => {
         }
 
         const { RealTimePhonemeDetector } =
-          await import("/src/speech/realtime-phoneme-detector.js");
-        const { prepareAudioForModel } = await import("/src/audio/processor.js");
+          await import("/phoneme-party/src/speech/realtime-phoneme-detector.js");
+        const { prepareAudioForModel } = await import("/phoneme-party/src/audio/processor.js");
 
         let autoStopTriggered = false;
         let autoStopReason = null;

@@ -1,6 +1,7 @@
 import fs from "fs";
 import os from "os";
 import path from "path";
+import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
 
 // Custom plugin to suppress PouchDB externalization warnings
@@ -24,14 +25,19 @@ const suppressPouchDBWarnings = () => {
   };
 };
 
-// Serve coi-serviceworker.js from node_modules (dev) and emit it to dist root (build)
+// Serve coi-serviceworker.js with correct base path in dev; emit to dist root in build
 const coiServiceWorker = () => {
   const swPath = path.resolve("node_modules/coi-serviceworker/coi-serviceworker.js");
+  let base = "/";
   return {
     name: "coi-serviceworker",
+    configResolved(config) {
+      base = config.base || "/";
+    },
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
-        if (req.url !== "/coi-serviceworker.js") return next();
+        const swUrl = `${base}coi-serviceworker.js`.replace("//", "/");
+        if (req.url !== swUrl) return next();
         res.setHeader("Content-Type", "application/javascript");
         fs.createReadStream(swPath).pipe(res);
       });
@@ -78,14 +84,12 @@ const serveModelFromCache = () => {
 };
 
 export default defineConfig({
-  base: "./",
+  plugins: [sveltekit(), suppressPouchDBWarnings(), coiServiceWorker(), serveModelFromCache()],
   build: {
     target: "esnext",
-    outDir: "dist",
-    sourcemap: true, // Enable source maps for better debugging
+    sourcemap: true,
     rollupOptions: {
       onwarn(warning, warn) {
-        // Suppress warnings during build
         if (warning.message && warning.message.includes("externalized for browser compatibility")) {
           return;
         }
@@ -113,5 +117,4 @@ export default defineConfig({
       "Cross-Origin-Embedder-Policy": "require-corp",
     },
   },
-  plugins: [suppressPouchDBWarnings(), coiServiceWorker(), serveModelFromCache()],
 });

@@ -31,7 +31,7 @@ test.describe("Der_Hund Bug", () => {
           return { ipa: "SKIP", error: "Test API not available" };
         }
 
-        const { prepareAudioForModel } = await import("/src/audio/processor.js");
+        const { prepareAudioForModel } = await import("/phoneme-party/src/audio/processor.js");
 
         const blob = new Blob([new Uint8Array(audioData)], { type: "audio/flac" });
         const audioFloat32 = await prepareAudioForModel(blob);

@@ -3,7 +3,7 @@ import { expect, test } from "./fixtures.js";
 test.describe("History - Database Functionality", () => {
   test("should verify history is sorted with newest first", async ({ modelPage: page }) => {
     const sortTest = await page.evaluate(async () => {
-      const { db } = await import("/src/db.ts");
+      const { db } = await import("/phoneme-party/src/db.ts");
       await db.clearAll();
 
       // Add 5 items with specific timestamps
@@ -49,7 +49,7 @@ test.describe("History - Database Functionality", () => {
     const dbTest = await page.evaluate(async () => {
       try {
         // Import database module
-        const { db } = await import("/src/db.ts");
+        const { db } = await import("/phoneme-party/src/db.ts");
 
         // Clear existing data - this recreates the database and indexes
         await db.clearAll();
@@ -99,11 +99,11 @@ test.describe("History - Infinite Scroll (Full App)", () => {
   test("should display history and support infinite scroll", async ({ modelPage: page }) => {
     // Set study lang and inject test data into PouchDB
     await page.evaluate(async () => {
-      const { setStudyLang } = await import("/src/study-lang.ts");
+      const { setStudyLang } = await import("/phoneme-party/src/study-lang.ts");
       setStudyLang("en-GB");
 
       // Import db module
-      const { db } = await import("/src/db.ts");
+      const { db } = await import("/phoneme-party/src/db.ts");
 
       // Clear existing data
       await db.clearAll();
@@ -124,7 +124,7 @@ test.describe("History - Infinite Scroll (Full App)", () => {
 
     // Reload history view with the newly injected data
     await page.evaluate(async () => {
-      const { initHistory } = await import("/src/ui/history.ts");
+      const { initHistory } = await import("/phoneme-party/src/ui/history.ts");
       initHistory();
     });
 
@@ -193,14 +193,14 @@ test.describe("History - Infinite Scroll (Full App)", () => {
   test("should show empty state when no history", async ({ modelPage: page }) => {
     // Clear all data
     await page.evaluate(async () => {
-      const { db } = await import("/src/db.ts");
+      const { db } = await import("/phoneme-party/src/db.ts");
       await db.clearAll();
       console.log("Cleared all data");
     });
 
     // Refresh history
     await page.evaluate(async () => {
-      const { refreshHistory } = await import("/src/ui/history.ts");
+      const { refreshHistory } = await import("/phoneme-party/src/ui/history.ts");
       refreshHistory();
     });
 
@@ -218,15 +218,15 @@ test.describe("History - Infinite Scroll (Full App)", () => {
   test("should update history after new recording", async ({ modelPage: page }) => {
     // Set study lang and clear existing data
     await page.evaluate(async () => {
-      const { setStudyLang } = await import("/src/study-lang.ts");
+      const { setStudyLang } = await import("/phoneme-party/src/study-lang.ts");
       setStudyLang("en-GB");
-      const { db } = await import("/src/db.ts");
+      const { db } = await import("/phoneme-party/src/db.ts");
       await db.clearAll();
     });
 
     // Refresh history
     await page.evaluate(async () => {
-      const { refreshHistory } = await import("/src/ui/history.ts");
+      const { refreshHistory } = await import("/phoneme-party/src/ui/history.ts");
       refreshHistory();
     });
 
@@ -240,11 +240,11 @@ test.describe("History - Infinite Scroll (Full App)", () => {
 
     // Add a new result directly via DB
     await page.evaluate(async () => {
-      const { db } = await import("/src/db.ts");
+      const { db } = await import("/phoneme-party/src/db.ts");
       await db.savePhraseResult("NewPhrase", "en-GB", 85, "/test/", "/test/", 1000);
 
       // Refresh history
-      const { refreshHistory } = await import("/src/ui/history.ts");
+      const { refreshHistory } = await import("/phoneme-party/src/ui/history.ts");
       refreshHistory();
     });
 

@@ -1,5 +1,20 @@
 <!-- markdownlint-disable -->
 
+After deploy:Check if prod is ok via playwright.
+
+Example: coi serviceworker war nicht verfügbar.
+
+---
+
+Create Page with all IPA Symbols. Show it in uiLang.
+
+---
+
+
+Svelte warnings on deploy: Should be gone
+
+---
+
 study-lang, ui-lang. Store in pouchdb.
 
 ---
