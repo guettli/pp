@@ -293,11 +293,10 @@
       setTimeout(
         () => {
           const utt = new SpeechSynthesisUtterance(phrase);
-          utt.lang = studyLang === "de" ? "de-DE" : "en-GB";
+          utt.lang = studyLang === "de" ? "de-DE" : studyLang === "fr-FR" ? "fr-FR" : "en-GB";
           const voices = speechSynthesis.getVoices();
-          const langVoices = voices.filter((v) =>
-            v.lang.startsWith(studyLang === "de" ? "de" : "en"),
-          );
+          const voiceLangPrefix = studyLang === "de" ? "de" : studyLang === "fr-FR" ? "fr" : "en";
+          const langVoices = voices.filter((v) => v.lang.startsWith(voiceLangPrefix));
           let sel: SpeechSynthesisVoice | undefined;
           if (preferred) sel = langVoices.find((v) => v.name === preferred);
           if (!sel && langVoices.length > 0) {
@@ -1118,6 +1117,7 @@
           <option value="">{t("study-lang.choose")}</option>
           <option value="en-GB">{t("study-lang.en-GB")}</option>
           <option value="de">{t("study-lang.de")}</option>
+          <option value="fr-FR">{t("study-lang.fr-FR")}</option>
         </select>
       </div>
       <div class="d-flex align-items-center gap-2">
@@ -1128,12 +1128,13 @@
           value={uiLangValue}
           onchange={(e) => {
             const val = (e.target as HTMLSelectElement).value;
-            setUiLang(val as "auto" | "de" | "en");
+            setUiLang(val as "auto" | "de" | "en" | "fr");
           }}
         >
           <option value="auto">{t("ui-lang.auto")}</option>
           <option value="de">{t("language.de")}</option>
           <option value="en">{t("language.en")}</option>
+          <option value="fr">{t("language.fr")}</option>
         </select>
       </div>
     </div>

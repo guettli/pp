@@ -129,10 +129,10 @@ export interface DebugMeta {
 }
 
 // Supported UI languages (for translations)
-export type SupportedLanguage = "de" | "en";
+export type SupportedLanguage = "de" | "en" | "fr";
 
 // Supported study languages (for phrase content)
-export type StudyLanguage = "en-GB" | "de";
+export type StudyLanguage = "en-GB" | "de" | "fr-FR";
 
 // Translation key type (partial, for type safety without exhaustive listing)
 export type TranslationKey = string;

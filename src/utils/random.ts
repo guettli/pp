@@ -1,14 +1,18 @@
 import { load } from "js-yaml";
 import phrasesDeYaml from "../../phrases-de.yaml?raw";
 import phrasesEnYaml from "../../phrases-en.yaml?raw";
+import phrasesFrYaml from "../../phrases-fr.yaml?raw";
 import type { Phrase, SupportedLanguage } from "../types.js";
 
 // Parse YAML files
 const phrasesDe: Phrase[] = load(phrasesDeYaml) as Phrase[];
 const phrasesEn: Phrase[] = load(phrasesEnYaml) as Phrase[];
+const phrasesFr: Phrase[] = load(phrasesFrYaml) as Phrase[];
 
 function getPhraseList(phraseLang: string): Phrase[] {
-  return phraseLang === "de" ? phrasesDe : phrasesEn;
+  if (phraseLang === "de") return phrasesDe;
+  if (phraseLang === "fr") return phrasesFr;
+  return phrasesEn;
 }
 
 /**

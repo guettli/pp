@@ -142,7 +142,7 @@ def main():
     lang = lang_match.group(1)
 
     # Validate language is supported
-    supported_languages = ["de", "en"]
+    supported_languages = ["de", "en", "fr"]
     if lang not in supported_languages:
         print(
             f"Error: Language '{lang}' not supported. Supported: {supported_languages}",
