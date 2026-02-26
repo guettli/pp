@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { base } from "$app/paths";
+  import { goto } from "$app/navigation";
   import { getUiLang, initI18n, t } from "../../i18n.js";
   import { HF_REPO } from "../../lib/model-config.js";
   import ipaExamples from "../../data/ipa-examples.json";
@@ -128,7 +129,9 @@
 
 <div class="container py-5">
   <header class="mb-4">
-    <a href="{base}/" class="btn btn-sm btn-outline-secondary mb-3">{t("ipa.back")}</a>
+    <button class="btn btn-sm btn-outline-secondary mb-3" onclick={() => void goto(`${base}/`)}
+      >{t("ipa.back")}</button
+    >
     <h1 class="display-5 fw-bold">{t("ipa.title")}</h1>
     <p class="lead text-muted">{t("ipa.subtitle")}</p>
     {#if !isLoading && !loadError}

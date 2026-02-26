@@ -249,6 +249,10 @@ async function validateSession(): Promise<boolean> {
 export async function loadPhonemeModel(
   progressCallback: (info: ProgressInfo) => void,
 ): Promise<void> {
+  if (session !== null) {
+    progressCallback({ status: "ready", progress: 100 });
+    return;
+  }
   try {
     // Load vocab first (small)
     progressCallback({

@@ -940,28 +940,6 @@
     return lines.join("\n");
   }
 
-  // ── Ready sound ───────────────────────────────────────────────────────────────
-  function playReadySound() {
-    try {
-      const ctx = new AudioContext();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.type = "sine";
-      osc.frequency.value = 880;
-      const t0 = ctx.currentTime;
-      gain.gain.setValueAtTime(0, t0);
-      gain.gain.linearRampToValueAtTime(0.3, t0 + 0.05);
-      gain.gain.setValueAtTime(0.3, t0 + 2.5);
-      gain.gain.exponentialRampToValueAtTime(0.001, t0 + 3.5);
-      osc.start(t0);
-      osc.stop(t0 + 3.6);
-    } catch {
-      // AudioContext not available (e.g. server-side render)
-    }
-  }
-
   // ── Console interceptor ───────────────────────────────────────────────────────
   function setupConsoleInterceptor() {
     const origLog = console.log;
@@ -1055,8 +1033,6 @@
 
       isLoading = false;
       loadError = null;
-      playReadySound();
-
       const queryPhrase = getPhraseFromQueryString();
       if (queryPhrase) {
         currentPhrase = queryPhrase;
