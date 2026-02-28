@@ -2397,7 +2397,7 @@
 - phrase: Cool
   emoji: 🆒
   ipas:
-    - ipa: /(en)kˈuːl(de)/
+    - ipa: /kˈuːl/
       category: standard
   level: 31
 - phrase: Kostenlos
@@ -2421,7 +2421,7 @@
 - phrase: Service
   emoji: 🈂️
   ipas:
-    - ipa: /(en)sˈɜːvɪs(de)/
+    - ipa: /sˈɜːvɪs/
       category: standard
   level: 346
 - phrase: Reserviert
@@ -2559,13 +2559,13 @@
 - phrase: Die Babyflasche
   emoji: 🍼
   ipas:
-    - ipa: /diː (en)bˈeɪbɪflˌaʃ(de)/
+    - ipa: /diː bˈeɪbɪflˌaʃ/
       category: standard
   level: 591
 - phrase: Die Party
   emoji: 🎉
   ipas:
-    - ipa: /diː (en)pˈɑːti(de)/
+    - ipa: /diː pˈɑːti/
       category: standard
   level: 24
 - phrase: Das Konfetti
