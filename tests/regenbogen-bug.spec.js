@@ -13,7 +13,7 @@ test.describe("Regenbogen Bug Detection", () => {
     // Load expected data from Node.js extraction
     const yamlPath = path.join(
       process.cwd(),
-      "tests/data/de/Regenbogen/Regenbogen-Thomas.flac.yaml",
+      "tests/data/de-DE/Regenbogen/Regenbogen-Thomas.flac.yaml",
     );
     const yamlContent = fs.readFileSync(yamlPath, "utf8");
     const expectedData = yaml.load(yamlContent);
@@ -28,7 +28,10 @@ test.describe("Regenbogen Bug Detection", () => {
     console.log(`========================================\n`);
 
     // Load audio file
-    const audioPath = path.join(process.cwd(), "tests/data/de/Regenbogen/Regenbogen-Thomas.flac");
+    const audioPath = path.join(
+      process.cwd(),
+      "tests/data/de-DE/Regenbogen/Regenbogen-Thomas.flac",
+    );
     const audioBuffer = fs.readFileSync(audioPath);
 
     // Extract IPA using web UI's loaded model

@@ -1,7 +1,7 @@
 import { load } from "js-yaml";
-import phrasesDeYaml from "../../phrases-de.yaml?raw";
-import phrasesEnYaml from "../../phrases-en.yaml?raw";
-import phrasesFrYaml from "../../phrases-fr.yaml?raw";
+import phrasesDeYaml from "../../phrases-de-DE.yaml?raw";
+import phrasesEnYaml from "../../phrases-en-GB.yaml?raw";
+import phrasesFrYaml from "../../phrases-fr-FR.yaml?raw";
 import type { Phrase, SupportedLanguage } from "../types.js";
 
 // Parse YAML files
@@ -10,50 +10,52 @@ const phrasesEn: Phrase[] = load(phrasesEnYaml) as Phrase[];
 const phrasesFr: Phrase[] = load(phrasesFrYaml) as Phrase[];
 
 function getPhraseList(phraseLang: string): Phrase[] {
-  if (phraseLang === "de") return phrasesDe;
-  if (phraseLang === "fr") return phrasesFr;
+  if (phraseLang === "de-DE") return phrasesDe;
+  if (phraseLang === "fr-FR") return phrasesFr;
   return phrasesEn;
 }
 
 /**
- * Get a random phrase from the phrase list
- * @param language - The target language
- * @param userLevel - User level (1-1000). Filters phrases within ±80 levels, expanding if needed
+ * Filter phrases to those within userLevel ± window, expanding window until matches are found.
  */
-export function getRandomPhrase(phraseLang: SupportedLanguage, userLevel: number): Phrase {
-  const phrasesData = getPhraseList(phraseLang);
-
-  // Start with initial level window
+export function filterByLevel(phrases: Phrase[], userLevel: number): Phrase[] {
   let levelWindow = 80;
-  let filteredPhrases: Phrase[] = [];
+  let result: Phrase[] = [];
 
-  // Try progressively broader windows until we find phrases
-  while (filteredPhrases.length === 0 && levelWindow <= 1000) {
+  while (result.length === 0 && levelWindow <= 1000) {
     const minLevel = userLevel - levelWindow;
     const maxLevel = userLevel + levelWindow;
-
-    // Filter phrases within level range
-    filteredPhrases = phrasesData.filter((phrase) => {
-      // If phrase doesn't have a level, include it (fallback)
-      if (phrase.level === undefined || phrase.level === null) {
-        return true;
-      }
-      return phrase.level >= minLevel && phrase.level <= maxLevel;
+    result = phrases.filter((p) => {
+      if (p.level === undefined || p.level === null) return true;
+      return p.level >= minLevel && p.level <= maxLevel;
     });
-
-    // If no matches, double the window and try again
-    if (filteredPhrases.length === 0) {
-      levelWindow *= 2;
-    }
+    if (result.length === 0) levelWindow *= 2;
   }
 
-  // Final fallback: use all phrases (should never happen)
-  if (filteredPhrases.length === 0) {
-    filteredPhrases = phrasesData;
-  }
+  return result.length > 0 ? result : phrases;
+}
 
-  const index = Math.floor(Math.random() * filteredPhrases.length);
-  return filteredPhrases[index];
+/**
+ * Get a random phrase from the phrase list, avoiding recently shown phrases.
+ * @param phraseLang - The target language
+ * @param userLevel - User level (1-1000). Filters phrases within ±80 levels, expanding if needed
+ * @param recentPhrases - Phrase texts to avoid (most recent shown); relaxed if no alternatives exist
+ */
+export function getRandomPhrase(
+  phraseLang: SupportedLanguage,
+  userLevel: number,
+  recentPhrases: string[] = [],
+): Phrase {
+  const phrasesData = getPhraseList(phraseLang);
+  const filteredPhrases = filterByLevel(phrasesData, userLevel);
+
+  // Exclude recently shown phrases if alternatives exist
+  const recentSet = new Set(recentPhrases);
+  const candidates = filteredPhrases.filter((p) => !recentSet.has(p.phrase));
+  const pool = candidates.length > 0 ? candidates : filteredPhrases;
+
+  const index = Math.floor(Math.random() * pool.length);
+  return pool[index];
 }
 
 /**

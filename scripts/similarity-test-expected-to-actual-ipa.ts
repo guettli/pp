@@ -12,9 +12,9 @@ function printUsage() {
   console.log(`Usage: ./run tsx scripts/similarity-test-expected-to-actual-ipa.ts <expected_ipa> <actual_phonemes> [lang]
 
 Examples:
-  ./run tsx scripts/similarity-test-expected-to-actual-ipa.ts "moːnt" "m u n d"          # Compare expected vs actual (default: German)
-  ./run tsx scripts/similarity-test-expected-to-actual-ipa.ts "moːnt" "m u n d a"        # Test with extra phoneme
-  ./run tsx scripts/similarity-test-expected-to-actual-ipa.ts "moːnt" "m u n d" "de"     # Explicit language
+  ./run tsx scripts/similarity-test-expected-to-actual-ipa.ts "moːnt" "m u n d"               # Compare expected vs actual (default: German)
+  ./run tsx scripts/similarity-test-expected-to-actual-ipa.ts "moːnt" "m u n d a"            # Test with extra phoneme
+  ./run tsx scripts/similarity-test-expected-to-actual-ipa.ts "moːnt" "m u n d" "de-DE"      # Explicit language
 
 The script calculates phonetic similarity using PanPhon features.
 Similarity ranges from 0% (completely different) to 100% (identical).
@@ -31,7 +31,7 @@ function main() {
 
   const expected = args[0];
   const actual = args[1];
-  const lang = args[2] || "de"; // Default to German
+  const lang = args[2] || "de-DE"; // Default to German
 
   console.log("=".repeat(70));
   console.log("Phoneme Similarity Test");

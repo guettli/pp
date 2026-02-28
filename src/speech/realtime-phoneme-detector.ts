@@ -13,7 +13,7 @@ import { calculatePanPhonDistance } from "../comparison/panphon-distance.js";
 interface DetectorConfig {
   /** Target IPA phonemes to match */
   targetIPA: string;
-  /** Study language code for phoneme comparison (e.g., "en", "de") */
+  /** Study language code for phoneme comparison (e.g., "en-GB", "de-DE") */
   studyLang: string;
   /** Similarity threshold to trigger auto-stop (0-1) */
   threshold?: number;

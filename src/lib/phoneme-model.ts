@@ -4,7 +4,11 @@ import * as ort from "onnxruntime-node";
 import path from "path";
 import { MODEL_NAME, MODEL_FILE } from "./model-config.js";
 import { buildPhonemeFeeds } from "../speech/phoneme-feeds.js";
-import { decodePhonemes, type PhonemeWithConfidence } from "../speech/phoneme-decoder.js";
+import {
+  decodePhonemes,
+  extractFrameData,
+  type PhonemeWithConfidence,
+} from "../speech/phoneme-decoder.js";
 
 // Polyfill atob for Node.js
 if (typeof globalThis.atob === "undefined") {
@@ -157,50 +161,7 @@ export async function extractPhonemesDetailed(
     returnDetails: false,
   }) as string;
 
-  // Extract top-k predictions for each frame (for visualization)
-  const topK = 7;
-  const frameData: Array<{
-    frameIndex: number;
-    topPredictions: Array<{
-      symbol: string;
-      tokenId: number;
-      logit: number;
-      probability: number;
-    }>;
-  }> = [];
-
-  // Show ALL frames (no sampling)
-  for (let t = 0; t < seqLen; t++) {
-    const frameOffset = t * vocabSize;
-
-    // Get all logits for this frame
-    const frameLogits: Array<{ tokenId: number; logit: number }> = [];
-    for (let v = 0; v < vocabSize; v++) {
-      frameLogits.push({
-        tokenId: v,
-        logit: logits[frameOffset + v],
-      });
-    }
-
-    // Sort by logit (descending)
-    frameLogits.sort((a, b) => b.logit - a.logit);
-
-    // Take top-k
-    const topPredictions = frameLogits.slice(0, topK).map((item) => {
-      const probability = Math.exp(item.logit);
-      return {
-        symbol: idToToken[item.tokenId] || "<unk>",
-        tokenId: item.tokenId,
-        logit: item.logit,
-        probability,
-      };
-    });
-
-    frameData.push({
-      frameIndex: t,
-      topPredictions,
-    });
-  }
+  const frameData = extractFrameData(logits, seqLen, vocabSize, idToToken, 7);
 
   return {
     phonemes: phonemeString,

@@ -71,9 +71,17 @@ tasks:
     cmds:
       - pnpm test
 
+  unit-test:
+    desc: Run Node.js unit tests (similarity, phoneme logic)
+    deps: [_nix-check, node]
+    cmds:
+      - node tests/similarity.test.js
+      - node tests/phrase-selector.test.js
+      - node tests/i18n-completeness.test.js
+
   check:
-    desc: Run all checks (lint + typecheck + e2e), concurrent where possible
-    deps: [lint, typecheck, test]
+    desc: Run all checks (lint + typecheck + e2e + unit tests), concurrent where possible
+    deps: [lint, typecheck, test, unit-test]
 
   check-prod:
     desc: Run smoke tests against the live production site

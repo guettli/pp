@@ -3,15 +3,14 @@
 Update difficulty entries in phrases-*.yaml files using phrase_difficulty analyzer
 
 Usage:
-    python update-difficulty.py phrases-de.yaml              # Update missing difficulties only
-    python update-difficulty.py phrases-de.yaml --update-all # Recalculate all difficulties
-    python update-difficulty.py phrases-de.yaml --list       # List phrases sorted by difficulty
+    python update-difficulty.py phrases-de-DE.yaml              # Update missing difficulties only
+    python update-difficulty.py phrases-de-DE.yaml --update-all # Recalculate all difficulties
+    python update-difficulty.py phrases-de-DE.yaml --list       # List phrases sorted by difficulty
 """
 
 import argparse
 import sys
 import re
-import os
 from pathlib import Path
 import yaml
 from concurrent.futures import ThreadPoolExecutor
@@ -25,8 +24,9 @@ def score_to_level(score: float, lang: str) -> int:
     """Convert difficulty score to level (1-1000) using per-language mapping."""
     # Score ranges determined from actual data
     score_ranges = {
-        "en": {"min": 16.8, "max": 48.3},
-        "de": {"min": 22.8, "max": 66.0},
+        "en-GB": {"min": 16.8, "max": 48.3},
+        "de-DE": {"min": 22.8, "max": 66.0},
+        "fr-FR": {"min": 41.7, "max": 66.4},
     }
 
     if lang not in score_ranges:
@@ -63,15 +63,7 @@ def calculate_phrase_difficulty(args):
         # Reuse global analyzer instance instead of creating new one
         analyzer = get_analyzer()
 
-        # Suppress stderr
-        old_stderr = sys.stderr
-        sys.stderr = open(os.devnull, "w")
-
-        try:
-            result = analyzer.analyze_phrase(phrase, lang)
-        finally:
-            sys.stderr.close()
-            sys.stderr = old_stderr
+        result = analyzer.analyze_phrase(phrase, lang)
 
         score = result["difficulty_score"]
         level = score_to_level(score, lang)
@@ -123,6 +115,11 @@ def main():
         action="store_true",
         help="Enable profiling to measure performance",
     )
+    parser.add_argument(
+        "--calibrate",
+        action="store_true",
+        help="Analyze all phrases and report min/max scores (without writing to file)",
+    )
 
     args = parser.parse_args()
     file_path = Path(args.file)
@@ -131,9 +128,9 @@ def main():
         print(f"Error: File not found: {file_path}", file=sys.stderr)
         sys.exit(1)
 
-    # Extract language from filename (e.g., phrases-de.yaml -> de)
+    # Extract language from filename (e.g., phrases-de-DE.yaml -> de-DE)
     basename = file_path.name
-    lang_match = re.search(r"phrases-([a-z]+)\.yaml", basename)
+    lang_match = re.search(r"phrases-([a-zA-Z-]+)\.yaml", basename)
     if not lang_match:
         print("Error: Could not determine language from filename", file=sys.stderr)
         print("Expected format: phrases-{lang}.yaml", file=sys.stderr)
@@ -142,7 +139,7 @@ def main():
     lang = lang_match.group(1)
 
     # Validate language is supported
-    supported_languages = ["de", "en", "fr"]
+    supported_languages = ["de-DE", "en-GB", "fr-FR"]
     if lang not in supported_languages:
         print(
             f"Error: Language '{lang}' not supported. Supported: {supported_languages}",
@@ -205,6 +202,29 @@ def main():
 
             print(f"{level:4d} {phrase}")
 
+        sys.exit(0)
+
+    # Handle --calibrate mode: analyze all phrases, report min/max scores
+    if args.calibrate:
+        print(f"\n📐 Calibrating score ranges for {lang} ({len(phrases)} phrases)...\n")
+        phrase_args = [(entry.get("phrase", ""), lang) for entry in phrases]
+        num_workers = min(8, len(phrase_args))
+        with ThreadPoolExecutor(max_workers=num_workers) as executor:
+            results = list(executor.map(lambda a: calculate_phrase_difficulty(a), phrase_args))
+        scores = [r["score"] for r in results if r.get("success")]
+        if not scores:
+            print("❌ No scores could be calculated")
+            sys.exit(1)
+        min_score = min(scores)
+        max_score = max(scores)
+        p5 = sorted(scores)[int(len(scores) * 0.05)]
+        p95 = sorted(scores)[int(len(scores) * 0.95)]
+        print(f"  Min score : {min_score:.1f}")
+        print(f"  Max score : {max_score:.1f}")
+        print(f"  5th pctile: {p5:.1f}")
+        print(f"  95th pctile:{p95:.1f}")
+        print(f"\n💡 Recommendation: add to score_ranges:")
+        print(f'    "{lang}": {{"min": {p5:.1f}, "max": {p95:.1f}}},')
         sys.exit(0)
 
     # Determine which entries to update

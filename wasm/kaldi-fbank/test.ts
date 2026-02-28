@@ -40,7 +40,7 @@ function assertEqual(desc: string, actual: number, expected: number): void {
 
 async function selfTest(): Promise<void> {
   const __dirname = path.dirname(fileURLToPath(import.meta.url));
-  const audioPath = path.join(__dirname, "../../tests/data/de/Ball/Ball-edge-tts-conrad.flac");
+  const audioPath = path.join(__dirname, "../../tests/data/de-DE/Ball/Ball-edge-tts-conrad.flac");
 
   console.log("=== Kaldi Fbank WASM Self-Test ===\n");
   console.log(`Audio: ${path.relative(process.cwd(), audioPath)}`);

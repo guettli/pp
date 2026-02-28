@@ -13,7 +13,10 @@ test.describe("Streaming Chunk Decode Bug", () => {
     modelPage: page,
   }) => {
     // Load test data
-    const yamlPath = path.join(process.cwd(), "tests/data/de/Die_Rose/Die_Rose-Thomas.flac.yaml");
+    const yamlPath = path.join(
+      process.cwd(),
+      "tests/data/de-DE/Die_Rose/Die_Rose-Thomas.flac.yaml",
+    );
     const yamlContent = fs.readFileSync(yamlPath, "utf8");
     const expectedData = yaml.load(yamlContent);
 
@@ -24,7 +27,7 @@ test.describe("Streaming Chunk Decode Bug", () => {
     console.log(`Expected IPA: ${expectedIPA}\n`);
 
     // Load audio file
-    const audioPath = path.join(process.cwd(), "tests/data/de/Die_Rose/Die_Rose-Thomas.flac");
+    const audioPath = path.join(process.cwd(), "tests/data/de-DE/Die_Rose/Die_Rose-Thomas.flac");
     const audioBuffer = fs.readFileSync(audioPath);
 
     // Test: simulate MediaRecorder-style chunks (fragments of the stream, not complete files)

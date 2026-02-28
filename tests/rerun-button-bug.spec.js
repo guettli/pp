@@ -12,7 +12,7 @@ test.describe("Re-run button bug", () => {
   test("record button re-enabled and progress bar hidden after re-run", async ({
     modelPage: page,
   }) => {
-    const audioPath = path.join(process.cwd(), "tests/data/de/Die_Rose/Die_Rose-Thomas.flac");
+    const audioPath = path.join(process.cwd(), "tests/data/de-DE/Die_Rose/Die_Rose-Thomas.flac");
     const audioBuffer = fs.readFileSync(audioPath);
 
     // Set up state via the test API (same module instance as main.ts uses)
@@ -34,7 +34,7 @@ test.describe("Re-run button bug", () => {
           // Ensure a phrase is loaded (use test API getState to check)
           if (!window.__test_api.getState().currentPhrase) {
             const { getRandomPhrase } = await import("/phoneme-party/src/utils/random.js");
-            const phrase = getRandomPhrase("de", 1);
+            const phrase = getRandomPhrase("de-DE", 1);
             window.__test_api.setState({ currentPhrase: phrase });
           }
 

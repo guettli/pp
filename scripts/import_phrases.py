@@ -10,8 +10,8 @@ Features:
 - Automatically runs update-ipa.ts and update-difficulty.py
 
 Usage:
-    python scripts/import_phrases.py new-en.txt phrases-en.yaml
-    python scripts/import_phrases.py new-de.txt phrases-de.yaml
+    python scripts/import_phrases.py new-en.txt phrases-en-GB.yaml
+    python scripts/import_phrases.py new-de.txt phrases-de-DE.yaml
 """
 
 import argparse
@@ -975,9 +975,9 @@ def find_emoji_for_word(word: str, lang: str) -> str:
     """Find emoji for a given word based on language."""
     word_lower = word.lower().strip()
 
-    if lang == "en":
+    if lang == "en-GB":
         return WORD_TO_EMOJI.get(word_lower, "❓")
-    elif lang == "de":
+    elif lang == "de-DE":
         return GERMAN_WORD_TO_EMOJI.get(word_lower, "❓")
     else:
         return "❓"
@@ -1016,7 +1016,7 @@ def main():
 
     # Extract language from YAML filename
     import re
-    lang_match = re.search(r"phrases-([a-z]+)\.yaml", yaml_file.name)
+    lang_match = re.search(r"phrases-([a-zA-Z-]+)\.yaml", yaml_file.name)
     if not lang_match:
         print("Error: Could not determine language from YAML filename", file=sys.stderr)
         print("Expected format: phrases-{lang}.yaml", file=sys.stderr)

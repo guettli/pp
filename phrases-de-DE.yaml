@@ -1,0 +1,3896 @@
+- phrase: Katze
+  emoji: 🐱
+  ipas:
+    - ipa: /ˈkatsə/
+      category: standard
+  level: 137
+- phrase: Hund
+  emoji: 🐕
+  ipas:
+    - ipa: /hʊnt/
+      category: standard
+  level: 40
+- phrase: Haus
+  emoji: 🏠
+  ipas:
+    - ipa: /haʊ̯s/
+      category: standard
+  level: 56
+- phrase: Baum
+  emoji: 🌳
+  ipas:
+    - ipa: /baʊ̯m/
+      category: standard
+  level: 50
+- phrase: Blume
+  emoji: 🌸
+  ipas:
+    - ipa: /ˈbluːmə/
+      category: standard
+  level: 140
+- phrase: Sonne
+  emoji: ☀️
+  ipas:
+    - ipa: /ˈzɔnə/
+      category: standard
+  level: 130
+- phrase: Mond
+  emoji: 🌙
+  ipas:
+    - ipa: /moːnt/
+      category: standard
+  level: 66
+- phrase: Stern
+  emoji: ⭐
+  ipas:
+    - ipa: /ʃtɛʁn/
+      category: standard
+  level: 93
+- phrase: Auto
+  emoji: 🚗
+  ipas:
+    - ipa: /ˈaʊ̯to/
+      category: standard
+  level: 112
+- phrase: Ball
+  emoji: ⚽
+  ipas:
+    - ipa: /bal/
+      category: standard
+  level: 45
+- phrase: Buch
+  emoji: 📖
+  ipas:
+    - ipa: /buːx/
+      category: standard
+  level: 50
+- phrase: Apfel
+  emoji: 🍎
+  ipas:
+    - ipa: /ˈapfəl/
+      category: standard
+  level: 126
+- phrase: Banane
+  emoji: 🍌
+  ipas:
+    - ipa: /baˈnaːnə/
+      category: standard
+  level: 246
+- phrase: Brot
+  emoji: 🍞
+  ipas:
+    - ipa: /bʁoːt/
+      category: standard
+  level: 63
+- phrase: Fisch
+  emoji: 🐟
+  ipas:
+    - ipa: /fɪʃ/
+      category: standard
+  level: 87
+- phrase: Vogel
+  emoji: 🐦
+  ipas:
+    - ipa: /ˈfoːɡəl/
+      category: standard
+  level: 158
+- phrase: Schmetterling
+  emoji: 🦋
+  ipas:
+    - ipa: /ˈʃmɛtərlɪŋ/
+      category: standard
+  level: 521
+- phrase: Schiff
+  emoji: 🚢
+  ipas:
+    - ipa: /ʃɪf/
+      category: standard
+  level: 142
+- phrase: Flugzeug
+  emoji: ✈️
+  ipas:
+    - ipa: /ˈfluːktsɔʏ̯k/
+      category: standard
+  level: 278
+- phrase: Zug
+  emoji: 🚂
+  ipas:
+    - ipa: /t͡suːk/
+      category: standard
+  level: 22
+- phrase: Fahrrad
+  emoji: 🚲
+  ipas:
+    - ipa: /ˈfaːrˌraːt/
+      category: standard
+    - ipa: /ˈfaːrˌrat/
+      category: standard
+  level: 251
+- phrase: Tür
+  emoji: 🚪
+  ipas:
+    - ipa: /tyːr/
+      category: standard
+  level: 1
+- phrase: Fenster
+  emoji: 🪟
+  ipas:
+    - ipa: /ˈfɛnstɐ/
+      category: standard
+  level: 216
+- phrase: Bett
+  emoji: 🛏️
+  ipas:
+    - ipa: /bɛt/
+      category: standard
+  level: 29
+- phrase: Uhr
+  emoji: 🕐
+  ipas:
+    - ipa: /uːr/
+      category: standard
+  level: 43
+- phrase: Schlüssel
+  emoji: 🔑
+  ipas:
+    - ipa: /ˈʃlʏsl̩/
+      category: standard
+  level: 334
+- phrase: Herz
+  emoji: ❤️
+  ipas:
+    - ipa: /hɛrts/
+      category: standard
+  level: 87
+- phrase: Hand
+  emoji: ✋
+  ipas:
+    - ipa: /hant/
+      category: standard
+  level: 40
+- phrase: Fuß
+  emoji: 🦶
+  ipas:
+    - ipa: /fuːs/
+      category: standard
+  level: 15
+- phrase: Der Hase lacht
+  emoji: 🐰
+  ipas:
+    - ipa: /deːɐ̯ ˈhaːzə laxt/
+      category: standard
+  level: 931
+- phrase: Die Kuh muht
+  emoji: 🐄
+  ipas:
+    - ipa: /diː kuː mˈuːt/
+      category: standard
+  level: 611
+- phrase: Der Frosch quakt
+  emoji: 🐸
+  ipas:
+    - ipa: /deːɐ̯ fʁɔʃ kvˈakt/
+      category: standard
+  level: 672
+- phrase: Die Biene summt
+  emoji: 🐝
+  ipas:
+    - ipa: /diː ˈbiːnə zˈʊmt/
+      category: standard
+  level: 676
+- phrase: Das Baby weint
+  emoji: 👶
+  ipas:
+    - ipa: /das ˈbeːbi vˈaɪnt/
+      category: standard
+  level: 639
+- phrase: Der Regen fällt
+  emoji: 🌧️
+  ipas:
+    - ipa: /deːɐ̯ ˈreːɡən fɛlt/
+      category: standard
+  level: 674
+- phrase: Der Schnee fällt
+  emoji: ❄️
+  ipas:
+    - ipa: /deːɐ̯ ʃneː fɛlt/
+      category: standard
+  level: 667
+- phrase: Der Regenbogen leuchtet
+  emoji: 🌈
+  ipas:
+    - ipa: /deːɐ̯ ˈʁeːɡənˌboːɡən lˈɔøçtət/
+      category: standard
+  level: 840
+- phrase: Die Wolke zieht
+  emoji: ☁️
+  ipas:
+    - ipa: /diː ˈvɔlkə tsiːt/
+      category: standard
+  level: 674
+- phrase: Der Wind weht
+  emoji: 💨
+  ipas:
+    - ipa: /deːɐ̯ vɪnt vˈeːt/
+      category: standard
+  level: 630
+- phrase: Das Feuer brennt
+  emoji: 🔥
+  ipas:
+    - ipa: /das ˈfɔʏ̯ər bɾˈɛnt/
+      category: standard
+  level: 669
+- phrase: Die Pizza schmeckt
+  emoji: 🍕
+  ipas:
+    - ipa: /diː ˈpɪtsa ʃmˈɛkt/
+      category: standard
+  level: 729
+- phrase: Der Kuchen ist süß
+  emoji: 🍰
+  ipas:
+    - ipa: /deːɐ̯ ˈkuːxən ɪst zyːs/
+      category: standard
+  level: 535
+- phrase: Das Eis schmilzt
+  emoji: 🍦
+  ipas:
+    - ipa: /das aɪ̯s ʃmˈɪltst/
+      category: standard
+  level: 674
+- phrase: Die Milch ist weiß
+  emoji: 🥛
+  ipas:
+    - ipa: /diː mɪlç ɪst vaɪ̯s/
+      category: standard
+  level: 517
+- phrase: Das Wasser fließt
+  emoji: 💧
+  ipas:
+    - ipa: /das ˈva.sər flˈiːst/
+      category: standard
+  level: 690
+- phrase: Die Maus piepst
+  emoji: 🐭
+  ipas:
+    - ipa: /diː maʊ̯s pˈiːpst/
+      category: standard
+  level: 653
+- phrase: Die Giraffe ist groß
+  emoji: 🦒
+  ipas:
+    - ipa: /diː ɡiˈʁafə ɪst ɡʁoːs/
+      category: standard
+  level: 584
+- phrase: Der Elefant ist schwer
+  emoji: 🐘
+  ipas:
+    - ipa: /deːɐ̯ eləˈfant ɪst ʃveːɐ̯/
+      category: standard
+  level: 794
+- phrase: Der Affe klettert
+  emoji: 🐵
+  ipas:
+    - ipa: /deːɐ̯ ˈafə ˈklɛtɐt/
+      category: standard
+  level: 734
+- phrase: Das Pferd rennt
+  emoji: 🐴
+  ipas:
+    - ipa: /das pfeːrt rˈɛnt/
+      category: standard
+  level: 658
+- phrase: Das Schwein grunzt
+  emoji: 🐷
+  ipas:
+    - ipa: /das ʃvaɪ̯n ɡɾˈʊntst/
+      category: standard
+  level: 695
+- phrase: Die Ente quakt
+  emoji: 🦆
+  ipas:
+    - ipa: /diː ˈɛntə kvˈakt/
+      category: standard
+  level: 658
+- phrase: Der Löwe brüllt
+  emoji: 🦁
+  ipas:
+    - ipa: /deːɐ̯ ˈløːvə bɾˈylt/
+      category: standard
+  level: 674
+- phrase: Die Schildkröte kriecht
+  emoji: 🐢
+  ipas:
+    - ipa: /diː ˈʃɪltˌkʁøːtə kɾˈiːçt/
+      category: standard
+  level: 817
+- phrase: Adler
+  emoji: 🦅
+  ipas:
+    - ipa: /ˈaːdlər/
+      category: standard
+  level: 205
+- phrase: Affe
+  emoji: 🐵
+  ipas:
+    - ipa: /ˈafə/
+      category: standard
+  level: 161
+- phrase: Ameise
+  emoji: 🐜
+  ipas:
+    - ipa: /ˈaː.ˌmaɪ̯.zə/
+      category: standard
+    - ipa: /ˈaː.maɪ̯.zə/
+      category: standard
+  level: 248
+- phrase: Auge
+  emoji: 👁️
+  ipas:
+    - ipa: /ˈaʊ̯ɡə/
+      category: standard
+  level: 103
+- phrase: Baby
+  emoji: 👶
+  ipas:
+    - ipa: /ˈbeːbi/
+      category: standard
+  level: 47
+- phrase: Ballon
+  emoji: 🎈
+  ipas:
+    - ipa: /baˈlɔŋ/
+      category: standard
+  level: 200
+- phrase: Biene
+  emoji: 🐝
+  ipas:
+    - ipa: /ˈbiːnə/
+      category: standard
+  level: 158
+- phrase: Bier
+  emoji: 🍺
+  ipas:
+    - ipa: /biːɐ̯/
+      category: standard
+  level: 179
+- phrase: Blatt
+  emoji: 🍁
+  ipas:
+    - ipa: /blat/
+      category: standard
+  level: 100
+- phrase: Bleistift
+  emoji: ✏️
+  ipas:
+    - ipa: /ˈblaɪ̯ʃtɪft/
+      category: standard
+  level: 327
+- phrase: Bonbon
+  emoji: 🍭
+  ipas:
+    - ipa: /bɔ̃ˈbɔ̃/
+      category: standard
+  level: 193
+- phrase: Boot
+  emoji: 🚤
+  ipas:
+    - ipa: /boːt/
+      category: standard
+  level: 66
+- phrase: Brille
+  emoji: 👓
+  ipas:
+    - ipa: /ˈbʁɪlə/
+      category: standard
+  level: 239
+- phrase: Burger
+  emoji: 🍔
+  ipas:
+    - ipa: /ˈbœʁɡɐ/
+      category: standard
+  level: 1000
+- phrase: Bus
+  emoji: 🚌
+  ipas:
+    - ipa: /bʊs/
+      category: standard
+  level: 15
+- phrase: Bär
+  emoji: 🐻
+  ipas:
+    - ipa: /bɛːr/
+      category: standard
+  level: 31
+- phrase: Computer
+  emoji: 💻
+  ipas:
+    - ipa: /kɔmˈpjuːtɐ/
+      category: standard
+  level: 415
+- phrase: Das Auge
+  emoji: 👁️
+  ipas:
+    - ipa: /das ˈaʊ̯ɡə/
+      category: standard
+  level: 487
+- phrase: Das Auto
+  emoji: 🚗
+  ipas:
+    - ipa: /das ˈaʊ̯to/
+      category: standard
+  level: 491
+- phrase: Das Baby
+  emoji: 👶
+  ipas:
+    - ipa: /das ˈbeːbi/
+      category: standard
+  level: 459
+- phrase: Das Bett
+  emoji: 🛏️
+  ipas:
+    - ipa: /das bɛt/
+      category: standard
+  level: 452
+- phrase: Das Bier
+  emoji: 🍺
+  ipas:
+    - ipa: /das biːɐ̯/
+      category: standard
+  level: 526
+- phrase: Das Blatt
+  emoji: 🍁
+  ipas:
+    - ipa: /das blat/
+      category: standard
+  level: 487
+- phrase: Das Bonbon
+  emoji: 🍭
+  ipas:
+    - ipa: /das bɔ̃ˈbɔ̃/
+      category: standard
+  level: 533
+- phrase: Das Boot
+  emoji: 🚤
+  ipas:
+    - ipa: /das boːt/
+      category: standard
+  level: 470
+- phrase: Das Brot
+  emoji: 🍞
+  ipas:
+    - ipa: /das bʁoːt/
+      category: standard
+  level: 468
+- phrase: Das Buch
+  emoji: 📕
+  ipas:
+    - ipa: /das buːx/
+      category: standard
+  level: 461
+- phrase: Das Fahrrad
+  emoji: 🚲
+  ipas:
+    - ipa: /das ˈfaːrˌraːt/
+      category: standard
+    - ipa: /das ˈfaːrˌrat/
+      category: standard
+  level: 563
+- phrase: Das Fenster
+  emoji: 🪟
+  ipas:
+    - ipa: /das ˈfɛnstɐ/
+      category: standard
+  level: 544
+- phrase: Das Fleisch
+  emoji: 🍖
+  ipas:
+    - ipa: /das flaɪ̯ʃ/
+      category: standard
+  level: 533
+- phrase: Das Flugzeug
+  emoji: ✈️
+  ipas:
+    - ipa: /das ˈfluːktsɔʏ̯k/
+      category: standard
+  level: 575
+- phrase: Das Gebäude
+  emoji: 🏗️
+  ipas:
+    - ipa: /das ɡəˈbɔʏ̯də/
+      category: standard
+  level: 600
+- phrase: Das Geld
+  emoji: 💰
+  ipas:
+    - ipa: /das ɡɛlt/
+      category: standard
+  level: 482
+- phrase: Das Geschenk
+  emoji: 🎁
+  ipas:
+    - ipa: /das ɡəˈʃɛŋk/
+      category: standard
+  level: 593
+- phrase: Das Haus
+  emoji: 🏠
+  ipas:
+    - ipa: /das haʊ̯s/
+      category: standard
+  level: 466
+- phrase: Das Hemd
+  emoji: 👕
+  ipas:
+    - ipa: /das hɛmt/
+      category: standard
+  level: 480
+- phrase: Das Herz
+  emoji: ❤️
+  ipas:
+    - ipa: /das hɛrts/
+      category: standard
+  level: 480
+- phrase: Das Kaninchen
+  emoji: 🐰
+  ipas:
+    - ipa: /das kaˈniːnçən/
+      category: standard
+  level: 611
+- phrase: Das Kind
+  emoji: 🧒
+  ipas:
+    - ipa: /das kɪnt/
+      category: standard
+  level: 477
+- phrase: Das Kleid
+  emoji: 👗
+  ipas:
+    - ipa: /das klaɪ̯t/
+      category: standard
+  level: 484
+- phrase: Das Krankenhaus
+  emoji: 🏥
+  ipas:
+    - ipa: /das ˈkʁaŋkn̩ˌhaʊ̯s/
+      category: standard
+  level: 674
+- phrase: Das Messer
+  emoji: 🔪
+  ipas:
+    - ipa: /das ˈmɛsɐ/
+      category: standard
+  level: 549
+- phrase: Das Mädchen
+  emoji: 👧
+  ipas:
+    - ipa: /das ˈmɛːtçən/
+      category: standard
+  level: 549
+- phrase: Das Ohr
+  emoji: 👂
+  ipas:
+    - ipa: /das oːr/
+      category: standard
+  level: 438
+- phrase: Das Papier
+  emoji: 📃
+  ipas:
+    - ipa: /das paˈpiːɐ̯/
+      category: standard
+  level: 540
+- phrase: Das Pferd
+  emoji: 🐴
+  ipas:
+    - ipa: /das pfeːrt/
+      category: standard
+  level: 489
+- phrase: Das Reh
+  emoji: 🦌
+  ipas:
+    - ipa: /das ʁeː/
+      category: standard
+  level: 468
+- phrase: Das Schaf
+  emoji: 🐑
+  ipas:
+    - ipa: /das ʃaːf/
+      category: standard
+  level: 482
+- phrase: Das Schiff
+  emoji: 🚢
+  ipas:
+    - ipa: /das ʃɪf/
+      category: standard
+  level: 507
+- phrase: Das Schwein
+  emoji: 🐷
+  ipas:
+    - ipa: /das ʃvaɪ̯n/
+      category: standard
+  level: 526
+- phrase: Das Telefon
+  emoji: 📱
+  ipas:
+    - ipa: /das ˌteːləˈfoːn/
+      category: standard
+  level: 600
+- phrase: Das Wasser
+  emoji: 💧
+  ipas:
+    - ipa: /das ˈva.sər/
+      category: standard
+  level: 517
+- phrase: Delfin
+  emoji: 🐬
+  ipas:
+    - ipa: /dˈɛlfɪn/
+      category: standard
+  level: 221
+- phrase: Der Adler
+  emoji: 🦅
+  ipas:
+    - ipa: /deːɐ̯ ˈaːdlər/
+      category: standard
+  level: 540
+- phrase: Der Affe
+  emoji: 🐵
+  ipas:
+    - ipa: /deːɐ̯ ˈafə/
+      category: standard
+  level: 517
+- phrase: Der Apfel
+  emoji: 🍎
+  ipas:
+    - ipa: /deːɐ̯ ˈapfəl/
+      category: standard
+  level: 498
+- phrase: Der Ball
+  emoji: ⚽
+  ipas:
+    - ipa: /deːɐ̯ bal/
+      category: standard
+  level: 459
+- phrase: Der Ballon
+  emoji: 🎈
+  ipas:
+    - ipa: /deːɐ̯ baˈlɔŋ/
+      category: standard
+  level: 535
+- phrase: Der Baum
+  emoji: 🌳
+  ipas:
+    - ipa: /deːɐ̯ baʊ̯m/
+      category: standard
+  level: 461
+- phrase: Der Bleistift
+  emoji: ✏️
+  ipas:
+    - ipa: /deːɐ̯ ˈblaɪ̯ʃtɪft/
+      category: standard
+  level: 600
+- phrase: Der Burger
+  emoji: 🍔
+  ipas:
+    - ipa: /deːɐ̯ ˈbœʁɡɐ/
+      category: standard
+  level: 935
+- phrase: Der Bus
+  emoji: 🚌
+  ipas:
+    - ipa: /deːɐ̯ bʊs/
+      category: standard
+  level: 443
+- phrase: Der Bär
+  emoji: 🐻
+  ipas:
+    - ipa: /deːɐ̯ bɛːr/
+      category: standard
+  level: 452
+- phrase: Der Computer
+  emoji: 💻
+  ipas:
+    - ipa: /deːɐ̯ kɔmˈpjuːtɐ/
+      category: standard
+  level: 644
+- phrase: Der Delfin
+  emoji: 🐬
+  ipas:
+    - ipa: /deːɐ̯ dˈɛlfɪn/
+      category: standard
+  level: 547
+- phrase: Der Elefant
+  emoji: 🐘
+  ipas:
+    - ipa: /deːɐ̯ eləˈfant/
+      category: standard
+  level: 586
+- phrase: Der Fernseher
+  emoji: 📺
+  ipas:
+    - ipa: /deːɐ̯ ˈfɛʁnzeːɐ/
+      category: standard
+  level: 625
+- phrase: Der Fisch
+  emoji: 🐟
+  ipas:
+    - ipa: /deːɐ̯ fɪʃ/
+      category: standard
+  level: 480
+- phrase: Der Frosch
+  emoji: 🐸
+  ipas:
+    - ipa: /deːɐ̯ fʁɔʃ/
+      category: standard
+  level: 507
+- phrase: Der Fuchs
+  emoji: 🦊
+  ipas:
+    - ipa: /deːɐ̯ fʊks/
+      category: standard
+  level: 489
+- phrase: Der Fuß
+  emoji: 🦶
+  ipas:
+    - ipa: /deːɐ̯ fuːs/
+      category: standard
+  level: 445
+- phrase: Der Hahn
+  emoji: 🐓
+  ipas:
+    - ipa: /deːɐ̯ haːn/
+      category: standard
+  level: 868
+- phrase: Der Hammer
+  emoji: 🔨
+  ipas:
+    - ipa: /deːɐ̯ ˈhamɐ/
+      category: standard
+  level: 556
+- phrase: Der Hamster
+  emoji: 🐹
+  ipas:
+    - ipa: /deːɐ̯ ˈhamstɐ/
+      category: standard
+  level: 558
+- phrase: Der Hund
+  emoji: 🐶
+  ipas:
+    - ipa: /deːɐ̯ hʊnt/
+      category: standard
+  level: 457
+- phrase: Der Hut
+  emoji: 👒
+  ipas:
+    - ipa: /deːɐ̯ huːt/
+      category: standard
+  level: 445
+- phrase: Der Junge
+  emoji: 👦
+  ipas:
+    - ipa: /deːɐ̯ ˈjʊŋə/
+      category: standard
+  level: 496
+- phrase: Der Kaffee
+  emoji: ☕
+  ipas:
+    - ipa: /deːɐ̯ ˈkafe/
+      category: standard
+  level: 577
+- phrase: Der Kuchen
+  emoji: 🍰
+  ipas:
+    - ipa: /deːɐ̯ ˈkuːxən/
+      category: standard
+  level: 533
+- phrase: Der Käse
+  emoji: 🧀
+  ipas:
+    - ipa: /deːɐ̯ ˈkɛːzə/
+      category: standard
+  level: 498
+- phrase: Der Löwe
+  emoji: 🦁
+  ipas:
+    - ipa: /deːɐ̯ ˈløːvə/
+      category: standard
+  level: 494
+- phrase: Der Mann
+  emoji: 👨
+  ipas:
+    - ipa: /deːɐ̯ man/
+      category: standard
+  level: 454
+- phrase: Der Mond
+  emoji: 🌙
+  ipas:
+    - ipa: /deːɐ̯ moːnt/
+      category: standard
+  level: 470
+- phrase: Der Mund
+  emoji: 👄
+  ipas:
+    - ipa: /deːɐ̯ mʊnt/
+      category: standard
+  level: 463
+- phrase: Der Panda
+  emoji: 🐼
+  ipas:
+    - ipa: /deːɐ̯ ˈpanda/
+      category: standard
+  level: 540
+- phrase: Der Pinguin
+  emoji: 🐧
+  ipas:
+    - ipa: /deːɐ̯ ˈpɪŋˌɡu̯iːn/
+      category: standard
+  level: 572
+- phrase: Der Regen
+  emoji: 🌧️
+  ipas:
+    - ipa: /deːɐ̯ ˈreːɡən/
+      category: standard
+  level: 512
+- phrase: Der Regenbogen
+  emoji: 🌈
+  ipas:
+    - ipa: /deːɐ̯ ˈʁeːɡənˌboːɡən/
+      category: standard
+  level: 674
+- phrase: Der Schlüssel
+  emoji: 🔑
+  ipas:
+    - ipa: /deːɐ̯ ˈʃlʏsl̩/
+      category: standard
+  level: 605
+- phrase: Der Schmetterling
+  emoji: 🦋
+  ipas:
+    - ipa: /deːɐ̯ ˈʃmɛtərlɪŋ/
+      category: standard
+  level: 697
+- phrase: Der Schnee
+  emoji: 🌨️
+  ipas:
+    - ipa: /deːɐ̯ ʃneː/
+      category: standard
+  level: 503
+- phrase: Der Schuh
+  emoji: 👞
+  ipas:
+    - ipa: /deːɐ̯ ʃuː/
+      category: standard
+  level: 477
+- phrase: Der Stern
+  emoji: ⭐
+  ipas:
+    - ipa: /deːɐ̯ ʃtɛʁn/
+      category: standard
+  level: 482
+- phrase: Der Stift
+  emoji: 🖊️
+  ipas:
+    - ipa: /deːɐ̯ ˈʃtɪft/
+      category: standard
+  level: 489
+- phrase: Der Stuhl
+  emoji: 🪑
+  ipas:
+    - ipa: /deːɐ̯ ʃtuːl/
+      category: standard
+  level: 487
+- phrase: Der Tiger
+  emoji: 🐯
+  ipas:
+    - ipa: /deːɐ̯ ˈtiːɡɐ/
+      category: standard
+  level: 514
+- phrase: Der Vogel
+  emoji: 🐦
+  ipas:
+    - ipa: /deːɐ̯ ˈfoːɡəl/
+      category: standard
+  level: 514
+- phrase: Der Wal
+  emoji: 🐳
+  ipas:
+    - ipa: /deːɐ̯ vaːl/
+      category: standard
+  level: 466
+- phrase: Der Wind
+  emoji: 🌬️
+  ipas:
+    - ipa: /deːɐ̯ vɪnt/
+      category: standard
+  level: 466
+- phrase: Der Wolf
+  emoji: 🐺
+  ipas:
+    - ipa: /deːɐ̯ vɔlf/
+      category: standard
+  level: 480
+- phrase: Der Zahn
+  emoji: 🦷
+  ipas:
+    - ipa: /deːɐ̯ t͡saːn/
+      category: standard
+  level: 466
+- phrase: Der Zug
+  emoji: 🚂
+  ipas:
+    - ipa: /deːɐ̯ t͡suːk/
+      category: standard
+  level: 447
+- phrase: Die Ameise
+  emoji: 🐜
+  ipas:
+    - ipa: /diː ˈaː.ˌmaɪ̯.zə/
+      category: standard
+    - ipa: /diː ˈaː.maɪ̯.zə/
+      category: standard
+  level: 561
+- phrase: Die Banane
+  emoji: 🍌
+  ipas:
+    - ipa: /diː baˈnaːnə/
+      category: standard
+  level: 558
+- phrase: Die Biene
+  emoji: 🐝
+  ipas:
+    - ipa: /diː ˈbiːnə/
+      category: standard
+  level: 514
+- phrase: Die Blume
+  emoji: 🌸
+  ipas:
+    - ipa: /diː ˈbluːmə/
+      category: standard
+  level: 507
+- phrase: Die Brille
+  emoji: 👓
+  ipas:
+    - ipa: /diː ˈbʁɪlə/
+      category: standard
+  level: 556
+- phrase: Die Ente
+  emoji: 🦆
+  ipas:
+    - ipa: /diː ˈɛntə/
+      category: standard
+  level: 487
+- phrase: Die Erdbeere
+  emoji: 🍓
+  ipas:
+    - ipa: /diː ˈeːɐ̯t.beːʁə/
+      category: standard
+  level: 611
+- phrase: Die Eule
+  emoji: 🦉
+  ipas:
+    - ipa: /diː ˈʔɔɪ̯lə/
+      category: standard
+  level: 498
+- phrase: Die Fledermaus
+  emoji: 🦇
+  ipas:
+    - ipa: /diː ˈfleːdɐˌmaʊ̯s/
+      category: standard
+  level: 653
+- phrase: Die Frau
+  emoji: 👩
+  ipas:
+    - ipa: /diː fʁaʊ̯/
+      category: standard
+  level: 463
+- phrase: Die Giraffe
+  emoji: 🦒
+  ipas:
+    - ipa: /diː ɡiˈʁafə/
+      category: standard
+  level: 591
+- phrase: Die Hand
+  emoji: ✋
+  ipas:
+    - ipa: /diː hant/
+      category: standard
+  level: 457
+- phrase: Die Kamera
+  emoji: 📷
+  ipas:
+    - ipa: /diː ˈkaməʁa/
+      category: standard
+  level: 584
+- phrase: Die Karotte
+  emoji: 🥕
+  ipas:
+    - ipa: /diː kaˈrɔtə/
+      category: standard
+  level: 591
+- phrase: Die Kartoffel
+  emoji: 🥔
+  ipas:
+    - ipa: /diː kaʁˈtɔfəl/
+      category: standard
+  level: 628
+- phrase: Die Katze
+  emoji: 🐱
+  ipas:
+    - ipa: /diː ˈkatsə/
+      category: standard
+  level: 505
+- phrase: Die Kirche
+  emoji: 💒
+  ipas:
+    - ipa: /diː ˈkɪʁçə/
+      category: standard
+  level: 556
+- phrase: Die Kirsche
+  emoji: 🍒
+  ipas:
+    - ipa: /diː ˈkɪrʃə/
+      category: standard
+  level: 577
+- phrase: Die Kuh
+  emoji: 🐮
+  ipas:
+    - ipa: /diː kuː/
+      category: standard
+  level: 438
+- phrase: Die Maus
+  emoji: 🐭
+  ipas:
+    - ipa: /diː maʊ̯s/
+      category: standard
+  level: 463
+- phrase: Die Milch
+  emoji: 🥛
+  ipas:
+    - ipa: /diː mɪlç/
+      category: standard
+  level: 475
+- phrase: Die Nase
+  emoji: 👃
+  ipas:
+    - ipa: /diː ˈnaːzə/
+      category: standard
+  level: 491
+- phrase: Die Orange
+  emoji: 🍊
+  ipas:
+    - ipa: /diː oˈrãːʒə/
+      category: standard
+  level: 561
+- phrase: Die Pizza
+  emoji: 🍕
+  ipas:
+    - ipa: /diː ˈpɪtsa/
+      category: standard
+  level: 537
+- phrase: Die Rose
+  emoji: 🌹
+  ipas:
+    - ipa: /diː ˈʁoːzə/
+      category: standard
+  level: 521
+- phrase: Die Schildkröte
+  emoji: 🐢
+  ipas:
+    - ipa: /diː ˈʃɪltˌkʁøːtə/
+      category: standard
+  level: 690
+- phrase: Die Schlange
+  emoji: 🐍
+  ipas:
+    - ipa: /diː ˈʃlaŋə/
+      category: standard
+  level: 586
+- phrase: Die Schnecke
+  emoji: 🐌
+  ipas:
+    - ipa: /diː ˈʃnɛkə/
+      category: standard
+  level: 581
+- phrase: Die Schokolade
+  emoji: 🍫
+  ipas:
+    - ipa: /diː ʃokoˈlaːdə/
+      category: standard
+  level: 667
+- phrase: Die Schule
+  emoji: 🏫
+  ipas:
+    - ipa: /diː ˈʃuːlə/
+      category: standard
+  level: 535
+- phrase: Die Sonne
+  emoji: ☀️
+  ipas:
+    - ipa: /diː ˈzɔnə/
+      category: standard
+  level: 500
+- phrase: Die Spinne
+  emoji: 🕷️
+  ipas:
+    - ipa: /diː ˈʃpɪnə/
+      category: standard
+  level: 531
+- phrase: Die Tomate
+  emoji: 🍅
+  ipas:
+    - ipa: /diː toˈmaːtə/
+      category: standard
+  level: 563
+- phrase: Die Trauben
+  emoji: 🍇
+  ipas:
+    - ipa: /diː ˈtʁaʊ̯bən/
+      category: standard
+  level: 556
+- phrase: Die Tür
+  emoji: 🚪
+  ipas:
+    - ipa: /diː tyːr/
+      category: standard
+  level: 436
+- phrase: Die Uhr
+  emoji: ⌚
+  ipas:
+    - ipa: /diː uːr/
+      category: standard
+  level: 457
+- phrase: Die Wolke
+  emoji: ☁️
+  ipas:
+    - ipa: /diː ˈvɔlkə/
+      category: standard
+  level: 514
+- phrase: Die Ziege
+  emoji: 🐐
+  ipas:
+    - ipa: /diː ˈt͡siːɡə/
+      category: standard
+  level: 526
+- phrase: Die Zitrone
+  emoji: 🍋
+  ipas:
+    - ipa: /diː t͡siˈtʁoːnə/
+      category: standard
+  level: 602
+- phrase: Elefant
+  emoji: 🐘
+  ipas:
+    - ipa: /eləˈfant/
+      category: standard
+  level: 299
+- phrase: Ente
+  emoji: 🦆
+  ipas:
+    - ipa: /ˈɛntə/
+      category: standard
+  level: 103
+- phrase: Erdbeere
+  emoji: 🍓
+  ipas:
+    - ipa: /ˈeːɐ̯t.beːʁə/
+      category: standard
+  level: 350
+- phrase: Eule
+  emoji: 🦉
+  ipas:
+    - ipa: /ˈʔɔɪ̯lə/
+      category: standard
+  level: 121
+- phrase: Fernseher
+  emoji: 📺
+  ipas:
+    - ipa: /ˈfɛʁnzeːɐ/
+      category: standard
+  level: 376
+- phrase: Fledermaus
+  emoji: 🦇
+  ipas:
+    - ipa: /ˈfleːdɐˌmaʊ̯s/
+      category: standard
+  level: 433
+- phrase: Fleisch
+  emoji: 🍖
+  ipas:
+    - ipa: /flaɪ̯ʃ/
+      category: standard
+  level: 193
+- phrase: Frau
+  emoji: 👩
+  ipas:
+    - ipa: /fʁaʊ̯/
+      category: standard
+  level: 56
+- phrase: Frosch
+  emoji: 🐸
+  ipas:
+    - ipa: /fʁɔʃ/
+      category: standard
+  level: 144
+- phrase: Fuchs
+  emoji: 🦊
+  ipas:
+    - ipa: /fʊks/
+      category: standard
+  level: 103
+- phrase: Gebäude
+  emoji: 🏗️
+  ipas:
+    - ipa: /ɡəˈbɔʏ̯də/
+      category: standard
+  level: 327
+- phrase: Geld
+  emoji: 💰
+  ipas:
+    - ipa: /ɡɛlt/
+      category: standard
+  level: 91
+- phrase: Geschenk
+  emoji: 🎁
+  ipas:
+    - ipa: /ɡəˈʃɛŋk/
+      category: standard
+  level: 313
+- phrase: Giraffe
+  emoji: 🦒
+  ipas:
+    - ipa: /ɡiˈʁafə/
+      category: standard
+  level: 311
+- phrase: Hahn
+  emoji: 🐓
+  ipas:
+    - ipa: /haːn/
+      category: standard
+  level: 866
+- phrase: Hammer
+  emoji: 🔨
+  ipas:
+    - ipa: /ˈhamɐ/
+      category: standard
+  level: 237
+- phrase: Hamster
+  emoji: 🐹
+  ipas:
+    - ipa: /ˈhamstɐ/
+      category: standard
+  level: 246
+- phrase: Hemd
+  emoji: 👕
+  ipas:
+    - ipa: /hɛmt/
+      category: standard
+  level: 87
+- phrase: Hut
+  emoji: 👒
+  ipas:
+    - ipa: /huːt/
+      category: standard
+  level: 15
+- phrase: Junge
+  emoji: 👦
+  ipas:
+    - ipa: /ˈjʊŋə/
+      category: standard
+  level: 119
+- phrase: Kaffee
+  emoji: ☕
+  ipas:
+    - ipa: /ˈkafe/
+      category: standard
+  level: 283
+- phrase: Kamera
+  emoji: 📷
+  ipas:
+    - ipa: /ˈkaməʁa/
+      category: standard
+  level: 297
+- phrase: Kaninchen
+  emoji: 🐰
+  ipas:
+    - ipa: /kaˈniːnçən/
+      category: standard
+  level: 350
+- phrase: Karotte
+  emoji: 🥕
+  ipas:
+    - ipa: /kaˈrɔtə/
+      category: standard
+  level: 311
+- phrase: Kartoffel
+  emoji: 🥔
+  ipas:
+    - ipa: /kaʁˈtɔfəl/
+      category: standard
+  level: 383
+- phrase: Kind
+  emoji: 🧒
+  ipas:
+    - ipa: /kɪnt/
+      category: standard
+  level: 84
+- phrase: Kirche
+  emoji: 💒
+  ipas:
+    - ipa: /ˈkɪʁçə/
+      category: standard
+  level: 239
+- phrase: Kirsche
+  emoji: 🍒
+  ipas:
+    - ipa: /ˈkɪrʃə/
+      category: standard
+  level: 278
+- phrase: Kleid
+  emoji: 👗
+  ipas:
+    - ipa: /klaɪ̯t/
+      category: standard
+  level: 96
+- phrase: Krankenhaus
+  emoji: 🏥
+  ipas:
+    - ipa: /ˈkʁaŋkn̩ˌhaʊ̯s/
+      category: standard
+  level: 475
+- phrase: Kuchen
+  emoji: 🍰
+  ipas:
+    - ipa: /ˈkuːxən/
+      category: standard
+  level: 193
+- phrase: Kuh
+  emoji: 🐮
+  ipas:
+    - ipa: /kuː/
+      category: standard
+  level: 1
+- phrase: Käse
+  emoji: 🧀
+  ipas:
+    - ipa: /ˈkɛːzə/
+      category: standard
+  level: 124
+- phrase: Löwe
+  emoji: 🦁
+  ipas:
+    - ipa: /ˈløːvə/
+      category: standard
+  level: 117
+- phrase: Mann
+  emoji: 👨
+  ipas:
+    - ipa: /man/
+      category: standard
+  level: 36
+- phrase: Maus
+  emoji: 🐭
+  ipas:
+    - ipa: /maʊ̯s/
+      category: standard
+  level: 52
+- phrase: Messer
+  emoji: 🔪
+  ipas:
+    - ipa: /ˈmɛsɐ/
+      category: standard
+  level: 225
+- phrase: Milch
+  emoji: 🥛
+  ipas:
+    - ipa: /mɪlç/
+      category: standard
+  level: 80
+- phrase: Mund
+  emoji: 👄
+  ipas:
+    - ipa: /mʊnt/
+      category: standard
+  level: 56
+- phrase: Mädchen
+  emoji: 👧
+  ipas:
+    - ipa: /ˈmɛːtçən/
+      category: standard
+  level: 225
+- phrase: Nase
+  emoji: 👃
+  ipas:
+    - ipa: /ˈnaːzə/
+      category: standard
+  level: 110
+- phrase: Ohr
+  emoji: 👂
+  ipas:
+    - ipa: /oːr/
+      category: standard
+  level: 3
+- phrase: Orange
+  emoji: 🍊
+  ipas:
+    - ipa: /oˈrãːʒə/
+      category: standard
+  level: 246
+- phrase: Panda
+  emoji: 🐼
+  ipas:
+    - ipa: /ˈpanda/
+      category: standard
+  level: 209
+- phrase: Papier
+  emoji: 📃
+  ipas:
+    - ipa: /paˈpiːɐ̯/
+      category: standard
+  level: 207
+- phrase: Pferd
+  emoji: 🐴
+  ipas:
+    - ipa: /pfeːrt/
+      category: standard
+  level: 107
+- phrase: Pinguin
+  emoji: 🐧
+  ipas:
+    - ipa: /ˈpɪŋˌɡu̯iːn/
+      category: standard
+  level: 269
+- phrase: Pizza
+  emoji: 🍕
+  ipas:
+    - ipa: /ˈpɪtsa/
+      category: standard
+  level: 202
+- phrase: Regen
+  emoji: 🌧️
+  ipas:
+    - ipa: /ˈreːɡən/
+      category: standard
+  level: 151
+- phrase: Regenbogen
+  emoji: 🌈
+  ipas:
+    - ipa: /ˈʁeːɡənˌboːɡən/
+      category: standard
+  level: 475
+- phrase: Reh
+  emoji: 🦌
+  ipas:
+    - ipa: /ʁeː/
+      category: standard
+  level: 63
+- phrase: Rose
+  emoji: 🌹
+  ipas:
+    - ipa: /ˈʁoːzə/
+      category: standard
+  level: 167
+- phrase: Schaf
+  emoji: 🐑
+  ipas:
+    - ipa: /ʃaːf/
+      category: standard
+  level: 93
+- phrase: Schildkröte
+  emoji: 🐢
+  ipas:
+    - ipa: /ˈʃɪltˌkʁøːtə/
+      category: standard
+  level: 507
+- phrase: Schlange
+  emoji: 🐍
+  ipas:
+    - ipa: /ˈʃlaŋə/
+      category: standard
+  level: 299
+- phrase: Schnecke
+  emoji: 🐌
+  ipas:
+    - ipa: /ˈʃnɛkə/
+      category: standard
+  level: 288
+- phrase: Schnee
+  emoji: 🌨️
+  ipas:
+    - ipa: /ʃneː/
+      category: standard
+  level: 133
+- phrase: Schokolade
+  emoji: 🍫
+  ipas:
+    - ipa: /ʃokoˈlaːdə/
+      category: standard
+  level: 461
+- phrase: Schuh
+  emoji: 👞
+  ipas:
+    - ipa: /ʃuː/
+      category: standard
+  level: 82
+- phrase: Schule
+  emoji: 🏫
+  ipas:
+    - ipa: /ˈʃuːlə/
+      category: standard
+  level: 195
+- phrase: Schwein
+  emoji: 🐷
+  ipas:
+    - ipa: /ʃvaɪ̯n/
+      category: standard
+  level: 177
+- phrase: Spinne
+  emoji: 🕷️
+  ipas:
+    - ipa: /ˈʃpɪnə/
+      category: standard
+  level: 188
+- phrase: Stift
+  emoji: 🖊️
+  ipas:
+    - ipa: /ˈʃtɪft/
+      category: standard
+  level: 105
+- phrase: Stuhl
+  emoji: 🪑
+  ipas:
+    - ipa: /ʃtuːl/
+      category: standard
+  level: 103
+- phrase: Telefon
+  emoji: 📱
+  ipas:
+    - ipa: /ˌteːləˈfoːn/
+      category: standard
+  level: 325
+- phrase: Tiger
+  emoji: 🐯
+  ipas:
+    - ipa: /ˈtiːɡɐ/
+      category: standard
+  level: 154
+- phrase: Tomate
+  emoji: 🍅
+  ipas:
+    - ipa: /toˈmaːtə/
+      category: standard
+  level: 255
+- phrase: Trauben
+  emoji: 🍇
+  ipas:
+    - ipa: /ˈtʁaʊ̯bən/
+      category: standard
+  level: 242
+- phrase: Wal
+  emoji: 🐳
+  ipas:
+    - ipa: /vaːl/
+      category: standard
+  level: 61
+- phrase: Wasser
+  emoji: 💧
+  ipas:
+    - ipa: /ˈva.sər/
+      category: standard
+  level: 161
+- phrase: Wind
+  emoji: 🌬️
+  ipas:
+    - ipa: /vɪnt/
+      category: standard
+  level: 61
+- phrase: Wolf
+  emoji: 🐺
+  ipas:
+    - ipa: /vɔlf/
+      category: standard
+  level: 87
+- phrase: Wolke
+  emoji: ☁️
+  ipas:
+    - ipa: /ˈvɔlkə/
+      category: standard
+  level: 156
+- phrase: Zahn
+  emoji: 🦷
+  ipas:
+    - ipa: /t͡saːn/
+      category: standard
+  level: 56
+- phrase: Ziege
+  emoji: 🐐
+  ipas:
+    - ipa: /ˈt͡siːɡə/
+      category: standard
+  level: 177
+- phrase: Zitrone
+  emoji: 🍋
+  ipas:
+    - ipa: /t͡siˈtʁoːnə/
+      category: standard
+  level: 334
+- phrase: Der Brokkoli
+  emoji: 🥦
+  ipas:
+    - ipa: /deːɐ̯ ˈbʁɔkoli/
+      category: standard
+  level: 917
+- phrase: Der Brokkoli ist grün
+  emoji: 🥦
+  ipas:
+    - ipa: /deːɐ̯ ˈbʁɔkoli ɪst ɡʁyːn/
+      category: standard
+  level: 896
+- phrase: Die Kiwi
+  emoji: 🥝
+  ipas:
+    - ipa: /diː ˈkiːvi/
+      category: standard
+  level: 63
+- phrase: Die Kiwi ist grün
+  emoji: 🥝
+  ipas:
+    - ipa: /diː ˈkiːvi ɪst ɡʁyːn/
+      category: standard
+  level: 470
+- phrase: Die Wassermelone
+  emoji: 🍉
+  ipas:
+    - ipa: /diː ˈvasɐmeloːnə/
+      category: standard
+  level: 667
+- phrase: Die Wassermelone ist groß
+  emoji: 🍉
+  ipas:
+    - ipa: /diː ˈvasɐmeloːnə ɪst ɡʁoːs/
+      category: standard
+  level: 771
+- phrase: Die Zwiebel
+  emoji: 🧅
+  ipas:
+    - ipa: /diː ˈtsviːbəl/
+      category: standard
+  level: 484
+- phrase: Die Zwiebel riecht stark
+  emoji: 🧅
+  ipas:
+    - ipa: /diː ˈtsviːbəl ʁiːçt ʃtaʁk/
+      category: standard
+  level: 572
+- phrase: Das Ei
+  emoji: 🥚
+  ipas:
+    - ipa: /das aɪ̯/
+      category: standard
+  level: 743
+- phrase: Das Ei ist rund
+  emoji: 🥚
+  ipas:
+    - ipa: /das aɪ̯ ɪst ʁʊnt/
+      category: standard
+  level: 810
+- phrase: Die Waffel
+  emoji: 🧇
+  ipas:
+    - ipa: /diː ˈvafəl/
+      category: standard
+  level: 463
+- phrase: Die Waffel ist warm
+  emoji: 🧇
+  ipas:
+    - ipa: /diː ˈvafəl ɪst vaʁm/
+      category: standard
+  level: 470
+- phrase: Die Erdnuss
+  emoji: 🥜
+  ipas:
+    - ipa: /diː ˈeːɐ̯tnʊs/
+      category: standard
+  level: 484
+- phrase: Die Erdnuss ist lecker
+  emoji: 🥜
+  ipas:
+    - ipa: /diː ˈeːɐ̯tnʊs ɪst ˈlɛkɐ/
+      category: standard
+  level: 713
+- phrase: Der Donut
+  emoji: 🍩
+  ipas:
+    - ipa: /deːɐ̯ ˈdoːnʊt/
+      category: standard
+  level: 831
+- phrase: Der Donut ist süß
+  emoji: 🍩
+  ipas:
+    - ipa: /deːɐ̯ ˈdoːnʊt ɪst zyːs/
+      category: standard
+  level: 843
+- phrase: Das Känguru
+  emoji: 🦘
+  ipas:
+    - ipa: /das ˈkɛŋɡuːʁu/
+      category: standard
+  level: 898
+- phrase: Das Känguru springt weit
+  emoji: 🦘
+  ipas:
+    - ipa: /das ˈkɛŋɡuːʁu ʃpʁɪŋt vaɪ̯t/
+      category: standard
+  level: 926
+- phrase: Das Krokodil
+  emoji: 🐊
+  ipas:
+    - ipa: /das kʁokoˈdiːl/
+      category: standard
+  level: 917
+- phrase: Das Krokodil schnappt zu
+  emoji: 🐊
+  ipas:
+    - ipa: /das kʁokoˈdiːl ʃnapt tsuː/
+      category: standard
+  level: 926
+- phrase: Der Hai
+  emoji: 🦈
+  ipas:
+    - ipa: /deːɐ̯ haɪ̯/
+      category: standard
+  level: 764
+- phrase: Der Hai schwimmt schnell
+  emoji: 🦈
+  ipas:
+    - ipa: /deːɐ̯ haɪ̯ ʃvɪmt ʃnɛl/
+      category: standard
+  level: 896
+- phrase: Der Papagei
+  emoji: 🦜
+  ipas:
+    - ipa: /deːɐ̯ papaˈɡaɪ̯/
+      category: standard
+  level: 898
+- phrase: Der Papagei redet viel
+  emoji: 🦜
+  ipas:
+    - ipa: /deːɐ̯ papaˈɡaɪ̯ ˈʁeːdət fiːl/
+      category: standard
+  level: 919
+- phrase: Der Flamingo
+  emoji: 🦩
+  ipas:
+    - ipa: /deːɐ̯ flaˈmɪŋɡo/
+      category: standard
+  level: 917
+- phrase: Der Flamingo ist rosa
+  emoji: 🦩
+  ipas:
+    - ipa: /deːɐ̯ flaˈmɪŋɡo ɪst ˈʁoːza/
+      category: standard
+  level: 910
+- phrase: Der Pfau
+  emoji: 🦚
+  ipas:
+    - ipa: /deːɐ̯ pfaʊ̯/
+      category: standard
+  level: 783
+- phrase: Der Pfau ist bunt
+  emoji: 🦚
+  ipas:
+    - ipa: /deːɐ̯ pfaʊ̯ ɪst bʊnt/
+      category: standard
+  level: 829
+- phrase: Die Gitarre
+  emoji: 🎸
+  ipas:
+    - ipa: /diː ɡiˈtaʁə/
+      category: standard
+  level: 512
+- phrase: Die Gitarre klingt schön
+  emoji: 🎸
+  ipas:
+    - ipa: /diː ɡiˈtaʁə klɪŋt ʃøːn/
+      category: standard
+  level: 732
+- phrase: Das Schlagzeug
+  emoji: 🥁
+  ipas:
+    - ipa: /das ˈʃlaːktsɔɪ̯k/
+      category: standard
+  level: 926
+- phrase: Das Schlagzeug macht Lärm
+  emoji: 🥁
+  ipas:
+    - ipa: /das ˈʃlaːktsɔɪ̯k maxt lɛʁm/
+      category: standard
+  level: 919
+- phrase: Die Trompete
+  emoji: 🎺
+  ipas:
+    - ipa: /diː tʁɔmˈpeːtə/
+      category: standard
+  level: 533
+- phrase: Die Trompete klingt laut
+  emoji: 🎺
+  ipas:
+    - ipa: /diː tʁɔmˈpeːtə klɪŋt laʊ̯t/
+      category: standard
+  level: 732
+- phrase: Die Geige
+  emoji: 🎻
+  ipas:
+    - ipa: /diː ˈɡaɪ̯ɡə/
+      category: standard
+  level: 445
+- phrase: Die Geige klingt schön
+  emoji: 🎻
+  ipas:
+    - ipa: /diː ˈɡaɪ̯ɡə klɪŋt ʃøːn/
+      category: standard
+  level: 699
+- phrase: Der Regenschirm
+  emoji: ☂️
+  ipas:
+    - ipa: /deːɐ̯ ˈʁeːɡənˌʃɪʁm/
+      category: standard
+  level: 975
+- phrase: Der Regenschirm schützt vor Regen
+  emoji: ☂️
+  ipas:
+    - ipa: /deːɐ̯ ˈʁeːɡənˌʃɪʁm ʃʏtst foːɐ̯ ˈʁeːɡən/
+      category: standard
+  level: 975
+- phrase: Der Magnet
+  emoji: 🧲
+  ipas:
+    - ipa: /deːɐ̯ maɡˈneːt/
+      category: standard
+  level: 850
+- phrase: Der Magnet zieht Eisen an
+  emoji: 🧲
+  ipas:
+    - ipa: /deːɐ̯ maɡˈneːt tsiːt ˈaɪ̯zən an/
+      category: standard
+  level: 903
+- phrase: Das Teleskop
+  emoji: 🔭
+  ipas:
+    - ipa: /das teləˈskoːp/
+      category: standard
+  level: 917
+- phrase: Das Teleskop zeigt die Sterne
+  emoji: 🔭
+  ipas:
+    - ipa: /das teləˈskoːp tsaɪ̯kt diː ˈʃtɛʁnə/
+      category: standard
+  level: 790
+- phrase: Der Teddybär
+  emoji: 🧸
+  ipas:
+    - ipa: /deːɐ̯ ˈtɛdiˌbɛːɐ̯/
+      category: standard
+  level: 889
+- phrase: Der Teddybär ist weich
+  emoji: 🧸
+  ipas:
+    - ipa: /deːɐ̯ ˈtɛdiˌbɛːɐ̯ ɪst vaɪ̯ç/
+      category: standard
+  level: 891
+- phrase: Das Zelt
+  emoji: ⛺
+  ipas:
+    - ipa: /das tsɛlt/
+      category: standard
+  level: 783
+- phrase: Das Zelt steht im Wald
+  emoji: ⛺
+  ipas:
+    - ipa: /das tsɛlt ʃteːt ɪm valt/
+      category: standard
+  level: 857
+- phrase: Der Hubschrauber
+  emoji: 🚁
+  ipas:
+    - ipa: /deːɐ̯ ˈhuːpˌʃʁaʊ̯bɐ/
+      category: standard
+  level: 995
+- phrase: Der Hubschrauber fliegt hoch
+  emoji: 🚁
+  ipas:
+    - ipa: /deːɐ̯ ˈhuːpˌʃʁaʊ̯bɐ fliːɡt hoːx/
+      category: standard
+  level: 963
+- phrase: Die Rakete
+  emoji: 🚀
+  ipas:
+    - ipa: /diː ʁaˈkeːtə/
+      category: standard
+  level: 494
+- phrase: Die Rakete fliegt ins All
+  emoji: 🚀
+  ipas:
+    - ipa: /diː ʁaˈkeːtə fliːɡt ɪns al/
+      category: standard
+  level: 584
+- phrase: Die Suppe
+  emoji: 🍲
+  ipas:
+    - ipa: /diː ˈzʊpə/
+      category: standard
+  level: 445
+- phrase: Die Suppe ist heiß
+  emoji: 🍲
+  ipas:
+    - ipa: /diː ˈzʊpə ɪst haɪ̯s/
+      category: standard
+  level: 660
+- phrase: Der Salat
+  emoji: 🥗
+  ipas:
+    - ipa: /deːɐ̯ zaˈlaːt/
+      category: standard
+  level: 831
+- phrase: Der Honig
+  emoji: 🍯
+  ipas:
+    - ipa: /deːɐ̯ ˈhoːnɪç/
+      category: standard
+  level: 831
+- phrase: Der Honig ist süß
+  emoji: 🍯
+  ipas:
+    - ipa: /deːɐ̯ ˈhoːnɪç ɪst zyːs/
+      category: standard
+  level: 843
+- phrase: Der Reis
+  emoji: 🍚
+  ipas:
+    - ipa: /deːɐ̯ ʁaɪ̯s/
+      category: standard
+  level: 783
+- phrase: Die Nudeln
+  emoji: 🍝
+  ipas:
+    - ipa: /diː ˈnuːdəln/
+      category: standard
+  level: 463
+- phrase: Die Nudeln sind lecker
+  emoji: 🍝
+  ipas:
+    - ipa: /diː ˈnuːdəln zɪnt ˈlɛkɐ/
+      category: standard
+  level: 713
+- phrase: Der Keks
+  emoji: 🍪
+  ipas:
+    - ipa: /deːɐ̯ keːks/
+      category: standard
+  level: 783
+- phrase: Das Klavier
+  emoji: 🎹
+  ipas:
+    - ipa: /das klaˈviːɐ̯/
+      category: standard
+  level: 868
+- phrase: Das Klavier klingt schön
+  emoji: 🎹
+  ipas:
+    - ipa: /das klaˈviːɐ̯ klɪŋt ʃøːn/
+      category: standard
+  level: 910
+- phrase: Rot
+  emoji: 🔴
+  ipas:
+    - ipa: /ʁoːt/
+      category: standard
+  level: 38
+- phrase: Blau
+  emoji: 🔵
+  ipas:
+    - ipa: /blaʊ̯/
+      category: standard
+  level: 778
+- phrase: Grün
+  emoji: 💚
+  ipas:
+    - ipa: /ɡʁyːn/
+      category: standard
+  level: 778
+- phrase: Gelb
+  emoji: 💛
+  ipas:
+    - ipa: /ɡɛlp/
+      category: standard
+  level: 778
+- phrase: Schwarz
+  emoji: 🖤
+  ipas:
+    - ipa: /ʃvaʁts/
+      category: standard
+  level: 894
+- phrase: Weiß
+  emoji: ⬜
+  ipas:
+    - ipa: /vaɪ̯s/
+      category: standard
+  level: 778
+- phrase: Lila
+  emoji: 💜
+  ipas:
+    - ipa: /ˈliːla/
+      category: standard
+  level: 836
+- phrase: Rosa
+  emoji: 🩷
+  ipas:
+    - ipa: /ˈʁoːza/
+      category: standard
+  level: 836
+- phrase: Der Kopf
+  emoji: 👤
+  ipas:
+    - ipa: /deːɐ̯ kɔpf/
+      category: standard
+  level: 783
+- phrase: Der Arm
+  emoji: 💪
+  ipas:
+    - ipa: /deːɐ̯ aʁm/
+      category: standard
+  level: 343
+- phrase: Das Bein
+  emoji: 🦵
+  ipas:
+    - ipa: /das baɪ̯n/
+      category: standard
+  level: 783
+- phrase: Der Finger
+  emoji: ☝️
+  ipas:
+    - ipa: /deːɐ̯ ˈfɪŋɐ/
+      category: standard
+  level: 433
+- phrase: Die Zunge
+  emoji: 👅
+  ipas:
+    - ipa: /diː ˈtsʊŋə/
+      category: standard
+  level: 445
+- phrase: Die Hose
+  emoji: 👖
+  ipas:
+    - ipa: /diː ˈhoːzə/
+      category: standard
+  level: 427
+- phrase: Die Hose ist bequem
+  emoji: 👖
+  ipas:
+    - ipa: /diː ˈhoːzə ɪst bəˈkveːm/
+      category: standard
+  level: 683
+- phrase: Die Jacke
+  emoji: 🧥
+  ipas:
+    - ipa: /diː ˈjakə/
+      category: standard
+  level: 445
+- phrase: Die Jacke ist warm
+  emoji: 🧥
+  ipas:
+    - ipa: /diː ˈjakə ɪst vaʁm/
+      category: standard
+  level: 459
+- phrase: Der Schal
+  emoji: 🧣
+  ipas:
+    - ipa: /deːɐ̯ ʃaːl/
+      category: standard
+  level: 801
+- phrase: Die Mütze
+  emoji: 🧢
+  ipas:
+    - ipa: /diː ˈmʏtsə/
+      category: standard
+  level: 445
+- phrase: Der Handschuh
+  emoji: 🧤
+  ipas:
+    - ipa: /deːɐ̯ ˈhantʃuː/
+      category: standard
+  level: 907
+- phrase: Die Socke
+  emoji: 🧦
+  ipas:
+    - ipa: /diː ˈzɔkə/
+      category: standard
+  level: 445
+- phrase: Der Berg
+  emoji: ⛰️
+  ipas:
+    - ipa: /deːɐ̯ bɛʁk/
+      category: standard
+  level: 783
+- phrase: Der Berg ist hoch
+  emoji: ⛰️
+  ipas:
+    - ipa: /deːɐ̯ bɛʁk ɪst hoːx/
+      category: standard
+  level: 829
+- phrase: Das Meer
+  emoji: 🌊
+  ipas:
+    - ipa: /das meːɐ̯/
+      category: standard
+  level: 783
+- phrase: Das Meer ist blau
+  emoji: 🌊
+  ipas:
+    - ipa: /das meːɐ̯ ɪst blaʊ̯/
+      category: standard
+  level: 829
+- phrase: Der Strand
+  emoji: 🏖️
+  ipas:
+    - ipa: /deːɐ̯ ʃtʁant/
+      category: standard
+  level: 482
+- phrase: Der Strand ist warm
+  emoji: 🏖️
+  ipas:
+    - ipa: /deːɐ̯ ʃtʁant ɪst vaʁm/
+      category: standard
+  level: 477
+- phrase: Der Wald
+  emoji: 🌲
+  ipas:
+    - ipa: /deːɐ̯ valt/
+      category: standard
+  level: 783
+- phrase: Der Wald ist grün
+  emoji: 🌲
+  ipas:
+    - ipa: /deːɐ̯ valt ɪst ɡʁyːn/
+      category: standard
+  level: 829
+- phrase: Die Insel
+  emoji: 🏝️
+  ipas:
+    - ipa: /diː ˈɪnzəl/
+      category: standard
+  level: 445
+- phrase: Die Insel ist klein
+  emoji: 🏝️
+  ipas:
+    - ipa: /diː ˈɪnzəl ɪst klaɪ̯n/
+      category: standard
+  level: 669
+- phrase: Der Vulkan
+  emoji: 🌋
+  ipas:
+    - ipa: /deːɐ̯ vʊlˈkaːn/
+      category: standard
+  level: 850
+- phrase: Der Vulkan bricht aus
+  emoji: 🌋
+  ipas:
+    - ipa: /deːɐ̯ vʊlˈkaːn bʁɪçt aʊ̯s/
+      category: standard
+  level: 882
+- phrase: Der Blitz
+  emoji: ⚡
+  ipas:
+    - ipa: /deːɐ̯ blɪts/
+      category: standard
+  level: 801
+- phrase: Der Blitz leuchtet hell
+  emoji: ⚡
+  ipas:
+    - ipa: /deːɐ̯ blɪts lɔʏçtət hɛl/
+      category: standard
+  level: 723
+- phrase: Das Tennis
+  emoji: 🎾
+  ipas:
+    - ipa: /das ˈtɛnɪs/
+      category: standard
+  level: 484
+- phrase: Feuer
+  emoji: 🔥
+  ipas:
+    - ipa: /ˈfɔʏ̯ɐ/
+      category: standard
+  level: 817
+- phrase: "Null"
+  emoji: 0️⃣
+  ipas:
+    - ipa: /nˈʊl/
+      category: standard
+  level: 778
+- phrase: Die Tastatur
+  emoji: ⌨️
+  ipas:
+    - ipa: /diː tˌastatˈuːɾ/
+      category: standard
+  level: 533
+- phrase: Der Schneemann
+  emoji: ☃️
+  ipas:
+    - ipa: /dɛɾ ʃnˈeːman/
+      category: standard
+  level: 926
+- phrase: Der Komet
+  emoji: ☄️
+  ipas:
+    - ipa: /dɛɾ kˈoːmət/
+      category: standard
+  level: 831
+- phrase: Der Klee
+  emoji: ☘️
+  ipas:
+    - ipa: /dɛɾ klˈeː/
+      category: standard
+  level: 783
+- phrase: Frieden
+  emoji: ☮️
+  ipas:
+    - ipa: /frˈiːdən/
+      category: standard
+  level: 951
+- phrase: Krebs
+  emoji: ♋
+  ipas:
+    - ipa: /kɾˈeːps/
+      category: standard
+  level: 817
+- phrase: Der Anker
+  emoji: ⚓
+  ipas:
+    - ipa: /dɛɾ ˈaŋkɜ/
+      category: standard
+  level: 831
+- phrase: Die Waage
+  emoji: ⚖️
+  ipas:
+    - ipa: /diː vˈɑːɡə/
+      category: standard
+  level: 445
+- phrase: Das Zahnrad
+  emoji: ⚙️
+  ipas:
+    - ipa: /das tsˈɑːnrɑːt/
+      category: standard
+  level: 868
+- phrase: Das Atom
+  emoji: ⚛️
+  ipas:
+    - ipa: /das atˈoːm/
+      category: standard
+  level: 519
+- phrase: Die Warnung
+  emoji: ⚠️
+  ipas:
+    - ipa: /diː vˈaɾnʊŋ/
+      category: standard
+  level: 484
+- phrase: Der Sarg
+  emoji: ⚰️
+  ipas:
+    - ipa: /dɛɾ zˈaɾk/
+      category: standard
+  level: 783
+- phrase: Das Gewitter
+  emoji: ⛈️
+  ipas:
+    - ipa: /das ɡəvˈɪtɜ/
+      category: standard
+  level: 917
+- phrase: Die Spitzhacke
+  emoji: ⛏️
+  ipas:
+    - ipa: /diː ʃpˈɪtshakə/
+      category: standard
+  level: 570
+- phrase: Die Kette
+  emoji: ⛓️
+  ipas:
+    - ipa: /diː kˈɛtə/
+      category: standard
+  level: 445
+- phrase: Kein Zutritt
+  emoji: ⛔
+  ipas:
+    - ipa: /kˈaɪn tsuːtɾˈɪt/
+      category: standard
+  level: 889
+- phrase: Der Sonnenschirm
+  emoji: ⛱️
+  ipas:
+    - ipa: /dɛɾ zˈɔnənʃˌɪɾm/
+      category: standard
+  level: 995
+- phrase: Der Brunnen
+  emoji: ⛲
+  ipas:
+    - ipa: /dɛɾ bɾˈʊnən/
+      category: standard
+  level: 868
+- phrase: Die Fähre
+  emoji: ⛴️
+  ipas:
+    - ipa: /diː fˈɛːrə/
+      category: standard
+  level: 445
+- phrase: Der Kraftstoff
+  emoji: ⛽
+  ipas:
+    - ipa: /dɛɾ kɾˈaftstɔf/
+      category: standard
+  level: 926
+- phrase: Die Schere
+  emoji: ✂️
+  ipas:
+    - ipa: /diː ʃˈeːrə/
+      category: standard
+  level: 463
+- phrase: Das Häkchen
+  emoji: ✅
+  ipas:
+    - ipa: /das hˈɛːkçən/
+      category: standard
+  level: 868
+- phrase: Sieg
+  emoji: ✌️
+  ipas:
+    - ipa: /zˈiːk/
+      category: standard
+  level: 778
+- phrase: Schreiben
+  emoji: ✍️
+  ipas:
+    - ipa: /ʃrˈaɪbən/
+      category: standard
+  level: 1000
+- phrase: Das Kreuz
+  emoji: ✝️
+  ipas:
+    - ipa: /das kɾˈɔøts/
+      category: standard
+  level: 801
+- phrase: Funkeln
+  emoji: ✨
+  ipas:
+    - ipa: /fˈʊŋkəln/
+      category: standard
+  level: 951
+- phrase: Die Frage
+  emoji: ❓
+  ipas:
+    - ipa: /diː frˈɑːɡə/
+      category: standard
+  level: 445
+- phrase: Der Kreis
+  emoji: ⭕
+  ipas:
+    - ipa: /dɛɾ kɾˈaɪs/
+      category: standard
+  level: 801
+- phrase: Cool
+  emoji: 🆒
+  ipas:
+    - ipa: /(en)kˈuːl(de)/
+      category: standard
+  level: 31
+- phrase: Kostenlos
+  emoji: 🆓
+  ipas:
+    - ipa: /kˈɔstənlˌoːs/
+      category: standard
+  level: 1000
+- phrase: Neu
+  emoji: 🆕
+  ipas:
+    - ipa: /nˈɔø/
+      category: standard
+  level: 741
+- phrase: Oben
+  emoji: 🆙
+  ipas:
+    - ipa: /ˈoːbən/
+      category: standard
+  level: 836
+- phrase: Service
+  emoji: 🈂️
+  ipas:
+    - ipa: /(en)sˈɜːvɪs(de)/
+      category: standard
+  level: 346
+- phrase: Reserviert
+  emoji: 🈯
+  ipas:
+    - ipa: /rˌeːzɛɾvˈiːɾt/
+      category: standard
+  level: 1000
+- phrase: Bestanden
+  emoji: 🈴
+  ipas:
+    - ipa: /bəʃtˈandən/
+      category: standard
+  level: 1000
+- phrase: Voll
+  emoji: 🈵
+  ipas:
+    - ipa: /fˈɔl/
+      category: standard
+  level: 778
+- phrase: Akzeptiert
+  emoji: 🉑
+  ipas:
+    - ipa: /ˌaktsɛptˈiːɾt/
+      category: standard
+  level: 1000
+- phrase: Der Wirbelsturm
+  emoji: 🌀
+  ipas:
+    - ipa: /dɛɾ vˈɪɾbəlstˌ??m/
+      category: standard
+  level: 975
+- phrase: Der Tornado
+  emoji: 🌪️
+  ipas:
+    - ipa: /dɛɾ tɔɾnˈɑːdoː/
+      category: standard
+  level: 556
+- phrase: Die Kastanie
+  emoji: 🌰
+  ipas:
+    - ipa: /diː kastˈɑnɪə/
+      category: standard
+  level: 533
+- phrase: Der Kaktus
+  emoji: 🌵
+  ipas:
+    - ipa: /dɛɾ kˈaktʊs/
+      category: standard
+  level: 850
+- phrase: Die Chilischote
+  emoji: 🌶️
+  ipas:
+    - ipa: /diː ʃˈiːlɪʃˌoːtə/
+      category: standard
+  level: 618
+- phrase: Der Mais
+  emoji: 🌽
+  ipas:
+    - ipa: /dɛɾ mˈaɪs/
+      category: standard
+  level: 783
+- phrase: Das Getreide
+  emoji: 🌾
+  ipas:
+    - ipa: /das ɡətɾˈaɪdə/
+      category: standard
+  level: 917
+- phrase: Das Kraut
+  emoji: 🌿
+  ipas:
+    - ipa: /das kɾˈaʊt/
+      category: standard
+  level: 801
+- phrase: Die Melone
+  emoji: 🍈
+  ipas:
+    - ipa: /diː meːlˈoːnə/
+      category: standard
+  level: 494
+- phrase: Die Ananas
+  emoji: 🍍
+  ipas:
+    - ipa: /diː anˈɑnɑːs/
+      category: standard
+  level: 494
+- phrase: Der Pfirsich
+  emoji: 🍑
+  ipas:
+    - ipa: /dɛɾ pfˈɪɾzɪç/
+      category: standard
+  level: 889
+- phrase: Das Reisbällchen
+  emoji: 🍙
+  ipas:
+    - ipa: /das rˈaɪsbɛlçən/
+      category: standard
+  level: 995
+- phrase: Das Curry
+  emoji: 🍛
+  ipas:
+    - ipa: /das kˈʊriː/
+      category: standard
+  level: 457
+- phrase: Die Garnele
+  emoji: 🍤
+  ipas:
+    - ipa: /diː ɡˈaɾnələ/
+      category: standard
+  level: 512
+- phrase: Das Eis
+  emoji: 🍧
+  ipas:
+    - ipa: /das ˈaɪs/
+      category: standard
+  level: 764
+- phrase: Der Pudding
+  emoji: 🍮
+  ipas:
+    - ipa: /dɛɾ pˈʊdɪŋ/
+      category: standard
+  level: 468
+- phrase: Der Wein
+  emoji: 🍷
+  ipas:
+    - ipa: /dɛɾ vˈaɪn/
+      category: standard
+  level: 783
+- phrase: Der Cocktail
+  emoji: 🍸
+  ipas:
+    - ipa: /dɛɾ kˈɔktaɪl/
+      category: standard
+  level: 602
+- phrase: Die Babyflasche
+  emoji: 🍼
+  ipas:
+    - ipa: /diː (en)bˈeɪbɪflˌaʃ(de)/
+      category: standard
+  level: 591
+- phrase: Die Party
+  emoji: 🎉
+  ipas:
+    - ipa: /diː (en)pˈɑːti(de)/
+      category: standard
+  level: 24
+- phrase: Das Konfetti
+  emoji: 🎊
+  ipas:
+    - ipa: /das kɔnfˈɛtiː/
+      category: standard
+  level: 917
+- phrase: Die Puppen
+  emoji: 🎎
+  ipas:
+    - ipa: /diː pˈʊpən/
+      category: standard
+  level: 463
+- phrase: Der Karpfen
+  emoji: 🎏
+  ipas:
+    - ipa: /dɛɾ kˈaɾpfən/
+      category: standard
+  level: 868
+- phrase: Das Windspiel
+  emoji: 🎐
+  ipas:
+    - ipa: /das vˈɪntʃpiːl/
+      category: standard
+  level: 907
+- phrase: Das Mikrofon
+  emoji: 🎙️
+  ipas:
+    - ipa: /das mˌiːkɾoːfˈoːn/
+      category: standard
+  level: 917
+- phrase: Der Film
+  emoji: 🎞️
+  ipas:
+    - ipa: /dɛɾ fˈɪlm/
+      category: standard
+  level: 399
+- phrase: Das Riesenrad
+  emoji: 🎡
+  ipas:
+    - ipa: /das rˈiːzənrˌɑːt/
+      category: standard
+  level: 935
+- phrase: Die Achterbahn
+  emoji: 🎢
+  ipas:
+    - ipa: /diː ˈaxtɜbˌɑːn/
+      category: standard
+  level: 570
+- phrase: Das Kino
+  emoji: 🎦
+  ipas:
+    - ipa: /das kˈiːnoː/
+      category: standard
+  level: 810
+- phrase: Der Zirkus
+  emoji: 🎪
+  ipas:
+    - ipa: /dɛɾ tsˈɪɾkʊs/
+      category: standard
+  level: 850
+- phrase: Das Spiel
+  emoji: 🎮
+  ipas:
+    - ipa: /das ʃpˈiːl/
+      category: standard
+  level: 801
+- phrase: Billard
+  emoji: 🎱
+  ipas:
+    - ipa: /bˈɪlaɾt/
+      category: standard
+  level: 951
+- phrase: Der Würfel
+  emoji: 🎲
+  ipas:
+    - ipa: /dɛɾ vˈyɾfəl/
+      category: standard
+  level: 850
+- phrase: Die Note
+  emoji: 🎵
+  ipas:
+    - ipa: /diː nˈoːtə/
+      category: standard
+  level: 59
+- phrase: Das Saxofon
+  emoji: 🎷
+  ipas:
+    - ipa: /das zˈaksoːfˌoːn/
+      category: standard
+  level: 898
+- phrase: Die Partitur
+  emoji: 🎼
+  ipas:
+    - ipa: /diː pˌaɾtiːtˈuːɾ/
+      category: standard
+  level: 533
+- phrase: Das Sporthemd
+  emoji: 🎽
+  ipas:
+    - ipa: /das ʃpˈɔɾtɛmt/
+      category: standard
+  level: 907
+- phrase: Der Ski
+  emoji: 🎿
+  ipas:
+    - ipa: /dɛɾ ʃˈiː/
+      category: standard
+  level: 403
+- phrase: Basketball
+  emoji: 🏀
+  ipas:
+    - ipa: /bˈaskɛtbˌal/
+      category: standard
+  level: 392
+- phrase: Der Läufer
+  emoji: 🏃
+  ipas:
+    - ipa: /dɛɾ lˈɔøfɜ/
+      category: standard
+  level: 850
+- phrase: Surfen
+  emoji: 🏄
+  ipas:
+    - ipa: /zˈ??fən/
+      category: standard
+  level: 912
+- phrase: American Football
+  emoji: 🏈
+  ipas:
+    - ipa: /ˌɑmeːriːkˈɑːn fˈoːtbal/
+      category: standard
+  level: 683
+- phrase: Rugby
+  emoji: 🏉
+  ipas:
+    - ipa: /rˈʊɡbiː/
+      category: standard
+  level: 124
+- phrase: Schwimmen
+  emoji: 🏊
+  ipas:
+    - ipa: /ʃvˈɪmən/
+      category: standard
+  level: 1000
+- phrase: Cricket
+  emoji: 🏏
+  ipas:
+    - ipa: /kɾˈɪkət/
+      category: standard
+  level: 248
+- phrase: Hockey
+  emoji: 🏒
+  ipas:
+    - ipa: /hˈɔkaɪ/
+      category: standard
+  level: 211
+- phrase: Das Museum
+  emoji: 🏛️
+  ipas:
+    - ipa: /das muːzˈeːʊm/
+      category: standard
+  level: 491
+- phrase: Das Büro
+  emoji: 🏢
+  ipas:
+    - ipa: /das bˈyːroː/
+      category: standard
+  level: 810
+- phrase: Das Postamt
+  emoji: 🏣
+  ipas:
+    - ipa: /das pˈɔstamt/
+      category: standard
+  level: 868
+- phrase: Die Bank
+  emoji: 🏦
+  ipas:
+    - ipa: /diː bˈaŋk/
+      category: standard
+  level: 29
+- phrase: Das Hotel
+  emoji: 🏨
+  ipas:
+    - ipa: /das hˈoːtəl/
+      category: standard
+  level: 454
+- phrase: Das Geschäft
+  emoji: 🏬
+  ipas:
+    - ipa: /das ɡəʃˈɛft/
+      category: standard
+  level: 889
+- phrase: Die Fabrik
+  emoji: 🏭
+  ipas:
+    - ipa: /diː fabɾˈiːk/
+      category: standard
+  level: 463
+- phrase: Das Etikett
+  emoji: 🏷️
+  ipas:
+    - ipa: /das ˌeːtiːkˈɛt/
+      category: standard
+  level: 898
+- phrase: Bogenschießen
+  emoji: 🏹
+  ipas:
+    - ipa: /bˈoːɡənʃˌiːsən/
+      category: standard
+  level: 1000
+- phrase: Der Büffel
+  emoji: 🐃
+  ipas:
+    - ipa: /dɛɾ bˈyfəl/
+      category: standard
+  level: 850
+- phrase: Der Leopard
+  emoji: 🐆
+  ipas:
+    - ipa: /dɛɾ lˈeːoːpˌaɾt/
+      category: standard
+  level: 496
+- phrase: Der Oktopus
+  emoji: 🐙
+  ipas:
+    - ipa: /dɛɾ ˈɔktɔpˌʊs/
+      category: standard
+  level: 898
+- phrase: Die Raupe
+  emoji: 🐛
+  ipas:
+    - ipa: /diː rˈaʊpə/
+      category: standard
+  level: 445
+- phrase: Der Koala
+  emoji: 🐨
+  ipas:
+    - ipa: /dɛɾ kˈoːalˌɑː/
+      category: standard
+  level: 468
+- phrase: Der Pudel
+  emoji: 🐩
+  ipas:
+    - ipa: /dɛɾ pˈuːdəl/
+      category: standard
+  level: 831
+- phrase: Das Kamel
+  emoji: 🐪
+  ipas:
+    - ipa: /das kamˈeːl/
+      category: standard
+  level: 831
+- phrase: Die Augen
+  emoji: 👀
+  ipas:
+    - ipa: /diː ˈaʊɡən/
+      category: standard
+  level: 445
+- phrase: Nach unten
+  emoji: 👇
+  ipas:
+    - ipa: /nɑːx ˈʊntən/
+      category: standard
+  level: 850
+- phrase: Nach rechts
+  emoji: 👉
+  ipas:
+    - ipa: /nɑːx rˈɛçts/
+      category: standard
+  level: 840
+- phrase: Die Faust
+  emoji: 👊
+  ipas:
+    - ipa: /diː fˈaʊst/
+      category: standard
+  level: 417
+- phrase: Winken
+  emoji: 👋
+  ipas:
+    - ipa: /vˈɪŋkən/
+      category: standard
+  level: 912
+- phrase: Die Krone
+  emoji: 👑
+  ipas:
+    - ipa: /diː kɾˈoːnə/
+      category: standard
+  level: 445
+- phrase: Die Krawatte
+  emoji: 👔
+  ipas:
+    - ipa: /diː kɾˈɑvatə/
+      category: standard
+  level: 533
+- phrase: Das Portemonnaie
+  emoji: 👛
+  ipas:
+    - ipa: /das pˌɔɾtmɔnˈeː/
+      category: standard
+  level: 1000
+- phrase: Die Handtasche
+  emoji: 👜
+  ipas:
+    - ipa: /diː hˈanttˌaʃə/
+      category: standard
+  level: 570
+- phrase: Die Clutch
+  emoji: 👝
+  ipas:
+    - ipa: /diː klˈʊtʃ/
+      category: standard
+  level: 119
+- phrase: Der Absatz
+  emoji: 👠
+  ipas:
+    - ipa: /dɛɾ ˈapzˌats/
+      category: standard
+  level: 850
+- phrase: Der Stiefel
+  emoji: 👢
+  ipas:
+    - ipa: /dɛɾ ʃtˈiːfəl/
+      category: standard
+  level: 868
+- phrase: Blind
+  emoji: 👨‍🦯
+  ipas:
+    - ipa: /blˈɪnt/
+      category: standard
+  level: 80
+- phrase: Die Familie
+  emoji: 👪
+  ipas:
+    - ipa: /diː famˈiːlɪə/
+      category: standard
+  level: 512
+- phrase: Das Paar
+  emoji: 👫
+  ipas:
+    - ipa: /das pˈɑːɾ/
+      category: standard
+  level: 783
+- phrase: Die Häschen
+  emoji: 👯
+  ipas:
+    - ipa: /diː hˈɛsçən/
+      category: standard
+  level: 484
+- phrase: Die Braut
+  emoji: 👰
+  ipas:
+    - ipa: /diː bɾˈaʊt/
+      category: standard
+  level: 417
+- phrase: Die Prinzessin
+  emoji: 👸
+  ipas:
+    - ipa: /diː pɾˌɪntsɛsˈiːn/
+      category: standard
+  level: 570
+- phrase: Der Engel
+  emoji: 👼
+  ipas:
+    - ipa: /dɛɾ ˈɛŋəl/
+      category: standard
+  level: 831
+- phrase: Der Wächter
+  emoji: 💂
+  ipas:
+    - ipa: /dɛɾ vˈɛçtɜ/
+      category: standard
+  level: 868
+- phrase: Der Tanz
+  emoji: 💃
+  ipas:
+    - ipa: /dɛɾ tˈants/
+      category: standard
+  level: 783
+- phrase: Der Lippenstift
+  emoji: 💄
+  ipas:
+    - ipa: /dɛɾ lˈɪpənstˌɪft/
+      category: standard
+  level: 975
+- phrase: Die Spritze
+  emoji: 💉
+  ipas:
+    - ipa: /diː ʃpɾˈɪtsə/
+      category: standard
+  level: 484
+- phrase: Die Pille
+  emoji: 💊
+  ipas:
+    - ipa: /diː pˈɪlə/
+      category: standard
+  level: 445
+- phrase: Der Ring
+  emoji: 💍
+  ipas:
+    - ipa: /dɛɾ rˈɪŋ/
+      category: standard
+  level: 396
+- phrase: Der Diamant
+  emoji: 💎
+  ipas:
+    - ipa: /dɛɾ dˌiːamˈant/
+      category: standard
+  level: 868
+- phrase: Der Kuss
+  emoji: 💏
+  ipas:
+    - ipa: /dɛɾ kˈʊs/
+      category: standard
+  level: 783
+- phrase: Die Wut
+  emoji: 💢
+  ipas:
+    - ipa: /diː vˈuːt/
+      category: standard
+  level: 378
+- phrase: Die Bombe
+  emoji: 💣
+  ipas:
+    - ipa: /diː bˈɔmbə/
+      category: standard
+  level: 445
+- phrase: Schlaf
+  emoji: 💤
+  ipas:
+    - ipa: /ʃlˈɑːf/
+      category: standard
+  level: 857
+- phrase: Schwindel
+  emoji: 💫
+  ipas:
+    - ipa: /ʃvˈɪndəl/
+      category: standard
+  level: 1000
+- phrase: Die Kreditkarte
+  emoji: 💳
+  ipas:
+    - ipa: /diː kɾˈeːdɪtkˌaɾtə/
+      category: standard
+  level: 618
+- phrase: Der Dollar
+  emoji: 💵
+  ipas:
+    - ipa: /dɛɾ dɔlˈɑːɾ/
+      category: standard
+  level: 496
+- phrase: Das Pfund
+  emoji: 💷
+  ipas:
+    - ipa: /das pfˈʊnt/
+      category: standard
+  level: 801
+- phrase: Der Sitz
+  emoji: 💺
+  ipas:
+    - ipa: /dɛɾ zˈɪts/
+      category: standard
+  level: 783
+- phrase: Der Ordner
+  emoji: 📁
+  ipas:
+    - ipa: /dɛɾ ˈɔɾdnɜ/
+      category: standard
+  level: 850
+- phrase: Der Kalender
+  emoji: 📅
+  ipas:
+    - ipa: /dɛɾ kalˈɛndɜ/
+      category: standard
+  level: 917
+- phrase: Das Lineal
+  emoji: 📏
+  ipas:
+    - ipa: /das lˌiːneːˈɑːl/
+      category: standard
+  level: 850
+- phrase: Das Dreieck
+  emoji: 📐
+  ipas:
+    - ipa: /das dɾˈaɪɛk/
+      category: standard
+  level: 840
+- phrase: Das Notizbuch
+  emoji: 📔
+  ipas:
+    - ipa: /das nˈoːtɪtsbˌʊx/
+      category: standard
+  level: 935
+- phrase: Der Name
+  emoji: 📛
+  ipas:
+    - ipa: /dɛɾ nˈɑːmə/
+      category: standard
+  level: 392
+- phrase: Das Signal
+  emoji: 📶
+  ipas:
+    - ipa: /das zɪɡnˈɑːl/
+      category: standard
+  level: 494
+- phrase: Das Video
+  emoji: 📹
+  ipas:
+    - ipa: /das vˈiːdeːˌoː/
+      category: standard
+  level: 457
+- phrase: Das Radio
+  emoji: 📻
+  ipas:
+    - ipa: /das rˈɑdɪˌoː/
+      category: standard
+  level: 457
+- phrase: Die Kassette
+  emoji: 📼
+  ipas:
+    - ipa: /diː kˈasɛtə/
+      category: standard
+  level: 533
+- phrase: Der Projektor
+  emoji: 📽️
+  ipas:
+    - ipa: /dɛɾ pɾoːjˈɛktoːɾ/
+      category: standard
+  level: 935
+- phrase: Die Batterie
+  emoji: 🔋
+  ipas:
+    - ipa: /diː bˌateːrˈiː/
+      category: standard
+  level: 533
+- phrase: Der Stecker
+  emoji: 🔌
+  ipas:
+    - ipa: /dɛɾ ʃtˈɛkɜ/
+      category: standard
+  level: 868
+- phrase: Das Schloss
+  emoji: 🔒
+  ipas:
+    - ipa: /das ʃlˈɔs/
+      category: standard
+  level: 840
+- phrase: Der Schraubenschlüssel
+  emoji: 🔧
+  ipas:
+    - ipa: /dɛɾ ʃrˈaʊbənʃlˌysəl/
+      category: standard
+  level: 1000
+- phrase: Die Pistole
+  emoji: 🔫
+  ipas:
+    - ipa: /diː pɪstˈoːlə/
+      category: standard
+  level: 512
+- phrase: Das Mikroskop
+  emoji: 🔬
+  ipas:
+    - ipa: /das mˌiːkɾoːskˈoːp/
+      category: standard
+  level: 935
+- phrase: Die Taube
+  emoji: 🕊️
+  ipas:
+    - ipa: /diː tˈaʊbə/
+      category: standard
+  level: 445
+- phrase: Die Moschee
+  emoji: 🕌
+  ipas:
+    - ipa: /diː mɔʃˈeː/
+      category: standard
+  level: 484
+- phrase: Die Synagoge
+  emoji: 🕍
+  ipas:
+    - ipa: /diː zˌyːnaɡˈoːɡə/
+      category: standard
+  level: 533
+- phrase: Die Kerze
+  emoji: 🕯️
+  ipas:
+    - ipa: /diː kˈɛɾtsə/
+      category: standard
+  level: 445
+- phrase: Der Anzug
+  emoji: 🕴️
+  ipas:
+    - ipa: /dɛɾ ˈantsˌuːk/
+      category: standard
+  level: 831
+- phrase: Der Pinsel
+  emoji: 🖌️
+  ipas:
+    - ipa: /dɛɾ pˈɪnzəl/
+      category: standard
+  level: 850
+- phrase: Der Buntstift
+  emoji: 🖍️
+  ipas:
+    - ipa: /dɛɾ bˈʊntstɪft/
+      category: standard
+  level: 907
+- phrase: Der Mittelfinger
+  emoji: 🖕
+  ipas:
+    - ipa: /dɛɾ mˈɪtəlfˌɪŋɜ/
+      category: standard
+  level: 1000
+- phrase: Die Computermaus
+  emoji: 🖱️
+  ipas:
+    - ipa: /diː kɔmpjˈuːtɜmˌaʊs/
+      category: standard
+  level: 637
+- phrase: Die Box
+  emoji: 🗃️
+  ipas:
+    - ipa: /diː bˈɔks/
+      category: standard
+  level: 1
+- phrase: Der Schrank
+  emoji: 🗄️
+  ipas:
+    - ipa: /dɛɾ ʃrˈaŋk/
+      category: standard
+  level: 840
+- phrase: Der Mülleimer
+  emoji: 🗑️
+  ipas:
+    - ipa: /dɛɾ mˈylaɪmɜ/
+      category: standard
+  level: 935
+- phrase: Der Notizblock
+  emoji: 🗒️
+  ipas:
+    - ipa: /dɛɾ nˈoːtɪtsblˌɔk/
+      category: standard
+  level: 956
+- phrase: Das Schwert
+  emoji: 🗡️
+  ipas:
+    - ipa: /das ʃvˈeːɾt/
+      category: standard
+  level: 840
+- phrase: Sprechen
+  emoji: 🗣️
+  ipas:
+    - ipa: /ʃpɾˈɛçən/
+      category: standard
+  level: 991
+- phrase: Der Turm
+  emoji: 🗼
+  ipas:
+    - ipa: /dɛɾ tˈ??m/
+      category: standard
+  level: 783
+- phrase: Die Freiheitsstatue
+  emoji: 🗽
+  ipas:
+    - ipa: /diː frˈaɪhaɪtsʃtˌɑtuːə/
+      category: standard
+  level: 695
+- phrase: Die Statue
+  emoji: 🗿
+  ipas:
+    - ipa: /diː ʃtˈɑtuːə/
+      category: standard
+  level: 91
+- phrase: Verbeugen
+  emoji: 🙇
+  ipas:
+    - ipa: /fɛɾbˈɔøɡən/
+      category: standard
+  level: 1000
+- phrase: Melden
+  emoji: 🙋
+  ipas:
+    - ipa: /mˈɛldən/
+      category: standard
+  level: 912
+- phrase: Stirnrunzeln
+  emoji: 🙍
+  ipas:
+    - ipa: /ʃtˈɪɾnrʊntsəln/
+      category: standard
+  level: 1000
+- phrase: Beten
+  emoji: 🙏
+  ipas:
+    - ipa: /bˈeːtən/
+      category: standard
+  level: 875
+- phrase: Die Straßenbahn
+  emoji: 🚋
+  ipas:
+    - ipa: /diː ʃtɾˈɑsənbˌɑːn/
+      category: standard
+  level: 591
+- phrase: Die Haltestelle
+  emoji: 🚏
+  ipas:
+    - ipa: /diː hˈaltɛʃtˌɛlə/
+      category: standard
+  level: 618
+- phrase: Der Kleinbus
+  emoji: 🚐
+  ipas:
+    - ipa: /dɛɾ klˈaɪnbʊs/
+      category: standard
+  level: 889
+- phrase: Der Krankenwagen
+  emoji: 🚑
+  ipas:
+    - ipa: /dɛɾ kɾˈankənvˌɑːɡən/
+      category: standard
+  level: 1000
+- phrase: Das Polizeiauto
+  emoji: 🚓
+  ipas:
+    - ipa: /das pˈoːliːtsˌaɪaʊtˌoː/
+      category: standard
+  level: 1000
+- phrase: Das Taxi
+  emoji: 🚕
+  ipas:
+    - ipa: /das tˈaksiː/
+      category: standard
+  level: 454
+- phrase: Der Lastwagen
+  emoji: 🚛
+  ipas:
+    - ipa: /dɛɾ lˈastvɑːɡən/
+      category: standard
+  level: 935
+- phrase: Der Traktor
+  emoji: 🚜
+  ipas:
+    - ipa: /dɛɾ tɾˈaktoːɾ/
+      category: standard
+  level: 868
+- phrase: Die Ampel
+  emoji: 🚦
+  ipas:
+    - ipa: /diː ˈampəl/
+      category: standard
+  level: 445
+- phrase: Die Baustelle
+  emoji: 🚧
+  ipas:
+    - ipa: /diː bˈaʊʃtɛlə/
+      category: standard
+  level: 551
+- phrase: Die Zigarette
+  emoji: 🚬
+  ipas:
+    - ipa: /diː tsˈiːɡarˌɛtə/
+      category: standard
+  level: 579
+- phrase: Kein Abfall
+  emoji: 🚯
+  ipas:
+    - ipa: /kˈaɪn ˈapfˌal/
+      category: standard
+  level: 868
+- phrase: Kein Trinkwasser
+  emoji: 🚱
+  ipas:
+    - ipa: /kˈaɪn tɾˈɪŋkvasɜ/
+      category: standard
+  level: 995
+- phrase: Fahrradfahren
+  emoji: 🚴
+  ipas:
+    - ipa: /fˈɑːratfˌɑːrən/
+      category: standard
+  level: 1000
+- phrase: Kinder
+  emoji: 🚸
+  ipas:
+    - ipa: /kˈɪndɜ/
+      category: standard
+  level: 912
+- phrase: Frauen
+  emoji: 🚺
+  ipas:
+    - ipa: /frˈaʊən/
+      category: standard
+  level: 857
+- phrase: Die Toilette
+  emoji: 🚽
+  ipas:
+    - ipa: /diː tˈoːiːlˌɛtə/
+      category: standard
+  level: 533
+- phrase: Das Bad
+  emoji: 🛀
+  ipas:
+    - ipa: /das bˈɑːt/
+      category: standard
+  level: 346
+- phrase: Das Gepäck
+  emoji: 🛄
+  ipas:
+    - ipa: /das ɡəpˈɛk/
+      category: standard
+  level: 850
+- phrase: Die Gepäckaufbewahrung
+  emoji: 🛅
+  ipas:
+    - ipa: /diː ɡəpˈɛkaʊfbˌeːvɑːrˌʊŋ/
+      category: standard
+  level: 810
+- phrase: Der Gottesdienst
+  emoji: 🛐
+  ipas:
+    - ipa: /dɛɾ ɡˈɔtɛsdˌiːnst/
+      category: standard
+  level: 995
+- phrase: Der Tempel
+  emoji: 🛕
+  ipas:
+    - ipa: /dɛɾ tˈɛmpəl/
+      category: standard
+  level: 850
+- phrase: Der Aufzug
+  emoji: 🛗
+  ipas:
+    - ipa: /dɛɾ ˈaʊftsˌuːk/
+      category: standard
+  level: 850
+- phrase: Das Schild
+  emoji: 🛡️
+  ipas:
+    - ipa: /das ʃˈɪlt/
+      category: standard
+  level: 820
+- phrase: Das Fass
+  emoji: 🛢️
+  ipas:
+    - ipa: /das fˈas/
+      category: standard
+  level: 783
+- phrase: Der Roller
+  emoji: 🛴
+  ipas:
+    - ipa: /dɛɾ rˈɔlɜ/
+      category: standard
+  level: 850
+- phrase: Das Kanu
+  emoji: 🛶
+  ipas:
+    - ipa: /das kˈɑnuː/
+      category: standard
+  level: 810
+- phrase: Kneifen
+  emoji: 🤏
+  ipas:
+    - ipa: /knˈaɪfən/
+      category: standard
+  level: 951
+- phrase: Rock
+  emoji: 🤘
+  ipas:
+    - ipa: /rˈɔk/
+      category: standard
+  level: 1
+- phrase: Anruf
+  emoji: 🤙
+  ipas:
+    - ipa: /ˈanrˌuːf/
+      category: standard
+  level: 875
+- phrase: Daumen drücken
+  emoji: 🤞
+  ipas:
+    - ipa: /dˈaʊmən dɾˈykən/
+      category: standard
+  level: 956
+- phrase: Liebe
+  emoji: 🤟
+  ipas:
+    - ipa: /lˈiːbə/
+      category: standard
+  level: 875
+- phrase: Offene Hände
+  emoji: 🤲
+  ipas:
+    - ipa: /ˈɔfənə hˈɛndə/
+      category: standard
+  level: 947
+- phrase: Der Prinz
+  emoji: 🤴
+  ipas:
+    - ipa: /dɛɾ pɾˈɪnts/
+      category: standard
+  level: 801
+- phrase: Achselzucken
+  emoji: 🤷
+  ipas:
+    - ipa: /ˈaksəltsˌʊkən/
+      category: standard
+  level: 1000
+- phrase: Jonglieren
+  emoji: 🤹
+  ipas:
+    - ipa: /jɔŋlˈiːrən/
+      category: standard
+  level: 1000
+- phrase: Fechten
+  emoji: 🤺
+  ipas:
+    - ipa: /fˈɛçtən/
+      category: standard
+  level: 951
+- phrase: Das Tor
+  emoji: 🥅
+  ipas:
+    - ipa: /das tˈoːɾ/
+      category: standard
+  level: 764
+- phrase: Boxen
+  emoji: 🥊
+  ipas:
+    - ipa: /bˈɔksən/
+      category: standard
+  level: 875
+- phrase: Kampfsport
+  emoji: 🥋
+  ipas:
+    - ipa: /kˈampfspɔɾt/
+      category: standard
+  level: 1000
+- phrase: Der Speck
+  emoji: 🥓
+  ipas:
+    - ipa: /dɛɾ ʃpˈɛk/
+      category: standard
+  level: 801
+- phrase: Der Pfannkuchen
+  emoji: 🥞
+  ipas:
+    - ipa: /dɛɾ pfˈannkʊxən/
+      category: standard
+  level: 975
+- phrase: Die Tarte
+  emoji: 🥧
+  ipas:
+    - ipa: /diː tˈaɾtə/
+      category: standard
+  level: 445
+- phrase: Die Brezel
+  emoji: 🥨
+  ipas:
+    - ipa: /diː bɾˈeːtsəl/
+      category: standard
+  level: 463
+- phrase: Das Steak
+  emoji: 🥩
+  ipas:
+    - ipa: /das ʃtˈeːɑːk/
+      category: standard
+  level: 457
+- phrase: Der Kopfsalat
+  emoji: 🥬
+  ipas:
+    - ipa: /dɛɾ kˌɔpfzalˈɑːt/
+      category: standard
+  level: 935
+- phrase: Der Laborkittel
+  emoji: 🥼
+  ipas:
+    - ipa: /dɛɾ lˈɑbɔɾkˌɪtəl/
+      category: standard
+  level: 1000
+- phrase: Die Schutzbrille
+  emoji: 🥽
+  ipas:
+    - ipa: /diː ʃˈʊtsbɾɪlə/
+      category: standard
+  level: 609
+- phrase: Die Krabbe
+  emoji: 🦀
+  ipas:
+    - ipa: /diː kɾˈabə/
+      category: standard
+  level: 463
+- phrase: Der Skorpion
+  emoji: 🦂
+  ipas:
+    - ipa: /dɛɾ skɔɾpjˈoːn/
+      category: standard
+  level: 889
+- phrase: Das Einhorn
+  emoji: 🦄
+  ipas:
+    - ipa: /das ˈaɪnhˌɔɾn/
+      category: standard
+  level: 868
+- phrase: Der Gorilla
+  emoji: 🦍
+  ipas:
+    - ipa: /dɛɾ ɡoːrˈɪlɑː/
+      category: standard
+  level: 517
+- phrase: Die Eidechse
+  emoji: 🦎
+  ipas:
+    - ipa: /diː ˈaɪdɛksə/
+      category: standard
+  level: 533
+- phrase: Das Nashorn
+  emoji: 🦏
+  ipas:
+    - ipa: /das nˈashɔɾn/
+      category: standard
+  level: 868
+- phrase: Der Tintenfisch
+  emoji: 🦑
+  ipas:
+    - ipa: /dɛɾ tɪntˈɛnfɪʃ/
+      category: standard
+  level: 975
+- phrase: Der Dinosaurier
+  emoji: 🦖
+  ipas:
+    - ipa: /dɛɾ dˌiːnoːzaʊrˈiːɾ/
+      category: standard
+  level: 1000
+- phrase: Das Nilpferd
+  emoji: 🦛
+  ipas:
+    - ipa: /das nˈɪlpfɜt/
+      category: standard
+  level: 889
+- phrase: Der Schwan
+  emoji: 🦢
+  ipas:
+    - ipa: /dɛɾ ʃvˈɑːn/
+      category: standard
+  level: 820
+- phrase: Der Stock
+  emoji: 🦯
+  ipas:
+    - ipa: /dɛɾ ʃtˈɔk/
+      category: standard
+  level: 463
+- phrase: Der Knochen
+  emoji: 🦴
+  ipas:
+    - ipa: /dɛɾ knˈɔxən/
+      category: standard
+  level: 868
+- phrase: Die Sicherheitsweste
+  emoji: 🦺
+  ipas:
+    - ipa: /diː zˈɪçɜhˌaɪtsvəstə/
+      category: standard
+  level: 743
+- phrase: Der Roboterarm
+  emoji: 🦾
+  ipas:
+    - ipa: /dɛɾ rˈoːboːtˌeːraɾm/
+      category: standard
+  level: 984
+- phrase: Der Knoblauch
+  emoji: 🧄
+  ipas:
+    - ipa: /dɛɾ knˈɔblaʊx/
+      category: standard
+  level: 907
+- phrase: Stehen
+  emoji: 🧍
+  ipas:
+    - ipa: /ʃtˈeːən/
+      category: standard
+  level: 912
+- phrase: Knien
+  emoji: 🧎
+  ipas:
+    - ipa: /knˈiːn/
+      category: standard
+  level: 817
+- phrase: Gehörlos
+  emoji: 🧏
+  ipas:
+    - ipa: /ɡəhˈœɾloːs/
+      category: standard
+  level: 1000
+- phrase: Die Person
+  emoji: 🧑
+  ipas:
+    - ipa: /diː pɛɾzˈoːn/
+      category: standard
+  level: 70
+- phrase: Die ältere Person
+  emoji: 🧓
+  ipas:
+    - ipa: /diː ˈɛltərə pɛɾzˈoːn/
+      category: standard
+  level: 401
+- phrase: Die Sauna
+  emoji: 🧖
+  ipas:
+    - ipa: /diː zˈaʊnɑː/
+      category: standard
+  level: 142
+- phrase: Klettern
+  emoji: 🧗
+  ipas:
+    - ipa: /klˈɛtɜn/
+      category: standard
+  level: 991
+- phrase: Die Fee
+  emoji: 🧚
+  ipas:
+    - ipa: /diː fˈeː/
+      category: standard
+  level: 378
+- phrase: Der Vampir
+  emoji: 🧛
+  ipas:
+    - ipa: /dɛɾ vˈampiːɾ/
+      category: standard
+  level: 850
+- phrase: Der Elf
+  emoji: 🧝
+  ipas:
+    - ipa: /dɛɾ ˈɛlf/
+      category: standard
+  level: 369
+- phrase: Das rote Kuvert
+  emoji: 🧧
+  ipas:
+    - ipa: /das rˈoːtə kˈuːvɜt/
+      category: standard
+  level: 875
+- phrase: Der Kompass
+  emoji: 🧭
+  ipas:
+    - ipa: /dɛɾ kˈɔmpas/
+      category: standard
+  level: 868
+- phrase: Der Feuerlöscher
+  emoji: 🧯
+  ipas:
+    - ipa: /dɛɾ fˈɔøɜlˌœʃɜ/
+      category: standard
+  level: 995
+- phrase: Die Sicherheitsnadel
+  emoji: 🧷
+  ipas:
+    - ipa: /diː zˈɪçɜhˌaɪtsnadəl/
+      category: standard
+  level: 743
+- phrase: Der Besen
+  emoji: 🧹
+  ipas:
+    - ipa: /dɛɾ bˈeːzən/
+      category: standard
+  level: 831
+- phrase: Der Korb
+  emoji: 🧺
+  ipas:
+    - ipa: /dɛɾ kˈɔɾp/
+      category: standard
+  level: 783
+- phrase: Das Toilettenpapier
+  emoji: 🧻
+  ipas:
+    - ipa: /das tˌoːiːlˌɛtənpapˈiːɾ/
+      category: standard
+  level: 1000
+- phrase: Der Schwamm
+  emoji: 🧽
+  ipas:
+    - ipa: /dɛɾ ʃvˈam/
+      category: standard
+  level: 840
+- phrase: Das Pflaster
+  emoji: 🩹
+  ipas:
+    - ipa: /das pflˈastɜ/
+      category: standard
+  level: 889
+- phrase: Das Stethoskop
+  emoji: 🩺
+  ipas:
+    - ipa: /das ʃtˈeːtɔskˌoːp/
+      category: standard
+  level: 956
+- phrase: Der Fallschirm
+  emoji: 🪂
+  ipas:
+    - ipa: /dɛɾ fˈalʃɪɾm/
+      category: standard
+  level: 926
+- phrase: Der Rasierer
+  emoji: 🪒
+  ipas:
+    - ipa: /dɛɾ razˈiːrɜ/
+      category: standard
+  level: 917
+- phrase: Die Axt
+  emoji: 🪓
+  ipas:
+    - ipa: /diː ˈakst/
+      category: standard
+  level: 378
+- phrase: Die Öllampe
+  emoji: 🪔
+  ipas:
+    - ipa: /diː ˈœlampə/
+      category: standard
+  level: 512
+- phrase: Das Banjo
+  emoji: 🪕
+  ipas:
+    - ipa: /das bˈanjoː/
+      category: standard
+  level: 505
+- phrase: Die Leiter
+  emoji: 🪜
+  ipas:
+    - ipa: /diː lˈaɪtɜ/
+      category: standard
+  level: 463
+- phrase: Der Spiegel
+  emoji: 🪞
+  ipas:
+    - ipa: /dɛɾ ʃpˈiːɡəl/
+      category: standard
+  level: 868
+- phrase: Die Pommes
+  emoji: 🍟
+  ipas:
+    - ipa: /diː pˈɔməs/
+      category: standard
+  level: 463
+- phrase: Der Zylinder
+  emoji: 🎩
+  ipas:
+    - ipa: /dɛɾ tsiːlˈɪndɜ/
+      category: standard
+  level: 889
+- phrase: Das Motorrad
+  emoji: 🏍️
+  ipas:
+    - ipa: /das mˈoːtoːɾrˌɑːt/
+      category: standard
+  level: 917
+- phrase: Die Landschaft
+  emoji: 🏞️
+  ipas:
+    - ipa: /diː lˈandʃaft/
+      category: standard
+  level: 542
+- phrase: Das Sofa
+  emoji: 🛋️
+  ipas:
+    - ipa: /das zˈoːfɑː/
+      category: standard
+  level: 429
+- phrase: Die Erdkugel
+  emoji: 🌍
+  ipas:
+    - ipa: /diː ɛɾtkˈuːɡəl/
+      category: standard
+  level: 533
+- phrase: Der Handschlag
+  emoji: 🤝
+  ipas:
+    - ipa: /dɛɾ hˈantʃlˌɑːk/
+      category: standard
+  level: 926
+- phrase: Ringen
+  emoji: 🤼
+  ipas:
+    - ipa: /rˈɪŋən/
+      category: standard
+  level: 912
+- phrase: Hell
+  emoji: 🔆
+  ipas:
+    - ipa: /hˈɛl/
+      category: standard
+  level: 63
+- phrase: Dunkel
+  emoji: 🔅
+  ipas:
+    - ipa: /dˈʊnkəl/
+      category: standard
+  level: 912
+- phrase: Die Kunst
+  emoji: 🎨
+  ipas:
+    - ipa: /diː kˈʊnst/
+      category: standard
+  level: 417
+- phrase: Der Bambus
+  emoji: 🎋
+  ipas:
+    - ipa: /dɛɾ bˈambʊs/
+      category: standard
+  level: 850
+- phrase: Das Kirchengebäude
+  emoji: ⛪
+  ipas:
+    - ipa: /das kˈɪɾçənɡˌeːbɔødə/
+      category: standard
+  level: 1000
+- phrase: Die Farbe Orange
+  emoji: 🟠
+  ipas:
+    - ipa: /diː fˈaɾbə ˈoːraŋə/
+      category: standard
+  level: 380
+- phrase: Die Gewitterwolke
+  emoji: 🌩️
+  ipas:
+    - ipa: /diː ɡəvˈɪtɜvˌɔlkə/
+      category: standard
+  level: 685

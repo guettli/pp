@@ -2,8 +2,8 @@
 /**
  * Update IPA entries in phrases-*.yaml files using Wiktionary API
  * Usage:
- *   tsx scripts/update-ipa.ts phrases-de.yaml              # Update missing IPAs only
- *   tsx scripts/update-ipa.ts phrases-de.yaml --update-all # Re-fetch all IPAs
+ *   tsx scripts/update-ipa.ts phrases-de-DE.yaml              # Update missing IPAs only
+ *   tsx scripts/update-ipa.ts phrases-de-DE.yaml --update-all # Re-fetch all IPAs
  */
 
 import fs from "fs";
@@ -32,10 +32,10 @@ const CACHE_FILE = path.join(CACHE_DIR, "wiktionary-ipa-cache.json");
 
 const USER_AGENT = "PhonemeParty/0.1 (Educational pronunciation tool)";
 
-// Language code mapping
+// Language code mapping (BCP47 → Wiktionary language name)
 const LANG_MAP: Record<string, string> = {
-  de: "German",
-  en: "English",
+  "de-DE": "German",
+  "en-GB": "English",
 };
 
 /**
@@ -126,7 +126,8 @@ async function queryWiktionaryAPI(word: string, lang: string): Promise<string | 
     // More reliable than regex matching on the whole text
     const lines = wikitext.split("\n");
     let inLanguageSection = false;
-    const ipaPattern = new RegExp(`\\{\\{IPA\\|${lang}\\|([^}]+)\\}\\}`);
+    const wiktionaryLang = lang.split("-")[0]; // Wiktionary uses short codes like "de", "en"
+    const ipaPattern = new RegExp(`\\{\\{IPA\\|${wiktionaryLang}\\|([^}]+)\\}\\}`);
 
     for (const line of lines) {
       // Check if we're entering the correct language section
@@ -282,7 +283,7 @@ async function main() {
   // Show usage if no args or first arg starts with -
   if (args.length === 0 || args[0].startsWith("-")) {
     console.error("Usage: tsx scripts/update-ipa.ts <phrases-file> [--update-all]");
-    console.error("Example: tsx scripts/update-ipa.ts phrases-de.yaml");
+    console.error("Example: tsx scripts/update-ipa.ts phrases-de-DE.yaml");
     process.exit(1);
   }
 
@@ -290,14 +291,14 @@ async function main() {
   if (args.length > 2) {
     console.error("Error: Too many arguments");
     console.error("Usage: tsx scripts/update-ipa.ts <phrases-file> [--update-all]");
-    console.error("Example: tsx scripts/update-ipa.ts phrases-de.yaml");
+    console.error("Example: tsx scripts/update-ipa.ts phrases-de-DE.yaml");
     process.exit(1);
   }
 
   if (args.length === 2 && args[1] !== "--update-all") {
     console.error(`Error: Invalid argument: ${args[1]}`);
     console.error("Usage: tsx scripts/update-ipa.ts <phrases-file> [--update-all]");
-    console.error("Example: tsx scripts/update-ipa.ts phrases-de.yaml");
+    console.error("Example: tsx scripts/update-ipa.ts phrases-de-DE.yaml");
     process.exit(1);
   }
 
@@ -309,8 +310,8 @@ async function main() {
     process.exit(1);
   }
 
-  // Extract language from filename (e.g., phrases-de.yaml -> de)
-  const langMatch = path.basename(filePath).match(/phrases-([a-z]+)\.yaml/);
+  // Extract language from filename (e.g., phrases-de-DE.yaml -> de-DE)
+  const langMatch = path.basename(filePath).match(/phrases-([a-zA-Z-]+)\.yaml/);
   if (!langMatch) {
     console.error("Error: Could not determine language from filename");
     console.error("Expected format: phrases-{lang}.yaml");

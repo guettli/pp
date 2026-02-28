@@ -17,10 +17,20 @@
     studyLangToPhraseLang,
     type StudyLanguage,
   } from "../study-lang.js";
-  import { getLevelText, type Phrase, type Score } from "../types.js";
+  import { type Phrase, type Score } from "../types.js";
+
+  function getLevelText(level: number, lang: string): string {
+    void lang; // ensures Svelte re-evaluates when uiLang changes
+    if (level < 200) return t("level.text.very_easy");
+    if (level < 400) return t("level.text.easy");
+    if (level < 600) return t("level.text.medium");
+    if (level < 800) return t("level.text.hard");
+    return t("level.text.very_hard");
+  }
   import { db } from "../db.js";
   import { adjustUserLevel, loadUserLevel, saveUserLevel } from "../utils/level-adjustment.js";
-  import { findPhraseByName, getRandomPhrase } from "../utils/random.js";
+  import { findPhraseByName } from "../utils/random.js";
+  import { selectNextPhrase } from "../utils/phrase-selector.js";
   import { prepareAudioForModel } from "../audio/processor.js";
   import { AudioRecorder } from "../audio/recorder.js";
   import {
@@ -35,6 +45,14 @@
   import { generatePhonemeComparisonHTML } from "../ui/phoneme-comparison-view.js";
   import { generateModelDetailsHTML } from "../ui/model-details-view.js";
   import { initHistory, refreshHistory } from "../ui/history.js";
+  import {
+    loadPhraseAudioManifest,
+    getAvailableVoices,
+    hasPhraseAudio,
+    playPhraseAudio,
+    ttsPlaybackRate,
+    type VoiceOption,
+  } from "../speech/phrase-audio.js";
 
   // ── Reactive state ───────────────────────────────────────────────────────────
 
@@ -45,6 +63,7 @@
   let inlineError = $state<Error | null>(null);
 
   let currentPhrase = $state<Phrase | null>(null);
+  let recentPhrases = $state<string[]>([]);
   let isRecording = $state(false);
   let isProcessing = $state(false);
   let processingProgress = $state(0);
@@ -90,16 +109,15 @@
   let consoleLog = $state("");
   let consoleExpanded = $state(false);
 
+  // Voice selection: name of the selected pre-generated voice (e.g. "piper-thorsten")
+  let selectedVoiceName = $state("");
+  let availableVoices = $state<VoiceOption[]>([]);
+
   // Recorder alerts
   let recorderAlerts = $state<{ id: number; titleKey: string; bodyKey: string; type: string }[]>(
     [],
   );
   let _alertId = 0;
-
-  // Voice selection
-  let voiceListItems = $state<
-    { voice: SpeechSynthesisVoice; isPreferred: boolean; isOffline: boolean }[]
-  >([]);
 
   // Device details
   let deviceDetailsText = $state("Loading...");
@@ -121,61 +139,6 @@
   let recorder: AudioRecorder | null = null;
   let realtimeDetector: RealTimePhonemeDetector | null = null;
   let currentAudio: HTMLAudioElement | null = null;
-  let speechSynthesisSupported: boolean | null = null;
-
-  // ── Svelte action: long-press ─────────────────────────────────────────────────
-  function useLongPress(
-    node: HTMLElement,
-    onLongPress: () => void,
-  ): { destroy(): void; update(newFn: () => void): void } {
-    let cb = onLongPress;
-    let timer: ReturnType<typeof setTimeout> | null = null;
-    let triggered = false;
-
-    const start = () => {
-      triggered = false;
-      timer = setTimeout(() => {
-        triggered = true;
-        cb();
-      }, 500);
-    };
-    const end = () => {
-      if (timer) {
-        clearTimeout(timer);
-        timer = null;
-      }
-    };
-    const click = (e: Event) => {
-      if (triggered) {
-        e.preventDefault();
-        e.stopPropagation();
-        triggered = false;
-      }
-    };
-
-    node.addEventListener("mousedown", start);
-    node.addEventListener("mouseup", end);
-    node.addEventListener("mouseleave", end);
-    node.addEventListener("touchstart", start, { passive: true });
-    node.addEventListener("touchend", end);
-    node.addEventListener("touchcancel", end);
-    node.addEventListener("click", click, true);
-
-    return {
-      destroy() {
-        node.removeEventListener("mousedown", start);
-        node.removeEventListener("mouseup", end);
-        node.removeEventListener("mouseleave", end);
-        node.removeEventListener("touchstart", start);
-        node.removeEventListener("touchend", end);
-        node.removeEventListener("touchcancel", end);
-        node.removeEventListener("click", click, true);
-      },
-      update(newFn: () => void) {
-        cb = newFn;
-      },
-    };
-  }
 
   // ── Emoji helpers ─────────────────────────────────────────────────────────────
   function emojiToTwemojiUrl(emoji: string): string {
@@ -249,109 +212,29 @@
     if (progress.progress !== undefined) loadingProgress = Math.round(progress.progress);
   }
 
-  // ── Speech synthesis ──────────────────────────────────────────────────────────
-  function checkSpeechSynthesisSupport(): Promise<boolean> {
-    if (speechSynthesisSupported !== null) return Promise.resolve(speechSynthesisSupported);
-    if (!window.speechSynthesis) {
-      speechSynthesisSupported = false;
-      return Promise.resolve(false);
-    }
-    return new Promise((resolve) => {
-      const voices = speechSynthesis.getVoices();
-      if (voices.length > 0) {
-        speechSynthesisSupported = true;
-        resolve(true);
-        return;
-      }
-      const timeout = setTimeout(() => {
-        speechSynthesisSupported = false;
-        resolve(false);
-      }, 1000);
-      speechSynthesis.onvoiceschanged = () => {
-        clearTimeout(timeout);
-        const loaded = speechSynthesis.getVoices();
-        speechSynthesisSupported = loaded.length > 0;
-        resolve(speechSynthesisSupported);
-      };
-    });
+  // ── Audio playback ────────────────────────────────────────────────────────────
+
+  /**
+   * Auto-play the pre-generated audio for a phrase when it loads.
+   */
+  function autoPlayPhrase(phrase: string): void {
+    const sl = getStudyLang();
+    if (!sl || !phrase || !selectedVoiceName) return;
+    void playPhraseAudio(phrase, sl, selectedVoiceName, ttsPlaybackRate(userLevel));
   }
 
+  /**
+   * Play the desired pronunciation for a phrase on demand.
+   */
   async function playDesiredPronunciation(phrase: string): Promise<void> {
-    if (!phrase || !window.speechSynthesis) return;
+    if (!phrase || !selectedVoiceName) return;
     const studyLang = getStudyLang();
     if (!studyLang) return;
-    let lvl = 1;
-    let preferred: string | null = null;
-    try {
-      const stats = await db.getUserStats(studyLang);
-      lvl = stats.userLevel;
-      preferred = await db.getPreferredVoice(studyLang);
-    } catch {}
-    const speakPhrase = () => {
-      const wasActive = speechSynthesis.speaking || speechSynthesis.pending;
-      if (wasActive) speechSynthesis.cancel();
-      setTimeout(
-        () => {
-          const utt = new SpeechSynthesisUtterance(phrase);
-          utt.lang = studyLang === "de" ? "de-DE" : studyLang === "fr-FR" ? "fr-FR" : "en-GB";
-          const voices = speechSynthesis.getVoices();
-          const voiceLangPrefix = studyLang === "de" ? "de" : studyLang === "fr-FR" ? "fr" : "en";
-          const langVoices = voices.filter((v) => v.lang.startsWith(voiceLangPrefix));
-          let sel: SpeechSynthesisVoice | undefined;
-          if (preferred) sel = langVoices.find((v) => v.name === preferred);
-          if (!sel && langVoices.length > 0) {
-            const offline = langVoices.filter((v) => v.localService);
-            const pool = offline.length > 0 ? offline : langVoices;
-            sel = pool[Math.floor(Math.random() * pool.length)];
-          }
-          if (sel) utt.voice = sel;
-          utt.rate = lvl < 600 ? 0.5 + (lvl / 600) * 0.5 : 1.0;
-          utt.pitch = 0.95;
-          utt.volume = 1.0;
-          utt.onerror = (e) => {
-            if (e.error === "interrupted" || e.error === "canceled") return;
-            console.error("Speech error:", e.error);
-          };
-          speechSynthesis.speak(utt);
-        },
-        wasActive ? 150 : 0,
-      );
-    };
-    const voices = speechSynthesis.getVoices();
-    if (voices.length > 0) {
-      speakPhrase();
-    } else {
-      let spoken = false;
-      const onChanged = () => {
-        if (!spoken) {
-          spoken = true;
-          speechSynthesis.removeEventListener("voiceschanged", onChanged);
-          speakPhrase();
-        }
-      };
-      speechSynthesis.addEventListener("voiceschanged", onChanged);
-      setTimeout(() => {
-        if (spoken) return;
-        spoken = true;
-        speechSynthesis.removeEventListener("voiceschanged", onChanged);
-        speakPhrase();
-      }, 1500);
-    }
-  }
-
-  async function playWithSpecificVoice(
-    phrase: string,
-    voice: SpeechSynthesisVoice,
-    lvl: number,
-  ): Promise<void> {
-    if (!phrase || !window.speechSynthesis) return;
-    if (speechSynthesis.speaking || speechSynthesis.pending) speechSynthesis.cancel();
-    const utt = new SpeechSynthesisUtterance(phrase);
-    utt.voice = voice;
-    utt.rate = lvl < 600 ? 0.5 + (lvl / 600) * 0.5 : 1.0;
-    utt.pitch = 0.95;
-    utt.volume = 1.0;
-    speechSynthesis.speak(utt);
+    await playPhraseAudio(phrase, studyLang, selectedVoiceName, ttsPlaybackRate(userLevel)).catch(
+      (err) => {
+        console.error("Audio playback error:", err);
+      },
+    );
   }
 
   function downloadRecording() {
@@ -394,22 +277,23 @@
       cancel();
       if (triggered) e.stopImmediatePropagation();
     };
+    const touchEnd = (e: TouchEvent) => {
+      cancel();
+      if (triggered) {
+        // Long press was triggered: prevent the subsequent synthetic click
+        // so that onclick (playRecordingAudio) doesn't fire after a download.
+        e.preventDefault();
+        e.stopImmediatePropagation();
+      }
+      triggered = false;
+    };
 
     node.addEventListener("mousedown", start);
     node.addEventListener("mouseup", end);
     node.addEventListener("mouseleave", cancel);
-    node.addEventListener(
-      "touchstart",
-      (e) => {
-        e.preventDefault();
-        start();
-      },
-      { passive: false },
-    );
-    node.addEventListener("touchend", (e) => {
-      e.preventDefault();
-      end(e);
-    });
+    // passive: true → no preventDefault on touchstart → synthetic click still fires on Android
+    node.addEventListener("touchstart", start, { passive: true });
+    node.addEventListener("touchend", touchEnd);
     node.addEventListener("touchcancel", cancel);
 
     return {
@@ -417,11 +301,20 @@
         node.removeEventListener("mousedown", start);
         node.removeEventListener("mouseup", end);
         node.removeEventListener("mouseleave", cancel);
+        node.removeEventListener("touchstart", start);
+        node.removeEventListener("touchend", touchEnd);
+        node.removeEventListener("touchcancel", cancel);
       },
     };
   }
 
   function playRecordingAudio(scorePercent?: number) {
+    console.log(
+      "playRecordingAudio called",
+      lastRecordingBlob
+        ? `blob type=${lastRecordingBlob.type} size=${lastRecordingBlob.size}`
+        : "no blob",
+    );
     if (!lastRecordingBlob) return;
     if (currentAudio) {
       currentAudio.pause();
@@ -437,16 +330,23 @@
       }
     };
     currentAudio.onerror = () => {
+      console.error(
+        "Playback onerror:",
+        currentAudio?.error?.code,
+        currentAudio?.error?.message,
+        `src=${url}`,
+      );
       URL.revokeObjectURL(url);
       currentAudio = null;
     };
-    currentAudio.oncanplay = () => {
-      currentAudio?.play().catch((e: unknown) => {
-        setTimeout(() => currentAudio?.play().catch(console.error), 100);
-        console.error("Playback error:", e);
-      });
-    };
-    currentAudio.load();
+    // Call play() synchronously within the user gesture handler.
+    // Deferring to oncanplay breaks mobile autoplay: Android requires play() to be
+    // called directly inside a gesture handler (tap/click), not in async callbacks.
+    console.log("Calling audio.play() now");
+    void currentAudio.play().catch((e: unknown) => {
+      const err = e instanceof Error ? e : new Error(String(e));
+      console.error("Playback error:", err.name, err.message, err.stack);
+    });
   }
 
   // ── Scoring ───────────────────────────────────────────────────────────────────
@@ -657,7 +557,7 @@
         if (phrase.level)
           debugMeta.push({
             labelKey: "processing.meta_level",
-            value: `${phrase.level}/1000 (${getLevelText(phrase.level)})`,
+            value: `${phrase.level}/1000 (${getLevelText(phrase.level, uiLang)})`,
           });
 
         const scoreResult = scorePronunciationBest(phrase, resultIPA);
@@ -795,15 +695,27 @@
   async function nextPhrase() {
     const sl = getStudyLang();
     if (!sl) return;
-    const phrase = getRandomPhrase(studyLangToPhraseLang(sl), userLevel);
+    const audioFilter = selectedVoiceName
+      ? (phraseText: string) => hasPhraseAudio(phraseText, sl, selectedVoiceName)
+      : null;
+    const phrase = await selectNextPhrase(
+      studyLangToPhraseLang(sl),
+      userLevel,
+      sl,
+      recentPhrases,
+      Date.now(),
+      audioFilter,
+    );
     currentPhrase = phrase;
+    const RECENT_HISTORY_SIZE = 5;
+    recentPhrases = [...recentPhrases, phrase.phrase].slice(-RECENT_HISTORY_SIZE);
     score = null;
     actualIPA = null;
     showFeedback = false;
     ipaExplanationsVisible = false;
     modelDetailsVisible = false;
     updateURL();
-    void playDesiredPronunciation(phrase.phrase);
+    autoPlayPhrase(phrase.phrase);
   }
 
   async function handleLevelChange(newLevel: number) {
@@ -821,45 +733,6 @@
       await nextPhrase();
     } else {
       userLevel = previousLevel || 1;
-    }
-  }
-
-  // ── Voice selection ───────────────────────────────────────────────────────────
-  async function openVoiceSelectionModal() {
-    const sl = getStudyLang();
-    if (!sl) return;
-    const populateVoices = async () => {
-      const voices = speechSynthesis.getVoices();
-      const langVoices = voices.filter((v) => v.lang.startsWith(sl === "de" ? "de" : "en"));
-      const preferred = await db.getPreferredVoice(sl);
-      voiceListItems = langVoices.map((v) => ({
-        voice: v,
-        isPreferred: v.name === preferred,
-        isOffline: v.localService,
-      }));
-      const modalEl = document.getElementById("voice-selection-modal");
-      if (modalEl) {
-        const { Modal } = await import("bootstrap");
-        new Modal(modalEl).show();
-      }
-    };
-    const voices = speechSynthesis.getVoices();
-    if (voices.length > 0) await populateVoices();
-    else speechSynthesis.onvoiceschanged = () => void populateVoices();
-  }
-
-  async function selectVoice(voice: SpeechSynthesisVoice, checked: boolean) {
-    const sl = getStudyLang();
-    if (!sl) return;
-    if (checked) {
-      await db.savePreferredVoice(sl, voice.name);
-      voiceListItems = voiceListItems.map((item) => ({
-        ...item,
-        isPreferred: item.voice.name === voice.name,
-      }));
-    } else {
-      await db.savePreferredVoice(sl, "");
-      voiceListItems = voiceListItems.map((item) => ({ ...item, isPreferred: false }));
     }
   }
 
@@ -908,7 +781,9 @@
           lines.push(`WebGL Renderer: ${gl.getParameter(ext.UNMASKED_RENDERER_WEBGL)}`);
         }
       }
-    } catch {}
+    } catch {
+      /* WebGL info unavailable */
+    }
     if (navigator.gpu) {
       try {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -1022,7 +897,9 @@
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const adapter = await (navigator.gpu as any).requestAdapter();
           sf16 = !!adapter?.features.has("shader-f16");
-        } catch {}
+        } catch {
+          /* WebGPU adapter request may fail */
+        }
         if (!webgpuEnabled) {
           backend = "wasm";
         } else if (wasWebGpuValidationFailed()) {
@@ -1040,12 +917,30 @@
       const queryPhrase = getPhraseFromQueryString();
       if (queryPhrase) {
         currentPhrase = queryPhrase;
+        recentPhrases = [queryPhrase.phrase];
         updateURL();
       }
 
       const sl = getStudyLang();
       studyLangValue = sl ?? "";
       if (sl) await loadAndUpdateUserLevel(sl);
+
+      // Load pre-generated audio manifest and restore preferred voice
+      await loadPhraseAudioManifest();
+      if (sl) {
+        availableVoices = getAvailableVoices(sl);
+        const savedVoice = await db.getPreferredVoice(sl);
+        const firstVoice = availableVoices[0]?.name ?? "";
+        selectedVoiceName =
+          savedVoice && availableVoices.some((v) => v.name === savedVoice)
+            ? savedVoice
+            : firstVoice;
+      }
+
+      // Auto-play audio for the initial phrase (if any)
+      if (currentPhrase) {
+        autoPlayPhrase(currentPhrase.phrase);
+      }
 
       await tick();
       initHistory();
@@ -1055,7 +950,16 @@
         void nextPhrase();
         refreshHistory();
         const newSl = getStudyLang();
-        if (newSl) void loadAndUpdateUserLevel(newSl);
+        if (newSl) {
+          void loadAndUpdateUserLevel(newSl);
+          // Update available voices for the new language
+          availableVoices = getAvailableVoices(newSl);
+          void db.getPreferredVoice(newSl).then((saved) => {
+            const first = availableVoices[0]?.name ?? "";
+            selectedVoiceName =
+              saved && availableVoices.some((v) => v.name === saved) ? saved : first;
+          });
+        }
       });
 
       onUiLangChange(() => {
@@ -1116,7 +1020,7 @@
         >
           <option value="">{t("study-lang.choose")}</option>
           <option value="en-GB">{t("study-lang.en-GB")}</option>
-          <option value="de">{t("study-lang.de")}</option>
+          <option value="de-DE">{t("study-lang.de")}</option>
           <option value="fr-FR">{t("study-lang.fr-FR")}</option>
         </select>
       </div>
@@ -1128,15 +1032,37 @@
           value={uiLangValue}
           onchange={(e) => {
             const val = (e.target as HTMLSelectElement).value;
-            setUiLang(val as "auto" | "de" | "en" | "fr");
+            setUiLang(val as "auto" | "de-DE" | "en-GB" | "fr-FR");
           }}
         >
           <option value="auto">{t("ui-lang.auto")}</option>
-          <option value="de">{t("language.de")}</option>
-          <option value="en">{t("language.en")}</option>
-          <option value="fr">{t("language.fr")}</option>
+          <option value="de-DE">{t("language.de")}</option>
+          <option value="en-GB">{t("language.en")}</option>
+          <option value="fr-FR">{t("language.fr")}</option>
         </select>
       </div>
+      {#if availableVoices.length > 0}
+        <div class="d-flex align-items-center gap-2">
+          <label for="voice-select" class="form-label mb-0">{t("voice.label")}</label>
+          <select
+            id="voice-select"
+            class="form-select form-select-sm w-auto"
+            value={selectedVoiceName}
+            onchange={(e) => {
+              const val = (e.target as HTMLSelectElement).value;
+              selectedVoiceName = val;
+              const sl = getStudyLang();
+              if (sl) void db.savePreferredVoice(sl, val);
+              // Play the current phrase with the newly selected voice
+              if (currentPhrase) autoPlayPhrase(currentPhrase.phrase);
+            }}
+          >
+            {#each availableVoices as voice (voice.name)}
+              <option value={voice.name}>{voice.label}</option>
+            {/each}
+          </select>
+        </div>
+      {/if}
     </div>
 
     <!-- Level Control -->
@@ -1167,7 +1093,7 @@
           />
           <div class="d-flex justify-content-between text-muted small">
             <span>1</span>
-            <span>{getLevelText(userLevel)}</span>
+            <span>{getLevelText(userLevel, uiLang)}</span>
             <span>1000</span>
           </div>
           <p class="text-muted small mb-0 mt-2">{t("level.description")}</p>
@@ -1244,7 +1170,6 @@
                 id="replay-phrase-btn"
                 class="btn btn-sm btn-outline-secondary"
                 title="Play phrase again"
-                use:useLongPress={openVoiceSelectionModal}
                 onclick={() => void playDesiredPronunciation(currentPhrase?.phrase ?? "")}
               >
                 <i class="bi bi-volume-up-fill"></i>
@@ -1368,21 +1293,14 @@
                 <div class="d-flex justify-content-center align-items-start gap-2 flex-wrap">
                   <div class="d-flex align-items-center">
                     <strong class="me-2">{t("feedback.target_ipa_label")}</strong>
-                    {#await checkSpeechSynthesisSupport() then supported}
-                      {#if supported}
-                        <button
-                          id="play-target-btn"
-                          class="btn btn-sm btn-outline-secondary"
-                          title={t("feedback.play_target")}
-                          use:useLongPress={openVoiceSelectionModal}
-                          onclick={() => void playDesiredPronunciation(currentPhrase?.phrase ?? "")}
-                        >
-                          <i class="bi bi-volume-up-fill"></i>
-                        </button>
-                      {:else}
-                        <small class="text-muted ms-2">{t("feedback.speech_not_supported")}</small>
-                      {/if}
-                    {/await}
+                    <button
+                      id="play-target-btn"
+                      class="btn btn-sm btn-outline-secondary"
+                      title={t("feedback.play_target")}
+                      onclick={() => void playDesiredPronunciation(currentPhrase?.phrase ?? "")}
+                    >
+                      <i class="bi bi-volume-up-fill"></i>
+                    </button>
                   </div>
                   <div class="d-flex align-items-center">
                     <strong class="me-2">{t("feedback.your_ipa_label")}</strong>
@@ -1513,7 +1431,7 @@
           <div class="processing-debug-title">{t("processing.debug_title")}</div>
           {#if processingMeta.length > 0}
             <ul class="processing-debug-list processing-debug-meta">
-              {#each processingMeta as item}
+              {#each processingMeta as item (item.labelKey)}
                 <li class="processing-debug-item">
                   <span class="processing-debug-label">{t(item.labelKey)}</span>
                   <span class="processing-debug-value">{item.value}</span>
@@ -1522,7 +1440,7 @@
             </ul>
           {/if}
           <ul class="processing-debug-list">
-            {#each processingSteps as step}
+            {#each processingSteps as step (step.labelKey)}
               <li class="processing-debug-item" class:total={step.isTotal}>
                 <span class="processing-debug-label">{t(step.labelKey)}</span>
                 <span class="processing-debug-value">
@@ -1659,6 +1577,7 @@
         | <span class="text-warning">Multi-threading disabled (no cross-origin isolation)</span>
       </span>
       |
+      <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- static file not managed by SvelteKit router -->
       <a href="attribution.html">{t("footer.attribution")}</a>
       |
       <button
@@ -1695,58 +1614,6 @@
         >
           {t("footer.copy")}
         </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Voice Selection Modal -->
-<div class="modal fade" id="voice-selection-modal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Select Voice</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div id="voice-list" class="list-group">
-          {#each voiceListItems as item}
-            <div class="list-group-item" style="cursor: pointer">
-              <div class="d-flex justify-content-between align-items-center gap-3">
-                <span
-                  class="voice-name"
-                  style="flex: 1; min-width: 0"
-                  role="button"
-                  tabindex="0"
-                  onclick={() => {
-                    if (currentPhrase?.phrase)
-                      void playWithSpecificVoice(currentPhrase.phrase, item.voice, userLevel);
-                  }}
-                  onkeydown={(e) => {
-                    if (e.key === "Enter" && currentPhrase?.phrase)
-                      void playWithSpecificVoice(currentPhrase.phrase, item.voice, userLevel);
-                  }}>{item.voice.name}</span
-                >
-                <span
-                  class="badge {item.isOffline ? 'bg-success' : 'bg-secondary'}"
-                  style="min-width: 70px; text-align: center"
-                >
-                  {item.isOffline ? t("voice.offline") : t("voice.online")}
-                </span>
-                <input
-                  type="checkbox"
-                  class="form-check-input"
-                  checked={item.isPreferred}
-                  onchange={async (e) => {
-                    e.stopPropagation();
-                    await selectVoice(item.voice, (e.target as HTMLInputElement).checked);
-                  }}
-                  style="cursor: pointer"
-                />
-              </div>
-            </div>
-          {/each}
-        </div>
       </div>
     </div>
   </div>

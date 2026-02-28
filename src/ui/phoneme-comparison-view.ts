@@ -1,6 +1,6 @@
 /**
  * Shared phoneme comparison visualization
- * Used by both web UI (feedback.ts) and CLI tools
+ * Used by web UI and CLI tools
  */
 
 import type { PhonemeComparisonItem } from "../types.js";

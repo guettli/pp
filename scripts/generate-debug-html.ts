@@ -195,7 +195,7 @@ async function main() {
   if (!yamlFile) {
     console.error("Usage: tsx scripts/generate-debug-html.ts <flac-or-yaml-file> [output.html]");
     console.error(
-      "Example: tsx scripts/generate-debug-html.ts tests/data/de/Erdbeere/Erdbeere-Thomas.flac.yaml debug.html",
+      "Example: tsx scripts/generate-debug-html.ts tests/data/de-DE/Erdbeere/Erdbeere-Thomas.flac.yaml debug.html",
     );
     process.exit(1);
   }

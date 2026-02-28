@@ -83,8 +83,8 @@ describe('PanPhon similarity - German "Mond" mispronunciations', () => {
   const mundIPA = "mʊnt"; // Only vowel differs (oː → ʊ)
   const mudaIPA = "muːda"; // Vowel differs AND final consonants differ
 
-  const simMund = calculator.calculatePanPhonDistance(mondIPA, mundIPA, "de");
-  const simMuda = calculator.calculatePanPhonDistance(mondIPA, mudaIPA, "de");
+  const simMund = calculator.calculatePanPhonDistance(mondIPA, mundIPA, "de-DE");
+  const simMuda = calculator.calculatePanPhonDistance(mondIPA, mudaIPA, "de-DE");
 
   console.log(`\n  Target: "${mondIPA}" (Mond)`);
   console.log(`  Compare with "${mundIPA}" (mund): ${(simMund.similarity * 100).toFixed(1)}%`);
@@ -124,7 +124,7 @@ describe("Phoneme alignment details", () => {
   const mudaIPA = "muːda";
 
   console.log("\n  Mond vs mund alignment:");
-  const resultMund = calculator.calculatePanPhonDistance(mondIPA, mundIPA, "de");
+  const resultMund = calculator.calculatePanPhonDistance(mondIPA, mundIPA, "de-DE");
   console.log(`    Target phonemes: [${resultMund.targetPhonemes.join(", ")}]`);
   console.log(`    Actual phonemes: [${resultMund.actualPhonemes.join(", ")}]`);
   for (const comp of resultMund.phonemeComparison) {
@@ -135,7 +135,7 @@ describe("Phoneme alignment details", () => {
   }
 
   console.log("\n  Mond vs muda alignment:");
-  const resultMuda = calculator.calculatePanPhonDistance(mondIPA, mudaIPA, "de");
+  const resultMuda = calculator.calculatePanPhonDistance(mondIPA, mudaIPA, "de-DE");
   console.log(`    Target phonemes: [${resultMuda.targetPhonemes.join(", ")}]`);
   console.log(`    Actual phonemes: [${resultMuda.actualPhonemes.join(", ")}]`);
   for (const comp of resultMuda.phonemeComparison) {
@@ -149,7 +149,7 @@ describe("Phoneme alignment details", () => {
 });
 
 describe("Identical strings should have 100% similarity", () => {
-  const result = calculator.calculatePanPhonDistance("moːnt", "moːnt", "de");
+  const result = calculator.calculatePanPhonDistance("moːnt", "moːnt", "de-DE");
   assert(
     result.similarity === 1.0,
     `Identical strings: ${(result.similarity * 100).toFixed(1)}% === 100%`,
@@ -158,7 +158,7 @@ describe("Identical strings should have 100% similarity", () => {
 
 describe("Single phoneme change should have high similarity", () => {
   // Only one phoneme differs: oː → uː
-  const result = calculator.calculatePanPhonDistance("moːnt", "muːnt", "de");
+  const result = calculator.calculatePanPhonDistance("moːnt", "muːnt", "de-DE");
   assert(
     result.similarity >= 0.7,
     `Single phoneme change (oː→uː): ${(result.similarity * 100).toFixed(1)}% >= 70%`,
@@ -167,37 +167,37 @@ describe("Single phoneme change should have high similarity", () => {
 
 describe("German phoneme equivalence rules", () => {
   // Test 1: ɐ should be equivalent to ər
-  const test1 = calculator.calculatePanPhonDistance("hamɐ", "hamər", "de");
+  const test1 = calculator.calculatePanPhonDistance("hamɐ", "hamər", "de-DE");
   console.log(`  ɐ ↔ ər: similarity = ${(test1.similarity * 100).toFixed(1)}%`);
   assert(test1.similarity === 1.0, "ɐ and ər should be 100% similar (treated as equal)");
 
   // Test 2: ə should be equivalent to ɛ
-  const test2 = calculator.calculatePanPhonDistance("bətə", "bɛtɛ", "de");
+  const test2 = calculator.calculatePanPhonDistance("bətə", "bɛtɛ", "de-DE");
   console.log(`  ə ↔ ɛ: similarity = ${(test2.similarity * 100).toFixed(1)}%`);
   assert(test2.similarity === 1.0, "ə and ɛ should be 100% similar (treated as equal)");
 
   // Test 3: ʁ should be equivalent to r
-  const test3 = calculator.calculatePanPhonDistance("ʁot", "rot", "de");
+  const test3 = calculator.calculatePanPhonDistance("ʁot", "rot", "de-DE");
   console.log(`  ʁ ↔ r: similarity = ${(test3.similarity * 100).toFixed(1)}%`);
   assert(test3.similarity === 1.0, "ʁ and r should be 100% similar (treated as equal)");
 
   // Test 4: z should be equivalent to s
-  const test4 = calculator.calculatePanPhonDistance("zun", "sun", "de");
+  const test4 = calculator.calculatePanPhonDistance("zun", "sun", "de-DE");
   console.log(`  z ↔ s: similarity = ${(test4.similarity * 100).toFixed(1)}%`);
   assert(test4.similarity === 1.0, "z and s should be 100% similar (treated as equal)");
 
   // Test 5: ɐ̯ should be equivalent to r
-  const test5 = calculator.calculatePanPhonDistance("dɐ̯", "dr", "de");
+  const test5 = calculator.calculatePanPhonDistance("dɐ̯", "dr", "de-DE");
   console.log(`  ɐ̯ ↔ r: similarity = ${(test5.similarity * 100).toFixed(1)}%`);
   assert(test5.similarity === 1.0, "ɐ̯ and r should be 100% similar (treated as equal)");
 
   // Test 6: ɛʁ should be equivalent to ɐ
-  const test6 = calculator.calculatePanPhonDistance("hamɐ", "hamɛʁ", "de");
+  const test6 = calculator.calculatePanPhonDistance("hamɐ", "hamɛʁ", "de-DE");
   console.log(`  ɐ ↔ ɛʁ: similarity = ${(test6.similarity * 100).toFixed(1)}%`);
   assert(test6.similarity === 1.0, "ɐ and ɛʁ should be 100% similar (treated as equal)");
 
-  // Test 7: Real world example from phrases-de.yaml: "Der Hamster"
-  const hamster = calculator.calculatePanPhonDistance("deːɐ̯ hamstɐ", "deːr hamstər", "de");
+  // Test 7: Real world example from phrases-de-DE.yaml: "Der Hamster"
+  const hamster = calculator.calculatePanPhonDistance("deːɐ̯ hamstɐ", "deːr hamstər", "de-DE");
   console.log(
     `  Real example "Der Hamster": similarity = ${(hamster.similarity * 100).toFixed(1)}%`,
   );

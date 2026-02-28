@@ -16,7 +16,7 @@ import {
   saveModelToCache,
   savePartialDownload,
 } from "./model-cache.js";
-import { decodePhonemes } from "./phoneme-decoder.js";
+import { decodePhonemes, extractFrameData } from "./phoneme-decoder.js";
 
 // Point WASM binaries to CDN — Vite does not bundle .wasm files automatically
 ort.env.wasm.wasmPaths = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.24.2/dist/";
@@ -522,50 +522,7 @@ export async function extractPhonemesDetailed(audioData: Float32Array): Promise<
     returnDetails: false,
   }) as string;
 
-  // Extract top-k predictions for each frame (for visualization)
-  const topK = 5;
-  const frameData: Array<{
-    frameIndex: number;
-    topPredictions: Array<{
-      symbol: string;
-      tokenId: number;
-      logit: number;
-      probability: number;
-    }>;
-  }> = [];
-
-  // Show ALL frames (no sampling)
-  for (let t = 0; t < seqLen; t++) {
-    const frameOffset = t * vocabSize;
-
-    // Get all logits for this frame
-    const frameLogits: Array<{ tokenId: number; logit: number }> = [];
-    for (let v = 0; v < vocabSize; v++) {
-      frameLogits.push({
-        tokenId: v,
-        logit: logitsData[frameOffset + v],
-      });
-    }
-
-    // Sort by logit (descending)
-    frameLogits.sort((a, b) => b.logit - a.logit);
-
-    // Take top-k
-    const topPredictions = frameLogits.slice(0, topK).map((item) => {
-      const probability = Math.exp(item.logit);
-      return {
-        symbol: tokenMap[item.tokenId] || "<unk>",
-        tokenId: item.tokenId,
-        logit: item.logit,
-        probability,
-      };
-    });
-
-    frameData.push({
-      frameIndex: t,
-      topPredictions,
-    });
-  }
+  const frameData = extractFrameData(logitsData, seqLen, vocabSize, tokenMap, 5);
 
   return {
     phonemes: phonemeString,

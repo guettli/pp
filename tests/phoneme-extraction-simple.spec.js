@@ -12,7 +12,10 @@ test.describe("Phoneme Extraction - Improved Filtering", () => {
     page,
   }) => {
     // Load expected data
-    const yamlPath = path.join(process.cwd(), "tests/data/de/Die_Rose/Die_Rose-Thomas.flac.yaml");
+    const yamlPath = path.join(
+      process.cwd(),
+      "tests/data/de-DE/Die_Rose/Die_Rose-Thomas.flac.yaml",
+    );
     const yamlContent = fs.readFileSync(yamlPath, "utf8");
     const expectedData = yaml.load(yamlContent);
 

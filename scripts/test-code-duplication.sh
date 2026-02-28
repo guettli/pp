@@ -8,8 +8,8 @@ if [[ -z "${IN_NIX_SHELL:-}" ]]; then
     echo "Nix environment not active. Running via 'nix develop'..."
     exec nix develop --command "$0" "$@"
 fi
-pnpm exec jscpd --gitignore --ignore '.venv' --reporters json,console --output .jscpd .
-duplicated_percent=$(grep -o '"percentage":[0-9.]*' .jscpd/jscpd-report.json | head -1 | cut -d':' -f2)
+pnpm exec jscpd --gitignore --ignore '.venv,.svelte-kit,build,dist,wasm/kaldi-fbank/.zig-cache' --reporters json,console --output .jscpd .
+duplicated_percent=$(python3 -c "import json; d=json.load(open('.jscpd/jscpd-report.json')); print(d['statistics']['total']['percentage'])")
 threshold=3
 if [[ -n "$duplicated_percent" ]] && awk "BEGIN {exit !($duplicated_percent > $threshold)}"; then
     echo "Error: Code duplication ($duplicated_percent%) exceeds threshold ($threshold%)."

@@ -12,7 +12,10 @@ test.describe("Streaming vs Direct Detection", () => {
     modelPage: page,
   }) => {
     // Load expected data
-    const yamlPath = path.join(process.cwd(), "tests/data/de/Die_Rose/Die_Rose-Thomas.flac.yaml");
+    const yamlPath = path.join(
+      process.cwd(),
+      "tests/data/de-DE/Die_Rose/Die_Rose-Thomas.flac.yaml",
+    );
     const yamlContent = fs.readFileSync(yamlPath, "utf8");
     const expectedData = yaml.load(yamlContent);
 
@@ -23,7 +26,7 @@ test.describe("Streaming vs Direct Detection", () => {
     console.log(`Expected IPA: ${expectedIPA}\n`);
 
     // Load audio file
-    const audioPath = path.join(process.cwd(), "tests/data/de/Die_Rose/Die_Rose-Thomas.flac");
+    const audioPath = path.join(process.cwd(), "tests/data/de-DE/Die_Rose/Die_Rose-Thomas.flac");
     const audioBuffer = fs.readFileSync(audioPath);
 
     // Test 1: Direct extraction (no streaming)

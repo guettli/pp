@@ -30,6 +30,48 @@ export interface PhonemeDecoderOptions {
   returnDetails?: boolean;
 }
 
+export interface FramePrediction {
+  symbol: string;
+  tokenId: number;
+  logit: number;
+  probability: number;
+}
+
+export interface FrameData {
+  frameIndex: number;
+  topPredictions: FramePrediction[];
+}
+
+/**
+ * Extract top-k predictions for each frame (for debugging/visualization).
+ * Shared between browser (phoneme-extractor.ts) and Node.js (phoneme-model.ts).
+ */
+export function extractFrameData(
+  logitsData: ArrayLike<number>,
+  seqLen: number,
+  vocabSize: number,
+  idToToken: Record<number, string>,
+  topK: number,
+): FrameData[] {
+  const frameData: FrameData[] = [];
+  for (let t = 0; t < seqLen; t++) {
+    const frameOffset = t * vocabSize;
+    const frameLogits: Array<{ tokenId: number; logit: number }> = [];
+    for (let v = 0; v < vocabSize; v++) {
+      frameLogits.push({ tokenId: v, logit: logitsData[frameOffset + v] });
+    }
+    frameLogits.sort((a, b) => b.logit - a.logit);
+    const topPredictions = frameLogits.slice(0, topK).map((item) => ({
+      symbol: idToToken[item.tokenId] || "<unk>",
+      tokenId: item.tokenId,
+      logit: item.logit,
+      probability: Math.exp(item.logit),
+    }));
+    frameData.push({ frameIndex: t, topPredictions });
+  }
+  return frameData;
+}
+
 /**
  * Phoneme equivalence classes for merging similar sounds
  * When similar phonemes split probability, merge them before decoding

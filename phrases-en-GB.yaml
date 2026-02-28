@@ -231,7 +231,7 @@
       category: standard
   level: 52
 - phrase: arts
-  emoji: ❓
+  emoji: 🎨
   ipas:
     - ipa: /ɑɹts/
       category: standard
@@ -273,13 +273,13 @@
       category: standard
   level: 654
 - phrase: balloon
-  emoji: ❓
+  emoji: 🎈
   ipas:
     - ipa: /bəˈluːn/
       category: standard
   level: 397
 - phrase: bamboo
-  emoji: ❓
+  emoji: 🎋
   ipas:
     - ipa: /bæmˈbu/
       category: standard
@@ -431,7 +431,7 @@
       category: standard
   level: 363
 - phrase: bright
-  emoji: ❓
+  emoji: 🔆
   ipas:
     - ipa: /bɹaɪt/
       category: standard
@@ -871,7 +871,7 @@
       category: standard
   level: 213
 - phrase: diamond
-  emoji: ❓
+  emoji: 💎
   ipas:
     - ipa: /ˈdaɪ.ə.mənd/
       category: standard
@@ -883,7 +883,7 @@
       category: standard
   level: 309
 - phrase: dim
-  emoji: ❓
+  emoji: 🔅
   ipas:
     - ipa: /dɪm/
       category: standard
@@ -1169,7 +1169,7 @@
       category: standard
   level: 451
 - phrase: globe
-  emoji: ❓
+  emoji: 🌍
   ipas:
     - ipa: /ɡləʊb/
       category: standard
@@ -1437,7 +1437,7 @@
       category: standard
   level: 683
 - phrase: lift
-  emoji: ❓
+  emoji: 🛗
   ipas:
     - ipa: /lɪft/
       category: standard
@@ -1509,7 +1509,7 @@
       category: standard
   level: 673
 - phrase: mate
-  emoji: ❓
+  emoji: 🤝
   ipas:
     - ipa: /meɪt/
       category: standard
@@ -1569,7 +1569,7 @@
       category: standard
   level: 604
 - phrase: mountain
-  emoji: ❓
+  emoji: 🏔️
   ipas:
     - ipa: /ˈmaʊn.tɪn/
       category: standard
@@ -2199,7 +2199,7 @@
       category: standard
   level: 404
 - phrase: sofa
-  emoji: ❓
+  emoji: 🛋️
   ipas:
     - ipa: /ˈsəʊfə/
       category: standard
@@ -2365,7 +2365,7 @@
       category: standard
   level: 153
 - phrase: tiger
-  emoji: 🦁
+  emoji: 🐯
   ipas:
     - ipa: /ˈtaɪɡə/
       category: standard
@@ -2605,7 +2605,7 @@
       category: standard
   level: 477
 - phrase: wrestle
-  emoji: ❓
+  emoji: 🤼
   ipas:
     - ipa: /ˈɹɛsl̩/
       category: standard
@@ -2826,3 +2826,213 @@
     - ipa: /ðə ˈpiː.nʌt ɪz ˈteɪs.ti/
       category: standard
   level: 854
+- phrase: soup
+  emoji: 🍲
+  ipas:
+    - ipa: /suːp/
+      category: standard
+  level: 182
+- phrase: noodles
+  emoji: 🍝
+  ipas:
+    - ipa: /ˈnuː.dl̩z/
+      category: standard
+  level: 1000
+- phrase: volcano
+  emoji: 🌋
+  ipas:
+    - ipa: /vɒlˈkeɪ.nəʊ/
+      category: standard
+  level: 600
+- phrase: forest
+  emoji: 🌲
+  ipas:
+    - ipa: /ˈfɒ.rɪst/
+      category: standard
+  level: 378
+- phrase: glove
+  emoji: 🧤
+  ipas:
+    - ipa: /ɡlʌv/
+      category: standard
+  level: 318
+- phrase: sock
+  emoji: 🧦
+  ipas:
+    - ipa: /sɒk/
+      category: standard
+  level: 134
+- phrase: trousers
+  emoji: 👖
+  ipas:
+    - ipa: /ˈtɹaʊ.zəz/
+      category: standard
+  level: 435
+- phrase: jacket
+  emoji: 🧥
+  ipas:
+    - ipa: /ˈdʒæk.ɪt/
+      category: standard
+  level: 363
+- phrase: castle
+  emoji: 🏰
+  ipas:
+    - ipa: /ˈkɑːsl̩/
+      category: standard
+  level: 375
+- phrase: piano
+  emoji: 🎹
+  ipas:
+    - ipa: /piˈæn.əʊ/
+      category: standard
+  level: 337
+- phrase: red
+  emoji: 🔴
+  ipas:
+    - ipa: /ʁɛd/
+      category: standard
+  level: 52
+- phrase: blue
+  emoji: 🔵
+  ipas:
+    - ipa: /bluː/
+      category: standard
+  level: 137
+- phrase: green
+  emoji: 💚
+  ipas:
+    - ipa: /ɡɹiːn/
+      category: standard
+  level: 201
+- phrase: yellow
+  emoji: 💛
+  ipas:
+    - ipa: /ˈjɛl.əʊ/
+      category: standard
+  level: 283
+- phrase: black
+  emoji: 🖤
+  ipas:
+    - ipa: /blæk/
+      category: standard
+  level: 207
+- phrase: white
+  emoji: ⬜
+  ipas:
+    - ipa: /waɪt/
+      category: standard
+  level: 286
+- phrase: purple
+  emoji: 💜
+  ipas:
+    - ipa: /ˈpɜː.pl̩/
+      category: standard
+  level: 331
+- phrase: pink
+  emoji: 🩷
+  ipas:
+    - ipa: /pɪŋk/
+      category: standard
+  level: 144
+- phrase: The soup is hot
+  emoji: 🍲
+  ipas:
+    - ipa: /ðə suːp ɪz hɒt/
+      category: standard
+  level: 1000
+- phrase: The honey is sweet
+  emoji: 🍯
+  ipas:
+    - ipa: /ðə ˈhʌni ɪz swiːt/
+      category: standard
+  level: 816
+- phrase: The volcano erupts
+  emoji: 🌋
+  ipas:
+    - ipa: /ðə vɒlˈkeɪ.nəʊ ɪˈɹʌpts/
+      category: standard
+  level: 1000
+- phrase: The forest is green and calm
+  emoji: 🌲
+  ipas:
+    - ipa: /ðə ˈfɒ.rɪst ɪz ɡɹiːn ənd kɑːm/
+      category: standard
+  level: 886
+- phrase: The beach is warm and sunny
+  emoji: 🏖️
+  ipas:
+    - ipa: /ðə biːtʃ ɪz wɔːm ənd ˈsʌni/
+      category: standard
+  level: 851
+- phrase: The piano sounds beautiful
+  emoji: 🎹
+  ipas:
+    - ipa: /ðə piˈæn.əʊ saʊndz ˈbjuː.tɪ.fəl/
+      category: standard
+  level: 975
+- phrase: cookie
+  emoji: 🍪
+  ipas:
+    - ipa: /kˈʊki/
+      category: standard
+  level: 1000
+- phrase: t-shirt
+  emoji: 👕
+  ipas:
+    - ipa: /tˈiːʃˈɜːt/
+      category: standard
+  level: 1000
+- phrase: book
+  emoji: 📕
+  ipas:
+    - ipa: /bˈʊk/
+      category: standard
+  level: 141
+- phrase: fries
+  emoji: 🍟
+  ipas:
+    - ipa: /fɹˈaɪz/
+      category: standard
+  level: 1000
+- phrase: top hat
+  emoji: 🎩
+  ipas:
+    - ipa: /tˈɒp hˈat/
+      category: standard
+  level: 128
+- phrase: motorcycle
+  emoji: 🏍️
+  ipas:
+    - ipa: /mˈəʊtəsˌaɪkəl/
+      category: standard
+  level: 1000
+- phrase: landscape
+  emoji: 🏞️
+  ipas:
+    - ipa: /lˈandskeɪp/
+      category: standard
+  level: 740
+- phrase: church building
+  emoji: ⛪
+  ipas:
+    - ipa: /tʃˈɜːtʃ bˈɪldɪŋ/
+      category: standard
+  level: 439
+- phrase: the colour orange
+  emoji: 🟠
+  ipas:
+    - ipa: /ðə kˈʌləɹ ˈɒɹɪndʒ/
+      category: standard
+  level: 702
+- phrase: infant
+  emoji: 👶
+  ipas:
+    - ipa: /ˈɪnfənt/
+      category: standard
+  level: 464
+- phrase: dairy cow
+  emoji: 🐄
+  ipas:
+    - ipa: /dˈeəɹi kˈaʊ/
+      category: standard
+  level: 724

@@ -16,17 +16,6 @@ export interface Phrase {
   level?: number; // 1-1000 difficulty level
 }
 
-/**
- * Get difficulty level text from numeric level (1-1000)
- */
-export function getLevelText(level: number): string {
-  if (level < 200) return "Very Easy";
-  if (level < 400) return "Easy";
-  if (level < 600) return "Medium";
-  if (level < 800) return "Hard";
-  return "Very Hard";
-}
-
 // Phoneme comparison result
 export interface PhonemeComparisonItem {
   target: string | null;
@@ -129,10 +118,10 @@ export interface DebugMeta {
 }
 
 // Supported UI languages (for translations)
-export type SupportedLanguage = "de" | "en" | "fr";
+export type SupportedLanguage = "de-DE" | "en-GB" | "fr-FR";
 
 // Supported study languages (for phrase content)
-export type StudyLanguage = "en-GB" | "de" | "fr-FR";
+export type StudyLanguage = "en-GB" | "de-DE" | "fr-FR";
 
 // Translation key type (partial, for type safety without exhaustive listing)
 export type TranslationKey = string;

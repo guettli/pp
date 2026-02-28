@@ -15,7 +15,7 @@ async function main() {
   if (!yamlFile) {
     console.error("Usage: tsx scripts/show-frames.ts <yaml-file>");
     console.error(
-      "Example: ./run scripts/show-frames.ts tests/data/de/Der_Panda/Der_Panda-Thomas.flac.yaml",
+      "Example: ./run scripts/show-frames.ts tests/data/de-DE/Der_Panda/Der_Panda-Thomas.flac.yaml",
     );
     process.exit(1);
   }

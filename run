@@ -6,7 +6,7 @@ set -Eeuo pipefail
 # Show usage if no args or first arg starts with -
 if [[ $# -eq 0 ]] || [[ "${1:-}" == -* ]]; then
     echo "Usage: run <command> [args...]" >&2
-    echo "Example: run tsx scripts/update-ipa.ts phrases-de.yaml" >&2
+    echo "Example: run tsx scripts/update-ipa.ts phrases-de-DE.yaml" >&2
     exit 1
 fi
 

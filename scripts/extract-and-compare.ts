@@ -20,14 +20,14 @@ Arguments:
   <flac-yaml-file>    Path to a .flac.yaml metadata file
   <audio-file>        Path to an audio file (.flac, .wav, etc.)
   <phrase>            The phrase being pronounced
-  <lang>              Language code (e.g., de, en)
+  <lang>              Language code (e.g., de-DE, en-GB)
 
 Options:
   -h, --help          Show this help message
 
 Examples:
-  ./run tsx scripts/extract-and-compare.ts tests/data/de/Flugzeug/Flugzeug-Thomas2.flac.yaml
-  ./run tsx scripts/extract-and-compare.ts audio.flac "Der Regen" de
+  ./run tsx scripts/extract-and-compare.ts tests/data/de-DE/Flugzeug/Flugzeug-Thomas2.flac.yaml
+  ./run tsx scripts/extract-and-compare.ts audio.flac "Der Regen" de-DE
 
 Output:
   JSON with phrase info, recognized IPA, expected IPA, and similarity scores.

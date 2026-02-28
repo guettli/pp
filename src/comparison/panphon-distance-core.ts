@@ -11,11 +11,15 @@ import type {
 } from "../types.js";
 
 export interface DistanceCalculator {
-  calculatePanPhonDistance: (target: string, actual: string, lang: string) => PanPhonDistanceResult;
+  calculatePanPhonDistance: (
+    target: string,
+    actual: string,
+    studyLang: string,
+  ) => PanPhonDistanceResult;
   getPhonemeFeatures: (phoneme: string) => number[] | null;
   isKnownPhoneme: (phoneme: string) => boolean;
-  splitIntoPhonemes: (ipa: string, lang: string) => string[];
-  phonemeFeatureDistance: (phoneme1: string, phoneme2: string, lang: string) => number;
+  splitIntoPhonemes: (ipa: string, studyLang: string) => string[];
+  phonemeFeatureDistance: (phoneme1: string, phoneme2: string, studyLang: string) => number;
 }
 
 /**
@@ -78,7 +82,7 @@ function parseIPAWord(cleaned: string, panphonFeatures: PhonemeFeatureTable): st
  * Normalize IPA string for comparison
  * Removes stress marks, delimiters, and other markers that the model cannot reliably detect
  */
-function normalizeIPA(ipa: string, lang?: string): string {
+function normalizeIPA(ipa: string, studyLang?: string): string {
   let cleaned = ipa
     .replace(/[/[\]ˈˌ]/g, "") // Remove delimiters and stress marks
     .replace(/\./g, "") // Remove syllable boundaries
@@ -92,7 +96,7 @@ function normalizeIPA(ipa: string, lang?: string): string {
     .replace(/\u025D/g, "ɜɹ"); // Expand rhotic vowel ɝ → ɜɹ
 
   // Apply German-specific normalization only for German language
-  if (lang === "de") {
+  if (studyLang === "de-DE") {
     cleaned = cleaned
       .replace(/ɛʁ/g, "ɐ") // German: normalize ɛʁ sequence to ɐ
       .replace(/ər/g, "ɐ"); // German: normalize ər sequence to ɐ
@@ -129,13 +133,13 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
   /**
    * Calculate distance between two phonemes based on their articulatory features
    */
-  function phonemeFeatureDistance(phoneme1: string, phoneme2: string, lang: string): number {
+  function phonemeFeatureDistance(phoneme1: string, phoneme2: string, studyLang: string): number {
     if (phoneme1 === phoneme2) {
       return 0;
     }
 
     // Check German equivalence rules (only for German language)
-    if (lang === "de" && areGermanEquivalent(phoneme1, phoneme2)) {
+    if (studyLang === "de-DE" && areGermanEquivalent(phoneme1, phoneme2)) {
       return 0;
     }
 
@@ -174,9 +178,9 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
   /**
    * Split IPA string into individual phonemes
    */
-  function splitIntoPhonemes(ipa: string, lang: string): string[] {
+  function splitIntoPhonemes(ipa: string, studyLang: string): string[] {
     // Normalize IPA for comparison
-    const cleaned = normalizeIPA(ipa, lang);
+    const cleaned = normalizeIPA(ipa, studyLang);
 
     // If input contains spaces, check if it's already tokenized (single-char tokens)
     // or if it contains multi-word phrases (multi-char tokens that need parsing)
@@ -215,8 +219,8 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
   /**
    * Calculate alignment cost for dynamic programming
    */
-  function alignmentCost(p1: string, p2: string, lang: string): number {
-    return phonemeFeatureDistance(p1, p2, lang);
+  function alignmentCost(p1: string, p2: string, studyLang: string): number {
+    return phonemeFeatureDistance(p1, p2, studyLang);
   }
 
   /**
@@ -232,7 +236,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
   function alignPhonemes(
     phonemes1: string[],
     phonemes2: string[],
-    lang: string,
+    studyLang: string,
   ): { distance: number; alignment: AlignmentItem[] } {
     const m = phonemes1.length;
     const n = phonemes2.length;
@@ -256,7 +260,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
     // Fill DP table
     for (let i = 1; i <= m; i++) {
       for (let j = 1; j <= n; j++) {
-        const substitutionCost = alignmentCost(phonemes1[i - 1], phonemes2[j - 1], lang);
+        const substitutionCost = alignmentCost(phonemes1[i - 1], phonemes2[j - 1], studyLang);
 
         dp[i][j] = Math.min(
           dp[i - 1][j] + indelPenalty, // Deletion
@@ -273,7 +277,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
 
     while (i > 0 || j > 0) {
       if (i > 0 && j > 0) {
-        const substitutionCost = alignmentCost(phonemes1[i - 1], phonemes2[j - 1], lang);
+        const substitutionCost = alignmentCost(phonemes1[i - 1], phonemes2[j - 1], studyLang);
         if (dp[i][j] === dp[i - 1][j - 1] + substitutionCost) {
           // Substitution or match
           alignment.unshift({
@@ -314,14 +318,14 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
   function calculatePanPhonDistance(
     target: string,
     actual: string,
-    lang: string,
+    studyLang: string,
   ): PanPhonDistanceResult {
     // Split into phonemes
-    const targetPhonemes = splitIntoPhonemes(target, lang);
-    const actualPhonemes = splitIntoPhonemes(actual, lang);
+    const targetPhonemes = splitIntoPhonemes(target, studyLang);
+    const actualPhonemes = splitIntoPhonemes(actual, studyLang);
 
     // Calculate alignment distance and get optimal alignment
-    const { distance, alignment } = alignPhonemes(targetPhonemes, actualPhonemes, lang);
+    const { distance, alignment } = alignPhonemes(targetPhonemes, actualPhonemes, studyLang);
 
     // Calculate max length for normalization
     const maxLen = Math.max(targetPhonemes.length, actualPhonemes.length);
@@ -334,7 +338,7 @@ export function createDistanceCalculator(panphonFeatures: PhonemeFeatureTable): 
 
     // Detect word boundaries from target IPA (spaces mark word boundaries)
     const wordBoundaryIndices = new Set<number>();
-    const normalizedTarget = normalizeIPA(target, lang);
+    const normalizedTarget = normalizeIPA(target, studyLang);
 
     if (normalizedTarget.includes(" ")) {
       // Split by spaces and calculate phoneme count for each word

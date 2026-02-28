@@ -1,6 +1,58 @@
 <!-- markdownlint-disable -->
 
-reply on recording works on PC, but not on mobile...
+When uiLang is different from studyLang, then the user should see the phrase in his (uiLang).
+
+How could that be done. First plan.
+
+I would like to link between the languages. So that the german phrase links to the english phrase.
+
+How could that be done?
+
+---
+
+Fail if a phrase has no level or no ipa.
+
+---
+
+The piper voices are not good. Use better ones.
+
+
+---
+
+TTS DE: Adler, Burger, ... klingt komisch (Piper)a
+
+---
+
+When user runs old software, a read banner should be visible to reload.
+
+OR: autoreload on next "Next" button.
+
+---
+
+Pre-Fetch the next 100 phrases. Except on mobile network.
+
+---
+
+Is die englische Aussprache British english?
+
+---
+
+RUN_SLOW_TESTS=1 ./run pnpm playwright test --grep "NotAllowedError" 2>&1 | tail -50
+
+---
+
+Dont log, when rate is as expected.
+
+08:02:41 ▶️ [audio-diag] ctx rate: 16000 buf rate: 16000 samples: 24000 expected ~ 24000
+
+
+---
+
+From IPA page using "back" --> last word got lost. I see "Drücken zum Spielen".
+
+---
+
+In Footer near "Build:": Show Datetime without seconds.
 
 ---
 

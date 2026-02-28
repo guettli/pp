@@ -3,8 +3,8 @@
 CLI tool to calculate phrase difficulty for language learning.
 
 Usage:
-    python phrase_difficulty.py "Der Hund läuft" --language de
-    python phrase_difficulty.py "The quick brown fox" --language en
+    python phrase_difficulty.py "Der Hund läuft" --language de-DE
+    python phrase_difficulty.py "The quick brown fox" --language en-GB
 """
 
 import argparse
@@ -44,7 +44,7 @@ class PhraseDifficultyAnalyzer:
         # Manual translation overrides for ambiguous words
         # These take precedence over automatic translation
         self.translation_overrides = {
-            "de": {
+            "de-DE": {
                 "blatt": "leaf",  # Not "sheet" - prefer the botanical meaning
                 "blätter": "leaves",
                 # Add more overrides here as needed
@@ -64,8 +64,8 @@ class PhraseDifficultyAnalyzer:
         self.epitran_converters = {}
         if EPITRAN_AVAILABLE:
             try:
-                self.epitran_converters["en"] = epitran.Epitran("eng-Latn")
-                self.epitran_converters["de"] = epitran.Epitran("deu-Latn")
+                self.epitran_converters["en-GB"] = epitran.Epitran("eng-Latn")
+                self.epitran_converters["de-DE"] = epitran.Epitran("deu-Latn")
             except Exception as e:
                 print(f"Note: Could not initialize epitran: {e}", file=sys.stderr)
 
@@ -210,7 +210,7 @@ class PhraseDifficultyAnalyzer:
         Translate a word to English for AoA lookup.
         Uses Google Translate via deep-translator (free, no API key).
         """
-        if source_lang == "en":
+        if source_lang == "en-GB" or source_lang == "en":
             return word.lower()
 
         # Check manual translation overrides first
@@ -230,7 +230,7 @@ class PhraseDifficultyAnalyzer:
             return cached
 
         try:
-            self.translator.source = source_lang
+            self.translator.source = source_lang.split("-")[0]
             translated = self.translator.translate(word)
 
             if translated and translated.lower() != word.lower():
@@ -509,7 +509,7 @@ def main():
     )
     parser.add_argument("phrase", help="The phrase to analyze")
     parser.add_argument(
-        "--language", "-l", default="en", help="Language code (en, de, es, fr, etc.)"
+        "--language", "-l", default="en-GB", help="Language code (en-GB, de-DE, fr-FR, etc.)"
     )
     parser.add_argument("--json", action="store_true", help="Output as JSON")
 

@@ -43,7 +43,9 @@
     for (const cat of ["consonants", "vowels", "diphthongs", "modifiers"] as CategoryKey[]) {
       const entry = examples[cat]?.[symbol];
       if (entry) {
-        return (entry[uiLang] as string | undefined) ?? (entry["en"] as string | undefined) ?? null;
+        return (
+          (entry[uiLang] as string | undefined) ?? (entry["en-GB"] as string | undefined) ?? null
+        );
       }
     }
     return null;
@@ -88,7 +90,7 @@
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const catSymbols = (ipaExamples as any)[cat] as Record<
           string,
-          { de?: string; en?: string }
+          { "de-DE"?: string; "en-GB"?: string }
         >;
         const entries: SymbolEntry[] = [];
         for (const symbol of Object.keys(catSymbols)) {
@@ -151,11 +153,11 @@
   {:else if loadError}
     <div class="alert alert-danger">{t("ipa.error")} ({loadError})</div>
   {:else}
-    {#each sections as section}
+    {#each sections as section (section.labelKey)}
       <section class="mb-5">
         <h2 class="h4 border-bottom pb-2 mb-3">{t(section.labelKey)}</h2>
         <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2">
-          {#each section.symbols as entry}
+          {#each section.symbols as entry (entry.symbol)}
             <div class="col">
               <div class="card h-100 border-0 bg-light">
                 <div class="card-body p-2 text-center">
@@ -163,10 +165,9 @@
                     >{entry.symbol}</span
                   >
                   {#if entry.explanation}
+                    <!-- eslint-disable-next-line svelte/no-at-html-tags -- data is from trusted local JSON -->
                     <small class="text-muted" style="font-size: 0.75rem"
-                      ><!-- eslint-disable-next-line svelte/no-at-html-tags -->{@html formatExample(
-                        entry.explanation,
-                      )}</small
+                      >{@html formatExample(entry.explanation)}</small
                     >
                   {:else}
                     <small class="text-muted fst-italic" style="font-size: 0.75rem"
@@ -185,7 +186,7 @@
       <section class="mb-5">
         <h2 class="h4 border-bottom pb-2 mb-3">{t("ipa.category.other")}</h2>
         <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2">
-          {#each otherSymbols as entry}
+          {#each otherSymbols as entry (entry.symbol)}
             <div class="col">
               <div class="card h-100 border-0 bg-light">
                 <div class="card-body p-2 text-center">

@@ -7,7 +7,7 @@ import { calculatePanPhonDistance } from "../tests/panphon-distance-node.js";
 async function main() {
   if (process.argv.length < 5) {
     console.error("Usage: tsx scripts/compare-ipa.ts <expected-ipa> <recognized-ipa> <lang>");
-    console.error('Example: tsx scripts/compare-ipa.ts "ˈfaːɐ̯ʁaːt" "faːʁaːt" de');
+    console.error('Example: tsx scripts/compare-ipa.ts "ˈfaːɐ̯ʁaːt" "faːʁaːt" de-DE');
     process.exit(1);
   }
 

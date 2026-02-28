@@ -8,22 +8,22 @@ test.describe("History - Database Functionality", () => {
 
       // Add 5 items with specific timestamps
       const now = Date.now();
-      await db.savePhraseResult("Oldest", "de", 85, "/test/", "/target/", 1000);
+      await db.savePhraseResult("Oldest", "de-DE", 85, "/test/", "/target/", 1000);
       await new Promise((resolve) => setTimeout(resolve, 10));
 
-      await db.savePhraseResult("Old", "de", 85, "/test/", "/target/", 1000);
+      await db.savePhraseResult("Old", "de-DE", 85, "/test/", "/target/", 1000);
       await new Promise((resolve) => setTimeout(resolve, 10));
 
-      await db.savePhraseResult("Middle", "de", 85, "/test/", "/target/", 1000);
+      await db.savePhraseResult("Middle", "de-DE", 85, "/test/", "/target/", 1000);
       await new Promise((resolve) => setTimeout(resolve, 10));
 
-      await db.savePhraseResult("New", "de", 85, "/test/", "/target/", 1000);
+      await db.savePhraseResult("New", "de-DE", 85, "/test/", "/target/", 1000);
       await new Promise((resolve) => setTimeout(resolve, 10));
 
-      await db.savePhraseResult("Newest", "de", 85, "/test/", "/target/", 1000);
+      await db.savePhraseResult("Newest", "de-DE", 85, "/test/", "/target/", 1000);
       await new Promise((resolve) => setTimeout(resolve, 100));
 
-      const history = await db.getHistory("de", 20, 0);
+      const history = await db.getHistory("de-DE", 20, 0);
 
       return {
         phrases: history.docs.map((d) => ({ phrase: d.phrase, timestamp: d.timestamp })),
@@ -55,13 +55,13 @@ test.describe("History - Database Functionality", () => {
         await db.clearAll();
 
         // Test 1: Add a test result
-        await db.savePhraseResult("TestPhrase", "de", 85, "/test/", "/target/", 1000);
+        await db.savePhraseResult("TestPhrase", "de-DE", 85, "/test/", "/target/", 1000);
 
         // Small delay to ensure write is complete
         await new Promise((resolve) => setTimeout(resolve, 100));
 
         // Test 2: Try to retrieve history
-        const history = await db.getHistory("de", 20, 0);
+        const history = await db.getHistory("de-DE", 20, 0);
 
         return {
           success: true,

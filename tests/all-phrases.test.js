@@ -23,8 +23,8 @@ const DATA_DIR = path.join(__dirname, "data");
 
 // TTS voice configurations
 const TTS_VOICES = {
-  de: { voice: "de-DE-ConradNeural", source: "edge-tts-conrad" },
-  en: { voice: "en-US-AndrewNeural", source: "edge-tts-andrew" },
+  "de-DE": { voice: "de-DE-ConradNeural", source: "edge-tts-conrad" },
+  "en-GB": { voice: "en-US-AndrewNeural", source: "edge-tts-andrew" },
 };
 
 async function downloadIfNeeded(url, filename) {
@@ -390,12 +390,12 @@ function getAllTests(phrasesDE, phrasesEN) {
   for (const { phrase, ipas } of phrasesDE) {
     // Join all IPAs with |
     const ipa = ipas && ipas.length > 0 ? ipas.map((i) => i.ipa).join("|") : "";
-    tests.push({ phrase, ipa, lang: "de", type: "phrase" });
+    tests.push({ phrase, ipa, lang: "de-DE", type: "phrase" });
   }
   for (const { phrase, ipas } of phrasesEN) {
     // Join all IPAs with |
     const ipa = ipas && ipas.length > 0 ? ipas.map((i) => i.ipa).join("|") : "";
-    tests.push({ phrase, ipa, lang: "en", type: "phrase" });
+    tests.push({ phrase, ipa, lang: "en-GB", type: "phrase" });
   }
 
   return tests;
@@ -439,8 +439,8 @@ async function main() {
   }
 
   // Load phrase lists
-  const phrasesDE = parseYamlFile(path.join(__dirname, "..", "phrases-de.yaml"));
-  const phrasesEN = parseYamlFile(path.join(__dirname, "..", "phrases-en.yaml"));
+  const phrasesDE = parseYamlFile(path.join(__dirname, "..", "phrases-de-DE.yaml"));
+  const phrasesEN = parseYamlFile(path.join(__dirname, "..", "phrases-en-GB.yaml"));
 
   const allTests = getAllTests(phrasesDE, phrasesEN);
 

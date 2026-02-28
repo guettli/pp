@@ -1,0 +1,3546 @@
+- phrase: Le chat
+  emoji: 🐱
+  ipas:
+    - ipa: lə ʃa
+      category: vowels
+  level: 558
+- phrase: Le chat dort sur le canapé.
+  emoji: 🐱
+  ipas:
+    - ipa: lə ʃa dɔʁ syʁ lə kana.pe
+      category: vowels
+  level: 613
+- phrase: Le chien
+  emoji: 🐶
+  ipas:
+    - ipa: lə ʃjɛ̃
+      category: vowels
+  level: 566
+- phrase: Le chien joue dans le jardin.
+  emoji: 🐶
+  ipas:
+    - ipa: lə ʃjɛ̃ ʒu dɑ̃ lə ʒaʁ.dɛ̃
+      category: vowels
+  level: 618
+- phrase: L'oiseau
+  emoji: 🐦
+  ipas:
+    - ipa: lwa.zo
+      category: vowels
+  level: 656
+- phrase: L'oiseau chante dans l'arbre.
+  emoji: 🐦
+  ipas:
+    - ipa: lwa.zo ʃɑ̃t dɑ̃ laʁbʁ
+      category: vowels
+  level: 655
+- phrase: Le poisson
+  emoji: 🐟
+  ipas:
+    - ipa: lə pwa.sɔ̃
+      category: vowels
+  level: 595
+- phrase: Le poisson nage dans l'eau.
+  emoji: 🐟
+  ipas:
+    - ipa: lə pwa.sɔ̃ naʒ dɑ̃ lo
+      category: vowels
+  level: 624
+- phrase: La pomme
+  emoji: 🍎
+  ipas:
+    - ipa: la pɔm
+      category: vowels
+  level: 578
+- phrase: La pomme est rouge et sucrée.
+  emoji: 🍎
+  ipas:
+    - ipa: la pɔm ɛ ʁuʒ e sy.kʁe
+      category: vowels
+  level: 627
+- phrase: La banane
+  emoji: 🍌
+  ipas:
+    - ipa: la ba.nan
+      category: vowels
+  level: 599
+- phrase: La banane est jaune et douce.
+  emoji: 🍌
+  ipas:
+    - ipa: la ba.nan ɛ ʒon e dus
+      category: vowels
+  level: 631
+- phrase: La fraise
+  emoji: 🍓
+  ipas:
+    - ipa: la fʁɛz
+      category: vowels
+  level: 587
+- phrase: La fraise est petite et rouge.
+  emoji: 🍓
+  ipas:
+    - ipa: la fʁɛz ɛ pə.tit e ʁuʒ
+      category: vowels
+  level: 634
+- phrase: Le citron
+  emoji: 🍋
+  ipas:
+    - ipa: lə si.tʁɔ̃
+      category: vowels
+  level: 587
+- phrase: Le citron est acide et jaune.
+  emoji: 🍋
+  ipas:
+    - ipa: lə si.tʁɔ̃ ɛt a.sid e ʒon
+      category: vowels
+  level: 631
+- phrase: La maison
+  emoji: 🏠
+  ipas:
+    - ipa: la mɛ.zɔ̃
+      category: vowels
+  level: 587
+- phrase: La maison est grande et belle.
+  emoji: 🏠
+  ipas:
+    - ipa: la mɛ.zɔ̃ ɛ ɡʁɑ̃d e bɛl
+      category: vowels
+  level: 629
+- phrase: La voiture
+  emoji: 🚗
+  ipas:
+    - ipa: la vwa.tyʁ
+      category: vowels
+  level: 608
+- phrase: La voiture roule vite sur la route.
+  emoji: 🚗
+  ipas:
+    - ipa: la vwa.tyʁ ʁul vit syʁ la ʁut
+      category: vowels
+  level: 644
+- phrase: Le livre
+  emoji: 📖
+  ipas:
+    - ipa: lə livʁ
+      category: vowels
+  level: 578
+- phrase: Le livre raconte une belle histoire.
+  emoji: 📖
+  ipas:
+    - ipa: lə livʁ ʁa.kɔ̃t yn bɛl is.twaʁ
+      category: vowels
+  level: 663
+- phrase: La lune
+  emoji: 🌙
+  ipas:
+    - ipa: la lyn
+      category: vowels
+  level: 570
+- phrase: La lune brille dans la nuit.
+  emoji: 🌙
+  ipas:
+    - ipa: la lyn bʁij dɑ̃ la nɥi
+      category: vowels
+  level: 620
+- phrase: Le soleil
+  emoji: ☀️
+  ipas:
+    - ipa: lə sɔ.lɛj
+      category: vowels
+  level: 587
+- phrase: Le soleil brille chaque matin.
+  emoji: ☀️
+  ipas:
+    - ipa: lə sɔ.lɛj bʁij ʃak ma.tɛ̃
+      category: vowels
+  level: 644
+- phrase: La fleur
+  emoji: 🌷
+  ipas:
+    - ipa: la flœʁ
+      category: vowels
+  level: 566
+- phrase: La fleur pousse dans le jardin.
+  emoji: 🌷
+  ipas:
+    - ipa: la flœʁ pus dɑ̃ lə ʒaʁ.dɛ̃
+      category: vowels
+  level: 628
+- phrase: L'arbre
+  emoji: 🌳
+  ipas:
+    - ipa: laʁbʁ
+      category: vowels
+  level: 639
+- phrase: L'arbre perd ses feuilles en automne.
+  emoji: 🌳
+  ipas:
+    - ipa: laʁbʁ pɛʁ se fœj ɑ̃n o.tɔn
+      category: vowels
+  level: 653
+- phrase: La mer
+  emoji: 🌊
+  ipas:
+    - ipa: la mɛʁ
+      category: vowels
+  level: 549
+- phrase: La mer est bleue et immense.
+  emoji: 🌊
+  ipas:
+    - ipa: la mɛʁ ɛ blø e i.mɑ̃s
+      category: vowels
+  level: 576
+- phrase: Le pain
+  emoji: 🍞
+  ipas:
+    - ipa: lə pɛ̃
+      category: vowels
+  level: 385
+- phrase: Le pain est frais et croustillant.
+  emoji: 🍞
+  ipas:
+    - ipa: lə pɛ̃ ɛ fʁɛ e kʁus.ti.jɑ̃
+      category: vowels
+  level: 579
+- phrase: Le fromage
+  emoji: 🧀
+  ipas:
+    - ipa: lə fʁo.maʒ
+      category: vowels
+  level: 608
+- phrase: Le fromage sent très bon.
+  emoji: 🧀
+  ipas:
+    - ipa: lə fʁo.maʒ sɑ̃ tʁɛ bɔ̃
+      category: vowels
+  level: 618
+- phrase: Le vélo
+  emoji: 🚲
+  ipas:
+    - ipa: lə ve.lo
+      category: vowels
+  level: 558
+- phrase: Le vélo est un moyen de transport écologique.
+  emoji: 🚲
+  ipas:
+    - ipa: lə ve.lo ɛt œ̃ mwa.jɛ̃ də tʁɑ̃s.pɔʁ e.kɔ.lɔ.ʒik
+      category: vowels
+  level: 662
+- phrase: L'école
+  emoji: 🏫
+  ipas:
+    - ipa: le.kɔl
+      category: vowels
+  level: 639
+- phrase: L'école commence à huit heures.
+  emoji: 🏫
+  ipas:
+    - ipa: le.kɔl kɔ.mɑ̃s a ɥit œʁ
+      category: vowels
+  level: 648
+- phrase: Le café
+  emoji: ☕
+  ipas:
+    - ipa: lə ka.fe
+      category: vowels
+  level: 558
+- phrase: Le café est chaud et parfumé.
+  emoji: ☕
+  ipas:
+    - ipa: lə ka.fe ɛ ʃo e paʁ.fy.me
+      category: vowels
+  level: 618
+- phrase: La montagne
+  emoji: ⛰️
+  ipas:
+    - ipa: la mɔ̃.taɲ
+      category: vowels
+  level: 616
+- phrase: La montagne est couverte de neige.
+  emoji: ⛰️
+  ipas:
+    - ipa: la mɔ̃.taɲ ɛ ku.vɛʁt də nɛʒ
+      category: vowels
+  level: 649
+- phrase: La rivière
+  emoji: 🏞️
+  ipas:
+    - ipa: la ʁi.vjɛʁ
+      category: vowels
+  level: 608
+- phrase: La rivière coule doucement.
+  emoji: 🏞️
+  ipas:
+    - ipa: la ʁi.vjɛʁ kul dus.mɑ̃
+      category: vowels
+  level: 659
+- phrase: Le papillon
+  emoji: 🦋
+  ipas:
+    - ipa: lə pa.pi.jɔ̃
+      category: vowels
+  level: 616
+- phrase: Le papillon vole de fleur en fleur.
+  emoji: 🦋
+  ipas:
+    - ipa: lə pa.pi.jɔ̃ vɔl də flœʁ ɑ̃ flœʁ
+      category: vowels
+  level: 597
+- phrase: La grenouille
+  emoji: 🐸
+  ipas:
+    - ipa: la ɡʁə.nuj
+      category: vowels
+  level: 632
+- phrase: La grenouille saute dans l'étang.
+  emoji: 🐸
+  ipas:
+    - ipa: la ɡʁə.nuj sot dɑ̃ le.tɑ̃
+      category: vowels
+  level: 649
+- phrase: Le chapeau
+  emoji: 🎩
+  ipas:
+    - ipa: lə ʃa.po
+      category: vowels
+  level: 595
+- phrase: Le chapeau protège du soleil.
+  emoji: 🎩
+  ipas:
+    - ipa: lə ʃa.po pʁo.tɛʒ dy sɔ.lɛj
+      category: vowels
+  level: 636
+- phrase: La fenêtre
+  emoji: 🪟
+  ipas:
+    - ipa: la fə.nɛtʁ
+      category: vowels
+  level: 595
+- phrase: La fenêtre est ouverte ce matin.
+  emoji: 🪟
+  ipas:
+    - ipa: la fə.nɛtʁ ɛt u.vɛʁt sə ma.tɛ̃
+      category: vowels
+  level: 639
+- phrase: Le lapin
+  emoji: 🐰
+  ipas:
+    - ipa: lə la.pɛ̃
+      category: vowels
+  level: 578
+- phrase: Le lapin mange des carottes.
+  emoji: 🐰
+  ipas:
+    - ipa: lə la.pɛ̃ mɑ̃ʒ de ka.ʁɔt
+      category: vowels
+  level: 638
+- phrase: Le cheval
+  emoji: 🐴
+  ipas:
+    - ipa: lə ʃə.val
+      category: vowels
+  level: 587
+- phrase: Le cheval galope dans le pré.
+  emoji: 🐴
+  ipas:
+    - ipa: lə ʃə.val ɡa.lɔp dɑ̃ lə pʁe
+      category: vowels
+  level: 627
+- phrase: La vache
+  emoji: 🐮
+  ipas:
+    - ipa: la vaʃ
+      category: vowels
+  level: 578
+- phrase: La vache donne du lait.
+  emoji: 🐮
+  ipas:
+    - ipa: la vaʃ dɔn dy lɛ
+      category: vowels
+  level: 611
+- phrase: Le cochon
+  emoji: 🐷
+  ipas:
+    - ipa: lə kɔ.ʃɔ̃
+      category: vowels
+  level: 587
+- phrase: Le cochon grogne.
+  emoji: 🐷
+  ipas:
+    - ipa: lə kɔ.ʃɔ̃ ɡʁɔɲ
+      category: vowels
+  level: 617
+- phrase: Le mouton
+  emoji: 🐑
+  ipas:
+    - ipa: lə mu.tɔ̃
+      category: vowels
+  level: 587
+- phrase: Le mouton bêle.
+  emoji: 🐑
+  ipas:
+    - ipa: lə mu.tɔ̃ bɛl
+      category: vowels
+  level: 598
+- phrase: Le lion
+  emoji: 🦁
+  ipas:
+    - ipa: lə ljɔ̃
+      category: vowels
+  level: 383
+- phrase: Le lion rugit fort.
+  emoji: 🦁
+  ipas:
+    - ipa: lə ljɔ̃ ʁy.ʒi fɔʁ
+      category: vowels
+  level: 435
+- phrase: L'ours
+  emoji: 🐻
+  ipas:
+    - ipa: luʁs
+      category: vowels
+  level: 598
+- phrase: L'ours mange du miel.
+  emoji: 🐻
+  ipas:
+    - ipa: luʁs mɑ̃ʒ dy mjɛl
+      category: vowels
+  level: 609
+- phrase: Le tigre
+  emoji: 🐯
+  ipas:
+    - ipa: lə tiɡʁ
+      category: vowels
+  level: 578
+- phrase: Le tigre court vite.
+  emoji: 🐯
+  ipas:
+    - ipa: lə tiɡʁ kuʁ vit
+      category: vowels
+  level: 538
+- phrase: L'éléphant
+  emoji: 🐘
+  ipas:
+    - ipa: le.le.fɑ̃
+      category: vowels
+  level: 664
+- phrase: L'éléphant est très grand.
+  emoji: 🐘
+  ipas:
+    - ipa: le.le.fɑ̃ ɛ tʁɛ ɡʁɑ̃
+      category: vowels
+  level: 623
+- phrase: La girafe
+  emoji: 🦒
+  ipas:
+    - ipa: la ʒi.ʁaf
+      category: vowels
+  level: 599
+- phrase: La girafe a un long cou.
+  emoji: 🦒
+  ipas:
+    - ipa: la ʒi.ʁaf a œ̃ lɔ̃ ku
+      category: vowels
+  level: 551
+- phrase: Le canard
+  emoji: 🦆
+  ipas:
+    - ipa: lə ka.naʁ
+      category: vowels
+  level: 587
+- phrase: Le canard nage sur l'étang.
+  emoji: 🦆
+  ipas:
+    - ipa: lə ka.naʁ naʒ syʁ le.tɑ̃
+      category: vowels
+  level: 624
+- phrase: Le hibou
+  emoji: 🦉
+  ipas:
+    - ipa: lə i.bu
+      category: vowels
+  level: 578
+- phrase: Le hibou vole la nuit.
+  emoji: 🦉
+  ipas:
+    - ipa: lə i.bu vɔl la nɥi
+      category: vowels
+  level: 551
+- phrase: Le renard
+  emoji: 🦊
+  ipas:
+    - ipa: lə ʁə.naʁ
+      category: vowels
+  level: 587
+- phrase: Le renard est rusé.
+  emoji: 🦊
+  ipas:
+    - ipa: lə ʁə.naʁ ɛ ʁy.ze
+      category: vowels
+  level: 600
+- phrase: Le singe
+  emoji: 🐵
+  ipas:
+    - ipa: lə sɛ̃ʒ
+      category: vowels
+  level: 578
+- phrase: Le singe grimpe aux arbres.
+  emoji: 🐵
+  ipas:
+    - ipa: lə sɛ̃ʒ ɡʁɛ̃p o zaʁbʁ
+      category: vowels
+  level: 629
+- phrase: La baleine
+  emoji: 🐳
+  ipas:
+    - ipa: la ba.lɛn
+      category: vowels
+  level: 608
+- phrase: La baleine nage dans la mer.
+  emoji: 🐳
+  ipas:
+    - ipa: la ba.lɛn naʒ dɑ̃ la mɛʁ
+      category: vowels
+  level: 624
+- phrase: Le dauphin
+  emoji: 🐬
+  ipas:
+    - ipa: lə do.fɛ̃
+      category: vowels
+  level: 595
+- phrase: Le dauphin saute hors de l'eau.
+  emoji: 🐬
+  ipas:
+    - ipa: lə do.fɛ̃ sot ɔʁ də lo
+      category: vowels
+  level: 628
+- phrase: Le serpent
+  emoji: 🐍
+  ipas:
+    - ipa: lə sɛʁ.pɑ̃
+      category: vowels
+  level: 595
+- phrase: Le serpent rampe par terre.
+  emoji: 🐍
+  ipas:
+    - ipa: lə sɛʁ.pɑ̃ ʁɑ̃p paʁ tɛʁ
+      category: vowels
+  level: 629
+- phrase: L'araignée
+  emoji: 🕷️
+  ipas:
+    - ipa: la.ʁɛ.ɲe
+      category: vowels
+  level: 714
+- phrase: L'araignée tisse une toile.
+  emoji: 🕷️
+  ipas:
+    - ipa: la.ʁɛ.ɲe tis yn twal
+      category: vowels
+  level: 659
+- phrase: L'escargot
+  emoji: 🐌
+  ipas:
+    - ipa: lɛs.kaʁ.ɡo
+      category: vowels
+  level: 714
+- phrase: L'escargot avance lentement.
+  emoji: 🐌
+  ipas:
+    - ipa: lɛs.kaʁ.ɡo a.vɑ̃s lɑ̃t.mɑ̃
+      category: vowels
+  level: 712
+- phrase: La tortue
+  emoji: 🐢
+  ipas:
+    - ipa: la tɔʁ.ty
+      category: vowels
+  level: 587
+- phrase: La tortue vit longtemps.
+  emoji: 🐢
+  ipas:
+    - ipa: la tɔʁ.ty vi lɔ̃.tɑ̃
+      category: vowels
+  level: 628
+- phrase: L'abeille
+  emoji: 🐝
+  ipas:
+    - ipa: la.bɛj
+      category: vowels
+  level: 698
+- phrase: L'abeille produit du miel.
+  emoji: 🐝
+  ipas:
+    - ipa: la.bɛj pʁɔ.dɥi dy mjɛl
+      category: vowels
+  level: 642
+- phrase: Le loup
+  emoji: 🐺
+  ipas:
+    - ipa: lə lu
+      category: vowels
+  level: 558
+- phrase: Le loup hurle dans la forêt.
+  emoji: 🐺
+  ipas:
+    - ipa: lə lu yʁl dɑ̃ la fɔ.ʁɛ
+      category: vowels
+  level: 616
+- phrase: Le panda
+  emoji: 🐼
+  ipas:
+    - ipa: lə pɑ̃.da
+      category: vowels
+  level: 415
+- phrase: Le panda mange du bambou.
+  emoji: 🐼
+  ipas:
+    - ipa: lə pɑ̃.da mɑ̃ʒ dy bɑ̃.bu
+      category: vowels
+  level: 557
+- phrase: Le pingouin
+  emoji: 🐧
+  ipas:
+    - ipa: lə pɛ̃.ɡwɛ̃
+      category: vowels
+  level: 603
+- phrase: Le pingouin nage bien.
+  emoji: 🐧
+  ipas:
+    - ipa: lə pɛ̃.ɡwɛ̃ naʒ bjɛ̃
+      category: vowels
+  level: 619
+- phrase: L'aigle
+  emoji: 🦅
+  ipas:
+    - ipa: lɛɡl
+      category: vowels
+  level: 639
+- phrase: L'aigle vole très haut.
+  emoji: 🦅
+  ipas:
+    - ipa: lɛɡl vɔl tʁɛ o
+      category: vowels
+  level: 553
+- phrase: La fourmi
+  emoji: 🐜
+  ipas:
+    - ipa: la fuʁ.mi
+      category: vowels
+  level: 587
+- phrase: La fourmi est très petite.
+  emoji: 🐜
+  ipas:
+    - ipa: la fuʁ.mi ɛ tʁɛ pə.tit
+      category: vowels
+  level: 626
+- phrase: Rouge
+  emoji: 🔴
+  ipas:
+    - ipa: ʁuʒ
+      category: vowels
+  level: 606
+- phrase: Bleu
+  emoji: 🔵
+  ipas:
+    - ipa: blø
+      category: vowels
+  level: 564
+- phrase: Vert
+  emoji: 💚
+  ipas:
+    - ipa: vɛʁ
+      category: vowels
+  level: 564
+- phrase: Jaune
+  emoji: 💛
+  ipas:
+    - ipa: ʒon
+      category: vowels
+  level: 606
+- phrase: Blanc
+  emoji: ⬜
+  ipas:
+    - ipa: blɑ̃
+      category: vowels
+  level: 581
+- phrase: Noir
+  emoji: 🖤
+  ipas:
+    - ipa: nwaʁ
+      category: vowels
+  level: 564
+- phrase: Rose
+  emoji: 🩷
+  ipas:
+    - ipa: ʁoz
+      category: vowels
+  level: 263
+- phrase: Violet
+  emoji: 💜
+  ipas:
+    - ipa: vjɔ.lɛ
+      category: vowels
+  level: 308
+- phrase: Orange
+  emoji: 🟠
+  ipas:
+    - ipa: ɔ.ʁɑ̃ʒ
+      category: vowels
+  level: 297
+- phrase: La tête
+  emoji: 👤
+  ipas:
+    - ipa: la tɛt
+      category: vowels
+  level: 558
+- phrase: La tête pense.
+  emoji: 👤
+  ipas:
+    - ipa: la tɛt pɑ̃s
+      category: vowels
+  level: 593
+- phrase: Le bras
+  emoji: 💪
+  ipas:
+    - ipa: lə bʁa
+      category: vowels
+  level: 558
+- phrase: Le bras est fort.
+  emoji: 💪
+  ipas:
+    - ipa: lə bʁa ɛ fɔʁ
+      category: vowels
+  level: 507
+- phrase: La jambe
+  emoji: 🦵
+  ipas:
+    - ipa: la ʒɑ̃b
+      category: vowels
+  level: 578
+- phrase: La jambe court vite.
+  emoji: 🦵
+  ipas:
+    - ipa: la ʒɑ̃b kuʁ vit
+      category: vowels
+  level: 538
+- phrase: Le nez
+  emoji: 👃
+  ipas:
+    - ipa: lə ne
+      category: vowels
+  level: 549
+- phrase: Le nez sent les fleurs.
+  emoji: 👃
+  ipas:
+    - ipa: lə ne sɑ̃ le flœʁ
+      category: vowels
+  level: 601
+- phrase: L'oreille
+  emoji: 👂
+  ipas:
+    - ipa: lɔ.ʁɛj
+      category: vowels
+  level: 698
+- phrase: L'oreille entend les sons.
+  emoji: 👂
+  ipas:
+    - ipa: lɔ.ʁɛj ɑ̃.tɑ̃ le sɔ̃
+      category: vowels
+  level: 642
+- phrase: La bouche
+  emoji: 👄
+  ipas:
+    - ipa: la buʃ
+      category: vowels
+  level: 587
+- phrase: La bouche parle et mange.
+  emoji: 👄
+  ipas:
+    - ipa: la buʃ paʁl e mɑ̃ʒ
+      category: vowels
+  level: 622
+- phrase: La dent
+  emoji: 🦷
+  ipas:
+    - ipa: la dɑ̃
+      category: vowels
+  level: 558
+- phrase: La dent est blanche.
+  emoji: 🦷
+  ipas:
+    - ipa: la dɑ̃ ɛ blɑ̃ʃ
+      category: vowels
+  level: 605
+- phrase: Le doigt
+  emoji: ☝️
+  ipas:
+    - ipa: lə dwa
+      category: vowels
+  level: 566
+- phrase: Le doigt montre le chemin.
+  emoji: ☝️
+  ipas:
+    - ipa: lə dwa mɔ̃tʁ lə ʃə.mɛ̃
+      category: vowels
+  level: 621
+- phrase: L'œil
+  emoji: 👁️
+  ipas:
+    - ipa: lœj
+      category: vowels
+  level: 581
+- phrase: L'œil voit les couleurs.
+  emoji: 👁️
+  ipas:
+    - ipa: lœj vwa le ku.lœʁ
+      category: vowels
+  level: 621
+- phrase: Le train
+  emoji: 🚂
+  ipas:
+    - ipa: lə tʁɛ̃
+      category: vowels
+  level: 392
+- phrase: Le train roule vite.
+  emoji: 🚂
+  ipas:
+    - ipa: lə tʁɛ̃ ʁul vit
+      category: vowels
+  level: 524
+- phrase: L'avion
+  emoji: ✈️
+  ipas:
+    - ipa: la.vjɔ̃
+      category: vowels
+  level: 639
+- phrase: L'avion vole dans le ciel.
+  emoji: ✈️
+  ipas:
+    - ipa: la.vjɔ̃ vɔl dɑ̃ lə sjɛl
+      category: vowels
+  level: 564
+- phrase: Le bateau
+  emoji: 🚢
+  ipas:
+    - ipa: lə ba.to
+      category: vowels
+  level: 587
+- phrase: Le bateau navigue sur la mer.
+  emoji: 🚢
+  ipas:
+    - ipa: lə ba.to na.viɡ syʁ la mɛʁ
+      category: vowels
+  level: 627
+- phrase: Le bus
+  emoji: 🚌
+  ipas:
+    - ipa: lə bys
+      category: vowels
+  level: 373
+- phrase: Le bus transporte les gens.
+  emoji: 🚌
+  ipas:
+    - ipa: lə bys tʁɑ̃s.pɔʁt le ʒɑ̃
+      category: vowels
+  level: 554
+- phrase: La moto
+  emoji: 🏍️
+  ipas:
+    - ipa: la mɔ.to
+      category: vowels
+  level: 570
+- phrase: La moto va très vite.
+  emoji: 🏍️
+  ipas:
+    - ipa: la mɔ.to va tʁɛ vit
+      category: vowels
+  level: 604
+- phrase: L'arc-en-ciel
+  emoji: 🌈
+  ipas:
+    - ipa: laʁk.ɑ̃.sjɛl
+      category: vowels
+  level: 764
+- phrase: L'arc-en-ciel brille après la pluie.
+  emoji: 🌈
+  ipas:
+    - ipa: laʁk.ɑ̃.sjɛl bʁij a.pʁɛ la plɥi
+      category: vowels
+  level: 659
+- phrase: Le nuage
+  emoji: ☁️
+  ipas:
+    - ipa: lə nɥaʒ
+      category: vowels
+  level: 578
+- phrase: Le nuage cache le soleil.
+  emoji: ☁️
+  ipas:
+    - ipa: lə nɥaʒ kaʃ lə sɔ.lɛj
+      category: vowels
+  level: 622
+- phrase: La neige
+  emoji: ❄️
+  ipas:
+    - ipa: la nɛʒ
+      category: vowels
+  level: 578
+- phrase: La neige tombe doucement.
+  emoji: ❄️
+  ipas:
+    - ipa: la nɛʒ tɔ̃b dus.mɑ̃
+      category: vowels
+  level: 644
+- phrase: La pluie
+  emoji: 🌧️
+  ipas:
+    - ipa: la plɥi
+      category: vowels
+  level: 566
+- phrase: La pluie tombe sur le jardin.
+  emoji: 🌧️
+  ipas:
+    - ipa: la plɥi tɔ̃b syʁ lə ʒaʁ.dɛ̃
+      category: vowels
+  level: 623
+- phrase: Le vent
+  emoji: 💨
+  ipas:
+    - ipa: lə vɑ̃
+      category: vowels
+  level: 558
+- phrase: Le vent souffle fort.
+  emoji: 💨
+  ipas:
+    - ipa: lə vɑ̃ sufl fɔʁ
+      category: vowels
+  level: 530
+- phrase: L'étoile
+  emoji: ⭐
+  ipas:
+    - ipa: le.twal
+      category: vowels
+  level: 656
+- phrase: L'étoile brille dans le ciel.
+  emoji: ⭐
+  ipas:
+    - ipa: le.twal bʁij dɑ̃ lə sjɛl
+      category: vowels
+  level: 631
+- phrase: La plage
+  emoji: 🏖️
+  ipas:
+    - ipa: la plaʒ
+      category: vowels
+  level: 578
+- phrase: La plage est belle et ensoleillée.
+  emoji: 🏖️
+  ipas:
+    - ipa: la plaʒ ɛ bɛl e ɑ̃.sɔ.le.je
+      category: vowels
+  level: 649
+- phrase: L'île
+  emoji: 🏝️
+  ipas:
+    - ipa: lil
+      category: vowels
+  level: 581
+- phrase: L'île est entourée d'eau.
+  emoji: 🏝️
+  ipas:
+    - ipa: lil ɛt ɑ̃.tu.ʁe do
+      category: vowels
+  level: 632
+- phrase: La forêt
+  emoji: 🌲
+  ipas:
+    - ipa: la fɔ.ʁɛ
+      category: vowels
+  level: 566
+- phrase: La forêt est calme et verte.
+  emoji: 🌲
+  ipas:
+    - ipa: la fɔ.ʁɛ ɛ kalm e vɛʁt
+      category: vowels
+  level: 620
+- phrase: Le feu
+  emoji: 🔥
+  ipas:
+    - ipa: lə fø
+      category: vowels
+  level: 549
+- phrase: Le feu brûle dans la cheminée.
+  emoji: 🔥
+  ipas:
+    - ipa: lə fø bʁyl dɑ̃ la ʃə.mi.ne
+      category: vowels
+  level: 625
+- phrase: L'éclair
+  emoji: ⚡
+  ipas:
+    - ipa: le.klɛʁ
+      category: vowels
+  level: 631
+- phrase: L'éclair illumine le ciel.
+  emoji: ⚡
+  ipas:
+    - ipa: le.klɛʁ i.ly.min lə sjɛl
+      category: vowels
+  level: 642
+- phrase: Le volcan
+  emoji: 🌋
+  ipas:
+    - ipa: lə vɔl.kɑ̃
+      category: vowels
+  level: 587
+- phrase: Le volcan entre en éruption.
+  emoji: 🌋
+  ipas:
+    - ipa: lə vɔl.kɑ̃ ɑ̃tʁ ɑ̃ e.ʁyp.sjɔ̃
+      category: vowels
+  level: 632
+- phrase: L'orange
+  emoji: 🍊
+  ipas:
+    - ipa: lɔ.ʁɑ̃ʒ
+      category: vowels
+  level: 681
+- phrase: L'orange est juteuse et sucrée.
+  emoji: 🍊
+  ipas:
+    - ipa: lɔ.ʁɑ̃ʒ ɛ ʒy.tøz e sy.kʁe
+      category: vowels
+  level: 652
+- phrase: Le raisin
+  emoji: 🍇
+  ipas:
+    - ipa: lə ʁɛ.zɛ̃
+      category: vowels
+  level: 417
+- phrase: Le raisin est doux et juteux.
+  emoji: 🍇
+  ipas:
+    - ipa: lə ʁɛ.zɛ̃ ɛ du e ʒy.tø
+      category: vowels
+  level: 566
+- phrase: La cerise
+  emoji: 🍒
+  ipas:
+    - ipa: la sə.ʁiz
+      category: vowels
+  level: 599
+- phrase: La cerise est petite et rouge.
+  emoji: 🍒
+  ipas:
+    - ipa: la sə.ʁiz ɛ pə.tit e ʁuʒ
+      category: vowels
+  level: 638
+- phrase: La tomate
+  emoji: 🍅
+  ipas:
+    - ipa: la tɔ.mat
+      category: vowels
+  level: 599
+- phrase: La tomate est rouge et ronde.
+  emoji: 🍅
+  ipas:
+    - ipa: la tɔ.mat ɛ ʁuʒ e ʁɔ̃d
+      category: vowels
+  level: 631
+- phrase: La carotte
+  emoji: 🥕
+  ipas:
+    - ipa: la ka.ʁɔt
+      category: vowels
+  level: 608
+- phrase: La carotte est bonne pour les yeux.
+  emoji: 🥕
+  ipas:
+    - ipa: la ka.ʁɔt ɛ bɔn puʁ le jø
+      category: vowels
+  level: 637
+- phrase: La pomme de terre
+  emoji: 🥔
+  ipas:
+    - ipa: la pɔm də tɛʁ
+      category: vowels
+  level: 598
+- phrase: La pomme de terre cuit dans l'eau.
+  emoji: 🥔
+  ipas:
+    - ipa: la pɔm də tɛʁ kɥi dɑ̃ lo
+      category: vowels
+  level: 631
+- phrase: Le chocolat
+  emoji: 🍫
+  ipas:
+    - ipa: lə ʃɔ.kɔ.la
+      category: vowels
+  level: 616
+- phrase: Le chocolat est délicieux.
+  emoji: 🍫
+  ipas:
+    - ipa: lə ʃɔ.kɔ.la ɛ de.li.sjø
+      category: vowels
+  level: 642
+- phrase: La glace
+  emoji: 🍦
+  ipas:
+    - ipa: la ɡlas
+      category: vowels
+  level: 578
+- phrase: La glace fond au soleil.
+  emoji: 🍦
+  ipas:
+    - ipa: la ɡlas fɔ̃ o sɔ.lɛj
+      category: vowels
+  level: 555
+- phrase: La pizza
+  emoji: 🍕
+  ipas:
+    - ipa: la pit.sa
+      category: vowels
+  level: 414
+- phrase: La pizza est chaude et savoureuse.
+  emoji: 🍕
+  ipas:
+    - ipa: la pit.sa ɛ ʃod e sa.vu.ʁøz
+      category: vowels
+  level: 594
+- phrase: L'eau
+  emoji: 💧
+  ipas:
+    - ipa: lo
+      category: vowels
+  level: 581
+- phrase: L'eau est essentielle à la vie.
+  emoji: 💧
+  ipas:
+    - ipa: lo ɛt e.sɑ̃.sjɛl a la vi
+      category: vowels
+  level: 632
+- phrase: Le lait
+  emoji: 🥛
+  ipas:
+    - ipa: lə lɛ
+      category: vowels
+  level: 558
+- phrase: Le lait est blanc et nutritif.
+  emoji: 🥛
+  ipas:
+    - ipa: lə lɛ ɛ blɑ̃ e ny.tʁi.tif
+      category: vowels
+  level: 625
+- phrase: L'œuf
+  emoji: 🥚
+  ipas:
+    - ipa: lœf
+      category: vowels
+  level: 581
+- phrase: L'œuf est frais et rond.
+  emoji: 🥚
+  ipas:
+    - ipa: lœf ɛ fʁɛ e ʁɔ̃
+      category: vowels
+  level: 604
+- phrase: Le miel
+  emoji: 🍯
+  ipas:
+    - ipa: lə mjɛl
+      category: vowels
+  level: 558
+- phrase: Le miel est doux et sucré.
+  emoji: 🍯
+  ipas:
+    - ipa: lə mjɛl ɛ du e sy.kʁe
+      category: vowels
+  level: 606
+- phrase: La soupe
+  emoji: 🍲
+  ipas:
+    - ipa: la sup
+      category: vowels
+  level: 578
+- phrase: La soupe est chaude et bonne.
+  emoji: 🍲
+  ipas:
+    - ipa: la sup ɛ ʃod e bɔn
+      category: vowels
+  level: 627
+- phrase: Le riz
+  emoji: 🍚
+  ipas:
+    - ipa: lə ʁi
+      category: vowels
+  level: 549
+- phrase: Le riz cuit dans la casserole.
+  emoji: 🍚
+  ipas:
+    - ipa: lə ʁi kɥi dɑ̃ la ka.sʁɔl
+      category: vowels
+  level: 629
+- phrase: Le gâteau
+  emoji: 🍰
+  ipas:
+    - ipa: lə ɡa.to
+      category: vowels
+  level: 574
+- phrase: Le gâteau est sucré et moelleux.
+  emoji: 🍰
+  ipas:
+    - ipa: lə ɡa.to ɛ sy.kʁe e mwa.lø
+      category: vowels
+  level: 627
+- phrase: Les frites
+  emoji: 🍟
+  ipas:
+    - ipa: le fʁit
+      category: vowels
+  level: 595
+- phrase: Les frites sont croustillantes.
+  emoji: 🍟
+  ipas:
+    - ipa: le fʁit sɔ̃ kʁus.ti.jɑ̃t
+      category: vowels
+  level: 669
+- phrase: Le sandwich
+  emoji: 🥪
+  ipas:
+    - ipa: lə sɑ̃d.witʃ
+      category: vowels
+  level: 432
+- phrase: Le sandwich est délicieux.
+  emoji: 🥪
+  ipas:
+    - ipa: lə sɑ̃d.witʃ ɛ de.li.sjø
+      category: vowels
+  level: 550
+- phrase: Le pantalon
+  emoji: 👖
+  ipas:
+    - ipa: lə pɑ̃.ta.lɔ̃
+      category: vowels
+  level: 616
+- phrase: Le pantalon est confortable.
+  emoji: 👖
+  ipas:
+    - ipa: lə pɑ̃.ta.lɔ̃ ɛ kɔ̃.fɔʁ.tabl
+      category: vowels
+  level: 663
+- phrase: La veste
+  emoji: 🧥
+  ipas:
+    - ipa: la vɛst
+      category: vowels
+  level: 578
+- phrase: La veste garde au chaud.
+  emoji: 🧥
+  ipas:
+    - ipa: la vɛst ɡaʁd o ʃo
+      category: vowels
+  level: 614
+- phrase: L'écharpe
+  emoji: 🧣
+  ipas:
+    - ipa: le.ʃaʁp
+      category: vowels
+  level: 672
+- phrase: L'écharpe protège du froid.
+  emoji: 🧣
+  ipas:
+    - ipa: le.ʃaʁp pʁɔ.tɛʒ dy fʁwa
+      category: vowels
+  level: 640
+- phrase: Le bonnet
+  emoji: 🧢
+  ipas:
+    - ipa: lə bɔ.nɛ
+      category: vowels
+  level: 443
+- phrase: Le bonnet couvre les oreilles.
+  emoji: 🧢
+  ipas:
+    - ipa: lə bɔ.nɛ kuvʁ le zɔ.ʁɛj
+      category: vowels
+  level: 587
+- phrase: La chaussette
+  emoji: 🧦
+  ipas:
+    - ipa: la ʃo.sɛt
+      category: vowels
+  level: 632
+- phrase: La chaussette tient les pieds au chaud.
+  emoji: 🧦
+  ipas:
+    - ipa: la ʃo.sɛt tjɛ̃ le pje o ʃo
+      category: vowels
+  level: 643
+- phrase: La robe
+  emoji: 👗
+  ipas:
+    - ipa: la ʁɔb
+      category: vowels
+  level: 416
+- phrase: La robe est belle et élégante.
+  emoji: 👗
+  ipas:
+    - ipa: la ʁɔb ɛ bɛl e e.le.ɡɑ̃t
+      category: vowels
+  level: 578
+- phrase: La chaussure
+  emoji: 👞
+  ipas:
+    - ipa: la ʃo.syʁ
+      category: vowels
+  level: 624
+- phrase: La chaussure protège le pied.
+  emoji: 👞
+  ipas:
+    - ipa: la ʃo.syʁ pʁɔ.tɛʒ lə pje
+      category: vowels
+  level: 636
+- phrase: Les lunettes
+  emoji: 👓
+  ipas:
+    - ipa: le ly.nɛt
+      category: vowels
+  level: 624
+- phrase: Les lunettes aident à voir.
+  emoji: 👓
+  ipas:
+    - ipa: le ly.nɛt ɛd a vwaʁ
+      category: vowels
+  level: 629
+- phrase: Le gant
+  emoji: 🧤
+  ipas:
+    - ipa: lə ɡɑ̃
+      category: vowels
+  level: 558
+- phrase: Le gant protège les mains.
+  emoji: 🧤
+  ipas:
+    - ipa: lə ɡɑ̃ pʁɔ.tɛʒ le mɛ̃
+      category: vowels
+  level: 616
+- phrase: La porte
+  emoji: 🚪
+  ipas:
+    - ipa: la pɔʁt
+      category: vowels
+  level: 578
+- phrase: La porte s'ouvre et se ferme.
+  emoji: 🚪
+  ipas:
+    - ipa: la pɔʁt suvʁ e sə fɛʁm
+      category: vowels
+  level: 627
+- phrase: Le lit
+  emoji: 🛏️
+  ipas:
+    - ipa: lə li
+      category: vowels
+  level: 549
+- phrase: Le lit est doux et confortable.
+  emoji: 🛏️
+  ipas:
+    - ipa: lə li ɛ du e kɔ̃.fɔʁ.tabl
+      category: vowels
+  level: 632
+- phrase: La chaise
+  emoji: 🪑
+  ipas:
+    - ipa: la ʃɛz
+      category: vowels
+  level: 587
+- phrase: La chaise est pour s'asseoir.
+  emoji: 🪑
+  ipas:
+    - ipa: la ʃɛz ɛ puʁ sa.swaʁ
+      category: vowels
+  level: 631
+- phrase: La clé
+  emoji: 🔑
+  ipas:
+    - ipa: la kle
+      category: vowels
+  level: 549
+- phrase: La clé ouvre la porte.
+  emoji: 🔑
+  ipas:
+    - ipa: la kle uvʁ la pɔʁt
+      category: vowels
+  level: 608
+- phrase: La lampe
+  emoji: 💡
+  ipas:
+    - ipa: la lɑ̃p
+      category: vowels
+  level: 578
+- phrase: La lampe éclaire la pièce.
+  emoji: 💡
+  ipas:
+    - ipa: la lɑ̃p e.klɛʁ la pjɛs
+      category: vowels
+  level: 626
+- phrase: Le canapé
+  emoji: 🛋️
+  ipas:
+    - ipa: lə ka.na.pe
+      category: vowels
+  level: 587
+- phrase: Le canapé est confortable.
+  emoji: 🛋️
+  ipas:
+    - ipa: lə ka.na.pe ɛ kɔ̃.fɔʁ.tabl
+      category: vowels
+  level: 648
+- phrase: L'hôpital
+  emoji: 🏥
+  ipas:
+    - ipa: lo.pi.tal
+      category: vowels
+  level: 672
+- phrase: L'hôpital soigne les malades.
+  emoji: 🏥
+  ipas:
+    - ipa: lo.pi.tal swaɲ le ma.lad
+      category: vowels
+  level: 661
+- phrase: L'église
+  emoji: ⛪
+  ipas:
+    - ipa: le.ɡliz
+      category: vowels
+  level: 656
+- phrase: L'église est belle et ancienne.
+  emoji: ⛪
+  ipas:
+    - ipa: le.ɡliz ɛ bɛl e ɑ̃.sjɛn
+      category: vowels
+  level: 648
+- phrase: Le château
+  emoji: 🏰
+  ipas:
+    - ipa: lə ʃa.to
+      category: vowels
+  level: 582
+- phrase: Le château est très vieux.
+  emoji: 🏰
+  ipas:
+    - ipa: lə ʃa.to ɛ tʁɛ vjø
+      category: vowels
+  level: 611
+- phrase: La montre
+  emoji: ⌚
+  ipas:
+    - ipa: /la- mˈɔ̃tʁ/
+      category: vowels
+  level: 689
+- phrase: Le parapluie
+  emoji: ☂️
+  ipas:
+    - ipa: /lə- paʁaplyˈi/
+      category: vowels
+  level: 838
+- phrase: Le ballon de foot
+  emoji: ⚽
+  ipas:
+    - ipa: /lə- balˈɔ̃ də- (en)fˈʊt(fr)/
+      category: vowels
+  level: 353
+- phrase: La tente
+  emoji: ⛺
+  ipas:
+    - ipa: /la- tˈɑ̃t/
+      category: vowels
+  level: 652
+- phrase: La main
+  emoji: ✋
+  ipas:
+    - ipa: /la- mˈɛ̃/
+      category: vowels
+  level: 1
+- phrase: Le crayon à papier
+  emoji: ✏️
+  ipas:
+    - ipa: /lə- kʁɛjˈɔ̃ a papjˈe/
+      category: vowels
+  level: 393
+- phrase: Le cœur
+  emoji: ❤️
+  ipas:
+    - ipa: /lə- kˈœʁ/
+      category: vowels
+  level: 571
+- phrase: La neige tombante
+  emoji: 🌨️
+  ipas:
+    - ipa: /la- nˈɛʒ tɔ̃bˈɑ̃t/
+      category: vowels
+  level: 846
+- phrase: Le vent qui souffle
+  emoji: 🌬️
+  ipas:
+    - ipa: /lə- vˈɑ̃ ki sˈufl/
+      category: vowels
+  level: 741
+- phrase: La rose
+  emoji: 🌹
+  ipas:
+    - ipa: /la- ʁˈɔz/
+      category: vowels
+  level: 1
+- phrase: La feuille d'automne
+  emoji: 🍁
+  ipas:
+    - ipa: /la- fˈœj dotˈɔn/
+      category: vowels
+  level: 911
+- phrase: La pastèque
+  emoji: 🍉
+  ipas:
+    - ipa: /la- pastˈɛk/
+      category: vowels
+  level: 753
+- phrase: Le hamburger
+  emoji: 🍔
+  ipas:
+    - ipa: /lə- ɑ̃bəʁɡˈœʁ/
+      category: vowels
+  level: 838
+- phrase: La viande
+  emoji: 🍖
+  ipas:
+    - ipa: /la- vjˈɑ̃d/
+      category: vowels
+  level: 689
+- phrase: Les pâtes
+  emoji: 🍝
+  ipas:
+    - ipa: /le- pˈaːt/
+      category: vowels
+  level: 636
+- phrase: Le beignet
+  emoji: 🍩
+  ipas:
+    - ipa: /lə- bɛnjˈɛ/
+      category: vowels
+  level: 721
+- phrase: Le bonbon
+  emoji: 🍭
+  ipas:
+    - ipa: /lə- bɔ̃bˈɔ̃/
+      category: vowels
+  level: 689
+- phrase: La bière
+  emoji: 🍺
+  ipas:
+    - ipa: /la- bjˈɛʁ/
+      category: vowels
+  level: 652
+- phrase: Le cadeau
+  emoji: 🎁
+  ipas:
+    - ipa: /lə- kadˈo/
+      category: vowels
+  level: 689
+- phrase: La guitare
+  emoji: 🎸
+  ipas:
+    - ipa: /la- ɡitˈaʁ/
+      category: vowels
+  level: 774
+- phrase: Le piano
+  emoji: 🎹
+  ipas:
+    - ipa: /lə- pjanˈo/
+      category: vowels
+  level: 1
+- phrase: La trompette
+  emoji: 🎺
+  ipas:
+    - ipa: /la- tʁɔ̃pˈɛt/
+      category: vowels
+  level: 838
+- phrase: Le violon
+  emoji: 🎻
+  ipas:
+    - ipa: /lə- vjolˈɔ̃/
+      category: vowels
+  level: 689
+- phrase: Le tennis
+  emoji: 🎾
+  ipas:
+    - ipa: /lə- tenˈis/
+      category: vowels
+  level: 50
+- phrase: Le chantier
+  emoji: 🏗️
+  ipas:
+    - ipa: /lə- ʃɑ̃tjˈe/
+      category: vowels
+  level: 753
+- phrase: Le crocodile
+  emoji: 🐊
+  ipas:
+    - ipa: /lə- kʁokodˈil/
+      category: vowels
+  level: 199
+- phrase: La chèvre
+  emoji: 🐐
+  ipas:
+    - ipa: /la- ʃˈɛvʁ/
+      category: vowels
+  level: 636
+- phrase: Le coq
+  emoji: 🐓
+  ipas:
+    - ipa: /lə- kˈɔk/
+      category: vowels
+  level: 535
+- phrase: Le hamster
+  emoji: 🐹
+  ipas:
+    - ipa: /lə- amstˈɛʁ/
+      category: vowels
+  level: 29
+- phrase: La langue
+  emoji: 👅
+  ipas:
+    - ipa: /la- lˈɑ̃ɡ/
+      category: vowels
+  level: 689
+- phrase: Le garçon
+  emoji: 👦
+  ipas:
+    - ipa: /lə- ɡaʁsˈɔ̃/
+      category: vowels
+  level: 689
+- phrase: La fille
+  emoji: 👧
+  ipas:
+    - ipa: /la- fˈij/
+      category: vowels
+  level: 652
+- phrase: L'homme
+  emoji: 👨
+  ipas:
+    - ipa: /lˈɔm/
+      category: vowels
+  level: 899
+- phrase: La femme
+  emoji: 👩
+  ipas:
+    - ipa: /la- fˈam/
+      category: vowels
+  level: 652
+- phrase: La chapelle
+  emoji: 💒
+  ipas:
+    - ipa: /la- ʃapˈɛl/
+      category: vowels
+  level: 806
+- phrase: L'argent
+  emoji: 💰
+  ipas:
+    - ipa: /laʁʒˈɑ̃/
+      category: vowels
+  level: 968
+- phrase: L'ordinateur
+  emoji: 💻
+  ipas:
+    - ipa: /lɔʁdinatˈœʁ/
+      category: vowels
+  level: 1000
+- phrase: La feuille de papier
+  emoji: 📃
+  ipas:
+    - ipa: /la- fˈœj də- papjˈe/
+      category: vowels
+  level: 786
+- phrase: Le téléphone
+  emoji: 📱
+  ipas:
+    - ipa: /lə- telefˈɔn/
+      category: vowels
+  level: 790
+- phrase: L'appareil photo
+  emoji: 📷
+  ipas:
+    - ipa: /lapaʁˈɛj fotˈo/
+      category: vowels
+  level: 357
+- phrase: La télévision
+  emoji: 📺
+  ipas:
+    - ipa: /la- televizjˈɔ̃/
+      category: vowels
+  level: 822
+- phrase: Le marteau
+  emoji: 🔨
+  ipas:
+    - ipa: /lə- maʁtˈo/
+      category: vowels
+  level: 721
+- phrase: Le couteau
+  emoji: 🔪
+  ipas:
+    - ipa: /lə- kutˈo/
+      category: vowels
+  level: 721
+- phrase: Le télescope
+  emoji: 🔭
+  ipas:
+    - ipa: /lə- telɛskˈɔp/
+      category: vowels
+  level: 838
+- phrase: L'horloge
+  emoji: 🕐
+  ipas:
+    - ipa: /lɔʁlˈɔʒ/
+      category: vowels
+  level: 1000
+- phrase: Le stylo
+  emoji: 🖊️
+  ipas:
+    - ipa: /lə- stilˈo/
+      category: vowels
+  level: 604
+- phrase: La fusée
+  emoji: 🚀
+  ipas:
+    - ipa: /la- fyzˈe/
+      category: vowels
+  level: 652
+- phrase: L'hélicoptère
+  emoji: 🚁
+  ipas:
+    - ipa: /lelikɔptˈɛʁ/
+      category: vowels
+  level: 1000
+- phrase: Le bateau à moteur
+  emoji: 🚤
+  ipas:
+    - ipa: /lə- batˈo a motˈœʁ/
+      category: vowels
+  level: 749
+- phrase: La batterie de musique
+  emoji: 🥁
+  ipas:
+    - ipa: /la- batʁˈi də- myzˈik/
+      category: vowels
+  level: 871
+- phrase: La salade
+  emoji: 🥗
+  ipas:
+    - ipa: /la- salˈad/
+      category: vowels
+  level: 737
+- phrase: La cacahuète
+  emoji: 🥜
+  ipas:
+    - ipa: /la- kakayˈɛt/
+      category: vowels
+  level: 891
+- phrase: Le kiwi
+  emoji: 🥝
+  ipas:
+    - ipa: /lə- kjwˈi/
+      category: vowels
+  level: 1
+- phrase: Le brocoli
+  emoji: 🥦
+  ipas:
+    - ipa: /lə- bʁokolˈi/
+      category: vowels
+  level: 774
+- phrase: La chauve-souris
+  emoji: 🦇
+  ipas:
+    - ipa: /la- ʃˈovsuʁˈi/
+      category: vowels
+  level: 1000
+- phrase: Le requin
+  emoji: 🦈
+  ipas:
+    - ipa: /lə- ʁəkˈɛ̃/
+      category: vowels
+  level: 689
+- phrase: Le cerf
+  emoji: 🦌
+  ipas:
+    - ipa: /lə- sˈɛʁ/
+      category: vowels
+  level: 571
+- phrase: Le kangourou
+  emoji: 🦘
+  ipas:
+    - ipa: /lə- kɑ̃ɡuʁˈu/
+      category: vowels
+  level: 838
+- phrase: Le paon
+  emoji: 🦚
+  ipas:
+    - ipa: /lə- pˈɑ̃/
+      category: vowels
+  level: 571
+- phrase: Le perroquet
+  emoji: 🦜
+  ipas:
+    - ipa: /lə- pɛʁokˈɛ/
+      category: vowels
+  level: 838
+- phrase: Le flamant rose
+  emoji: 🦩
+  ipas:
+    - ipa: /lə- flamˈɑ̃ ʁˈɔz/
+      category: vowels
+  level: 329
+- phrase: Le pied
+  emoji: 🦶
+  ipas:
+    - ipa: /lə- pjˈe/
+      category: vowels
+  level: 571
+- phrase: L'oignon
+  emoji: 🧅
+  ipas:
+    - ipa: /lonjˈɔ̃/
+      category: vowels
+  level: 968
+- phrase: La gaufre
+  emoji: 🧇
+  ipas:
+    - ipa: /la- ɡˈofʁ/
+      category: vowels
+  level: 689
+- phrase: L'enfant
+  emoji: 🧒
+  ipas:
+    - ipa: /lɑ̃fˈɑ̃/
+      category: vowels
+  level: 968
+- phrase: L'aimant
+  emoji: 🧲
+  ipas:
+    - ipa: /lɛmˈɑ̃/
+      category: vowels
+  level: 968
+- phrase: L'ours en peluche
+  emoji: 🧸
+  ipas:
+    - ipa: /lˈuʁs ɑ̃ pəlˈyʃ/
+      category: vowels
+  level: 810
+- phrase: Zéro
+  emoji: 0️⃣
+  ipas:
+    - ipa: /zeʁˈo/
+      category: vowels
+  level: 596
+- phrase: Le clavier
+  emoji: ⌨️
+  ipas:
+    - ipa: /lə- klavjˈe/
+      category: vowels
+  level: 721
+- phrase: Le bonhomme de neige
+  emoji: ☃️
+  ipas:
+    - ipa: /lə- bɔnˈɔm də- nˈɛʒ/
+      category: vowels
+  level: 810
+- phrase: La comète
+  emoji: ☄️
+  ipas:
+    - ipa: /la- komˈɛt/
+      category: vowels
+  level: 689
+- phrase: Le trèfle
+  emoji: ☘️
+  ipas:
+    - ipa: /lə- tʁˈɛfl/
+      category: vowels
+  level: 636
+- phrase: La paix
+  emoji: ☮️
+  ipas:
+    - ipa: /la- pˈɛ/
+      category: vowels
+  level: 571
+- phrase: Le cancer
+  emoji: ♋
+  ipas:
+    - ipa: /lə- kɑ̃sˈɛʁ/
+      category: vowels
+  level: 118
+- phrase: L'ancre
+  emoji: ⚓
+  ipas:
+    - ipa: /lˈɑ̃kʁ/
+      category: vowels
+  level: 899
+- phrase: La balance
+  emoji: ⚖️
+  ipas:
+    - ipa: /la- balˈɑ̃s/
+      category: vowels
+  level: 774
+- phrase: L'engrenage
+  emoji: ⚙️
+  ipas:
+    - ipa: /lɑ̃ɡʁənˈaʒ/
+      category: vowels
+  level: 1000
+- phrase: L'atome
+  emoji: ⚛️
+  ipas:
+    - ipa: /latˈom/
+      category: vowels
+  level: 1000
+- phrase: L'avertissement
+  emoji: ⚠️
+  ipas:
+    - ipa: /lavɛʁtismˈɑ̃/
+      category: vowels
+  level: 1000
+- phrase: Le cercueil
+  emoji: ⚰️
+  ipas:
+    - ipa: /lə- sɛʁkˈœj/
+      category: vowels
+  level: 753
+- phrase: L'orage
+  emoji: ⛈️
+  ipas:
+    - ipa: /loʁˈaʒ/
+      category: vowels
+  level: 1000
+- phrase: Le pic
+  emoji: ⛏️
+  ipas:
+    - ipa: /lə- pˈik/
+      category: vowels
+  level: 535
+- phrase: La chaîne
+  emoji: ⛓️
+  ipas:
+    - ipa: /la- ʃˈɛn/
+      category: vowels
+  level: 689
+- phrase: Interdit
+  emoji: ⛔
+  ipas:
+    - ipa: /ɛ̃tɛʁdˈi/
+      category: vowels
+  level: 1000
+- phrase: Le parasol
+  emoji: ⛱️
+  ipas:
+    - ipa: /lə- paʁasˈɔl/
+      category: vowels
+  level: 774
+- phrase: La fontaine
+  emoji: ⛲
+  ipas:
+    - ipa: /la- fɔ̃tˈɛn/
+      category: vowels
+  level: 806
+- phrase: Le golf
+  emoji: ⛳
+  ipas:
+    - ipa: /lə- ɡˈɔlf/
+      category: vowels
+  level: 1
+- phrase: Le ferry
+  emoji: ⛴️
+  ipas:
+    - ipa: /lə- (en)fˈɛɹi(fr)/
+      category: vowels
+  level: 1
+- phrase: Le carburant
+  emoji: ⛽
+  ipas:
+    - ipa: /lə- kaʁbyʁˈɑ̃/
+      category: vowels
+  level: 838
+- phrase: Les ciseaux
+  emoji: ✂️
+  ipas:
+    - ipa: /le- sizˈo/
+      category: vowels
+  level: 753
+- phrase: La coche
+  emoji: ✅
+  ipas:
+    - ipa: /la- kˈɔʃ/
+      category: vowels
+  level: 652
+- phrase: La victoire
+  emoji: ✌️
+  ipas:
+    - ipa: /la- viktwˈaʁ/
+      category: vowels
+  level: 806
+- phrase: L'écriture
+  emoji: ✍️
+  ipas:
+    - ipa: /lekʁitˈyʁ/
+      category: vowels
+  level: 1000
+- phrase: La croix
+  emoji: ✝️
+  ipas:
+    - ipa: /la- kʁwˈa/
+      category: vowels
+  level: 604
+- phrase: Les étoiles filantes
+  emoji: ✨
+  ipas:
+    - ipa: /le-z etwˈal filˈɑ̃t/
+      category: vowels
+  level: 911
+- phrase: La question
+  emoji: ❓
+  ipas:
+    - ipa: /la- kɛstjˈɔ̃/
+      category: vowels
+  level: 74
+- phrase: Le cercle
+  emoji: ⭕
+  ipas:
+    - ipa: /lə- sˈɛʁkl/
+      category: vowels
+  level: 689
+- phrase: Cool
+  emoji: 🆒
+  ipas:
+    - ipa: /(en)kˈuːl(fr)/
+      category: vowels
+  level: 1
+- phrase: Gratuit
+  emoji: 🆓
+  ipas:
+    - ipa: /ɡʁatyˈi/
+      category: vowels
+  level: 899
+- phrase: Nouveau
+  emoji: 🆕
+  ipas:
+    - ipa: /nuvˈo/
+      category: vowels
+  level: 899
+- phrase: En haut
+  emoji: 🆙
+  ipas:
+    - ipa: /ɑ̃ ˈo/
+      category: vowels
+  level: 571
+- phrase: Service
+  emoji: 🈂️
+  ipas:
+    - ipa: /sɛʁvˈis/
+      category: vowels
+  level: 1
+- phrase: Réservé
+  emoji: 🈯
+  ipas:
+    - ipa: /ʁezɛʁvˈe/
+      category: vowels
+  level: 798
+- phrase: Reçu
+  emoji: 🈴
+  ipas:
+    - ipa: /ʁəsˈy/
+      category: vowels
+  level: 697
+- phrase: Complet
+  emoji: 🈵
+  ipas:
+    - ipa: /kɔ̃plˈɛ/
+      category: vowels
+  level: 899
+- phrase: Accepté
+  emoji: 🉑
+  ipas:
+    - ipa: /aksɛptˈe/
+      category: vowels
+  level: 899
+- phrase: Le cyclone
+  emoji: 🌀
+  ipas:
+    - ipa: /lə- siklˈɔn/
+      category: vowels
+  level: 191
+- phrase: La tornade
+  emoji: 🌪️
+  ipas:
+    - ipa: /la- tɔʁnˈad/
+      category: vowels
+  level: 774
+- phrase: La châtaigne
+  emoji: 🌰
+  ipas:
+    - ipa: /la- ʃatˈɛɲ/
+      category: vowels
+  level: 790
+- phrase: Le cactus
+  emoji: 🌵
+  ipas:
+    - ipa: /lə- kaktˈys/
+      category: vowels
+  level: 50
+- phrase: Le piment
+  emoji: 🌶️
+  ipas:
+    - ipa: /lə- pimˈɑ̃/
+      category: vowels
+  level: 689
+- phrase: Le maïs
+  emoji: 🌽
+  ipas:
+    - ipa: /lə- maˈis/
+      category: vowels
+  level: 571
+- phrase: Le blé
+  emoji: 🌾
+  ipas:
+    - ipa: /lə- blˈe/
+      category: vowels
+  level: 535
+- phrase: L'herbe aromatique
+  emoji: 🌿
+  ipas:
+    - ipa: /lˈɛʁb aʁomatˈik/
+      category: vowels
+  level: 1000
+- phrase: Le melon
+  emoji: 🍈
+  ipas:
+    - ipa: /lə- məlˈɔ̃/
+      category: vowels
+  level: 5
+- phrase: L'ananas
+  emoji: 🍍
+  ipas:
+    - ipa: /lananˈa/
+      category: vowels
+  level: 1000
+- phrase: La pêche
+  emoji: 🍑
+  ipas:
+    - ipa: /la- pˈɛʃ/
+      category: vowels
+  level: 604
+- phrase: La boule de riz
+  emoji: 🍙
+  ipas:
+    - ipa: /la- bˈul də- ʁˈi/
+      category: vowels
+  level: 676
+- phrase: Le curry
+  emoji: 🍛
+  ipas:
+    - ipa: /lə- (en)kˈʌɹi(fr)/
+      category: vowels
+  level: 1
+- phrase: La crevette
+  emoji: 🍤
+  ipas:
+    - ipa: /la- kʁəvˈɛt/
+      category: vowels
+  level: 806
+- phrase: Le sorbet
+  emoji: 🍧
+  ipas:
+    - ipa: /lə- sɔʁbˈɛ/
+      category: vowels
+  level: 689
+- phrase: Le pudding
+  emoji: 🍮
+  ipas:
+    - ipa: /lə- (en)pˈʊdɪŋ(fr)/
+      category: vowels
+  level: 17
+- phrase: Le vin
+  emoji: 🍷
+  ipas:
+    - ipa: /lə- vˈɛ̃/
+      category: vowels
+  level: 535
+- phrase: Le cocktail
+  emoji: 🍸
+  ipas:
+    - ipa: /lə- kɔktˈaj/
+      category: vowels
+  level: 256
+- phrase: Le biberon
+  emoji: 🍼
+  ipas:
+    - ipa: /lə- bibʁˈɔ̃/
+      category: vowels
+  level: 774
+- phrase: La fête
+  emoji: 🎉
+  ipas:
+    - ipa: /la- fˈɛt/
+      category: vowels
+  level: 571
+- phrase: Les confettis
+  emoji: 🎊
+  ipas:
+    - ipa: /le- kɔ̃fɛtˈi/
+      category: vowels
+  level: 871
+- phrase: Les poupées
+  emoji: 🎎
+  ipas:
+    - ipa: /le- pupˈe/
+      category: vowels
+  level: 753
+- phrase: La carpe
+  emoji: 🎏
+  ipas:
+    - ipa: /la- kˈaʁp/
+      category: vowels
+  level: 652
+- phrase: Le carillon
+  emoji: 🎐
+  ipas:
+    - ipa: /lə- kaʁijˈɔ̃/
+      category: vowels
+  level: 806
+- phrase: Le microphone
+  emoji: 🎙️
+  ipas:
+    - ipa: /lə- mikʁofˈɔn/
+      category: vowels
+  level: 288
+- phrase: Le film
+  emoji: 🎞️
+  ipas:
+    - ipa: /lə- fˈilm/
+      category: vowels
+  level: 1
+- phrase: La grande roue
+  emoji: 🎡
+  ipas:
+    - ipa: /la- ɡʁˈɑ̃d ʁˈu/
+      category: vowels
+  level: 713
+- phrase: Les montagnes russes
+  emoji: 🎢
+  ipas:
+    - ipa: /le- mɔ̃tˈanj ʁˈys/
+      category: vowels
+  level: 911
+- phrase: Le cinéma
+  emoji: 🎦
+  ipas:
+    - ipa: /lə- sinemˈa/
+      category: vowels
+  level: 689
+- phrase: Le cirque
+  emoji: 🎪
+  ipas:
+    - ipa: /lə- sˈiʁk/
+      category: vowels
+  level: 689
+- phrase: Le jeu vidéo
+  emoji: 🎮
+  ipas:
+    - ipa: /lə- ʒˈø videˈo/
+      category: vowels
+  level: 664
+- phrase: Le billard
+  emoji: 🎱
+  ipas:
+    - ipa: /lə- bijˈaʁ/
+      category: vowels
+  level: 721
+- phrase: Le dé
+  emoji: 🎲
+  ipas:
+    - ipa: /lə- dˈe/
+      category: vowels
+  level: 503
+- phrase: La note de musique
+  emoji: 🎵
+  ipas:
+    - ipa: /la- nˈɔt də- myzˈik/
+      category: vowels
+  level: 454
+- phrase: Le saxophone
+  emoji: 🎷
+  ipas:
+    - ipa: /lə- saksofˈɔn/
+      category: vowels
+  level: 284
+- phrase: La partition
+  emoji: 🎼
+  ipas:
+    - ipa: /la- paʁtisjˈɔ̃/
+      category: vowels
+  level: 838
+- phrase: Le maillot de sport
+  emoji: 🎽
+  ipas:
+    - ipa: /lə- majˈo də- spˈɔʁ/
+      category: vowels
+  level: 405
+- phrase: Le ski
+  emoji: 🎿
+  ipas:
+    - ipa: /lə- skˈi/
+      category: vowels
+  level: 1
+- phrase: Le basketball
+  emoji: 🏀
+  ipas:
+    - ipa: /lə- (en)bˈaskɪtbˌɔːl(fr)/
+      category: vowels
+  level: 232
+- phrase: La course à pied
+  emoji: 🏃
+  ipas:
+    - ipa: /la- kˈuʁs a pjˈe/
+      category: vowels
+  level: 397
+- phrase: Le surf
+  emoji: 🏄
+  ipas:
+    - ipa: /lə- sˈœʁ/
+      category: vowels
+  level: 1
+- phrase: Le football américain
+  emoji: 🏈
+  ipas:
+    - ipa: /lə- (en)fˈʊtbɔːl(fr) ameʁikˈɛ̃/
+      category: vowels
+  level: 482
+- phrase: Le rugby
+  emoji: 🏉
+  ipas:
+    - ipa: /lə- ʁyɡbˈi/
+      category: vowels
+  level: 1
+- phrase: La natation
+  emoji: 🏊
+  ipas:
+    - ipa: /la- natasjˈɔ̃/
+      category: vowels
+  level: 806
+- phrase: Le cricket
+  emoji: 🏏
+  ipas:
+    - ipa: /lə- kʁikˈɛt/
+      category: vowels
+  level: 106
+- phrase: Le hockey
+  emoji: 🏒
+  ipas:
+    - ipa: /lə- ɔkˈɛ/
+      category: vowels
+  level: 74
+- phrase: Le musée
+  emoji: 🏛️
+  ipas:
+    - ipa: /lə- myzˈe/
+      category: vowels
+  level: 652
+- phrase: Le bureau
+  emoji: 🏢
+  ipas:
+    - ipa: /lə- byʁˈo/
+      category: vowels
+  level: 689
+- phrase: La poste
+  emoji: 🏣
+  ipas:
+    - ipa: /la- pˈɔst/
+      category: vowels
+  level: 652
+- phrase: La banque
+  emoji: 🏦
+  ipas:
+    - ipa: /la- bˈɑ̃k/
+      category: vowels
+  level: 689
+- phrase: L'hôtel
+  emoji: 🏨
+  ipas:
+    - ipa: /lotˈɛl/
+      category: vowels
+  level: 798
+- phrase: Le magasin
+  emoji: 🏬
+  ipas:
+    - ipa: /lə- maɡazˈɛ̃/
+      category: vowels
+  level: 774
+- phrase: L'usine
+  emoji: 🏭
+  ipas:
+    - ipa: /lyzˈin/
+      category: vowels
+  level: 1000
+- phrase: L'étiquette
+  emoji: 🏷️
+  ipas:
+    - ipa: /letikˈɛt/
+      category: vowels
+  level: 1000
+- phrase: Le tir à l'arc
+  emoji: 🏹
+  ipas:
+    - ipa: /lə- tˈiʁ a lˈaʁk/
+      category: vowels
+  level: 632
+- phrase: Le buffle
+  emoji: 🐃
+  ipas:
+    - ipa: /lə- bˈyfl/
+      category: vowels
+  level: 689
+- phrase: Le léopard
+  emoji: 🐆
+  ipas:
+    - ipa: /lə- leopˈaʁ/
+      category: vowels
+  level: 721
+- phrase: La pieuvre
+  emoji: 🐙
+  ipas:
+    - ipa: /la- pjˈøvʁ/
+      category: vowels
+  level: 721
+- phrase: La chenille
+  emoji: 🐛
+  ipas:
+    - ipa: /la- ʃənˈij/
+      category: vowels
+  level: 806
+- phrase: Le koala
+  emoji: 🐨
+  ipas:
+    - ipa: /lə- kɔalˈa/
+      category: vowels
+  level: 21
+- phrase: Le caniche
+  emoji: 🐩
+  ipas:
+    - ipa: /lə- kanˈiʃ/
+      category: vowels
+  level: 774
+- phrase: Le chameau
+  emoji: 🐪
+  ipas:
+    - ipa: /lə- ʃamˈo/
+      category: vowels
+  level: 721
+- phrase: Les yeux
+  emoji: 👀
+  ipas:
+    - ipa: /le-z jˈø/
+      category: vowels
+  level: 604
+- phrase: Vers le bas
+  emoji: 👇
+  ipas:
+    - ipa: /vɛʁ lə- bˈa/
+      category: vowels
+  level: 612
+- phrase: Vers la droite
+  emoji: 👉
+  ipas:
+    - ipa: /vɛʁ la- dʁwˈat/
+      category: vowels
+  level: 713
+- phrase: Le poing
+  emoji: 👊
+  ipas:
+    - ipa: /lə- pwˈɛ̃/
+      category: vowels
+  level: 604
+- phrase: Le signe de la main
+  emoji: 👋
+  ipas:
+    - ipa: /lə- sˈiɲ də- la- mˈɛ̃/
+      category: vowels
+  level: 454
+- phrase: La couronne
+  emoji: 👑
+  ipas:
+    - ipa: /la- kuʁˈɔn/
+      category: vowels
+  level: 806
+- phrase: La cravate
+  emoji: 👔
+  ipas:
+    - ipa: /la- kʁavˈat/
+      category: vowels
+  level: 774
+- phrase: Le porte-monnaie
+  emoji: 👛
+  ipas:
+    - ipa: /lə- pˈɔʁtmɔnˈɛ/
+      category: vowels
+  level: 1000
+- phrase: Le sac à main
+  emoji: 👜
+  ipas:
+    - ipa: /lə- sˈak a mˈɛ̃/
+      category: vowels
+  level: 296
+- phrase: La pochette
+  emoji: 👝
+  ipas:
+    - ipa: /la- poʃˈɛt/
+      category: vowels
+  level: 806
+- phrase: La chaussure à talon
+  emoji: 👠
+  ipas:
+    - ipa: /la- ʃosˈyʁ a talˈɔ̃/
+      category: vowels
+  level: 810
+- phrase: La botte
+  emoji: 👢
+  ipas:
+    - ipa: /la- bˈɔt/
+      category: vowels
+  level: 652
+- phrase: Aveugle
+  emoji: 👨‍🦯
+  ipas:
+    - ipa: /avˈøɡl/
+      category: vowels
+  level: 1000
+- phrase: La famille
+  emoji: 👪
+  ipas:
+    - ipa: /la- famˈij/
+      category: vowels
+  level: 774
+- phrase: Le couple
+  emoji: 👫
+  ipas:
+    - ipa: /lə- kˈupl/
+      category: vowels
+  level: 78
+- phrase: Les danseurs
+  emoji: 👯
+  ipas:
+    - ipa: /le- dɑ̃sˈœʁ/
+      category: vowels
+  level: 790
+- phrase: La mariée
+  emoji: 👰
+  ipas:
+    - ipa: /la- maʁjˈe/
+      category: vowels
+  level: 737
+- phrase: La princesse
+  emoji: 👸
+  ipas:
+    - ipa: /la- pʁɛ̃sˈɛs/
+      category: vowels
+  level: 838
+- phrase: L'ange
+  emoji: 👼
+  ipas:
+    - ipa: /lˈɑ̃ʒ/
+      category: vowels
+  level: 830
+- phrase: Le garde
+  emoji: 💂
+  ipas:
+    - ipa: /lə- ɡˈaʁd/
+      category: vowels
+  level: 652
+- phrase: La danse
+  emoji: 💃
+  ipas:
+    - ipa: /la- dˈɑ̃s/
+      category: vowels
+  level: 652
+- phrase: Le rouge à lèvres
+  emoji: 💄
+  ipas:
+    - ipa: /lə- ʁˈuʒ a lˈɛvʁ/
+      category: vowels
+  level: 709
+- phrase: La seringue
+  emoji: 💉
+  ipas:
+    - ipa: /la- səʁˈɛ̃ɡ/
+      category: vowels
+  level: 806
+- phrase: Le comprimé
+  emoji: 💊
+  ipas:
+    - ipa: /lə- kɔ̃pʁimˈe/
+      category: vowels
+  level: 753
+- phrase: L'anneau
+  emoji: 💍
+  ipas:
+    - ipa: /lanˈo/
+      category: vowels
+  level: 968
+- phrase: Le diamant
+  emoji: 💎
+  ipas:
+    - ipa: /lə- djamˈɑ̃/
+      category: vowels
+  level: 721
+- phrase: Le baiser
+  emoji: 💏
+  ipas:
+    - ipa: /lə- bɛzˈe/
+      category: vowels
+  level: 689
+- phrase: La colère
+  emoji: 💢
+  ipas:
+    - ipa: /la- kolˈɛʁ/
+      category: vowels
+  level: 689
+- phrase: La bombe
+  emoji: 💣
+  ipas:
+    - ipa: /la- bˈɔ̃b/
+      category: vowels
+  level: 652
+- phrase: Le sommeil
+  emoji: 💤
+  ipas:
+    - ipa: /lə- sɔmˈɛj/
+      category: vowels
+  level: 721
+- phrase: Le vertige
+  emoji: 💫
+  ipas:
+    - ipa: /lə- vɛʁtˈiʒ/
+      category: vowels
+  level: 774
+- phrase: La carte de crédit
+  emoji: 💳
+  ipas:
+    - ipa: /la- kˈaʁt də- kʁedˈi/
+      category: vowels
+  level: 725
+- phrase: Le dollar
+  emoji: 💵
+  ipas:
+    - ipa: /lə- dɔlˈaʁ/
+      category: vowels
+  level: 66
+- phrase: La livre sterling
+  emoji: 💷
+  ipas:
+    - ipa: /la- lˈivʁ (en)stˈɜːlɪŋ(fr)/
+      category: vowels
+  level: 810
+- phrase: Le siège
+  emoji: 💺
+  ipas:
+    - ipa: /lə- sjˈɛʒ/
+      category: vowels
+  level: 652
+- phrase: Le dossier
+  emoji: 📁
+  ipas:
+    - ipa: /lə- dɔsjˈe/
+      category: vowels
+  level: 721
+- phrase: Le calendrier
+  emoji: 📅
+  ipas:
+    - ipa: /lə- kalɑ̃dʁiˈe/
+      category: vowels
+  level: 871
+- phrase: La règle
+  emoji: 📏
+  ipas:
+    - ipa: /la- ʁˈɛɡl/
+      category: vowels
+  level: 604
+- phrase: L'équerre
+  emoji: 📐
+  ipas:
+    - ipa: /lekˈɛʁ/
+      category: vowels
+  level: 1000
+- phrase: Le carnet
+  emoji: 📔
+  ipas:
+    - ipa: /lə- kaʁnˈɛ/
+      category: vowels
+  level: 689
+- phrase: Le badge
+  emoji: 📛
+  ipas:
+    - ipa: /lə- bˈadʒ/
+      category: vowels
+  level: 1
+- phrase: Le signal
+  emoji: 📶
+  ipas:
+    - ipa: /lə- sinjˈal/
+      category: vowels
+  level: 62
+- phrase: La vidéo
+  emoji: 📹
+  ipas:
+    - ipa: /la- videˈo/
+      category: vowels
+  level: 652
+- phrase: La radio
+  emoji: 📻
+  ipas:
+    - ipa: /la- ʁadjˈo/
+      category: vowels
+  level: 1
+- phrase: La cassette
+  emoji: 📼
+  ipas:
+    - ipa: /la- kasˈɛt/
+      category: vowels
+  level: 806
+- phrase: Le projecteur
+  emoji: 📽️
+  ipas:
+    - ipa: /lə- pʁoʒɛktˈœʁ/
+      category: vowels
+  level: 871
+- phrase: La batterie électrique
+  emoji: 🔋
+  ipas:
+    - ipa: /la- batʁˈi elɛktʁˈik/
+      category: vowels
+  level: 992
+- phrase: La prise électrique
+  emoji: 🔌
+  ipas:
+    - ipa: /la- pʁˈiz elɛktʁˈik/
+      category: vowels
+  level: 891
+- phrase: Le verrou
+  emoji: 🔒
+  ipas:
+    - ipa: /lə- vɛʁˈu/
+      category: vowels
+  level: 689
+- phrase: La clé à molette
+  emoji: 🔧
+  ipas:
+    - ipa: /la- klˈe a molˈɛt/
+      category: vowels
+  level: 717
+- phrase: Le pistolet
+  emoji: 🔫
+  ipas:
+    - ipa: /lə- pistolˈɛ/
+      category: vowels
+  level: 806
+- phrase: Le microscope
+  emoji: 🔬
+  ipas:
+    - ipa: /lə- mikʁɔskˈɔp/
+      category: vowels
+  level: 357
+- phrase: La colombe
+  emoji: 🕊️
+  ipas:
+    - ipa: /la- kolˈɔ̃b/
+      category: vowels
+  level: 774
+- phrase: La mosquée
+  emoji: 🕌
+  ipas:
+    - ipa: /la- mɔskˈe/
+      category: vowels
+  level: 774
+- phrase: La synagogue
+  emoji: 🕍
+  ipas:
+    - ipa: /la- sinaɡˈoɡ/
+      category: vowels
+  level: 325
+- phrase: La bougie
+  emoji: 🕯️
+  ipas:
+    - ipa: /la- buʒˈi/
+      category: vowels
+  level: 689
+- phrase: Le costume
+  emoji: 🕴️
+  ipas:
+    - ipa: /lə- kɔstˈym/
+      category: vowels
+  level: 106
+- phrase: Le pinceau
+  emoji: 🖌️
+  ipas:
+    - ipa: /lə- pɛ̃sˈo/
+      category: vowels
+  level: 721
+- phrase: Le crayon de couleur
+  emoji: 🖍️
+  ipas:
+    - ipa: /lə- kʁɛjˈɔ̃ də- kulˈœʁ/
+      category: vowels
+  level: 426
+- phrase: Le doigt d'honneur
+  emoji: 🖕
+  ipas:
+    - ipa: /lə- dwˈa dɔnˈœʁ/
+      category: vowels
+  level: 802
+- phrase: La souris d'ordinateur
+  emoji: 🖱️
+  ipas:
+    - ipa: /la- suʁˈi dɔʁdinatˈœʁ/
+      category: vowels
+  level: 992
+- phrase: La boîte de rangement
+  emoji: 🗃️
+  ipas:
+    - ipa: /la- bwˈat də- ʁɑ̃ʒmˈɑ̃/
+      category: vowels
+  level: 826
+- phrase: L'armoire
+  emoji: 🗄️
+  ipas:
+    - ipa: /laʁmwˈaʁ/
+      category: vowels
+  level: 1000
+- phrase: La poubelle
+  emoji: 🗑️
+  ipas:
+    - ipa: /la- pubˈɛl/
+      category: vowels
+  level: 806
+- phrase: Le bloc-notes
+  emoji: 🗒️
+  ipas:
+    - ipa: /lə- blˈɔknˈot/
+      category: vowels
+  level: 871
+- phrase: L'épée
+  emoji: 🗡️
+  ipas:
+    - ipa: /lepˈe/
+      category: vowels
+  level: 733
+- phrase: La parole
+  emoji: 🗣️
+  ipas:
+    - ipa: /la- paʁˈɔl/
+      category: vowels
+  level: 232
+- phrase: La tour
+  emoji: 🗼
+  ipas:
+    - ipa: /la- tˈuʁ/
+      category: vowels
+  level: 1
+- phrase: La statue de la Liberté
+  emoji: 🗽
+  ipas:
+    - ipa: /la- statˈy də- la- libɛʁtˈe/
+      category: vowels
+  level: 523
+- phrase: La statue
+  emoji: 🗿
+  ipas:
+    - ipa: /la- statˈy/
+      category: vowels
+  level: 33
+- phrase: S'incliner
+  emoji: 🙇
+  ipas:
+    - ipa: /sɛ̃klinˈe/
+      category: vowels
+  level: 1000
+- phrase: Lever la main
+  emoji: 🙋
+  ipas:
+    - ipa: /ləvˈe la- mˈɛ̃/
+      category: vowels
+  level: 260
+- phrase: Faire la tête
+  emoji: 🙍
+  ipas:
+    - ipa: /fˈɛʁ la- tˈɛt/
+      category: vowels
+  level: 689
+- phrase: Prier
+  emoji: 🙏
+  ipas:
+    - ipa: /pʁiˈe/
+      category: vowels
+  level: 664
+- phrase: Le tramway
+  emoji: 🚋
+  ipas:
+    - ipa: /lə- tʁamwˈɛ/
+      category: vowels
+  level: 721
+- phrase: L'arrêt de bus
+  emoji: 🚏
+  ipas:
+    - ipa: /laʁˈɛ də- bˈys/
+      category: vowels
+  level: 203
+- phrase: Le minibus
+  emoji: 🚐
+  ipas:
+    - ipa: /lə- minibˈys/
+      category: vowels
+  level: 774
+- phrase: L'ambulance
+  emoji: 🚑
+  ipas:
+    - ipa: /lɑ̃bylˈɑ̃s/
+      category: vowels
+  level: 1000
+- phrase: La voiture de police
+  emoji: 🚓
+  ipas:
+    - ipa: /la- vwatˈyʁ də- polˈis/
+      category: vowels
+  level: 503
+- phrase: Le taxi
+  emoji: 🚕
+  ipas:
+    - ipa: /lə- taksˈi/
+      category: vowels
+  level: 1
+- phrase: Le camion
+  emoji: 🚛
+  ipas:
+    - ipa: /lə- kamjˈɔ̃/
+      category: vowels
+  level: 689
+- phrase: Le tracteur
+  emoji: 🚜
+  ipas:
+    - ipa: /lə- tʁaktˈœʁ/
+      category: vowels
+  level: 753
+- phrase: Le feu rouge
+  emoji: 🚦
+  ipas:
+    - ipa: /lə- fˈø ʁˈuʒ/
+      category: vowels
+  level: 664
+- phrase: Le chantier de construction
+  emoji: 🚧
+  ipas:
+    - ipa: /lə- ʃɑ̃tjˈe də- kɔ̃stʁyksjˈɔ̃/
+      category: vowels
+  level: 644
+- phrase: La cigarette
+  emoji: 🚬
+  ipas:
+    - ipa: /la- siɡaʁˈɛt/
+      category: vowels
+  level: 272
+- phrase: Pas de déchets
+  emoji: 🚯
+  ipas:
+    - ipa: /pa də- deʃˈɛ/
+      category: vowels
+  level: 676
+- phrase: Eau non potable
+  emoji: 🚱
+  ipas:
+    - ipa: /ˈo nɔ̃ potˈabl/
+      category: vowels
+  level: 765
+- phrase: Le cyclisme
+  emoji: 🚴
+  ipas:
+    - ipa: /lə- siklˈism/
+      category: vowels
+  level: 753
+- phrase: Les enfants
+  emoji: 🚸
+  ipas:
+    - ipa: /le-z ɑ̃fˈɑ̃/
+      category: vowels
+  level: 753
+- phrase: Les femmes
+  emoji: 🚺
+  ipas:
+    - ipa: /le- fˈam/
+      category: vowels
+  level: 721
+- phrase: Le bébé
+  emoji: 🚼
+  ipas:
+    - ipa: /lə- bebˈe/
+      category: vowels
+  level: 571
+- phrase: Les toilettes
+  emoji: 🚽
+  ipas:
+    - ipa: /le- twalˈɛt/
+      category: vowels
+  level: 871
+- phrase: Le bain
+  emoji: 🛀
+  ipas:
+    - ipa: /lə- bˈɛ̃/
+      category: vowels
+  level: 571
+- phrase: Les bagages
+  emoji: 🛄
+  ipas:
+    - ipa: /le- baɡˈaʒ/
+      category: vowels
+  level: 806
+- phrase: La consigne à bagages
+  emoji: 🛅
+  ipas:
+    - ipa: /la- kɔ̃sˈiɲ a baɡˈaʒ/
+      category: vowels
+  level: 854
+- phrase: Le lieu de culte
+  emoji: 🛐
+  ipas:
+    - ipa: /lə- ljˈø də- kˈylt/
+      category: vowels
+  level: 693
+- phrase: Le temple
+  emoji: 🛕
+  ipas:
+    - ipa: /lə- tˈɑ̃pl/
+      category: vowels
+  level: 86
+- phrase: L'ascenseur
+  emoji: 🛗
+  ipas:
+    - ipa: /lasɑ̃sˈœʁ/
+      category: vowels
+  level: 1000
+- phrase: Le bouclier
+  emoji: 🛡️
+  ipas:
+    - ipa: /lə- bukliˈe/
+      category: vowels
+  level: 753
+- phrase: Le tonneau
+  emoji: 🛢️
+  ipas:
+    - ipa: /lə- tɔnˈo/
+      category: vowels
+  level: 721
+- phrase: La trottinette
+  emoji: 🛴
+  ipas:
+    - ipa: /la- tʁɔtinˈɛt/
+      category: vowels
+  level: 956
+- phrase: Le canoë
+  emoji: 🛶
+  ipas:
+    - ipa: /lə- kanɔˈe/
+      category: vowels
+  level: 652
+- phrase: Pincer
+  emoji: 🤏
+  ipas:
+    - ipa: /pɛ̃sˈe/
+      category: vowels
+  level: 830
+- phrase: Rock
+  emoji: 🤘
+  ipas:
+    - ipa: /ʁˈɔk/
+      category: vowels
+  level: 1
+- phrase: L'appel
+  emoji: 🤙
+  ipas:
+    - ipa: /lapˈɛl/
+      category: vowels
+  level: 899
+- phrase: Les doigts croisés
+  emoji: 🤞
+  ipas:
+    - ipa: /le- dwˈa kʁwazˈe/
+      category: vowels
+  level: 765
+- phrase: L'amour
+  emoji: 🤟
+  ipas:
+    - ipa: /lamˈuʁ/
+      category: vowels
+  level: 899
+- phrase: Les mains ouvertes
+  emoji: 🤲
+  ipas:
+    - ipa: /le- mˈɛ̃z uvˈɛʁt/
+      category: vowels
+  level: 834
+- phrase: Le prince
+  emoji: 🤴
+  ipas:
+    - ipa: /lə- pʁˈɛ̃s/
+      category: vowels
+  level: 1
+- phrase: Le haussement d'épaules
+  emoji: 🤷
+  ipas:
+    - ipa: /lə- osmˈɑ̃ depˈol/
+      category: vowels
+  level: 980
+- phrase: Le jonglage
+  emoji: 🤹
+  ipas:
+    - ipa: /lə- ʒɔ̃ɡlˈaʒ/
+      category: vowels
+  level: 806
+- phrase: L'escrime
+  emoji: 🤺
+  ipas:
+    - ipa: /lɛskʁˈim/
+      category: vowels
+  level: 1000
+- phrase: Le but
+  emoji: 🥅
+  ipas:
+    - ipa: /lə- bˈyt/
+      category: vowels
+  level: 535
+- phrase: La boxe
+  emoji: 🥊
+  ipas:
+    - ipa: /la- bˈɔks/
+      category: vowels
+  level: 620
+- phrase: Les arts martiaux
+  emoji: 🥋
+  ipas:
+    - ipa: /le-z ˈaʁ maʁsjˈo/
+      category: vowels
+  level: 369
+- phrase: Le bacon
+  emoji: 🥓
+  ipas:
+    - ipa: /lə- bakˈɔ̃/
+      category: vowels
+  level: 1
+- phrase: La crêpe
+  emoji: 🥞
+  ipas:
+    - ipa: /la- kʁˈɛp/
+      category: vowels
+  level: 604
+- phrase: La tarte
+  emoji: 🥧
+  ipas:
+    - ipa: /la- tˈaʁt/
+      category: vowels
+  level: 652
+- phrase: Le bretzel
+  emoji: 🥨
+  ipas:
+    - ipa: /lə- bʁɛtsˈɛl/
+      category: vowels
+  level: 721
+- phrase: Le steak
+  emoji: 🥩
+  ipas:
+    - ipa: /lə- (en)stˈeɪk(fr)/
+      category: vowels
+  level: 1
+- phrase: La laitue
+  emoji: 🥬
+  ipas:
+    - ipa: /la- lɛtˈy/
+      category: vowels
+  level: 689
+- phrase: La blouse de laboratoire
+  emoji: 🥼
+  ipas:
+    - ipa: /la- blˈuz də- laboʁatwˈaʁ/
+      category: vowels
+  level: 624
+- phrase: Les lunettes de protection
+  emoji: 🥽
+  ipas:
+    - ipa: /le- lynˈɛt də- pʁotɛksjˈɔ̃/
+      category: vowels
+  level: 648
+- phrase: Le crabe
+  emoji: 🦀
+  ipas:
+    - ipa: /lə- kʁˈab/
+      category: vowels
+  level: 652
+- phrase: Le scorpion
+  emoji: 🦂
+  ipas:
+    - ipa: /lə- skɔʁpjˈɔ̃/
+      category: vowels
+  level: 122
+- phrase: La licorne
+  emoji: 🦄
+  ipas:
+    - ipa: /la- likˈɔʁn/
+      category: vowels
+  level: 774
+- phrase: Le gorille
+  emoji: 🦍
+  ipas:
+    - ipa: /lə- ɡoʁˈij/
+      category: vowels
+  level: 774
+- phrase: Le lézard
+  emoji: 🦎
+  ipas:
+    - ipa: /lə- lezˈaʁ/
+      category: vowels
+  level: 636
+- phrase: Le rhinocéros
+  emoji: 🦏
+  ipas:
+    - ipa: /lə- ʁinoseʁˈɔs/
+      category: vowels
+  level: 871
+- phrase: Le calmar
+  emoji: 🦑
+  ipas:
+    - ipa: /lə- kalmˈaʁ/
+      category: vowels
+  level: 689
+- phrase: Le dinosaure
+  emoji: 🦖
+  ipas:
+    - ipa: /lə- dinozˈɔʁ/
+      category: vowels
+  level: 891
+- phrase: L'hippopotame
+  emoji: 🦛
+  ipas:
+    - ipa: /lipopotˈam/
+      category: vowels
+  level: 1000
+- phrase: Le cygne
+  emoji: 🦢
+  ipas:
+    - ipa: /lə- sˈiɲ/
+      category: vowels
+  level: 604
+- phrase: La canne
+  emoji: 🦯
+  ipas:
+    - ipa: /la- kˈan/
+      category: vowels
+  level: 652
+- phrase: L'os
+  emoji: 🦴
+  ipas:
+    - ipa: /lˈɔs/
+      category: vowels
+  level: 596
+- phrase: Le gilet de sécurité
+  emoji: 🦺
+  ipas:
+    - ipa: /lə- ʒilˈɛ də- sekyʁitˈe/
+      category: vowels
+  level: 786
+- phrase: Le bras robotique
+  emoji: 🦾
+  ipas:
+    - ipa: /lə- bʁˈa ʁobotˈik/
+      category: vowels
+  level: 846
+- phrase: L'ail
+  emoji: 🧄
+  ipas:
+    - ipa: /lˈaj/
+      category: vowels
+  level: 664
+- phrase: Debout
+  emoji: 🧍
+  ipas:
+    - ipa: /dəbˈu/
+      category: vowels
+  level: 830
+- phrase: S'agenouiller
+  emoji: 🧎
+  ipas:
+    - ipa: /saʒnujˈe/
+      category: vowels
+  level: 1000
+- phrase: Sourd
+  emoji: 🧏
+  ipas:
+    - ipa: /sˈuʁ/
+      category: vowels
+  level: 664
+- phrase: La personne
+  emoji: 🧑
+  ipas:
+    - ipa: /la- pɛʁsˈɔn/
+      category: vowels
+  level: 806
+- phrase: La personne âgée
+  emoji: 🧓
+  ipas:
+    - ipa: /la- pɛʁsˈɔn aʒˈe/
+      category: vowels
+  level: 790
+- phrase: Le sauna
+  emoji: 🧖
+  ipas:
+    - ipa: /lə- sonˈa/
+      category: vowels
+  level: 122
+- phrase: L'escalade
+  emoji: 🧗
+  ipas:
+    - ipa: /lɛskalˈad/
+      category: vowels
+  level: 1000
+- phrase: La fée
+  emoji: 🧚
+  ipas:
+    - ipa: /la- fˈe/
+      category: vowels
+  level: 535
+- phrase: Le vampire
+  emoji: 🧛
+  ipas:
+    - ipa: /lə- vɑ̃pˈiʁ/
+      category: vowels
+  level: 159
+- phrase: L'elfe
+  emoji: 🧝
+  ipas:
+    - ipa: /lˈɛlf/
+      category: vowels
+  level: 830
+- phrase: L'enveloppe rouge
+  emoji: 🧧
+  ipas:
+    - ipa: /lɑ̃vlˈɔp ʁˈuʒ/
+      category: vowels
+  level: 1000
+- phrase: La boussole
+  emoji: 🧭
+  ipas:
+    - ipa: /la- busˈɔl/
+      category: vowels
+  level: 806
+- phrase: L'extincteur
+  emoji: 🧯
+  ipas:
+    - ipa: /lɛkstɛ̃ktˈœʁ/
+      category: vowels
+  level: 1000
+- phrase: L'épingle à nourrice
+  emoji: 🧷
+  ipas:
+    - ipa: /lepˈɛ̃ɡl a nuʁˈis/
+      category: vowels
+  level: 911
+- phrase: Le balai
+  emoji: 🧹
+  ipas:
+    - ipa: /lə- balˈɛ/
+      category: vowels
+  level: 652
+- phrase: Le panier
+  emoji: 🧺
+  ipas:
+    - ipa: /lə- panjˈe/
+      category: vowels
+  level: 689
+- phrase: Le rouleau de papier
+  emoji: 🧻
+  ipas:
+    - ipa: /lə- ʁulˈo də- papjˈe/
+      category: vowels
+  level: 786
+- phrase: L'éponge
+  emoji: 🧽
+  ipas:
+    - ipa: /lepˈɔ̃ʒ/
+      category: vowels
+  level: 968
+- phrase: Le pansement
+  emoji: 🩹
+  ipas:
+    - ipa: /lə- pɑ̃smˈɑ̃/
+      category: vowels
+  level: 838
+- phrase: Le stéthoscope
+  emoji: 🩺
+  ipas:
+    - ipa: /lə- (en)stˈeɪθəskˌəʊp(fr)/
+      category: vowels
+  level: 907
+- phrase: Le parachute
+  emoji: 🪂
+  ipas:
+    - ipa: /lə- paʁaʃˈyt/
+      category: vowels
+  level: 252
+- phrase: Le rasoir
+  emoji: 🪒
+  ipas:
+    - ipa: /lə- ʁazwˈaʁ/
+      category: vowels
+  level: 689
+- phrase: La hache
+  emoji: 🪓
+  ipas:
+    - ipa: /la- ˈaʃ/
+      category: vowels
+  level: 652
+- phrase: La lampe à huile
+  emoji: 🪔
+  ipas:
+    - ipa: /la- lˈɑ̃p a yˈil/
+      category: vowels
+  level: 717
+- phrase: Le banjo
+  emoji: 🪕
+  ipas:
+    - ipa: /lə- bɑ̃ʒˈo/
+      category: vowels
+  level: 86
+- phrase: L'échelle
+  emoji: 🪜
+  ipas:
+    - ipa: /leʃˈɛl/
+      category: vowels
+  level: 1000
+- phrase: Le miroir
+  emoji: 🪞
+  ipas:
+    - ipa: /lə- miʁwˈaʁ/
+      category: vowels
+  level: 689
+- phrase: Le biscuit
+  emoji: 🍪
+  ipas:
+    - ipa: /lə- biskyˈi/
+      category: vowels
+  level: 17
+- phrase: Le ballon
+  emoji: 🎈
+  ipas:
+    - ipa: /lə- balˈɔ̃/
+      category: vowels
+  level: 689
+- phrase: La souris
+  emoji: 🐭
+  ipas:
+    - ipa: /la- suʁˈi/
+      category: vowels
+  level: 689
+- phrase: Le t-shirt
+  emoji: 👕
+  ipas:
+    - ipa: /lə- (en)tˈiːʃˈɜːt(fr)/
+      category: vowels
+  level: 668
+- phrase: La peinture
+  emoji: 🎨
+  ipas:
+    - ipa: /la- pɛ̃tˈyʁ/
+      category: vowels
+  level: 806
+- phrase: Le bambou
+  emoji: 🎋
+  ipas:
+    - ipa: /lə- bɑ̃bˈu/
+      category: vowels
+  level: 689
+- phrase: Lumineux
+  emoji: 🔆
+  ipas:
+    - ipa: /lyminˈø/
+      category: vowels
+  level: 1000
+- phrase: Sombre
+  emoji: 🔅
+  ipas:
+    - ipa: /sˈɔ̃bʁ/
+      category: vowels
+  level: 830
+- phrase: Le globe terrestre
+  emoji: 🌍
+  ipas:
+    - ipa: /lə- ɡlˈɔb tɛʁˈɛstʁ/
+      category: vowels
+  level: 458
+- phrase: La poignée de main
+  emoji: 🤝
+  ipas:
+    - ipa: /la- pwanjˈe də- mˈɛ̃/
+      category: vowels
+  level: 405
+- phrase: La montagne enneigée
+  emoji: 🏔️
+  ipas:
+    - ipa: /la- mɔ̃tˈaɲ ɛnɛʒˈe/
+      category: vowels
+  level: 947
+- phrase: La lutte
+  emoji: 🤼
+  ipas:
+    - ipa: /la- lˈyt/
+      category: vowels
+  level: 652
+- phrase: La foudre
+  emoji: 🌩️
+  ipas:
+    - ipa: /la- fˈudʁ/
+      category: vowels
+  level: 689
+- phrase: Le nourrisson
+  emoji: 👶
+  ipas:
+    - ipa: /lə- nuʁisˈɔ̃/
+      category: vowels
+  level: 871
+- phrase: La vache laitière
+  emoji: 🐄
+  ipas:
+    - ipa: /la- vˈaʃ lɛtjˈɛʁ/
+      category: vowels
+  level: 846
+- phrase: Le livre rouge
+  emoji: 📕
+  ipas:
+    - ipa: /lə- lˈivʁ ʁˈuʒ/
+      category: vowels
+  level: 745
+- phrase: Le chapeau de paille
+  emoji: 👒
+  ipas:
+    - ipa: /lə- ʃapˈo də- pˈaj/
+      category: vowels
+  level: 786
+- phrase: La fleur de cerisier
+  emoji: 🌸
+  ipas:
+    - ipa: /la- flˈœʁ də- səʁizjˈe/
+      category: vowels
+  level: 786
+- phrase: Le labrador
+  emoji: 🐕
+  ipas:
+    - ipa: /lə- labʁadˈɔʁ/
+      category: vowels
+  level: 806

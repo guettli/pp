@@ -39,9 +39,11 @@
     "@typescript-eslint/parser": "^8.54.0",
     "concurrently": "^9.2.1",
     "eslint": "^9.39.2",
+    "eslint-plugin-svelte": "^3.15.0",
     "jscpd": "^4.0.8",
     "prettier": "^3.8.1",
     "prettier-plugin-svelte": "^3.5.0",
+    "svelte-eslint-parser": "^1.5.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.1"

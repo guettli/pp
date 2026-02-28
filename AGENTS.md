@@ -2,8 +2,10 @@
 
 ## Language Terminology
 
-- **ui-lang**: language of the UI (`"de"` | `"en"`). Auto-detected from browser; user can override.
-- **study-lang**: language being practised (`"en-GB"` | `"de"`). Must be set explicitly; no default.
+- **ui-lang**: language of the UI (`"de-DE"` | `"en-GB"` | `"fr-FR"`). Auto-detected from browser;
+  user can override.
+- **study-lang**: language being practised (`"de-DE"` | `"en-GB"` | `"fr-FR"`). Must be set
+  explicitly; no default.
 
 Never name a variable or function "lang" or "language". Use uiLang/studyLang or ui_lang/study_lang.
 
@@ -13,14 +15,14 @@ Use en-GB only. en-US is not supported.
 
 ## No fall-backs
 
-I prefer explicit code. Avoid things like `getStudyLang() ?? "de"`.
+I prefer explicit code. Avoid things like `getStudyLang() ?? "de-DE"`.
 
 ## Running Scripts
 
 Execute all scripts via `./run cmd arg1 arg2 ...`. Example:
 
 ```console
-./run tsx scripts/update-ipa.ts phrases-de.yaml
+./run tsx scripts/update-ipa.ts phrases-de-DE.yaml
 ```
 
 See directory `scripts` for existing CLI scripts. Use `./run scripts/...` to ensure the environment

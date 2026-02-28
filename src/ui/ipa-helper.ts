@@ -5,8 +5,9 @@
 import ipaExamples from "../data/ipa-examples.json";
 
 interface LanguageExamples {
-  de?: string;
-  en?: string;
+  "de-DE"?: string;
+  "en-GB"?: string;
+  "fr-FR"?: string;
 }
 
 type IPACategory = "consonants" | "vowels" | "diphthongs" | "modifiers";
@@ -38,7 +39,7 @@ export function getSymbolExplanation(symbol: string, uiLang: string): string | n
   const examples = symbolLookup.get(symbol);
   if (!examples) return null;
 
-  return examples[uiLang as keyof LanguageExamples] || examples.en || null;
+  return examples[uiLang as keyof LanguageExamples] || examples["en-GB"] || null;
 }
 
 /**
@@ -112,7 +113,7 @@ function formatExample(text: string): string {
 export function generateExplanationsHTML(
   targetIPA: string,
   actualIPA: string,
-  lang: string,
+  studyLang: string,
 ): string {
   // Extract symbols from both strings
   const targetSymbols = extractSymbols(targetIPA);
@@ -130,7 +131,7 @@ export function generateExplanationsHTML(
   let html = '<div class="row">';
 
   for (const symbol of sortedSymbols) {
-    const explanation = getSymbolExplanation(symbol, lang);
+    const explanation = getSymbolExplanation(symbol, studyLang);
     if (explanation) {
       const wikt = getWiktionaryUrls(symbol);
       html += `

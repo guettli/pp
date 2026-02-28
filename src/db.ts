@@ -146,7 +146,7 @@ class PhonemePartyDB {
   }
 
   /**
-   * Calculate next review using SM-2 spaced repetition algorithm
+   * Calculate next review using SuperMemo2 spaced repetition algorithm
    */
   private calculateNextReview(
     score: number,

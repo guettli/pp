@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Add a user recording as a test case
-# Usage: ./scripts/add-test-recording.sh ~/Downloads/Brot_20260131T073450_de.webm [--source <name>]
+# Usage: ./scripts/add-test-recording.sh ~/Downloads/Brot_20260131T073450_de-DE.webm [--source <name>]
 #    OR: ./scripts/add-test-recording.sh --record --phrase <phrase> --lang <lang> [--source <name>]
 
 # Bash Strict Mode: https://github.com/guettli/bash-strict-mode
@@ -71,7 +71,7 @@ if [ "$RECORD_MODE" == "false" ]; then
     # Phrase can contain underscores, so we split at _YYYYMMDDTHHMMSS_ (timestamp pattern)
     BASENAME=$(basename "$INPUT_FILE" .webm)
 
-    if [[ $BASENAME =~ ^(.*)_([0-9]{8}T[0-9]{6})_([a-z]{2,3})(_.*)?$ ]]; then
+    if [[ $BASENAME =~ ^(.*)_([0-9]{8}T[0-9]{6})_([a-zA-Z]{2,3}(-[a-zA-Z]{2,4})?)(_.*)?$ ]]; then
         PHRASE="${BASH_REMATCH[1]}"
         TIMESTAMP="${BASH_REMATCH[2]}"
         LANG="${BASH_REMATCH[3]}"
@@ -79,7 +79,7 @@ if [ "$RECORD_MODE" == "false" ]; then
         PHRASE="${PHRASE//_/ }"
     else
         echo "Error: Could not parse filename. Expected format: Phrase_YYYYMMDDTHHMMSS_Lang.webm"
-        echo "Example: Hello_World_20260131T073450_de.webm"
+        echo "Example: Hello_World_20260131T073450_de-DE.webm or La_montre_20260228T192544_fr-FR.webm"
         exit 1
     fi
 

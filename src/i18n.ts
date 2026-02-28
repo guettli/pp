@@ -1,7 +1,7 @@
 import type { SupportedLanguage } from "./types.js";
 
 const STORAGE_KEY = "phoneme-party-language";
-const SUPPORTED_UI_LANGS: SupportedLanguage[] = ["de", "en", "fr"];
+const SUPPORTED_UI_LANGS: SupportedLanguage[] = ["de-DE", "en-GB", "fr-FR"];
 const GERMAN_REGIONS = new Set(["de", "at", "ch"]);
 const FRENCH_REGIONS = new Set(["fr", "be", "lu"]);
 
@@ -9,7 +9,7 @@ type TranslationTable = Record<string, string>;
 type Translations = Record<SupportedLanguage, TranslationTable>;
 
 const translations: Translations = {
-  de: {
+  "de-DE": {
     "app.title": "Phoneme Party - Aussprachetraining",
     "header.title": "Phoneme Party",
     "header.subtitle": "Übe deutsche Aussprache mit KI",
@@ -20,6 +20,7 @@ const translations: Translations = {
     "ui-lang.label": "Oberfläche:",
     "ui-lang.auto": "Auto",
     "study-lang.label": "Lernsprache:",
+    "voice.label": "Stimme:",
     "study-lang.choose": "— Auswählen —",
     "study-lang.en-GB": "Englisch (Britisch)",
     "study-lang.de": "Deutsch",
@@ -147,8 +148,15 @@ const translations: Translations = {
     "processing.analyzing": "Analysiere...",
     "voice.offline": "Offline",
     "voice.online": "Online",
+    "tts.not_ready_title": "Audio wird vorbereitet",
+    "tts.not_ready_body": "Bitte einen Moment warten – das Audio wird gerade erzeugt.",
+    "level.text.very_easy": "Sehr leicht",
+    "level.text.easy": "Leicht",
+    "level.text.medium": "Mittel",
+    "level.text.hard": "Schwer",
+    "level.text.very_hard": "Sehr schwer",
   },
-  en: {
+  "en-GB": {
     "app.title": "Phoneme Party - Pronunciation Practice",
     "header.title": "Phoneme Party",
     "header.subtitle": "Practice English pronunciation with AI",
@@ -159,6 +167,7 @@ const translations: Translations = {
     "ui-lang.label": "Interface:",
     "ui-lang.auto": "Auto",
     "study-lang.label": "Study language:",
+    "voice.label": "Voice:",
     "study-lang.choose": "— Choose —",
     "study-lang.en-GB": "English (British)",
     "study-lang.de": "German",
@@ -285,8 +294,15 @@ const translations: Translations = {
     "processing.analyzing": "Analyzing...",
     "voice.offline": "Offline",
     "voice.online": "Online",
+    "tts.not_ready_title": "Audio being prepared",
+    "tts.not_ready_body": "Please wait a moment – the audio is being generated.",
+    "level.text.very_easy": "Very Easy",
+    "level.text.easy": "Easy",
+    "level.text.medium": "Medium",
+    "level.text.hard": "Hard",
+    "level.text.very_hard": "Very Hard",
   },
-  fr: {
+  "fr-FR": {
     "app.title": "Phonème Party - Entraînement à la prononciation",
     "header.title": "Phonème Party",
     "header.subtitle": "Entraîne ta prononciation avec l'IA",
@@ -297,6 +313,7 @@ const translations: Translations = {
     "ui-lang.label": "Interface :",
     "ui-lang.auto": "Auto",
     "study-lang.label": "Langue étudiée :",
+    "voice.label": "Voix :",
     "study-lang.choose": "— Choisir —",
     "study-lang.en-GB": "Anglais (britannique)",
     "study-lang.de": "Allemand",
@@ -423,6 +440,13 @@ const translations: Translations = {
     "processing.analyzing": "Analyse...",
     "voice.offline": "Hors ligne",
     "voice.online": "En ligne",
+    "tts.not_ready_title": "Audio en cours de préparation",
+    "tts.not_ready_body": "Veuillez patienter un instant – l'audio est en cours de génération.",
+    "level.text.very_easy": "Très facile",
+    "level.text.easy": "Facile",
+    "level.text.medium": "Moyen",
+    "level.text.hard": "Difficile",
+    "level.text.very_hard": "Très difficile",
   },
 };
 
@@ -459,14 +483,14 @@ function detectUiLangFromLocale(): SupportedLanguage {
     const normalized = locale.toLowerCase().replace("_", "-");
     const [tag, region] = normalized.split("-");
     if (tag === "de" || (region && GERMAN_REGIONS.has(region))) {
-      return "de";
+      return "de-DE";
     }
     if (tag === "fr" || (region && FRENCH_REGIONS.has(region))) {
-      return "fr";
+      return "fr-FR";
     }
   }
 
-  return "en";
+  return "en-GB";
 }
 
 function safeGetStorage(key: string): string | null {
@@ -494,8 +518,8 @@ function safeRemoveStorage(key: string): void {
 }
 
 export function t(key: string, variables: Record<string, string | number> = {}): string {
-  const langTable = translations[currentUiLang] || translations.en;
-  const template = langTable[key] || translations.en[key] || key;
+  const langTable = translations[currentUiLang] || translations["en-GB"];
+  const template = langTable[key] || translations["en-GB"][key] || key;
   return Object.keys(variables).reduce((result, varKey) => {
     const value = variables[varKey];
     return result.replaceAll(`{${varKey}}`, String(value));
@@ -527,7 +551,7 @@ export function setUiLang(value: "auto" | SupportedLanguage): void {
 function setUiLangValue(uiLang: string): void {
   const normalized = SUPPORTED_UI_LANGS.includes(uiLang as SupportedLanguage)
     ? (uiLang as SupportedLanguage)
-    : "en";
+    : "en-GB";
   if (normalized === currentUiLang) return;
   currentUiLang = normalized;
   safeSetStorage(STORAGE_KEY, normalized);
