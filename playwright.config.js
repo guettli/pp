@@ -16,11 +16,11 @@ export default defineConfig({
   // Global setup to pre-load ML model (optional, set USE_GLOBAL_SETUP=1)
   globalSetup: process.env.USE_GLOBAL_SETUP ? "./tests/global-setup.js" : undefined,
 
-  // Maximum time one test can run for (increased for model loading)
-  timeout: 120000, // 2 minutes to allow for ML model download
+  // Maximum time one test can run for (includes worker-scoped fixture setup = model download)
+  timeout: 300000, // 5 minutes: model download + compilation can take ~3 minutes on first run
 
   // Global timeout for the entire test run
-  globalTimeout: 600000, // 10 minutes for all tests
+  globalTimeout: 900000, // 15 minutes for all tests
 
   // Run tests in files in parallel
   fullyParallel: true,

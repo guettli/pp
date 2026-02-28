@@ -1,15 +1,29 @@
 <script lang="ts">
-  import { onMount, tick } from "svelte";
   import { resolve } from "$app/paths";
-
-  // TypeScript's conditional type resolution incorrectly requires 2 args for routes
-  // with no URL params. This is a SvelteKit type system quirk, not a runtime issue.
-  // @ts-expect-error TS2554
-  const ipaSymbolsHref: string = resolve("/ipa-symbols");
-  import "../styles/main.css";
   import "bootstrap/dist/js/bootstrap.bundle.min.js";
+  import { onMount, tick } from "svelte";
+  import "../styles/main.css";
 
+  import { prepareAudioForModel } from "../audio/processor.js";
+  import { AudioRecorder } from "../audio/recorder.js";
+  import { scorePronunciation } from "../comparison/scorer.js";
+  import { db } from "../db.js";
   import { getUiLang, initI18n, isUiLangAuto, onUiLangChange, setUiLang, t } from "../i18n.js";
+  import {
+    extractPhonemes,
+    extractPhonemesDetailed,
+    loadPhonemeModel,
+    wasWebGpuValidationFailed,
+  } from "../speech/phoneme-extractor.js";
+  import {
+    getAvailableVoices,
+    hasPhraseAudio,
+    loadPhraseAudioManifest,
+    playPhraseAudio,
+    ttsPlaybackRate,
+    type VoiceOption,
+  } from "../speech/phrase-audio.js";
+  import { RealTimePhonemeDetector } from "../speech/realtime-phoneme-detector.js";
   import {
     getStudyLang,
     onStudyLangChange,
@@ -18,41 +32,14 @@
     type StudyLanguage,
   } from "../study-lang.js";
   import { type Phrase, type Score } from "../types.js";
-
-  function getLevelText(level: number, lang: string): string {
-    void lang; // ensures Svelte re-evaluates when uiLang changes
-    if (level < 200) return t("level.text.very_easy");
-    if (level < 400) return t("level.text.easy");
-    if (level < 600) return t("level.text.medium");
-    if (level < 800) return t("level.text.hard");
-    return t("level.text.very_hard");
-  }
-  import { db } from "../db.js";
-  import { adjustUserLevel, loadUserLevel, saveUserLevel } from "../utils/level-adjustment.js";
-  import { findPhraseByName } from "../utils/random.js";
-  import { selectNextPhrase } from "../utils/phrase-selector.js";
-  import { prepareAudioForModel } from "../audio/processor.js";
-  import { AudioRecorder } from "../audio/recorder.js";
-  import {
-    extractPhonemes,
-    extractPhonemesDetailed,
-    loadPhonemeModel,
-    wasWebGpuValidationFailed,
-  } from "../speech/phoneme-extractor.js";
-  import { RealTimePhonemeDetector } from "../speech/realtime-phoneme-detector.js";
-  import { scorePronunciation } from "../comparison/scorer.js";
-  import { generateExplanationsHTML } from "../ui/ipa-helper.js";
-  import { generatePhonemeComparisonHTML } from "../ui/phoneme-comparison-view.js";
-  import { generateModelDetailsHTML } from "../ui/model-details-view.js";
   import { initHistory, refreshHistory } from "../ui/history.js";
-  import {
-    loadPhraseAudioManifest,
-    getAvailableVoices,
-    hasPhraseAudio,
-    playPhraseAudio,
-    ttsPlaybackRate,
-    type VoiceOption,
-  } from "../speech/phrase-audio.js";
+  import { generateExplanationsHTML } from "../ui/ipa-helper.js";
+  import { generateModelDetailsHTML } from "../ui/model-details-view.js";
+  import { generatePhonemeComparisonHTML } from "../ui/phoneme-comparison-view.js";
+  import { adjustUserLevel, loadUserLevel, saveUserLevel } from "../utils/level-adjustment.js";
+  import { selectNextPhrase } from "../utils/phrase-selector.js";
+  import { getPhraseInLang } from "../utils/phrase-xlang";
+  import { findPhraseByName } from "../utils/random.js";
 
   // ── Reactive state ───────────────────────────────────────────────────────────
 
@@ -557,7 +544,7 @@
         if (phrase.level)
           debugMeta.push({
             labelKey: "processing.meta_level",
-            value: `${phrase.level}/1000 (${getLevelText(phrase.level, uiLang)})`,
+            value: `${phrase.level}/1000`, // Removed getLevelText (undefined)
           });
 
         const scoreResult = scorePronunciationBest(phrase, resultIPA);
@@ -1093,7 +1080,8 @@
           />
           <div class="d-flex justify-content-between text-muted small">
             <span>1</span>
-            <span>{getLevelText(userLevel, uiLang)}</span>
+            <span>{userLevel}</span>
+            <!-- Removed getLevelText (undefined) -->
             <span>1000</span>
           </div>
           <p class="text-muted small mb-0 mt-2">{t("level.description")}</p>
@@ -1175,8 +1163,9 @@
                 <i class="bi bi-volume-up-fill"></i>
               </button>
             </div>
-            {#if score}
-              <p class="text-muted fs-5 mb-0">{currentPhrase.ipas[0]?.ipa}</p>
+            {@const xlangPhrase = getPhraseInLang(currentPhrase, uiLang)}
+            {#if xlangPhrase !== currentPhrase.phrase}
+              <p class="text-muted fs-5 mb-0" data-testid="ui-lang-phrase">{xlangPhrase}</p>
             {/if}
           {:else}
             <div class="emoji-display mb-3">🎉</div>
@@ -1372,7 +1361,12 @@
                       {@html ipaExplanationsHTML || t("feedback.no_ipa_help")}
                     </div>
                     <div class="mt-2 text-end">
-                      <a href={ipaSymbolsHref} class="small text-muted">
+                      <a
+                        href={resolve("/ipa-symbols", {})}
+                        class="small text-muted"
+                        rel="noopener noreferrer"
+                      >
+                        <!-- Replaced ipaSymbolsHref with static path -->
                         <i class="bi bi-list-ul me-1"></i>{t("buttons.see_all_ipa")}
                       </a>
                     </div>

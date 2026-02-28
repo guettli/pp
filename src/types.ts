@@ -14,6 +14,7 @@ export interface Phrase {
   emoji: string;
   ipas: IPA[];
   level?: number; // 1-1000 difficulty level
+  "en-GB"?: string; // English translation key; omitted for en-GB phrases (phrase itself is the key)
 }
 
 // Phoneme comparison result
