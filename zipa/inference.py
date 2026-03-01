@@ -40,7 +40,6 @@ def main():
     parser.add_argument("--model-type", choices=["ctc", "transducer"], default="ctc", help="Model architecture")
     parser.add_argument("--tokens", default=_default_tokens_path(), help="Path to tokens.txt")
     parser.add_argument("--suffix", default=".onnx", help="Search suffix for Transducer files (e.g. .fp16.onnx)")
-    parser.add_argument("--debug-frames", action="store_true", help="Print per-frame top token and likelihood (N: c:XX)")
     parser.add_argument("--dump-features", metavar="PATH", help="Save fbank features as .npy file for preprocessing comparison")
     args = parser.parse_args()
 
@@ -54,6 +53,10 @@ def main():
 
     if sr != 16000:
         audio = soxr.resample(audio, sr, 16000)
+
+    peak = np.max(np.abs(audio))
+    if peak > 0:
+        audio = audio / peak * 0.9
 
     fbank = get_fbank_extractor()
     fbank.accept_waveform(16000, audio.tolist())
@@ -80,40 +83,39 @@ def main():
         outputs = session.run(None, inputs)
         log_probs = outputs[0][0]  # shape: (time, vocab)
 
-        if args.debug_frames:
-            probs = np.exp(log_probs)
-            def fmt_token(idx, prob):
-                raw = vocab.get(idx, f"<{idx}>")
-                char = "⎵" if raw in ("<blk>", "▁") else raw
-                pct = min(int(prob * 100), 99)
-                return f"{char}:{pct:02d}"
-            lines = []
-            for t in range(log_probs.shape[0]):
-                top5 = np.argsort(probs[t])[-5:][::-1]
-                visible = [(int(i), probs[t, i]) for i in top5 if probs[t, i] * 100 >= 8]
-                space_entry = next(((idx, p) for idx, p in visible if vocab.get(idx, "") in ("<blk>", "▁")), None)
-                non_space = [(idx, p) for idx, p in visible if vocab.get(idx, "") not in ("<blk>", "▁")]
-                first_col = fmt_token(*space_entry) if space_entry else "    "
-                rest = ("  " + "  ".join(fmt_token(idx, p) for idx, p in non_space)) if non_space else ""
-                parts = first_col + rest
-                lines.append((parts, not non_space))
-            nonempty = [i for i, (_, blank) in enumerate(lines) if not blank]
-            first_nonempty = nonempty[0] if nonempty else len(lines)
-            last_nonempty = nonempty[-1] if nonempty else -1
-            t = 0
-            while t < len(lines):
-                parts, blank = lines[t]
-                if t < first_nonempty:
-                    end = first_nonempty - 1
-                    print(f"{t:03}..{end:03}: empty" if t < end else f"{t:03}: empty")
-                    t = first_nonempty
-                elif t > last_nonempty:
-                    end = len(lines) - 1
-                    print(f"{t:03}..{end:03}: empty" if t < end else f"{t:03}: empty")
-                    break
-                else:
-                    print(f"{t:03}: {parts}")
-                    t += 1
+        probs = np.exp(log_probs)
+        def fmt_token(idx, prob):
+            raw = vocab.get(idx, f"<{idx}>")
+            char = "⎵" if raw in ("<blk>", "▁") else raw
+            pct = min(int(prob * 100), 99)
+            return f"{char}:{pct:02d}"
+        lines = []
+        for t in range(log_probs.shape[0]):
+            top5 = np.argsort(probs[t])[-5:][::-1]
+            visible = [(int(i), probs[t, i]) for i in top5 if probs[t, i] * 100 >= 8]
+            space_entry = next(((idx, p) for idx, p in visible if vocab.get(idx, "") in ("<blk>", "▁")), None)
+            non_space = [(idx, p) for idx, p in visible if vocab.get(idx, "") not in ("<blk>", "▁")]
+            first_col = fmt_token(*space_entry) if space_entry else "    "
+            rest = ("  " + "  ".join(fmt_token(idx, p) for idx, p in non_space)) if non_space else ""
+            parts = first_col + rest
+            lines.append((parts, not non_space))
+        nonempty = [i for i, (_, blank) in enumerate(lines) if not blank]
+        first_nonempty = nonempty[0] if nonempty else len(lines)
+        last_nonempty = nonempty[-1] if nonempty else -1
+        t = 0
+        while t < len(lines):
+            parts, blank = lines[t]
+            if t < first_nonempty:
+                end = first_nonempty - 1
+                print(f"{t:03}..{end:03}: empty" if t < end else f"{t:03}: empty")
+                t = first_nonempty
+            elif t > last_nonempty:
+                end = len(lines) - 1
+                print(f"{t:03}..{end:03}: empty" if t < end else f"{t:03}: empty")
+                break
+            else:
+                print(f"{t:03}: {parts}")
+                t += 1
 
         phones = ctc_greedy_decode(log_probs, vocab)
         print("".join(p for p in phones if p not in _SPECIAL_TOKENS))

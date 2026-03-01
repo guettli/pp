@@ -38,6 +38,21 @@ export async function prepareAudioForModel(audioBlob: Blob): Promise<Float32Arra
     audioData = await resampleAudio(audioData, audioBuffer.sampleRate, 16000);
   }
 
+  // Peak-normalize to 0.9 so quiet recordings are detected reliably
+  let peak = 0;
+  for (let i = 0; i < audioData.length; i++) {
+    const abs = Math.abs(audioData[i]);
+    if (abs > peak) peak = abs;
+  }
+  if (peak > 0) {
+    const scale = 0.9 / peak;
+    const normalized = new Float32Array(audioData.length);
+    for (let i = 0; i < audioData.length; i++) {
+      normalized[i] = audioData[i] * scale;
+    }
+    audioData = normalized;
+  }
+
   // Close the audio context to free resources
   await audioContext.close();
 
