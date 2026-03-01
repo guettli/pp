@@ -43,11 +43,12 @@
 
   // ── Reactive state ───────────────────────────────────────────────────────────
 
-  let isLoading = $state(true);
-  let loadingStatus = $state("");
+  let isModelLoaded = $state(false);
   let loadingProgress = $state(0);
   let loadError = $state<Error | null>(null);
   let inlineError = $state<Error | null>(null);
+  let pendingRecordingBlob = $state<Blob | null>(null);
+  let pendingRecordingDuration = $state<number>(0);
 
   let currentPhrase = $state<Phrase | null>(null);
   let recentPhrases = $state<string[]>([]);
@@ -195,7 +196,6 @@
       });
     }
     if (shouldLog) console.log(statusText);
-    loadingStatus = statusText;
     if (progress.progress !== undefined) loadingProgress = Math.round(progress.progress);
   }
 
@@ -419,38 +419,88 @@
       return;
     }
 
-    realtimeDetector = new RealTimePhonemeDetector(
-      {
-        targetIPA: currentPhrase.ipas[0].ipa,
-        studyLang: sl,
-        threshold: 1.0,
-        minChunksBeforeCheck: 3,
-        silenceThreshold: 0.01,
-        silenceDuration: 1500,
-      },
-      {
-        onPhonemeUpdate: () => {},
-        onTargetMatched: () => void actuallyStopRecording(),
-        onSilenceDetected: () => void actuallyStopRecording(),
-        onBlankTrailDetected: () => void actuallyStopRecording(),
-      },
-    );
-
-    try {
-      await recorder.start(
-        () => void actuallyStopRecording(),
-        (chunk: Blob) => {
-          if (realtimeDetector) void realtimeDetector.addChunk(chunk);
+    if (isModelLoaded) {
+      // Full real-time detection with model
+      realtimeDetector = new RealTimePhonemeDetector(
+        {
+          targetIPA: currentPhrase.ipas[0].ipa,
+          studyLang: sl,
+          threshold: 1.0,
+          minChunksBeforeCheck: 3,
+          silenceThreshold: 0.01,
+          silenceDuration: 1500,
         },
-        500,
+        {
+          onPhonemeUpdate: () => {},
+          onTargetMatched: () => void actuallyStopRecording(),
+          onSilenceDetected: () => void actuallyStopRecording(),
+          onBlankTrailDetected: () => void actuallyStopRecording(),
+        },
       );
-      isRecording = true;
-    } catch (error) {
-      console.error("Record start error:", error);
-      inlineError = error instanceof Error ? error : new Error(String(error));
-      showFeedback = true;
-      isRecording = false;
-      realtimeDetector = null;
+
+      try {
+        await recorder.start(
+          () => void actuallyStopRecording(),
+          (chunk: Blob) => {
+            if (realtimeDetector) void realtimeDetector.addChunk(chunk);
+          },
+          500,
+        );
+        isRecording = true;
+      } catch (error) {
+        console.error("Record start error:", error);
+        inlineError = error instanceof Error ? error : new Error(String(error));
+        showFeedback = true;
+        isRecording = false;
+        realtimeDetector = null;
+      }
+    } else {
+      // Model still loading — use RMS silence detection only (no ONNX)
+      const SILENCE_THRESHOLD = 0.01;
+      const SILENCE_DURATION_MS = 1500;
+      let silenceStartTime: number | null = null;
+      let silenceTriggered = false;
+      const accChunks: Blob[] = [];
+      let chunkCount = 0;
+
+      try {
+        await recorder.start(
+          () => void actuallyStopRecording(),
+          async (chunk: Blob) => {
+            if (silenceTriggered || chunk.size === 0) return;
+            accChunks.push(chunk);
+            chunkCount++;
+            if (chunkCount < 3) return;
+            try {
+              const combined = new Blob(accChunks, { type: chunk.type });
+              const audioData = await prepareAudioForModel(combined);
+              let sum = 0;
+              for (let i = 0; i < audioData.length; i++) sum += audioData[i] * audioData[i];
+              const rms = Math.sqrt(sum / audioData.length);
+              const now = Date.now();
+              if (rms < SILENCE_THRESHOLD) {
+                if (silenceStartTime === null) {
+                  silenceStartTime = now;
+                } else if (now - silenceStartTime >= SILENCE_DURATION_MS) {
+                  silenceTriggered = true;
+                  void actuallyStopRecording();
+                }
+              } else {
+                silenceStartTime = null;
+              }
+            } catch {
+              /* ignore decode errors during silence detection */
+            }
+          },
+          500,
+        );
+        isRecording = true;
+      } catch (error) {
+        console.error("Record start error:", error);
+        inlineError = error instanceof Error ? error : new Error(String(error));
+        showFeedback = true;
+        isRecording = false;
+      }
     }
   }
 
@@ -469,143 +519,162 @@
         return;
       }
 
-      isProcessing = true;
-      processingProgress = 0;
-      processingSteps = [];
-      processingMeta = [];
-      processingTotalMs = null;
-
-      const timingStart = performance.now();
-      const timingSteps: TimingStep[] = [];
-      const recordTiming = (lk: string, s: number, e: number) => {
-        timingSteps.push({ labelKey: lk, ms: e - s });
-      };
-      async function measureAsync<T>(lk: string, fn: () => Promise<T>): Promise<T> {
-        const s = performance.now();
-        const r = await fn();
-        recordTiming(lk, s, performance.now());
-        return r;
+      if (!isModelLoaded) {
+        // Model still loading — queue the recording for processing once model is ready
+        pendingRecordingBlob = audioBlob;
+        pendingRecordingDuration = duration;
+        return;
       }
 
-      const debugMeta: DebugMeta[] = [];
-      if (modelLoadMs !== null && Number.isFinite(modelLoadMs))
-        debugMeta.push({
-          labelKey: "processing.meta_model_load",
-          value: `${modelLoadMs.toFixed(0)} ms`,
-        });
-      debugMeta.push({
-        labelKey: "processing.meta_audio_duration",
-        value: `${(duration / 1000).toFixed(1)} s`,
-      });
-      debugMeta.push({
-        labelKey: "processing.meta_backend",
-        value: webgpuBackend || "wasm",
-      });
-
-      const progressInterval = setInterval(() => {
-        processingProgress = Math.min(processingProgress + 5, 95);
-      }, 100);
-
-      try {
-        const audioData = await measureAsync("processing.step_prepare", () =>
-          prepareAudioForModel(audioBlob),
-        );
-        lastRecordingAudioData = audioData;
-        processingProgress = 30;
-
-        let resultIPA: string;
-        if (detector) {
-          const fs = performance.now();
-          await detector.finalize();
-          recordTiming("processing.step_finalize", fs, performance.now());
-          const rtIPA = detector.getLastPhonemes();
-          if (rtIPA) {
-            resultIPA = rtIPA;
-            debugMeta.push({ labelKey: "processing.meta_realtime", value: "Yes (continuous)" });
-          } else {
-            resultIPA = await measureAsync("processing.step_phonemes", () =>
-              extractPhonemes(audioData),
-            );
-            debugMeta.push({
-              labelKey: "processing.meta_realtime",
-              value: "No (fallback post-processing)",
-            });
-          }
-        } else {
-          resultIPA = await measureAsync("processing.step_phonemes", () =>
-            extractPhonemes(audioData),
-          );
-          debugMeta.push({ labelKey: "processing.meta_realtime", value: "No real-time" });
-        }
-        processingProgress = 85;
-
-        if (!currentPhrase) throw new Error("No current phrase");
-        const phrase = currentPhrase;
-        if (phrase.level)
-          debugMeta.push({
-            labelKey: "processing.meta_level",
-            value: `${phrase.level}/1000`, // Removed getLevelText (undefined)
-          });
-
-        const scoreResult = scorePronunciationBest(phrase, resultIPA);
-        processingProgress = 95;
-
-        actualIPA = resultIPA;
-        score = scoreResult;
-        showFeedback = true;
-        inlineError = null;
-
-        playRecordingAudio(scoreResult.similarityPercent);
-
-        try {
-          const sl = getStudyLang();
-          if (!sl) throw new Error("No study language");
-          await db.savePhraseResult(
-            phrase.phrase,
-            sl,
-            scoreResult.similarity * 100,
-            resultIPA,
-            phrase.ipas[0].ipa,
-            duration,
-          );
-          const newLevel = adjustUserLevel(
-            userLevel,
-            actualUserLevel,
-            scoreResult.similarity * 100,
-            phrase.level || 1,
-          );
-          if (newLevel !== userLevel) {
-            userLevel = newLevel;
-            await saveUserLevel(sl, newLevel);
-          }
-          refreshHistory();
-          await loadAndUpdateUserLevel(sl);
-        } catch (error) {
-          console.error("Failed to save result:", error);
-        }
-
-        const totalMs = performance.now() - timingStart;
-        processingTotalMs = totalMs;
-        processingSteps = [
-          ...timingSteps,
-          { labelKey: "processing.step_total", ms: totalMs, isTotal: true },
-        ];
-        processingMeta = debugMeta;
-        processingProgress = 100;
-        clearInterval(progressInterval);
-        setTimeout(() => {
-          isProcessing = false;
-          processingProgress = 0;
-        }, 500);
-      } catch (error) {
-        clearInterval(progressInterval);
-        throw error;
-      }
+      await processRecording(audioBlob, duration, detector);
     } catch (error) {
       console.error("Recording error:", error);
       inlineError = error instanceof Error ? error : new Error(String(error));
       showFeedback = true;
       isRecording = false;
+      isProcessing = false;
+      processingProgress = 0;
+    }
+  }
+
+  async function processRecording(
+    audioBlob: Blob,
+    duration: number,
+    detector: RealTimePhonemeDetector | null,
+  ) {
+    isProcessing = true;
+    processingProgress = 0;
+    processingSteps = [];
+    processingMeta = [];
+    processingTotalMs = null;
+
+    const timingStart = performance.now();
+    const timingSteps: TimingStep[] = [];
+    const recordTiming = (lk: string, s: number, e: number) => {
+      timingSteps.push({ labelKey: lk, ms: e - s });
+    };
+    async function measureAsync<T>(lk: string, fn: () => Promise<T>): Promise<T> {
+      const s = performance.now();
+      const r = await fn();
+      recordTiming(lk, s, performance.now());
+      return r;
+    }
+
+    const debugMeta: DebugMeta[] = [];
+    if (modelLoadMs !== null && Number.isFinite(modelLoadMs))
+      debugMeta.push({
+        labelKey: "processing.meta_model_load",
+        value: `${modelLoadMs.toFixed(0)} ms`,
+      });
+    debugMeta.push({
+      labelKey: "processing.meta_audio_duration",
+      value: `${(duration / 1000).toFixed(1)} s`,
+    });
+    debugMeta.push({
+      labelKey: "processing.meta_backend",
+      value: webgpuBackend || "wasm",
+    });
+
+    const progressInterval = setInterval(() => {
+      processingProgress = Math.min(processingProgress + 5, 95);
+    }, 100);
+
+    try {
+      const audioData = await measureAsync("processing.step_prepare", () =>
+        prepareAudioForModel(audioBlob),
+      );
+      lastRecordingAudioData = audioData;
+      processingProgress = 30;
+
+      let resultIPA: string;
+      if (detector) {
+        const fs = performance.now();
+        await detector.finalize();
+        recordTiming("processing.step_finalize", fs, performance.now());
+        const rtIPA = detector.getLastPhonemes();
+        if (rtIPA) {
+          resultIPA = rtIPA;
+          debugMeta.push({ labelKey: "processing.meta_realtime", value: "Yes (continuous)" });
+        } else {
+          resultIPA = await measureAsync("processing.step_phonemes", () =>
+            extractPhonemes(audioData),
+          );
+          debugMeta.push({
+            labelKey: "processing.meta_realtime",
+            value: "No (fallback post-processing)",
+          });
+        }
+      } else {
+        resultIPA = await measureAsync("processing.step_phonemes", () =>
+          extractPhonemes(audioData),
+        );
+        debugMeta.push({ labelKey: "processing.meta_realtime", value: "No real-time" });
+      }
+      processingProgress = 85;
+
+      if (!currentPhrase) throw new Error("No current phrase");
+      const phrase = currentPhrase;
+      if (phrase.level)
+        debugMeta.push({
+          labelKey: "processing.meta_level",
+          value: `${phrase.level}/1000`,
+        });
+
+      const scoreResult = scorePronunciationBest(phrase, resultIPA);
+      processingProgress = 95;
+
+      actualIPA = resultIPA;
+      score = scoreResult;
+      showFeedback = true;
+      inlineError = null;
+
+      playRecordingAudio(scoreResult.similarityPercent);
+
+      try {
+        const sl = getStudyLang();
+        if (!sl) throw new Error("No study language");
+        await db.savePhraseResult(
+          phrase.phrase,
+          sl,
+          scoreResult.similarity * 100,
+          resultIPA,
+          phrase.ipas[0].ipa,
+          duration,
+        );
+        const newLevel = adjustUserLevel(
+          userLevel,
+          actualUserLevel,
+          scoreResult.similarity * 100,
+          phrase.level || 1,
+        );
+        if (newLevel !== userLevel) {
+          userLevel = newLevel;
+          await saveUserLevel(sl, newLevel);
+        }
+        refreshHistory();
+        await loadAndUpdateUserLevel(sl);
+      } catch (error) {
+        console.error("Failed to save result:", error);
+      }
+
+      const totalMs = performance.now() - timingStart;
+      processingTotalMs = totalMs;
+      processingSteps = [
+        ...timingSteps,
+        { labelKey: "processing.step_total", ms: totalMs, isTotal: true },
+      ];
+      processingMeta = debugMeta;
+      processingProgress = 100;
+      clearInterval(progressInterval);
+      setTimeout(() => {
+        isProcessing = false;
+        processingProgress = 0;
+      }, 500);
+    } catch (error) {
+      clearInterval(progressInterval);
+      console.error("Processing error:", error);
+      inlineError = error instanceof Error ? error : new Error(String(error));
+      showFeedback = true;
       isProcessing = false;
       processingProgress = 0;
     }
@@ -865,42 +934,10 @@
       if (el) el.style.display = "";
     }
 
-    isLoading = true;
     recorder = new AudioRecorder();
 
-    updateLoadingProgressState({ status: "downloading", progress: 0 });
-
+    // Non-model initialization runs immediately (no waiting for model)
     try {
-      const loadStart = performance.now();
-      await loadPhonemeModel((p: { status: string; progress: number }) => {
-        updateLoadingProgressState(p);
-      });
-      modelLoadMs = performance.now() - loadStart;
-
-      let sf16 = false;
-      let backend = "wasm";
-      if (webgpuAvailable) {
-        try {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const adapter = await (navigator.gpu as any).requestAdapter();
-          sf16 = !!adapter?.features.has("shader-f16");
-        } catch {
-          /* WebGPU adapter request may fail */
-        }
-        if (!webgpuEnabled) {
-          backend = "wasm";
-        } else if (wasWebGpuValidationFailed()) {
-          backend = "wasm";
-        } else {
-          backend = sf16 ? "webgpu" : "wasm";
-        }
-      }
-      shaderF16 = sf16;
-      webgpuBackend = backend;
-      webgpuValidationFailed = wasWebGpuValidationFailed();
-
-      isLoading = false;
-      loadError = null;
       const queryPhrase = getPhraseFromQueryString();
       if (queryPhrase) {
         currentPhrase = queryPhrase;
@@ -983,12 +1020,59 @@
       }
     } catch (error) {
       console.error("Initialization error:", error);
-      loadError = error instanceof Error ? error : new Error(String(error));
+      inlineError = error instanceof Error ? error : new Error(String(error));
     }
+
+    // Load model in background (non-blocking — UI is already interactive)
+    const loadStart = performance.now();
+    updateLoadingProgressState({ status: "downloading", progress: 0 });
+    loadPhonemeModel((p: { status: string; progress: number }) => {
+      updateLoadingProgressState(p);
+    })
+      .then(async () => {
+        modelLoadMs = performance.now() - loadStart;
+
+        let sf16 = false;
+        let backend = "wasm";
+        if (webgpuAvailable) {
+          try {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const adapter = await (navigator.gpu as any).requestAdapter();
+            sf16 = !!adapter?.features.has("shader-f16");
+          } catch {
+            /* WebGPU adapter request may fail */
+          }
+          if (!webgpuEnabled) {
+            backend = "wasm";
+          } else if (wasWebGpuValidationFailed()) {
+            backend = "wasm";
+          } else {
+            backend = sf16 ? "webgpu" : "wasm";
+          }
+        }
+        shaderF16 = sf16;
+        webgpuBackend = backend;
+        webgpuValidationFailed = wasWebGpuValidationFailed();
+        loadError = null;
+        isModelLoaded = true;
+
+        // Process any recording that was captured before model was ready
+        if (pendingRecordingBlob && pendingRecordingDuration > 0) {
+          const blob = pendingRecordingBlob;
+          const dur = pendingRecordingDuration;
+          pendingRecordingBlob = null;
+          pendingRecordingDuration = 0;
+          await processRecording(blob, dur, null);
+        }
+      })
+      .catch((error) => {
+        console.error("Model load error:", error);
+        loadError = error instanceof Error ? error : new Error(String(error));
+      });
   });
 </script>
 
-<div id="app" class="container py-5">
+<div id="app" class="container py-5" class:model-loaded={isModelLoaded}>
   <!-- Header -->
   <header class="text-center mb-5">
     <h1 class="display-4 fw-bold">{t("header.title")}</h1>
@@ -1053,7 +1137,7 @@
     </div>
 
     <!-- Level Control -->
-    {#if !isLoading}
+    {#if studyLangValue}
       <div
         class="card mt-3 shadow-sm"
         style="max-width: 600px; margin-left: auto; margin-right: auto"
@@ -1090,387 +1174,387 @@
     {/if}
   </header>
 
-  <!-- Loading Overlay -->
-  {#if isLoading}
-    <div id="loading-overlay" class="card shadow-sm mb-4">
-      <div class="card-body text-center py-5">
-        {#if loadError}
-          <div class="text-danger text-center mb-3">
-            <i class="bi bi-exclamation-triangle" style="font-size: 4rem"></i>
-          </div>
-          <h5 class="text-center mb-3">{t("errors.title")}</h5>
-          <div class="alert alert-danger" role="alert">
-            <strong>{t("errors.message_label")}</strong>
-            {loadError.message}
-          </div>
-          <details class="mb-3">
-            <summary class="btn btn-sm btn-outline-secondary">{t("errors.show_details")}</summary>
-            <pre
-              class="mt-2 p-3 bg-light border rounded text-start"
-              style="overflow-x:auto;font-size:.85rem">{loadError.stack}</pre>
-          </details>
-          <button class="btn btn-primary" onclick={() => location.reload()}>
-            {t("errors.reload")}
-          </button>
-        {:else}
-          <div class="mb-3">
-            <div class="spinner-border text-primary" role="status">
-              <span class="visually-hidden">{t("loading.hidden_label")}</span>
-            </div>
-          </div>
-          <h5 class="mb-3">{loadingStatus || t("loading.initializing")}</h5>
-          <div class="progress" style="height: 25px">
-            <div
-              class="progress-bar progress-bar-striped progress-bar-animated"
-              role="progressbar"
-              style="width: {loadingProgress}%"
-              aria-valuenow={loadingProgress}
-              aria-valuemin={0}
-              aria-valuemax={100}
-            >
-              {loadingProgress}%
-            </div>
-          </div>
-          <p class="text-muted mt-3 small">{t("loading.description")}</p>
-        {/if}
-      </div>
+  <!-- Load Error -->
+  {#if loadError}
+    <div class="alert alert-danger mb-4" role="alert">
+      <h5 class="alert-heading">{t("errors.title")}</h5>
+      <p><strong>{t("errors.message_label")}</strong> {loadError.message}</p>
+      <details class="mb-3">
+        <summary class="btn btn-sm btn-outline-danger">{t("errors.show_details")}</summary>
+        <pre
+          class="mt-2 p-3 bg-light border rounded text-start"
+          style="overflow-x:auto;font-size:.85rem">{loadError.stack}</pre>
+      </details>
+      <button class="btn btn-primary" onclick={() => location.reload()}>
+        {t("errors.reload")}
+      </button>
     </div>
   {/if}
 
   <!-- Main Content -->
-  {#if !isLoading && !loadError}
-    <main id="main-content">
-      <!-- Phrase Display Card -->
-      <div class="card shadow-lg mb-4">
-        <div class="card-body text-center py-5">
-          {#if currentPhrase}
-            <div class="emoji-display mb-3">
-              <img
-                src={emojiToTwemojiUrl(currentPhrase.emoji)}
-                alt={currentPhrase.emoji}
-                draggable="false"
-                style="height: 1em; width: auto"
-              />
-            </div>
-            <div class="d-flex justify-content-center align-items-center gap-2">
-              <h2 id="phrase-text" class="display-5 fw-bold mb-0">{currentPhrase.phrase}</h2>
-              <button
-                id="replay-phrase-btn"
-                class="btn btn-sm btn-outline-secondary"
-                title="Play phrase again"
-                onclick={() => void playDesiredPronunciation(currentPhrase?.phrase ?? "")}
-              >
-                <i class="bi bi-volume-up-fill"></i>
-              </button>
-            </div>
-            {@const xlangPhrase = getPhraseInLang(currentPhrase, uiLang)}
-            {#if xlangPhrase !== currentPhrase.phrase}
-              <p class="text-muted fs-5 mb-0" data-testid="ui-lang-phrase">{xlangPhrase}</p>
-            {/if}
-          {:else}
-            <div class="emoji-display mb-3">🎉</div>
-            <button class="btn btn-primary btn-lg mt-2" onclick={() => void nextPhrase()}
-              >{t("buttons.press_to_play")}</button
-            >
-          {/if}
+  <main id="main-content">
+    <!-- Intro text (shown when no study language is selected yet) -->
+    {#if !studyLangValue}
+      <div class="card shadow-sm mb-4">
+        <div class="card-body text-center py-4">
+          <p class="lead mb-1">Welcome to Phoneme Party! Choose a study language above to start.</p>
+          <p class="lead mb-1">Willkommen bei Phoneme Party! Wähle eine Lernsprache oben aus.</p>
+          <p class="lead mb-0">
+            Bienvenue sur Phonème Party ! Choisissez une langue à apprendre ci-dessus.
+          </p>
         </div>
       </div>
+    {/if}
 
-      <!-- Recorder alerts -->
-      {#each recorderAlerts as alert (alert.id)}
-        <div class="alert alert-{alert.type} alert-dismissible fade show mt-2">
-          <strong>{t(alert.titleKey)}</strong>
-          <p class="mb-0 mt-1">{t(alert.bodyKey)}</p>
-          <button
-            type="button"
-            class="btn-close"
-            onclick={() => {
-              recorderAlerts = recorderAlerts.filter((a) => a.id !== alert.id);
-            }}
-            aria-label={t("buttons.close")}
-          ></button>
-        </div>
-      {/each}
-
-      <!-- Controls -->
-      {#if currentPhrase}
-        <div class="d-flex gap-3 mb-3">
-          <button
-            id="record-btn"
-            class="btn btn-lg flex-grow-1"
-            class:btn-danger={!isRecording && !isProcessing}
-            class:btn-warning={isRecording}
-            class:pulse={isRecording}
-            disabled={isProcessing || !currentPhrase}
-            onclick={() => void handleRecordToggle()}
-          >
-            <span>🎤</span>
-            {#if isProcessing}
-              {t("record.processing", { percent: Math.round(processingProgress) })}
-            {:else if isRecording}
-              {t("record.recording")}
-            {:else}
-              {t("record.hold")}
-            {/if}
-          </button>
-          <button
-            id="next-phrase-btn"
-            class="btn btn-lg btn-outline-primary flex-grow-1"
-            onclick={() => void nextPhrase()}
-          >
-            {t("buttons.next_phrase")}
-          </button>
-        </div>
-      {/if}
-
-      <!-- Processing Progress Bar -->
-      {#if isProcessing}
-        <div id="processing-progress" class="mb-4">
-          <div class="progress" style="height: 30px">
-            <div
-              id="processing-progress-bar"
-              class="progress-bar progress-bar-striped progress-bar-animated"
-              role="progressbar"
-              style="width: {processingProgress}%"
-              aria-valuenow={processingProgress}
-              aria-valuemin={0}
-              aria-valuemax={100}
+    <!-- Phrase Display Card -->
+    <div class="card shadow-lg mb-4">
+      <div class="card-body text-center py-5">
+        {#if currentPhrase}
+          <div class="emoji-display mb-3">
+            <img
+              src={emojiToTwemojiUrl(currentPhrase.emoji)}
+              alt={currentPhrase.emoji}
+              draggable="false"
+              style="height: 1em; width: auto"
+            />
+          </div>
+          <div class="d-flex justify-content-center align-items-center gap-2">
+            <h2 id="phrase-text" class="display-5 fw-bold mb-0">{currentPhrase.phrase}</h2>
+            <button
+              id="replay-phrase-btn"
+              class="btn btn-sm btn-outline-secondary"
+              title="Play phrase again"
+              onclick={() => void playDesiredPronunciation(currentPhrase?.phrase ?? "")}
             >
-              {t("processing.label")}
-            </div>
+              <i class="bi bi-volume-up-fill"></i>
+            </button>
           </div>
-        </div>
-      {/if}
-
-      <!-- Feedback Section -->
-      <div id="feedback-section" style={showFeedback ? "" : "display: none"}>
-        {#if inlineError}
-          <div class="alert alert-danger" role="alert">
-            <h5 class="alert-heading">
-              <i class="bi bi-exclamation-circle-fill me-2"></i>{t("errors.title")}
-            </h5>
-            <p><strong>{t("errors.message_label")}</strong> {inlineError.message}</p>
-            <details>
-              <summary class="btn btn-sm btn-outline-danger">{t("errors.show_details")}</summary>
-              <pre
-                class="mt-2 p-2 bg-light border rounded"
-                style="overflow-x:auto;font-size:.8rem;max-height:300px">{inlineError.stack}</pre>
-            </details>
-          </div>
+          {@const xlangPhrase = getPhraseInLang(currentPhrase, uiLang)}
+          {#if xlangPhrase !== currentPhrase.phrase}
+            <p class="text-muted fs-5 mb-0" data-testid="ui-lang-phrase">{xlangPhrase}</p>
+          {/if}
         {:else}
-          <div class="card shadow-sm" style={score && currentPhrase ? "" : "display: none"}>
-            <div class="card-header">
-              <h5 class="mb-0">{t("feedback.title")}</h5>
-            </div>
-            <div class="card-body">
-              <div class="alert {score?.bootstrapClass} mb-3" role="alert">
-                <h4 class="alert-heading">{score?.grade}</h4>
-                {#if !score?.notFound}
-                  <p class="mb-0">
-                    {t("feedback.phoneme_similarity")}
-                    <strong>{score?.similarityPercent}%</strong>
-                  </p>
-                {/if}
-              </div>
-
-              <div class="text-center mb-3">
-                <strong>{t("feedback.target_phrase_label")}</strong>
-                <p class="mb-0">{currentPhrase?.phrase}</p>
-              </div>
-
-              <div class="mb-3">
-                <div class="d-flex justify-content-center align-items-start gap-2 flex-wrap">
-                  <div class="d-flex align-items-center">
-                    <strong class="me-2">{t("feedback.target_ipa_label")}</strong>
-                    <button
-                      id="play-target-btn"
-                      class="btn btn-sm btn-outline-secondary"
-                      title={t("feedback.play_target")}
-                      onclick={() => void playDesiredPronunciation(currentPhrase?.phrase ?? "")}
-                    >
-                      <i class="bi bi-volume-up-fill"></i>
-                    </button>
-                  </div>
-                  <div class="d-flex align-items-center">
-                    <strong class="me-2">{t("feedback.your_ipa_label")}</strong>
-                    {#if lastRecordingBlob}
-                      <button
-                        id="play-recording-btn"
-                        class="btn btn-sm btn-outline-secondary"
-                        title="Play your recording (long press to download)"
-                        use:longPressDownload
-                        onclick={() => playRecordingAudio()}
-                      >
-                        <i class="bi bi-play-fill"></i>
-                      </button>
-                    {/if}
-                    {#if lastRecordingAudioData}
-                      <button
-                        id="reprocess-recording-btn"
-                        class="btn btn-sm btn-outline-primary ms-2"
-                        title="Re-run IPA detection"
-                        onclick={() => void reprocessRecording()}
-                      >
-                        <i class="bi bi-arrow-clockwise"></i>
-                      </button>
-                    {/if}
-                  </div>
-                </div>
-
-                <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-                <div
-                  id="phoneme-comparison-grid"
-                  role="group"
-                  class="mt-3 d-flex justify-content-center flex-wrap gap-1"
-                  onclick={handlePhonemeClick}
-                  onkeydown={() => {}}
-                >
-                  {#if score?.notFound}
-                    <span class="text-muted">{t("feedback.phrase_not_in_vocab")}</span>
-                  {:else}
-                    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-                    {@html phonemeComparisonHTML}
-                  {/if}
-                </div>
-
-                <span id="feedback-target-ipa" style="display:none"
-                  >{currentPhrase?.ipas[0]?.ipa}</span
-                >
-                <span id="feedback-actual-ipa" style="display:none">{actualIPA}</span>
-              </div>
-
-              <!-- IPA Explanations -->
-              <div class="mt-3">
-                <button
-                  type="button"
-                  class="text-decoration-none small btn btn-link p-0"
-                  aria-expanded={ipaExplanationsVisible}
-                  onclick={() => {
-                    ipaExplanationsVisible = !ipaExplanationsVisible;
-                  }}
-                >
-                  <i class="bi bi-info-circle me-1"></i>
-                  {t("feedback.ipa_help")}
-                  <i class="bi {ipaExplanationsVisible ? 'bi-chevron-up' : 'bi-chevron-down'} ms-1"
-                  ></i>
-                </button>
-                {#if ipaExplanationsVisible}
-                  <div class="mt-2">
-                    <div class="card card-body bg-light small" id="ipa-explanations-content">
-                      <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-                      {@html ipaExplanationsHTML || t("feedback.no_ipa_help")}
-                    </div>
-                    <div class="mt-2 text-end">
-                      <a
-                        href={resolve("/ipa-symbols", {})}
-                        class="small text-muted"
-                        rel="noopener noreferrer"
-                      >
-                        <!-- Replaced ipaSymbolsHref with static path -->
-                        <i class="bi bi-list-ul me-1"></i>{t("buttons.see_all_ipa")}
-                      </a>
-                    </div>
-                  </div>
-                {/if}
-              </div>
-
-              <!-- Model Details -->
-              {#if lastRecordingAudioData}
-                <div class="mt-3 text-center">
-                  <button
-                    id="show-model-details-btn"
-                    class="btn btn-sm btn-outline-info"
-                    onclick={() => void showModelDetailsPanel()}
-                  >
-                    <i class="bi bi-graph-up me-1"></i>
-                    Show Model Details
-                  </button>
-                </div>
-              {/if}
-
-              {#if modelDetailsVisible}
-                <div id="model-details" class="mt-3">
-                  <div class="card card-body bg-light">
-                    <h6 class="fw-bold mb-3">
-                      <i class="bi bi-cpu me-1"></i>
-                      Model Output Visualization
-                    </h6>
-                    {#if modelDetailsLoading}
-                      <div class="text-center">
-                        <div class="spinner-border spinner-border-sm"></div>
-                        {t("processing.analyzing")}
-                      </div>
-                    {:else}
-                      <div id="model-details-content">
-                        <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-                        {@html modelDetailsHTML}
-                      </div>
-                    {/if}
-                  </div>
-                </div>
-              {/if}
-
-              <div class="text-center mt-4">
-                <h4 class="mb-3">{score?.grade}</h4>
-                <p class="lead">{score?.message}</p>
-              </div>
-            </div>
-          </div>
+          <div class="emoji-display mb-3">🎉</div>
+          <button class="btn btn-primary btn-lg mt-2" onclick={() => void nextPhrase()}
+            >{t("buttons.press_to_play")}</button
+          >
         {/if}
       </div>
+    </div>
 
-      <!-- Processing Debug -->
-      {#if processingSteps.length > 0}
-        <div class="processing-debug mt-4">
-          <div class="processing-debug-title">{t("processing.debug_title")}</div>
-          {#if processingMeta.length > 0}
-            <ul class="processing-debug-list processing-debug-meta">
-              {#each processingMeta as item (item.labelKey)}
-                <li class="processing-debug-item">
-                  <span class="processing-debug-label">{t(item.labelKey)}</span>
-                  <span class="processing-debug-value">{item.value}</span>
-                </li>
-              {/each}
-            </ul>
+    <!-- Recorder alerts -->
+    {#each recorderAlerts as alert (alert.id)}
+      <div class="alert alert-{alert.type} alert-dismissible fade show mt-2">
+        <strong>{t(alert.titleKey)}</strong>
+        <p class="mb-0 mt-1">{t(alert.bodyKey)}</p>
+        <button
+          type="button"
+          class="btn-close"
+          onclick={() => {
+            recorderAlerts = recorderAlerts.filter((a) => a.id !== alert.id);
+          }}
+          aria-label={t("buttons.close")}
+        ></button>
+      </div>
+    {/each}
+
+    <!-- Controls -->
+    {#if currentPhrase}
+      <div class="d-flex gap-3 mb-3">
+        <button
+          id="record-btn"
+          class="btn btn-lg flex-grow-1"
+          class:btn-danger={!isRecording && !isProcessing}
+          class:btn-warning={isRecording}
+          class:pulse={isRecording}
+          disabled={isProcessing || !currentPhrase || pendingRecordingBlob !== null}
+          onclick={() => void handleRecordToggle()}
+        >
+          <span>🎤</span>
+          {#if isProcessing}
+            {t("record.processing", { percent: Math.round(processingProgress) })}
+          {:else if isRecording}
+            {t("record.recording")}
+          {:else}
+            {t("record.hold")}
           {/if}
-          <ul class="processing-debug-list">
-            {#each processingSteps as step (step.labelKey)}
-              <li class="processing-debug-item" class:total={step.isTotal}>
-                <span class="processing-debug-label">{t(step.labelKey)}</span>
-                <span class="processing-debug-value">
-                  {step.isTotal
-                    ? `${step.ms.toFixed(0)} ms`
-                    : `${step.ms.toFixed(0)} ms (${processingTotalMs && processingTotalMs > 0 ? Math.round((step.ms / processingTotalMs) * 100) : 0}%)`}
-                </span>
+        </button>
+        <button
+          id="next-phrase-btn"
+          class="btn btn-lg btn-outline-primary flex-grow-1"
+          onclick={() => void nextPhrase()}
+        >
+          {t("buttons.next_phrase")}
+        </button>
+      </div>
+    {/if}
+
+    <!-- Model loading progress (only shown when a recording is pending and model is still loading) -->
+    {#if pendingRecordingBlob && !isModelLoaded}
+      <div class="mb-4">
+        <p class="text-muted small text-center mb-2">{t("loading.waiting_for_model")}</p>
+        <div class="progress" style="height: 20px">
+          <div
+            class="progress-bar progress-bar-striped progress-bar-animated"
+            role="progressbar"
+            style="width: {loadingProgress}%"
+            aria-valuenow={loadingProgress}
+            aria-valuemin={0}
+            aria-valuemax={100}
+          >
+            {loadingProgress}%
+          </div>
+        </div>
+      </div>
+    {/if}
+
+    <!-- Processing Progress Bar -->
+    {#if isProcessing}
+      <div id="processing-progress" class="mb-4">
+        <div class="progress" style="height: 30px">
+          <div
+            id="processing-progress-bar"
+            class="progress-bar progress-bar-striped progress-bar-animated"
+            role="progressbar"
+            style="width: {processingProgress}%"
+            aria-valuenow={processingProgress}
+            aria-valuemin={0}
+            aria-valuemax={100}
+          >
+            {t("processing.label")}
+          </div>
+        </div>
+      </div>
+    {/if}
+
+    <!-- Feedback Section -->
+    <div id="feedback-section" style={showFeedback ? "" : "display: none"}>
+      {#if inlineError}
+        <div class="alert alert-danger" role="alert">
+          <h5 class="alert-heading">
+            <i class="bi bi-exclamation-circle-fill me-2"></i>{t("errors.title")}
+          </h5>
+          <p><strong>{t("errors.message_label")}</strong> {inlineError.message}</p>
+          <details>
+            <summary class="btn btn-sm btn-outline-danger">{t("errors.show_details")}</summary>
+            <pre
+              class="mt-2 p-2 bg-light border rounded"
+              style="overflow-x:auto;font-size:.8rem;max-height:300px">{inlineError.stack}</pre>
+          </details>
+        </div>
+      {:else}
+        <div class="card shadow-sm" style={score && currentPhrase ? "" : "display: none"}>
+          <div class="card-header">
+            <h5 class="mb-0">{t("feedback.title")}</h5>
+          </div>
+          <div class="card-body">
+            <div class="alert {score?.bootstrapClass} mb-3" role="alert">
+              <h4 class="alert-heading">{score?.grade}</h4>
+              {#if !score?.notFound}
+                <p class="mb-0">
+                  {t("feedback.phoneme_similarity")}
+                  <strong>{score?.similarityPercent}%</strong>
+                </p>
+              {/if}
+            </div>
+
+            <div class="text-center mb-3">
+              <strong>{t("feedback.target_phrase_label")}</strong>
+              <p class="mb-0">{currentPhrase?.phrase}</p>
+            </div>
+
+            <div class="mb-3">
+              <div class="d-flex justify-content-center align-items-start gap-2 flex-wrap">
+                <div class="d-flex align-items-center">
+                  <strong class="me-2">{t("feedback.target_ipa_label")}</strong>
+                  <button
+                    id="play-target-btn"
+                    class="btn btn-sm btn-outline-secondary"
+                    title={t("feedback.play_target")}
+                    onclick={() => void playDesiredPronunciation(currentPhrase?.phrase ?? "")}
+                  >
+                    <i class="bi bi-volume-up-fill"></i>
+                  </button>
+                </div>
+                <div class="d-flex align-items-center">
+                  <strong class="me-2">{t("feedback.your_ipa_label")}</strong>
+                  {#if lastRecordingBlob}
+                    <button
+                      id="play-recording-btn"
+                      class="btn btn-sm btn-outline-secondary"
+                      title="Play your recording (long press to download)"
+                      use:longPressDownload
+                      onclick={() => playRecordingAudio()}
+                    >
+                      <i class="bi bi-play-fill"></i>
+                    </button>
+                  {/if}
+                  {#if lastRecordingAudioData}
+                    <button
+                      id="reprocess-recording-btn"
+                      class="btn btn-sm btn-outline-primary ms-2"
+                      title="Re-run IPA detection"
+                      onclick={() => void reprocessRecording()}
+                    >
+                      <i class="bi bi-arrow-clockwise"></i>
+                    </button>
+                  {/if}
+                </div>
+              </div>
+
+              <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+              <div
+                id="phoneme-comparison-grid"
+                role="group"
+                class="mt-3 d-flex justify-content-center flex-wrap gap-1"
+                onclick={handlePhonemeClick}
+                onkeydown={() => {}}
+              >
+                {#if score?.notFound}
+                  <span class="text-muted">{t("feedback.phrase_not_in_vocab")}</span>
+                {:else}
+                  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+                  {@html phonemeComparisonHTML}
+                {/if}
+              </div>
+
+              <span id="feedback-target-ipa" style="display:none"
+                >{currentPhrase?.ipas[0]?.ipa}</span
+              >
+              <span id="feedback-actual-ipa" style="display:none">{actualIPA}</span>
+            </div>
+
+            <!-- IPA Explanations -->
+            <div class="mt-3">
+              <button
+                type="button"
+                class="text-decoration-none small btn btn-link p-0"
+                aria-expanded={ipaExplanationsVisible}
+                onclick={() => {
+                  ipaExplanationsVisible = !ipaExplanationsVisible;
+                }}
+              >
+                <i class="bi bi-info-circle me-1"></i>
+                {t("feedback.ipa_help")}
+                <i class="bi {ipaExplanationsVisible ? 'bi-chevron-up' : 'bi-chevron-down'} ms-1"
+                ></i>
+              </button>
+              {#if ipaExplanationsVisible}
+                <div class="mt-2">
+                  <div class="card card-body bg-light small" id="ipa-explanations-content">
+                    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+                    {@html ipaExplanationsHTML || t("feedback.no_ipa_help")}
+                  </div>
+                  <div class="mt-2 text-end">
+                    <a
+                      href={resolve("/ipa-symbols", {})}
+                      class="small text-muted"
+                      rel="noopener noreferrer"
+                    >
+                      <!-- Replaced ipaSymbolsHref with static path -->
+                      <i class="bi bi-list-ul me-1"></i>{t("buttons.see_all_ipa")}
+                    </a>
+                  </div>
+                </div>
+              {/if}
+            </div>
+
+            <!-- Model Details -->
+            {#if lastRecordingAudioData}
+              <div class="mt-3 text-center">
+                <button
+                  id="show-model-details-btn"
+                  class="btn btn-sm btn-outline-info"
+                  onclick={() => void showModelDetailsPanel()}
+                >
+                  <i class="bi bi-graph-up me-1"></i>
+                  Show Model Details
+                </button>
+              </div>
+            {/if}
+
+            {#if modelDetailsVisible}
+              <div id="model-details" class="mt-3">
+                <div class="card card-body bg-light">
+                  <h6 class="fw-bold mb-3">
+                    <i class="bi bi-cpu me-1"></i>
+                    Model Output Visualization
+                  </h6>
+                  {#if modelDetailsLoading}
+                    <div class="text-center">
+                      <div class="spinner-border spinner-border-sm"></div>
+                      {t("processing.analyzing")}
+                    </div>
+                  {:else}
+                    <div id="model-details-content">
+                      <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+                      {@html modelDetailsHTML}
+                    </div>
+                  {/if}
+                </div>
+              </div>
+            {/if}
+
+            <div class="text-center mt-4">
+              <h4 class="mb-3">{score?.grade}</h4>
+              <p class="lead">{score?.message}</p>
+            </div>
+          </div>
+        </div>
+      {/if}
+    </div>
+
+    <!-- Processing Debug -->
+    {#if processingSteps.length > 0}
+      <div class="processing-debug mt-4">
+        <div class="processing-debug-title">{t("processing.debug_title")}</div>
+        {#if processingMeta.length > 0}
+          <ul class="processing-debug-list processing-debug-meta">
+            {#each processingMeta as item (item.labelKey)}
+              <li class="processing-debug-item">
+                <span class="processing-debug-label">{t(item.labelKey)}</span>
+                <span class="processing-debug-value">{item.value}</span>
               </li>
             {/each}
           </ul>
-        </div>
-      {/if}
+        {/if}
+        <ul class="processing-debug-list">
+          {#each processingSteps as step (step.labelKey)}
+            <li class="processing-debug-item" class:total={step.isTotal}>
+              <span class="processing-debug-label">{t(step.labelKey)}</span>
+              <span class="processing-debug-value">
+                {step.isTotal
+                  ? `${step.ms.toFixed(0)} ms`
+                  : `${step.ms.toFixed(0)} ms (${processingTotalMs && processingTotalMs > 0 ? Math.round((step.ms / processingTotalMs) * 100) : 0}%)`}
+              </span>
+            </li>
+          {/each}
+        </ul>
+      </div>
+    {/if}
 
-      <!-- History Section (managed by history.ts) -->
-      <div class="card shadow-sm mt-4">
-        <div class="card-header">
-          <h5 class="mb-0">{t("history.title")}</h5>
-        </div>
-        <div class="card-body">
-          <div id="history-container" style="max-height: 500px; overflow-y: auto">
-            <div id="history-empty" class="text-center py-4 text-muted" style="display: none">
-              <i class="bi bi-inbox fs-1"></i>
-              <p class="mt-2">{t("history.empty")}</p>
+    <!-- History Section (managed by history.ts) -->
+    <div class="card shadow-sm mt-4">
+      <div class="card-header">
+        <h5 class="mb-0">{t("history.title")}</h5>
+      </div>
+      <div class="card-body">
+        <div id="history-container" style="max-height: 500px; overflow-y: auto">
+          <div id="history-empty" class="text-center py-4 text-muted" style="display: none">
+            <i class="bi bi-inbox fs-1"></i>
+            <p class="mt-2">{t("history.empty")}</p>
+          </div>
+          <div id="history-list"></div>
+          <div id="history-loading" class="text-center py-3" style="display: none">
+            <div class="spinner-border spinner-border-sm text-primary" role="status">
+              <span class="visually-hidden">{t("loading.hidden_label")}</span>
             </div>
-            <div id="history-list"></div>
-            <div id="history-loading" class="text-center py-3" style="display: none">
-              <div class="spinner-border spinner-border-sm text-primary" role="status">
-                <span class="visually-hidden">{t("loading.hidden_label")}</span>
-              </div>
-              <span class="ms-2 small text-muted">{t("history.loading")}</span>
-            </div>
+            <span class="ms-2 small text-muted">{t("history.loading")}</span>
           </div>
         </div>
       </div>
-    </main>
-  {/if}
+    </div>
+  </main>
 
   <!-- Console Output -->
   <div class="card mb-4 bg-dark text-light mt-4">

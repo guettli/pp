@@ -15,10 +15,3 @@ Add a summary.
 Do `git commit -m "brief-task-explanation".
 
 Then take the next task. Tasks are seperated by three dashes.
-
----
-
-IPA of "Le ballon de foot" contains strange chars
-
-Create automated test, so that this does not happen again. Check all ipas of all phrases of all
-langs before deploy.

@@ -155,6 +155,7 @@ const translations: Translations = {
     "level.text.medium": "Mittel",
     "level.text.hard": "Schwer",
     "level.text.very_hard": "Sehr schwer",
+    "loading.waiting_for_model": "Aufnahme gespeichert. Warte auf KI-Modell...",
   },
   "en-GB": {
     "app.title": "Phoneme Party - Pronunciation Practice",
@@ -301,6 +302,7 @@ const translations: Translations = {
     "level.text.medium": "Medium",
     "level.text.hard": "Hard",
     "level.text.very_hard": "Very Hard",
+    "loading.waiting_for_model": "Recording saved. Waiting for AI model...",
   },
   "fr-FR": {
     "app.title": "Phonème Party - Entraînement à la prononciation",
@@ -447,6 +449,7 @@ const translations: Translations = {
     "level.text.medium": "Moyen",
     "level.text.hard": "Difficile",
     "level.text.very_hard": "Très difficile",
+    "loading.waiting_for_model": "Enregistrement sauvegardé. En attente du modèle IA...",
   },
 };
 
