@@ -8,7 +8,21 @@
   import { AudioRecorder } from "../audio/recorder.js";
   import { scorePronunciation } from "../comparison/scorer.js";
   import { db } from "../db.js";
-  import { getUiLang, initI18n, isUiLangAuto, onUiLangChange, setUiLang, t } from "../i18n.js";
+  import {
+    getUiLang,
+    initI18n,
+    isUiLangAuto,
+    onUiLangChange,
+    setUiLang,
+    t as _t,
+  } from "../i18n.js";
+
+  // Reactive wrapper: reading uiLang makes all {t("key")} template expressions
+  // re-evaluate when the language changes (Svelte 5 tracks $state reads at call sites).
+  function t(key: string, vars: Record<string, string | number> = {}): string {
+    void uiLang;
+    return _t(key, vars);
+  }
   import {
     extractPhonemes,
     extractPhonemesDetailed,
