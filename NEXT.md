@@ -17,13 +17,3 @@ Add a summary.
 Do `git commit -m "brief-task-explanation".
 
 Then take the next task. Tasks are seperated by three dashes.
-
----
-
-Why en-US here?
-
-"en-GB": { voice: "en-US-AndrewNeural", source: "edge-tts-andrew" },
-
-Currently only en-GB is supported. Fix that.
-
----

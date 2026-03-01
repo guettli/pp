@@ -24,7 +24,7 @@ const DATA_DIR = path.join(__dirname, "data");
 // TTS voice configurations
 const TTS_VOICES = {
   "de-DE": { voice: "de-DE-ConradNeural", source: "edge-tts-conrad" },
-  "en-GB": { voice: "en-US-AndrewNeural", source: "edge-tts-andrew" },
+  "en-GB": { voice: "en-GB-RyanNeural", source: "edge-tts-ryan" },
 };
 
 async function downloadIfNeeded(url, filename) {
