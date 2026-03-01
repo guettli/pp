@@ -29,22 +29,11 @@ Fail if a phrase has no level or no ipa.
 
 ---
 
-The piper voices are not good. Use better ones.
-
-
----
-
-TTS DE: Adler, Burger, ... klingt komisch (Piper)a
-
 ---
 
 When user runs old software, a read banner should be visible to reload.
 
 OR: autoreload on next "Next" button.
-
----
-
-Pre-Fetch the next 100 phrases. Except on mobile network.
 
 ---
 

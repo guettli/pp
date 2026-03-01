@@ -21,6 +21,7 @@
     loadPhraseAudioManifest,
     pickRandomVoice,
     playPhraseAudio,
+    prefetchPhraseAudio,
     RANDOM_VOICE_NAME,
     ttsPlaybackRate,
     type VoiceOption,
@@ -39,7 +40,7 @@
   import { generateModelDetailsHTML } from "../ui/model-details-view.js";
   import { generatePhonemeComparisonHTML } from "../ui/phoneme-comparison-view.js";
   import { adjustUserLevel, loadUserLevel, saveUserLevel } from "../utils/level-adjustment.js";
-  import { selectNextPhrase } from "../utils/phrase-selector.js";
+  import { getTopPhrasesForPrefetch, selectNextPhrase } from "../utils/phrase-selector.js";
   import { getPhraseInLang } from "../utils/phrase-xlang";
   import { findPhraseByName } from "../utils/random.js";
 
@@ -99,7 +100,7 @@
   let consoleLog = $state("");
   let consoleExpanded = $state(false);
 
-  // Voice selection: name of the selected pre-generated voice (e.g. "piper-thorsten")
+  // Voice selection: name of the selected pre-generated voice (e.g. "google-male")
   let selectedVoiceName = $state("");
   let availableVoices = $state<VoiceOption[]>([]);
 
@@ -776,6 +777,22 @@
     window.history.replaceState({}, "", `${window.location.pathname}?${params.toString()}`);
   }
 
+  /** Prefetch audio for the top-100 upcoming phrases (skipped on metered connections). */
+  function schedulePrefetch() {
+    const sl = getStudyLang();
+    if (!sl) return;
+    const voices =
+      selectedVoiceName === RANDOM_VOICE_NAME
+        ? getAvailableVoices(sl).map((v) => v.name)
+        : selectedVoiceName
+          ? [selectedVoiceName]
+          : [];
+    if (voices.length === 0) return;
+    void getTopPhrasesForPrefetch(studyLangToPhraseLang(sl), userLevel, sl, 100).then((phrases) =>
+      prefetchPhraseAudio(phrases, sl, voices),
+    );
+  }
+
   async function nextPhrase() {
     const sl = getStudyLang();
     if (!sl) return;
@@ -802,6 +819,7 @@
     modelDetailsVisible = false;
     updateURL();
     autoPlayPhrase(phrase.phrase);
+    schedulePrefetch();
   }
 
   async function handleLevelChange(newLevel: number) {
@@ -995,6 +1013,7 @@
       if (currentPhrase) {
         autoPlayPhrase(currentPhrase.phrase);
       }
+      schedulePrefetch();
 
       await tick();
       initHistory();

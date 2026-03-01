@@ -44,12 +44,11 @@ def _build_hash_to_phrase():
     """Build {(lang, hash) -> phrase} from manifest and yaml files.
 
     Manifest takes priority (covers edge-tts voices whose hashes differ from
-    the computed md5). The yaml-based fallback covers voices not in manifest
-    (e.g. piper-kerstin).
+    the computed md5). The yaml-based fallback covers voices not in manifest.
     """
     lookup = {}
 
-    # Fallback: compute from yaml phrase lists (covers piper voices)
+    # Fallback: compute from yaml phrase lists
     for yaml_file in sorted(_REPO_ROOT.glob("phrases-*.yaml")):
         lang = yaml_file.stem.replace("phrases-", "")
         with open(yaml_file) as f:

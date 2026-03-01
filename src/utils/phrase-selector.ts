@@ -5,6 +5,34 @@ import { computePhraseQueue } from "./phrase-queue.js";
 import type { PhraseHistory } from "./phrase-queue.js";
 
 /**
+ * Return the top-N phrase texts by priority score for prefetch purposes.
+ * Unlike selectNextPhrase, this is deterministic (no random top-3 sampling).
+ */
+export async function getTopPhrasesForPrefetch(
+  phraseLang: SupportedLanguage,
+  userLevel: number,
+  studyLang: string,
+  n: number = 100,
+): Promise<string[]> {
+  const levelFiltered = filterByLevel(getAllPhrases(phraseLang), userLevel);
+  const stateList = await db.getAllPhraseStates(studyLang);
+  const stateMap = new Map<string, PhraseHistory>(
+    stateList.map((s) => [
+      s.phrase,
+      {
+        phrase: s.phrase,
+        nextReviewDate: s.nextReviewDate,
+        interval: s.interval,
+        averageScore: s.averageScore,
+        repetitions: s.repetitions,
+      },
+    ]),
+  );
+  const queue = computePhraseQueue(levelFiltered, stateMap, Date.now());
+  return queue.slice(0, n).map((c) => c.phrase.phrase);
+}
+
+/**
  * Select the next phrase to show using spaced repetition.
  *
  * Steps:

@@ -4,33 +4,33 @@ import yaml
 import os
 import hashlib
 import json
+import subprocess
+import tempfile
 from pathlib import Path
 from google.cloud import texttospeech
-import tempfile
-import subprocess
 
-def get_file_hash(file_path):
-    """Calculates the SHA1 hash of a file and returns the first 16 characters."""
-    with open(file_path, "rb") as f:
-        content = f.read()
-        return hashlib.sha1(content).hexdigest()[:16]
+
+def phrase_hash(phrase: str) -> str:
+    """Return a 16-char hex MD5 of the phrase (UTF-8), used as filename."""
+    return hashlib.md5(phrase.encode("utf-8")).hexdigest()[:16]
+
 
 def main():
     """
     Main function to generate audio files and update the manifest.
+    Uses Google Cloud TTS Neural2 voices for high-quality synthesis.
     """
     project_root = Path(__file__).parent.parent
     phrases_dir = project_root
     audio_dir = project_root / "static" / "audio"
     manifest_path = audio_dir / "manifest.json"
 
-    # Instantiates a client
     client = texttospeech.TextToSpeechClient()
 
     languages = {
-        "de-DE": {"male": "de-DE-Standard-B", "female": "de-DE-Standard-A"},
-        "en-GB": {"male": "en-GB-Standard-B", "female": "en-GB-Standard-A"},
-        "fr-FR": {"male": "fr-FR-Standard-B", "female": "fr-FR-Standard-A"},
+        "de-DE": {"male": "de-DE-Neural2-B", "female": "de-DE-Neural2-A"},
+        "en-GB": {"male": "en-GB-Neural2-B", "female": "en-GB-Neural2-A"},
+        "fr-FR": {"male": "fr-FR-Neural2-B", "female": "fr-FR-Neural2-A"},
     }
 
     if manifest_path.exists():
@@ -68,64 +68,67 @@ def main():
                     print(f"Skipping existing phrase: {phrase}")
                     continue
 
+                # Extract standard IPA if available for SSML phoneme hints
                 ipa = None
                 if "ipas" in item:
-                    standard_ipa = next((ipa['ipa'] for ipa in item['ipas'] if ipa.get('category') == 'standard'), None)
+                    standard_ipa = next(
+                        (e["ipa"] for e in item["ipas"] if e.get("category") == "standard"),
+                        None,
+                    )
                     if standard_ipa:
                         ipa = standard_ipa.strip("/")
 
-                if not ipa:
-                    print(f"Skipping phrase without standard IPA: {phrase}")
-                    continue
-
-                print(f"Generating audio for '{phrase}' (IPA: {ipa}) in {lang_code} with voice {voice_id}")
-
-                ssml = f'<speak><phoneme alphabet="ipa" ph="{ipa}">{phrase}</phoneme></speak>'
-                synthesis_input = texttospeech.SynthesisInput(ssml=ssml)
+                if ipa:
+                    synthesis_input = texttospeech.SynthesisInput(
+                        ssml=f'<speak><phoneme alphabet="ipa" ph="{ipa}">{phrase}</phoneme></speak>'
+                    )
+                    print(f"Generating '{phrase}' (IPA: {ipa}) [{lang_code} {voice_id}]")
+                else:
+                    synthesis_input = texttospeech.SynthesisInput(text=phrase)
+                    print(f"Generating '{phrase}' [{lang_code} {voice_id}]")
 
                 voice = texttospeech.VoiceSelectionParams(
                     language_code=lang_code, name=voice_id
                 )
-
                 audio_config = texttospeech.AudioConfig(
                     audio_encoding=texttospeech.AudioEncoding.MP3
                 )
+
+                fhash = phrase_hash(phrase)
+                out_file = voice_audio_dir / f"{fhash}.opus"
 
                 try:
                     response = client.synthesize_speech(
                         input=synthesis_input, voice=voice, audio_config=audio_config
                     )
 
-                    with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp_mp3:
-                        tmp_mp3.write(response.audio_content)
-                        tmp_mp3_path = tmp_mp3.name
-
-                    with tempfile.NamedTemporaryFile(suffix=".flac", delete=False) as tmp_flac:
-                        tmp_flac_path = tmp_flac.name
+                    with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
+                        tmp.write(response.audio_content)
+                        tmp_mp3_path = tmp.name
 
                     subprocess.run(
-                        ["ffmpeg", "-i", tmp_mp3_path, "-y", tmp_flac_path],
+                        ["ffmpeg", "-y", "-i", tmp_mp3_path,
+                         "-c:a", "libopus", "-b:a", "24k", "-ac", "1",
+                         str(out_file)],
                         check=True,
                         capture_output=True,
                         text=True,
                     )
+                    os.unlink(tmp_mp3_path)
 
-                    file_hash = get_file_hash(tmp_flac_path)
-                    final_flac_path = voice_audio_dir / f"{file_hash}.flac"
-
-                    os.rename(tmp_flac_path, final_flac_path)
-                    os.remove(tmp_mp3_path)
-
-                    manifest[lang_code][voice_name][phrase] = file_hash
-                    print(f"  ... success. Hash: {file_hash}")
+                    manifest[lang_code][voice_name][phrase] = fhash
+                    print(f"  ... success. Hash: {fhash}")
 
                 except Exception as e:
                     print(f"  ... failed: {e}")
+                    if "tmp_mp3_path" in dir() and os.path.exists(tmp_mp3_path):
+                        os.unlink(tmp_mp3_path)
 
     with open(manifest_path, "w") as f:
         json.dump(manifest, f, indent=2, sort_keys=True)
 
     print("Manifest updated.")
+
 
 if __name__ == "__main__":
     main()
