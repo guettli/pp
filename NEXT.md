@@ -8,6 +8,8 @@ When deploy was succcessful, then create a new file in the directory "done":
 
 done/YYYY-MM-DD-brief-task-explanation.md
 
+Add this done-file to git.
+
 Move the task from NEXT.md to this file.
 
 Add a summary.
@@ -15,12 +17,6 @@ Add a summary.
 Do `git commit -m "brief-task-explanation".
 
 Then take the next task. Tasks are seperated by three dashes.
-
----
-
-Are there other things which might block the main thread?
-
-like recording audio, doing pre-processing (wasm), or Inference?
 
 ---
 
