@@ -17,3 +17,9 @@ Do `git commit -m "brief-task-explanation".
 Then take the next task. Tasks are seperated by three dashes.
 
 ---
+
+Are there other things which might block the main thread?
+
+like recording audio, doing pre-processing (wasm), or Inference?
+
+---
