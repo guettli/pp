@@ -1,8 +1,18 @@
 <!-- markdownlint-disable -->
 
-Why en-US here ???
+analyze-phrase-ipas.py
 
-  "en-GB": { voice: "en-US-AndrewNeural", source: "edge-tts-andrew" },
+Script re-invents ipa comparison.
+
+Stop that nonesense. Reuse existing func to compare IPAs.
+
+---
+
+MediaRecorder: it is not really streaming!
+
+Audio needs to be processed over and over again...
+
+Better: AudioWorklet
 
 ---
 
@@ -127,13 +137,6 @@ Käse: mit Ä oder E ausgesprochen? Wikitionary hat beides.
 
 ---
 
-Ausgezeichnet!
-Perfekte Aussprache! Super gemacht!
-
-visible, when ui-lang is EN?
-
----
-
 English explanation of ɛː
 care (lang)
 
@@ -146,14 +149,6 @@ Which treshold does zipa python code use? Do they check phoneme similarity?
 
 ---
 
----
-
-There are four matches. I think I want exactly one match.
-
-No code duplication!
-
----
-
 remove these tests?
 
 pouchdb-error-prod.spec.js — different browser project (production URL), only waits 2s, never fully
@@ -161,19 +156,6 @@ loads the model. Unavoidable since it needs its own URL.
 
 voice-selection.spec.js — marked @slow, excluded from normal pnpm check by the grep filter in
 playwright.config.js.
-
----
-
-"Der Panda". Per Zippa wird das letzte A erkannt. Bei mir nur mit Tricks. Wieso?
-
----
-
-Compare again with ZIPA. Are there differences in:
-
-- Output of pre-processing
-- Output of mode
-- Output of post-processing
-
 
 ---
 
@@ -192,26 +174,15 @@ Which files get ignored by git ? Keep list small. Use build dir.
 
 ---
 
-re-run sometimes does shows better results.
-
----
-
-CI: New Linux user, Checkout git ....
-
----
 
 chrome devtools, look at "Issues" (right top).
 Warning about Buffer usage.
 
+(should be gone, origin clean now via coi-serviceworker)
 
 ---
 
 all ts scripts should use parseArgs with strict.
-
----
-
-Audio zweimal ins Model geben? Ggf braucht das Model etwas mehr Input um sich an den Sprecher zu
-gewöhnen?
 
 ---
 

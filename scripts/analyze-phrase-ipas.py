@@ -2,7 +2,10 @@
 """Analyze detected IPAs from static/audio/ipas.json against expected IPAs.
 
 Computes panphon feature distance between detected and expected IPA,
-reports worst-performing phrases and voices.
+reports worst-performing phrases and voi
+---
+
+ces.
 
 Usage:
     python scripts/analyze-phrase-ipas.py [--top N] [--lang LANG] [--voice VOICE]
