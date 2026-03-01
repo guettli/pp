@@ -4,7 +4,7 @@
  */
 
 import { extractPhonemesWithBlankInfo } from "./phoneme-extractor.js";
-import { prepareAudioForModel } from "../audio/processor.js";
+import { prepareAudioForModel, peakNormalize } from "../audio/processor.js";
 import { calculatePanPhonDistance } from "../comparison/panphon-distance.js";
 
 /**
@@ -177,9 +177,12 @@ export class RealTimePhonemeDetector {
       // Check for silence on the decoded audio (not on individual chunks)
       await this.checkSilenceFromAudioData(audioData);
 
+      // Normalize after silence check so quiet audio doesn't fool the detector
+      const normalizedAudioData = peakNormalize(audioData);
+
       // Extract phonemes and check for trailing blank frames
       const { phonemes, trailingBlankFrames } = await extractPhonemesWithBlankInfo(
-        audioData,
+        normalizedAudioData,
         this.config.blankTrailConfidence,
       );
       this.lastExtractedPhonemes = phonemes;

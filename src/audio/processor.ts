@@ -4,7 +4,8 @@
  */
 
 /**
- * Convert audio blob to format expected by the model (16kHz mono)
+ * Convert audio blob to 16kHz mono Float32Array (no normalization).
+ * Use peakNormalize() before feeding to the phoneme model.
  */
 export async function prepareAudioForModel(audioBlob: Blob): Promise<Float32Array> {
   // Convert blob to ArrayBuffer
@@ -38,25 +39,29 @@ export async function prepareAudioForModel(audioBlob: Blob): Promise<Float32Arra
     audioData = await resampleAudio(audioData, audioBuffer.sampleRate, 16000);
   }
 
-  // Peak-normalize to 0.9 so quiet recordings are detected reliably
+  // Close the audio context to free resources
+  await audioContext.close();
+
+  return audioData;
+}
+
+/**
+ * Peak-normalize audio to 0.9 so quiet recordings are detected reliably.
+ * Call this after silence detection but before feeding to the phoneme model.
+ */
+export function peakNormalize(audioData: Float32Array): Float32Array {
   let peak = 0;
   for (let i = 0; i < audioData.length; i++) {
     const abs = Math.abs(audioData[i]);
     if (abs > peak) peak = abs;
   }
-  if (peak > 0) {
-    const scale = 0.9 / peak;
-    const normalized = new Float32Array(audioData.length);
-    for (let i = 0; i < audioData.length; i++) {
-      normalized[i] = audioData[i] * scale;
-    }
-    audioData = normalized;
+  if (peak === 0) return audioData;
+  const scale = 0.9 / peak;
+  const normalized = new Float32Array(audioData.length);
+  for (let i = 0; i < audioData.length; i++) {
+    normalized[i] = audioData[i] * scale;
   }
-
-  // Close the audio context to free resources
-  await audioContext.close();
-
-  return audioData;
+  return normalized;
 }
 
 /**

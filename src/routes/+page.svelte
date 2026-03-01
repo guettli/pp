@@ -4,7 +4,7 @@
   import { onMount, tick } from "svelte";
   import "../styles/main.css";
 
-  import { prepareAudioForModel } from "../audio/processor.js";
+  import { prepareAudioForModel, peakNormalize } from "../audio/processor.js";
   import { AudioRecorder } from "../audio/recorder.js";
   import { scorePronunciation } from "../comparison/scorer.js";
   import { db } from "../db.js";
@@ -623,8 +623,8 @@
     }, 100);
 
     try {
-      const audioData = await measureAsync("processing.step_prepare", () =>
-        prepareAudioForModel(audioBlob),
+      const audioData = peakNormalize(
+        await measureAsync("processing.step_prepare", () => prepareAudioForModel(audioBlob)),
       );
       lastRecordingAudioData = audioData;
       processingProgress = 30;
