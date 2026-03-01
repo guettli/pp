@@ -165,7 +165,6 @@ export function prefetchPhraseAudio(
       if (!url || prefetchedUrls.has(url)) continue;
       prefetchedUrls.add(url);
       // Fire-and-forget: warm the browser cache; errors are benign
-      // @ts-expect-error `priority` not yet in RequestInit types
       fetch(url, { priority: "low" }).catch(() => {});
     }
   }

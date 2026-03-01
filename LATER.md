@@ -1,10 +1,20 @@
 <!-- markdownlint-disable -->
 
+Why en-US here ???
+
+  "en-GB": { voice: "en-US-AndrewNeural", source: "edge-tts-andrew" },
+
 ---
 
-tests/data/en-GB/baggage/baggage-guettli.flac
+Provide way to search in all Phrases.
 
-zipa recognizes that better than my tool. Why?
+Search string of user should be used in both: studyLang and uiLang.
+
+Do case-insenstive "contains" search. Do intersection:
+
+search string: foo bar
+matches "zbars xfoox"
+but does not match: "bar" or "foos"
 
 ---
 
@@ -29,15 +39,9 @@ Fail if a phrase has no level or no ipa.
 
 ---
 
----
-
 When user runs old software, a read banner should be visible to reload.
 
 OR: autoreload on next "Next" button.
-
----
-
-Is die englische Aussprache British english?
 
 ---
 

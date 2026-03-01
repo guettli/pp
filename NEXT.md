@@ -18,6 +18,10 @@ Then take the next task. Tasks are seperated by three dashes.
 
 ---
 
+Changing the uiLang seems broken. First write a test. See it fail, then fix, then deploy. Ensure test is run before deploy.
+
+---
+
 Are there other things which might block the main thread?
 
 like recording audio, doing pre-processing (wasm), or Inference?

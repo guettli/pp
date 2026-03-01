@@ -56,14 +56,13 @@ def main():
                 if not phrase:
                     continue
 
-                if phrase in manifest[lang_code][voice_name]:
+                fhash = phrase_hash(phrase)
+                out_file = voice_audio_dir / f"{fhash}.opus"
+                if phrase in manifest[lang_code][voice_name] and out_file.exists():
                     print(f"Skipping existing phrase: {phrase}")
                     continue
 
                 print(f"Generating audio for '{phrase}' in {lang_code} with voice {voice_id}")
-
-                fhash = phrase_hash(phrase)
-                out_file = voice_audio_dir / f"{fhash}.opus"
                 tmp_mp3 = voice_audio_dir / f"{fhash}.tmp.mp3"
                 try:
                     subprocess.run(
@@ -81,6 +80,8 @@ def main():
                     )
                     tmp_mp3.unlink()
                     manifest[lang_code][voice_name][phrase] = fhash
+                    with open(manifest_path, "w") as f:
+                        json.dump(manifest, f, indent=2, sort_keys=True)
                     print(f"  ... success. Hash: {fhash}")
                 except subprocess.CalledProcessError as e:
                     print(f"  ... failed: {e.stderr}")
