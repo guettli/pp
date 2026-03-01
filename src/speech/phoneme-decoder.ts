@@ -77,7 +77,7 @@ export function extractFrameData(
  * When similar phonemes split probability, merge them before decoding
  */
 const PHONEME_CLASSES: Array<Set<string>> = [
-  new Set(["e", "ɛ"]), // close-mid vs open-mid front vowels
+  new Set(["e", "ɛ", "æ"]), // close-mid vs open-mid vs open front vowels (model splits probability)
   new Set(["o", "ɔ"]), // close-mid vs open-mid back vowels
   new Set(["a", "ɑ", "ɐ"]), // open/near-open vowels (model splits probability between these)
   new Set(["i", "ɪ"]), // close vs near-close front vowels
@@ -121,7 +121,7 @@ const STRONG_PHONEMES = new Set([
   "ɪ",
   "ɔ",
   "ʊ",
-  "æ",
+  "æ", // near-open front vowel (en "cat", "baggage")
   "ʌ",
   "ɒ",
   "aː",

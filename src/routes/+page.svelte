@@ -19,7 +19,9 @@
     getAvailableVoices,
     hasPhraseAudio,
     loadPhraseAudioManifest,
+    pickRandomVoice,
     playPhraseAudio,
+    RANDOM_VOICE_NAME,
     ttsPlaybackRate,
     type VoiceOption,
   } from "../speech/phrase-audio.js";
@@ -202,26 +204,52 @@
   // ── Audio playback ────────────────────────────────────────────────────────────
 
   /**
+   * Resolve the voice name to use for playback.
+   * If selectedVoiceName is RANDOM_VOICE_NAME, pick a random available voice.
+   */
+  function resolveVoice(studyLang: StudyLanguage): string | null {
+    if (!selectedVoiceName) return null;
+    if (selectedVoiceName === RANDOM_VOICE_NAME) return pickRandomVoice(studyLang);
+    return selectedVoiceName;
+  }
+
+  /**
    * Auto-play the pre-generated audio for a phrase when it loads.
    */
   function autoPlayPhrase(phrase: string): void {
     const sl = getStudyLang();
-    if (!sl || !phrase || !selectedVoiceName) return;
-    void playPhraseAudio(phrase, sl, selectedVoiceName, ttsPlaybackRate(userLevel));
+    if (!sl || !phrase) return;
+    const voiceName = resolveVoice(sl);
+    if (!voiceName) return;
+    void playPhraseAudio(phrase, sl, voiceName, ttsPlaybackRate(userLevel));
+  }
+
+  /**
+   * Play the pre-generated audio for the UI-language translation of the current phrase.
+   */
+  async function playUiLangPhrase(phrase: string): Promise<void> {
+    const uiLangTyped = uiLang as StudyLanguage;
+    const voiceName = pickRandomVoice(uiLangTyped);
+    if (!voiceName) return;
+    await playPhraseAudio(phrase, uiLangTyped, voiceName, ttsPlaybackRate(userLevel)).catch(
+      (err) => {
+        console.error("Audio playback error:", err);
+      },
+    );
   }
 
   /**
    * Play the desired pronunciation for a phrase on demand.
    */
   async function playDesiredPronunciation(phrase: string): Promise<void> {
-    if (!phrase || !selectedVoiceName) return;
+    if (!phrase) return;
     const studyLang = getStudyLang();
     if (!studyLang) return;
-    await playPhraseAudio(phrase, studyLang, selectedVoiceName, ttsPlaybackRate(userLevel)).catch(
-      (err) => {
-        console.error("Audio playback error:", err);
-      },
-    );
+    const voiceName = resolveVoice(studyLang);
+    if (!voiceName) return;
+    await playPhraseAudio(phrase, studyLang, voiceName, ttsPlaybackRate(userLevel)).catch((err) => {
+      console.error("Audio playback error:", err);
+    });
   }
 
   function downloadRecording() {
@@ -751,8 +779,10 @@
   async function nextPhrase() {
     const sl = getStudyLang();
     if (!sl) return;
-    const audioFilter = selectedVoiceName
-      ? (phraseText: string) => hasPhraseAudio(phraseText, sl, selectedVoiceName)
+    const filterVoice =
+      selectedVoiceName === RANDOM_VOICE_NAME ? pickRandomVoice(sl) : selectedVoiceName;
+    const audioFilter = filterVoice
+      ? (phraseText: string) => hasPhraseAudio(phraseText, sl, filterVoice)
       : null;
     const phrase = await selectNextPhrase(
       studyLangToPhraseLang(sl),
@@ -954,11 +984,11 @@
       if (sl) {
         availableVoices = getAvailableVoices(sl);
         const savedVoice = await db.getPreferredVoice(sl);
-        const firstVoice = availableVoices[0]?.name ?? "";
         selectedVoiceName =
-          savedVoice && availableVoices.some((v) => v.name === savedVoice)
+          savedVoice &&
+          (savedVoice === RANDOM_VOICE_NAME || availableVoices.some((v) => v.name === savedVoice))
             ? savedVoice
-            : firstVoice;
+            : RANDOM_VOICE_NAME;
       }
 
       // Auto-play audio for the initial phrase (if any)
@@ -979,9 +1009,11 @@
           // Update available voices for the new language
           availableVoices = getAvailableVoices(newSl);
           void db.getPreferredVoice(newSl).then((saved) => {
-            const first = availableVoices[0]?.name ?? "";
             selectedVoiceName =
-              saved && availableVoices.some((v) => v.name === saved) ? saved : first;
+              saved &&
+              (saved === RANDOM_VOICE_NAME || availableVoices.some((v) => v.name === saved))
+                ? saved
+                : RANDOM_VOICE_NAME;
           });
         }
       });
@@ -1128,6 +1160,7 @@
               if (currentPhrase) autoPlayPhrase(currentPhrase.phrase);
             }}
           >
+            <option value={RANDOM_VOICE_NAME}>Random</option>
             {#each availableVoices as voice (voice.name)}
               <option value={voice.name}>{voice.label}</option>
             {/each}
@@ -1231,7 +1264,18 @@
           </div>
           {@const xlangPhrase = getPhraseInLang(currentPhrase, uiLang)}
           {#if xlangPhrase !== currentPhrase.phrase}
-            <p class="text-muted fs-5 mb-0" data-testid="ui-lang-phrase">{xlangPhrase}</p>
+            <div class="d-flex justify-content-center align-items-center gap-2 mt-1">
+              <p class="text-muted fs-5 mb-0" data-testid="ui-lang-phrase">{xlangPhrase}</p>
+              {#if uiLang !== studyLangValue}
+                <button
+                  class="btn btn-sm btn-outline-secondary"
+                  title="Play in {uiLang}"
+                  onclick={() => void playUiLangPhrase(xlangPhrase)}
+                >
+                  <i class="bi bi-volume-up-fill"></i>
+                </button>
+              {/if}
+            </div>
           {/if}
         {:else}
           <div class="emoji-display mb-3">🎉</div>

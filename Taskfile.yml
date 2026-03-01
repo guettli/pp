@@ -83,6 +83,8 @@ tasks:
   check:
     desc: Run all checks (lint + typecheck + e2e + unit tests), concurrent where possible
     deps: [lint, typecheck, test, unit-test]
+    cmds:
+      - ./scripts/validate-phrases-en-GB.py
 
   check-prod:
     desc: Run smoke tests against the live production site

@@ -15,3 +15,5 @@ Add a summary.
 Do `git commit -m "brief-task-explanation".
 
 Then take the next task. Tasks are seperated by three dashes.
+
+---

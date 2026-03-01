@@ -5,13 +5,22 @@ description = "Learn speaking clearly"
 requires-python = ">=3.8"
 dependencies = [
     "panphon",
-    "torch",
     "onnx",
     "onnxruntime",
     "huggingface_hub",
     "sentencepiece",
     "deep_translator",
+    "piper-tts",
+    "google-cloud-texttospeech",
+    "edge-tts",
+    "soundfile",
+    "soxr",
+    "kaldi-native-fbank",
 ]
+
+[tool.uv]
+extra-index-url = ["https://download.pytorch.org/whl/cpu"]
+override-dependencies = ["markupsafe<3.0.3"]
 
 [build-system]
 requires = ["setuptools>=61.0"]

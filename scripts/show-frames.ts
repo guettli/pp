@@ -52,6 +52,8 @@ async function main() {
   console.log(`Frames:   ${detailedPhonemes.raw.frames}`);
   console.log("");
   console.log(buildFrameText(detailedPhonemes.raw.frameData));
+  console.log("");
+  console.log(`IPA:      ${detailedPhonemes.phonemes}`);
 }
 
 main();

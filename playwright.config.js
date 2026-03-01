@@ -61,7 +61,11 @@ export default defineConfig({
           },
         }),
       },
-      testIgnore: ["**/pouchdb-error-prod.spec.js", "**/prod-smoke.spec.js"],
+      testIgnore: [
+        "**/pouchdb-error-prod.spec.js",
+        "**/prod-smoke.spec.js",
+        "**/prod-audio.spec.js",
+      ],
     },
     {
       name: "chromium-production",
@@ -74,7 +78,7 @@ export default defineConfig({
     {
       name: "prod",
       use: { ...devices["Desktop Chrome"] },
-      testMatch: "**/prod-smoke.spec.js",
+      testMatch: ["**/prod-smoke.spec.js", "**/prod-audio.spec.js"],
     },
   ],
 

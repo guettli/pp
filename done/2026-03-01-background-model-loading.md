@@ -12,6 +12,7 @@ recording was done). Otherwise do not show a progress bar.
 ### `src/routes/+page.svelte`
 
 **Background model loading:**
+
 - Removed blocking `isLoading` state variable (was `true` until model finished downloading).
 - `onMount` no longer awaits `loadPhonemeModel()`. The model loads via a detached `.then()/.catch()`
   chain — the UI is immediately interactive.
@@ -19,19 +20,22 @@ recording was done). Otherwise do not show a progress bar.
 - `class:model-loaded={isModelLoaded}` added to `#app` div so test fixtures can detect readiness.
 
 **Intro text (all UI languages simultaneously):**
+
 - Card shown when `!studyLangValue` (no study language selected yet).
 - Displays welcome text in English, German, and French at the same time — no i18n key needed since
   all three are always shown together.
 
 **Recording before model is ready (silence-only detection):**
+
 - `handleRecordStart()` now has two paths:
   - `isModelLoaded`: creates `RealTimePhonemeDetector` as before (full real-time with model).
-  - `!isModelLoaded`: uses a simple inline RMS-energy silence detector — pure JS, no ONNX. Accumulates
-    chunks in a local array, computes RMS on the combined audio, triggers `actuallyStopRecording()`
-    after 1500 ms of silence (threshold 0.01). No WASM needed since the existing
-    `prepareAudioForModel()` (used for decoding) already runs in browser.
+  - `!isModelLoaded`: uses a simple inline RMS-energy silence detector — pure JS, no ONNX.
+    Accumulates chunks in a local array, computes RMS on the combined audio, triggers
+    `actuallyStopRecording()` after 1500 ms of silence (threshold 0.01). No WASM needed since the
+    existing `prepareAudioForModel()` (used for decoding) already runs in browser.
 
 **Pending recording queue:**
+
 - `actuallyStopRecording()` detects `!isModelLoaded`: stores the blob + duration in
   `pendingRecordingBlob` / `pendingRecordingDuration` and returns early.
 - When model finishes loading, if a pending recording exists, `processRecording()` is called
@@ -39,22 +43,26 @@ recording was done). Otherwise do not show a progress bar.
 - Record button gains `|| pendingRecordingBlob !== null` in its `disabled` condition.
 
 **Processing extracted to `processRecording()`:**
+
 - All phoneme extraction + scoring logic moved from `actuallyStopRecording()` into a new standalone
-  `processRecording(audioBlob, duration, detector)` function. Handles its own errors internally
-  (no re-throw), so it can be called safely from both paths.
+  `processRecording(audioBlob, duration, detector)` function. Handles its own errors internally (no
+  re-throw), so it can be called safely from both paths.
 
 **Inline model progress bar:**
+
 - Shown only when `pendingRecordingBlob && !isModelLoaded` — exactly as specified.
 - Uses existing `loadingProgress` (0–100) driven by `updateLoadingProgressState()`.
 - Removed `loadingStatus` state variable (was used only in the old full-page overlay).
 
 **Load error:**
+
 - Replaced full-page blocking overlay with a small inline `alert-danger` card. Page is always
   usable; error is shown if model fails.
 
 **Level control:**
-- The `{#if !isLoading}` gate replaced with `{#if studyLangValue}` — level slider only appears
-  when a study language is selected.
+
+- The `{#if !isLoading}` gate replaced with `{#if studyLangValue}` — level slider only appears when
+  a study language is selected.
 
 ### `src/i18n.ts`
 

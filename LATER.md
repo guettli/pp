@@ -1,14 +1,29 @@
 <!-- markdownlint-disable -->
 
-When uiLang is different from studyLang, then the user should see the phrase in his (uiLang).
+---
 
-How could that be done. First plan.
+tests/data/en-GB/baggage/baggage-guettli.flac
 
-I would like to link between the languages. So that the german phrase links to the english phrase.
-
-How could that be done?
+zipa recognizes that better than my tool. Why?
 
 ---
+
+Setup project from scratch, other linux user.
+
+---
+
+Do ipa detection on all voices in static/ directory. Create script for that.
+Improve speed.
+First: Just create ipas.
+Then check which ipas are not detected good.
+How to improve?
+
+---
+
+Test of edge-tts does support IPA?
+
+---
+
 
 Fail if a phrase has no level or no ipa.
 
@@ -52,13 +67,6 @@ From IPA page using "back" --> last word got lost. I see "Drücken zum Spielen".
 
 ---
 
-In Footer near "Build:": Show Datetime without seconds.
-
----
-
-study-lang, ui-lang. Store in pouchdb.
-
----
 
 I dont understand this IPA symbol: ɾ
 

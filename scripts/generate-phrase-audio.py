@@ -44,27 +44,45 @@ PIPER_MODELS: dict[str, dict] = {
         "name": "de_DE-thorsten-high",
         "onnx_url": f"{HF_BASE}/de/de_DE/thorsten/high/de_DE-thorsten-high.onnx",
         "json_url": f"{HF_BASE}/de/de_DE/thorsten/high/de_DE-thorsten-high.onnx.json",
-        "label": "Thorsten ♂",
+        "label": "Thorsten ♂ (high)",
+    },
+    "piper-kerstin": {
+        "name": "de_DE-kerstin-low",
+        "onnx_url": f"{HF_BASE}/de/de_DE/kerstin/low/de_DE-kerstin-low.onnx",
+        "json_url": f"{HF_BASE}/de/de_DE/kerstin/low/de_DE-kerstin-low.onnx.json",
+        "label": "Kerstin ♀ (low)",
     },
     "piper-alan": {
         "name": "en_GB-alan-low",
         "onnx_url": f"{HF_BASE}/en/en_GB/alan/low/en_GB-alan-low.onnx",
         "json_url": f"{HF_BASE}/en/en_GB/alan/low/en_GB-alan-low.onnx.json",
-        "label": "Alan ♂",
+        "label": "Alan ♂ (low)",
+    },
+    "piper-amy": {
+        "name": "en_GB-amy-low",
+        "onnx_url": f"{HF_BASE}/en/en_GB/amy/low/en_GB-amy-low.onnx",
+        "json_url": f"{HF_BASE}/en/en_GB/amy/low/en_GB-amy-low.onnx.json",
+        "label": "Amy ♀ (low)",
     },
     "piper-siwis": {
         "name": "fr_FR-siwis-low",
         "onnx_url": f"{HF_BASE}/fr/fr_FR/siwis/low/fr_FR-siwis-low.onnx",
         "json_url": f"{HF_BASE}/fr/fr_FR/siwis/low/fr_FR-siwis-low.onnx.json",
-        "label": "Siwis ♀",
+        "label": "Siwis ♀ (low)",
+    },
+    "piper-upmc": {
+        "name": "fr_FR-upmc-low",
+        "onnx_url": f"{HF_BASE}/fr/fr_FR/upmc/low/fr_FR-upmc-low.onnx",
+        "json_url": f"{HF_BASE}/fr/fr_FR/upmc/low/fr_FR-upmc-low.onnx.json",
+        "label": "UPMC ♂ (low)",
     },
 }
 
 # Which voice(s) to use per study language
 LANG_VOICES: dict[str, list[str]] = {
-    "de-DE": ["piper-thorsten"],
-    "en-GB": ["piper-alan"],
-    "fr-FR": ["piper-siwis"],
+    "de-DE": ["piper-thorsten", "piper-kerstin"],
+    "en-GB": ["piper-alan", "piper-amy"],
+    "fr-FR": ["piper-siwis", "piper-upmc"],
 }
 
 # Map study language → phrase YAML file
@@ -83,10 +101,10 @@ def phrase_hash(phrase: str) -> str:
     return hashlib.md5(phrase.encode("utf-8")).hexdigest()[:16]
 
 
-def load_phrases(yaml_path: Path) -> list[str]:
+def load_phrase_data(yaml_path: Path) -> list[dict]:
     with open(yaml_path, encoding="utf-8") as f:
         data = yaml.safe_load(f)
-    return [entry["phrase"] for entry in data if "phrase" in entry]
+    return [entry for entry in data if "phrase" in entry]
 
 
 def download_piper_model(voice_key: str) -> tuple[Path, Path]:
@@ -111,15 +129,16 @@ def download_piper_model(voice_key: str) -> tuple[Path, Path]:
     return onnx_path, json_path
 
 
-def wav_to_mp3(wav_path: Path, mp3_path: Path) -> bool:
-    """Convert WAV to 64 kbps mono MP3 using ffmpeg."""
+def wav_to_opus(wav_path: Path, opus_path: Path) -> bool:
+    """Convert WAV to 24 kbps mono Opus using ffmpeg."""
     result = subprocess.run(
         [
             "ffmpeg", "-y",
             "-i", str(wav_path),
+            "-c:a", "libopus",
+            "-b:a", "24k",
             "-ac", "1",
-            "-b:a", "64k",
-            str(mp3_path),
+            str(opus_path),
         ],
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
@@ -133,7 +152,7 @@ def wav_to_mp3(wav_path: Path, mp3_path: Path) -> bool:
 def generate_voice(
     lang: str,
     voice_key: str,
-    phrases: list[str],
+    phrase_data: list[dict],
 ) -> dict[str, str]:
     """
     Generate MP3 files for all phrases with the given voice.
@@ -143,7 +162,7 @@ def generate_voice(
 
     print(f"\n{'='*60}", flush=True)
     print(f"Lang: {lang}  Voice: {voice_key} ({PIPER_MODELS[voice_key]['label']})", flush=True)
-    print(f"Phrases: {len(phrases)}", flush=True)
+    print(f"Phrases: {len(phrase_data)}", flush=True)
     print("=" * 60, flush=True)
 
     out_dir = STATIC_AUDIO_DIR / lang / voice_key
@@ -155,9 +174,10 @@ def generate_voice(
     result: dict[str, str] = {}
     skipped = 0
 
-    for i, phrase in enumerate(phrases, 1):
+    for i, entry in enumerate(phrase_data, 1):
+        phrase = entry["phrase"]
         fhash = phrase_hash(phrase)
-        out_file = out_dir / f"{fhash}.mp3"
+        out_file = out_dir / f"{fhash}.opus"
 
         if out_file.exists():
             result[phrase] = fhash
@@ -171,21 +191,21 @@ def generate_voice(
             with wave.open(str(tmp_path), "wb") as wav_file:
                 voice.synthesize_wav(phrase, wav_file)
 
-            if wav_to_mp3(tmp_path, out_file):
+            if wav_to_opus(tmp_path, out_file):
                 result[phrase] = fhash
             else:
-                print(f"  [{i}/{len(phrases)}] ffmpeg failed: {phrase[:40]}", file=sys.stderr)
+                print(f"  [{i}/{len(phrase_data)}] ffmpeg failed: {phrase[:40]}", file=sys.stderr)
         except Exception as e:
-            print(f"  [{i}/{len(phrases)}] ERROR for '{phrase[:40]}': {e}", file=sys.stderr)
+            print(f"  [{i}/{len(phrase_data)}] ERROR for '{phrase[:40]}': {e}", file=sys.stderr)
         finally:
             if tmp_path.exists():
                 tmp_path.unlink(missing_ok=True)
 
-        if i % 50 == 0 or i == len(phrases):
-            print(f"  {i}/{len(phrases)} done ({skipped} skipped)", flush=True)
+        if i % 50 == 0 or i == len(phrase_data):
+            print(f"  {i}/{len(phrase_data)} done ({skipped} skipped)", flush=True)
 
     ok = len(result)
-    print(f"  Completed: {ok}/{len(phrases)} OK", flush=True)
+    print(f"  Completed: {ok}/{len(phrase_data)} OK", flush=True)
     return result
 
 
@@ -219,8 +239,8 @@ def main() -> None:
             manifest = json.load(f)
 
     for lang in langs:
-        phrases = load_phrases(PHRASE_FILES[lang])
-        print(f"\nLoaded {len(phrases)} phrases for {lang}")
+        phrase_data = load_phrase_data(PHRASE_FILES[lang])
+        print(f"\nLoaded {len(phrase_data)} phrases for {lang}")
 
         voices = LANG_VOICES[lang]
         if voice_filter:
@@ -232,7 +252,7 @@ def main() -> None:
         manifest.setdefault(lang, {})
 
         for voice_key in voices:
-            voice_manifest = generate_voice(lang, voice_key, phrases)
+            voice_manifest = generate_voice(lang, voice_key, phrase_data)
             manifest[lang][voice_key] = voice_manifest
 
             # Write manifest after each voice so progress is saved

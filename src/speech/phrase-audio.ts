@@ -32,10 +32,15 @@ type Manifest = Record<string, Record<string, Record<string, string>>>;
 
 // ── Voice label registry ─────────────────────────────────────────────────────
 
+/** Sentinel voice name for the "pick a random voice each phrase" option. */
+export const RANDOM_VOICE_NAME = "random";
+
 const VOICE_LABELS: Record<string, string> = {
   "piper-thorsten": "Thorsten ♂",
   "piper-alan": "Alan ♂",
   "piper-siwis": "Siwis ♀",
+  "edge-tts-male": "Edge TTS ♂",
+  "edge-tts-female": "Edge TTS ♀",
 };
 
 // ── Manifest state ───────────────────────────────────────────────────────────
@@ -63,14 +68,27 @@ export async function loadPhraseAudioManifest(): Promise<void> {
 
 /**
  * Return the list of pre-generated voices available for a study language.
+ * Only includes voices that have at least one phrase entry.
  * Returns an empty array if the manifest has not been loaded yet.
  */
 export function getAvailableVoices(studyLang: StudyLanguage): VoiceOption[] {
   if (!manifest) return [];
-  return Object.keys(manifest[studyLang] ?? {}).map((name) => ({
-    name,
-    label: VOICE_LABELS[name] ?? name,
-  }));
+  return Object.entries(manifest[studyLang] ?? {})
+    .filter(([, phrases]) => Object.keys(phrases).length > 0)
+    .map(([name]) => ({
+      name,
+      label: VOICE_LABELS[name] ?? name,
+    }));
+}
+
+/**
+ * Pick a random voice from the available voices for a study language.
+ * Returns null if no voices are available.
+ */
+export function pickRandomVoice(studyLang: StudyLanguage): string | null {
+  const voices = getAvailableVoices(studyLang);
+  if (voices.length === 0) return null;
+  return voices[Math.floor(Math.random() * voices.length)].name;
 }
 
 /**
@@ -95,7 +113,7 @@ export function getPhraseAudioUrl(
   const hash = manifest?.[studyLang]?.[voiceName]?.[phrase];
   if (!hash) return null;
   // @ts-expect-error TS2345 - resolve() types match known routes; static asset paths are untyped
-  return resolve(`/audio/${studyLang}/${voiceName}/${hash}.mp3`);
+  return resolve(`/audio/${studyLang}/${voiceName}/${hash}.opus`);
 }
 
 // ── Playback rate ────────────────────────────────────────────────────────────
