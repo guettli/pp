@@ -1,1 +1,3 @@
 onlyBuiltDependencies: onnxruntime-node
+packages:
+  - "."

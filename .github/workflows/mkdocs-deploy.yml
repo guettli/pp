@@ -1,0 +1,38 @@
+name: Deploy Mkdocs
+on: 
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install mkdocs-material  
+          pip install mkdocs           
+          pip install mkdocs-git-revision-date-localized-plugin # some common plugins maybe used in the future
+          pip install mkdocs-macros-plugin
+          pip install mkdocs-material-extensions
+          pip install mkdocs-awesome-nav
+          pip install mkdocs-get-deps          
+          pip install mkdocs-video          
+
+      - name: Deploy to GitHub Pages
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          mkdocs gh-deploy --force
