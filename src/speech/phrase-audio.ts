@@ -1,83 +1,94 @@
 /**
  * Pre-generated phrase audio playback.
  *
- * Audio files are produced offline by scripts/generate_google_tts_audio.py
- * and scripts/generate_edge_tts_audio.py, stored as static assets:
+ * Audio files are produced offline by scripts/generate_edge_tts_audio.py,
+ * stored as static assets:
  *
- *   static/audio/{lang}/{voice}/{hash}.opus
- *   static/audio/manifest.json
+ *   static/audio/{lang}/{voice}/{filename}.opus
  *
- * The manifest maps:  lang → voice → phrase_text → hash_filename
+ * The filename is derived from the phrase's en-GB translation:
+ *   - Replace all non-alphanumeric characters with underscores
+ *   - If the result is ≤ 25 chars: use as-is
+ *   - If longer: take first 25 chars + '_' + 8-char djb2 hash
  *
- * Voices currently generated:
- *   de-DE → google-male, google-female, edge-tts-male, edge-tts-female
- *   en-GB → google-male, google-female, edge-tts-male, edge-tts-female
- *   fr-FR → google-male, google-female, edge-tts-male, edge-tts-female
+ * Example: "The rabbit laughs" → The_rabbit_laughs.opus
+ *
+ * Voices available:
+ *   de-DE, en-GB, fr-FR, it-IT → edge-tts-male, edge-tts-female
  */
 
 import { resolve } from "$app/paths";
-import type { StudyLanguage } from "../types.js";
+import type { Phrase, StudyLanguage } from "../types.js";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
 export interface VoiceOption {
-  /** Internal key matching the directory name, e.g. "google-male" */
+  /** Internal key matching the directory name, e.g. "edge-tts-male" */
   name: string;
   /** Human-readable label shown in the voice selector */
   label: string;
 }
 
-// Manifest: lang → voice → phrase → md5_hex filename (without extension)
-type Manifest = Record<string, Record<string, Record<string, string>>>;
-
-// ── Voice label registry ─────────────────────────────────────────────────────
+// ── Voice registry ───────────────────────────────────────────────────────────
 
 /** Sentinel voice name for the "pick a random voice each phrase" option. */
 export const RANDOM_VOICE_NAME = "random";
 
-const VOICE_LABELS: Record<string, string> = {
-  "google-male": "Google ♂",
-  "google-female": "Google ♀",
-  "edge-tts-male": "Edge TTS ♂",
-  "edge-tts-female": "Edge TTS ♀",
+const VOICES_BY_LANG: Record<string, VoiceOption[]> = {
+  "de-DE": [
+    { name: "edge-tts-male", label: "Edge TTS ♂" },
+    { name: "edge-tts-female", label: "Edge TTS ♀" },
+  ],
+  "en-GB": [
+    { name: "edge-tts-male", label: "Edge TTS ♂" },
+    { name: "edge-tts-female", label: "Edge TTS ♀" },
+  ],
+  "fr-FR": [
+    { name: "edge-tts-male", label: "Edge TTS ♂" },
+    { name: "edge-tts-female", label: "Edge TTS ♀" },
+  ],
+  "it-IT": [
+    { name: "edge-tts-male", label: "Edge TTS ♂" },
+    { name: "edge-tts-female", label: "Edge TTS ♀" },
+  ],
 };
 
-// ── Manifest state ───────────────────────────────────────────────────────────
+// ── Filename derivation ───────────────────────────────────────────────────────
 
-let manifest: Manifest | null = null;
+/** djb2 hash over UTF-8 bytes, returned as 8 lowercase hex chars. */
+function djb2hex(s: string): string {
+  const bytes = new TextEncoder().encode(s);
+  let h = 5381;
+  for (const b of bytes) {
+    h = (Math.imul(h, 33) + b) >>> 0;
+  }
+  return h.toString(16).padStart(8, "0");
+}
 
 /**
- * Load the audio manifest from {base}/audio/manifest.json.
- * Should be called once at app startup (before voice selection is shown).
- * Fails silently if the file is not present (audio not yet generated).
+ * Derive the audio filename stem from an en-GB text.
+ * Matches the algorithm in scripts/generate_edge_tts_audio.py and
+ * tmp/migrate_audio_filenames.py.
  */
-export async function loadPhraseAudioManifest(): Promise<void> {
-  try {
-    // @ts-expect-error TS2554 - resolve() types require route params; static asset paths have none
-    const resp = await fetch(resolve("/audio/manifest.json"));
-    if (resp.ok) {
-      manifest = (await resp.json()) as Manifest;
-    }
-  } catch {
-    manifest = null;
-  }
+function phraseToFilename(enGbText: string): string {
+  const safe = enGbText.replace(/[^a-zA-Z0-9]/g, "_");
+  if (safe.length <= 25) return safe;
+  return safe.slice(0, 25) + "_" + djb2hex(enGbText);
+}
+
+/** Get the en-GB text used as the filename key for a phrase. */
+function getEnGbText(phrase: Phrase, studyLang: StudyLanguage): string {
+  if (studyLang === "en-GB") return phrase.phrase;
+  return phrase["en-GB"] ?? phrase.phrase;
 }
 
 // ── Query helpers ────────────────────────────────────────────────────────────
 
 /**
  * Return the list of pre-generated voices available for a study language.
- * Only includes voices that have at least one phrase entry.
- * Returns an empty array if the manifest has not been loaded yet.
  */
 export function getAvailableVoices(studyLang: StudyLanguage): VoiceOption[] {
-  if (!manifest) return [];
-  return Object.entries(manifest[studyLang] ?? {})
-    .filter(([, phrases]) => Object.keys(phrases).length > 0)
-    .map(([name]) => ({
-      name,
-      label: VOICE_LABELS[name] ?? name,
-    }));
+  return VOICES_BY_LANG[studyLang] ?? [];
 }
 
 /**
@@ -91,28 +102,17 @@ export function pickRandomVoice(studyLang: StudyLanguage): string | null {
 }
 
 /**
- * Check whether a pre-generated audio file exists for this phrase + voice.
- */
-export function hasPhraseAudio(
-  phrase: string,
-  studyLang: StudyLanguage,
-  voiceName: string,
-): boolean {
-  return !!manifest?.[studyLang]?.[voiceName]?.[phrase];
-}
-
-/**
- * Return the URL path to the pre-generated MP3, or null if not available.
+ * Return the URL path to the pre-generated audio file.
  */
 export function getPhraseAudioUrl(
-  phrase: string,
+  phrase: Phrase,
   studyLang: StudyLanguage,
   voiceName: string,
-): string | null {
-  const hash = manifest?.[studyLang]?.[voiceName]?.[phrase];
-  if (!hash) return null;
+): string {
+  const enGbText = getEnGbText(phrase, studyLang);
+  const filename = phraseToFilename(enGbText);
   // @ts-expect-error TS2345 - resolve() types match known routes; static asset paths are untyped
-  return resolve(`/audio/${studyLang}/${voiceName}/${hash}.opus`);
+  return resolve(`/audio/${studyLang}/${voiceName}/${filename}.opus`);
 }
 
 // ── Playback rate ────────────────────────────────────────────────────────────
@@ -146,23 +146,22 @@ const prefetchedUrls = new Set<string>();
 
 /**
  * Prefetch audio files for a list of phrases into the browser cache.
- * No-ops silently on metered/cellular connections or if the manifest is not loaded.
+ * No-ops silently on metered/cellular connections.
  *
- * @param phrases    Phrase texts to prefetch (top-N by priority).
+ * @param phrases    Phrases to prefetch (top-N by priority).
  * @param studyLang  Study language (e.g. "de-DE").
  * @param voiceNames Voices to prefetch; pass all available voices when in "random" mode.
  */
 export function prefetchPhraseAudio(
-  phrases: string[],
+  phrases: Phrase[],
   studyLang: StudyLanguage,
   voiceNames: string[],
 ): void {
-  if (!manifest) return;
   if (isMeteredConnection()) return;
   for (const phrase of phrases) {
     for (const voice of voiceNames) {
       const url = getPhraseAudioUrl(phrase, studyLang, voice);
-      if (!url || prefetchedUrls.has(url)) continue;
+      if (prefetchedUrls.has(url)) continue;
       prefetchedUrls.add(url);
       // Fire-and-forget: warm the browser cache; errors are benign
       fetch(url, { priority: "low" }).catch(() => {});
@@ -175,18 +174,17 @@ export function prefetchPhraseAudio(
 let currentAudioEl: HTMLAudioElement | null = null;
 
 /**
- * Play the pre-generated MP3 for a phrase.
+ * Play the pre-generated audio for a phrase.
  *
- * @returns true if the file was found and playback started; false otherwise.
+ * @returns true if playback started; false if an error occurred before play.
  */
 export async function playPhraseAudio(
-  phrase: string,
+  phrase: Phrase,
   studyLang: StudyLanguage,
   voiceName: string,
   playbackRate = 1.0,
 ): Promise<boolean> {
   const url = getPhraseAudioUrl(phrase, studyLang, voiceName);
-  if (!url) return false;
 
   if (currentAudioEl) {
     currentAudioEl.pause();

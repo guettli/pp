@@ -1,6 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
-import path from "path";
 import os from "os";
+import path from "path";
 
 /**
  * Playwright configuration for Phoneme Party
@@ -33,8 +33,8 @@ export default defineConfig({
   // when VSCode + Claude Code (~4GB combined) are also running.
   workers: 1,
 
-  // Reporter to use
-  reporter: "html",
+  // Reporter to use. open:'never' prevents the HTML report server from waiting for Ctrl-C.
+  reporter: [["html", { open: "never" }]],
 
   // Shared settings for all the projects below
   use: {

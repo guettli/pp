@@ -1,12 +1,12 @@
-import { test, expect } from "./fixtures.js";
-import path from "path";
 import fs from "fs";
 import yaml from "js-yaml";
+import path from "path";
+import { expect, test } from "./fixtures.js";
 
 /**
- * Test to reproduce the bug where streaming detector doesn't process accumulated chunks correctly.
- * The issue: RealTimePhonemeDetector tries to decode individual chunks, but MediaRecorder chunks
- * are streaming fragments that can't be decoded individually. They need to be accumulated first.
+ * Test that RealTimePhonemeDetector correctly processes Float32Array PCM chunks
+ * delivered by AudioWorklet. Each chunk is independently usable raw PCM data,
+ * so no blob decoding or accumulation tricks are needed.
  */
 test.describe("Streaming Chunk Decode Bug", () => {
   test("RealTimePhonemeDetector should process accumulated chunks, not individual fragments", async ({
@@ -30,11 +30,12 @@ test.describe("Streaming Chunk Decode Bug", () => {
     const audioPath = path.join(process.cwd(), "tests/data/de-DE/Die_Rose/Die_Rose-Thomas.flac");
     const audioBuffer = fs.readFileSync(audioPath);
 
-    // Test: simulate MediaRecorder-style chunks (fragments of the stream, not complete files)
+    // Test: simulate AudioWorklet-style Float32Array chunks
     const result = await page.evaluate(
       async ({ audioData, targetIPA }) => {
         const { RealTimePhonemeDetector } =
           await import("/phoneme-party/src/speech/realtime-phoneme-detector.js");
+        const { prepareAudioForModel } = await import("/phoneme-party/src/audio/processor.js");
 
         let phonemeUpdates = [];
         let chunkProcessingErrors = [];
@@ -43,6 +44,7 @@ test.describe("Streaming Chunk Decode Bug", () => {
         const detector = new RealTimePhonemeDetector(
           {
             targetIPA,
+            studyLang: "de-DE",
             threshold: 1.0,
             minChunksBeforeCheck: 2,
             silenceThreshold: 0.01,
@@ -56,20 +58,21 @@ test.describe("Streaming Chunk Decode Bug", () => {
           },
         );
 
-        // Simulate MediaRecorder chunks: split the audio into small fragments
-        // These are NOT complete audio files - they're stream fragments
+        // Decode FLAC to Float32 PCM (simulating AudioWorklet output)
         const fullBlob = new Blob([new Uint8Array(audioData)], { type: "audio/flac" });
-        const chunkSize = Math.floor(audioData.length / 8); // 8 small fragments
-        const chunks = [];
+        const fullAudio = await prepareAudioForModel(fullBlob);
 
-        for (let i = 0; i < audioData.length; i += chunkSize) {
-          const fragmentData = audioData.slice(i, i + chunkSize);
-          // Create fragment blob - this simulates what MediaRecorder produces
-          const fragmentBlob = new Blob([new Uint8Array(fragmentData)], { type: "audio/flac" });
-          chunks.push(fragmentBlob);
+        // Split into 8 equal Float32Array chunks
+        const numChunks = 8;
+        const chunkLength = Math.floor(fullAudio.length / numChunks);
+        const chunks = [];
+        for (let i = 0; i < numChunks; i++) {
+          const start = i * chunkLength;
+          const end = i === numChunks - 1 ? fullAudio.length : start + chunkLength;
+          chunks.push(fullAudio.slice(start, end));
         }
 
-        console.log(`Created ${chunks.length} streaming fragments`);
+        console.log(`Created ${chunks.length} Float32Array chunks`);
 
         // Process chunks through detector
         for (let i = 0; i < chunks.length; i++) {
@@ -106,23 +109,19 @@ test.describe("Streaming Chunk Decode Bug", () => {
     if (result.chunkProcessingErrors.length > 0) {
       console.log("\n🐛 BUG DETECTED: Chunk processing errors occurred");
       console.log("First error:", JSON.stringify(result.chunkProcessingErrors[0], null, 2));
-      console.log("\nRoot cause: RealTimePhonemeDetector.processAccumulatedAudio() should process");
-      console.log(
-        "all accumulated chunks together, but the current implementation may have issues.",
-      );
     }
 
     console.log(`\nDetector IPA: ${result.detectorIPA}`);
     console.log(`Detector similarity: ${result.detectorSimilarity}`);
     console.log(`Phoneme updates: ${result.phonemeUpdates.length}`);
 
-    // Expected behavior after fix
+    // Expected behavior with AudioWorklet Float32Array chunks
     console.log("\n=== EXPECTED BEHAVIOR ===");
     console.log("✓ No chunk processing errors");
-    console.log("✓ Detector successfully extracts phonemes from accumulated chunks");
+    console.log("✓ Detector successfully extracts phonemes from accumulated Float32Array chunks");
     console.log("✓ At least one phoneme update callback is triggered");
 
-    // Assertions - this test should pass after the bug is fixed
+    // Assertions
     expect(result.chunkProcessingErrors.length).toBe(0);
     expect(result.detectorIPA).toBe(expectedIPA);
     expect(result.phonemeUpdates.length).toBeGreaterThan(0);

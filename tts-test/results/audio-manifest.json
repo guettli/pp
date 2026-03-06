@@ -1,0 +1,782 @@
+{
+  "piper-thorsten": {
+    "label": "Piper TTS de_DE-thorsten-high (male, neural, high quality)",
+    "files": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "audio_file": "tts-test/audio/piper-thorsten/01_ffne_die_Tr_bitte.wav",
+        "status": "ok"
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "audio_file": "tts-test/audio/piper-thorsten/02_Mchtest_du_Msli_essen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "audio_file": "tts-test/audio/piper-thorsten/03_Das_Frulein_trgt_ein_rotes_Kleid.wav",
+        "status": "ok"
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "audio_file": "tts-test/audio/piper-thorsten/04_Wir_ben_tglich_Aussprache.wav",
+        "status": "ok"
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "audio_file": "tts-test/audio/piper-thorsten/05_Der_Bcker_bckt_frisches_Brot.wav",
+        "status": "ok"
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "audio_file": "tts-test/audio/piper-thorsten/06_Knnen_wir_frher_gehen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "audio_file": "tts-test/audio/piper-thorsten/07_Die_Vgel_singen_schn.wav",
+        "status": "ok"
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "audio_file": "tts-test/audio/piper-thorsten/08_Mtter_kmmern_sich_um_ihre_Kinder.wav",
+        "status": "ok"
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "audio_file": "tts-test/audio/piper-thorsten/09_bungen_strken_dein_Deutsch.wav",
+        "status": "ok"
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "audio_file": "tts-test/audio/piper-thorsten/10_Jger_schieen_auf_der_grnen_Wiese.wav",
+        "status": "ok"
+      }
+    ]
+  },
+  "piper-kerstin": {
+    "label": "Piper TTS de_DE-kerstin-low (female, neural)",
+    "files": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "audio_file": "tts-test/audio/piper-kerstin/01_ffne_die_Tr_bitte.wav",
+        "status": "ok"
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "audio_file": "tts-test/audio/piper-kerstin/02_Mchtest_du_Msli_essen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "audio_file": "tts-test/audio/piper-kerstin/03_Das_Frulein_trgt_ein_rotes_Kleid.wav",
+        "status": "ok"
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "audio_file": "tts-test/audio/piper-kerstin/04_Wir_ben_tglich_Aussprache.wav",
+        "status": "ok"
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "audio_file": "tts-test/audio/piper-kerstin/05_Der_Bcker_bckt_frisches_Brot.wav",
+        "status": "ok"
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "audio_file": "tts-test/audio/piper-kerstin/06_Knnen_wir_frher_gehen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "audio_file": "tts-test/audio/piper-kerstin/07_Die_Vgel_singen_schn.wav",
+        "status": "ok"
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "audio_file": "tts-test/audio/piper-kerstin/08_Mtter_kmmern_sich_um_ihre_Kinder.wav",
+        "status": "ok"
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "audio_file": "tts-test/audio/piper-kerstin/09_bungen_strken_dein_Deutsch.wav",
+        "status": "ok"
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "audio_file": "tts-test/audio/piper-kerstin/10_Jger_schieen_auf_der_grnen_Wiese.wav",
+        "status": "ok"
+      }
+    ]
+  },
+  "piper-ramona": {
+    "label": "Piper TTS de_DE-ramona-low (female, neural)",
+    "files": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "audio_file": "tts-test/audio/piper-ramona/01_ffne_die_Tr_bitte.wav",
+        "status": "ok"
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "audio_file": "tts-test/audio/piper-ramona/02_Mchtest_du_Msli_essen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "audio_file": "tts-test/audio/piper-ramona/03_Das_Frulein_trgt_ein_rotes_Kleid.wav",
+        "status": "ok"
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "audio_file": "tts-test/audio/piper-ramona/04_Wir_ben_tglich_Aussprache.wav",
+        "status": "ok"
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "audio_file": "tts-test/audio/piper-ramona/05_Der_Bcker_bckt_frisches_Brot.wav",
+        "status": "ok"
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "audio_file": "tts-test/audio/piper-ramona/06_Knnen_wir_frher_gehen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "audio_file": "tts-test/audio/piper-ramona/07_Die_Vgel_singen_schn.wav",
+        "status": "ok"
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "audio_file": "tts-test/audio/piper-ramona/08_Mtter_kmmern_sich_um_ihre_Kinder.wav",
+        "status": "ok"
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "audio_file": "tts-test/audio/piper-ramona/09_bungen_strken_dein_Deutsch.wav",
+        "status": "ok"
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "audio_file": "tts-test/audio/piper-ramona/10_Jger_schieen_auf_der_grnen_Wiese.wav",
+        "status": "ok"
+      }
+    ]
+  },
+  "edge-tts-male": {
+    "label": "Microsoft Edge TTS de-DE-ConradNeural (male, online)",
+    "files": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "audio_file": "tts-test/audio/edge-tts-male/01_ffne_die_Tr_bitte.wav",
+        "status": "ok"
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "audio_file": "tts-test/audio/edge-tts-male/02_Mchtest_du_Msli_essen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "audio_file": "tts-test/audio/edge-tts-male/03_Das_Frulein_trgt_ein_rotes_Kleid.wav",
+        "status": "ok"
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "audio_file": "tts-test/audio/edge-tts-male/04_Wir_ben_tglich_Aussprache.wav",
+        "status": "ok"
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "audio_file": "tts-test/audio/edge-tts-male/05_Der_Bcker_bckt_frisches_Brot.wav",
+        "status": "ok"
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "audio_file": "tts-test/audio/edge-tts-male/06_Knnen_wir_frher_gehen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "audio_file": "tts-test/audio/edge-tts-male/07_Die_Vgel_singen_schn.wav",
+        "status": "ok"
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "audio_file": "tts-test/audio/edge-tts-male/08_Mtter_kmmern_sich_um_ihre_Kinder.wav",
+        "status": "ok"
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "audio_file": "tts-test/audio/edge-tts-male/09_bungen_strken_dein_Deutsch.wav",
+        "status": "ok"
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "audio_file": "tts-test/audio/edge-tts-male/10_Jger_schieen_auf_der_grnen_Wiese.wav",
+        "status": "ok"
+      }
+    ]
+  },
+  "edge-tts-female": {
+    "label": "Microsoft Edge TTS de-DE-KatjaNeural (female, online)",
+    "files": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "audio_file": "tts-test/audio/edge-tts-female/01_ffne_die_Tr_bitte.wav",
+        "status": "ok"
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "audio_file": "tts-test/audio/edge-tts-female/02_Mchtest_du_Msli_essen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "audio_file": "tts-test/audio/edge-tts-female/03_Das_Frulein_trgt_ein_rotes_Kleid.wav",
+        "status": "ok"
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "audio_file": "tts-test/audio/edge-tts-female/04_Wir_ben_tglich_Aussprache.wav",
+        "status": "ok"
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "audio_file": "tts-test/audio/edge-tts-female/05_Der_Bcker_bckt_frisches_Brot.wav",
+        "status": "ok"
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "audio_file": "tts-test/audio/edge-tts-female/06_Knnen_wir_frher_gehen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "audio_file": "tts-test/audio/edge-tts-female/07_Die_Vgel_singen_schn.wav",
+        "status": "ok"
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "audio_file": "tts-test/audio/edge-tts-female/08_Mtter_kmmern_sich_um_ihre_Kinder.wav",
+        "status": "ok"
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "audio_file": "tts-test/audio/edge-tts-female/09_bungen_strken_dein_Deutsch.wav",
+        "status": "ok"
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "audio_file": "tts-test/audio/edge-tts-female/10_Jger_schieen_auf_der_grnen_Wiese.wav",
+        "status": "ok"
+      }
+    ]
+  },
+  "gtts": {
+    "label": "Google TTS via gTTS (standard speed, online)",
+    "files": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "audio_file": "tts-test/audio/gtts/01_ffne_die_Tr_bitte.wav",
+        "status": "ok"
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "audio_file": "tts-test/audio/gtts/02_Mchtest_du_Msli_essen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "audio_file": "tts-test/audio/gtts/03_Das_Frulein_trgt_ein_rotes_Kleid.wav",
+        "status": "ok"
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "audio_file": "tts-test/audio/gtts/04_Wir_ben_tglich_Aussprache.wav",
+        "status": "ok"
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "audio_file": "tts-test/audio/gtts/05_Der_Bcker_bckt_frisches_Brot.wav",
+        "status": "ok"
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "audio_file": "tts-test/audio/gtts/06_Knnen_wir_frher_gehen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "audio_file": "tts-test/audio/gtts/07_Die_Vgel_singen_schn.wav",
+        "status": "ok"
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "audio_file": "tts-test/audio/gtts/08_Mtter_kmmern_sich_um_ihre_Kinder.wav",
+        "status": "ok"
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "audio_file": "tts-test/audio/gtts/09_bungen_strken_dein_Deutsch.wav",
+        "status": "ok"
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "audio_file": "tts-test/audio/gtts/10_Jger_schieen_auf_der_grnen_Wiese.wav",
+        "status": "ok"
+      }
+    ]
+  },
+  "gtts-slow": {
+    "label": "Google TTS via gTTS (slow mode, online)",
+    "files": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "audio_file": "tts-test/audio/gtts-slow/01_ffne_die_Tr_bitte.wav",
+        "status": "ok"
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "audio_file": "tts-test/audio/gtts-slow/02_Mchtest_du_Msli_essen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "audio_file": "tts-test/audio/gtts-slow/03_Das_Frulein_trgt_ein_rotes_Kleid.wav",
+        "status": "ok"
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "audio_file": "tts-test/audio/gtts-slow/04_Wir_ben_tglich_Aussprache.wav",
+        "status": "ok"
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "audio_file": "tts-test/audio/gtts-slow/05_Der_Bcker_bckt_frisches_Brot.wav",
+        "status": "ok"
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "audio_file": "tts-test/audio/gtts-slow/06_Knnen_wir_frher_gehen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "audio_file": "tts-test/audio/gtts-slow/07_Die_Vgel_singen_schn.wav",
+        "status": "ok"
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "audio_file": "tts-test/audio/gtts-slow/08_Mtter_kmmern_sich_um_ihre_Kinder.wav",
+        "status": "ok"
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "audio_file": "tts-test/audio/gtts-slow/09_bungen_strken_dein_Deutsch.wav",
+        "status": "ok"
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "audio_file": "tts-test/audio/gtts-slow/10_Jger_schieen_auf_der_grnen_Wiese.wav",
+        "status": "ok"
+      }
+    ]
+  },
+  "espeak": {
+    "label": "eSpeak-NG (150 wpm, standard speed)",
+    "files": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "audio_file": "tts-test/audio/espeak/01_ffne_die_Tr_bitte.wav",
+        "status": "ok"
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "audio_file": "tts-test/audio/espeak/02_Mchtest_du_Msli_essen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "audio_file": "tts-test/audio/espeak/03_Das_Frulein_trgt_ein_rotes_Kleid.wav",
+        "status": "ok"
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "audio_file": "tts-test/audio/espeak/04_Wir_ben_tglich_Aussprache.wav",
+        "status": "ok"
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "audio_file": "tts-test/audio/espeak/05_Der_Bcker_bckt_frisches_Brot.wav",
+        "status": "ok"
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "audio_file": "tts-test/audio/espeak/06_Knnen_wir_frher_gehen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "audio_file": "tts-test/audio/espeak/07_Die_Vgel_singen_schn.wav",
+        "status": "ok"
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "audio_file": "tts-test/audio/espeak/08_Mtter_kmmern_sich_um_ihre_Kinder.wav",
+        "status": "ok"
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "audio_file": "tts-test/audio/espeak/09_bungen_strken_dein_Deutsch.wav",
+        "status": "ok"
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "audio_file": "tts-test/audio/espeak/10_Jger_schieen_auf_der_grnen_Wiese.wav",
+        "status": "ok"
+      }
+    ]
+  },
+  "espeak-slow": {
+    "label": "eSpeak-NG (100 wpm, slow)",
+    "files": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "audio_file": "tts-test/audio/espeak-slow/01_ffne_die_Tr_bitte.wav",
+        "status": "ok"
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "audio_file": "tts-test/audio/espeak-slow/02_Mchtest_du_Msli_essen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "audio_file": "tts-test/audio/espeak-slow/03_Das_Frulein_trgt_ein_rotes_Kleid.wav",
+        "status": "ok"
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "audio_file": "tts-test/audio/espeak-slow/04_Wir_ben_tglich_Aussprache.wav",
+        "status": "ok"
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "audio_file": "tts-test/audio/espeak-slow/05_Der_Bcker_bckt_frisches_Brot.wav",
+        "status": "ok"
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "audio_file": "tts-test/audio/espeak-slow/06_Knnen_wir_frher_gehen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "audio_file": "tts-test/audio/espeak-slow/07_Die_Vgel_singen_schn.wav",
+        "status": "ok"
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "audio_file": "tts-test/audio/espeak-slow/08_Mtter_kmmern_sich_um_ihre_Kinder.wav",
+        "status": "ok"
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "audio_file": "tts-test/audio/espeak-slow/09_bungen_strken_dein_Deutsch.wav",
+        "status": "ok"
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "audio_file": "tts-test/audio/espeak-slow/10_Jger_schieen_auf_der_grnen_Wiese.wav",
+        "status": "ok"
+      }
+    ]
+  },
+  "silero-eva": {
+    "label": "Silero TTS v3_de speaker=eva_k (female, local neural)",
+    "files": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "audio_file": "tts-test/audio/silero-eva/01_ffne_die_Tr_bitte.wav",
+        "status": "ok"
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "audio_file": "tts-test/audio/silero-eva/02_Mchtest_du_Msli_essen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "audio_file": "tts-test/audio/silero-eva/03_Das_Frulein_trgt_ein_rotes_Kleid.wav",
+        "status": "ok"
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "audio_file": "tts-test/audio/silero-eva/04_Wir_ben_tglich_Aussprache.wav",
+        "status": "ok"
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "audio_file": "tts-test/audio/silero-eva/05_Der_Bcker_bckt_frisches_Brot.wav",
+        "status": "ok"
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "audio_file": "tts-test/audio/silero-eva/06_Knnen_wir_frher_gehen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "audio_file": "tts-test/audio/silero-eva/07_Die_Vgel_singen_schn.wav",
+        "status": "ok"
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "audio_file": "tts-test/audio/silero-eva/08_Mtter_kmmern_sich_um_ihre_Kinder.wav",
+        "status": "ok"
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "audio_file": "tts-test/audio/silero-eva/09_bungen_strken_dein_Deutsch.wav",
+        "status": "ok"
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "audio_file": "tts-test/audio/silero-eva/10_Jger_schieen_auf_der_grnen_Wiese.wav",
+        "status": "ok"
+      }
+    ]
+  },
+  "silero-bernd": {
+    "label": "Silero TTS v3_de speaker=bernd_ungerer (male, local neural)",
+    "files": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "audio_file": "tts-test/audio/silero-bernd/01_ffne_die_Tr_bitte.wav",
+        "status": "ok"
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "audio_file": "tts-test/audio/silero-bernd/02_Mchtest_du_Msli_essen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "audio_file": "tts-test/audio/silero-bernd/03_Das_Frulein_trgt_ein_rotes_Kleid.wav",
+        "status": "ok"
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "audio_file": "tts-test/audio/silero-bernd/04_Wir_ben_tglich_Aussprache.wav",
+        "status": "ok"
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "audio_file": "tts-test/audio/silero-bernd/05_Der_Bcker_bckt_frisches_Brot.wav",
+        "status": "ok"
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "audio_file": "tts-test/audio/silero-bernd/06_Knnen_wir_frher_gehen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "audio_file": "tts-test/audio/silero-bernd/07_Die_Vgel_singen_schn.wav",
+        "status": "ok"
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "audio_file": "tts-test/audio/silero-bernd/08_Mtter_kmmern_sich_um_ihre_Kinder.wav",
+        "status": "ok"
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "audio_file": "tts-test/audio/silero-bernd/09_bungen_strken_dein_Deutsch.wav",
+        "status": "ok"
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "audio_file": "tts-test/audio/silero-bernd/10_Jger_schieen_auf_der_grnen_Wiese.wav",
+        "status": "ok"
+      }
+    ]
+  },
+  "silero-karlsson": {
+    "label": "Silero TTS v3_de speaker=karlsson (male, local neural)",
+    "files": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "audio_file": "tts-test/audio/silero-karlsson/01_ffne_die_Tr_bitte.wav",
+        "status": "ok"
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "audio_file": "tts-test/audio/silero-karlsson/02_Mchtest_du_Msli_essen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "audio_file": "tts-test/audio/silero-karlsson/03_Das_Frulein_trgt_ein_rotes_Kleid.wav",
+        "status": "ok"
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "audio_file": "tts-test/audio/silero-karlsson/04_Wir_ben_tglich_Aussprache.wav",
+        "status": "ok"
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "audio_file": "tts-test/audio/silero-karlsson/05_Der_Bcker_bckt_frisches_Brot.wav",
+        "status": "ok"
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "audio_file": "tts-test/audio/silero-karlsson/06_Knnen_wir_frher_gehen.wav",
+        "status": "ok"
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "audio_file": "tts-test/audio/silero-karlsson/07_Die_Vgel_singen_schn.wav",
+        "status": "ok"
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "audio_file": "tts-test/audio/silero-karlsson/08_Mtter_kmmern_sich_um_ihre_Kinder.wav",
+        "status": "ok"
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "audio_file": "tts-test/audio/silero-karlsson/09_bungen_strken_dein_Deutsch.wav",
+        "status": "ok"
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "audio_file": "tts-test/audio/silero-karlsson/10_Jger_schieen_auf_der_grnen_Wiese.wav",
+        "status": "ok"
+      }
+    ]
+  }
+}

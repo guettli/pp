@@ -95,8 +95,8 @@ export interface AppState {
 export interface AudioRecorderInstance {
   start(
     onAutoStop?: (() => void) | null,
-    onDataAvailable?: ((chunk: Blob) => void) | null,
-    streamingInterval?: number,
+    onDataAvailable?: ((samples: Float32Array) => void) | null,
+    streamingIntervalMs?: number,
   ): Promise<void>;
   stop(): Promise<{ blob: Blob; duration: number }>;
   requestPermission(): Promise<void>;
@@ -119,10 +119,10 @@ export interface DebugMeta {
 }
 
 // Supported UI languages (for translations)
-export type SupportedLanguage = "de-DE" | "en-GB" | "fr-FR";
+export type SupportedLanguage = "de-DE" | "en-GB" | "fr-FR" | "it-IT";
 
 // Supported study languages (for phrase content)
-export type StudyLanguage = "en-GB" | "de-DE" | "fr-FR";
+export type StudyLanguage = "en-GB" | "de-DE" | "fr-FR" | "it-IT";
 
 // Translation key type (partial, for type safety without exhaustive listing)
 export type TranslationKey = string;

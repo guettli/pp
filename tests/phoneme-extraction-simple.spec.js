@@ -32,7 +32,7 @@ test.describe("Phoneme Extraction - Improved Filtering", () => {
     // - Kaldi Povey window, fractional mel bins
     // - Energy floor for silent frame detection
 
-    expect(expectedIPA).toBe("diːoːzə");
+    expect(expectedIPA).toBe("diːʁoːzə");
 
     console.log("\nWASM KALDI FBANK:");
     console.log("- Both web and Node.js use wasm/kaldi-fbank (matches Python ZIPA)");

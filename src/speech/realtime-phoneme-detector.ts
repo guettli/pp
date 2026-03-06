@@ -1,11 +1,12 @@
 /**
- * Real-time phoneme detection during recording
- * Processes audio chunks as they arrive and detects when target phrase is spoken
+ * Real-time phoneme detection during recording.
+ * Receives raw Float32 PCM chunks (16 kHz mono) from AudioWorklet and processes them
+ * without any re-decoding overhead — each call works on independently usable sample data.
  */
 
-import { extractPhonemesWithBlankInfo } from "./phoneme-extractor.js";
-import { prepareAudioForModel, peakNormalize } from "../audio/processor.js";
+import { peakNormalize } from "../audio/processor.js";
 import { calculatePanPhonDistance } from "../comparison/panphon-distance.js";
+import { extractPhonemesWithBlankInfo } from "./phoneme-extractor.js";
 
 /**
  * Configuration for real-time detection
@@ -49,7 +50,8 @@ export interface DetectorCallbacks {
 export class RealTimePhonemeDetector {
   private config: Required<DetectorConfig>;
   private callbacks: DetectorCallbacks;
-  private audioChunks: Blob[] = [];
+  private audioChunks: Float32Array[] = [];
+  private totalSamples = 0;
   private chunkCount = 0;
   private isProcessing = false;
   private lastExtractedPhonemes = "";
@@ -76,18 +78,17 @@ export class RealTimePhonemeDetector {
   }
 
   /**
-   * Add an audio chunk for processing
+   * Add a batch of raw PCM samples (16 kHz mono Float32) for processing.
+   * Unlike MediaRecorder chunks, each batch is independently usable, so no
+   * full-audio re-decode is required — we simply concatenate Float32Arrays.
    */
-  async addChunk(chunk: Blob): Promise<void> {
-    // Ignore empty chunks
-    if (chunk.size === 0) return;
+  async addChunk(samples: Float32Array): Promise<void> {
+    // Ignore empty batches
+    if (samples.length === 0) return;
 
-    this.audioChunks.push(chunk);
+    this.audioChunks.push(samples);
+    this.totalSamples += samples.length;
     this.chunkCount++;
-
-    // Note: We don't check for silence on individual chunks because MediaRecorder chunks
-    // are streaming fragments that can't be decoded individually. Instead, we check for
-    // silence when processing accumulated chunks in processAccumulatedAudio().
 
     // Only check after minimum number of chunks
     if (this.chunkCount < this.config.minChunksBeforeCheck) {
@@ -152,7 +153,8 @@ export class RealTimePhonemeDetector {
   }
 
   /**
-   * Process all accumulated audio chunks
+   * Process all accumulated audio chunks.
+   * Concatenates Float32 PCM arrays directly — no blob decoding overhead.
    */
   private async processAccumulatedAudio(): Promise<void> {
     if (this.audioChunks.length === 0) return;
@@ -168,11 +170,13 @@ export class RealTimePhonemeDetector {
     this.isProcessing = true;
 
     try {
-      // Combine all chunks into a single blob
-      const combinedBlob = new Blob(this.audioChunks, { type: this.audioChunks[0].type });
-
-      // Prepare audio for model
-      const audioData = await prepareAudioForModel(combinedBlob);
+      // Concatenate all accumulated Float32 chunks directly — O(n) copy, no decoding needed
+      const audioData = new Float32Array(this.totalSamples);
+      let offset = 0;
+      for (const chunk of this.audioChunks) {
+        audioData.set(chunk, offset);
+        offset += chunk.length;
+      }
 
       // Check for silence on the decoded audio (not on individual chunks)
       await this.checkSilenceFromAudioData(audioData);
@@ -280,11 +284,17 @@ export class RealTimePhonemeDetector {
   }
 
   /**
-   * Get all accumulated audio as a single blob
+   * Get all accumulated audio as a concatenated Float32Array (16 kHz mono PCM)
    */
-  getAccumulatedAudio(): Blob | null {
+  getAccumulatedAudio(): Float32Array | null {
     if (this.audioChunks.length === 0) return null;
-    return new Blob(this.audioChunks, { type: this.audioChunks[0].type });
+    const combined = new Float32Array(this.totalSamples);
+    let offset = 0;
+    for (const chunk of this.audioChunks) {
+      combined.set(chunk, offset);
+      offset += chunk.length;
+    }
+    return combined;
   }
 
   /**
@@ -292,6 +302,7 @@ export class RealTimePhonemeDetector {
    */
   reset(): void {
     this.audioChunks = [];
+    this.totalSamples = 0;
     this.chunkCount = 0;
     this.isProcessing = false;
     this.lastExtractedPhonemes = "";

@@ -1,12 +1,12 @@
-import { test, expect } from "./fixtures.js";
-import path from "path";
 import fs from "fs";
 import yaml from "js-yaml";
+import path from "path";
+import { expect, test } from "./fixtures.js";
 
 /**
  * Test to check if RealTimePhonemeDetector has enough time to process chunks before recording stops.
- * The bug: chunks are added quickly, but processing is async and slow, so by the time recording stops,
- * the detector hasn't processed anything yet. This causes the fallback to always be used.
+ * With AudioWorklet, chunks are raw Float32 PCM data — no blob decoding overhead, so processing
+ * is faster and results should be available as chunks arrive.
  */
 test.describe("Streaming Timing Bug", () => {
   test("Detector should have processed chunks before recording completes", async ({
@@ -30,18 +30,20 @@ test.describe("Streaming Timing Bug", () => {
     const audioPath = path.join(process.cwd(), "tests/data/de-DE/Die_Rose/Die_Rose-Thomas.flac");
     const audioBuffer = fs.readFileSync(audioPath);
 
-    // Simulate the EXACT flow from main.ts: create detector, add chunks quickly, then immediately check results
+    // Simulate the EXACT flow from +page.svelte: create detector, add chunks with timing, then immediately check results
     const result = await page.evaluate(
       async ({ audioData, targetIPA }) => {
         const { RealTimePhonemeDetector } =
           await import("/phoneme-party/src/speech/realtime-phoneme-detector.js");
+        const { prepareAudioForModel } = await import("/phoneme-party/src/audio/processor.js");
 
         let phonemeUpdates = [];
 
-        // Create detector (line 351 in main.ts)
+        // Create detector
         const detector = new RealTimePhonemeDetector(
           {
             targetIPA,
+            studyLang: "de-DE",
             threshold: 1.0,
             minChunksBeforeCheck: 2,
             silenceThreshold: 0.01,
@@ -57,27 +59,30 @@ test.describe("Streaming Timing Bug", () => {
 
         const startTime = Date.now();
 
-        // Simulate MediaRecorder adding chunks every 500ms
+        // Decode FLAC to Float32 PCM (simulating AudioWorklet output)
         const fullBlob = new Blob([new Uint8Array(audioData)], { type: "audio/flac" });
-        const chunkSize = Math.floor(audioData.length / 4); // 4 chunks ~= 2 seconds of recording
-        const chunks = [];
+        const fullAudio = await prepareAudioForModel(fullBlob);
 
-        for (let i = 0; i < audioData.length; i += chunkSize) {
-          const fragmentData = audioData.slice(i, i + chunkSize);
-          const fragmentBlob = new Blob([new Uint8Array(fragmentData)], { type: "audio/flac" });
-          chunks.push(fragmentBlob);
+        // Split into 4 equal chunks (simulating ~500ms AudioWorklet batches)
+        const numChunks = 4;
+        const chunkLength = Math.floor(fullAudio.length / numChunks);
+        const chunks = [];
+        for (let i = 0; i < numChunks; i++) {
+          const start = i * chunkLength;
+          const end = i === numChunks - 1 ? fullAudio.length : start + chunkLength;
+          chunks.push(fullAudio.slice(start, end));
         }
 
-        // Add chunks with realistic timing (500ms between chunks, like MediaRecorder does)
+        // Add chunks with realistic timing (500ms between chunks, like AudioWorklet fires)
         for (let i = 0; i < chunks.length; i++) {
           const chunkTime = Date.now();
           console.log(`Adding chunk ${i + 1}/${chunks.length} at t=${chunkTime - startTime}ms`);
 
-          // Don't await - just fire and forget like the real app does (line 392 in main.ts)
-          // The real code does: void realtimeDetector.addChunk(chunk);
+          // Don't await - just fire and forget like the real app does
+          // The real code does: void realtimeDetector.addChunk(samples);
           void detector.addChunk(chunks[i]);
 
-          // Wait 500ms before next chunk (simulating MediaRecorder timeslice)
+          // Wait 500ms before next chunk (simulating AudioWorklet interval)
           if (i < chunks.length - 1) {
             await new Promise((resolve) => setTimeout(resolve, 500));
           }
@@ -86,7 +91,7 @@ test.describe("Streaming Timing Bug", () => {
         const chunksAddedTime = Date.now();
         console.log(`All chunks added at t=${chunksAddedTime - startTime}ms`);
 
-        // This simulates what happens in actuallyStopRecording (line 566):
+        // This simulates what happens in actuallyStopRecording:
         // Recording stops, and we immediately check if detector has results
         const immediateIPA = detector.getLastPhonemes();
         const immediateSimilarity = detector.getLastSimilarity();
@@ -130,22 +135,11 @@ test.describe("Streaming Timing Bug", () => {
 
     console.log(`\nPhoneme updates: ${result.phonemeUpdates.length}`);
 
-    if (result.immediateIPA === "" && result.afterWaitIPA !== "") {
-      console.log("\n🐛 BUG DETECTED: Timing issue!");
-      console.log("The detector processes chunks AFTER recording stops and results are checked.");
-      console.log(
-        "This causes the app to always fall back to post-processing instead of using streaming results.",
-      );
-      console.log("\nFIX: Ensure detector has processed chunks before checking results,");
-      console.log("or wait for detector to complete processing before using results.");
-    }
-
     console.log("\n=== EXPECTED BEHAVIOR ===");
     console.log("✓ Detector should have results immediately when recording stops");
     console.log("✓ Real-time phoneme updates should happen during recording");
 
-    // The bug: immediate check should have results (not empty)
-    // After the fix, the detector should have processed at least some chunks by the time we check
+    // The detector should have processed at least some chunks by the time we check
     expect(result.immediateIPA).not.toBe("");
     expect(result.phonemeUpdates.length).toBeGreaterThan(0);
     expect(result.timingMs.firstUpdate).not.toBeNull();

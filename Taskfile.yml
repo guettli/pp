@@ -79,6 +79,8 @@ tasks:
       - node tests/phrase-selector.test.js
       - node tests/i18n-completeness.test.js
       - node tests/ipa-validity.test.js
+      - node tests/phrase-coverage.test.js
+      - node tests/phrase-audio-coverage.test.js
 
   check:
     desc: Run all checks (lint + typecheck + e2e + unit tests), concurrent where possible

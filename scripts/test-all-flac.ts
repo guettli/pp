@@ -1,7 +1,7 @@
 #!/usr/bin/env tsx
 /**
  * Test IPA extraction on all FLAC files in tests/data/
- * Uses the float32 ONNX model.
+ * Uses the model configured in src/lib/model-config.ts.
  *
  * Usage: ./run tsx scripts/test-all-flac.ts [options] [pattern]
  *
@@ -17,18 +17,18 @@
 import fs from "fs";
 import path from "path";
 import { parseArgs } from "util";
-import { MODEL_NAME, HF_REPO } from "../src/lib/model-config.js";
+import { MODEL_NAME, HF_REPO, MODEL_FILE } from "../src/lib/model-config.js";
 import { CACHE_DIR, downloadIfNeeded, runTestSuite } from "./lib/flac-test-core.js";
 
-const MODEL_URL = `https://huggingface.co/${HF_REPO}/resolve/main/model.onnx`;
+const MODEL_URL = `https://huggingface.co/${HF_REPO}/resolve/main/${MODEL_FILE}`;
 const VOCAB_URL = `https://huggingface.co/${HF_REPO}/resolve/main/tokens.txt`;
-const LOCAL_MODEL = path.join(CACHE_DIR, `${MODEL_NAME}.onnx`);
+const LOCAL_MODEL = path.join(CACHE_DIR, MODEL_FILE.replace("model", MODEL_NAME));
 const LOCAL_VOCAB = path.join(CACHE_DIR, `${MODEL_NAME}.vocab.json`);
 
 async function downloadModelFiles(): Promise<{ modelPath: string; vocabPath: string }> {
   const modelPath = fs.existsSync(LOCAL_MODEL)
     ? LOCAL_MODEL
-    : await downloadIfNeeded(MODEL_URL, `${MODEL_NAME}.onnx`);
+    : await downloadIfNeeded(MODEL_URL, MODEL_FILE.replace("model", MODEL_NAME));
 
   if (!fs.existsSync(LOCAL_VOCAB)) {
     console.log("Downloading tokens.txt...");

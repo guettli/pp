@@ -2,12 +2,14 @@ import yaml from "js-yaml";
 import phrasesDe from "../../phrases-de-DE.yaml?raw";
 import phrasesEn from "../../phrases-en-GB.yaml?raw";
 import phrasesFr from "../../phrases-fr-FR.yaml?raw";
+import phrasesIt from "../../phrases-it-IT.yaml?raw";
 import type { Phrase } from "../types";
 
 const phrasesByLang: Record<string, Phrase[]> = {
   "de-DE": yaml.load(phrasesDe) as Phrase[],
   "fr-FR": yaml.load(phrasesFr) as Phrase[],
   "en-GB": yaml.load(phrasesEn) as Phrase[],
+  "it-IT": yaml.load(phrasesIt) as Phrase[],
 };
 
 /**

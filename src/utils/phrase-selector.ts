@@ -5,7 +5,7 @@ import { computePhraseQueue } from "./phrase-queue.js";
 import type { PhraseHistory } from "./phrase-queue.js";
 
 /**
- * Return the top-N phrase texts by priority score for prefetch purposes.
+ * Return the top-N phrases by priority score for prefetch purposes.
  * Unlike selectNextPhrase, this is deterministic (no random top-3 sampling).
  */
 export async function getTopPhrasesForPrefetch(
@@ -13,7 +13,7 @@ export async function getTopPhrasesForPrefetch(
   userLevel: number,
   studyLang: string,
   n: number = 100,
-): Promise<string[]> {
+): Promise<Phrase[]> {
   const levelFiltered = filterByLevel(getAllPhrases(phraseLang), userLevel);
   const stateList = await db.getAllPhraseStates(studyLang);
   const stateMap = new Map<string, PhraseHistory>(
@@ -29,7 +29,7 @@ export async function getTopPhrasesForPrefetch(
     ]),
   );
   const queue = computePhraseQueue(levelFiltered, stateMap, Date.now());
-  return queue.slice(0, n).map((c) => c.phrase.phrase);
+  return queue.slice(0, n).map((c) => c.phrase);
 }
 
 /**

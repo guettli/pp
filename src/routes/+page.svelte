@@ -4,25 +4,18 @@
   import { onMount, tick } from "svelte";
   import "../styles/main.css";
 
-  import { prepareAudioForModel, peakNormalize } from "../audio/processor.js";
+  import { peakNormalize, prepareAudioForModel } from "../audio/processor.js";
   import { AudioRecorder } from "../audio/recorder.js";
   import { scorePronunciation } from "../comparison/scorer.js";
   import { db } from "../db.js";
   import {
+    t as _t,
     getUiLang,
     initI18n,
     isUiLangAuto,
     onUiLangChange,
     setUiLang,
-    t as _t,
   } from "../i18n.js";
-
-  // Reactive wrapper: reading uiLang makes all {t("key")} template expressions
-  // re-evaluate when the language changes (Svelte 5 tracks $state reads at call sites).
-  function t(key: string, vars: Record<string, string | number> = {}): string {
-    void uiLang;
-    return _t(key, vars);
-  }
   import {
     extractPhonemes,
     extractPhonemesDetailed,
@@ -31,8 +24,6 @@
   } from "../speech/phoneme-extractor.js";
   import {
     getAvailableVoices,
-    hasPhraseAudio,
-    loadPhraseAudioManifest,
     pickRandomVoice,
     playPhraseAudio,
     prefetchPhraseAudio,
@@ -56,7 +47,20 @@
   import { adjustUserLevel, loadUserLevel, saveUserLevel } from "../utils/level-adjustment.js";
   import { getTopPhrasesForPrefetch, selectNextPhrase } from "../utils/phrase-selector.js";
   import { getPhraseInLang } from "../utils/phrase-xlang";
-  import { findPhraseByName } from "../utils/random.js";
+  import { findPhraseByEnGBKey, findPhraseByName } from "../utils/random.js";
+  import {
+    initNoiseSuppressor,
+    processChunk,
+    resetNoiseSuppressorState,
+    type AudioQuality,
+  } from "../speech/noise-suppressor.js";
+
+  // Reactive wrapper: reading uiLang makes all {t("key")} template expressions
+  // re-evaluate when the language changes (Svelte 5 tracks $state reads at call sites).
+  function t(key: string, vars: Record<string, string | number> = {}): string {
+    void uiLang;
+    return _t(key, vars);
+  }
 
   // ── Reactive state ───────────────────────────────────────────────────────────
 
@@ -70,6 +74,8 @@
   let currentPhrase = $state<Phrase | null>(null);
   let recentPhrases = $state<string[]>([]);
   let isRecording = $state(false);
+  let audioQuality = $state<AudioQuality | null>(null);
+  let qualityHistory = $state<AudioQuality[]>([]);
   let isProcessing = $state(false);
   let processingProgress = $state(0);
   let lastRecordingBlob = $state<Blob | null>(null);
@@ -231,7 +237,7 @@
   /**
    * Auto-play the pre-generated audio for a phrase when it loads.
    */
-  function autoPlayPhrase(phrase: string): void {
+  function autoPlayPhrase(phrase: Phrase): void {
     const sl = getStudyLang();
     if (!sl || !phrase) return;
     const voiceName = resolveVoice(sl);
@@ -242,11 +248,12 @@
   /**
    * Play the pre-generated audio for the UI-language translation of the current phrase.
    */
-  async function playUiLangPhrase(phrase: string): Promise<void> {
+  async function playUiLangPhrase(_xlangPhrase: string): Promise<void> {
+    if (!currentPhrase) return;
     const uiLangTyped = uiLang as StudyLanguage;
     const voiceName = pickRandomVoice(uiLangTyped);
     if (!voiceName) return;
-    await playPhraseAudio(phrase, uiLangTyped, voiceName, ttsPlaybackRate(userLevel)).catch(
+    await playPhraseAudio(currentPhrase, uiLangTyped, voiceName, ttsPlaybackRate(userLevel)).catch(
       (err) => {
         console.error("Audio playback error:", err);
       },
@@ -256,7 +263,7 @@
   /**
    * Play the desired pronunciation for a phrase on demand.
    */
-  async function playDesiredPronunciation(phrase: string): Promise<void> {
+  async function playDesiredPronunciation(phrase: Phrase): Promise<void> {
     if (!phrase) return;
     const studyLang = getStudyLang();
     if (!studyLang) return;
@@ -355,8 +362,8 @@
     currentAudio.onended = () => {
       URL.revokeObjectURL(url);
       currentAudio = null;
-      if (scorePercent !== undefined && scorePercent < 95 && currentPhrase?.phrase) {
-        void playDesiredPronunciation(currentPhrase.phrase);
+      if (scorePercent !== undefined && scorePercent < 95 && currentPhrase) {
+        void playDesiredPronunciation(currentPhrase);
       }
     };
     currentAudio.onerror = () => {
@@ -462,6 +469,10 @@
       return;
     }
 
+    resetNoiseSuppressorState();
+    audioQuality = null;
+    qualityHistory = [];
+
     if (isModelLoaded) {
       // Full real-time detection with model
       realtimeDetector = new RealTimePhonemeDetector(
@@ -484,8 +495,12 @@
       try {
         await recorder.start(
           () => void actuallyStopRecording(),
-          (chunk: Blob) => {
-            if (realtimeDetector) void realtimeDetector.addChunk(chunk);
+          (samples: Float32Array) => {
+            void processChunk(samples).then(({ denoised, quality }) => {
+              audioQuality = quality;
+              qualityHistory.push(quality);
+              if (realtimeDetector) void realtimeDetector.addChunk(denoised);
+            });
           },
           500,
         );
@@ -503,36 +518,33 @@
       const SILENCE_DURATION_MS = 1500;
       let silenceStartTime: number | null = null;
       let silenceTriggered = false;
-      const accChunks: Blob[] = [];
       let chunkCount = 0;
 
       try {
         await recorder.start(
           () => void actuallyStopRecording(),
-          async (chunk: Blob) => {
-            if (silenceTriggered || chunk.size === 0) return;
-            accChunks.push(chunk);
+          (samples: Float32Array) => {
+            if (silenceTriggered || samples.length === 0) return;
             chunkCount++;
+            void processChunk(samples).then(({ quality }) => {
+              audioQuality = quality;
+              qualityHistory.push(quality);
+            });
             if (chunkCount < 3) return;
-            try {
-              const combined = new Blob(accChunks, { type: chunk.type });
-              const audioData = await prepareAudioForModel(combined);
-              let sum = 0;
-              for (let i = 0; i < audioData.length; i++) sum += audioData[i] * audioData[i];
-              const rms = Math.sqrt(sum / audioData.length);
-              const now = Date.now();
-              if (rms < SILENCE_THRESHOLD) {
-                if (silenceStartTime === null) {
-                  silenceStartTime = now;
-                } else if (now - silenceStartTime >= SILENCE_DURATION_MS) {
-                  silenceTriggered = true;
-                  void actuallyStopRecording();
-                }
-              } else {
-                silenceStartTime = null;
+            // Each Float32Array chunk is independently usable — compute RMS directly
+            let sum = 0;
+            for (let i = 0; i < samples.length; i++) sum += samples[i] * samples[i];
+            const rms = Math.sqrt(sum / samples.length);
+            const now = Date.now();
+            if (rms < SILENCE_THRESHOLD) {
+              if (silenceStartTime === null) {
+                silenceStartTime = now;
+              } else if (now - silenceStartTime >= SILENCE_DURATION_MS) {
+                silenceTriggered = true;
+                void actuallyStopRecording();
               }
-            } catch {
-              /* ignore decode errors during silence detection */
+            } else {
+              silenceStartTime = null;
             }
           },
           500,
@@ -766,7 +778,7 @@
     modelDetailsVisible = true;
     try {
       const detailed = await extractPhonemesDetailed(lastRecordingAudioData);
-      modelDetailsHTML = generateModelDetailsHTML(detailed);
+      modelDetailsHTML = generateModelDetailsHTML(detailed, lastRecordingAudioData);
     } catch (error) {
       modelDetailsHTML = `<div class="alert alert-danger small">Error: ${(error as Error).message}</div>`;
     }
@@ -810,18 +822,13 @@
   async function nextPhrase() {
     const sl = getStudyLang();
     if (!sl) return;
-    const filterVoice =
-      selectedVoiceName === RANDOM_VOICE_NAME ? pickRandomVoice(sl) : selectedVoiceName;
-    const audioFilter = filterVoice
-      ? (phraseText: string) => hasPhraseAudio(phraseText, sl, filterVoice)
-      : null;
     const phrase = await selectNextPhrase(
       studyLangToPhraseLang(sl),
       userLevel,
       sl,
       recentPhrases,
       Date.now(),
-      audioFilter,
+      null,
     );
     currentPhrase = phrase;
     const RECENT_HISTORY_SIZE = 5;
@@ -832,7 +839,7 @@
     ipaExplanationsVisible = false;
     modelDetailsVisible = false;
     updateURL();
-    autoPlayPhrase(phrase.phrase);
+    autoPlayPhrase(phrase);
     schedulePrefetch();
   }
 
@@ -1011,8 +1018,7 @@
       studyLangValue = sl ?? "";
       if (sl) await loadAndUpdateUserLevel(sl);
 
-      // Load pre-generated audio manifest and restore preferred voice
-      await loadPhraseAudioManifest();
+      // Restore preferred voice
       if (sl) {
         availableVoices = getAvailableVoices(sl);
         const savedVoice = await db.getPreferredVoice(sl);
@@ -1025,7 +1031,7 @@
 
       // Auto-play audio for the initial phrase (if any)
       if (currentPhrase) {
-        autoPlayPhrase(currentPhrase.phrase);
+        autoPlayPhrase(currentPhrase);
       }
       schedulePrefetch();
 
@@ -1034,9 +1040,28 @@
 
       onStudyLangChange(() => {
         studyLangValue = getStudyLang() ?? "";
-        void nextPhrase();
-        refreshHistory();
+        // Try to keep the current phrase translated into the new study language.
+        // Use the en-GB key as a cross-language lookup key.
         const newSl = getStudyLang();
+        if (newSl && currentPhrase) {
+          const enKey = currentPhrase["en-GB"] ?? currentPhrase.phrase;
+          const equivalent = findPhraseByEnGBKey(enKey, studyLangToPhraseLang(newSl));
+          if (equivalent) {
+            currentPhrase = equivalent;
+            score = null;
+            actualIPA = null;
+            showFeedback = false;
+            ipaExplanationsVisible = false;
+            modelDetailsVisible = false;
+            updateURL();
+            autoPlayPhrase(equivalent);
+          } else {
+            void nextPhrase();
+          }
+        } else {
+          void nextPhrase();
+        }
+        refreshHistory();
         if (newSl) {
           void loadAndUpdateUserLevel(newSl);
           // Update available voices for the new language
@@ -1087,6 +1112,9 @@
       console.error("Initialization error:", error);
       inlineError = error instanceof Error ? error : new Error(String(error));
     }
+
+    // Start noise suppressor in background (non-blocking, 524 KB model)
+    initNoiseSuppressor();
 
     // Load model in background (non-blocking — UI is already interactive)
     const loadStart = performance.now();
@@ -1158,6 +1186,7 @@
           <option value="en-GB">{t("study-lang.en-GB")}</option>
           <option value="de-DE">{t("study-lang.de")}</option>
           <option value="fr-FR">{t("study-lang.fr-FR")}</option>
+          <option value="it-IT">{t("study-lang.it-IT")}</option>
         </select>
       </div>
       <div class="d-flex align-items-center gap-2">
@@ -1168,13 +1197,14 @@
           value={uiLangValue}
           onchange={(e) => {
             const val = (e.target as HTMLSelectElement).value;
-            setUiLang(val as "auto" | "de-DE" | "en-GB" | "fr-FR");
+            setUiLang(val as "auto" | "de-DE" | "en-GB" | "fr-FR" | "it-IT");
           }}
         >
           <option value="auto">{t("ui-lang.auto")}</option>
           <option value="de-DE">{t("language.de")}</option>
           <option value="en-GB">{t("language.en")}</option>
           <option value="fr-FR">{t("language.fr")}</option>
+          <option value="it-IT">{t("language.it")}</option>
         </select>
       </div>
       {#if availableVoices.length > 0}
@@ -1190,7 +1220,7 @@
               const sl = getStudyLang();
               if (sl) void db.savePreferredVoice(sl, val);
               // Play the current phrase with the newly selected voice
-              if (currentPhrase) autoPlayPhrase(currentPhrase.phrase);
+              if (currentPhrase) autoPlayPhrase(currentPhrase);
             }}
           >
             <option value={RANDOM_VOICE_NAME}>Random</option>
@@ -1290,7 +1320,9 @@
               id="replay-phrase-btn"
               class="btn btn-sm btn-outline-secondary"
               title="Play phrase again"
-              onclick={() => void playDesiredPronunciation(currentPhrase?.phrase ?? "")}
+              onclick={() => {
+                if (currentPhrase) void playDesiredPronunciation(currentPhrase);
+              }}
             >
               <i class="bi bi-volume-up-fill"></i>
             </button>
@@ -1364,6 +1396,31 @@
           {t("buttons.next_phrase")}
         </button>
       </div>
+
+      <!-- Audio quality indicator (shown while recording) -->
+      {#if isRecording && audioQuality !== null}
+        <div class="mb-3">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <small class="text-muted" style="min-width: 3.5rem">Volume</small>
+            <div class="progress flex-grow-1" style="height: 6px">
+              <div
+                class="progress-bar"
+                class:bg-warning={audioQuality.rms < 0.01}
+                class:bg-danger={audioQuality.clipping}
+                class:bg-success={!audioQuality.clipping && audioQuality.rms >= 0.01}
+                style="width: {Math.min(100, audioQuality.rms * 300)}%"
+              ></div>
+            </div>
+          </div>
+          {#if audioQuality.clipping}
+            <small class="text-danger">Too loud — microphone is clipping</small>
+          {:else if audioQuality.rms < 0.01}
+            <small class="text-warning">Too quiet — speak louder or move mic closer</small>
+          {:else if audioQuality.snr < 10}
+            <small class="text-warning">Noisy — try to reduce background noise</small>
+          {/if}
+        </div>
+      {/if}
     {/if}
 
     <!-- Model loading progress (only shown when a recording is pending and model is still loading) -->
@@ -1435,6 +1492,35 @@
               {/if}
             </div>
 
+            <!-- Recording quality summary -->
+            {#if qualityHistory.length > 0}
+              {@const total = qualityHistory.length}
+              {@const volPct = Math.round(
+                (qualityHistory.filter((q) => q.rms >= 0.01 && !q.clipping).length / total) * 100,
+              )}
+              {@const noisePct = Math.round(
+                (qualityHistory.filter((q) => q.snr >= 10).length / total) * 100,
+              )}
+              <div class="d-flex gap-4 small mb-3 justify-content-center flex-wrap text-center">
+                <div>
+                  <div class="text-muted">Volume</div>
+                  <strong
+                    class:text-success={volPct >= 80}
+                    class:text-warning={volPct >= 40 && volPct < 80}
+                    class:text-danger={volPct < 40}>{volPct}%</strong
+                  >
+                </div>
+                <div>
+                  <div class="text-muted">Signal quality</div>
+                  <strong
+                    class:text-success={noisePct >= 80}
+                    class:text-warning={noisePct >= 40 && noisePct < 80}
+                    class:text-danger={noisePct < 40}>{noisePct}%</strong
+                  >
+                </div>
+              </div>
+            {/if}
+
             <div class="text-center mb-3">
               <strong>{t("feedback.target_phrase_label")}</strong>
               <p class="mb-0">{currentPhrase?.phrase}</p>
@@ -1448,7 +1534,9 @@
                     id="play-target-btn"
                     class="btn btn-sm btn-outline-secondary"
                     title={t("feedback.play_target")}
-                    onclick={() => void playDesiredPronunciation(currentPhrase?.phrase ?? "")}
+                    onclick={() => {
+                      if (currentPhrase) void playDesiredPronunciation(currentPhrase);
+                    }}
                   >
                     <i class="bi bi-volume-up-fill"></i>
                   </button>

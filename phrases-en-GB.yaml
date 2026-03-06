@@ -7332,3 +7332,747 @@
   ipas:
     - ipa: ðə mˈuːn
       category: standard
+- phrase: Wine
+  emoji: 🍷
+  ipas:
+    - ipa: /waɪn/
+      category: standard
+  level: 180
+- phrase: Table
+  emoji: 🪑
+  ipas:
+    - ipa: /ˈteɪbəl/
+      category: standard
+  level: 200
+- phrase: Chair
+  emoji: 🪑
+  ipas:
+    - ipa: /tʃɛː/
+      category: standard
+  level: 170
+- phrase: Child
+  emoji: 👶
+  ipas:
+    - ipa: /tʃaɪld/
+      category: standard
+  level: 160
+- phrase: Mother
+  emoji: 👩
+  ipas:
+    - ipa: /ˈmʌðə/
+      category: standard
+  level: 140
+- phrase: Father
+  emoji: 👨
+  ipas:
+    - ipa: /ˈfɑːðə/
+      category: standard
+  level: 140
+- phrase: Love
+  emoji: ❤️
+  ipas:
+    - ipa: /lʌv/
+      category: standard
+  level: 100
+- phrase: Friend
+  emoji: 🤝
+  ipas:
+    - ipa: /frɛnd/
+      category: standard
+  level: 130
+- phrase: Food
+  emoji: 🍽️
+  ipas:
+    - ipa: /fuːd/
+      category: standard
+  level: 120
+- phrase: Time
+  emoji: ⏰
+  ipas:
+    - ipa: /taɪm/
+      category: standard
+  level: 140
+- phrase: Day
+  emoji: 📅
+  ipas:
+    - ipa: /deɪ/
+      category: standard
+  level: 100
+- phrase: Night
+  emoji: 🌙
+  ipas:
+    - ipa: /naɪt/
+      category: standard
+  level: 110
+- phrase: Good morning
+  emoji: 👋
+  ipas:
+    - ipa: /ɡʊd ˈmɔːnɪŋ/
+      category: standard
+  level: 260
+- phrase: Good evening
+  emoji: 🌆
+  ipas:
+    - ipa: /ɡʊd ˈiːvnɪŋ/
+      category: standard
+  level: 270
+- phrase: Good night
+  emoji: 🌙
+  ipas:
+    - ipa: /ɡʊd naɪt/
+      category: standard
+  level: 260
+- phrase: Thank you
+  emoji: 🙏
+  ipas:
+    - ipa: /θæŋk juː/
+      category: standard
+  level: 180
+- phrase: "You're welcome"
+  emoji: 😊
+  ipas:
+    - ipa: /jɔː ˈwɛlkəm/
+      category: standard
+  level: 220
+- phrase: Excuse me
+  emoji: 🙋
+  ipas:
+    - ipa: /ɪkˈskjuːz miː/
+      category: standard
+  level: 240
+- phrase: Please
+  emoji: 🙏
+  ipas:
+    - ipa: /pliːz/
+      category: standard
+  level: 140
+- phrase: How are you?
+  emoji: 😊
+  ipas:
+    - ipa: /haʊ ɑː juː/
+      category: standard
+  level: 300
+- phrase: Fine, thank you
+  emoji: 👍
+  ipas:
+    - ipa: /faɪn θæŋk juː/
+      category: standard
+  level: 320
+- phrase: What is your name?
+  emoji: 🤔
+  ipas:
+    - ipa: /wɒt ɪz jɔː neɪm/
+      category: standard
+  level: 360
+- phrase: My name is...
+  emoji: 👤
+  ipas:
+    - ipa: /maɪ neɪm ɪz/
+      category: standard
+  level: 310
+- phrase: Where are you?
+  emoji: 🗺️
+  ipas:
+    - ipa: /wɛr ɑː juː/
+      category: standard
+  level: 330
+- phrase: How much does it cost?
+  emoji: 💰
+  ipas:
+    - ipa: /haʊ mʌtʃ dʌz ɪt kɒst/
+      category: standard
+  level: 380
+- phrase: I don't understand
+  emoji: 😕
+  ipas:
+    - ipa: /aɪ dəʊnt ˌʌndəˈstænd/
+      category: standard
+  level: 380
+- phrase: Do you speak Italian?
+  emoji: 🇮🇹
+  ipas:
+    - ipa: /duː juː spiːk ɪˈtæljən/
+      category: standard
+  level: 420
+- phrase: The child is eating the apple.
+  emoji: 🍎
+  ipas:
+    - ipa: /ðə tʃaɪld ɪz ˈiːtɪŋ ðə ˈæpəl/
+      category: standard
+  level: 540
+- phrase: The woman is reading a book.
+  emoji: 📚
+  ipas:
+    - ipa: /ðə ˈwʊmən ɪz ˈriːdɪŋ ə bʊk/
+      category: standard
+  level: 560
+- phrase: The sun is shining.
+  emoji: ☀️
+  ipas:
+    - ipa: /ðə sʌn ɪz ˈʃaɪnɪŋ/
+      category: standard
+  level: 480
+- phrase: The weather is nice today.
+  emoji: ☀️
+  ipas:
+    - ipa: /ðə ˈwɛðə ɪz naɪs təˈdeɪ/
+      category: standard
+  level: 500
+- phrase: Where is the train station?
+  emoji: 🚉
+  ipas:
+    - ipa: /wɛr ɪz ðə treɪn ˈsteɪʃən/
+      category: standard
+  level: 520
+- phrase: I would like a coffee.
+  emoji: ☕
+  ipas:
+    - ipa: /aɪ wʊd laɪk ə ˈkɒfi/
+      category: standard
+  level: 460
+- phrase: The train is arriving late.
+  emoji: 🚆
+  ipas:
+    - ipa: /ðə treɪn ɪz əˈraɪvɪŋ leɪt/
+      category: standard
+  level: 590
+- phrase: I live in Rome.
+  emoji: 🏛️
+  ipas:
+    - ipa: /aɪ lɪv ɪn rəʊm/
+      category: standard
+  level: 430
+- phrase: I like pizza.
+  emoji: 🍕
+  ipas:
+    - ipa: /aɪ laɪk ˈpiːtsə/
+      category: standard
+  level: 440
+- phrase: The pizza is delicious.
+  emoji: 🍕
+  ipas:
+    - ipa: /ðə ˈpiːtsə ɪz dɪˈlɪʃəs/
+      category: standard
+  level: 490
+- phrase: Let's go to the beach!
+  emoji: 🏖️
+  ipas:
+    - ipa: /lɛts ɡəʊ tə ðə biːtʃ/
+      category: standard
+  level: 470
+- phrase: What a beautiful day!
+  emoji: ☀️
+  ipas:
+    - ipa: /wɒt ə ˈbjuːtɪfəl deɪ/
+      category: standard
+  level: 510
+- phrase: I am hungry.
+  emoji: 🍽️
+  ipas:
+    - ipa: /aɪ æm ˈhʌŋɡri/
+      category: standard
+  level: 310
+- phrase: I am thirsty.
+  emoji: 💧
+  ipas:
+    - ipa: /aɪ æm ˈθɜːsti/
+      category: standard
+  level: 320
+- phrase: I am tired.
+  emoji: 😴
+  ipas:
+    - ipa: /aɪ æm ˈtaɪəd/
+      category: standard
+  level: 330
+- phrase: I am happy.
+  emoji: 😊
+  ipas:
+    - ipa: /aɪ æm ˈhæpi/
+      category: standard
+  level: 340
+- phrase: Where is the bathroom?
+  emoji: 🚽
+  ipas:
+    - ipa: /wɛr ɪz ðə ˈbɑːθruːm/
+      category: standard
+  level: 390
+- phrase: Can I have the bill?
+  emoji: 🧾
+  ipas:
+    - ipa: /kæn aɪ hæv ðə bɪl/
+      category: standard
+  level: 510
+- phrase: Enjoy your meal!
+  emoji: 🍽️
+  ipas:
+    - ipa: /ɪnˈdʒɔɪ jɔː miːl/
+      category: standard
+  level: 290
+- phrase: Cheers!
+  emoji: 🥂
+  ipas:
+    - ipa: /tʃɪəz/
+      category: standard
+  level: 180
+- phrase: Congratulations!
+  emoji: 🎉
+  ipas:
+    - ipa: /kənˌɡrætʃʊˈleɪʃənz/
+      category: standard
+  level: 440
+- phrase: Good luck!
+  emoji: 🤞
+  ipas:
+    - ipa: /ɡʊd lʌk/
+      category: standard
+  level: 200
+- phrase: Orange
+  emoji: 🍊
+  ipas:
+    - ipa: /ˈɒrɪndʒ/
+      category: standard
+  level: 160
+- phrase: Strawberry
+  emoji: 🍓
+  ipas:
+    - ipa: /ˈstrɔːbəri/
+      category: standard
+  level: 260
+- phrase: Tomato
+  emoji: 🍅
+  ipas:
+    - ipa: /təˈmɑːtəʊ/
+      category: standard
+  level: 230
+- phrase: Cheese
+  emoji: 🧀
+  ipas:
+    - ipa: /tʃiːz/
+      category: standard
+  level: 170
+- phrase: Egg
+  emoji: 🥚
+  ipas:
+    - ipa: /ɛɡ/
+      category: standard
+  level: 100
+- phrase: Meat
+  emoji: 🥩
+  ipas:
+    - ipa: /miːt/
+      category: standard
+  level: 150
+- phrase: Bus
+  emoji: 🚌
+  ipas:
+    - ipa: /bʌs/
+      category: standard
+  level: 120
+- phrase: Aeroplane
+  emoji: ✈️
+  ipas:
+    - ipa: /ˈɛːrəpleɪn/
+      category: standard
+  level: 280
+- phrase: University
+  emoji: 🎓
+  ipas:
+    - ipa: /ˌjuːnɪˈvɜːsɪti/
+      category: standard
+  level: 360
+- phrase: Work
+  emoji: 💼
+  ipas:
+    - ipa: /wɜːk/
+      category: standard
+  level: 140
+- phrase: Shop
+  emoji: 🛒
+  ipas:
+    - ipa: /ʃɒp/
+      category: standard
+  level: 160
+- phrase: Market
+  emoji: 🛍️
+  ipas:
+    - ipa: /ˈmɑːkɪt/
+      category: standard
+  level: 220
+- phrase: Hospital
+  emoji: 🏥
+  ipas:
+    - ipa: /ˈhɒspɪtəl/
+      category: standard
+  level: 340
+- phrase: Pharmacy
+  emoji: 💊
+  ipas:
+    - ipa: /ˈfɑːməsi/
+      category: standard
+  level: 360
+- phrase: Bank
+  emoji: 🏦
+  ipas:
+    - ipa: /bæŋk/
+      category: standard
+  level: 180
+- phrase: Restaurant
+  emoji: 🍽️
+  ipas:
+    - ipa: /ˈrɛstərɒnt/
+      category: standard
+  level: 300
+- phrase: Hotel
+  emoji: 🏨
+  ipas:
+    - ipa: /həʊˈtɛl/
+      category: standard
+  level: 280
+- phrase: Red
+  emoji: 🔴
+  ipas:
+    - ipa: /rɛd/
+      category: standard
+  level: 80
+- phrase: Blue
+  emoji: 🔵
+  ipas:
+    - ipa: /bluː/
+      category: standard
+  level: 80
+- phrase: Green
+  emoji: 🟢
+  ipas:
+    - ipa: /ɡriːn/
+      category: standard
+  level: 90
+- phrase: Yellow
+  emoji: 🟡
+  ipas:
+    - ipa: /ˈjɛləʊ/
+      category: standard
+  level: 140
+- phrase: White
+  emoji: ⚪
+  ipas:
+    - ipa: /waɪt/
+      category: standard
+  level: 100
+- phrase: Black
+  emoji: ⚫
+  ipas:
+    - ipa: /blæk/
+      category: standard
+  level: 90
+- phrase: Big
+  emoji: 🔝
+  ipas:
+    - ipa: /bɪɡ/
+      category: standard
+  level: 80
+- phrase: Small
+  emoji: 🔽
+  ipas:
+    - ipa: /smɔːl/
+      category: standard
+  level: 100
+- phrase: Beautiful
+  emoji: 😍
+  ipas:
+    - ipa: /ˈbjuːtɪfəl/
+      category: standard
+  level: 260
+- phrase: Ugly
+  emoji: 😬
+  ipas:
+    - ipa: /ˈʌɡli/
+      category: standard
+  level: 170
+- phrase: New
+  emoji: ✨
+  ipas:
+    - ipa: /njuː/
+      category: standard
+  level: 80
+- phrase: Old
+  emoji: 🕰️
+  ipas:
+    - ipa: /əʊld/
+      category: standard
+  level: 90
+- phrase: Hot
+  emoji: 🌡️
+  ipas:
+    - ipa: /hɒt/
+      category: standard
+  level: 80
+- phrase: Cold
+  emoji: ❄️
+  ipas:
+    - ipa: /kəʊld/
+      category: standard
+  level: 90
+- phrase: One
+  emoji: 1️⃣
+  ipas:
+    - ipa: /wʌn/
+      category: standard
+  level: 60
+- phrase: Two
+  emoji: 2️⃣
+  ipas:
+    - ipa: /tuː/
+      category: standard
+  level: 60
+- phrase: Three
+  emoji: 3️⃣
+  ipas:
+    - ipa: /θriː/
+      category: standard
+  level: 70
+- phrase: Four
+  emoji: 4️⃣
+  ipas:
+    - ipa: /fɔː/
+      category: standard
+  level: 70
+- phrase: Five
+  emoji: 5️⃣
+  ipas:
+    - ipa: /faɪv/
+      category: standard
+  level: 80
+- phrase: Six
+  emoji: 6️⃣
+  ipas:
+    - ipa: /sɪks/
+      category: standard
+  level: 80
+- phrase: Seven
+  emoji: 7️⃣
+  ipas:
+    - ipa: /ˈsɛvən/
+      category: standard
+  level: 90
+- phrase: Eight
+  emoji: 8️⃣
+  ipas:
+    - ipa: /eɪt/
+      category: standard
+  level: 90
+- phrase: Nine
+  emoji: 9️⃣
+  ipas:
+    - ipa: /naɪn/
+      category: standard
+  level: 90
+- phrase: Ten
+  emoji: 🔟
+  ipas:
+    - ipa: /tɛn/
+      category: standard
+  level: 100
+- phrase: Monday
+  emoji: 📅
+  ipas:
+    - ipa: /ˈmʌndeɪ/
+      category: standard
+  level: 220
+- phrase: Tuesday
+  emoji: 📅
+  ipas:
+    - ipa: /ˈtjuːzdeɪ/
+      category: standard
+  level: 230
+- phrase: Wednesday
+  emoji: 📅
+  ipas:
+    - ipa: /ˈwɛnzdeɪ/
+      category: standard
+  level: 240
+- phrase: Thursday
+  emoji: 📅
+  ipas:
+    - ipa: /ˈθɜːzdeɪ/
+      category: standard
+  level: 230
+- phrase: Friday
+  emoji: 📅
+  ipas:
+    - ipa: /ˈfraɪdeɪ/
+      category: standard
+  level: 220
+- phrase: Saturday
+  emoji: 📅
+  ipas:
+    - ipa: /ˈsætədeɪ/
+      category: standard
+  level: 240
+- phrase: Sunday
+  emoji: 📅
+  ipas:
+    - ipa: /ˈsʌndeɪ/
+      category: standard
+  level: 220
+- phrase: January
+  emoji: 📆
+  ipas:
+    - ipa: /ˈdʒænjuəri/
+      category: standard
+  level: 290
+- phrase: February
+  emoji: 📆
+  ipas:
+    - ipa: /ˈfɛbrʊəri/
+      category: standard
+  level: 300
+- phrase: March
+  emoji: 📆
+  ipas:
+    - ipa: /mɑːtʃ/
+      category: standard
+  level: 200
+- phrase: April
+  emoji: 📆
+  ipas:
+    - ipa: /ˈeɪprəl/
+      category: standard
+  level: 220
+- phrase: May
+  emoji: 📆
+  ipas:
+    - ipa: /meɪ/
+      category: standard
+  level: 140
+- phrase: June
+  emoji: 📆
+  ipas:
+    - ipa: /dʒuːn/
+      category: standard
+  level: 160
+- phrase: July
+  emoji: 📆
+  ipas:
+    - ipa: /dʒʊˈlaɪ/
+      category: standard
+  level: 220
+- phrase: August
+  emoji: 📆
+  ipas:
+    - ipa: /ˈɔːɡəst/
+      category: standard
+  level: 220
+- phrase: September
+  emoji: 📆
+  ipas:
+    - ipa: /sɛpˈtɛmbə/
+      category: standard
+  level: 300
+- phrase: October
+  emoji: 📆
+  ipas:
+    - ipa: /ɒkˈtəʊbə/
+      category: standard
+  level: 280
+- phrase: November
+  emoji: 📆
+  ipas:
+    - ipa: /nəʊˈvɛmbə/
+      category: standard
+  level: 280
+- phrase: December
+  emoji: 📆
+  ipas:
+    - ipa: /dɪˈsɛmbə/
+      category: standard
+  level: 280
+- phrase: Spring
+  emoji: 🌸
+  ipas:
+    - ipa: /sprɪŋ/
+      category: standard
+  level: 200
+- phrase: Summer
+  emoji: ☀️
+  ipas:
+    - ipa: /ˈsʌmə/
+      category: standard
+  level: 180
+- phrase: Autumn
+  emoji: 🍂
+  ipas:
+    - ipa: /ˈɔːtəm/
+      category: standard
+  level: 220
+- phrase: Winter
+  emoji: ❄️
+  ipas:
+    - ipa: /ˈwɪntə/
+      category: standard
+  level: 200
+- phrase: Mountain
+  emoji: ⛰️
+  ipas:
+    - ipa: /ˈmaʊntɪn/
+      category: standard
+  level: 220
+- phrase: Sea
+  emoji: 🌊
+  ipas:
+    - ipa: /siː/
+      category: standard
+  level: 100
+- phrase: River
+  emoji: 🏞️
+  ipas:
+    - ipa: /ˈrɪvə/
+      category: standard
+  level: 160
+- phrase: City
+  emoji: 🏙️
+  ipas:
+    - ipa: /ˈsɪti/
+      category: standard
+  level: 180
+- phrase: Village
+  emoji: 🏘️
+  ipas:
+    - ipa: /ˈvɪlɪdʒ/
+      category: standard
+  level: 220
+- phrase: Italy
+  emoji: 🇮🇹
+  ipas:
+    - ipa: /ˈɪtəli/
+      category: standard
+  level: 180
+- phrase: Rome
+  emoji: 🏛️
+  ipas:
+    - ipa: /rəʊm/
+      category: standard
+  level: 120
+- phrase: Milan
+  emoji: 🏙️
+  ipas:
+    - ipa: /mɪˈlæn/
+      category: standard
+  level: 180
+- phrase: Venice
+  emoji: 🛶
+  ipas:
+    - ipa: /ˈvɛnɪs/
+      category: standard
+  level: 200
+- phrase: Florence
+  emoji: 🌸
+  ipas:
+    - ipa: /ˈflɒrəns/
+      category: standard
+  level: 200
+- phrase: Naples
+  emoji: 🍕
+  ipas:
+    - ipa: /ˈneɪpəlz/
+      category: standard
+  level: 200

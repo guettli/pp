@@ -4,4 +4,4 @@
  */
 export const MODEL_NAME = "zipa-small-crctc-ns-700k";
 export const HF_REPO = `anyspeech/${MODEL_NAME}`;
-export const MODEL_FILE = "model.fp16.onnx";
+export const MODEL_FILE = "model.int8.onnx"; // fp16 tested: same 94% avg similarity, int8 is 46% smaller

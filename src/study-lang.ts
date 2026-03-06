@@ -2,7 +2,7 @@ import type { StudyLanguage, SupportedLanguage } from "./types.js";
 export type { StudyLanguage };
 
 const STUDY_LANG_KEY = "phoneme-party-study-lang";
-export const SUPPORTED_STUDY_LANGS: StudyLanguage[] = ["en-GB", "de-DE", "fr-FR"];
+export const SUPPORTED_STUDY_LANGS: StudyLanguage[] = ["en-GB", "de-DE", "fr-FR", "it-IT"];
 
 type StudyLangChangeListener = (studyLang: StudyLanguage) => void;
 

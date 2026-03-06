@@ -1,0 +1,1082 @@
+[
+  {
+    "variant": "gtts",
+    "label": "Google TTS via gTTS (standard speed, online)",
+    "sentences": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "target_ipa": "ˈœfnə diː tˈyːɾ bˈɪtə",
+        "recognized_ipa": "ʔœfnədiːtyːɐbɪtə",
+        "similarity": 0.9711538461538461,
+        "panphon_distance": 0.375
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "target_ipa": "mˈœçtəst duː mˈysliː ˈɛsən",
+        "recognized_ipa": "mœçtʰəstduːmʏsliʔɛszən",
+        "similarity": 0.9649122807017544,
+        "panphon_distance": 0.6666666666666666
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "target_ipa": "das frˈɔølaɪn tɾˈɛːkt aɪn rˈoːtəs klˈaɪt",
+        "recognized_ipa": "dasfɾɔølaɪntʁɛːktɛɪnʀoːtəsklaɪt",
+        "similarity": 0.9741379310344828,
+        "panphon_distance": 0.75
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "target_ipa": "viːɾ ˈyːbən tˈɛːklɪç ˈaʊsʃpɾˌɑːxə",
+        "recognized_ipa": "viːɐyːbəntɛːklɪçaʊsʃpʁaːxə",
+        "similarity": 0.9640151515151515,
+        "panphon_distance": 0.7916666666666666
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "target_ipa": "dɛɾ bˈɛkɜ bˈɛkt frˈɪʃəs bɾˈoːt",
+        "recognized_ipa": "deːɐbɛkɐbɛktfɾɪʃəsbroːt",
+        "similarity": 0.9742063492063492,
+        "panphon_distance": 0.5416666666666666
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "target_ipa": "kˌœnən viːɾ frˈyːɜ ɡˈeːən",
+        "recognized_ipa": "kœnənviːɐfryːɐgeːən",
+        "similarity": 0.9713541666666666,
+        "panphon_distance": 0.4583333333333333
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "target_ipa": "diː vˈøːɡəl zˈɪŋən ʃˈøːn",
+        "recognized_ipa": "diːvøːgelzɪŋənʃøːn",
+        "similarity": 0.9944444444444445,
+        "panphon_distance": 0.08333333333333333
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "target_ipa": "mˈytɜ kˈymɜn zɪç ʊm ˌiːrə kˈɪndɜ",
+        "recognized_ipa": "mʏtɐkʏmɛɾnzɪçʊmʔiːʁəkɪndɐ",
+        "similarity": 0.9619565217391304,
+        "panphon_distance": 0.8750000000000001
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "target_ipa": "ˈyːbʊŋən ʃtˈɛɾkən daɪn dˈɔøtʃ",
+        "recognized_ipa": "ʔyːbʊŋənʃtɛɾkəndaɪndɔøtʃ",
+        "similarity": 1,
+        "panphon_distance": 0
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "target_ipa": "jˈɛːɡɜ ʃˈiːsən aʊf dɛɾ ɡɾˈyːnən vˈiːzə",
+        "recognized_ipa": "jɛːgɐʃiːsənaʊfdeːɐgɾyːnənviəsə",
+        "similarity": 0.9583333333333334,
+        "panphon_distance": 1.0833333333333333
+      }
+    ],
+    "avg_similarity": 0.9734514024795159,
+    "min_similarity": 0.9583333333333334,
+    "total_files": 10,
+    "ok_files": 10
+  },
+  {
+    "variant": "silero-eva",
+    "label": "Silero TTS v3_de speaker=eva_k (female, local neural)",
+    "sentences": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "target_ipa": "ˈœfnə diː tˈyːɾ bˈɪtə",
+        "recognized_ipa": "ʔœfnədiːtyːɐbɪtə",
+        "similarity": 0.9711538461538461,
+        "panphon_distance": 0.375
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "target_ipa": "mˈœçtəst duː mˈysliː ˈɛsən",
+        "recognized_ipa": "mœçtʰəstduːmʏsliʔɛszən",
+        "similarity": 0.9649122807017544,
+        "panphon_distance": 0.6666666666666666
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "target_ipa": "das frˈɔølaɪn tɾˈɛːkt aɪn rˈoːtəs klˈaɪt",
+        "recognized_ipa": "dasfɾɔʏlaɪntʁɛːktɛɪnʀoːtəsklaɪt",
+        "similarity": 0.9712643678160919,
+        "panphon_distance": 0.8333333333333333
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "target_ipa": "viːɾ ˈyːbən tˈɛːklɪç ˈaʊsʃpɾˌɑːxə",
+        "recognized_ipa": "viːɐyːbəntɛːklɪçaʊsʃpʁaːxə",
+        "similarity": 0.9640151515151515,
+        "panphon_distance": 0.7916666666666666
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "target_ipa": "dɛɾ bˈɛkɜ bˈɛkt frˈɪʃəs bɾˈoːt",
+        "recognized_ipa": "deːɐbɛkɐbɛktfɾɪʃəsbroːt",
+        "similarity": 0.9742063492063492,
+        "panphon_distance": 0.5416666666666666
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "target_ipa": "kˌœnən viːɾ frˈyːɜ ɡˈeːən",
+        "recognized_ipa": "kœnənviːɐfryːɐgeːən",
+        "similarity": 0.9713541666666666,
+        "panphon_distance": 0.4583333333333333
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "target_ipa": "diː vˈøːɡəl zˈɪŋən ʃˈøːn",
+        "recognized_ipa": "diːvøːgelzɪŋənʃøːn",
+        "similarity": 0.9944444444444445,
+        "panphon_distance": 0.08333333333333333
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "target_ipa": "mˈytɜ kˈymɜn zɪç ʊm ˌiːrə kˈɪndɜ",
+        "recognized_ipa": "mʏtɐkʏmɛɾnzɪçʊmʔiːʁəkɪndɐ",
+        "similarity": 0.9619565217391304,
+        "panphon_distance": 0.8750000000000001
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "target_ipa": "ˈyːbʊŋən ʃtˈɛɾkən daɪn dˈɔøtʃ",
+        "recognized_ipa": "ʔyːbʊŋənʃtɛɾkəndaɪndɔøtʃ",
+        "similarity": 1,
+        "panphon_distance": 0
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "target_ipa": "jˈɛːɡɜ ʃˈiːsən aʊf dɛɾ ɡɾˈyːnən vˈiːzə",
+        "recognized_ipa": "jɛːgɐʃiːsənaʊfdeːɐgɾyːnənviəsə",
+        "similarity": 0.9583333333333334,
+        "panphon_distance": 1.0833333333333333
+      }
+    ],
+    "avg_similarity": 0.9731640461576768,
+    "min_similarity": 0.9583333333333334,
+    "total_files": 10,
+    "ok_files": 10
+  },
+  {
+    "variant": "silero-karlsson",
+    "label": "Silero TTS v3_de speaker=karlsson (male, local neural)",
+    "sentences": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "target_ipa": "ˈœfnə diː tˈyːɾ bˈɪtə",
+        "recognized_ipa": "ʔœfnədiːtyːɐbɪtə",
+        "similarity": 0.9711538461538461,
+        "panphon_distance": 0.375
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "target_ipa": "mˈœçtəst duː mˈysliː ˈɛsən",
+        "recognized_ipa": "mœçtʰəstduːmʏsliʔɛszən",
+        "similarity": 0.9649122807017544,
+        "panphon_distance": 0.6666666666666666
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "target_ipa": "das frˈɔølaɪn tɾˈɛːkt aɪn rˈoːtəs klˈaɪt",
+        "recognized_ipa": "dasfɾɔʏlaɪntʁɛːktɛɪnʀoːtəsklaɪt",
+        "similarity": 0.9712643678160919,
+        "panphon_distance": 0.8333333333333333
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "target_ipa": "viːɾ ˈyːbən tˈɛːklɪç ˈaʊsʃpɾˌɑːxə",
+        "recognized_ipa": "viːɐyːbəntɛːklɪçaʊsʃpʁaːxə",
+        "similarity": 0.9640151515151515,
+        "panphon_distance": 0.7916666666666666
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "target_ipa": "dɛɾ bˈɛkɜ bˈɛkt frˈɪʃəs bɾˈoːt",
+        "recognized_ipa": "deːɐbɛkɐbɛktfɾɪʃəsproːt",
+        "similarity": 0.9722222222222222,
+        "panphon_distance": 0.5833333333333333
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "target_ipa": "kˌœnən viːɾ frˈyːɜ ɡˈeːən",
+        "recognized_ipa": "kœnənviːɐfryːɐgeːən",
+        "similarity": 0.9713541666666666,
+        "panphon_distance": 0.4583333333333333
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "target_ipa": "diː vˈøːɡəl zˈɪŋən ʃˈøːn",
+        "recognized_ipa": "diːføːgelzɪŋənʃøːn",
+        "similarity": 0.9916666666666667,
+        "panphon_distance": 0.125
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "target_ipa": "mˈytɜ kˈymɜn zɪç ʊm ˌiːrə kˈɪndɜ",
+        "recognized_ipa": "mʏtɐkʏmɛɾnzɪçʊmʔiːʁəkɪndɐ",
+        "similarity": 0.9619565217391304,
+        "panphon_distance": 0.8750000000000001
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "target_ipa": "ˈyːbʊŋən ʃtˈɛɾkən daɪn dˈɔøtʃ",
+        "recognized_ipa": "ʔyːbʊŋənʃtɛɾkəndaɪndɔøtʃ",
+        "similarity": 1,
+        "panphon_distance": 0
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "target_ipa": "jˈɛːɡɜ ʃˈiːsən aʊf dɛɾ ɡɾˈyːnən vˈiːzə",
+        "recognized_ipa": "jɛːgɐʃiːsənaʊfdeːɐgɾyːnənviəsə",
+        "similarity": 0.9583333333333334,
+        "panphon_distance": 1.0833333333333333
+      }
+    ],
+    "avg_similarity": 0.9726878556814864,
+    "min_similarity": 0.9583333333333334,
+    "total_files": 10,
+    "ok_files": 10
+  },
+  {
+    "variant": "gtts-slow",
+    "label": "Google TTS via gTTS (slow mode, online)",
+    "sentences": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "target_ipa": "ˈœfnə diː tˈyːɾ bˈɪtə",
+        "recognized_ipa": "ʔœfnədiːtyːɐbɪtə",
+        "similarity": 0.9711538461538461,
+        "panphon_distance": 0.375
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "target_ipa": "mˈœçtəst duː mˈysliː ˈɛsən",
+        "recognized_ipa": "mœçtʰəstduːmʏsliʔɛszən",
+        "similarity": 0.9649122807017544,
+        "panphon_distance": 0.6666666666666666
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "target_ipa": "das frˈɔølaɪn tɾˈɛːkt aɪn rˈoːtəs klˈaɪt",
+        "recognized_ipa": "dasfɾɔøləɪntʁɛːktɛɪnʀoːtəsklaɪt",
+        "similarity": 0.9712643678160919,
+        "panphon_distance": 0.8333333333333333
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "target_ipa": "viːɾ ˈyːbən tˈɛːklɪç ˈaʊsʃpɾˌɑːxə",
+        "recognized_ipa": "viːɐyːbəntɛːklɪçaʊsʃpʁaːxə",
+        "similarity": 0.9640151515151515,
+        "panphon_distance": 0.7916666666666666
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "target_ipa": "dɛɾ bˈɛkɜ bˈɛkt frˈɪʃəs bɾˈoːt",
+        "recognized_ipa": "deːɐbɛkɐbɛktfɾɪʃəsbʀoːt",
+        "similarity": 0.9623015873015873,
+        "panphon_distance": 0.7916666666666666
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "target_ipa": "kˌœnən viːɾ frˈyːɜ ɡˈeːən",
+        "recognized_ipa": "kœnənviːɐfryːɐgeːən",
+        "similarity": 0.9713541666666666,
+        "panphon_distance": 0.4583333333333333
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "target_ipa": "diː vˈøːɡəl zˈɪŋən ʃˈøːn",
+        "recognized_ipa": "diːvøːgelzɪŋənʃøːn",
+        "similarity": 0.9944444444444445,
+        "panphon_distance": 0.08333333333333333
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "target_ipa": "mˈytɜ kˈymɜn zɪç ʊm ˌiːrə kˈɪndɜ",
+        "recognized_ipa": "mʏtɐkʏmɛɾnzɪçʊmʔiːʁəkɪndɐ",
+        "similarity": 0.9619565217391304,
+        "panphon_distance": 0.8750000000000001
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "target_ipa": "ˈyːbʊŋən ʃtˈɛɾkən daɪn dˈɔøtʃ",
+        "recognized_ipa": "ʔyːbʊŋənʃtɛɾkəndaɪndɔøtʃ",
+        "similarity": 1,
+        "panphon_distance": 0
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "target_ipa": "jˈɛːɡɜ ʃˈiːsən aʊf dɛɾ ɡɾˈyːnən vˈiːzə",
+        "recognized_ipa": "jɛːgɐʃiːsənaʊfdeːɐgɾyːnənviəsə",
+        "similarity": 0.9583333333333334,
+        "panphon_distance": 1.0833333333333333
+      }
+    ],
+    "avg_similarity": 0.9719735699672007,
+    "min_similarity": 0.9583333333333334,
+    "total_files": 10,
+    "ok_files": 10
+  },
+  {
+    "variant": "edge-tts-male",
+    "label": "Microsoft Edge TTS de-DE-ConradNeural (male, online)",
+    "sentences": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "target_ipa": "ˈœfnə diː tˈyːɾ bˈɪtə",
+        "recognized_ipa": "ʔœfnədiːtyːɐbɪtə",
+        "similarity": 0.9711538461538461,
+        "panphon_distance": 0.375
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "target_ipa": "mˈœçtəst duː mˈysliː ˈɛsən",
+        "recognized_ipa": "mœçtʰəstduːmʏsliʔɛszən",
+        "similarity": 0.9649122807017544,
+        "panphon_distance": 0.6666666666666666
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "target_ipa": "das frˈɔølaɪn tɾˈɛːkt aɪn rˈoːtəs klˈaɪt",
+        "recognized_ipa": "dasfʀɔʏlaɪntʁɛːktɛɪnʀoːtəsklaet",
+        "similarity": 0.9597701149425287,
+        "panphon_distance": 1.1666666666666665
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "target_ipa": "viːɾ ˈyːbən tˈɛːklɪç ˈaʊsʃpɾˌɑːxə",
+        "recognized_ipa": "viːɐʔyːbɛntɛːklɪçaʊsʃpʁaːxə",
+        "similarity": 0.9640151515151515,
+        "panphon_distance": 0.7916666666666666
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "target_ipa": "dɛɾ bˈɛkɜ bˈɛkt frˈɪʃəs bɾˈoːt",
+        "recognized_ipa": "deːɐbɛkɐbɛktfɾɪʃəsbroːt",
+        "similarity": 0.9742063492063492,
+        "panphon_distance": 0.5416666666666666
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "target_ipa": "kˌœnən viːɾ frˈyːɜ ɡˈeːən",
+        "recognized_ipa": "kœnənviːɐfryːɐgeːən",
+        "similarity": 0.9713541666666666,
+        "panphon_distance": 0.4583333333333333
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "target_ipa": "diː vˈøːɡəl zˈɪŋən ʃˈøːn",
+        "recognized_ipa": "diːvøːgelzɪŋənʃøːn",
+        "similarity": 0.9944444444444445,
+        "panphon_distance": 0.08333333333333333
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "target_ipa": "mˈytɜ kˈymɜn zɪç ʊm ˌiːrə kˈɪndɜ",
+        "recognized_ipa": "mɪtɐkʏmɛɾnzɪçʊmʔiːʁəkɪndɐ",
+        "similarity": 0.9601449275362319,
+        "panphon_distance": 0.9166666666666666
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "target_ipa": "ˈyːbʊŋən ʃtˈɛɾkən daɪn dˈɔøtʃ",
+        "recognized_ipa": "ʔyːbʊŋənʃtɛɾtəndaɪndɔøtʃ",
+        "similarity": 0.990530303030303,
+        "panphon_distance": 0.20833333333333334
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "target_ipa": "jˈɛːɡɜ ʃˈiːsən aʊf dɛɾ ɡɾˈyːnən vˈiːzə",
+        "recognized_ipa": "jɛːgɐʃiːsənaʊfdeːɐgɾyːnənviəsə",
+        "similarity": 0.9583333333333334,
+        "panphon_distance": 1.0833333333333333
+      }
+    ],
+    "avg_similarity": 0.970886491753061,
+    "min_similarity": 0.9583333333333334,
+    "total_files": 10,
+    "ok_files": 10
+  },
+  {
+    "variant": "edge-tts-female",
+    "label": "Microsoft Edge TTS de-DE-KatjaNeural (female, online)",
+    "sentences": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "target_ipa": "ˈœfnə diː tˈyːɾ bˈɪtə",
+        "recognized_ipa": "ʔœfnədiːtyːɐbɪtə",
+        "similarity": 0.9711538461538461,
+        "panphon_distance": 0.375
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "target_ipa": "mˈœçtəst duː mˈysliː ˈɛsən",
+        "recognized_ipa": "mœçtʰɛstduːmʏsliʔɛszən",
+        "similarity": 0.9649122807017544,
+        "panphon_distance": 0.6666666666666666
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "target_ipa": "das frˈɔølaɪn tɾˈɛːkt aɪn rˈoːtəs klˈaɪt",
+        "recognized_ipa": "dasfɾɔølaɪntʁɛːktɛɪnʀoːtəsklaɪt",
+        "similarity": 0.9741379310344828,
+        "panphon_distance": 0.75
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "target_ipa": "viːɾ ˈyːbən tˈɛːklɪç ˈaʊsʃpɾˌɑːxə",
+        "recognized_ipa": "viːɐyːbəntɛːklɪçaʊsʃpʁaːxə",
+        "similarity": 0.9640151515151515,
+        "panphon_distance": 0.7916666666666666
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "target_ipa": "dɛɾ bˈɛkɜ bˈɛkt frˈɪʃəs bɾˈoːt",
+        "recognized_ipa": "deːɐbɛkɐbɛktfɾɪʃəsbroːt",
+        "similarity": 0.9742063492063492,
+        "panphon_distance": 0.5416666666666666
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "target_ipa": "kˌœnən viːɾ frˈyːɜ ɡˈeːən",
+        "recognized_ipa": "kœnənviːɐfryːɐgeːən",
+        "similarity": 0.9713541666666666,
+        "panphon_distance": 0.4583333333333333
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "target_ipa": "diː vˈøːɡəl zˈɪŋən ʃˈøːn",
+        "recognized_ipa": "diːvøːgel̩zɪŋənʃøːn",
+        "similarity": 0.96875,
+        "panphon_distance": 0.5
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "target_ipa": "mˈytɜ kˈymɜn zɪç ʊm ˌiːrə kˈɪndɜ",
+        "recognized_ipa": "mʏtɐkʏmɛɾnzɪçʊmʔiːʁəkɪndɐ",
+        "similarity": 0.9619565217391304,
+        "panphon_distance": 0.8750000000000001
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "target_ipa": "ˈyːbʊŋən ʃtˈɛɾkən daɪn dˈɔøtʃ",
+        "recognized_ipa": "ʔyːbʊŋɛntʃtɛɾkəndaɪndɔøtʃ",
+        "similarity": 0.9782608695652174,
+        "panphon_distance": 0.5
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "target_ipa": "jˈɛːɡɜ ʃˈiːsən aʊf dɛɾ ɡɾˈyːnən vˈiːzə",
+        "recognized_ipa": "jɛːgɐʃiːsənaʊfdeːɐgɾyːnənviəsə",
+        "similarity": 0.9583333333333334,
+        "panphon_distance": 1.0833333333333333
+      }
+    ],
+    "avg_similarity": 0.9687080449915932,
+    "min_similarity": 0.9583333333333334,
+    "total_files": 10,
+    "ok_files": 10
+  },
+  {
+    "variant": "piper-thorsten",
+    "label": "Piper TTS de_DE-thorsten-high (male, neural, high quality)",
+    "sentences": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "target_ipa": "ˈœfnə diː tˈyːɾ bˈɪtə",
+        "recognized_ipa": "ʔœfnədiːtyːɐbɪtə",
+        "similarity": 0.9711538461538461,
+        "panphon_distance": 0.375
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "target_ipa": "mˈœçtəst duː mˈysliː ˈɛsən",
+        "recognized_ipa": "mœçtɛstduːmʊsviːʔɛszən",
+        "similarity": 0.9539473684210527,
+        "panphon_distance": 0.875
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "target_ipa": "das frˈɔølaɪn tɾˈɛːkt aɪn rˈoːtəs klˈaɪt",
+        "recognized_ipa": "dasfʀɔøʏlaɪntʁɛːktɛɪnʀoːtəsklaɪt",
+        "similarity": 0.95,
+        "panphon_distance": 1.5
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "target_ipa": "viːɾ ˈyːbən tˈɛːklɪç ˈaʊsʃpɾˌɑːxə",
+        "recognized_ipa": "viːɐyːbəntɛːtlɪçaʊsʃpʁaːxə",
+        "similarity": 0.9545454545454546,
+        "panphon_distance": 1
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "target_ipa": "dɛɾ bˈɛkɜ bˈɛkt frˈɪʃəs bɾˈoːt",
+        "recognized_ipa": "deːɐbɛkʔɛːɐbɛktfɾɪʃəsbroːt",
+        "similarity": 0.9526515151515151,
+        "panphon_distance": 1.0416666666666665
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "target_ipa": "kˌœnən viːɾ frˈyːɜ ɡˈeːən",
+        "recognized_ipa": "kœnənviːɐfryːɐgeːən",
+        "similarity": 0.9713541666666666,
+        "panphon_distance": 0.4583333333333333
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "target_ipa": "diː vˈøːɡəl zˈɪŋən ʃˈøːn",
+        "recognized_ipa": "diːføːgilzɪŋənʃøːn",
+        "similarity": 0.9888888888888889,
+        "panphon_distance": 0.16666666666666666
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "target_ipa": "mˈytɜ kˈymɜn zɪç ʊm ˌiːrə kˈɪndɜ",
+        "recognized_ipa": "mɪtɐkanmanzɪçʊmʔiːʁəkɪndɐ",
+        "similarity": 0.9528985507246377,
+        "panphon_distance": 1.0833333333333333
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "target_ipa": "ˈyːbʊŋən ʃtˈɛɾkən daɪn dˈɔøtʃ",
+        "recognized_ipa": "ʔyːbʊŋənʃtɛɾkəndaɪndɔøtʃ",
+        "similarity": 1,
+        "panphon_distance": 0
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "target_ipa": "jˈɛːɡɜ ʃˈiːsən aʊf dɛɾ ɡɾˈyːnən vˈiːzə",
+        "recognized_ipa": "jiːgɐʃiːsənaʊfdeːɐgɾyːnənviəsə",
+        "similarity": 0.9551282051282052,
+        "panphon_distance": 1.1666666666666665
+      }
+    ],
+    "avg_similarity": 0.9650567995680266,
+    "min_similarity": 0.95,
+    "total_files": 10,
+    "ok_files": 10
+  },
+  {
+    "variant": "silero-bernd",
+    "label": "Silero TTS v3_de speaker=bernd_ungerer (male, local neural)",
+    "sentences": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "target_ipa": "ˈœfnə diː tˈyːɾ bˈɪtə",
+        "recognized_ipa": "æfnɛdituəbɪtə˞",
+        "similarity": 0.9166666666666666,
+        "panphon_distance": 1.1666666666666667
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "target_ipa": "mˈœçtəst duː mˈysliː ˈɛsən",
+        "recognized_ipa": "mœçtʰəstduːmʏslaiːʔɛszən",
+        "similarity": 0.94375,
+        "panphon_distance": 1.125
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "target_ipa": "das frˈɔølaɪn tɾˈɛːkt aɪn rˈoːtəs klˈaɪt",
+        "recognized_ipa": "dasfɾɔʏlaɪntʁɛːktɛɪnʀoːtəsklaɪt",
+        "similarity": 0.9712643678160919,
+        "panphon_distance": 0.8333333333333333
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "target_ipa": "viːɾ ˈyːbən tˈɛːklɪç ˈaʊsʃpɾˌɑːxə",
+        "recognized_ipa": "viːɐyːbəntɛːklɪçaʊsʃpʁaːxə",
+        "similarity": 0.9640151515151515,
+        "panphon_distance": 0.7916666666666666
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "target_ipa": "dɛɾ bˈɛkɜ bˈɛkt frˈɪʃəs bɾˈoːt",
+        "recognized_ipa": "deːɐbɛkɐbɛktfɾɪʃəsbʀoːt",
+        "similarity": 0.9623015873015873,
+        "panphon_distance": 0.7916666666666666
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "target_ipa": "kˌœnən viːɾ frˈyːɜ ɡˈeːən",
+        "recognized_ipa": "kœnənviːɐfryːɐgeːən",
+        "similarity": 0.9713541666666666,
+        "panphon_distance": 0.4583333333333333
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "target_ipa": "diː vˈøːɡəl zˈɪŋən ʃˈøːn",
+        "recognized_ipa": "diːvøːgelzɪŋənʃøːn",
+        "similarity": 0.9944444444444445,
+        "panphon_distance": 0.08333333333333333
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "target_ipa": "mˈytɜ kˈymɜn zɪç ʊm ˌiːrə kˈɪndɜ",
+        "recognized_ipa": "mʏtɐkʏmɛɾnzɪçʊmʔiːʁəkɪndɐ",
+        "similarity": 0.9619565217391304,
+        "panphon_distance": 0.8750000000000001
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "target_ipa": "ˈyːbʊŋən ʃtˈɛɾkən daɪn dˈɔøtʃ",
+        "recognized_ipa": "ʔyːbʊŋənʃtɛɾkəndaɪndɔøtʃ",
+        "similarity": 1,
+        "panphon_distance": 0
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "target_ipa": "jˈɛːɡɜ ʃˈiːsən aʊf dɛɾ ɡɾˈyːnən vˈiːzə",
+        "recognized_ipa": "jɛːgɐʃiːsənaʊfdeːɐgɾyːnənviəsə",
+        "similarity": 0.9583333333333334,
+        "panphon_distance": 1.0833333333333333
+      }
+    ],
+    "avg_similarity": 0.9644086239483073,
+    "min_similarity": 0.9166666666666666,
+    "total_files": 10,
+    "ok_files": 10
+  },
+  {
+    "variant": "piper-ramona",
+    "label": "Piper TTS de_DE-ramona-low (female, neural)",
+    "sentences": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "target_ipa": "ˈœfnə diː tˈyːɾ bˈɪtə",
+        "recognized_ipa": "aɪfnɪtɪtuɹbɪtə˞",
+        "similarity": 0.8944444444444444,
+        "panphon_distance": 1.5833333333333335
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "target_ipa": "mˈœçtəst duː mˈysliː ˈɛsən",
+        "recognized_ipa": "mœçtʰɛstduːmasdiːʔɛszən",
+        "similarity": 0.9539473684210527,
+        "panphon_distance": 0.875
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "target_ipa": "das frˈɔølaɪn tɾˈɛːkt aɪn rˈoːtəs klˈaɪt",
+        "recognized_ipa": "dasfɾɔølaɪntʁɛːktɛɪnʀoːtəsklaɪt",
+        "similarity": 0.9741379310344828,
+        "panphon_distance": 0.75
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "target_ipa": "viːɾ ˈyːbən tˈɛːklɪç ˈaʊsʃpɾˌɑːxə",
+        "recognized_ipa": "veːɐøːnəntɛːklɪçhaʊsʃpʁaːxə",
+        "similarity": 0.9293478260869565,
+        "panphon_distance": 1.6250000000000002
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "target_ipa": "dɛɾ bˈɛkɜ bˈɛkt frˈɪʃəs bɾˈoːt",
+        "recognized_ipa": "deːɐbɛkɐvɛktfɾɪʃəsbroːt",
+        "similarity": 0.9702380952380952,
+        "panphon_distance": 0.625
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "target_ipa": "kˌœnən viːɾ frˈyːɜ ɡˈeːən",
+        "recognized_ipa": "anefuladina",
+        "similarity": 0.7291666666666666,
+        "panphon_distance": 4.333333333333334
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "target_ipa": "diː vˈøːɡəl zˈɪŋən ʃˈøːn",
+        "recognized_ipa": "diːfyːgəzɪnənʃøːn",
+        "similarity": 0.9444444444444444,
+        "panphon_distance": 0.8333333333333334
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "target_ipa": "mˈytɜ kˈymɜn zɪç ʊm ˌiːrə kˈɪndɜ",
+        "recognized_ipa": "vateːɐkamɐnzɪçʊmʔiːʁəkɪndɐ",
+        "similarity": 0.9420289855072463,
+        "panphon_distance": 1.3333333333333333
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "target_ipa": "ˈyːbʊŋən ʃtˈɛɾkən daɪn dˈɔøtʃ",
+        "recognized_ipa": "yːbʊŋənʃtɛɾkəndaɪndɔøtʃ",
+        "similarity": 1,
+        "panphon_distance": 0
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "target_ipa": "jˈɛːɡɜ ʃˈiːsən aʊf dɛɾ ɡɾˈyːnən vˈiːzə",
+        "recognized_ipa": "deːgaʃiːsənaʊfdeːɐgɾʊnviəsə",
+        "similarity": 0.9066666666666666,
+        "panphon_distance": 2.3333333333333335
+      }
+    ],
+    "avg_similarity": 0.9244422428510056,
+    "min_similarity": 0.7291666666666666,
+    "total_files": 10,
+    "ok_files": 10
+  },
+  {
+    "variant": "piper-kerstin",
+    "label": "Piper TTS de_DE-kerstin-low (female, neural)",
+    "sentences": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "target_ipa": "ˈœfnə diː tˈyːɾ bˈɪtə",
+        "recognized_ipa": "dɛfnɪditubɪtə˞",
+        "similarity": 0.875,
+        "panphon_distance": 1.75
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "target_ipa": "mˈœçtəst duː mˈysliː ˈɛsən",
+        "recognized_ipa": "mɛɪtəstumʌsiɛsən",
+        "similarity": 0.8726851851851852,
+        "panphon_distance": 2.2916666666666665
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "target_ipa": "das frˈɔølaɪn tɾˈɛːkt aɪn rˈoːtəs klˈaɪt",
+        "recognized_ipa": "daːsfʀoːyːlaɪntʁɛːktɛɪnʀoːtəsklaɪt",
+        "similarity": 0.9568965517241379,
+        "panphon_distance": 1.25
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "target_ipa": "viːɾ ˈyːbən tˈɛːklɪç ˈaʊsʃpɾˌɑːxə",
+        "recognized_ipa": "viːɐyːbəntɛːklɪçaʊsʃpʁaːxə",
+        "similarity": 0.9640151515151515,
+        "panphon_distance": 0.7916666666666666
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "target_ipa": "dɛɾ bˈɛkɜ bˈɛkt frˈɪʃəs bɾˈoːt",
+        "recognized_ipa": "dəbækəbɛksfʀiːʃeːspʀoːt",
+        "similarity": 0.9325396825396826,
+        "panphon_distance": 1.4166666666666667
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "target_ipa": "kˌœnən viːɾ frˈyːɜ ɡˈeːən",
+        "recognized_ipa": "nənviːɐfryːɐgeːən",
+        "similarity": 0.9088541666666666,
+        "panphon_distance": 1.4583333333333333
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "target_ipa": "diː vˈøːɡəl zˈɪŋən ʃˈøːn",
+        "recognized_ipa": "diːvɪlbeːzɪŋənʃøːn",
+        "similarity": 0.8833333333333333,
+        "panphon_distance": 1.75
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "target_ipa": "mˈytɜ kˈymɜn zɪç ʊm ˌiːrə kˈɪndɜ",
+        "recognized_ipa": "mɪtɑkamɑːnsiːxuːmiːʀeːkɪndɐ",
+        "similarity": 0.8958333333333333,
+        "panphon_distance": 2.291666666666667
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "target_ipa": "ˈyːbʊŋən ʃtˈɛɾkən daɪn dˈɔøtʃ",
+        "recognized_ipa": "yːbəlmənstæːʀkəndaindoːytʃ",
+        "similarity": 0.9384057971014492,
+        "panphon_distance": 1.4166666666666667
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "target_ipa": "jˈɛːɡɜ ʃˈiːsən aʊf dɛɾ ɡɾˈyːnən vˈiːzə",
+        "recognized_ipa": "jæːgəʀʃiːsənaufdəʀkʀyːnənviːsə",
+        "similarity": 0.9166666666666666,
+        "panphon_distance": 2.166666666666667
+      }
+    ],
+    "avg_similarity": 0.9144229868065606,
+    "min_similarity": 0.8726851851851852,
+    "total_files": 10,
+    "ok_files": 10
+  },
+  {
+    "variant": "espeak-slow",
+    "label": "eSpeak-NG (100 wpm, slow)",
+    "sentences": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "target_ipa": "ˈœfnə diː tˈyːɾ bˈɪtə",
+        "recognized_ipa": "apnaditueta",
+        "similarity": 0.875,
+        "panphon_distance": 1.6249999999999998
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "target_ipa": "mˈœçtəst duː mˈysliː ˈɛsən",
+        "recognized_ipa": "həsuwisliesən",
+        "similarity": 0.8194444444444444,
+        "panphon_distance": 3.2499999999999996
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "target_ipa": "das frˈɔølaɪn tɾˈɛːkt aɪn rˈoːtəs klˈaɪt",
+        "recognized_ipa": "æstvɔɪl̴aɪntɹæktaɪnvɔltəskl̴aɪd",
+        "similarity": 0.9137931034482759,
+        "panphon_distance": 2.4999999999999996
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "target_ipa": "viːɾ ˈyːbən tˈɛːklɪç ˈaʊsʃpɾˌɑːxə",
+        "recognized_ipa": "viːyːbəntɛːklɪçʔaʊsʃpɾaːxə",
+        "similarity": 0.9753787878787878,
+        "panphon_distance": 0.5416666666666666
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "target_ipa": "dɛɾ bˈɛkɜ bˈɛkt frˈɪʃəs bɾˈoːt",
+        "recognized_ipa": "ðemeɪkamektɹiʃəsgod",
+        "similarity": 0.8412698412698413,
+        "panphon_distance": 3.333333333333333
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "target_ipa": "kˌœnən viːɾ frˈyːɜ ɡˈeːən",
+        "recognized_ipa": "kœnənviːɐfryːɐgeːən",
+        "similarity": 0.9713541666666666,
+        "panphon_distance": 0.4583333333333333
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "target_ipa": "diː vˈøːɡəl zˈɪŋən ʃˈøːn",
+        "recognized_ipa": "ivɜkʒaziŋhəmʃn",
+        "similarity": 0.7722222222222223,
+        "panphon_distance": 3.4166666666666665
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "target_ipa": "mˈytɜ kˈymɜn zɪç ʊm ˌiːrə kˈɪndɜ",
+        "recognized_ipa": "mutakimaneomiakenda",
+        "similarity": 0.8977272727272727,
+        "panphon_distance": 2.2500000000000004
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "target_ipa": "ˈyːbʊŋən ʃtˈɛɾkən daɪn dˈɔøtʃ",
+        "recognized_ipa": "wʊŋəntɛkənaɪndɔɪdʃ",
+        "similarity": 0.8920454545454546,
+        "panphon_distance": 2.375
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "target_ipa": "jˈɛːɡɜ ʃˈiːsən aʊf dɛɾ ɡɾˈyːnən vˈiːzə",
+        "recognized_ipa": "gɑʃiːsənaʊfdekyːnənviːzə",
+        "similarity": 0.8966666666666667,
+        "panphon_distance": 2.5833333333333335
+      }
+    ],
+    "avg_similarity": 0.8854901959869632,
+    "min_similarity": 0.7722222222222223,
+    "total_files": 10,
+    "ok_files": 10
+  },
+  {
+    "variant": "espeak",
+    "label": "eSpeak-NG (150 wpm, standard speed)",
+    "sentences": [
+      {
+        "id": 1,
+        "text": "Öffne die Tür bitte.",
+        "target_ipa": "ˈœfnə diː tˈyːɾ bˈɪtə",
+        "recognized_ipa": "fnaitmjeta",
+        "similarity": 0.8173076923076923,
+        "panphon_distance": 2.3750000000000004
+      },
+      {
+        "id": 2,
+        "text": "Möchtest du Müsli essen?",
+        "target_ipa": "mˈœçtəst duː mˈysliː ˈɛsən",
+        "recognized_ipa": "maəstuisliesən",
+        "similarity": 0.8680555555555556,
+        "panphon_distance": 2.3749999999999996
+      },
+      {
+        "id": 3,
+        "text": "Das Fräulein trägt ein rotes Kleid.",
+        "target_ipa": "das frˈɔølaɪn tɾˈɛːkt aɪn rˈoːtəs klˈaɪt",
+        "recognized_ipa": "astvɔl̴aɪntvektaɪnvɔɹtɪskl̴aɪd",
+        "similarity": 0.896551724137931,
+        "panphon_distance": 3
+      },
+      {
+        "id": 4,
+        "text": "Wir üben täglich Aussprache.",
+        "target_ipa": "viːɾ ˈyːbən tˈɛːklɪç ˈaʊsʃpɾˌɑːxə",
+        "recognized_ipa": "iubənteːklipaʊstaːkə",
+        "similarity": 0.8446969696969697,
+        "panphon_distance": 3.416666666666666
+      },
+      {
+        "id": 5,
+        "text": "Der Bäcker bäckt frisches Brot.",
+        "target_ipa": "dɛɾ bˈɛkɜ bˈɛkt frˈɪʃəs bɾˈoːt",
+        "recognized_ipa": "emeɪkəmɪktfɜɹiʃəsgoʊld",
+        "similarity": 0.8238636363636364,
+        "panphon_distance": 3.875
+      },
+      {
+        "id": 6,
+        "text": "Können wir früher gehen?",
+        "target_ipa": "kˌœnən viːɾ frˈyːɜ ɡˈeːən",
+        "recognized_ipa": "nənʋiːfɾyːaŋgeːən",
+        "similarity": 0.8541666666666667,
+        "panphon_distance": 2.333333333333333
+      },
+      {
+        "id": 7,
+        "text": "Die Vögel singen schön.",
+        "target_ipa": "diː vˈøːɡəl zˈɪŋən ʃˈøːn",
+        "recognized_ipa": "iudaŋziŋamʃn",
+        "similarity": 0.8055555555555556,
+        "panphon_distance": 2.9166666666666665
+      },
+      {
+        "id": 8,
+        "text": "Mütter kümmern sich um ihre Kinder.",
+        "target_ipa": "mˈytɜ kˈymɜn zɪç ʊm ˌiːrə kˈɪndɜ",
+        "recognized_ipa": "mutakumanzefomiakenda",
+        "similarity": 0.8996212121212122,
+        "panphon_distance": 2.2083333333333335
+      },
+      {
+        "id": 9,
+        "text": "Übungen stärken dein Deutsch.",
+        "target_ipa": "ˈyːbʊŋən ʃtˈɛɾkən daɪn dˈɔøtʃ",
+        "recognized_ipa": "wʊŋənstɛfənmanvɔj",
+        "similarity": 0.8333333333333333,
+        "panphon_distance": 3.666666666666667
+      },
+      {
+        "id": 10,
+        "text": "Jäger schießen auf der grünen Wiese.",
+        "target_ipa": "jˈɛːɡɜ ʃˈiːsən aʊf dɛɾ ɡɾˈyːnən vˈiːzə",
+        "recognized_ipa": "gɑʃiːsəmaʊfvɛknənviːzə",
+        "similarity": 0.865,
+        "panphon_distance": 3.3749999999999996
+      }
+    ],
+    "avg_similarity": 0.8508152345738551,
+    "min_similarity": 0.8055555555555556,
+    "total_files": 10,
+    "ok_files": 10
+  }
+]

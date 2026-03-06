@@ -32,9 +32,13 @@ interface DetailedPhonemeData {
 }
 
 /**
- * Generate HTML for model details visualization
+ * Generate HTML for model details visualization.
+ * @param audioData Optional raw PCM (16 kHz mono) — enables per-frame volume column in the pre.
  */
-export function generateModelDetailsHTML(detailed: DetailedPhonemeData): string {
+export function generateModelDetailsHTML(
+  detailed: DetailedPhonemeData,
+  audioData?: Float32Array,
+): string {
   let html = "";
 
   // Summary
@@ -75,12 +79,25 @@ export function generateModelDetailsHTML(detailed: DetailedPhonemeData): string 
   // Frame-by-frame top predictions
   html += '<div class="mb-3">';
   html += '<h6 class="fw-bold text-primary">Frame-by-Frame Top Predictions</h6>';
-  html +=
-    '<p class="small text-muted">Probability shown as percentage (01-99). ⎵ = blank/silence. Leading and trailing blank frames are collapsed.</p>';
+  const volNote = audioData ? " v: = volume (RMS 0-99)." : "";
+  html += `<p class="small text-muted">Probability shown as percentage (01-99). ⎵ = blank/silence.${volNote} Leading and trailing blank frames are collapsed.</p>`;
+
+  let perFrameRms: number[] | undefined;
+  if (audioData && detailed.raw.frameData.length > 0) {
+    const nFrames = detailed.raw.frameData.length;
+    const spf = audioData.length / nFrames;
+    perFrameRms = detailed.raw.frameData.map((_, i) => {
+      const s = Math.round(i * spf);
+      const e = Math.min(audioData.length, Math.round((i + 1) * spf));
+      let sum = 0;
+      for (let j = s; j < e; j++) sum += audioData[j] * audioData[j];
+      return Math.sqrt(sum / Math.max(1, e - s));
+    });
+  }
 
   html +=
     '<pre style="font-family: monospace; font-size: 0.85rem; line-height: 1.3; background: #f8f9fa; padding: 1rem; border-radius: 0.25rem; overflow-x: auto;">';
-  html += buildFrameText(detailed.raw.frameData);
+  html += buildFrameText(detailed.raw.frameData, perFrameRms);
   html += "</pre>";
 
   html += "</div>";
@@ -96,11 +113,11 @@ const BLANK_DISPLAY = "⎵"; // visually similar to |_|, represents blank/silenc
  * Leading and trailing blank-only frames are collapsed to a single "empty" line.
  * Exported for reuse by CLI scripts.
  */
-export function buildFrameText(frameData: FrameData[]): string {
+export function buildFrameText(frameData: FrameData[], perFrameRms?: number[]): string {
   if (frameData.length === 0) return "No frame data";
 
   // Build one entry per frame: the formatted text and whether it is blank-only
-  const lines = frameData.map((frame) => {
+  const lines = frameData.map((frame, i) => {
     const predictions = [...frame.topPredictions]
       .filter((p) => p.probability >= 0.08)
       .sort((a, b) => b.probability - a.probability);
@@ -122,7 +139,16 @@ export function buildFrameText(frameData: FrameData[]): string {
       })
       .join("  ");
 
-    const text = rest ? `${firstCol}  ${rest}` : firstCol.trimEnd();
+    const phonemeText = rest ? `${firstCol}  ${rest}` : firstCol.trimEnd();
+
+    const rms = perFrameRms?.[i];
+    const volCol =
+      rms !== undefined
+        ? `v:${Math.min(99, Math.floor(rms * 100))
+            .toString()
+            .padStart(2, "0")}`
+        : null;
+    const text = volCol ? `${volCol}  ${phonemeText || "    "}` : phonemeText;
 
     const isBlankOnly =
       predictions.length === 0 || predictions.every((p) => BLANK_SYMBOLS.has(p.symbol));

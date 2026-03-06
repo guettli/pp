@@ -1,5 +1,26 @@
 <!-- markdownlint-disable -->
 
+relax-play-learn.de
+
+---
+
+
+Domain: the rabbit laughs
+
+Dann Feedback Formular.
+
+---
+
+Ask Claude: How to make the code easier to understand for him?
+
+---
+
+task deploy: This creates too much output.
+
+Is there a way to make Taskfile output nothting, except it failed?
+
+---
+
 analyze-phrase-ipas.py
 
 Script re-invents ipa comparison.
@@ -8,13 +29,52 @@ Stop that nonesense. Reuse existing func to compare IPAs.
 
 ---
 
-MediaRecorder: it is not really streaming!
-
-Audio needs to be processed over and over again...
-
-Better: AudioWorklet
+Feedback-form: This needs a server part.
 
 ---
+
+ipa table for italian is not translated to italian. But first, clean up the ipa table in en-GB. Then
+translate.
+
+---
+
+When audio was not loud enough, then show a warning.
+
+Show a scale how much the audio was too low (0..100%).
+
+100% is good audio.
+
+BTW, is there a way that the audio was too loud? If yes, then show that to the user, too.
+
+---
+
+use int8 model. How much does toIpa detection decrease?
+
+---
+
+
+---
+
+Pp, ui Text von phrase ist Englisch, sollte Deutsch sein
+Posteingang
+
+https://thomas-guettler.de/phoneme-party/?lang=it-IT&phrase=Come+stai%3F
+
+---
+
+dropdown box to change studyLang: Show corresponding flag before Language. Same for uiLang. Example: FLAG German
+
+---
+
+Building: Text and Icon do not match
+
+https://thomas-guettler.de/phoneme-party/?lang=en-GB&phrase=building
+
+---
+
+
+
+
 
 Provide way to search in all Phrases.
 

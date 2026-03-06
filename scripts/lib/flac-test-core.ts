@@ -1,6 +1,6 @@
 /**
  * Shared utilities for FLAC-based phoneme extraction tests.
- * Used by test-all-flac.ts and test-all-flac-zipa.ts.
+ * Used by test-all-flac.ts.
  */
 
 import fs from "fs";

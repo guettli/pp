@@ -1,7 +1,7 @@
-import { test, expect } from "./fixtures.js";
-import path from "path";
 import fs from "fs";
 import yaml from "js-yaml";
+import path from "path";
+import { expect, test } from "./fixtures.js";
 
 /**
  * Test that compares direct extraction vs streaming detection
@@ -79,6 +79,7 @@ test.describe("Streaming vs Direct Detection", () => {
         const detector = new RealTimePhonemeDetector(
           {
             targetIPA,
+            studyLang: "de-DE",
             threshold: 1.0,
             minChunksBeforeCheck: 2,
             silenceThreshold: 0.01,
@@ -99,16 +100,18 @@ test.describe("Streaming vs Direct Detection", () => {
           },
         );
 
-        // Convert full audio to WebM blob (like MediaRecorder would produce)
-        const fullBlob = new Blob([new Uint8Array(audioData)], { type: "audio/webm" });
+        // Decode FLAC to Float32 PCM (simulating AudioWorklet output)
+        const fullBlob = new Blob([new Uint8Array(audioData)], { type: "audio/flac" });
+        const fullAudio = await prepareAudioForModel(fullBlob);
 
-        // Split into chunks (simulating MediaRecorder with 500ms timeslice)
-        const chunkSize = Math.floor(audioData.length / 8); // ~8 chunks
+        // Split into 8 equal Float32Array chunks (simulating AudioWorklet batches)
+        const numChunks = 8;
+        const chunkLength = Math.floor(fullAudio.length / numChunks);
         const chunks = [];
-        for (let i = 0; i < audioData.length; i += chunkSize) {
-          const chunkData = audioData.slice(i, i + chunkSize);
-          const chunkBlob = new Blob([new Uint8Array(chunkData)], { type: "audio/webm" });
-          chunks.push(chunkBlob);
+        for (let i = 0; i < numChunks; i++) {
+          const start = i * chunkLength;
+          const end = i === numChunks - 1 ? fullAudio.length : start + chunkLength;
+          chunks.push(fullAudio.slice(start, end));
         }
 
         // Process chunks through detector (like in onDataAvailable callback)
@@ -121,13 +124,12 @@ test.describe("Streaming vs Direct Detection", () => {
           }
         }
 
-        // Get detector's final result (like main.ts does)
+        // Get detector's final result (like +page.svelte does)
         const detectorIPA = detector.getLastPhonemes();
         const detectorSimilarity = detector.getLastSimilarity();
 
         // Also do direct extraction of full audio (for comparison)
-        const audioFloat32 = await prepareAudioForModel(fullBlob);
-        const finalIPA = await window.__test_api.extractPhonemes(audioFloat32);
+        const finalIPA = await window.__test_api.extractPhonemes(fullAudio);
 
         return {
           autoStopTriggered,

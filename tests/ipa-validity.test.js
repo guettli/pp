@@ -16,7 +16,12 @@ import yaml from "js-yaml";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PHRASE_FILES = ["phrases-de-DE.yaml", "phrases-en-GB.yaml", "phrases-fr-FR.yaml"];
+const PHRASE_FILES = [
+  "phrases-de-DE.yaml",
+  "phrases-en-GB.yaml",
+  "phrases-fr-FR.yaml",
+  "phrases-it-IT.yaml",
+];
 
 // Regex matching a parenthesised ISO 639-1 or BCP-47 language tag embedded in IPA,
 // e.g. (en), (fr), (de), (es), (it), (en-GB) – produced by some TTS/g2p tools.

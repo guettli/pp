@@ -79,11 +79,13 @@ export function extractFrameData(
 const PHONEME_CLASSES: Array<Set<string>> = [
   new Set(["e", "ɛ", "æ"]), // close-mid vs open-mid vs open front vowels (model splits probability)
   new Set(["o", "ɔ"]), // close-mid vs open-mid back vowels
-  new Set(["a", "ɑ", "ɐ"]), // open/near-open vowels (model splits probability between these)
+  new Set(["a", "ɑ"]), // open front/back vowels (ɐ is kept separate: near-open central)
   new Set(["i", "ɪ"]), // close vs near-close front vowels
   new Set(["u", "ʊ"]), // close vs near-close back vowels
   new Set(["ə"]), // schwa
   new Set(["ø", "ʏ", "œ", "y"]), // front rounded vowels (German ö/ü sounds)
+  new Set(["ɜ", "ɜ˞"]), // central vowel with/without rhoticity (model splits for English -er)
+  new Set(["ʁ", "ʀ"]), // uvular fricative/trill (model splits probability between these)
 ];
 
 /**
@@ -248,10 +250,37 @@ export function decodePhonemes(
       }
     }
 
+    // Sum of top-3 non-blank probabilities (speech activity signal).
+    // When blank is low, probability spreads across multiple phonemes —
+    // summing the top-3 reveals real speech even if no single token clears
+    // the confidence threshold on its own.
+    const nonBlankProbList: number[] = [];
+    for (const item of ungroupedProbs) {
+      const sym = idToToken[item.id] || "";
+      if (sym !== "<blk>" && sym !== "▁" && item.id !== 0) {
+        nonBlankProbList.push(item.prob);
+      }
+    }
+    for (const classData of classProbs.values()) {
+      nonBlankProbList.push(classData.totalProb);
+    }
+    nonBlankProbList.sort((a, b) => b - a);
+    const top3Sum = nonBlankProbList.slice(0, 3).reduce((a, b) => a + b, 0);
+
+    // Boost winner confidence when speech activity is high and winner dominates.
+    // Guards against evenly-spread noise: winner must have ≥40% of the top-3 sum.
+    const isBlankWinner =
+      selectedTokenId === 0 ||
+      idToToken[selectedTokenId] === "<blk>" ||
+      idToToken[selectedTokenId] === "▁";
+    const winnerDominance = top3Sum > 0 ? selectedProb / top3Sum : 0;
+    const effectiveConf =
+      !isBlankWinner && top3Sum > 0.5 && winnerDominance > 0.4 ? top3Sum : selectedProb;
+
     tokens.push({
       tokenId: selectedTokenId,
       symbol: idToToken[selectedTokenId] || "",
-      confidence: selectedProb,
+      confidence: effectiveConf,
     });
   }
 

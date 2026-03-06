@@ -2,16 +2,19 @@ import { load } from "js-yaml";
 import phrasesDeYaml from "../../phrases-de-DE.yaml?raw";
 import phrasesEnYaml from "../../phrases-en-GB.yaml?raw";
 import phrasesFrYaml from "../../phrases-fr-FR.yaml?raw";
+import phrasesItYaml from "../../phrases-it-IT.yaml?raw";
 import type { Phrase, SupportedLanguage } from "../types.js";
 
 // Parse YAML files
 const phrasesDe: Phrase[] = load(phrasesDeYaml) as Phrase[];
 const phrasesEn: Phrase[] = load(phrasesEnYaml) as Phrase[];
 const phrasesFr: Phrase[] = load(phrasesFrYaml) as Phrase[];
+const phrasesIt: Phrase[] = load(phrasesItYaml) as Phrase[];
 
 function getPhraseList(phraseLang: string): Phrase[] {
   if (phraseLang === "de-DE") return phrasesDe;
   if (phraseLang === "fr-FR") return phrasesFr;
+  if (phraseLang === "it-IT") return phrasesIt;
   return phrasesEn;
 }
 
@@ -72,4 +75,17 @@ export function findPhraseByName(name: string, phraseLang: string): Phrase | nul
   const phrasesData = getPhraseList(phraseLang);
   const lowerName = name.toLowerCase();
   return phrasesData.find((w) => w.phrase.toLowerCase() === lowerName) || null;
+}
+
+/**
+ * Find the equivalent phrase in a target language using the en-GB key as a cross-language lookup.
+ * For en-GB phrases the phrase text itself is the key (no "en-GB" field).
+ * Returns null if no match is found.
+ */
+export function findPhraseByEnGBKey(enKey: string, phraseLang: string): Phrase | null {
+  const phrasesData = getPhraseList(phraseLang);
+  if (phraseLang === "en-GB") {
+    return phrasesData.find((p) => p.phrase === enKey) || null;
+  }
+  return phrasesData.find((p) => p["en-GB"] === enKey) || null;
 }

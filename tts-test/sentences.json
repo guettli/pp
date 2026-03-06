@@ -1,0 +1,66 @@
+{
+  "study_lang": "de-DE",
+  "description": "10 German sentences testing typical pronunciation including umlauts",
+  "sentences": [
+    {
+      "id": 1,
+      "text": "Öffne die Tür bitte.",
+      "focus": "ö, ü",
+      "target_ipa": "ˈœfnə diː tˈyːɾ bˈɪtə"
+    },
+    {
+      "id": 2,
+      "text": "Möchtest du Müsli essen?",
+      "focus": "ö, ü, ch",
+      "target_ipa": "mˈœçtəst duː mˈysliː ˈɛsən"
+    },
+    {
+      "id": 3,
+      "text": "Das Fräulein trägt ein rotes Kleid.",
+      "focus": "ä, äu, ei",
+      "target_ipa": "das frˈɔølaɪn tɾˈɛːkt aɪn rˈoːtəs klˈaɪt"
+    },
+    {
+      "id": 4,
+      "text": "Wir üben täglich Aussprache.",
+      "focus": "ü, ä, au, sch",
+      "target_ipa": "viːɾ ˈyːbən tˈɛːklɪç ˈaʊsʃpɾˌɑːxə"
+    },
+    {
+      "id": 5,
+      "text": "Der Bäcker bäckt frisches Brot.",
+      "focus": "ä, ck",
+      "target_ipa": "dɛɾ bˈɛkɜ bˈɛkt frˈɪʃəs bɾˈoːt"
+    },
+    {
+      "id": 6,
+      "text": "Können wir früher gehen?",
+      "focus": "ö, ü, eh",
+      "target_ipa": "kˌœnən viːɾ frˈyːɜ ɡˈeːən"
+    },
+    {
+      "id": 7,
+      "text": "Die Vögel singen schön.",
+      "focus": "ö, ie, sch",
+      "target_ipa": "diː vˈøːɡəl zˈɪŋən ʃˈøːn"
+    },
+    {
+      "id": 8,
+      "text": "Mütter kümmern sich um ihre Kinder.",
+      "focus": "ü, ch, ie",
+      "target_ipa": "mˈytɜ kˈymɜn zɪç ʊm ˌiːrə kˈɪndɜ"
+    },
+    {
+      "id": 9,
+      "text": "Übungen stärken dein Deutsch.",
+      "focus": "ü, ä, eu, tsch",
+      "target_ipa": "ˈyːbʊŋən ʃtˈɛɾkən daɪn dˈɔøtʃ"
+    },
+    {
+      "id": 10,
+      "text": "Jäger schießen auf der grünen Wiese.",
+      "focus": "ä, ie, ü, sch, au",
+      "target_ipa": "jˈɛːɡɜ ʃˈiːsən aʊf dɛɾ ɡɾˈyːnən vˈiːzə"
+    }
+  ]
+}

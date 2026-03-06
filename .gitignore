@@ -27,6 +27,7 @@ tmp/
 # Build output
 dist/
 build/
+/static/
 .svelte-kit/
 
 # Playwright
