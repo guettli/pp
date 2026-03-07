@@ -165,9 +165,9 @@
                     >{entry.symbol}</span
                   >
                   {#if entry.explanation}
-                    <!-- eslint-disable-next-line svelte/no-at-html-tags -- data is from trusted local JSON -->
-                    <small class="text-muted" style="font-size: 0.75rem"
-                      >{@html formatExample(entry.explanation)}</small
+                    <small class="text-muted" style="font-size: 0.75rem">
+                      <!-- eslint-disable-next-line svelte/no-at-html-tags -- data is from trusted local JSON -->
+                      {@html formatExample(entry.explanation)}</small
                     >
                   {:else}
                     <small class="text-muted fst-italic" style="font-size: 0.75rem"

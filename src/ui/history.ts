@@ -186,8 +186,6 @@ function createHistoryItem(item: PhraseResultDoc): HTMLElement {
   div.className = "history-item border-bottom py-3";
 
   const timeAgo = formatTimeAgo(item.timestamp);
-  const scorePercent = Math.round(item.score);
-  const scoreClass = getScoreClass(scorePercent);
 
   // Get phrase level from phrase data
   const phrase = findPhraseByName(item.phrase, item.language);
@@ -196,27 +194,40 @@ function createHistoryItem(item: PhraseResultDoc): HTMLElement {
     ? `<span class="badge bg-secondary ms-2" title="Phrase level">L${phraseLevel}</span>`
     : "";
 
-  // Create URL for phrase replay
-  const phraseUrl = `?lang=${encodeURIComponent(item.language)}&phrase=${encodeURIComponent(item.phrase)}`;
+  const scoreBadge = item.skipped
+    ? `<div class="badge bg-secondary fs-6">${t("history.skipped")}</div>`
+    : `<div class="badge ${getScoreClass(Math.round(item.score))} fs-6">${Math.round(item.score)}%</div>`;
+
+  const ipaLine = item.skipped
+    ? ""
+    : `<div class="small text-muted">
+          <span>${item.targetIPA}</span>
+          <span class="mx-2">→</span>
+          <span>${item.actualIPA}</span>
+        </div>`;
 
   div.innerHTML = `
     <div class="d-flex justify-content-between align-items-start">
       <div class="flex-grow-1">
         <h6 class="mb-1">
-          <a href="${phraseUrl}" class="text-decoration-none text-reset">${escapeHtml(item.phrase)}</a>${levelBadge}
+          <a href="#" class="text-decoration-none text-reset history-phrase-link">${escapeHtml(item.phrase)}</a>${levelBadge}
         </h6>
-        <div class="small text-muted">
-          <span>${item.targetIPA}</span>
-          <span class="mx-2">→</span>
-          <span>${item.actualIPA}</span>
-        </div>
+        ${ipaLine}
         <div class="small text-muted mt-1">${timeAgo}</div>
       </div>
       <div class="text-end ms-3">
-        <div class="badge ${scoreClass} fs-6">${scorePercent}%</div>
+        ${scoreBadge}
       </div>
     </div>
   `;
+
+  const link = div.querySelector<HTMLAnchorElement>(".history-phrase-link");
+  link?.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.dispatchEvent(
+      new CustomEvent("load-phrase", { detail: { lang: item.language, phrase: item.phrase } }),
+    );
+  });
 
   return div;
 }

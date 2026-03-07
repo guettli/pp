@@ -301,13 +301,21 @@ async function loadModel(
     graphOptimizationLevel: "all",
   });
 
-  if (executionProviders[0] === "webgpu" && !(await validateSession())) {
-    console.warn("WebGPU validation failed (NaN detected) — falling back to WASM");
-    webgpuValidationFailed = true;
-    session = await ort.InferenceSession.create(modelBuffer.buffer, {
-      executionProviders: ["wasm"],
-      graphOptimizationLevel: "all",
-    });
+  if (executionProviders[0] === "webgpu") {
+    if (!(await validateSession())) {
+      console.warn("WebGPU validation failed (NaN detected) — falling back to WASM");
+      webgpuValidationFailed = true;
+      session = await ort.InferenceSession.create(modelBuffer.buffer, {
+        executionProviders: ["wasm"],
+        graphOptimizationLevel: "all",
+      });
+      // Warm up the WASM fallback so the first real inference uses pre-compiled JIT code
+      await validateSession();
+    }
+    // If WebGPU passed, validateSession() already served as the warm-up
+  } else {
+    // WASM mode: run one silent inference to trigger JIT compilation before the first real use
+    await validateSession();
   }
 
   sendProgress({ status: "ready", progress: 100 });

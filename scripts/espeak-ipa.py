@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-Generate IPA pronunciation using espeak-ng.
-Takes German text as input and outputs IPA.
+Generate IPA pronunciation using espeak-ng and output as JSON.
+Used internally by other scripts to get espeak-ng IPA for a German phrase.
 """
 import sys
 import json
+import argparse
 import subprocess
 
 
@@ -30,11 +31,13 @@ def get_espeak_ipa(text: str) -> str:
 
 
 def main():
-    if len(sys.argv) < 2:
-        print("Usage: espeak-ipa.py <text>", file=sys.stderr)
-        sys.exit(1)
+    parser = argparse.ArgumentParser(
+        description="Generate IPA pronunciation using espeak-ng and output as JSON. Used internally by other scripts."
+    )
+    parser.add_argument("text", help="Text to convert to IPA (German)")
+    args = parser.parse_args()
 
-    text = sys.argv[1]
+    text = args.text
     ipa = get_espeak_ipa(text)
 
     result = {"text": text, "ipa": ipa}

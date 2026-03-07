@@ -3,6 +3,16 @@
 trap 'echo -e "\n🤷 🚨 🔥 Warning: A command has failed. Exiting the script. Line was ($0:$LINENO): $(sed -n "${LINENO}p" "$0" 2>/dev/null || true) 🔥 🚨 🤷 "; exit 3' ERR
 set -Eeuo pipefail
 
+if [[ "${1:-}" == "--help" ]] || [[ "${1:-}" == "-h" ]]; then
+    echo "Usage: ./scripts/test-code-duplication.sh"
+    echo ""
+    echo "Check for code duplication across the codebase using jscpd."
+    echo "Fails if duplicated code exceeds 3% of the total codebase."
+    echo ""
+    echo "Called by lint.sh as part of the format and lint step. Requires nix environment."
+    exit 0
+fi
+
 # Ensure Nix environment is active, or run this script via nix develop
 if [[ -z "${IN_NIX_SHELL:-}" ]]; then
     echo "Nix environment not active. Running via 'nix develop'..."

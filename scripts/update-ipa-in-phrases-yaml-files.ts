@@ -277,13 +277,39 @@ async function getPhraseIPA(
 /**
  * Main function
  */
+function printHelp() {
+  console.log(`Usage: ./run tsx scripts/update-ipa-in-phrases-yaml-files.ts <phrases-file> [--update-all]
+
+Fetch IPA pronunciations from Wiktionary and update a phrases-*.yaml file.
+By default, only fills in missing IPA entries. Use --update-all to re-fetch everything.
+
+Arguments:
+  <phrases-file>    Path to a phrases-*.yaml file (e.g. phrases-de-DE.yaml)
+
+Options:
+  --update-all      Re-fetch and overwrite all existing IPA entries
+  --help            Show this help message
+
+Examples:
+  ./run tsx scripts/update-ipa-in-phrases-yaml-files.ts phrases-de-DE.yaml
+  ./run tsx scripts/update-ipa-in-phrases-yaml-files.ts phrases-de-DE.yaml --update-all
+`);
+}
+
 async function main() {
   const args = process.argv.slice(2);
 
+  if (args.includes("--help") || args.includes("-h")) {
+    printHelp();
+    process.exit(0);
+  }
+
   // Show usage if no args or first arg starts with -
   if (args.length === 0 || args[0].startsWith("-")) {
-    console.error("Usage: tsx scripts/update-ipa.ts <phrases-file> [--update-all]");
-    console.error("Example: tsx scripts/update-ipa.ts phrases-de-DE.yaml");
+    console.error(
+      "Usage: tsx scripts/update-ipa-in-phrases-yaml-files.ts <phrases-file> [--update-all]",
+    );
+    console.error("Run with --help for more information.");
     process.exit(1);
   }
 

@@ -188,15 +188,36 @@ function generateHTML(data: {
 </html>`;
 }
 
+function printHelp() {
+  console.log(`Usage: ./run tsx scripts/generate-debug-html.ts <flac-or-yaml-file> [output.html]
+
+Generate a static HTML debug page visualizing phoneme extraction results for a recording.
+The page shows the IPA comparison, phoneme-by-phoneme breakdown, and frame-level predictions.
+
+Arguments:
+  <flac-or-yaml-file>    Path to a .flac or .flac.yaml test recording file
+  [output.html]          Output HTML file path (default: debug.html)
+
+Options:
+  --help                 Show this help message
+
+Example:
+  ./run tsx scripts/generate-debug-html.ts tests/data/de-DE/Erdbeere/Erdbeere-Thomas.flac.yaml debug.html
+`);
+}
+
 async function main() {
+  if (process.argv.includes("--help") || process.argv.includes("-h")) {
+    printHelp();
+    process.exit(0);
+  }
+
   let yamlFile = process.argv[2];
   const outputFile = process.argv[3];
 
   if (!yamlFile) {
     console.error("Usage: tsx scripts/generate-debug-html.ts <flac-or-yaml-file> [output.html]");
-    console.error(
-      "Example: tsx scripts/generate-debug-html.ts tests/data/de-DE/Erdbeere/Erdbeere-Thomas.flac.yaml debug.html",
-    );
+    console.error("Run with --help for more information.");
     process.exit(1);
   }
 

@@ -93,6 +93,7 @@
   let shaderF16 = $state<boolean | null>(null);
   let webgpuValidationFailed = $state(false);
   let webgpuEnabled = $state(false);
+  let noiseReductionEnabled = $state(true);
   let modelLoadMs = $state<number | null>(null);
 
   let ipaExplanationsVisible = $state(false);
@@ -132,6 +133,16 @@
 
   // Device details
   let deviceDetailsText = $state("Loading...");
+
+  // User feedback form
+  let showUserFeedbackModal = $state(false);
+  let userFeedbackText = $state("");
+  let userFeedbackAudioBlob = $state<Blob | null>(null);
+  let isRecordingFeedback = $state(false);
+  let isSubmittingFeedback = $state(false);
+  let feedbackSubmitted = $state(false);
+  let feedbackError = $state<string | null>(null);
+  let feedbackMediaRecorder: MediaRecorder | null = null;
 
   // Derived HTML strings
   let ipaExplanationsHTML = $derived(
@@ -496,11 +507,15 @@
         await recorder.start(
           () => void actuallyStopRecording(),
           (samples: Float32Array) => {
-            void processChunk(samples).then(({ denoised, quality }) => {
-              audioQuality = quality;
-              qualityHistory.push(quality);
-              if (realtimeDetector) void realtimeDetector.addChunk(denoised);
-            });
+            if (noiseReductionEnabled) {
+              void processChunk(samples).then(({ denoised, quality }) => {
+                audioQuality = quality;
+                qualityHistory.push(quality);
+                if (realtimeDetector) void realtimeDetector.addChunk(denoised);
+              });
+            } else {
+              if (realtimeDetector) void realtimeDetector.addChunk(samples);
+            }
           },
           500,
         );
@@ -801,6 +816,11 @@
     if (sl) params.set("lang", sl);
     if (currentPhrase?.phrase) params.set("phrase", currentPhrase.phrase);
     window.history.replaceState({}, "", `${window.location.pathname}?${params.toString()}`);
+    if (currentPhrase?.phrase && sl) {
+      document.title = `${currentPhrase.phrase} (${sl})`;
+    } else {
+      document.title = "Phoneme Party - Pronunciation Practice";
+    }
   }
 
   /** Prefetch audio for the top-100 upcoming phrases (skipped on metered connections). */
@@ -822,6 +842,17 @@
   async function nextPhrase() {
     const sl = getStudyLang();
     if (!sl) return;
+
+    // If there's a current phrase the user didn't attempt, record it as skipped
+    if (currentPhrase !== null && score === null) {
+      try {
+        await db.saveSkippedPhrase(currentPhrase.phrase, sl, currentPhrase.ipas[0].ipa);
+        refreshHistory();
+      } catch (error) {
+        console.error("Failed to save skipped phrase:", error);
+      }
+    }
+
     const phrase = await selectNextPhrase(
       studyLangToPhraseLang(sl),
       userLevel,
@@ -988,6 +1019,14 @@
       origInfo.apply(console, args);
       addLine("info", args);
     };
+
+    window.addEventListener("unhandledrejection", (event) => {
+      addLine("error", [`Unhandled rejection: ${event.reason}`]);
+    });
+
+    window.addEventListener("error", (event) => {
+      addLine("error", [`Uncaught error: ${event.message}`]);
+    });
   }
 
   // ── onMount ───────────────────────────────────────────────────────────────────
@@ -997,6 +1036,7 @@
 
     webgpuAvailable = typeof navigator !== "undefined" && !!navigator.gpu;
     webgpuEnabled = localStorage.getItem("webgpu-enabled") === "true";
+    noiseReductionEnabled = await db.getNoiseReductionEnabled();
 
     if (!self.crossOriginIsolated) {
       const el = document.getElementById("coi-warning");
@@ -1037,6 +1077,23 @@
 
       await tick();
       initHistory();
+
+      window.addEventListener("load-phrase", (event) => {
+        const { lang, phrase } = (event as CustomEvent<{ lang: string; phrase: string }>).detail;
+        if (lang !== getStudyLang()) {
+          setStudyLang(lang as StudyLanguage);
+        }
+        const found = findPhraseByName(phrase, lang as StudyLanguage);
+        if (found) {
+          currentPhrase = found;
+          score = null;
+          actualIPA = null;
+          showFeedback = false;
+          ipaExplanationsVisible = false;
+          modelDetailsVisible = false;
+          updateURL();
+        }
+      });
 
       onStudyLangChange(() => {
         studyLangValue = getStudyLang() ?? "";
@@ -1114,10 +1171,11 @@
     }
 
     // Start noise suppressor in background (non-blocking, 524 KB model)
-    initNoiseSuppressor();
+    if (noiseReductionEnabled) initNoiseSuppressor();
 
     // Load model in background (non-blocking — UI is already interactive)
     const loadStart = performance.now();
+
     updateLoadingProgressState({ status: "downloading", progress: 0 });
     loadPhonemeModel((p: { status: string; progress: number }) => {
       updateLoadingProgressState(p);
@@ -1163,6 +1221,77 @@
         loadError = error instanceof Error ? error : new Error(String(error));
       });
   });
+
+  // ── User feedback form ────────────────────────────────────────────────────────
+
+  function openUserFeedbackModal(): void {
+    feedbackSubmitted = false;
+    feedbackError = null;
+    userFeedbackText = "";
+    userFeedbackAudioBlob = null;
+    showUserFeedbackModal = true;
+  }
+
+  function closeUserFeedbackModal(): void {
+    if (isRecordingFeedback) stopFeedbackRecording();
+    showUserFeedbackModal = false;
+  }
+
+  async function startFeedbackRecording(): Promise<void> {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mimeType = MediaRecorder.isTypeSupported("audio/webm") ? "audio/webm" : "audio/ogg";
+      feedbackMediaRecorder = new MediaRecorder(stream, { mimeType });
+      const chunks: BlobPart[] = [];
+      feedbackMediaRecorder.ondataavailable = (e) => {
+        if (e.data.size > 0) chunks.push(e.data);
+      };
+      feedbackMediaRecorder.onstop = () => {
+        userFeedbackAudioBlob = new Blob(chunks, { type: mimeType });
+        stream.getTracks().forEach((t) => t.stop());
+      };
+      feedbackMediaRecorder.start();
+      isRecordingFeedback = true;
+    } catch (err) {
+      feedbackError = err instanceof Error ? err.message : String(err);
+    }
+  }
+
+  function stopFeedbackRecording(): void {
+    feedbackMediaRecorder?.stop();
+    isRecordingFeedback = false;
+    feedbackMediaRecorder = null;
+  }
+
+  async function submitUserFeedback(): Promise<void> {
+    isSubmittingFeedback = true;
+    feedbackError = null;
+    try {
+      const formData = new FormData();
+      formData.append("phrase", currentPhrase?.phrase ?? "");
+      formData.append("uiLang", getUiLang());
+      formData.append("studyLang", getStudyLang() ?? "");
+      formData.append("text", userFeedbackText);
+      if (userFeedbackAudioBlob) {
+        formData.append("audio", userFeedbackAudioBlob, "feedback.webm");
+      }
+      if (lastRecordingBlob) {
+        formData.append("recordedPhrase", lastRecordingBlob, "phrase.webm");
+      }
+      const response = await fetch(resolve("/api/feedback", {}), {
+        method: "POST",
+        body: formData,
+      });
+      if (!response.ok) throw new Error(`Server error: ${response.status}`);
+      feedbackSubmitted = true;
+      userFeedbackText = "";
+      userFeedbackAudioBlob = null;
+    } catch (err) {
+      feedbackError = err instanceof Error ? err.message : String(err);
+    } finally {
+      isSubmittingFeedback = false;
+    }
+  }
 </script>
 
 <div id="app" class="container py-5" class:model-loaded={isModelLoaded}>
@@ -1816,12 +1945,34 @@
         />
         {t("footer.enable_webgpu")}
       </label>
+      |
+      <label class="d-inline user-select-none" style="cursor: pointer">
+        <input
+          type="checkbox"
+          class="me-1"
+          checked={noiseReductionEnabled}
+          onchange={async (e) => {
+            const checked = (e.target as HTMLInputElement).checked;
+            await db.saveNoiseReductionEnabled(checked);
+            window.location.reload();
+          }}
+        />
+        {t("footer.enable_noise_reduction")}
+      </label>
       <span id="coi-warning" style="display: none">
         | <span class="text-warning">Multi-threading disabled (no cross-origin isolation)</span>
       </span>
       |
       <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- static file not managed by SvelteKit router -->
       <a href="attribution.html">{t("footer.attribution")}</a>
+      |
+      <button
+        id="open-user-feedback-btn"
+        class="btn btn-sm btn-link p-0 text-muted"
+        onclick={() => openUserFeedbackModal()}
+      >
+        {t("user-feedback.button")}
+      </button>
       |
       <button
         class="btn btn-sm btn-link p-0 text-muted"
@@ -1837,6 +1988,129 @@
     </small>
   </footer>
 </div>
+
+<!-- User Feedback Modal -->
+{#if showUserFeedbackModal}
+  <div
+    class="modal d-block"
+    id="user-feedback-modal"
+    tabindex="-1"
+    role="dialog"
+    style="background: rgba(0,0,0,0.5)"
+    onkeydown={(e) => {
+      if (e.key === "Escape") closeUserFeedbackModal();
+    }}
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{t("user-feedback.title")}</h5>
+          <button
+            type="button"
+            class="btn-close"
+            aria-label={t("buttons.close")}
+            onclick={() => closeUserFeedbackModal()}
+          ></button>
+        </div>
+        <div class="modal-body">
+          {#if feedbackSubmitted}
+            <div class="alert alert-success" role="alert" data-testid="feedback-success">
+              <i class="bi bi-check-circle-fill me-2"></i>{t("user-feedback.success")}
+            </div>
+            <div class="text-center mt-3">
+              <button class="btn btn-primary" onclick={() => closeUserFeedbackModal()}>
+                {t("buttons.close")}
+              </button>
+            </div>
+          {:else}
+            {#if currentPhrase}
+              <p class="text-muted small mb-3">
+                {t("user-feedback.context_label")}
+                <strong>{currentPhrase.phrase}</strong>
+                ({studyLangValue || t("user-feedback.no_phrase")})
+              </p>
+            {/if}
+
+            <div class="mb-3">
+              <label for="user-feedback-text" class="form-label">
+                {t("user-feedback.text_label")}
+              </label>
+              <textarea
+                id="user-feedback-text"
+                class="form-control"
+                rows="4"
+                bind:value={userFeedbackText}
+                placeholder={t("user-feedback.text_placeholder")}
+              ></textarea>
+            </div>
+
+            <div class="mb-3">
+              <div class="d-flex align-items-center gap-2">
+                <span class="form-label mb-0">{t("user-feedback.audio_label")}</span>
+                {#if !isRecordingFeedback}
+                  <button
+                    id="start-feedback-recording-btn"
+                    class="btn btn-sm btn-outline-secondary"
+                    onclick={() => void startFeedbackRecording()}
+                    disabled={!!userFeedbackAudioBlob}
+                  >
+                    <i class="bi bi-mic-fill me-1"></i>{t("user-feedback.record_start")}
+                  </button>
+                {:else}
+                  <button
+                    id="stop-feedback-recording-btn"
+                    class="btn btn-sm btn-danger"
+                    onclick={() => stopFeedbackRecording()}
+                  >
+                    <i class="bi bi-stop-fill me-1"></i>{t("user-feedback.record_stop")}
+                  </button>
+                {/if}
+                {#if userFeedbackAudioBlob}
+                  <span class="text-success small">
+                    <i class="bi bi-check-circle me-1"></i>{t("user-feedback.audio_recorded")}
+                  </span>
+                  <button
+                    class="btn btn-sm btn-link text-danger p-0"
+                    aria-label={t("user-feedback.audio_delete")}
+                    onclick={() => {
+                      userFeedbackAudioBlob = null;
+                    }}
+                  >
+                    <i class="bi bi-x-circle"></i>
+                  </button>
+                {/if}
+              </div>
+            </div>
+
+            {#if feedbackError}
+              <div class="alert alert-danger small" role="alert">
+                {feedbackError}
+              </div>
+            {/if}
+
+            <div class="d-flex justify-content-end gap-2">
+              <button class="btn btn-secondary" onclick={() => closeUserFeedbackModal()}>
+                {t("buttons.close")}
+              </button>
+              <button
+                id="submit-user-feedback-btn"
+                class="btn btn-primary"
+                onclick={() => void submitUserFeedback()}
+                disabled={isSubmittingFeedback ||
+                  (!userFeedbackText.trim() && !userFeedbackAudioBlob)}
+              >
+                {#if isSubmittingFeedback}
+                  <span class="spinner-border spinner-border-sm me-1"></span>
+                {/if}
+                {t("user-feedback.submit")}
+              </button>
+            </div>
+          {/if}
+        </div>
+      </div>
+    </div>
+  </div>
+{/if}
 
 <!-- Device Details Modal -->
 <div class="modal fade" id="device-details-modal" tabindex="-1">

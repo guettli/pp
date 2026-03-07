@@ -35,6 +35,25 @@ while [[ $# -gt 0 ]]; do
             LANG="$2"
             shift 2
             ;;
+        --help|-h)
+            echo "Usage: $0 <recording-file> [--source <name>]"
+            echo "   OR: $0 --record --phrase <phrase> --lang <lang> [--source <name>]"
+            echo ""
+            echo "Add a user audio recording as a phoneme test case."
+            echo ""
+            echo "File mode: provide a .webm recording with filename format:"
+            echo "  Phrase_YYYYMMDDTHHMMSS_Lang.webm  (e.g. Brot_20260131T073450_de-DE.webm)"
+            echo "  Converts to FLAC, extracts IPA, and creates a .flac.yaml metadata file."
+            echo ""
+            echo "Record mode: record audio directly from microphone."
+            echo "  --record              Enable microphone recording mode"
+            echo "  --phrase <phrase>     The phrase being spoken (required in record mode)"
+            echo "  --lang <lang>         Language code, e.g. de-DE (required in record mode)"
+            echo "  --source <name>       Label for the recording source (default: current username)"
+            echo ""
+            echo "Requires: ffmpeg, sox (for recording mode: arecord)"
+            exit 0
+            ;;
         -*)
             echo "Error: Unknown option: $1"
             echo "Usage: $0 <recording-file> [--source <name>]"

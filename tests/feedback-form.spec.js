@@ -1,0 +1,60 @@
+import { expect, test } from "@playwright/test";
+
+test.describe("User feedback form", () => {
+  test("opens modal when feedback button is clicked", async ({ page }) => {
+    await page.goto("/");
+    await page.locator("#main-content").waitFor({ state: "visible", timeout: 30000 });
+
+    // Set study lang so there's a current phrase
+    await page.locator('[id="study-lang-select"]').selectOption("de-DE");
+
+    const feedbackBtn = page.locator("#open-user-feedback-btn");
+    await feedbackBtn.waitFor({ state: "visible" });
+    await feedbackBtn.click();
+
+    await expect(page.locator("#user-feedback-modal")).toBeVisible();
+    await expect(page.locator("#user-feedback-text")).toBeVisible();
+    await expect(page.locator("#submit-user-feedback-btn")).toBeVisible();
+  });
+
+  test("submit button is disabled when text is empty", async ({ page }) => {
+    await page.goto("/");
+    await page.locator("#main-content").waitFor({ state: "visible", timeout: 30000 });
+
+    await page.locator("#open-user-feedback-btn").click();
+    await expect(page.locator("#user-feedback-modal")).toBeVisible();
+
+    const submitBtn = page.locator("#submit-user-feedback-btn");
+    await expect(submitBtn).toBeDisabled();
+  });
+
+  test("submits text feedback and shows success message", async ({ page }) => {
+    await page.goto("/");
+    await page.locator("#main-content").waitFor({ state: "visible", timeout: 30000 });
+
+    await page.locator('[id="study-lang-select"]').selectOption("de-DE");
+    await page.locator('[id="ui-lang-select"]').selectOption("en-GB");
+
+    await page.locator("#open-user-feedback-btn").click();
+    await expect(page.locator("#user-feedback-modal")).toBeVisible();
+
+    await page.locator("#user-feedback-text").fill("This is a test feedback message.");
+
+    const submitBtn = page.locator("#submit-user-feedback-btn");
+    await expect(submitBtn).toBeEnabled();
+    await submitBtn.click();
+
+    await expect(page.locator('[data-testid="feedback-success"]')).toBeVisible({ timeout: 5000 });
+  });
+
+  test("closes modal with close button", async ({ page }) => {
+    await page.goto("/");
+    await page.locator("#main-content").waitFor({ state: "visible", timeout: 30000 });
+
+    await page.locator("#open-user-feedback-btn").click();
+    await expect(page.locator("#user-feedback-modal")).toBeVisible();
+
+    await page.locator("#user-feedback-modal .btn-close").click();
+    await expect(page.locator("#user-feedback-modal")).not.toBeVisible();
+  });
+});

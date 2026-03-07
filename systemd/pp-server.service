@@ -1,0 +1,15 @@
+[Unit]
+Description=Phoneme Party server ({{USER}})
+After=network.target
+
+[Service]
+Type=simple
+User={{USER}}
+WorkingDirectory=/opt/{{USER}}
+ExecStart=/usr/bin/node /opt/{{USER}}/build-server/index.js
+Environment=PORT=3001
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

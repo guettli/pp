@@ -1,13 +1,16 @@
-import adapter from "@sveltejs/adapter-static";
+import adapterNode from "@sveltejs/adapter-node";
+import adapterStatic from "@sveltejs/adapter-static";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   kit: {
-    adapter: adapter({
-      fallback: "index.html",
-      pages: "dist",
-      assets: "dist",
-    }),
+    adapter: process.env.BUILD_SERVER
+      ? adapterNode({ out: "build-server" })
+      : adapterStatic({
+          fallback: "index.html",
+          pages: "dist",
+          assets: "dist",
+        }),
     paths: {
       base: "/phoneme-party",
     },

@@ -6,13 +6,40 @@ import fs from "fs";
 import { readAudioFile } from "./lib/audio.js"; // TODO: fix. this tool
 import { extractPhonemes, loadPhonemeModel } from "./lib/phoneme-model.js";
 
+function printHelp() {
+  console.log(`Usage: ./run tsx scripts/phrase2phonemes.ts <audio-file>
+
+Extract IPA phonemes from an audio file using the ONNX phoneme model.
+
+Arguments:
+  <audio-file>    Path to the audio file (.flac, .wav, etc.)
+
+Options:
+  --help          Show this help message
+
+Output:
+  JSON with audio_file path and recognized_ipa string.
+
+Example:
+  ./run tsx scripts/phrase2phonemes.ts tests/data/de-DE/Brot/Brot-Thomas.flac
+`);
+}
+
 async function main() {
-  if (process.argv.length < 3) {
+  const args = process.argv.slice(2);
+
+  if (args.includes("--help") || args.includes("-h")) {
+    printHelp();
+    process.exit(0);
+  }
+
+  if (args.length < 1) {
     console.error("Usage: tsx scripts/phrase2phonemes.ts <audio-file>");
+    console.error("Run with --help for more information.");
     process.exit(1);
   }
 
-  const audioFile = process.argv[2];
+  const audioFile = args[0];
 
   if (!fs.existsSync(audioFile)) {
     console.error(`Error: Audio file not found: ${audioFile}`);

@@ -9,14 +9,37 @@ import { readAudioFile } from "../src/lib/audio.js";
 import { loadPhonemeModel, extractPhonemesDetailed } from "../src/lib/phoneme-model.js";
 import { buildFrameText } from "../src/ui/model-details-view.js";
 
+function printHelp() {
+  console.log(`Usage: ./run tsx scripts/show-frames.ts <flac-or-yaml-file>
+
+Print frame-by-frame phoneme predictions to stdout for a test recording.
+Shows the top model predictions at each audio frame, useful for debugging
+phoneme extraction and understanding model behavior.
+
+Arguments:
+  <flac-or-yaml-file>    Path to a .flac or .flac.yaml test recording file
+
+Options:
+  --help                 Show this help message
+
+Example:
+  ./run tsx scripts/show-frames.ts tests/data/de-DE/Der_Panda/Der_Panda-Thomas.flac.yaml
+`);
+}
+
 async function main() {
-  const yamlFile = process.argv[2];
+  const args = process.argv.slice(2);
+
+  if (args.includes("--help") || args.includes("-h")) {
+    printHelp();
+    process.exit(0);
+  }
+
+  const yamlFile = args[0];
 
   if (!yamlFile) {
-    console.error("Usage: tsx scripts/show-frames.ts <yaml-file>");
-    console.error(
-      "Example: ./run scripts/show-frames.ts tests/data/de-DE/Der_Panda/Der_Panda-Thomas.flac.yaml",
-    );
+    console.error("Usage: tsx scripts/show-frames.ts <flac-or-yaml-file>");
+    console.error("Run with --help for more information.");
     process.exit(1);
   }
 

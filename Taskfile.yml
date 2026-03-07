@@ -42,6 +42,12 @@ tasks:
     cmds:
       - pnpm build
 
+  build-server:
+    desc: Build server bundle with adapter-node (output in build-server/)
+    deps: [_nix-check, panphon, wasm]
+    cmds:
+      - BUILD_SERVER=1 pnpm build
+
   node:
     desc: Compile TypeScript for Node.js into build/node/
     deps: [_nix-check]
@@ -87,6 +93,7 @@ tasks:
     deps: [lint, typecheck, test, unit-test]
     cmds:
       - ./scripts/validate-phrases-en-GB.py
+      - python scripts/apply-blacklist.py
 
   check-prod:
     desc: Run smoke tests against the live production site
@@ -94,9 +101,27 @@ tasks:
     cmds:
       - pnpm playwright test --project=prod
 
+  apply-blacklist:
+    desc: 'Flag blacklisted phrases with "blacklisted: true" using word-boundary regex'
+    cmds:
+      - python scripts/apply-blacklist.py {{.CLI_ARGS}}
+
+  docs:
+    desc: Generate SCRIPTS.md from --help output of all scripts in scripts/
+    deps: [_nix-check]
+    cmds:
+      - bash scripts/generate-scripts-md.sh
+    sources:
+      - scripts/*.ts
+      - scripts/*.py
+      - scripts/*.sh
+    generates:
+      - SCRIPTS.md
+
   deploy:
     desc: Build, check, deploy to server, and verify prod is up
-    deps: [check]
+    deps: [check, docs]
     cmds:
-      - rsync -avz --delete --exclude='onnx' dist/ tg:public_html/phoneme-party/
+      - rsync -az --delete --exclude='onnx' --exclude='*.debug.yaml' --stats dist/
+        tg:public_html/phoneme-party/
       - task: check-prod

@@ -23,12 +23,26 @@ def phrase_to_filename(en_gb_text: str) -> str:
 
 
 def main():
-    """
-    Main function to generate audio files.
-    Filenames are derived from the en-GB translation of each phrase.
-    """
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="Generate or check edge-tts opus audio files for all phrases.",
+    )
+    subparsers = parser.add_subparsers(dest="subcommand")
+    subparsers.add_parser("check", help="Print missing and orphaned opus files without changing anything.")
+    subparsers.add_parser("create", help="Generate missing opus files using edge-tts.")
+    subparsers.add_parser("delete-orphans", help="Delete opus files with no matching phrase.")
+
+    args = parser.parse_args()
+
+    if args.subcommand is None:
+        parser.print_help()
+        return
+
+    check_only = args.subcommand == "check"
+    delete_orphans = args.subcommand == "delete-orphans"
+
     project_root = Path(__file__).parent.parent
-    phrases_dir = project_root
     audio_dir = project_root / "static" / "audio"
 
     languages = {
@@ -39,7 +53,7 @@ def main():
     }
 
     for lang_code, voices in languages.items():
-        lang_phrases_file = phrases_dir / f"phrases-{lang_code}.yaml"
+        lang_phrases_file = project_root / f"phrases-{lang_code}.yaml"
         if not lang_phrases_file.exists():
             print(f"Phrases file not found for {lang_code}, skipping.")
             continue
@@ -47,10 +61,28 @@ def main():
         with open(lang_phrases_file, "r") as f:
             phrases_data = yaml.safe_load(f)
 
+        # Build set of expected stems from phrases yaml
+        expected_stems: set[str] = set()
+        for item in phrases_data:
+            phrase = item.get("phrase")
+            if not phrase:
+                continue
+            en_gb_text = phrase if lang_code == "en-GB" else (item.get("en-GB") or phrase)
+            expected_stems.add(phrase_to_filename(en_gb_text))
+
         for voice_type, voice_id in voices.items():
             voice_name = f"edge-tts-{voice_type}"
             voice_audio_dir = audio_dir / lang_code / voice_name
             voice_audio_dir.mkdir(parents=True, exist_ok=True)
+
+            if check_only or delete_orphans:
+                for opus_file in sorted(voice_audio_dir.glob("*.opus")):
+                    if opus_file.stem not in expected_stems:
+                        if delete_orphans:
+                            opus_file.unlink()
+                            print(f"DELETED  {lang_code}/{voice_name}/{opus_file.name}")
+                        else:
+                            print(f"ORPHAN   {lang_code}/{voice_name}/{opus_file.name}")
 
             for item in phrases_data:
                 phrase = item.get("phrase")
@@ -66,7 +98,12 @@ def main():
                 stem = phrase_to_filename(en_gb_text)
                 out_file = voice_audio_dir / f"{stem}.opus"
                 if out_file.exists():
-                    print(f"Skipping existing phrase: {phrase}")
+                    if not check_only:
+                        print(f"Skipping existing phrase: {phrase}")
+                    continue
+
+                if check_only:
+                    print(f"MISSING  {lang_code}/{voice_name}/{out_file.name}  (phrase: {phrase})")
                     continue
 
                 print(f"Generating audio for '{phrase}' in {lang_code} with voice {voice_id}")

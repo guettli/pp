@@ -4,6 +4,10 @@
  * Invalid patterns detected:
  *   - Language markers embedded in IPA, e.g. (en), (fr), (de), (es)
  *     These are artifacts from automated IPA tools that tag foreign-word segments.
+ *   - Hyphen-space "- " inside IPA strings, e.g. /lə- pɛʁokˈɛ/
+ *     This is an espeak-ng word-boundary artifact; standard IPA uses a plain space.
+ *   - Question marks "?" in IPA strings, e.g. /dɛɾ tˈ??m/
+ *     These are placeholder characters for unknown/missing phonemes.
  *
  * Run with: node tests/ipa-validity.test.js
  */
@@ -27,10 +31,23 @@ const PHRASE_FILES = [
 // e.g. (en), (fr), (de), (es), (it), (en-GB) – produced by some TTS/g2p tools.
 const LANG_MARKER_RE = /\([a-z]{2}(?:-[A-Z]{2})?\)/;
 
+// "- " (hyphen followed by space) is an espeak-ng word-boundary artifact.
+// Standard IPA uses a plain space for word boundaries.
+const HYPHEN_SPACE_RE = /- /;
+
+// "?" is a placeholder for an unknown/missing phoneme, e.g. /dɛɾ tˈ??m/.
+const QUESTION_MARK_RE = /\?/;
+
 function checkIpaString(ipa) {
   const errors = [];
   if (LANG_MARKER_RE.test(ipa)) {
     errors.push(`language marker in IPA: "${ipa}"`);
+  }
+  if (HYPHEN_SPACE_RE.test(ipa)) {
+    errors.push(`espeak-ng hyphen-space artifact in IPA: "${ipa}"`);
+  }
+  if (QUESTION_MARK_RE.test(ipa)) {
+    errors.push(`question mark placeholder in IPA: "${ipa}"`);
   }
   return errors;
 }

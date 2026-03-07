@@ -11,6 +11,9 @@ const phrasesEn: Phrase[] = load(phrasesEnYaml) as Phrase[];
 const phrasesFr: Phrase[] = load(phrasesFrYaml) as Phrase[];
 const phrasesIt: Phrase[] = load(phrasesItYaml) as Phrase[];
 
+// Set of blacklisted en-GB phrase keys for cross-language filtering
+const blacklistedEnKeys = new Set(phrasesEn.filter((p) => p.blacklisted).map((p) => p.phrase));
+
 function getPhraseList(phraseLang: string): Phrase[] {
   if (phraseLang === "de-DE") return phrasesDe;
   if (phraseLang === "fr-FR") return phrasesFr;
@@ -62,10 +65,14 @@ export function getRandomPhrase(
 }
 
 /**
- * Get the full phrase list
+ * Get the full phrase list, excluding blacklisted phrases.
+ * For en-GB: excludes phrases with blacklisted: true.
+ * For other languages: also excludes phrases whose en-GB key is blacklisted.
  */
 export function getAllPhrases(phraseLang: SupportedLanguage): Phrase[] {
-  return getPhraseList(phraseLang);
+  return getPhraseList(phraseLang).filter(
+    (p) => !p.blacklisted && !blacklistedEnKeys.has(p["en-GB"] ?? ""),
+  );
 }
 
 /**
@@ -74,7 +81,7 @@ export function getAllPhrases(phraseLang: SupportedLanguage): Phrase[] {
 export function findPhraseByName(name: string, phraseLang: string): Phrase | null {
   const phrasesData = getPhraseList(phraseLang);
   const lowerName = name.toLowerCase();
-  return phrasesData.find((w) => w.phrase.toLowerCase() === lowerName) || null;
+  return phrasesData.find((w) => w.phrase?.toLowerCase() === lowerName) || null;
 }
 
 /**

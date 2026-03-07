@@ -4,16 +4,45 @@
 
 import { calculatePanPhonDistance } from "../tests/panphon-distance-node.js";
 
+function printHelp() {
+  console.log(`Usage: ./run tsx scripts/compare-ipa.ts <expected-ipa> <recognized-ipa> <lang>
+
+Compare two IPA strings and output a similarity score using PanPhon feature distance.
+
+Arguments:
+  <expected-ipa>    The reference IPA string (from phrase data)
+  <recognized-ipa>  The IPA string to compare against the reference
+  <lang>            Language code (e.g. de-DE, en-GB, fr-FR)
+
+Options:
+  --help            Show this help message
+
+Output:
+  JSON with expected_ipa, recognized_ipa, similarity (0-1), distance, and phoneme_comparison.
+
+Examples:
+  ./run tsx scripts/compare-ipa.ts "ˈfaːɐ̯ʁaːt" "faːʁaːt" de-DE
+  ./run tsx scripts/compare-ipa.ts "/dɛɐ̯ ˈhʊnt/" "deːɐ̯ hʊnt" de-DE
+`);
+}
+
 async function main() {
-  if (process.argv.length < 5) {
+  const args = process.argv.slice(2);
+
+  if (args.includes("--help") || args.includes("-h")) {
+    printHelp();
+    process.exit(0);
+  }
+
+  if (args.length < 3) {
     console.error("Usage: tsx scripts/compare-ipa.ts <expected-ipa> <recognized-ipa> <lang>");
     console.error('Example: tsx scripts/compare-ipa.ts "ˈfaːɐ̯ʁaːt" "faːʁaːt" de-DE');
     process.exit(1);
   }
 
-  const expectedIPA = process.argv[2];
-  const recognizedIPA = process.argv[3];
-  const lang = process.argv[4];
+  const expectedIPA = args[0];
+  const recognizedIPA = args[1];
+  const lang = args[2];
 
   try {
     const result = calculatePanPhonDistance(expectedIPA, recognizedIPA, lang);

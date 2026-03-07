@@ -15,6 +15,7 @@ export interface Phrase {
   ipas: IPA[];
   level?: number; // 1-1000 difficulty level
   "en-GB"?: string; // English translation key; omitted for en-GB phrases (phrase itself is the key)
+  blacklisted?: boolean; // Flagged as unsuitable for children; excluded from selection
 }
 
 // Phoneme comparison result

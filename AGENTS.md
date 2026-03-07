@@ -28,6 +28,12 @@ Execute all scripts via `./run cmd arg1 arg2 ...`. Example:
 See directory `scripts` for existing CLI scripts. Use `./run scripts/...` to ensure the environment
 is set up.
 
+## Downloading Data
+
+When data gets downloaded, then store it into the cache in $HOME.
+
+Add a dependency in Taskfile, so that a new `git clone` of the project gets the needed data.
+
 ## Deploy
 
 Deploy via:

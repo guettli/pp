@@ -63,7 +63,27 @@ interface VariantResult {
   ok_files: number;
 }
 
+function printHelp() {
+  console.log(`Usage: ./run tsx scripts/tts-test-evaluate.ts
+
+Evaluate TTS audio quality for the TTS test suite.
+Reads tts-test/results/audio-manifest.json, extracts IPA from each audio file
+using the ONNX phoneme model, compares with target IPA using PanPhon distance,
+and writes results to tts-test/results/evaluation.json and report.md.
+
+Internal TTS evaluation tool — requires running the TTS audio generation step first.
+
+Options:
+  --help    Show this help message
+`);
+}
+
 async function main() {
+  if (process.argv.includes("--help") || process.argv.includes("-h")) {
+    printHelp();
+    process.exit(0);
+  }
+
   if (!fs.existsSync(MANIFEST_FILE)) {
     console.error(`ERROR: Audio manifest not found: ${MANIFEST_FILE}`);
     console.error("Run generate-audio.py first.");

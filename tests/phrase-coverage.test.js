@@ -44,6 +44,27 @@ function main() {
 
   let totalErrors = 0;
 
+  // --- Check 0: no case-insensitive duplicate phrases in en-GB ---
+  {
+    const seen = new Map(); // lowercased phrase -> first original
+    const caseDupes = [];
+    for (const p of enPhrases) {
+      const key = p.phrase.toLowerCase();
+      if (seen.has(key)) {
+        caseDupes.push({ a: seen.get(key), b: p.phrase });
+      } else {
+        seen.set(key, p.phrase);
+      }
+    }
+    if (caseDupes.length > 0) {
+      console.error(`\nen-GB: ${caseDupes.length} case-insensitive duplicate(s):`);
+      for (const { a, b } of caseDupes) console.error(`  "${a}" vs "${b}"`);
+      totalErrors += caseDupes.length;
+    } else {
+      console.log(`  en-GB: no case-insensitive duplicates. OK`);
+    }
+  }
+
   // --- Check 1: non-en-GB phrases all link to a real en-GB phrase ---
   for (const lang of NON_EN_LANGS) {
     const phrases = loadPhrases(`phrases-${lang}.yaml`);
@@ -71,6 +92,31 @@ function main() {
     }
     if (missing.length === 0 && invalid.length === 0) {
       console.log(`  ${lang}: all ${phrases.length} phrases have valid en-GB links. OK`);
+    }
+  }
+
+  // --- Check 1b: no duplicate en-GB links within a language file ---
+  for (const lang of NON_EN_LANGS) {
+    const phrases = loadPhrases(`phrases-${lang}.yaml`);
+    const seen = new Map(); // enKey -> first phrase
+    const duplicates = [];
+
+    for (const p of phrases) {
+      if (!p["en-GB"]) continue;
+      if (seen.has(p["en-GB"])) {
+        duplicates.push({ phrase: p.phrase, enKey: p["en-GB"], first: seen.get(p["en-GB"]) });
+      } else {
+        seen.set(p["en-GB"], p.phrase);
+      }
+    }
+
+    if (duplicates.length > 0) {
+      console.error(`\n${lang}: ${duplicates.length} duplicate en-GB link(s):`);
+      for (const { phrase, enKey, first } of duplicates)
+        console.error(`  "${phrase}" and "${first}" both link to en-GB "${enKey}"`);
+      totalErrors += duplicates.length;
+    } else {
+      console.log(`  ${lang}: no duplicate en-GB links. OK`);
     }
   }
 

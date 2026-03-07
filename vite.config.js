@@ -4,18 +4,18 @@ import path from "path";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
 
-// Custom plugin to suppress PouchDB externalization warnings
-const suppressPouchDBWarnings = () => {
+// Suppress "Module externalized for browser compatibility" warnings for modules
+// that use Node.js APIs only in guarded runtime branches (typeof process check).
+const suppressExternalizationWarnings = () => {
   return {
-    name: "suppress-pouchdb-warnings",
+    name: "suppress-externalization-warnings",
     configResolved(config) {
       const originalWarn = config.logger.warn;
       config.logger.warn = (msg, options) => {
-        // Suppress "Module externalized for browser compatibility" warnings for PouchDB
         if (
           typeof msg === "string" &&
-          msg.includes("externalized for browser compatibility") &&
-          (msg.includes("pouchdb") || msg.includes("events"))
+          (msg.includes("externalized for browser compatibility") ||
+            msg.includes("Unknown output options: codeSplitting"))
         ) {
           return;
         }
@@ -84,16 +84,26 @@ const serveModelFromCache = () => {
 };
 
 export default defineConfig({
-  plugins: [sveltekit(), suppressPouchDBWarnings(), coiServiceWorker(), serveModelFromCache()],
+  plugins: [
+    sveltekit(),
+    suppressExternalizationWarnings(),
+    coiServiceWorker(),
+    serveModelFromCache(),
+  ],
   define: {
     __BUILD_DATE__: JSON.stringify(new Date().toISOString()),
   },
   build: {
     target: "esnext",
     sourcemap: true,
+    chunkSizeWarningLimit: 2000,
     rollupOptions: {
       onwarn(warning, warn) {
-        if (warning.message && warning.message.includes("externalized for browser compatibility")) {
+        if (
+          warning.message &&
+          (warning.message.includes("externalized for browser compatibility") ||
+            warning.message.includes("Unknown output options: codeSplitting"))
+        ) {
           return;
         }
         warn(warning);

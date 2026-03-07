@@ -20,7 +20,7 @@ For example:
 nix profile add nixpkgs#direnv nixpkgs#nix-direnv
 ```
 
-And add `/home/guettli/.nix-profile/bin` to your PATH.
+And add `~/.nix-profile/bin` to your PATH.
 
 This project has a `.envrc` which loads flake.nix and updates PATH.
 

@@ -7,6 +7,18 @@
 trap 'echo -e "\nError on line ($0:$LINENO): $(sed -n "${LINENO}p" "$0" 2>/dev/null || true)"; exit 3' ERR
 set -Eeuo pipefail
 
+if [[ "${1:-}" == "--help" ]] || [[ "${1:-}" == "-h" ]]; then
+    echo "Usage: ./scripts/generate-edge-tts-test-data-en-gb.sh"
+    echo ""
+    echo "Generate edge-tts audio test recordings for all en-GB phrases."
+    echo "Uses the en-GB-RyanNeural voice (Microsoft Azure via edge-tts)."
+    echo "Skips phrases that already have a recording. Creates .flac and .flac.yaml files"
+    echo "in tests/data/en-GB/<phrase>/ directories."
+    echo ""
+    echo "Requires: edge-tts, ffmpeg, nix environment (for tsx)."
+    exit 0
+fi
+
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 DATA_DIR="$PROJECT_DIR/tests/data/en-GB"

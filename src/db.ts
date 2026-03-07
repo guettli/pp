@@ -21,7 +21,8 @@ export interface PhraseResultDoc {
   phrase: string;
   language: string;
   timestamp: number;
-  score: number; // 0-100
+  score: number; // 0-100, or -1 if skipped
+  skipped?: boolean; // true if user skipped without recording
   actualIPA: string;
   targetIPA: string;
   duration: number; // milliseconds
@@ -272,6 +273,60 @@ class PhonemePartyDB {
   }
 
   /**
+   * Record a skipped phrase: adds it to history and delays next review by 1 day.
+   */
+  async saveSkippedPhrase(phrase: string, studyLang: string, targetIPA: string): Promise<void> {
+    const timestamp = Date.now();
+    const stateId = `state_${studyLang}_${phrase}`;
+    let state: PhraseStateDoc;
+
+    try {
+      state = await this.db.get<PhraseStateDoc>(stateId);
+    } catch {
+      state = {
+        _id: stateId,
+        type: "phrase_state",
+        phrase,
+        language: studyLang,
+        lastAttempt: 0,
+        nextReviewDate: 0,
+        interval: 0,
+        easeFactor: 2.5,
+        repetitions: 0,
+        totalAttempts: 0,
+        averageScore: 0,
+        bestScore: 0,
+      };
+    }
+
+    // Delay next review by 1 day so the phrase doesn't appear immediately
+    const nextReviewDate = timestamp + 24 * 60 * 60 * 1000;
+    state.lastAttempt = timestamp;
+    state.nextReviewDate = nextReviewDate;
+    state.interval = Math.max(state.interval, 1);
+    await this.db.put(state);
+
+    const resultDoc: PhraseResultDoc = {
+      _id: `result_${timestamp}_${studyLang}_${phrase}`,
+      type: "phrase_result",
+      phrase,
+      language: studyLang,
+      timestamp,
+      score: -1,
+      skipped: true,
+      actualIPA: "",
+      targetIPA,
+      duration: 0,
+      nextReviewDate,
+      interval: state.interval,
+      easeFactor: state.easeFactor,
+      repetitions: state.repetitions,
+    };
+
+    await this.db.put(resultDoc);
+  }
+
+  /**
    * Get phrases that are due for review
    */
   async getPhrasesForReview(studyLang: string, limit = 10): Promise<PhraseStateDoc[]> {
@@ -423,7 +478,7 @@ class PhonemePartyDB {
         language: studyLang,
         timestamp: { $exists: true },
       },
-      sort: [{ type: "asc" }, { language: "asc" }, { timestamp: "desc" }],
+      sort: [{ type: "desc" }, { language: "desc" }, { timestamp: "desc" }],
       limit: 30,
     });
 
@@ -565,6 +620,41 @@ class PhonemePartyDB {
       return doc.userLevel;
     } catch {
       return null; // No preference saved
+    }
+  }
+
+  /**
+   * Save whether noise reduction model is enabled
+   */
+  async saveNoiseReductionEnabled(enabled: boolean): Promise<void> {
+    const docId = "setting_noise_reduction_enabled";
+    try {
+      const existingDoc = await this.db.get(docId);
+      await this.db.put({
+        ...existingDoc,
+        enabled,
+        timestamp: Date.now(),
+      });
+    } catch {
+      await this.db.put({
+        _id: docId,
+        type: "setting",
+        enabled,
+        timestamp: Date.now(),
+      });
+    }
+  }
+
+  /**
+   * Get whether noise reduction model is enabled (default: true)
+   */
+  async getNoiseReductionEnabled(): Promise<boolean> {
+    const docId = "setting_noise_reduction_enabled";
+    try {
+      const doc = (await this.db.get(docId)) as { enabled: boolean };
+      return doc.enabled;
+    } catch {
+      return true; // Default: enabled
     }
   }
 }

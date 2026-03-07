@@ -109,6 +109,13 @@ export default [
       "no-unused-vars": "off",
     },
   },
+  // Server-side files may use Node.js globals
+  {
+    files: ["src/routes/**/*.server.ts", "src/routes/api/**/*.ts"],
+    languageOptions: {
+      globals: { ...browserGlobals, process: "readonly" },
+    },
+  },
   {
     ignores: ["node_modules/**", "dist/**", "tests/**", "*.config.js", ".svelte-kit/**"],
   },

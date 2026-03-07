@@ -1,101 +1,3 @@
-- phrase: Gatto
-  emoji: 🐱
-  ipas:
-    - ipa: /ˈɡatto/
-      category: standard
-  level: 50
-  en-GB: Cat
-- phrase: Cane
-  emoji: 🐕
-  ipas:
-    - ipa: /ˈkaːne/
-      category: standard
-  level: 40
-  en-GB: Dog
-- phrase: Casa
-  emoji: 🏠
-  ipas:
-    - ipa: /ˈkaːza/
-      category: standard
-  level: 56
-  en-GB: House
-- phrase: Albero
-  emoji: 🌳
-  ipas:
-    - ipa: /ˈalbero/
-      category: standard
-  level: 120
-  en-GB: Tree
-- phrase: Fiore
-  emoji: 🌸
-  ipas:
-    - ipa: /ˈfjoːre/
-      category: standard
-  level: 140
-  en-GB: Flower
-- phrase: Sole
-  emoji: ☀️
-  ipas:
-    - ipa: /ˈsoːle/
-      category: standard
-  level: 80
-  en-GB: Sun
-- phrase: Luna
-  emoji: 🌙
-  ipas:
-    - ipa: /ˈluːna/
-      category: standard
-  level: 90
-  en-GB: Moon
-- phrase: Acqua
-  emoji: 💧
-  ipas:
-    - ipa: /ˈakkwa/
-      category: standard
-  level: 100
-  en-GB: Water
-- phrase: Fuoco
-  emoji: 🔥
-  ipas:
-    - ipa: /ˈfwɔːko/
-      category: standard
-  level: 110
-  en-GB: Fire
-- phrase: Pane
-  emoji: 🍞
-  ipas:
-    - ipa: /ˈpaːne/
-      category: standard
-  level: 60
-  en-GB: Bread
-- phrase: Vino
-  emoji: 🍷
-  ipas:
-    - ipa: /ˈviːno/
-      category: standard
-  level: 70
-  en-GB: Wine
-- phrase: Libro
-  emoji: 📚
-  ipas:
-    - ipa: /ˈliːbro/
-      category: standard
-  level: 130
-  en-GB: Book
-- phrase: Porta
-  emoji: 🚪
-  ipas:
-    - ipa: /ˈpɔrta/
-      category: standard
-  level: 150
-  en-GB: Door
-- phrase: Finestra
-  emoji: 🪟
-  ipas:
-    - ipa: /fiˈnɛstra/
-      category: standard
-  level: 200
-  en-GB: Window
 - phrase: Tavolo
   emoji: 🪑
   ipas:
@@ -103,20 +5,6 @@
       category: standard
   level: 180
   en-GB: Table
-- phrase: Sedia
-  emoji: 🪑
-  ipas:
-    - ipa: /ˈsɛːdja/
-      category: standard
-  level: 160
-  en-GB: Chair
-- phrase: Bambino
-  emoji: 👶
-  ipas:
-    - ipa: /bamˈbiːno/
-      category: standard
-  level: 170
-  en-GB: Child
 - phrase: Madre
   emoji: 👩
   ipas:
@@ -137,7 +25,7 @@
     - ipa: /aˈmoːre/
       category: standard
   level: 150
-  en-GB: Love
+  en-GB: love
 - phrase: Amico
   emoji: 🤝
   ipas:
@@ -439,69 +327,6 @@
       category: standard
   level: 600
   en-GB: Good luck!
-- phrase: Mela
-  emoji: 🍎
-  ipas:
-    - ipa: /ˈmɛːla/
-      category: standard
-  level: 80
-  en-GB: Apple
-- phrase: Arancia
-  emoji: 🍊
-  ipas:
-    - ipa: /aˈrantʃa/
-      category: standard
-  level: 160
-  en-GB: Orange
-- phrase: Fragola
-  emoji: 🍓
-  ipas:
-    - ipa: /ˈfraːɡola/
-      category: standard
-  level: 180
-  en-GB: Strawberry
-- phrase: Limone
-  emoji: 🍋
-  ipas:
-    - ipa: /liˈmoːne/
-      category: standard
-  level: 170
-  en-GB: Lemon
-- phrase: Pomodoro
-  emoji: 🍅
-  ipas:
-    - ipa: /pomoˈdoːro/
-      category: standard
-  level: 200
-  en-GB: Tomato
-- phrase: Formaggio
-  emoji: 🧀
-  ipas:
-    - ipa: /forˈmaddʒo/
-      category: standard
-  level: 220
-  en-GB: Cheese
-- phrase: Uovo
-  emoji: 🥚
-  ipas:
-    - ipa: /ˈwɔːvo/
-      category: standard
-  level: 150
-  en-GB: Egg
-- phrase: Pesce
-  emoji: 🐟
-  ipas:
-    - ipa: /ˈpeʃʃe/
-      category: standard
-  level: 140
-  en-GB: Fish
-- phrase: Carne
-  emoji: 🥩
-  ipas:
-    - ipa: /ˈkarne/
-      category: standard
-  level: 130
-  en-GB: Meat
 - phrase: Gelato
   emoji: 🍦
   ipas:
@@ -509,48 +334,6 @@
       category: standard
   level: 180
   en-GB: Ice cream
-- phrase: Macchina
-  emoji: 🚗
-  ipas:
-    - ipa: /ˈmakkina/
-      category: standard
-  level: 200
-  en-GB: Car
-- phrase: Autobus
-  emoji: 🚌
-  ipas:
-    - ipa: /ˈautobus/
-      category: standard
-  level: 220
-  en-GB: Bus
-- phrase: Aereo
-  emoji: ✈️
-  ipas:
-    - ipa: /aˈɛːreo/
-      category: standard
-  level: 240
-  en-GB: Aeroplane
-- phrase: Treno
-  emoji: 🚂
-  ipas:
-    - ipa: /ˈtrɛːno/
-      category: standard
-  level: 180
-  en-GB: Train
-- phrase: Bicicletta
-  emoji: 🚲
-  ipas:
-    - ipa: /bitʃiˈklɛtta/
-      category: standard
-  level: 300
-  en-GB: Bicycle
-- phrase: Scuola
-  emoji: 🏫
-  ipas:
-    - ipa: /ˈskwɔːla/
-      category: standard
-  level: 180
-  en-GB: School
 - phrase: Università
   emoji: 🎓
   ipas:
@@ -579,13 +362,6 @@
       category: standard
   level: 260
   en-GB: Market
-- phrase: Ospedale
-  emoji: 🏥
-  ipas:
-    - ipa: /ospeˈdaːle/
-      category: standard
-  level: 320
-  en-GB: Hospital
 - phrase: Farmacia
   emoji: 💊
   ipas:
@@ -593,13 +369,6 @@
       category: standard
   level: 340
   en-GB: Pharmacy
-- phrase: Banca
-  emoji: 🏦
-  ipas:
-    - ipa: /ˈbaŋka/
-      category: standard
-  level: 200
-  en-GB: Bank
 - phrase: Ristorante
   emoji: 🍽️
   ipas:
@@ -607,55 +376,48 @@
       category: standard
   level: 300
   en-GB: Restaurant
-- phrase: Albergo
-  emoji: 🏨
-  ipas:
-    - ipa: /alˈbɛrɡo/
-      category: standard
-  level: 280
-  en-GB: Hotel
 - phrase: Rosso
   emoji: 🔴
   ipas:
     - ipa: /ˈrɔsso/
       category: standard
   level: 100
-  en-GB: Red
+  en-GB: red
 - phrase: Blu
   emoji: 🔵
   ipas:
     - ipa: /blu/
       category: standard
   level: 60
-  en-GB: Blue
+  en-GB: blue
 - phrase: Verde
   emoji: 🟢
   ipas:
     - ipa: /ˈvɛrde/
       category: standard
   level: 100
-  en-GB: Green
+  en-GB: green
 - phrase: Giallo
   emoji: 🟡
   ipas:
     - ipa: /ˈdʒallo/
       category: standard
   level: 120
-  en-GB: Yellow
+  en-GB: yellow
 - phrase: Bianco
   emoji: ⚪
   ipas:
     - ipa: /ˈbjaŋko/
       category: standard
   level: 100
-  en-GB: White
+  en-GB: white
 - phrase: Nero
   emoji: ⚫
   ipas:
     - ipa: /ˈnɛːro/
       category: standard
   level: 80
-  en-GB: Black
+  en-GB: black
 - phrase: Grande
   emoji: 🔝
   ipas:
@@ -690,7 +452,7 @@
     - ipa: /ˈnwɔːvo/
       category: standard
   level: 140
-  en-GB: New
+  en-GB: new
 - phrase: Vecchio
   emoji: 🕰️
   ipas:
@@ -943,27 +705,6 @@
       category: standard
   level: 260
   en-GB: Winter
-- phrase: Montagna
-  emoji: ⛰️
-  ipas:
-    - ipa: /monˈtaɲɲa/
-      category: standard
-  level: 260
-  en-GB: Mountain
-- phrase: Mare
-  emoji: 🌊
-  ipas:
-    - ipa: /ˈmaːre/
-      category: standard
-  level: 120
-  en-GB: Sea
-- phrase: Fiume
-  emoji: 🏞️
-  ipas:
-    - ipa: /ˈfjuːme/
-      category: standard
-  level: 180
-  en-GB: River
 - phrase: Città
   emoji: 🏙️
   ipas:
@@ -1020,97 +761,6 @@
       category: standard
   level: 160
   en-GB: Naples
-- phrase: Stella
-  emoji: ⭐
-  ipas:
-    - ipa: /stˈella/
-      category: standard
-  level: 144
-  en-GB: Star
-- phrase: Palla
-  emoji: ⚽
-  ipas:
-    - ipa: /pˈalla/
-      category: standard
-  level: 131
-  en-GB: Ball
-- phrase: Banana
-  emoji: 🍌
-  ipas:
-    - ipa: /banˈana/
-      category: standard
-  level: 407
-  en-GB: Banana
-- phrase: Uccello
-  emoji: 🐦
-  ipas:
-    - ipa: /ʊtʃːˈɛllo/
-      category: standard
-  level: 156
-  en-GB: Bird
-- phrase: Farfalla
-  emoji: 🦋
-  ipas:
-    - ipa: /farfˈalla/
-      category: standard
-  level: 496
-  en-GB: Butterfly
-- phrase: Nave
-  emoji: 🚢
-  ipas:
-    - ipa: /nˈave/
-      category: standard
-  level: 163
-  en-GB: Ship
-- phrase: Aereo
-  emoji: ✈️
-  ipas:
-    - ipa: /aˈɛːreo/
-      category: standard
-  level: 531
-  en-GB: Airplane
-- phrase: Letto
-  emoji: 🛏️
-  ipas:
-    - ipa: /lˈɛtːo/
-      category: standard
-  level: 58
-  en-GB: Bed
-- phrase: Orologio
-  emoji: 🕐
-  ipas:
-    - ipa: /orolˈodʒo/
-      category: standard
-  level: 236
-  en-GB: Clock
-- phrase: Chiave
-  emoji: 🔑
-  ipas:
-    - ipa: /kjˈave/
-      category: standard
-  level: 134
-  en-GB: Key
-- phrase: Cuore
-  emoji: ❤️
-  ipas:
-    - ipa: /kʊˈɔre/
-      category: standard
-  level: 242
-  en-GB: Heart
-- phrase: Mano
-  emoji: ✋
-  ipas:
-    - ipa: /mˈano/
-      category: standard
-  level: 125
-  en-GB: Hand
-- phrase: Piede
-  emoji: 🦶
-  ipas:
-    - ipa: /pjˈɛde/
-      category: standard
-  level: 144
-  en-GB: Foot
 - phrase: accettare
   emoji: 🉑
   ipas:
@@ -1118,41 +768,6 @@
       category: standard
   level: 508
   en-GB: accept
-- phrase: ambulanza
-  emoji: 🚑
-  ipas:
-    - ipa: /ambʊlˈantsa/
-      category: standard
-  level: 721
-  en-GB: ambulance
-- phrase: ancorare
-  emoji: ⚓
-  ipas:
-    - ipa: /ankorˈare/
-      category: standard
-  level: 458
-  en-GB: anchor
-- phrase: angelo
-  emoji: 👼
-  ipas:
-    - ipa: /ˈandʒelo/
-      category: standard
-  level: 334
-  en-GB: angel
-- phrase: rabbia
-  emoji: 💢
-  ipas:
-    - ipa: /rˈabːia/
-      category: standard
-  level: 344
-  en-GB: anger
-- phrase: formica
-  emoji: 🐜
-  ipas:
-    - ipa: /formˈika/
-      category: standard
-  level: 96
-  en-GB: ant
 - phrase: tiro con l'arco
   emoji: 🏹
   ipas:
@@ -1160,13 +775,6 @@
       category: standard
   level: 613
   en-GB: archery
-- phrase: braccio
-  emoji: 🦾
-  ipas:
-    - ipa: /brˈatʃːo/
-      category: standard
-  level: 52
-  en-GB: arm
 - phrase: arti
   emoji: 🎨
   ipas:
@@ -1174,34 +782,6 @@
       category: standard
   level: 293
   en-GB: arts
-- phrase: atomo
-  emoji: ⚛️
-  ipas:
-    - ipa: /ˈatomo/
-      category: standard
-  level: 537
-  en-GB: atom
-- phrase: ascia
-  emoji: 🪓
-  ipas:
-    - ipa: /ˈaʃa/
-      category: standard
-  level: 290
-  en-GB: axe
-- phrase: Bambino
-  emoji: 🚼
-  ipas:
-    - ipa: /bambˈino/
-      category: standard
-  level: 134
-  en-GB: baby
-- phrase: Bacon
-  emoji: 🥓
-  ipas:
-    - ipa: /bˈakon/
-      category: standard
-  level: 321
-  en-GB: bacon
 - phrase: borsa
   emoji: 👜
   ipas:
@@ -1209,27 +789,6 @@
       category: standard
   level: 122
   en-GB: bag
-- phrase: Bagaglio
-  emoji: 🛄
-  ipas:
-    - ipa: /baɡˈaʎo/
-      category: standard
-  level: 654
-  en-GB: baggage
-- phrase: palloncino
-  emoji: 🎈
-  ipas:
-    - ipa: /pallontʃˈino/
-      category: standard
-  level: 397
-  en-GB: balloon
-- phrase: bambù
-  emoji: 🎋
-  ipas:
-    - ipa: /bambˈu/
-      category: standard
-  level: 499
-  en-GB: bamboo
 - phrase: bendare
   emoji: 🩹
   ipas:
@@ -1237,27 +796,6 @@
       category: standard
   level: 537
   en-GB: bandage
-- phrase: banjo
-  emoji: 🪕
-  ipas:
-    - ipa: /bˈandʒo/
-      category: standard
-  level: 499
-  en-GB: banjo
-- phrase: banca
-  emoji: 🏦
-  ipas:
-    - ipa: /bˈanka/
-      category: standard
-  level: 248
-  en-GB: bank
-- phrase: cestino
-  emoji: 🧺
-  ipas:
-    - ipa: /tʃestˈino/
-      category: standard
-  level: 350
-  en-GB: basket
 - phrase: pallacanestro
   emoji: 🏀
   ipas:
@@ -1265,62 +803,6 @@
       category: standard
   level: 727
   en-GB: basketball
-- phrase: pipistrello
-  emoji: 🦇
-  ipas:
-    - ipa: /pipistrˈɛllo/
-      category: standard
-  level: 137
-  en-GB: bat
-- phrase: bagno
-  emoji: 🛀
-  ipas:
-    - ipa: /bˈaɲɲo/
-      category: standard
-  level: 137
-  en-GB: bath
-- phrase: batteria
-  emoji: 🔋
-  ipas:
-    - ipa: /batːerˈia/
-      category: standard
-  level: 493
-  en-GB: battery
-- phrase: spiaggia
-  emoji: 🏖️
-  ipas:
-    - ipa: /spjˈadʒːa/
-      category: standard
-  level: 242
-  en-GB: beach
-- phrase: orso
-  emoji: 🐻
-  ipas:
-    - ipa: /ˈorso/
-      category: standard
-  level: 169
-  en-GB: bear
-- phrase: ape
-  emoji: 🐝
-  ipas:
-    - ipa: /ˈape/
-      category: standard
-  level: 102
-  en-GB: bee
-- phrase: birra
-  emoji: 🍺
-  ipas:
-    - ipa: /bˈirɾa/
-      category: standard
-  level: 318
-  en-GB: beer
-- phrase: bicicletta
-  emoji: 🚴
-  ipas:
-    - ipa: /bitʃiklˈetːa/
-      category: standard
-  level: 255
-  en-GB: bike
 - phrase: cieco
   emoji: 👨‍🦯
   ipas:
@@ -1328,41 +810,6 @@
       category: standard
   level: 299
   en-GB: blind
-- phrase: barca
-  emoji: 🚤
-  ipas:
-    - ipa: /bˈarka/
-      category: standard
-  level: 163
-  en-GB: boat
-- phrase: bomba
-  emoji: 💣
-  ipas:
-    - ipa: /bˈomba/
-      category: standard
-  level: 302
-  en-GB: bomb
-- phrase: osso
-  emoji: 🦴
-  ipas:
-    - ipa: /ˈɔsso/
-      category: standard
-  level: 264
-  en-GB: bone
-- phrase: stivale
-  emoji: 👢
-  ipas:
-    - ipa: /stivˈale/
-      category: standard
-  level: 185
-  en-GB: boot
-- phrase: bottiglia
-  emoji: 🍼
-  ipas:
-    - ipa: /botːˈiʎa/
-      category: standard
-  level: 344
-  en-GB: bottle
 - phrase: arco
   emoji: 🙇
   ipas:
@@ -1370,13 +817,6 @@
       category: standard
   level: 166
   en-GB: bow
-- phrase: scatola
-  emoji: 🗃️
-  ipas:
-    - ipa: /skˈatola/
-      category: standard
-  level: 96
-  en-GB: box
 - phrase: boxe
   emoji: 🥊
   ipas:
@@ -1384,20 +824,6 @@
       category: standard
   level: 477
   en-GB: boxing
-- phrase: ragazzo
-  emoji: 👦
-  ipas:
-    - ipa: /raɡˈatsːo/
-      category: standard
-  level: 49
-  en-GB: boy
-- phrase: sposa
-  emoji: 👰
-  ipas:
-    - ipa: /spˈoza/
-      category: standard
-  level: 363
-  en-GB: bride
 - phrase: luminoso
   emoji: 🔆
   ipas:
@@ -1405,41 +831,6 @@
       category: standard
   level: 309
   en-GB: bright
-- phrase: broccoli
-  emoji: 🥦
-  ipas:
-    - ipa: /brˈokːolɪ/
-      category: standard
-  level: 591
-  en-GB: broccoli
-- phrase: scopa
-  emoji: 🧹
-  ipas:
-    - ipa: /skˈopa/
-      category: standard
-  level: 267
-  en-GB: broom
-- phrase: spazzola
-  emoji: 🖌️
-  ipas:
-    - ipa: /spˈatsːola/
-      category: standard
-  level: 245
-  en-GB: brush
-- phrase: bufalo
-  emoji: 🐃
-  ipas:
-    - ipa: /bˈufalo/
-      category: standard
-  level: 588
-  en-GB: buffalo
-- phrase: edificio
-  emoji: 🏗️
-  ipas:
-    - ipa: /edifˈitʃo/
-      category: standard
-  level: 493
-  en-GB: building
 - phrase: lampadina
   emoji: 💡
   ipas:
@@ -1454,20 +845,6 @@
       category: standard
   level: 169
   en-GB: bunny
-- phrase: hamburger
-  emoji: 🍔
-  ipas:
-    - ipa: /ambˈurɡer/
-      category: standard
-  level: 388
-  en-GB: burger
-- phrase: autobus
-  emoji: 🚌
-  ipas:
-    - ipa: /ˈaːʊtobʊs/
-      category: standard
-  level: 90
-  en-GB: bus
 - phrase: torace
   emoji: 👤
   ipas:
@@ -1481,49 +858,7 @@
     - ipa: /mobilˈetːo/
       category: standard
   level: 616
-  en-GB: cabinet
-- phrase: cactus
-  emoji: 🌵
-  ipas:
-    - ipa: /kˈaktʊs/
-      category: standard
-  level: 445
-  en-GB: cactus
-- phrase: torta
-  emoji: 🍰
-  ipas:
-    - ipa: /tˈɔrta/
-      category: standard
-  level: 233
-  en-GB: cake
-- phrase: calendario
-  emoji: 📅
-  ipas:
-    - ipa: /kalendˈario/
-      category: standard
-  level: 623
-  en-GB: calendar
-- phrase: chiamata
-  emoji: 🤙
-  ipas:
-    - ipa: /kjamˈata/
-      category: standard
-  level: 194
-  en-GB: call
-- phrase: cammello
-  emoji: 🐪
-  ipas:
-    - ipa: /kammˈɛllo/
-      category: standard
-  level: 369
-  en-GB: camel
-- phrase: telecamera
-  emoji: 📷
-  ipas:
-    - ipa: /telekˈamera/
-      category: standard
-  level: 477
-  en-GB: camera
+  en-GB: The wardrobe
 - phrase: cancro
   emoji: ♋
   ipas:
@@ -1531,34 +866,6 @@
       category: standard
   level: 550
   en-GB: cancer
-- phrase: candela
-  emoji: 🕯️
-  ipas:
-    - ipa: /kandˈela/
-      category: standard
-  level: 416
-  en-GB: candle
-- phrase: caramella
-  emoji: 🍭
-  ipas:
-    - ipa: /kaɾamˈɛlla/
-      category: standard
-  level: 255
-  en-GB: candy
-- phrase: canna
-  emoji: 🦯
-  ipas:
-    - ipa: /kˈanna/
-      category: standard
-  level: 391
-  en-GB: cane
-- phrase: canoa
-  emoji: 🛶
-  ipas:
-    - ipa: /kanˈɔa/
-      category: standard
-  level: 486
-  en-GB: canoe
 - phrase: berretto
   emoji: 🧢
   ipas:
@@ -1573,41 +880,6 @@
       category: standard
   level: 194
   en-GB: card
-- phrase: carpa
-  emoji: 🎏
-  ipas:
-    - ipa: /kˈarpa/
-      category: standard
-  level: 413
-  en-GB: carp
-- phrase: carota
-  emoji: 🥕
-  ipas:
-    - ipa: /karˈɔta/
-      category: standard
-  level: 363
-  en-GB: carrot
-- phrase: bruco
-  emoji: 🐛
-  ipas:
-    - ipa: /brˈuko/
-      category: standard
-  level: 788
-  en-GB: caterpillar
-- phrase: catena
-  emoji: ⛓️
-  ipas:
-    - ipa: /katˈena/
-      category: standard
-  level: 290
-  en-GB: chain
-- phrase: sedia
-  emoji: 🪑
-  ipas:
-    - ipa: /sˈɛdia/
-      category: standard
-  level: 210
-  en-GB: chair
 - phrase: controllo
   emoji: ✅
   ipas:
@@ -1615,90 +887,6 @@
       category: standard
   level: 309
   en-GB: check
-- phrase: formaggio
-  emoji: 🧀
-  ipas:
-    - ipa: /formˈadʒːo/
-      category: standard
-  level: 347
-  en-GB: cheese
-- phrase: ciliegia
-  emoji: 🍒
-  ipas:
-    - ipa: /tʃiliˈɛdʒa/
-      category: standard
-  level: 321
-  en-GB: cherry
-- phrase: castagno
-  emoji: 🌰
-  ipas:
-    - ipa: /kastˈaɲɲo/
-      category: standard
-  level: 553
-  en-GB: chestnut
-- phrase: bambino
-  emoji: 🧒
-  ipas:
-    - ipa: /bambˈino/
-      category: standard
-  level: 239
-  en-GB: child
-- phrase: bambini
-  emoji: 🚸
-  ipas:
-    - ipa: /bambˈinɪ/
-      category: standard
-  level: 461
-  en-GB: children
-- phrase: carillon
-  emoji: 🎐
-  ipas:
-    - ipa: /karˈillon/
-      category: standard
-  level: 489
-  en-GB: chime
-- phrase: cioccolato
-  emoji: 🍫
-  ipas:
-    - ipa: /tʃokːolˈato/
-      category: standard
-  level: 648
-  en-GB: chocolate
-- phrase: Chiesa
-  emoji: 💒
-  ipas:
-    - ipa: /kjˈɛza/
-      category: standard
-  level: 321
-  en-GB: church
-- phrase: sigaretta
-  emoji: 🚬
-  ipas:
-    - ipa: /siɡarˈetːa/
-      category: standard
-  level: 788
-  en-GB: cigarette
-- phrase: cinema
-  emoji: 🎦
-  ipas:
-    - ipa: /tʃˈinema/
-      category: standard
-  level: 502
-  en-GB: cinema
-- phrase: cerchio
-  emoji: ⭕
-  ipas:
-    - ipa: /tʃˈerkio/
-      category: standard
-  level: 350
-  en-GB: circle
-- phrase: circo
-  emoji: 🎪
-  ipas:
-    - ipa: /tʃˈirko/
-      category: standard
-  level: 369
-  en-GB: circus
 - phrase: scalata
   emoji: 🧗
   ipas:
@@ -1706,27 +894,6 @@
       category: standard
   level: 264
   en-GB: climb
-- phrase: nuvola
-  emoji: ☁️
-  ipas:
-    - ipa: /nˈuvola/
-      category: standard
-  level: 204
-  en-GB: cloud
-- phrase: trifoglio
-  emoji: ☘️
-  ipas:
-    - ipa: /trifˈɔʎo/
-      category: standard
-  level: 464
-  en-GB: clover
-- phrase: frizione
-  emoji: 👝
-  ipas:
-    - ipa: /fritsiˈone/
-      category: standard
-  level: 493
-  en-GB: clutch
 - phrase: sottobicchiere
   emoji: 🎢
   ipas:
@@ -1741,55 +908,6 @@
       category: standard
   level: 147
   en-GB: coat
-- phrase: cocktail
-  emoji: 🍸
-  ipas:
-    - ipa: /kˈɔktˌɛl/
-      category: standard
-  level: 765
-  en-GB: cocktail
-- phrase: caffè
-  emoji: ☕
-  ipas:
-    - ipa: /kaffˈɛ/
-      category: standard
-  level: 458
-  en-GB: coffee
-- phrase: bara
-  emoji: ⚰️
-  ipas:
-    - ipa: /bˈaɾa/
-      category: standard
-  level: 470
-  en-GB: coffin
-- phrase: cometa
-  emoji: ☄️
-  ipas:
-    - ipa: /komˈeta/
-      category: standard
-  level: 451
-  en-GB: comet
-- phrase: bussola
-  emoji: 🧭
-  ipas:
-    - ipa: /bˈussola/
-      category: standard
-  level: 585
-  en-GB: compass
-- phrase: computer
-  emoji: 💻
-  ipas:
-    - ipa: /kompjˈuter/
-      category: standard
-  level: 642
-  en-GB: computer
-- phrase: coriandoli
-  emoji: 🎊
-  ipas:
-    - ipa: /koriˈandolɪ/
-      category: standard
-  level: 670
-  en-GB: confetti
 - phrase: costruzione
   emoji: 🚧
   ipas:
@@ -1797,48 +915,13 @@
       category: standard
   level: 949
   en-GB: construction
-- phrase: Freddo
-  emoji: 🆒
-  ipas:
-    - ipa: /frˈedːo/
-      category: standard
-  level: 233
-  en-GB: cool
-- phrase: mais
-  emoji: 🌽
-  ipas:
-    - ipa: /mˈajs/
-      category: standard
-  level: 220
-  en-GB: corn
-- phrase: coppia
-  emoji: 👫
-  ipas:
-    - ipa: /kˈɔpːia/
-      category: standard
-  level: 489
-  en-GB: couple
-- phrase: mucca
-  emoji: 🐮
-  ipas:
-    - ipa: /mˈukːa/
-      category: standard
-  level: 74
-  en-GB: cow
-- phrase: granchio
-  emoji: 🦀
-  ipas:
-    - ipa: /ɡrˈankio/
-      category: standard
-  level: 191
-  en-GB: crab
 - phrase: pastello
   emoji: 🖍️
   ipas:
     - ipa: /pastˈɛllo/
       category: standard
   level: 315
-  en-GB: crayon
+  en-GB: The colored pencil
 - phrase: cricket
   emoji: 🏏
   ipas:
@@ -1846,48 +929,6 @@
       category: standard
   level: 531
   en-GB: cricket
-- phrase: coccodrillo
-  emoji: 🐊
-  ipas:
-    - ipa: /kokːodrˈillo/
-      category: standard
-  level: 677
-  en-GB: crocodile
-- phrase: attraverso
-  emoji: ✝️
-  ipas:
-    - ipa: /atːravˈɛrso/
-      category: standard
-  level: 267
-  en-GB: cross
-- phrase: corona
-  emoji: 👑
-  ipas:
-    - ipa: /korˈona/
-      category: standard
-  level: 239
-  en-GB: crown
-- phrase: curry
-  emoji: 🍛
-  ipas:
-    - ipa: /kˈurɾɪ/
-      category: standard
-  level: 366
-  en-GB: curry
-- phrase: ciclone
-  emoji: 🌀
-  ipas:
-    - ipa: /tʃiklˈone/
-      category: standard
-  level: 664
-  en-GB: cyclone
-- phrase: ballare
-  emoji: 💃
-  ipas:
-    - ipa: /ballˈare/
-      category: standard
-  level: 321
-  en-GB: dance
 - phrase: sordo
   emoji: 🧏
   ipas:
@@ -1895,27 +936,13 @@
       category: standard
   level: 245
   en-GB: deaf
-- phrase: cervo
-  emoji: 🦌
-  ipas:
-    - ipa: /tʃˈɛrvo/
-      category: standard
-  level: 213
-  en-GB: deer
-- phrase: diamante
-  emoji: 💎
-  ipas:
-    - ipa: /djamˈante/
-      category: standard
-  level: 518
-  en-GB: diamond
 - phrase: dadi
   emoji: 🎲
   ipas:
     - ipa: /dˈadɪ/
       category: standard
   level: 309
-  en-GB: dice
+  en-GB: The cube
 - phrase: debole
   emoji: 🔅
   ipas:
@@ -1923,13 +950,6 @@
       category: standard
   level: 245
   en-GB: dim
-- phrase: dinosauro
-  emoji: 🦖
-  ipas:
-    - ipa: /dinozˈaʊro/
-      category: standard
-  level: 546
-  en-GB: dinosaur
 - phrase: dare le vertigini
   emoji: 💫
   ipas:
@@ -1937,34 +957,6 @@
       category: standard
   level: 302
   en-GB: dizzy
-- phrase: dollaro
-  emoji: 💵
-  ipas:
-    - ipa: /dˈɔllaro/
-      category: standard
-  level: 470
-  en-GB: dollar
-- phrase: bambole
-  emoji: 🎎
-  ipas:
-    - ipa: /bˈambole/
-      category: standard
-  level: 182
-  en-GB: dolls
-- phrase: delfino
-  emoji: 🐬
-  ipas:
-    - ipa: /delfˈino/
-      category: standard
-  level: 426
-  en-GB: dolphin
-- phrase: colomba
-  emoji: 🕊️
-  ipas:
-    - ipa: /kolˈomba/
-      category: standard
-  level: 309
-  en-GB: dove
 - phrase: giù
   emoji: 👇
   ipas:
@@ -1972,13 +964,6 @@
       category: standard
   level: 131
   en-GB: down
-- phrase: vestito
-  emoji: 👗
-  ipas:
-    - ipa: /vestˈito/
-      category: standard
-  level: 204
-  en-GB: dress
 - phrase: tamburo
   emoji: 🛢️
   ipas:
@@ -1986,48 +971,6 @@
       category: standard
   level: 191
   en-GB: drum
-- phrase: anatra
-  emoji: 🦆
-  ipas:
-    - ipa: /ˈanatra/
-      category: standard
-  level: 131
-  en-GB: duck
-- phrase: aquila
-  emoji: 🦅
-  ipas:
-    - ipa: /ˈakwila/
-      category: standard
-  level: 353
-  en-GB: eagle
-- phrase: orecchio
-  emoji: 👂
-  ipas:
-    - ipa: /orˈekːio/
-      category: standard
-  level: 77
-  en-GB: ear
-- phrase: elefante
-  emoji: 🐘
-  ipas:
-    - ipa: /elefˈante/
-      category: standard
-  level: 534
-  en-GB: elephant
-- phrase: ascensore
-  emoji: 🛗
-  ipas:
-    - ipa: /aʃensˈore/
-      category: standard
-  level: 759
-  en-GB: elevator
-- phrase: elfo
-  emoji: 🧝
-  ipas:
-    - ipa: /ˈɛlfo/
-      category: standard
-  level: 122
-  en-GB: elf
 - phrase: iscrizione
   emoji: ⛔
   ipas:
@@ -2042,41 +985,6 @@
       category: standard
   level: 705
   en-GB: envelope
-- phrase: occhio
-  emoji: 👁️
-  ipas:
-    - ipa: /ˈɔkːio/
-      category: standard
-  level: 160
-  en-GB: eye
-- phrase: occhi
-  emoji: 👀
-  ipas:
-    - ipa: /ˈɔkːɪ/
-      category: standard
-  level: 207
-  en-GB: eyes
-- phrase: fabbrica
-  emoji: 🏭
-  ipas:
-    - ipa: /fˈabːrika/
-      category: standard
-  level: 524
-  en-GB: factory
-- phrase: fata
-  emoji: 🧚
-  ipas:
-    - ipa: /fˈata/
-      category: standard
-  level: 217
-  en-GB: fairy
-- phrase: famiglia
-  emoji: 👪
-  ipas:
-    - ipa: /famˈiʎa/
-      category: standard
-  level: 334
-  en-GB: family
 - phrase: recinzione
   emoji: 🤺
   ipas:
@@ -2084,27 +992,6 @@
       category: standard
   level: 350
   en-GB: fence
-- phrase: traghetto
-  emoji: ⛴️
-  ipas:
-    - ipa: /traɡˈetːo/
-      category: standard
-  level: 328
-  en-GB: ferry
-- phrase: film
-  emoji: 🎞️
-  ipas:
-    - ipa: /fˈilm/
-      category: standard
-  level: 207
-  en-GB: film
-- phrase: dito
-  emoji: 🖕
-  ipas:
-    - ipa: /dˈito/
-      category: standard
-  level: 302
-  en-GB: finger
 - phrase: dita
   emoji: 🤞
   ipas:
@@ -2112,27 +999,6 @@
       category: standard
   level: 382
   en-GB: fingers
-- phrase: fuoco
-  emoji: 🧯
-  ipas:
-    - ipa: /fʊˈɔko/
-      category: standard
-  level: 233
-  en-GB: fire
-- phrase: pugno
-  emoji: 👊
-  ipas:
-    - ipa: /pˈuɲɲo/
-      category: standard
-  level: 242
-  en-GB: fist
-- phrase: cartella
-  emoji: 📁
-  ipas:
-    - ipa: /kartˈɛlla/
-      category: standard
-  level: 458
-  en-GB: folder
 - phrase: calcio
   emoji: 🏈
   ipas:
@@ -2140,20 +1006,6 @@
       category: standard
   level: 486
   en-GB: football
-- phrase: fontana
-  emoji: ⛲
-  ipas:
-    - ipa: /fontˈana/
-      category: standard
-  level: 559
-  en-GB: fountain
-- phrase: volpe
-  emoji: 🦊
-  ipas:
-    - ipa: /vˈolpe/
-      category: standard
-  level: 106
-  en-GB: fox
 - phrase: gratuito
   emoji: 🆓
   ipas:
@@ -2161,13 +1013,6 @@
       category: standard
   level: 207
   en-GB: free
-- phrase: rana
-  emoji: 🐸
-  ipas:
-    - ipa: /rˈana/
-      category: standard
-  level: 163
-  en-GB: frog
 - phrase: cipiglio
   emoji: 🙍
   ipas:
@@ -2175,13 +1020,6 @@
       category: standard
   level: 296
   en-GB: frown
-- phrase: carburante
-  emoji: ⛽
-  ipas:
-    - ipa: /karbʊrˈante/
-      category: standard
-  level: 299
-  en-GB: fuel
 - phrase: pieno
   emoji: 🈵
   ipas:
@@ -2189,27 +1027,6 @@
       category: standard
   level: 153
   en-GB: full
-- phrase: gioco
-  emoji: 🎮
-  ipas:
-    - ipa: /dʒˈɔko/
-      category: standard
-  level: 217
-  en-GB: game
-- phrase: aglio
-  emoji: 🧄
-  ipas:
-    - ipa: /ˈaʎo/
-      category: standard
-  level: 480
-  en-GB: garlic
-- phrase: ingranaggio
-  emoji: ⚙️
-  ipas:
-    - ipa: /iŋɡranˈadʒːo/
-      category: standard
-  level: 321
-  en-GB: gear
 - phrase: gemma
   emoji: 💎
   ipas:
@@ -2217,41 +1034,6 @@
       category: standard
   level: 226
   en-GB: gem
-- phrase: regalo
-  emoji: 🎁
-  ipas:
-    - ipa: /reɡˈalo/
-      category: standard
-  level: 210
-  en-GB: gift
-- phrase: giraffa
-  emoji: 🦒
-  ipas:
-    - ipa: /dʒirˈaffa/
-      category: standard
-  level: 496
-  en-GB: giraffe
-- phrase: ragazza
-  emoji: 👧
-  ipas:
-    - ipa: /raɡˈatsːa/
-      category: standard
-  level: 144
-  en-GB: girl
-- phrase: occhiali
-  emoji: 👓
-  ipas:
-    - ipa: /okːjˈalɪ/
-      category: standard
-  level: 451
-  en-GB: glasses
-- phrase: globo
-  emoji: 🌍
-  ipas:
-    - ipa: /ɡlˈɔbo/
-      category: standard
-  level: 423
-  en-GB: globe
 - phrase: guanti
   emoji: 🧤
   ipas:
@@ -2259,20 +1041,6 @@
       category: standard
   level: 350
   en-GB: gloves
-- phrase: obiettivo
-  emoji: 🥅
-  ipas:
-    - ipa: /objetːˈivo/
-      category: standard
-  level: 236
-  en-GB: goal
-- phrase: capra
-  emoji: 🐐
-  ipas:
-    - ipa: /kˈapra/
-      category: standard
-  level: 182
-  en-GB: goat
 - phrase: occhiali
   emoji: 🥽
   ipas:
@@ -2287,55 +1055,6 @@
       category: standard
   level: 252
   en-GB: golf
-- phrase: gorilla
-  emoji: 🦍
-  ipas:
-    - ipa: /ɡorˈilla/
-      category: standard
-  level: 531
-  en-GB: gorilla
-- phrase: uva
-  emoji: 🍇
-  ipas:
-    - ipa: /ˈuva/
-      category: standard
-  level: 350
-  en-GB: grapes
-- phrase: guardia
-  emoji: 💂
-  ipas:
-    - ipa: /ɡwˈardia/
-      category: standard
-  level: 353
-  en-GB: guard
-- phrase: chitarra
-  emoji: 🎸
-  ipas:
-    - ipa: /kitˈarɾa/
-      category: standard
-  level: 429
-  en-GB: guitar
-- phrase: pistola
-  emoji: 🔫
-  ipas:
-    - ipa: /pistˈɔla/
-      category: standard
-  level: 163
-  en-GB: gun
-- phrase: martello
-  emoji: 🔨
-  ipas:
-    - ipa: /martˈɛllo/
-      category: standard
-  level: 394
-  en-GB: hammer
-- phrase: criceto
-  emoji: 🐹
-  ipas:
-    - ipa: /kritʃˈɛto/
-      category: standard
-  level: 407
-  en-GB: hamster
 - phrase: mani
   emoji: 🤲
   ipas:
@@ -2343,13 +1062,6 @@
       category: standard
   level: 201
   en-GB: hands
-- phrase: cappello
-  emoji: 👒
-  ipas:
-    - ipa: /kapːˈɛllo/
-      category: standard
-  level: 93
-  en-GB: hat
 - phrase: tallone
   emoji: 👠
   ipas:
@@ -2357,27 +1069,6 @@
       category: standard
   level: 217
   en-GB: heel
-- phrase: elicottero
-  emoji: 🚁
-  ipas:
-    - ipa: /elikˈɔtːero/
-      category: standard
-  level: 765
-  en-GB: helicopter
-- phrase: erba
-  emoji: 🌿
-  ipas:
-    - ipa: /ˈɛrba/
-      category: standard
-  level: 302
-  en-GB: herb
-- phrase: ippopotamo
-  emoji: 🦛
-  ipas:
-    - ipa: /ipːopˈɔtamo/
-      category: standard
-  level: 321
-  en-GB: hippo
 - phrase: hockey
   emoji: 🏒
   ipas:
@@ -2385,48 +1076,6 @@
       category: standard
   level: 480
   en-GB: hockey
-- phrase: Miele
-  emoji: 🍯
-  ipas:
-    - ipa: /mjˈɛle/
-      category: standard
-  level: 328
-  en-GB: honey
-- phrase: cavallo
-  emoji: 🐴
-  ipas:
-    - ipa: /kavˈallo/
-      category: standard
-  level: 296
-  en-GB: horse
-- phrase: Ospedale
-  emoji: 🏥
-  ipas:
-    - ipa: /ospedˈale/
-      category: standard
-  level: 566
-  en-GB: hospital
-- phrase: albergo
-  emoji: 🏨
-  ipas:
-    - ipa: /albˈɛrɡo/
-      category: standard
-  level: 359
-  en-GB: hotel
-- phrase: ghiaccio
-  emoji: 🍧
-  ipas:
-    - ipa: /ɡjˈatʃːo/
-      category: standard
-  level: 204
-  en-GB: ice
-- phrase: isola
-  emoji: 🏝️
-  ipas:
-    - ipa: /ˈizola/
-      category: standard
-  level: 416
-  en-GB: island
 - phrase: jeans
   emoji: 👖
   ipas:
@@ -2441,27 +1090,6 @@
       category: standard
   level: 448
   en-GB: juggle
-- phrase: tastiera
-  emoji: ⌨️
-  ipas:
-    - ipa: /tastiˈɛra/
-      category: standard
-  level: 572
-  en-GB: keyboard
-- phrase: bacio
-  emoji: 💏
-  ipas:
-    - ipa: /bˈatʃo/
-      category: standard
-  level: 153
-  en-GB: kiss
-- phrase: kiwi
-  emoji: 🥝
-  ipas:
-    - ipa: /kˈiwɪ/
-      category: standard
-  level: 344
-  en-GB: kiwi
 - phrase: inginocchiarsi
   emoji: 🧎
   ipas:
@@ -2469,76 +1097,6 @@
       category: standard
   level: 274
   en-GB: kneel
-- phrase: coltello
-  emoji: 🔪
-  ipas:
-    - ipa: /koltˈɛllo/
-      category: standard
-  level: 328
-  en-GB: knife
-- phrase: koala
-  emoji: 🐨
-  ipas:
-    - ipa: /koˈala/
-      category: standard
-  level: 397
-  en-GB: koala
-- phrase: etichetta
-  emoji: 🏷️
-  ipas:
-    - ipa: /etikˈetːa/
-      category: standard
-  level: 423
-  en-GB: label
-- phrase: scala
-  emoji: 🪜
-  ipas:
-    - ipa: /skˈala/
-      category: standard
-  level: 404
-  en-GB: ladder
-- phrase: lampada
-  emoji: 🪔
-  ipas:
-    - ipa: /lˈampada/
-      category: standard
-  level: 185
-  en-GB: lamp
-- phrase: foglia
-  emoji: 🍁
-  ipas:
-    - ipa: /fˈɔʎa/
-      category: standard
-  level: 156
-  en-GB: leaf
-- phrase: gamba
-  emoji: 🦵
-  ipas:
-    - ipa: /ɡˈamba/
-      category: standard
-  level: 68
-  en-GB: leg
-- phrase: limone
-  emoji: 🍋
-  ipas:
-    - ipa: /limˈone/
-      category: standard
-  level: 344
-  en-GB: lemon
-- phrase: leopardo
-  emoji: 🐆
-  ipas:
-    - ipa: /leopˈardo/
-      category: standard
-  level: 470
-  en-GB: leopard
-- phrase: lattuga
-  emoji: 🥬
-  ipas:
-    - ipa: /latːˈuɡa/
-      category: standard
-  level: 550
-  en-GB: lettuce
 - phrase: libertà
   emoji: 🗽
   ipas:
@@ -2552,7 +1110,7 @@
     - ipa: /sollevˈare/
       category: standard
   level: 213
-  en-GB: lift
+  en-GB: The elevator
 - phrase: leggero
   emoji: 🚦
   ipas:
@@ -2560,27 +1118,6 @@
       category: standard
   level: 207
   en-GB: light
-- phrase: fulmine
-  emoji: 🌩️
-  ipas:
-    - ipa: /fˈulmine/
-      category: standard
-  level: 556
-  en-GB: lightning
-- phrase: leone
-  emoji: 🦁
-  ipas:
-    - ipa: /leˈone/
-      category: standard
-  level: 150
-  en-GB: lion
-- phrase: rossetto
-  emoji: 💄
-  ipas:
-    - ipa: /rossˈetːo/
-      category: standard
-  level: 550
-  en-GB: lipstick
 - phrase: rifiuti
   emoji: 🚯
   ipas:
@@ -2588,41 +1125,6 @@
       category: standard
   level: 426
   en-GB: litter
-- phrase: lucertola
-  emoji: 🦎
-  ipas:
-    - ipa: /lʊtʃˈɛrtola/
-      category: standard
-  level: 378
-  en-GB: lizard
-- phrase: serratura
-  emoji: 🔒
-  ipas:
-    - ipa: /serɾatˈura/
-      category: standard
-  level: 220
-  en-GB: lock
-- phrase: Amore
-  emoji: 🤟
-  ipas:
-    - ipa: /amˈore/
-      category: standard
-  level: 220
-  en-GB: love
-- phrase: bagaglio
-  emoji: 🛅
-  ipas:
-    - ipa: /baɡˈaʎo/
-      category: standard
-  level: 619
-  en-GB: luggage
-- phrase: Uomo
-  emoji: 👨
-  ipas:
-    - ipa: /wˈɔmo/
-      category: standard
-  level: 68
-  en-GB: man
 - phrase: marziale
   emoji: 🥋
   ipas:
@@ -2637,90 +1139,6 @@
       category: standard
   level: 347
   en-GB: mate
-- phrase: carne
-  emoji: 🍖
-  ipas:
-    - ipa: /kˈarne/
-      category: standard
-  level: 175
-  en-GB: meat
-- phrase: melone
-  emoji: 🍈
-  ipas:
-    - ipa: /melˈone/
-      category: standard
-  level: 372
-  en-GB: melon
-- phrase: microfono
-  emoji: 🎙️
-  ipas:
-    - ipa: /mikrˈɔfono/
-      category: standard
-  level: 816
-  en-GB: microphone
-- phrase: microscopio
-  emoji: 🔬
-  ipas:
-    - ipa: /mikroskˈopio/
-      category: standard
-  level: 921
-  en-GB: microscope
-- phrase: latte
-  emoji: 🥛
-  ipas:
-    - ipa: /lˈatːe/
-      category: standard
-  level: 128
-  en-GB: milk
-- phrase: specchio
-  emoji: 🪞
-  ipas:
-    - ipa: /spˈɛkːio/
-      category: standard
-  level: 359
-  en-GB: mirror
-- phrase: soldi
-  emoji: 💰
-  ipas:
-    - ipa: /sˈɔldɪ/
-      category: standard
-  level: 328
-  en-GB: money
-- phrase: scimmia
-  emoji: 🐵
-  ipas:
-    - ipa: /ʃˈimmia/
-      category: standard
-  level: 340
-  en-GB: monkey
-- phrase: moschea
-  emoji: 🕌
-  ipas:
-    - ipa: /moskˈɛa/
-      category: standard
-  level: 604
-  en-GB: mosque
-- phrase: montagna
-  emoji: 🏔️
-  ipas:
-    - ipa: /montˈaɲɲa/
-      category: standard
-  level: 521
-  en-GB: mountain
-- phrase: topo
-  emoji: 🖱️
-  ipas:
-    - ipa: /tˈɔpo/
-      category: standard
-  level: 274
-  en-GB: mouse
-- phrase: bocca
-  emoji: 👄
-  ipas:
-    - ipa: /bˈokːa/
-      category: standard
-  level: 201
-  en-GB: mouth
 - phrase: muscolo
   emoji: 💪
   ipas:
@@ -2728,69 +1146,13 @@
       category: standard
   level: 467
   en-GB: muscle
-- phrase: museo
-  emoji: 🏛️
-  ipas:
-    - ipa: /mʊzˈɛo/
-      category: standard
-  level: 461
-  en-GB: museum
-- phrase: nome
-  emoji: 📛
-  ipas:
-    - ipa: /nˈome/
-      category: standard
-  level: 188
-  en-GB: name
-- phrase: nuovo
-  emoji: 🆕
-  ipas:
-    - ipa: /nʊˈɔvo/
-      category: standard
-  level: 106
-  en-GB: new
-- phrase: naso
-  emoji: 👃
-  ipas:
-    - ipa: /nˈazo/
-      category: standard
-  level: 223
-  en-GB: nose
 - phrase: nota
   emoji: 🎵
   ipas:
     - ipa: /nˈɔta/
       category: standard
   level: 331
-  en-GB: note
-- phrase: taccuino
-  emoji: 📔
-  ipas:
-    - ipa: /takːʊˈino/
-      category: standard
-  level: 623
-  en-GB: notebook
-- phrase: blocco note
-  emoji: 🗒️
-  ipas:
-    - ipa: /blˈɔkːo nˈɔte/
-      category: standard
-  level: 594
-  en-GB: notepad
-- phrase: polpo
-  emoji: 🐙
-  ipas:
-    - ipa: /pˈolpo/
-      category: standard
-  level: 546
-  en-GB: octopus
-- phrase: ufficio
-  emoji: 🏢
-  ipas:
-    - ipa: /ʊffˈitʃo/
-      category: standard
-  level: 521
-  en-GB: office
+  en-GB: The musical note
 - phrase: più vecchio
   emoji: 🧓
   ipas:
@@ -2798,76 +1160,13 @@
       category: standard
   level: 334
   en-GB: older
-- phrase: cipolla
-  emoji: 🧅
-  ipas:
-    - ipa: /tʃipˈolla/
-      category: standard
-  level: 347
-  en-GB: onion
-- phrase: arancia
-  emoji: 🍊
-  ipas:
-    - ipa: /aɾˈantʃa/
-      category: standard
-  level: 410
-  en-GB: orange
-- phrase: gufo
-  emoji: 🦉
-  ipas:
-    - ipa: /ɡˈufo/
-      category: standard
-  level: 106
-  en-GB: owl
 - phrase: pagina
   emoji: 📃
   ipas:
     - ipa: /pˈadʒina/
       category: standard
   level: 277
-  en-GB: page
-- phrase: pancake
-  emoji: 🥞
-  ipas:
-    - ipa: /pankˈeɪk/
-      category: standard
-  level: 515
-  en-GB: pancake
-- phrase: panda
-  emoji: 🐼
-  ipas:
-    - ipa: /pˈanda/
-      category: standard
-  level: 356
-  en-GB: panda
-- phrase: carta
-  emoji: 🧻
-  ipas:
-    - ipa: /kˈarta/
-      category: standard
-  level: 302
-  en-GB: paper
-- phrase: paracadute
-  emoji: 🪂
-  ipas:
-    - ipa: /paɾakadˈute/
-      category: standard
-  level: 762
-  en-GB: parachute
-- phrase: pappagallo
-  emoji: 🦜
-  ipas:
-    - ipa: /papːaɡˈallo/
-      category: standard
-  level: 369
-  en-GB: parrot
-- phrase: festa
-  emoji: 🎉
-  ipas:
-    - ipa: /fˈɛsta/
-      category: standard
-  level: 236
-  en-GB: party
+  en-GB: The paper
 - phrase: passaggio
   emoji: 🈴
   ipas:
@@ -2889,69 +1188,6 @@
       category: standard
   level: 401
   en-GB: peace
-- phrase: pesca
-  emoji: 🍑
-  ipas:
-    - ipa: /pˈɛska/
-      category: standard
-  level: 242
-  en-GB: peach
-- phrase: pavone
-  emoji: 🦚
-  ipas:
-    - ipa: /pavˈone/
-      category: standard
-  level: 496
-  en-GB: peacock
-- phrase: arachidi
-  emoji: 🥜
-  ipas:
-    - ipa: /aɾˈakidɪ/
-      category: standard
-  level: 416
-  en-GB: peanut
-- phrase: penna
-  emoji: 🖊️
-  ipas:
-    - ipa: /pˈenna/
-      category: standard
-  level: 112
-  en-GB: pen
-- phrase: matita
-  emoji: ✏️
-  ipas:
-    - ipa: /matˈita/
-      category: standard
-  level: 363
-  en-GB: pencil
-- phrase: pinguino
-  emoji: 🐧
-  ipas:
-    - ipa: /piŋɡwˈino/
-      category: standard
-  level: 442
-  en-GB: penguin
-- phrase: pepe
-  emoji: 🌶️
-  ipas:
-    - ipa: /pˈepe/
-      category: standard
-  level: 410
-  en-GB: pepper
-- phrase: persona
-  emoji: 🧑
-  ipas:
-    - ipa: /persˈona/
-      category: standard
-  level: 363
-  en-GB: person
-- phrase: telefono
-  emoji: 📱
-  ipas:
-    - ipa: /telˈɛfono/
-      category: standard
-  level: 331
-  en-GB: phone
 - phrase: scegliere
   emoji: ⛏️
   ipas:
@@ -2959,27 +1195,6 @@
       category: standard
   level: 172
   en-GB: pick
-- phrase: torta
-  emoji: 🥧
-  ipas:
-    - ipa: /tˈɔrta/
-      category: standard
-  level: 115
-  en-GB: pie
-- phrase: maiale
-  emoji: 🐷
-  ipas:
-    - ipa: /majˈale/
-      category: standard
-  level: 102
-  en-GB: pig
-- phrase: pillola
-  emoji: 💊
-  ipas:
-    - ipa: /pˈillola/
-      category: standard
-  level: 283
-  en-GB: pill
 - phrase: spillo
   emoji: 🧷
   ipas:
@@ -2994,27 +1209,6 @@
       category: standard
   level: 264
   en-GB: pinch
-- phrase: ananas
-  emoji: 🍍
-  ipas:
-    - ipa: /anˈanas/
-      category: standard
-  level: 613
-  en-GB: pineapple
-- phrase: Pizza
-  emoji: 🍕
-  ipas:
-    - ipa: /pˈitsːa/
-      category: standard
-  level: 350
-  en-GB: pizza
-- phrase: tappo
-  emoji: 🔌
-  ipas:
-    - ipa: /tˈapːo/
-      category: standard
-  level: 204
-  en-GB: plug
 - phrase: Polizia Stradale
   emoji: 🚓
   ipas:
@@ -3022,13 +1216,6 @@
       category: standard
   level: 483
   en-GB: police
-- phrase: barboncino
-  emoji: 🐩
-  ipas:
-    - ipa: /barbontʃˈino/
-      category: standard
-  level: 413
-  en-GB: poodle
 - phrase: piscina
   emoji: 🎱
   ipas:
@@ -3042,21 +1229,7 @@
     - ipa: /inviˈare/
       category: standard
   level: 210
-  en-GB: post
-- phrase: patata
-  emoji: 🥔
-  ipas:
-    - ipa: /patˈata/
-      category: standard
-  level: 439
-  en-GB: potato
-- phrase: libbra
-  emoji: 💷
-  ipas:
-    - ipa: /lˈibːra/
-      category: standard
-  level: 248
-  en-GB: pound
+  en-GB: The post office
 - phrase: pregare
   emoji: 🙏
   ipas:
@@ -3064,83 +1237,6 @@
       category: standard
   level: 213
   en-GB: pray
-- phrase: pretzel
-  emoji: 🥨
-  ipas:
-    - ipa: /prˈeθθel/
-      category: standard
-  level: 619
-  en-GB: pretzel
-- phrase: principe
-  emoji: 🤴
-  ipas:
-    - ipa: /prˈintʃipe/
-      category: standard
-  level: 359
-  en-GB: prince
-- phrase: principessa
-  emoji: 👸
-  ipas:
-    - ipa: /printʃipˈessa/
-      category: standard
-  level: 432
-  en-GB: princess
-- phrase: proiettore
-  emoji: 📽️
-  ipas:
-    - ipa: /proietːˈore/
-      category: standard
-  level: 781
-  en-GB: projector
-- phrase: budino
-  emoji: 🍮
-  ipas:
-    - ipa: /bʊdˈino/
-      category: standard
-  level: 394
-  en-GB: pudding
-- phrase: borsa
-  emoji: 👛
-  ipas:
-    - ipa: /bˈorsa/
-      category: standard
-  level: 356
-  en-GB: purse
-- phrase: domanda
-  emoji: ❓
-  ipas:
-    - ipa: /domˈanda/
-      category: standard
-  level: 480
-  en-GB: question
-- phrase: coniglio
-  emoji: 🐰
-  ipas:
-    - ipa: /konˈiʎo/
-      category: standard
-  level: 312
-  en-GB: rabbit
-- phrase: radio
-  emoji: 📻
-  ipas:
-    - ipa: /rˈadio/
-      category: standard
-  level: 363
-  en-GB: radio
-- phrase: piovere
-  emoji: 🌧️
-  ipas:
-    - ipa: /pjˈɔvere/
-      category: standard
-  level: 147
-  en-GB: rain
-- phrase: arcobaleno
-  emoji: 🌈
-  ipas:
-    - ipa: /arkobalˈeno/
-      category: standard
-  level: 407
-  en-GB: rainbow
 - phrase: aumentare
   emoji: 🙋
   ipas:
@@ -3148,13 +1244,6 @@
       category: standard
   level: 420
   en-GB: raise
-- phrase: rasoio
-  emoji: 🪒
-  ipas:
-    - ipa: /razˈojo/
-      category: standard
-  level: 461
-  en-GB: razor
 - phrase: prenotato
   emoji: 🈯
   ipas:
@@ -3162,20 +1251,6 @@
       category: standard
   level: 781
   en-GB: reserved
-- phrase: rinoceronte
-  emoji: 🦏
-  ipas:
-    - ipa: /rinotʃerˈonte/
-      category: standard
-  level: 337
-  en-GB: rhino
-- phrase: riso
-  emoji: 🍙
-  ipas:
-    - ipa: /rˈizo/
-      category: standard
-  level: 248
-  en-GB: rice
 - phrase: Giusto
   emoji: 👉
   ipas:
@@ -3183,13 +1258,6 @@
       category: standard
   level: 198
   en-GB: right
-- phrase: squillo
-  emoji: 💍
-  ipas:
-    - ipa: /skwˈillo/
-      category: standard
-  level: 201
-  en-GB: ring
 - phrase: roccia
   emoji: 🤘
   ipas:
@@ -3197,27 +1265,6 @@
       category: standard
   level: 166
   en-GB: rock
-- phrase: razzo
-  emoji: 🚀
-  ipas:
-    - ipa: /rˈadzːo/
-      category: standard
-  level: 382
-  en-GB: rocket
-- phrase: gallo
-  emoji: 🐓
-  ipas:
-    - ipa: /ɡˈallo/
-      category: standard
-  level: 477
-  en-GB: rooster
-- phrase: rosa
-  emoji: 🌹
-  ipas:
-    - ipa: /rˈɔza/
-      category: standard
-  level: 302
-  en-GB: rose
 - phrase: rugby
   emoji: 🏉
   ipas:
@@ -3225,13 +1272,6 @@
       category: standard
   level: 359
   en-GB: rugby
-- phrase: governate
-  emoji: 📏
-  ipas:
-    - ipa: /ɡovernˈate/
-      category: standard
-  level: 347
-  en-GB: ruler
 - phrase: correre
   emoji: 🏃
   ipas:
@@ -3239,90 +1279,6 @@
       category: standard
   level: 80
   en-GB: run
-- phrase: insalata
-  emoji: 🥗
-  ipas:
-    - ipa: /insalˈata/
-      category: standard
-  level: 391
-  en-GB: salad
-- phrase: sandwich
-  emoji: 🥪
-  ipas:
-    - ipa: /sˈɛːndwˌɪtʃ/
-      category: standard
-  level: 461
-  en-GB: sandwich
-- phrase: sauna
-  emoji: 🧖
-  ipas:
-    - ipa: /sˈaʊna/
-      category: standard
-  level: 556
-  en-GB: sauna
-- phrase: sassofono
-  emoji: 🎷
-  ipas:
-    - ipa: /sassˈɔfono/
-      category: standard
-  level: 813
-  en-GB: saxophone
-- phrase: scala
-  emoji: ⚖️
-  ipas:
-    - ipa: /skˈala/
-      category: standard
-  level: 467
-  en-GB: scale
-- phrase: sciarpa
-  emoji: 🧣
-  ipas:
-    - ipa: /ʃˈarpa/
-      category: standard
-  level: 248
-  en-GB: scarf
-- phrase: scuola
-  emoji: 🏫
-  ipas:
-    - ipa: /skʊˈɔla/
-      category: standard
-  level: 261
-  en-GB: school
-- phrase: forbici
-  emoji: ✂️
-  ipas:
-    - ipa: /fˈɔrbitʃɪ/
-      category: standard
-  level: 486
-  en-GB: scissors
-- phrase: scooter
-  emoji: 🛴
-  ipas:
-    - ipa: /skˈuter/
-      category: standard
-  level: 512
-  en-GB: scooter
-- phrase: punto
-  emoji: 🎼
-  ipas:
-    - ipa: /pˈunto/
-      category: standard
-  level: 372
-  en-GB: score
-- phrase: scorpione
-  emoji: 🦂
-  ipas:
-    - ipa: /skorpjˈone/
-      category: standard
-  level: 559
-  en-GB: scorpion
-- phrase: posto a sedere
-  emoji: 💺
-  ipas:
-    - ipa: /pˈosto a sedˈere/
-      category: standard
-  level: 166
-  en-GB: seat
 - phrase: servizio
   emoji: 🈂️
   ipas:
@@ -3330,69 +1286,6 @@
       category: standard
   level: 664
   en-GB: service
-- phrase: squalo
-  emoji: 🦈
-  ipas:
-    - ipa: /skwˈalo/
-      category: standard
-  level: 252
-  en-GB: shark
-- phrase: pecora
-  emoji: 🐑
-  ipas:
-    - ipa: /pˈɛkora/
-      category: standard
-  level: 198
-  en-GB: sheep
-- phrase: scudo
-  emoji: 🛡️
-  ipas:
-    - ipa: /skˈudo/
-      category: standard
-  level: 397
-  en-GB: shield
-- phrase: camicia
-  emoji: 🎽
-  ipas:
-    - ipa: /kamˈitʃa/
-      category: standard
-  level: 242
-  en-GB: shirt
-- phrase: scarpa
-  emoji: 👞
-  ipas:
-    - ipa: /skˈarpa/
-      category: standard
-  level: 131
-  en-GB: shoe
-- phrase: gamberetto
-  emoji: 🍤
-  ipas:
-    - ipa: /ɡamberˈetːo/
-      category: standard
-  level: 388
-  en-GB: shrimp
-- phrase: alzata di spalle
-  emoji: 🤷
-  ipas:
-    - ipa: /altsˈata dɪ spˈalle/
-      category: standard
-  level: 375
-  en-GB: shrug
-- phrase: segnale
-  emoji: 📶
-  ipas:
-    - ipa: /seɲˈale/
-      category: standard
-  level: 464
-  en-GB: signal
-- phrase: sciare
-  emoji: 🎿
-  ipas:
-    - ipa: /ʃiˈare/
-      category: standard
-  level: 220
-  en-GB: ski
 - phrase: sonno
   emoji: 💤
   ipas:
@@ -3400,41 +1293,6 @@
       category: standard
   level: 175
   en-GB: sleep
-- phrase: lumaca
-  emoji: 🐌
-  ipas:
-    - ipa: /lʊmˈaka/
-      category: standard
-  level: 229
-  en-GB: snail
-- phrase: serpente
-  emoji: 🐍
-  ipas:
-    - ipa: /serpˈɛnte/
-      category: standard
-  level: 321
-  en-GB: snake
-- phrase: nevicare
-  emoji: 🌨️
-  ipas:
-    - ipa: /nevikˈare/
-      category: standard
-  level: 147
-  en-GB: snow
-- phrase: pupazzo di neve
-  emoji: ☃️
-  ipas:
-    - ipa: /pʊpˈatsːo dɪ nˈɛve/
-      category: standard
-  level: 404
-  en-GB: snowman
-- phrase: divano
-  emoji: 🛋️
-  ipas:
-    - ipa: /divˈano/
-      category: standard
-  level: 290
-  en-GB: sofa
 - phrase: scintillare
   emoji: ✨
   ipas:
@@ -3449,27 +1307,6 @@
       category: standard
   level: 226
   en-GB: speak
-- phrase: ragno
-  emoji: 🕷️
-  ipas:
-    - ipa: /rˈaɲɲo/
-      category: standard
-  level: 331
-  en-GB: spider
-- phrase: spugna
-  emoji: 🧽
-  ipas:
-    - ipa: /spˈuɲɲa/
-      category: standard
-  level: 382
-  en-GB: sponge
-- phrase: calamari
-  emoji: 🦑
-  ipas:
-    - ipa: /kalamˈarɪ/
-      category: standard
-  level: 344
-  en-GB: squid
 - phrase: in piedi
   emoji: 🧍
   ipas:
@@ -3477,27 +1314,6 @@
       category: standard
   level: 252
   en-GB: stand
-- phrase: statua
-  emoji: 🗿
-  ipas:
-    - ipa: /stˈatʊa/
-      category: standard
-  level: 420
-  en-GB: statue
-- phrase: bistecca
-  emoji: 🥩
-  ipas:
-    - ipa: /bistˈekːa/
-      category: standard
-  level: 366
-  en-GB: steak
-- phrase: stetoscopio
-  emoji: 🩺
-  ipas:
-    - ipa: /stetoskˈopio/
-      category: standard
-  level: 1000
-  en-GB: stethoscope
 - phrase: fermare
   emoji: 🚏
   ipas:
@@ -3505,48 +1321,6 @@
       category: standard
   level: 134
   en-GB: stop
-- phrase: negozio
-  emoji: 🏬
-  ipas:
-    - ipa: /neɡˈɔtsio/
-      category: standard
-  level: 388
-  en-GB: store
-- phrase: tempesta
-  emoji: ⛈️
-  ipas:
-    - ipa: /tempˈɛsta/
-      category: standard
-  level: 286
-  en-GB: storm
-- phrase: fragola
-  emoji: 🍓
-  ipas:
-    - ipa: /frˈaɡola/
-      category: standard
-  level: 575
-  en-GB: strawberry
-- phrase: abito
-  emoji: 🕴️
-  ipas:
-    - ipa: /ˈabito/
-      category: standard
-  level: 258
-  en-GB: suit
-- phrase: navigare
-  emoji: 🏄
-  ipas:
-    - ipa: /naviɡˈare/
-      category: standard
-  level: 293
-  en-GB: surf
-- phrase: cigno
-  emoji: 🦢
-  ipas:
-    - ipa: /tʃˈiɲɲo/
-      category: standard
-  level: 188
-  en-GB: swan
 - phrase: nuotare
   emoji: 🏊
   ipas:
@@ -3554,27 +1328,6 @@
       category: standard
   level: 175
   en-GB: swim
-- phrase: spada
-  emoji: 🗡️
-  ipas:
-    - ipa: /spˈada/
-      category: standard
-  level: 255
-  en-GB: sword
-- phrase: sinagoga
-  emoji: 🕍
-  ipas:
-    - ipa: /sinaɡˈɔɡa/
-      category: standard
-  level: 873
-  en-GB: synagogue
-- phrase: siringa
-  emoji: 💉
-  ipas:
-    - ipa: /sirˈiŋɡa/
-      category: standard
-  level: 619
-  en-GB: syringe
 - phrase: nastro
   emoji: 📼
   ipas:
@@ -3582,132 +1335,13 @@
       category: standard
   level: 302
   en-GB: tape
-- phrase: Taxi
-  emoji: 🚕
-  ipas:
-    - ipa: /tˈaksɪ/
-      category: standard
-  level: 356
-  en-GB: taxi
-- phrase: telescopio
-  emoji: 🔭
-  ipas:
-    - ipa: /teleskˈopio/
-      category: standard
-  level: 826
-  en-GB: telescope
-- phrase: tempio
-  emoji: 🛕
-  ipas:
-    - ipa: /tˈempio/
-      category: standard
-  level: 502
-  en-GB: temple
-- phrase: tennis
-  emoji: 🎾
-  ipas:
-    - ipa: /tˈɛnnis/
-      category: standard
-  level: 442
-  en-GB: tennis
-- phrase: cravatta
-  emoji: 👔
-  ipas:
-    - ipa: /kravˈatːa/
-      category: standard
-  level: 153
-  en-GB: tie
-- phrase: tigre
-  emoji: 🐯
-  ipas:
-    - ipa: /tˈiɡre/
-      category: standard
-  level: 283
-  en-GB: tiger
-- phrase: toilette
-  emoji: 🚽
-  ipas:
-    - ipa: /twalˈetː/
-      category: standard
-  level: 305
-  en-GB: toilet
-- phrase: pomodoro
-  emoji: 🍅
-  ipas:
-    - ipa: /pomodˈɔro/
-      category: standard
-  level: 420
-  en-GB: tomato
-- phrase: lingua
-  emoji: 👅
-  ipas:
-    - ipa: /lˈiŋɡwa/
-      category: standard
-  level: 353
-  en-GB: tongue
-- phrase: dente
-  emoji: 🦷
-  ipas:
-    - ipa: /dˈɛnte/
-      category: standard
-  level: 204
-  en-GB: tooth
-- phrase: tornado
-  emoji: 🌪️
-  ipas:
-    - ipa: /tornˈado/
-      category: standard
-  level: 638
-  en-GB: tornado
-- phrase: torre
-  emoji: 🗼
-  ipas:
-    - ipa: /tˈorɾe/
-      category: standard
-  level: 337
-  en-GB: tower
-- phrase: trattore
-  emoji: 🚜
-  ipas:
-    - ipa: /tratːˈore/
-      category: standard
-  level: 397
-  en-GB: tractor
-- phrase: tram
-  emoji: 🚋
-  ipas:
-    - ipa: /trˈam/
-      category: standard
-  level: 340
-  en-GB: tram
 - phrase: spazzatura
   emoji: 🗑️
   ipas:
     - ipa: /spatsːatˈura/
       category: standard
   level: 372
-  en-GB: trash
-- phrase: triangolo
-  emoji: 📐
-  ipas:
-    - ipa: /triˈaŋɡolo/
-      category: standard
-  level: 458
-  en-GB: triangle
-- phrase: camion
-  emoji: 🚛
-  ipas:
-    - ipa: /kˈamjon/
-      category: standard
-  level: 223
-  en-GB: truck
-- phrase: tromba
-  emoji: 🎺
-  ipas:
-    - ipa: /trˈomba/
-      category: standard
-  level: 493
-  en-GB: trumpet
+  en-GB: The trash can
 - phrase: tulipano
   emoji: 🌷
   ipas:
@@ -3715,20 +1349,6 @@
       category: standard
   level: 394
   en-GB: tulip
-- phrase: tartaruga
-  emoji: 🐢
-  ipas:
-    - ipa: /tartarˈuɡa/
-      category: standard
-  level: 385
-  en-GB: turtle
-- phrase: TV
-  emoji: 📺
-  ipas:
-    - ipa: /tˌɪvˈu/
-      category: standard
-  level: 58
-  en-GB: tv
 - phrase: ombrello
   emoji: ⛱️
   ipas:
@@ -3736,13 +1356,6 @@
       category: standard
   level: 553
   en-GB: umbrella
-- phrase: unicorno
-  emoji: 🦄
-  ipas:
-    - ipa: /ʊnikˈɔrno/
-      category: standard
-  level: 543
-  en-GB: unicorn
 - phrase: su
   emoji: 🆙
   ipas:
@@ -3750,13 +1363,6 @@
       category: standard
   level: 1
   en-GB: up
-- phrase: vampiro
-  emoji: 🧛
-  ipas:
-    - ipa: /vampˈiro/
-      category: standard
-  level: 613
-  en-GB: vampire
 - phrase: furgone
   emoji: 🚐
   ipas:
@@ -3778,41 +1384,6 @@
       category: standard
   level: 581
   en-GB: victory
-- phrase: video
-  emoji: 📹
-  ipas:
-    - ipa: /vˈideo/
-      category: standard
-  level: 363
-  en-GB: video
-- phrase: violino
-  emoji: 🎻
-  ipas:
-    - ipa: /vjolˈino/
-      category: standard
-  level: 442
-  en-GB: violin
-- phrase: avvertimento
-  emoji: ⚠️
-  ipas:
-    - ipa: /avvertimˈento/
-      category: standard
-  level: 502
-  en-GB: warning
-- phrase: orologio
-  emoji: ⌚
-  ipas:
-    - ipa: /orolˈodʒo/
-      category: standard
-  level: 252
-  en-GB: watch
-- phrase: acqua
-  emoji: 🚱
-  ipas:
-    - ipa: /ˈakːwa/
-      category: standard
-  level: 239
-  en-GB: water
 - phrase: onda
   emoji: 👋
   ipas:
@@ -3820,20 +1391,6 @@
       category: standard
   level: 258
   en-GB: wave
-- phrase: balena
-  emoji: 🐳
-  ipas:
-    - ipa: /balˈena/
-      category: standard
-  level: 337
-  en-GB: whale
-- phrase: grano
-  emoji: 🌾
-  ipas:
-    - ipa: /ɡrˈano/
-      category: standard
-  level: 397
-  en-GB: wheat
 - phrase: ruota
   emoji: 🎡
   ipas:
@@ -3841,34 +1398,6 @@
       category: standard
   level: 188
   en-GB: wheel
-- phrase: vento
-  emoji: 🌬️
-  ipas:
-    - ipa: /vˈɛnto/
-      category: standard
-  level: 153
-  en-GB: wind
-- phrase: vino
-  emoji: 🍷
-  ipas:
-    - ipa: /vˈino/
-      category: standard
-  level: 410
-  en-GB: wine
-- phrase: lupo
-  emoji: 🐺
-  ipas:
-    - ipa: /lˈupo/
-      category: standard
-  level: 188
-  en-GB: wolf
-- phrase: donna
-  emoji: 👩
-  ipas:
-    - ipa: /dˈɔnna/
-      category: standard
-  level: 280
-  en-GB: woman
 - phrase: donne
   emoji: 🚺
   ipas:
@@ -3883,13 +1412,6 @@
       category: standard
   level: 553
   en-GB: worship
-- phrase: chiave
-  emoji: 🔧
-  ipas:
-    - ipa: /kjˈave/
-      category: standard
-  level: 477
-  en-GB: wrench
 - phrase: lottare
   emoji: 🤼
   ipas:
@@ -3911,69 +1433,13 @@
       category: standard
   level: 277
   en-GB: zero
-- phrase: anguria
-  emoji: 🍉
-  ipas:
-    - ipa: /aŋɡˈuria/
-      category: standard
-  level: 1000
-  en-GB: watermelon
-- phrase: uovo
-  emoji: 🥚
-  ipas:
-    - ipa: /wˈɔvo/
-      category: standard
-  level: 87
-  en-GB: egg
-- phrase: cialda
-  emoji: 🧇
-  ipas:
-    - ipa: /tʃˈalda/
-      category: standard
-  level: 1000
-  en-GB: waffle
-- phrase: ciambella
-  emoji: 🍩
-  ipas:
-    - ipa: /tʃambˈɛlla/
-      category: standard
-  level: 1000
-  en-GB: donut
-- phrase: canguro
-  emoji: 🦘
-  ipas:
-    - ipa: /kaŋɡˈuro/
-      category: standard
-  level: 591
-  en-GB: kangaroo
-- phrase: fenicottero
-  emoji: 🦩
-  ipas:
-    - ipa: /fenikˈɔtːero/
-      category: standard
-  level: 1000
-  en-GB: flamingo
-- phrase: magnete
-  emoji: 🧲
-  ipas:
-    - ipa: /maɲˈɛte/
-      category: standard
-  level: 1000
-  en-GB: magnet
 - phrase: orsacchiotto di peluche
   emoji: 🧸
   ipas:
     - ipa: /orsakːjˈɔtːo dɪ pelˈuʃ/
       category: standard
   level: 772
-  en-GB: teddy bear
-- phrase: tenda
-  emoji: ⛺
-  ipas:
-    - ipa: /tˈɛnda/
-      category: standard
-  level: 226
-  en-GB: tent
+  en-GB: The teddy bear
 - phrase: Il kiwi è verde
   emoji: 🥝
   ipas:
@@ -4050,7 +1516,7 @@
     - ipa: /il pavˈone e kolorˈato/
       category: standard
   level: 1000
-  en-GB: The peacock is colourful
+  en-GB: The peacock
 - phrase: La chitarra suona alla grande
   emoji: 🎸
   ipas:
@@ -4092,7 +1558,7 @@
     - ipa: /il maɲˈɛte atːˈira il fˈɛrɾo/
       category: standard
   level: 1000
-  en-GB: The magnet pulls iron
+  en-GB: The magnet
 - phrase: Il telescopio mostra le stelle
   emoji: 🔭
   ipas:
@@ -4113,7 +1579,7 @@
     - ipa: /la tˈɛnda sɪ trˈɔva nel bˈɔsko/
       category: standard
   level: 1000
-  en-GB: The tent stands in the woods
+  en-GB: The tent
 - phrase: L'elicottero vola alto
   emoji: 🚁
   ipas:
@@ -4148,119 +1614,7 @@
     - ipa: /laɾˈakide e ɡʊstˈoza/
       category: standard
   level: 854
-  en-GB: The peanut is tasty
-- phrase: minestra
-  emoji: 🍲
-  ipas:
-    - ipa: /minˈɛstra/
-      category: standard
-  level: 182
-  en-GB: soup
-- phrase: tagliatelle
-  emoji: 🍝
-  ipas:
-    - ipa: /taʎatˈɛlle/
-      category: standard
-  level: 1000
-  en-GB: noodles
-- phrase: vulcano
-  emoji: 🌋
-  ipas:
-    - ipa: /vʊlkˈano/
-      category: standard
-  level: 600
-  en-GB: volcano
-- phrase: foresta
-  emoji: 🌲
-  ipas:
-    - ipa: /forˈɛsta/
-      category: standard
-  level: 378
-  en-GB: forest
-- phrase: guanto
-  emoji: 🧤
-  ipas:
-    - ipa: /ɡwˈanto/
-      category: standard
-  level: 318
-  en-GB: glove
-- phrase: calzino
-  emoji: 🧦
-  ipas:
-    - ipa: /kaltsˈino/
-      category: standard
-  level: 134
-  en-GB: sock
-- phrase: pantaloni
-  emoji: 👖
-  ipas:
-    - ipa: /pantalˈonɪ/
-      category: standard
-  level: 435
-  en-GB: trousers
-- phrase: giacca
-  emoji: 🧥
-  ipas:
-    - ipa: /dʒˈakːa/
-      category: standard
-  level: 363
-  en-GB: jacket
-- phrase: castello
-  emoji: 🏰
-  ipas:
-    - ipa: /kastˈɛllo/
-      category: standard
-  level: 375
-  en-GB: castle
-- phrase: pianoforte
-  emoji: 🎹
-  ipas:
-    - ipa: /pjanofˈɔrte/
-      category: standard
-  level: 337
-  en-GB: piano
-- phrase: rosso
-  emoji: 🔴
-  ipas:
-    - ipa: /rˈosso/
-      category: standard
-  level: 52
-  en-GB: red
-- phrase: blu
-  emoji: 🔵
-  ipas:
-    - ipa: /blˈu/
-      category: standard
-  level: 137
-  en-GB: blue
-- phrase: verde
-  emoji: 💚
-  ipas:
-    - ipa: /vˈerde/
-      category: standard
-  level: 201
-  en-GB: green
-- phrase: giallo
-  emoji: 💛
-  ipas:
-    - ipa: /dʒˈallo/
-      category: standard
-  level: 283
-  en-GB: yellow
-- phrase: nero
-  emoji: 🖤
-  ipas:
-    - ipa: /nˈero/
-      category: standard
-  level: 207
-  en-GB: black
-- phrase: bianco
-  emoji: ⬜
-  ipas:
-    - ipa: /bjˈanko/
-      category: standard
-  level: 286
-  en-GB: white
+  en-GB: The peanut
 - phrase: viola
   emoji: 💜
   ipas:
@@ -4317,104 +1671,27 @@
       category: standard
   level: 975
   en-GB: The piano sounds beautiful
-- phrase: biscotto
-  emoji: 🍪
-  ipas:
-    - ipa: /biskˈɔtːo/
-      category: standard
-  level: 1000
-  en-GB: cookie
-- phrase: maglietta
-  emoji: 👕
-  ipas:
-    - ipa: /maʎˈetːa/
-      category: standard
-  level: 1000
-  en-GB: t-shirt
-- phrase: libro
-  emoji: 📕
-  ipas:
-    - ipa: /lˈibro/
-      category: standard
-  level: 141
-  en-GB: book
-- phrase: patatine fritte
-  emoji: 🍟
-  ipas:
-    - ipa: /patatˈine frˈitːe/
-      category: standard
-  level: 1000
-  en-GB: fries
 - phrase: cappello a cilindro
   emoji: 🎩
   ipas:
     - ipa: /kapːˈɛllo a tʃilˈindro/
       category: standard
   level: 128
-  en-GB: top hat
-- phrase: motociclo
-  emoji: 🏍️
-  ipas:
-    - ipa: /mototʃˈiklo/
-      category: standard
-  level: 1000
-  en-GB: motorcycle
-- phrase: paesaggio
-  emoji: 🏞️
-  ipas:
-    - ipa: /paezˈadʒːo/
-      category: standard
-  level: 740
-  en-GB: landscape
+  en-GB: The cylinder
 - phrase: edificio della chiesa
   emoji: ⛪
   ipas:
     - ipa: /edifˈitʃo dˌella kjˈɛza/
       category: standard
   level: 439
-  en-GB: church building
-- phrase: il colore arancione
-  emoji: 🟠
-  ipas:
-    - ipa: /il kolˈore aɾantʃˈone/
-      category: standard
-  level: 702
-  en-GB: the colour orange
-- phrase: infantile
-  emoji: 👶
-  ipas:
-    - ipa: /infantˈile/
-      category: standard
-  level: 464
-  en-GB: infant
+  en-GB: The church building
 - phrase: mucca da latte
   emoji: 🐄
   ipas:
     - ipa: /mˈukːa da lˈatːe/
       category: standard
   level: 724
-  en-GB: dairy cow
-- phrase: Football americano
-  emoji: 🏈
-  ipas:
-    - ipa: /foˈotbal amerikˈano/
-      category: standard
-  level: 482
-  en-GB: American football
-- phrase: Rabbia
-  emoji: 💢
-  ipas:
-    - ipa: /rˈabːia/
-      category: standard
-  level: 689
-  en-GB: Anger
-- phrase: Tiro con l'arco
-  emoji: 🏹
-  ipas:
-    - ipa: /tˈiro kon lˈarko/
-      category: standard
-  level: 632
-  en-GB: Archery
+  en-GB: The cow moos
 - phrase: Arte
   emoji: 🎨
   ipas:
@@ -4422,69 +1699,6 @@
       category: standard
   level: 417
   en-GB: Art
-- phrase: Bacon
-  emoji: 🥓
-  ipas:
-    - ipa: /bˈakon/
-      category: standard
-  level: 1
-  en-GB: Bacon
-- phrase: Bagaglio
-  emoji: 🛄
-  ipas:
-    - ipa: /baɡˈaʎo/
-      category: standard
-  level: 806
-  en-GB: Baggage
-- phrase: Bambù
-  emoji: 🎋
-  ipas:
-    - ipa: /bambˈu/
-      category: standard
-  level: 689
-  en-GB: Bamboo
-- phrase: Pallacanestro
-  emoji: 🏀
-  ipas:
-    - ipa: /pallakanˈɛstro/
-      category: standard
-  level: 232
-  en-GB: Basketball
-- phrase: Birra
-  emoji: 🍺
-  ipas:
-    - ipa: /bˈirɾa/
-      category: standard
-  level: 652
-  en-GB: Beer
-- phrase: Biliardo
-  emoji: 🎱
-  ipas:
-    - ipa: /biliˈardo/
-      category: standard
-  level: 721
-  en-GB: Billiards
-- phrase: Boxe
-  emoji: 🥊
-  ipas:
-    - ipa: /bˈokse/
-      category: standard
-  level: 620
-  en-GB: Boxing
-- phrase: Broccoli
-  emoji: 🥦
-  ipas:
-    - ipa: /brˈokːolɪ/
-      category: standard
-  level: 774
-  en-GB: Broccoli
-- phrase: Cancro
-  emoji: ♋
-  ipas:
-    - ipa: /kˈankro/
-      category: standard
-  level: 118
-  en-GB: Cancer
 - phrase: La carota fa bene agli occhi.
   emoji: 🥕
   ipas:
@@ -4492,55 +1706,6 @@
       category: standard
   level: 637
   en-GB: Carrot is good for the eyes.
-- phrase: Cioccolato
-  emoji: 🍫
-  ipas:
-    - ipa: /tʃokːolˈato/
-      category: standard
-  level: 616
-  en-GB: Chocolate
-- phrase: Cinema
-  emoji: 🎦
-  ipas:
-    - ipa: /tʃˈinema/
-      category: standard
-  level: 689
-  en-GB: Cinema
-- phrase: Arrampicata
-  emoji: 🧗
-  ipas:
-    - ipa: /arɾampikˈata/
-      category: standard
-  level: 1000
-  en-GB: Climbing
-- phrase: Coriandoli
-  emoji: 🎊
-  ipas:
-    - ipa: /koriˈandolɪ/
-      category: standard
-  level: 871
-  en-GB: Confetti
-- phrase: Mais
-  emoji: 🌽
-  ipas:
-    - ipa: /mˈajs/
-      category: standard
-  level: 571
-  en-GB: Corn
-- phrase: Cricket
-  emoji: 🏏
-  ipas:
-    - ipa: /krˈikːet/
-      category: standard
-  level: 106
-  en-GB: Cricket
-- phrase: Curry
-  emoji: 🍛
-  ipas:
-    - ipa: /kˈurɾɪ/
-      category: standard
-  level: 1
-  en-GB: Curry
 - phrase: Ciclismo
   emoji: 🚴
   ipas:
@@ -4548,13 +1713,6 @@
       category: standard
   level: 753
   en-GB: Cycling
-- phrase: Giù
-  emoji: 👇
-  ipas:
-    - ipa: /dʒˈu/
-      category: standard
-  level: 612
-  en-GB: Down
 - phrase: Neve che cade
   emoji: 🌨️
   ipas:
@@ -4562,41 +1720,6 @@
       category: standard
   level: 846
   en-GB: Falling snow
-- phrase: Incrociamo le dita
-  emoji: 🤞
-  ipas:
-    - ipa: /inkrotʃˈamo le dˈita/
-      category: standard
-  level: 765
-  en-GB: Fingers crossed
-- phrase: Pesca
-  emoji: 🍑
-  ipas:
-    - ipa: /pˈɛska/
-      category: standard
-  level: 604
-  en-GB: Fishing
-- phrase: Patatine fritte
-  emoji: 🍟
-  ipas:
-    - ipa: /patatˈine frˈitːe/
-      category: standard
-  level: 595
-  en-GB: Fries
-- phrase: Carburante
-  emoji: ⛽
-  ipas:
-    - ipa: /karbʊrˈante/
-      category: standard
-  level: 838
-  en-GB: Fuel
-- phrase: Aglio
-  emoji: 🧄
-  ipas:
-    - ipa: /ˈaʎo/
-      category: standard
-  level: 664
-  en-GB: Garlic
 - phrase: Gli occhiali ti aiutano a vedere.
   emoji: 👓
   ipas:
@@ -4604,27 +1727,6 @@
       category: standard
   level: 629
   en-GB: Glasses help you see.
-- phrase: Golf
-  emoji: ⛳
-  ipas:
-    - ipa: /ɡˈɔlf/
-      category: standard
-  level: 1
-  en-GB: Golf
-- phrase: Hockey
-  emoji: 🏒
-  ipas:
-    - ipa: /ˈokːeɪ/
-      category: standard
-  level: 74
-  en-GB: Hockey
-- phrase: Miele
-  emoji: 🍯
-  ipas:
-    - ipa: /mjˈɛle/
-      category: standard
-  level: 558
-  en-GB: Honey
 - phrase: Il miele è dolce e dolce.
   emoji: 🍯
   ipas:
@@ -4632,13 +1734,6 @@
       category: standard
   level: 606
   en-GB: Honey is sweet and sweet.
-- phrase: Giocoleria
-  emoji: 🤹
-  ipas:
-    - ipa: /dʒokolerˈia/
-      category: standard
-  level: 806
-  en-GB: Juggling
 - phrase: Il limone è acido e giallo.
   emoji: 🍋
   ipas:
@@ -4646,20 +1741,6 @@
       category: standard
   level: 631
   en-GB: Lemon is sour and yellow.
-- phrase: Lattuga
-  emoji: 🥬
-  ipas:
-    - ipa: /latːˈuɡa/
-      category: standard
-  level: 689
-  en-GB: Lettuce
-- phrase: Fulmine
-  emoji: 🌩️
-  ipas:
-    - ipa: /fˈulmine/
-      category: standard
-  level: 689
-  en-GB: Lightning
 - phrase: I fulmini illuminano il cielo.
   emoji: ⚡
   ipas:
@@ -4667,20 +1748,6 @@
       category: standard
   level: 642
   en-GB: Lightning illuminates the sky.
-- phrase: Rossetto
-  emoji: 💄
-  ipas:
-    - ipa: /rossˈetːo/
-      category: standard
-  level: 709
-  en-GB: Lipstick
-- phrase: Deposito bagagli
-  emoji: 🛅
-  ipas:
-    - ipa: /depˈɔzito baɡˈaʎɪ/
-      category: standard
-  level: 854
-  en-GB: Luggage storage
 - phrase: Fai una faccia
   emoji: 🙍
   ipas:
@@ -4695,27 +1762,6 @@
       category: standard
   level: 369
   en-GB: Martial arts
-- phrase: Latte
-  emoji: 🥛
-  ipas:
-    - ipa: /lˈatːe/
-      category: standard
-  level: 558
-  en-GB: Milk
-- phrase: Soldi
-  emoji: 💰
-  ipas:
-    - ipa: /sˈɔldɪ/
-      category: standard
-  level: 968
-  en-GB: Money
-- phrase: Topo
-  emoji: 🐭
-  ipas:
-    - ipa: /tˈɔpo/
-      category: standard
-  level: 52
-  en-GB: Mouse
 - phrase: Nessuno spreco
   emoji: 🚯
   ipas:
@@ -4730,13 +1776,6 @@
       category: standard
   level: 765
   en-GB: Non-potable water
-- phrase: Mani aperte
-  emoji: 🤲
-  ipas:
-    - ipa: /mˈanɪ apˈɛrte/
-      category: standard
-  level: 834
-  en-GB: Open hands
 - phrase: Pittura
   emoji: 🎨
   ipas:
@@ -4744,34 +1783,13 @@
       category: standard
   level: 806
   en-GB: Painting
-- phrase: Pasta
-  emoji: 🍝
-  ipas:
-    - ipa: /pˈasta/
-      category: standard
-  level: 636
-  en-GB: Pasta
-- phrase: Pace
-  emoji: ☮️
-  ipas:
-    - ipa: /pˈatʃe/
-      category: standard
-  level: 571
-  en-GB: Peace
-- phrase: Ananas
-  emoji: 🍍
-  ipas:
-    - ipa: /anˈanas/
-      category: standard
-  level: 1000
-  en-GB: Pineapple
 - phrase: Occhiali protettivi
   emoji: 🥽
   ipas:
     - ipa: /okːjˈalɪ protetːˈivɪ/
       category: standard
   level: 648
-  en-GB: Protective glasses
+  en-GB: The safety glasses
 - phrase: Alza la mano
   emoji: 🙋
   ipas:
@@ -4779,20 +1797,6 @@
       category: standard
   level: 260
   en-GB: Raise your hand
-- phrase: Riso
-  emoji: 🍚
-  ipas:
-    - ipa: /rˈizo/
-      category: standard
-  level: 549
-  en-GB: Rice
-- phrase: Rugby
-  emoji: 🏉
-  ipas:
-    - ipa: /rˈaɡbɪ/
-      category: standard
-  level: 1
-  en-GB: Rugby
 - phrase: Corsa
   emoji: 🏃
   ipas:
@@ -4807,13 +1811,6 @@
       category: standard
   level: 648
   en-GB: School starts at eight o'clock.
-- phrase: Forbici
-  emoji: ✂️
-  ipas:
-    - ipa: /fˈɔrbitʃɪ/
-      category: standard
-  level: 753
-  en-GB: Scissors
 - phrase: Stelle cadenti
   emoji: ✨
   ipas:
@@ -4828,27 +1825,6 @@
       category: standard
   level: 1
   en-GB: Skiing
-- phrase: Sonno
-  emoji: 💤
-  ipas:
-    - ipa: /sˈonno/
-      category: standard
-  level: 721
-  en-GB: Sleep
-- phrase: Nevicare
-  emoji: ❄️
-  ipas:
-    - ipa: /nevikˈare/
-      category: standard
-  level: 578
-  en-GB: Snow
-- phrase: Surf
-  emoji: 🏄
-  ipas:
-    - ipa: /sˈurf/
-      category: standard
-  level: 1
-  en-GB: Surfing
 - phrase: Nuoto
   emoji: 🏊
   ipas:
@@ -4856,34 +1832,27 @@
       category: standard
   level: 806
   en-GB: Swimming
-- phrase: Tennis
-  emoji: 🎾
-  ipas:
-    - ipa: /tˈɛnnis/
-      category: standard
-  level: 50
-  en-GB: Tennis
 - phrase: La Mela
   emoji: 🍎
   ipas:
     - ipa: /la mˈɛla/
       category: standard
   level: 498
-  en-GB: The Apple
+  en-GB: The apple
 - phrase: La Banca
   emoji: 🏦
   ipas:
     - ipa: /la bˈanka/
       category: standard
   level: 29
-  en-GB: The Bank
+  en-GB: The bank
 - phrase: L'Aquila
   emoji: 🦅
   ipas:
     - ipa: /lˈakwila/
       category: standard
   level: 639
-  en-GB: The Eagle
+  en-GB: The eagle
 - phrase: La ruota panoramica
   emoji: 🎡
   ipas:
@@ -4911,28 +1880,28 @@
     - ipa: /la lʊtʃˈɛrtola/
       category: standard
   level: 636
-  en-GB: The Lizard
+  en-GB: The lizard
 - phrase: Il Museo
   emoji: 🏛️
   ipas:
     - ipa: /il mʊzˈɛo/
       category: standard
   level: 491
-  en-GB: The Museum
+  en-GB: The museum
 - phrase: Il principe
   emoji: 🤴
   ipas:
     - ipa: /il prˈintʃipe/
       category: standard
   level: 801
-  en-GB: The Prince
+  en-GB: The prince
 - phrase: La principessa
   emoji: 👸
   ipas:
     - ipa: /la printʃipˈessa/
       category: standard
   level: 570
-  en-GB: The Princess
+  en-GB: The princess
 - phrase: Lo Scorpione
   emoji: 🦂
   ipas:
@@ -4953,7 +1922,7 @@
     - ipa: /il tʃˈiɲɲo/
       category: standard
   level: 820
-  en-GB: The Swan
+  en-GB: The swan
 - phrase: La televisione
   emoji: 📺
   ipas:
@@ -4967,14 +1936,14 @@
     - ipa: /il tˈempio/
       category: standard
   level: 850
-  en-GB: The Temple
+  en-GB: The temple
 - phrase: La Tigre
   emoji: 🐯
   ipas:
     - ipa: /la tˈiɡre/
       category: standard
   level: 514
-  en-GB: The Tiger
+  en-GB: The tiger
 - phrase: La chiave regolabile
   emoji: 🔧
   ipas:
@@ -5024,13 +1993,6 @@
       category: standard
   level: 626
   en-GB: The ant is very small.
-- phrase: La mela
-  emoji: 🍎
-  ipas:
-    - ipa: /la mˈɛla/
-      category: standard
-  level: 578
-  en-GB: The apple
 - phrase: La mela è rossa e dolce.
   emoji: 🍎
   ipas:
@@ -5073,20 +2035,6 @@
       category: standard
   level: 911
   en-GB: The autumn leaf
-- phrase: L'ascia
-  emoji: 🪓
-  ipas:
-    - ipa: /lˈaʃa/
-      category: standard
-  level: 652
-  en-GB: The ax
-- phrase: L'ascia
-  emoji: 🪓
-  ipas:
-    - ipa: /lˈaʃa/
-      category: standard
-  level: 378
-  en-GB: The axe
 - phrase: Il bambino
   emoji: 🚼
   ipas:
@@ -5100,7 +2048,7 @@
     - ipa: /il biberˈon/
       category: standard
   level: 591
-  en-GB: The baby bottle
+  en-GB: The bottle
 - phrase: Il bambino sta piangendo
   emoji: 👶
   ipas:
@@ -5129,13 +2077,6 @@
       category: standard
   level: 689
   en-GB: The ball
-- phrase: Il palloncino
-  emoji: 🎈
-  ipas:
-    - ipa: /il pallontʃˈino/
-      category: standard
-  level: 535
-  en-GB: The balloon
 - phrase: Il bambù
   emoji: 🎋
   ipas:
@@ -5164,13 +2105,6 @@
       category: standard
   level: 86
   en-GB: The banjo
-- phrase: La banca
-  emoji: 🏦
-  ipas:
-    - ipa: /la bˈanka/
-      category: standard
-  level: 689
-  en-GB: The bank
 - phrase: La botte
   emoji: 🛢️
   ipas:
@@ -5192,20 +2126,6 @@
       category: standard
   level: 1000
   en-GB: The bat
-- phrase: Il bagno
-  emoji: 🛀
-  ipas:
-    - ipa: /il bˈaɲɲo/
-      category: standard
-  level: 571
-  en-GB: The bath
-- phrase: Il bagno
-  emoji: 🛀
-  ipas:
-    - ipa: /il bˈaɲɲo/
-      category: standard
-  level: 346
-  en-GB: The bathroom
 - phrase: La batteria
   emoji: 🔋
   ipas:
@@ -5374,13 +2294,6 @@
       category: standard
   level: 652
   en-GB: The boot
-- phrase: La bottiglia
-  emoji: 🍼
-  ipas:
-    - ipa: /la botːˈiʎa/
-      category: standard
-  level: 774
-  en-GB: The bottle
 - phrase: La scatola
   emoji: 🗃️
   ipas:
@@ -5394,7 +2307,7 @@
     - ipa: /il raɡˈatsːo/
       category: standard
   level: 689
-  en-GB: The boy
+  en-GB: The young
 - phrase: Il pane
   emoji: 🍞
   ipas:
@@ -5465,13 +2378,6 @@
       category: standard
   level: 484
   en-GB: The bunnies
-- phrase: L'hamburger
-  emoji: 🍔
-  ipas:
-    - ipa: /lambˈurɡer/
-      category: standard
-  level: 935
-  en-GB: The burger
 - phrase: L'autobus
   emoji: 🚌
   ipas:
@@ -5590,7 +2496,7 @@
     - ipa: /la kˈanna/
       category: standard
   level: 652
-  en-GB: The cane
+  en-GB: The stick
 - phrase: La canoa
   emoji: 🛶
   ipas:
@@ -5689,13 +2595,6 @@
       category: standard
   level: 806
   en-GB: The chapel
-- phrase: Il segno di spunta
-  emoji: ✅
-  ipas:
-    - ipa: /il sˈeɲɲo dɪ spˈunta/
-      category: standard
-  level: 652
-  en-GB: The checkmark
 - phrase: Il formaggio
   emoji: 🧀
   ipas:
@@ -5738,13 +2637,6 @@
       category: standard
   level: 790
   en-GB: The chestnut
-- phrase: Il bambino
-  emoji: 🧒
-  ipas:
-    - ipa: /il bambˈino/
-      category: standard
-  level: 968
-  en-GB: The child
 - phrase: I bambini
   emoji: 🚸
   ipas:
@@ -5758,7 +2650,7 @@
     - ipa: /il peperontʃˈino/
       category: standard
   level: 618
-  en-GB: The chili pepper
+  en-GB: The pepper
 - phrase: Il suono
   emoji: 🎐
   ipas:
@@ -5787,13 +2679,6 @@
       category: standard
   level: 656
   en-GB: The church
-- phrase: L'edificio della chiesa
-  emoji: ⛪
-  ipas:
-    - ipa: /ledifˈitʃo dˌella kjˈɛza/
-      category: standard
-  level: 1000
-  en-GB: The church building
 - phrase: La chiesa è bella e antica.
   emoji: ⛪
   ipas:
@@ -5906,20 +2791,6 @@
       category: standard
   level: 753
   en-GB: The coffin
-- phrase: Il colore arancione
-  emoji: 🟠
-  ipas:
-    - ipa: /il kolˈore aɾantʃˈone/
-      category: standard
-  level: 380
-  en-GB: The color orange
-- phrase: La matita colorata
-  emoji: 🖍️
-  ipas:
-    - ipa: /la matˈita kolorˈata/
-      category: standard
-  level: 426
-  en-GB: The colored pencil
 - phrase: La cometa
   emoji: ☄️
   ipas:
@@ -6004,13 +2875,6 @@
       category: standard
   level: 611
   en-GB: The cow gives milk.
-- phrase: La mucca muggisce
-  emoji: 🐄
-  ipas:
-    - ipa: /la mˈukːa mʊdʒːˈiʃe/
-      category: standard
-  level: 611
-  en-GB: The cow moos
 - phrase: Il granchio
   emoji: 🦀
   ipas:
@@ -6060,13 +2924,6 @@
       category: standard
   level: 806
   en-GB: The crown
-- phrase: Il cubo
-  emoji: 🎲
-  ipas:
-    - ipa: /il kˈubo/
-      category: standard
-  level: 850
-  en-GB: The cube
 - phrase: L'armadio
   emoji: 🗄️
   ipas:
@@ -6088,13 +2945,6 @@
       category: standard
   level: 191
   en-GB: The cyclone
-- phrase: Il cilindro
-  emoji: 🎩
-  ipas:
-    - ipa: /il tʃilˈindro/
-      category: standard
-  level: 889
-  en-GB: The cylinder
 - phrase: La mucca da latte
   emoji: 🐄
   ipas:
@@ -6130,13 +2980,6 @@
       category: standard
   level: 721
   en-GB: The diamond
-- phrase: Il dado
-  emoji: 🎲
-  ipas:
-    - ipa: /il dˈado/
-      category: standard
-  level: 503
-  en-GB: The die
 - phrase: Il dinosauro
   emoji: 🦖
   ipas:
@@ -6213,7 +3056,7 @@
     - ipa: /la kolˈomba/
       category: standard
   level: 774
-  en-GB: The dove
+  en-GB: The pigeon
 - phrase: Il vestito
   emoji: 👗
   ipas:
@@ -6256,13 +3099,6 @@
       category: standard
   level: 624
   en-GB: The duck swims on the pond.
-- phrase: L'aquila
-  emoji: 🦅
-  ipas:
-    - ipa: /lˈakwila/
-      category: standard
-  level: 540
-  en-GB: The eagle
 - phrase: L'aquila vola molto in alto.
   emoji: 🦅
   ipas:
@@ -6340,13 +3176,6 @@
       category: standard
   level: 623
   en-GB: The elephant is very big.
-- phrase: L'ascensore
-  emoji: 🛗
-  ipas:
-    - ipa: /laʃensˈore/
-      category: standard
-  level: 1000
-  en-GB: The elevator
 - phrase: L'elfo
   emoji: 🧝
   ipas:
@@ -6410,13 +3239,6 @@
       category: standard
   level: 721
   en-GB: The file
-- phrase: La pellicola
-  emoji: 🎞️
-  ipas:
-    - ipa: /la pellˈikola/
-      category: standard
-  level: 399
-  en-GB: The film
 - phrase: Il dito
   emoji: ☝️
   ipas:
@@ -6486,7 +3308,7 @@
     - ipa: /il fenikˈɔtːero/
       category: standard
   level: 917
-  en-GB: The flamingo
+  en-GB: The pink flamingo
 - phrase: Il flash brilla intensamente
   emoji: ⚡
   ipas:
@@ -6508,13 +3330,6 @@
       category: standard
   level: 628
   en-GB: The flower grows in the garden.
-- phrase: La cartella
-  emoji: 📁
-  ipas:
-    - ipa: /la kartˈɛlla/
-      category: standard
-  level: 850
-  en-GB: The folder
 - phrase: Il piede
   emoji: 🦶
   ipas:
@@ -6626,7 +3441,7 @@
     - ipa: /il kantʃˈɛllo/
       category: standard
   level: 764
-  en-GB: The gate
+  en-GB: The goal
 - phrase: L'ingranaggio
   emoji: ⚙️
   ipas:
@@ -6697,13 +3512,6 @@
       category: standard
   level: 616
   en-GB: The glove protects the hands.
-- phrase: L'obiettivo
-  emoji: 🥅
-  ipas:
-    - ipa: /lobjetːˈivo/
-      category: standard
-  level: 535
-  en-GB: The goal
 - phrase: La capra
   emoji: 🐐
   ipas:
@@ -6739,13 +3547,6 @@
       category: standard
   level: 417
   en-GB: The grape
-- phrase: L'uva
-  emoji: 🍇
-  ipas:
-    - ipa: /lˈuva/
-      category: standard
-  level: 556
-  en-GB: The grapes
 - phrase: L'uva è dolce e succosa.
   emoji: 🍇
   ipas:
@@ -6753,13 +3554,6 @@
       category: standard
   level: 566
   en-GB: The grapes are sweet and juicy.
-- phrase: La guardia
-  emoji: 💂
-  ipas:
-    - ipa: /la ɡwˈardia/
-      category: standard
-  level: 652
-  en-GB: The guard
 - phrase: La chitarra
   emoji: 🎸
   ipas:
@@ -6767,13 +3561,6 @@
       category: standard
   level: 774
   en-GB: The guitar
-- phrase: La chitarra suona bene
-  emoji: 🎸
-  ipas:
-    - ipa: /la kitˈarɾa sʊˈona bˈɛne/
-      category: standard
-  level: 732
-  en-GB: The guitar sounds nice
 - phrase: La pistola
   emoji: 🔫
   ipas:
@@ -6781,13 +3568,6 @@
       category: standard
   level: 806
   en-GB: The gun
-- phrase: L'hamburger
-  emoji: 🍔
-  ipas:
-    - ipa: /lambˈurɡer/
-      category: standard
-  level: 838
-  en-GB: The hamburger
 - phrase: Il martello
   emoji: 🔨
   ipas:
@@ -6983,7 +3763,7 @@
     - ipa: /il dʒelˈato/
       category: standard
   level: 764
-  en-GB: The ice cream
+  en-GB: The sorbet
 - phrase: Il ghiaccio si sta sciogliendo
   emoji: 🍦
   ipas:
@@ -6998,13 +3778,6 @@
       category: standard
   level: 555
   en-GB: The ice melts in the sun.
-- phrase: Il bambino
-  emoji: 👶
-  ipas:
-    - ipa: /il bambˈino/
-      category: standard
-  level: 871
-  en-GB: The infant
 - phrase: L'isola
   emoji: 🏝️
   ipas:
@@ -7229,41 +4002,6 @@
       category: standard
   level: 975
   en-GB: The lipstick
-- phrase: La lucertola
-  emoji: 🦎
-  ipas:
-    - ipa: /la lʊtʃˈɛrtola/
-      category: standard
-  level: 533
-  en-GB: The lizard
-- phrase: La serratura
-  emoji: 🔒
-  ipas:
-    - ipa: /la serɾatˈura/
-      category: standard
-  level: 689
-  en-GB: The lock
-- phrase: I bagagli
-  emoji: 🛄
-  ipas:
-    - ipa: /i baɡˈaʎɪ/
-      category: standard
-  level: 850
-  en-GB: The luggage
-- phrase: Il deposito bagagli
-  emoji: 🛅
-  ipas:
-    - ipa: /il depˈɔzito baɡˈaʎɪ/
-      category: standard
-  level: 810
-  en-GB: The luggage storage
-- phrase: Il magnete
-  emoji: 🧲
-  ipas:
-    - ipa: /il maɲˈɛte/
-      category: standard
-  level: 968
-  en-GB: The magnet
 - phrase: Il magnete attrae il ferro
   emoji: 🧲
   ipas:
@@ -7382,7 +4120,7 @@
     - ipa: /la lˈuna/
       category: standard
   level: 470
-  en-GB: The moon
+  en-GB: the moon
 - phrase: La luna splende nella notte.
   emoji: 🌙
   ipas:
@@ -7460,27 +4198,6 @@
       category: standard
   level: 622
   en-GB: The mouth speaks and eats.
-- phrase: Il film
-  emoji: 🎞️
-  ipas:
-    - ipa: /il fˈilm/
-      category: standard
-  level: 1
-  en-GB: The movie
-- phrase: Il museo
-  emoji: 🏛️
-  ipas:
-    - ipa: /il mʊzˈɛo/
-      category: standard
-  level: 652
-  en-GB: The museum
-- phrase: La nota musicale
-  emoji: 🎵
-  ipas:
-    - ipa: /la nˈɔta mʊzikˈale/
-      category: standard
-  level: 454
-  en-GB: The musical note
 - phrase: Il nome
   emoji: 📛
   ipas:
@@ -7551,13 +4268,6 @@
       category: standard
   level: 717
   en-GB: The oil lamp
-- phrase: La persona anziana
-  emoji: 🧓
-  ipas:
-    - ipa: /la persˈona antsjˈana/
-      category: standard
-  level: 401
-  en-GB: The older person
 - phrase: La cipolla
   emoji: 🧅
   ipas:
@@ -7593,13 +4303,6 @@
       category: standard
   level: 551
   en-GB: The owl flies at night.
-- phrase: La frittella
-  emoji: 🥞
-  ipas:
-    - ipa: /la fritːˈɛlla/
-      category: standard
-  level: 975
-  en-GB: The pancake
 - phrase: Il panda
   emoji: 🐼
   ipas:
@@ -7635,13 +4338,6 @@
       category: standard
   level: 663
   en-GB: The pants are comfortable.
-- phrase: La carta
-  emoji: 📃
-  ipas:
-    - ipa: /la kˈarta/
-      category: standard
-  level: 540
-  en-GB: The paper
 - phrase: Il paracadute
   emoji: 🪂
   ipas:
@@ -7684,27 +4380,6 @@
       category: standard
   level: 889
   en-GB: The pavement
-- phrase: La pesca
-  emoji: 🍑
-  ipas:
-    - ipa: /la pˈɛska/
-      category: standard
-  level: 889
-  en-GB: The peach
-- phrase: Il pavone
-  emoji: 🦚
-  ipas:
-    - ipa: /il pavˈone/
-      category: standard
-  level: 571
-  en-GB: The peacock
-- phrase: Il pavone è colorato
-  emoji: 🦚
-  ipas:
-    - ipa: /il pavˈone e kolorˈato/
-      category: standard
-  level: 829
-  en-GB: The peacock is colorful
 - phrase: Il picco
   emoji: ⛏️
   ipas:
@@ -7712,13 +4387,6 @@
       category: standard
   level: 535
   en-GB: The peak
-- phrase: L'arachide
-  emoji: 🥜
-  ipas:
-    - ipa: /laɾˈakide/
-      category: standard
-  level: 891
-  en-GB: The peanut
 - phrase: L'arachide è deliziosa
   emoji: 🥜
   ipas:
@@ -7754,13 +4422,6 @@
       category: standard
   level: 619
   en-GB: The penguin swims well.
-- phrase: Il pepe
-  emoji: 🌶️
-  ipas:
-    - ipa: /il pˈepe/
-      category: standard
-  level: 689
-  en-GB: The pepper
 - phrase: La persona
   emoji: 🧑
   ipas:
@@ -7768,13 +4429,6 @@
       category: standard
   level: 806
   en-GB: The person
-- phrase: Il telefono
-  emoji: 📱
-  ipas:
-    - ipa: /il telˈɛfono/
-      category: standard
-  level: 600
-  en-GB: The phone
 - phrase: Il pianoforte
   emoji: 🎹
   ipas:
@@ -7789,13 +4443,6 @@
       category: standard
   level: 570
   en-GB: The pickaxe
-- phrase: La torta
-  emoji: 🥧
-  ipas:
-    - ipa: /la tˈɔrta/
-      category: standard
-  level: 652
-  en-GB: The pie
 - phrase: Il maiale
   emoji: 🐷
   ipas:
@@ -7817,13 +4464,6 @@
       category: standard
   level: 617
   en-GB: The pig grunts.
-- phrase: Il piccione
-  emoji: 🕊️
-  ipas:
-    - ipa: /il pitʃːˈone/
-      category: standard
-  level: 445
-  en-GB: The pigeon
 - phrase: La pillola
   emoji: 💊
   ipas:
@@ -7838,20 +4478,6 @@
       category: standard
   level: 494
   en-GB: The pineapple
-- phrase: Il fenicottero rosa
-  emoji: 🦩
-  ipas:
-    - ipa: /il fenikˈɔtːero rˈɔza/
-      category: standard
-  level: 329
-  en-GB: The pink flamingo
-- phrase: La pistola
-  emoji: 🔫
-  ipas:
-    - ipa: /la pistˈɔla/
-      category: standard
-  level: 512
-  en-GB: The pistol
 - phrase: La pizza
   emoji: 🍕
   ipas:
@@ -7915,13 +4541,6 @@
       category: standard
   level: 774
   en-GB: The poodle
-- phrase: L'ufficio postale
-  emoji: 🏣
-  ipas:
-    - ipa: /lʊffˈitʃo postˈale/
-      category: standard
-  level: 652
-  en-GB: The post office
 - phrase: La patata
   emoji: 🥔
   ipas:
@@ -7943,13 +4562,6 @@
       category: standard
   level: 801
   en-GB: The pound
-- phrase: La sterlina
-  emoji: 💷
-  ipas:
-    - ipa: /la sterlˈina/
-      category: standard
-  level: 810
-  en-GB: The pound sterling
 - phrase: Il pretzel
   emoji: 🥨
   ipas:
@@ -7957,20 +4569,6 @@
       category: standard
   level: 721
   en-GB: The pretzel
-- phrase: Il principe
-  emoji: 🤴
-  ipas:
-    - ipa: /il prˈintʃipe/
-      category: standard
-  level: 1
-  en-GB: The prince
-- phrase: La principessa
-  emoji: 👸
-  ipas:
-    - ipa: /la printʃipˈessa/
-      category: standard
-  level: 838
-  en-GB: The princess
 - phrase: Il proiettore
   emoji: 📽️
   ipas:
@@ -8090,20 +4688,6 @@
       category: standard
   level: 664
   en-GB: The red light
-- phrase: Il rinoceronte
-  emoji: 🦏
-  ipas:
-    - ipa: /il rinotʃerˈonte/
-      category: standard
-  level: 871
-  en-GB: The rhino
-- phrase: Il rinoceronte
-  emoji: 🦏
-  ipas:
-    - ipa: /il rinotʃerˈonte/
-      category: standard
-  level: 868
-  en-GB: The rhinoceros
 - phrase: Il riso
   emoji: 🍚
   ipas:
@@ -8153,13 +4737,6 @@
       category: standard
   level: 984
   en-GB: The robot arm
-- phrase: Il braccio robotico
-  emoji: 🦾
-  ipas:
-    - ipa: /il brˈatʃːo robˈɔtiko/
-      category: standard
-  level: 846
-  en-GB: The robotic arm
 - phrase: Il razzo
   emoji: 🚀
   ipas:
@@ -8223,13 +4800,6 @@
       category: standard
   level: 850
   en-GB: The runner
-- phrase: Gli occhiali di sicurezza
-  emoji: 🥽
-  ipas:
-    - ipa: /ʎɪ okːjˈalɪ dɪ sikʊrˈetsːa/
-      category: standard
-  level: 609
-  en-GB: The safety glasses
 - phrase: La spilla da balia
   emoji: 🧷
   ipas:
@@ -8272,13 +4842,6 @@
       category: standard
   level: 122
   en-GB: The sauna
-- phrase: La scala
-  emoji: ⚖️
-  ipas:
-    - ipa: /la skˈala/
-      category: standard
-  level: 774
-  en-GB: The scale
 - phrase: Le scale
   emoji: ⚖️
   ipas:
@@ -8440,13 +5003,6 @@
       category: standard
   level: 62
   en-GB: The signal
-- phrase: Lo sci
-  emoji: 🎿
-  ipas:
-    - ipa: /lo ʃˈi/
-      category: standard
-  level: 403
-  en-GB: The ski
 - phrase: La lumaca
   emoji: 🐌
   ipas:
@@ -8545,13 +5101,6 @@
       category: standard
   level: 648
   en-GB: The sofa is comfortable.
-- phrase: Il sorbetto
-  emoji: 🍧
-  ipas:
-    - ipa: /il sorbˈetːo/
-      category: standard
-  level: 689
-  en-GB: The sorbet
 - phrase: La zuppa
   emoji: 🍲
   ipas:
@@ -8650,13 +5199,6 @@
       category: standard
   level: 907
   en-GB: The stethoscope
-- phrase: Il bastone
-  emoji: 🦯
-  ipas:
-    - ipa: /il bastˈone/
-      category: standard
-  level: 463
-  en-GB: The stick
 - phrase: La scatola portaoggetti
   emoji: 🗃️
   ipas:
@@ -8713,13 +5255,6 @@
       category: standard
   level: 652
   en-GB: The struggle
-- phrase: Il vestito
-  emoji: 🕴️
-  ipas:
-    - ipa: /il vestˈito/
-      category: standard
-  level: 106
-  en-GB: The suit
 - phrase: Il sole
   emoji: ☀️
   ipas:
@@ -8734,13 +5269,6 @@
       category: standard
   level: 644
   en-GB: The sun shines every morning.
-- phrase: Il cigno
-  emoji: 🦢
-  ipas:
-    - ipa: /il tʃˈiɲɲo/
-      category: standard
-  level: 604
-  en-GB: The swan
 - phrase: La spada
   emoji: 🗡️
   ipas:
@@ -8776,13 +5304,6 @@
       category: standard
   level: 753
   en-GB: The tablet
-- phrase: La crostata
-  emoji: 🥧
-  ipas:
-    - ipa: /la krostˈata/
-      category: standard
-  level: 445
-  en-GB: The tart
 - phrase: Il taxi
   emoji: 🚕
   ipas:
@@ -8790,20 +5311,6 @@
       category: standard
   level: 1
   en-GB: The taxi
-- phrase: L'orsacchiotto
-  emoji: 🧸
-  ipas:
-    - ipa: /lorsakːjˈɔtːo/
-      category: standard
-  level: 810
-  en-GB: The teddy bear
-- phrase: Il telefono
-  emoji: 📱
-  ipas:
-    - ipa: /il telˈɛfono/
-      category: standard
-  level: 790
-  en-GB: The telephone
 - phrase: Il telescopio
   emoji: 🔭
   ipas:
@@ -8811,20 +5318,6 @@
       category: standard
   level: 838
   en-GB: The telescope
-- phrase: Il telescopio mostra le stelle
-  emoji: 🔭
-  ipas:
-    - ipa: /il teleskˈopio mˈostra le stˈelle/
-      category: standard
-  level: 790
-  en-GB: The telescope shows the stars
-- phrase: Il tempio
-  emoji: 🛕
-  ipas:
-    - ipa: /il tˈempio/
-      category: standard
-  level: 86
-  en-GB: The temple
 - phrase: Il tennis
   emoji: 🎾
   ipas:
@@ -8832,13 +5325,6 @@
       category: standard
   level: 484
   en-GB: The tennis
-- phrase: La tenda
-  emoji: ⛺
-  ipas:
-    - ipa: /la tˈɛnda/
-      category: standard
-  level: 652
-  en-GB: The tent
 - phrase: La tenda è nella foresta
   emoji: ⛺
   ipas:
@@ -8853,20 +5339,6 @@
       category: standard
   level: 458
   en-GB: The terrestrial globe
-- phrase: Il temporale
-  emoji: ⛈️
-  ipas:
-    - ipa: /il temporˈale/
-      category: standard
-  level: 917
-  en-GB: The thunderstorm
-- phrase: Il segno di spunta
-  emoji: ✅
-  ipas:
-    - ipa: /il sˈeɲɲo dɪ spˈunta/
-      category: standard
-  level: 868
-  en-GB: The tick
 - phrase: La cravatta
   emoji: 👔
   ipas:
@@ -8874,13 +5346,6 @@
       category: standard
   level: 774
   en-GB: The tie
-- phrase: La tigre
-  emoji: 🐯
-  ipas:
-    - ipa: /la tˈiɡre/
-      category: standard
-  level: 578
-  en-GB: The tiger
 - phrase: La tigre corre veloce.
   emoji: 🐯
   ipas:
@@ -8894,7 +5359,7 @@
     - ipa: /la twalˈetː/
       category: standard
   level: 533
-  en-GB: The toilet
+  en-GB: The toilets
 - phrase: La carta igienica
   emoji: 🧻
   ipas:
@@ -8902,13 +5367,6 @@
       category: standard
   level: 1000
   en-GB: The toilet paper
-- phrase: I servizi igienici
-  emoji: 🚽
-  ipas:
-    - ipa: /i servˈitsɪ idʒˈɛnitʃɪ/
-      category: standard
-  level: 871
-  en-GB: The toilets
 - phrase: Il pomodoro
   emoji: 🍅
   ipas:
@@ -8923,13 +5381,6 @@
       category: standard
   level: 631
   en-GB: The tomato is red and round.
-- phrase: La lingua
-  emoji: 👅
-  ipas:
-    - ipa: /la lˈiŋɡwa/
-      category: standard
-  level: 445
-  en-GB: The tongue
 - phrase: Il dente
   emoji: 🦷
   ipas:
@@ -8993,13 +5444,6 @@
       category: standard
   level: 721
   en-GB: The tram
-- phrase: Il bidone della spazzatura
-  emoji: 🗑️
-  ipas:
-    - ipa: /il bidˈone dˌella spatsːatˈura/
-      category: standard
-  level: 806
-  en-GB: The trash can
 - phrase: L'albero
   emoji: 🌳
   ipas:
@@ -9126,13 +5570,6 @@
       category: standard
   level: 1000
   en-GB: The wallet
-- phrase: Il guardaroba
-  emoji: 🗄️
-  ipas:
-    - ipa: /il ɡwardarˈɔba/
-      category: standard
-  level: 1000
-  en-GB: The wardrobe
 - phrase: L'avvertimento
   emoji: ⚠️
   ipas:
@@ -9140,13 +5577,6 @@
       category: standard
   level: 1000
   en-GB: The warning
-- phrase: L'orologio
-  emoji: ⌚
-  ipas:
-    - ipa: /lorolˈodʒo/
-      category: standard
-  level: 689
-  en-GB: The watch
 - phrase: L'acqua
   emoji: 💧
   ipas:
@@ -9266,41 +5696,6 @@
       category: standard
   level: 232
   en-GB: The word
-- phrase: La chiave inglese
-  emoji: 🔧
-  ipas:
-    - ipa: /la kjˈave iŋɡlˈeze/
-      category: standard
-  level: 1000
-  en-GB: The wrench
-- phrase: I giovani
-  emoji: 👦
-  ipas:
-    - ipa: /i dʒˈovanɪ/
-      category: standard
-  level: 496
-  en-GB: The young
-- phrase: A destra
-  emoji: 👉
-  ipas:
-    - ipa: /a dˈɛstra/
-      category: standard
-  level: 713
-  en-GB: To the right
-- phrase: Vertigine
-  emoji: 💫
-  ipas:
-    - ipa: /vertˈidʒine/
-      category: standard
-  level: 774
-  en-GB: Vertigo
-- phrase: Vittoria
-  emoji: ✌️
-  ipas:
-    - ipa: /vitːˈɔria/
-      category: standard
-  level: 806
-  en-GB: Victory
 - phrase: L’acqua è essenziale per la vita.
   emoji: 💧
   ipas:
@@ -9308,55 +5703,6 @@
       category: standard
   level: 632
   en-GB: Water is essential for life.
-- phrase: Anguria
-  emoji: 🍉
-  ipas:
-    - ipa: /aŋɡˈuria/
-      category: standard
-  level: 753
-  en-GB: Watermelon
-- phrase: Grano
-  emoji: 🌾
-  ipas:
-    - ipa: /ɡrˈano/
-      category: standard
-  level: 535
-  en-GB: Wheat
-- phrase: Donne
-  emoji: 🚺
-  ipas:
-    - ipa: /dˈɔnne/
-      category: standard
-  level: 721
-  en-GB: Women
-- phrase: Scrivere
-  emoji: ✍️
-  ipas:
-    - ipa: /skrˈivere/
-      category: standard
-  level: 1000
-  en-GB: Writing
-- phrase: scherma
-  emoji: 🤺
-  ipas:
-    - ipa: /skˈerma/
-      category: standard
-  level: 1000
-  en-GB: fencing
-- phrase: televisione
-  emoji: 📺
-  ipas:
-    - ipa: /televiziˈone/
-      category: standard
-  level: 822
-  en-GB: television
-- phrase: la luna
-  emoji: 🌙
-  ipas:
-    - ipa: /la lˈuna/
-      category: standard
-  level: 570
-  en-GB: the moon
 - phrase: Il sassofono
   emoji: 🎷
   ipas:

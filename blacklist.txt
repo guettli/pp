@@ -1,0 +1,79 @@
+# Words that could cause bad dreams for a child
+
+# Alcohol & substances
+cigarette
+alcohol
+beer
+cocktail
+wine
+vodka
+whiskey
+rum
+gin
+tobacco
+smoke
+drug
+drugs
+needle
+syringe
+poison
+
+# Violence & weapons
+knife
+axe
+gun
+pistol
+rifle
+sword
+bomb
+bullet
+blood
+murder
+kill
+death
+corpse
+
+# Scary creatures & horror
+monster
+ghost
+demon
+devil
+witch
+vampire
+zombie
+skeleton
+skull
+
+# Medical / scary situations
+cancer
+hospital
+surgery
+disease
+plague
+wound
+injury
+
+# Disasters
+fire
+explosion
+war
+battle
+crash
+flood
+tornado
+earthquake
+
+# Creepy animals
+shark
+spider
+scorpion
+
+# Unhealthy food
+chocolate
+candy
+sweets
+sugar
+cake
+cookie
+donut
+chips

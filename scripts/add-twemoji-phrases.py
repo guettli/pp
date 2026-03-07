@@ -6,6 +6,7 @@ English format: "[word]" (if missing) + a simple sentence.
 French format: "Le/La/L'[word]" + a simple sentence.
 Levels are left blank so update-difficulty.py fills them in.
 """
+import argparse
 import sys
 from pathlib import Path
 import yaml
@@ -441,6 +442,11 @@ def add_phrases(yaml_path: Path, new_entries: list[tuple], category: str = "stan
 
 
 def main():
+    parser = argparse.ArgumentParser(
+        description="Add a predefined set of Twemoji-based phrases (animals, colors, body parts, food, etc.) to phrases-de-DE.yaml, phrases-en-GB.yaml, and phrases-fr-FR.yaml. Skips phrases that already exist."
+    )
+    parser.parse_args()
+
     de_path = REPO_ROOT / "phrases-de-DE.yaml"
     en_path = REPO_ROOT / "phrases-en-GB.yaml"
     fr_path = REPO_ROOT / "phrases-fr-FR.yaml"

@@ -25,7 +25,26 @@ function findYamlFiles(dir: string): string[] {
   return files;
 }
 
+function printHelp() {
+  console.log(`Usage: ./run tsx scripts/update-yaml-baseline.ts
+
+Re-run the phoneme model on all test FLAC files in tests/data/ and update
+the recognized_ipa field in the corresponding .flac.yaml metadata files.
+
+Internal test maintenance tool — use when the model or feature extraction changes
+and you need to update all baseline IPA values to reflect the new output.
+
+Options:
+  --help    Show this help message
+`);
+}
+
 async function main() {
+  if (process.argv.includes("--help") || process.argv.includes("-h")) {
+    printHelp();
+    process.exit(0);
+  }
+
   console.log("=== Updating YAML Baseline with WASM Fbank Outputs ===\n");
 
   // Load model once
