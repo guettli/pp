@@ -26,15 +26,19 @@ export default defineConfig({
   fullyParallel: true,
 
   forbidOnly: false,
-  retries: 0,
+  retries: 2,
 
   // 1 worker: each Chrome loads the ONNX model into ~6GB WASM heap.
   // 2 workers peaks at 26GB system-wide (measured), which OOMs on 31GB machines
   // when VSCode + Claude Code (~4GB combined) are also running.
   workers: 1,
 
-  // Reporter to use. open:'never' prevents the HTML report server from waiting for Ctrl-C.
-  reporter: [["html", { open: "never" }]],
+  // Reporters: HTML for humans, JSON for programmatic failure analysis.
+  // On failure read playwright-results.json — no need to re-run the tests.
+  reporter: [
+    ["html", { open: "never" }],
+    ["json", { outputFile: "playwright-results.json" }],
+  ],
 
   // Shared settings for all the projects below
   use: {
@@ -54,18 +58,21 @@ export default defineConfig({
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
-        // When using global setup, also use persistent context to reuse cached model
-        ...(process.env.USE_GLOBAL_SETUP && {
-          launchOptions: {
-            args: [`--user-data-dir=${path.join(os.tmpdir(), "playwright-phoneme-party-cache")}`],
-          },
-        }),
+        launchOptions: {
+          args: [
+            // Block all external DNS — model and assets must come from localhost.
+            // Any accidental fetch to huggingface.co or a CDN fails immediately.
+            "--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE localhost, EXCLUDE 127.0.0.1",
+            // When using global setup, reuse persistent context to keep the compiled model.
+            ...(process.env.USE_GLOBAL_SETUP
+              ? [`--user-data-dir=${path.join(os.tmpdir(), "playwright-phoneme-party-cache")}`]
+              : []),
+          ],
+        },
       },
-      testIgnore: [
-        "**/pouchdb-error-prod.spec.js",
-        "**/prod-smoke.spec.js",
-        "**/prod-audio.spec.js",
-      ],
+      // prod-* tests run against the live site or the preview build (port 8080).
+      // They are handled by the chromium-production and prod projects below.
+      testIgnore: ["**/prod-*.spec.js"],
     },
     {
       name: "chromium-production",
@@ -73,7 +80,7 @@ export default defineConfig({
         ...devices["Desktop Chrome"],
         baseURL: "http://localhost:8080/phoneme-party",
       },
-      testMatch: "**/pouchdb-error-prod.spec.js", // Only run production tests
+      testMatch: "**/prod-pouchdb-error.spec.js",
     },
     {
       name: "prod",

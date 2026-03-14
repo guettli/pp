@@ -107,7 +107,8 @@ function main() {
 
   if (totalMissing > 0) {
     console.error(`\n${totalMissing} missing audio file(s) found.`);
-    console.error("Run:  ./run python scripts/generate_edge_tts_audio.py");
+    console.error("To generate missing opus files, run:");
+    console.error("  ./run python scripts/generate_edge_tts_audio.py create");
     process.exit(1);
   }
 

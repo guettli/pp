@@ -11,7 +11,7 @@ interface PhraseEntry {
   emoji: string;
   ipas: Array<{
     ipa: string;
-    category: string;
+    source: string;
   }>;
 }
 

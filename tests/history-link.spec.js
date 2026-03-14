@@ -6,15 +6,24 @@ test.describe("History - phrase link", () => {
   }) => {
     const phraseName = "Der Hase lacht";
 
-    // Set study lang and add a history entry for a real phrase
+    // Clear DB and save entry BEFORE changing study lang.
+    // setStudyLang() triggers onStudyLangChange → refreshHistory(); saving data first
+    // ensures refreshHistory sees the item. Explicit refreshHistory() handles the case
+    // where studyLang was already "de-DE" (setStudyLang is a no-op then).
     await page.evaluate(async (phrase) => {
-      const { setStudyLang } = await import("/phoneme-party/src/study-lang.ts");
-      setStudyLang("de-DE");
+      const { getStudyLang } = await import("/phoneme-party/src/study-lang.ts");
+      const studyLang = getStudyLang() ?? "de-DE";
       const { db } = await import("/phoneme-party/src/db.ts");
-      await db.clearAll();
-      await db.savePhraseResult(phrase, "de-DE", 85, "/dɛɐ̯ haːzə laxt/", "/dɛɐ̯ haːzə laxt/", 1000);
-      const { refreshHistory } = await import("/phoneme-party/src/ui/history.ts");
-      refreshHistory();
+      await db.clearAllDocs();
+      await db.savePhraseResult(
+        phrase,
+        studyLang,
+        85,
+        "/dɛɐ̯ haːzə laxt/",
+        "/dɛɐ̯ haːzə laxt/",
+        1000,
+      );
+      await window.__phonemePartyRefreshHistoryAsync();
     }, phraseName);
 
     // Wait for the history item to appear

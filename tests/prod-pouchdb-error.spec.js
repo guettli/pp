@@ -18,6 +18,11 @@ test.describe("PouchDB Loading Bug - Production Build", () => {
       errors.push(errorText);
     });
 
+    // Pre-set studyLang to prevent redirect to /settings/ (which would cause "History container not found")
+    await page.addInitScript(() => {
+      localStorage.setItem("phoneme-party-study-lang", "de-DE");
+    });
+
     // Navigate to the production build served from dist
     await page.goto("/");
 

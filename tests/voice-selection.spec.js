@@ -1,5 +1,5 @@
 // @ts-check
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures.js";
 
 // Skip these slow tests in CI or when running all tests
 // Run explicitly with: pnpm test tests/voice-selection.spec.js

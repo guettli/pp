@@ -1,5712 +1,5712 @@
 - phrase: Le chat
   emoji: 🐱
   ipas:
-    - ipa: lə ʃa
-      category: vowels
+    - ipa: /lə ʃa./
+      engine: olaph
   level: 558
   en-GB: The cat
 - phrase: Le chat dort sur le canapé.
   emoji: 🐱
   ipas:
-    - ipa: lə ʃa dɔʁ syʁ lə kana.pe
-      category: vowels
+    - ipa: /lə ʃa dɔʁ syʁ lə kanape./
+      engine: olaph
   level: 613
   en-GB: The cat is sleeping on the sofa.
 - phrase: Le chien
   emoji: 🐶
   ipas:
-    - ipa: lə ʃjɛ̃
-      category: vowels
+    - ipa: /lə ʃjɛ̃./
+      engine: olaph
   level: 566
   en-GB: The dog
 - phrase: Le chien joue dans le jardin.
   emoji: 🐶
   ipas:
-    - ipa: lə ʃjɛ̃ ʒu dɑ̃ lə ʒaʁ.dɛ̃
-      category: vowels
+    - ipa: /lə ʃjɛ̃ ʒu dɑ̃ lə ʒaʁdɛ̃./
+      engine: olaph
   level: 618
   en-GB: The dog is playing in the garden.
 - phrase: L'oiseau
   emoji: 🐦
   ipas:
-    - ipa: lwa.zo
-      category: vowels
+    - ipa: /lwao./
+      engine: olaph
   level: 656
   en-GB: The bird
 - phrase: L'oiseau chante dans l'arbre.
   emoji: 🐦
   ipas:
-    - ipa: lwa.zo ʃɑ̃t dɑ̃ laʁbʁ
-      category: vowels
+    - ipa: /lwao ʃɑ̃t dɑ̃ l aʁbʁ./
+      engine: olaph
   level: 655
   en-GB: The bird sings in the tree.
 - phrase: Le poisson
   emoji: 🐟
   ipas:
-    - ipa: lə pwa.sɔ̃
-      category: vowels
+    - ipa: /lə pwasɔ̃./
+      engine: olaph
   level: 595
   en-GB: The fish
 - phrase: Le poisson nage dans l'eau.
   emoji: 🐟
   ipas:
-    - ipa: lə pwa.sɔ̃ naʒ dɑ̃ lo
-      category: vowels
+    - ipa: /lə pwasɔ̃ naʒ dɑ̃ l o./
+      engine: olaph
   level: 624
   en-GB: The fish swims in the water.
 - phrase: La pomme
   emoji: 🍎
   ipas:
-    - ipa: la pɔm
-      category: vowels
+    - ipa: /la pɔm./
+      engine: olaph
   level: 578
   en-GB: The apple
 - phrase: La pomme est rouge et sucrée.
   emoji: 🍎
   ipas:
-    - ipa: la pɔm ɛ ʁuʒ e sy.kʁe
-      category: vowels
+    - ipa: /la pɔm ɛst ʁuʒ e sykʁe./
+      engine: olaph
   level: 627
   en-GB: The apple is red and sweet.
 - phrase: La banane
   emoji: 🍌
   ipas:
-    - ipa: la ba.nan
-      category: vowels
+    - ipa: /la banan./
+      engine: olaph
   level: 599
   en-GB: The banana
 - phrase: La banane est jaune et douce.
   emoji: 🍌
   ipas:
-    - ipa: la ba.nan ɛ ʒon e dus
-      category: vowels
+    - ipa: /la banan ɛst ʒon e dus./
+      engine: olaph
   level: 631
   en-GB: The banana is yellow and sweet.
 - phrase: La fraise
   emoji: 🍓
   ipas:
-    - ipa: la fʁɛz
-      category: vowels
+    - ipa: /la fʁɛz./
+      engine: olaph
   level: 587
   en-GB: The strawberry
 - phrase: La fraise est petite et rouge.
   emoji: 🍓
   ipas:
-    - ipa: la fʁɛz ɛ pə.tit e ʁuʒ
-      category: vowels
+    - ipa: /la fʁɛz ɛst pətit e ʁuʒ./
+      engine: olaph
   level: 634
   en-GB: The strawberry is small and red.
 - phrase: Le citron est acide et jaune.
   emoji: 🍋
   ipas:
-    - ipa: lə si.tʁɔ̃ ɛt a.sid e ʒon
-      category: vowels
+    - ipa: /lə sitʁɔ̃ ɛst asid e ʒon./
+      engine: olaph
   level: 631
   en-GB: Lemon is sour and yellow.
 - phrase: La maison
   emoji: 🏠
   ipas:
-    - ipa: la mɛ.zɔ̃
-      category: vowels
+    - ipa: /la mɛzɔ̃./
+      engine: olaph
   level: 587
   en-GB: The house
 - phrase: La maison est grande et belle.
   emoji: 🏠
   ipas:
-    - ipa: la mɛ.zɔ̃ ɛ ɡʁɑ̃d e bɛl
-      category: vowels
+    - ipa: /la mɛzɔ̃ ɛst gʁɑ̃d e bɛl./
+      engine: olaph
   level: 629
   en-GB: The house is big and beautiful.
 - phrase: La voiture
   emoji: 🚗
   ipas:
-    - ipa: la vwa.tyʁ
-      category: vowels
+    - ipa: /la vwatyʁ./
+      engine: olaph
   level: 608
   en-GB: The car
 - phrase: La voiture roule vite sur la route.
   emoji: 🚗
   ipas:
-    - ipa: la vwa.tyʁ ʁul vit syʁ la ʁut
-      category: vowels
+    - ipa: /la vwatyʁ ʁul vit syʁ la ʁut./
+      engine: olaph
   level: 644
   en-GB: The car is driving fast on the road.
 - phrase: Le livre
   emoji: 📖
   ipas:
-    - ipa: lə livʁ
-      category: vowels
+    - ipa: /lə livʁ./
+      engine: olaph
   level: 578
   en-GB: The book
 - phrase: Le livre raconte une belle histoire.
   emoji: 📖
   ipas:
-    - ipa: lə livʁ ʁa.kɔ̃t yn bɛl is.twaʁ
-      category: vowels
+    - ipa: /lə livʁ ʁakɔ̃t yn bɛl istwaʁ./
+      engine: olaph
   level: 663
   en-GB: The book tells a beautiful story.
 - phrase: La lune
   emoji: 🌙
   ipas:
-    - ipa: la lyn
-      category: vowels
+    - ipa: /la lyn./
+      engine: olaph
   level: 570
   en-GB: the moon
 - phrase: La lune brille dans la nuit.
   emoji: 🌙
   ipas:
-    - ipa: la lyn bʁij dɑ̃ la nɥi
-      category: vowels
+    - ipa: /la lyn bʁij dɑ̃ la nɥi./
+      engine: olaph
   level: 620
   en-GB: The moon shines in the night.
 - phrase: Le soleil
   emoji: ☀️
   ipas:
-    - ipa: lə sɔ.lɛj
-      category: vowels
+    - ipa: /lə sɔlɛj./
+      engine: olaph
   level: 587
   en-GB: The sun
 - phrase: Le soleil brille chaque matin.
   emoji: ☀️
   ipas:
-    - ipa: lə sɔ.lɛj bʁij ʃak ma.tɛ̃
-      category: vowels
+    - ipa: /lə sɔlɛj bʁij ʃak matɛ̃./
+      engine: olaph
   level: 644
   en-GB: The sun shines every morning.
 - phrase: La fleur
   emoji: 🌷
   ipas:
-    - ipa: la flœʁ
-      category: vowels
+    - ipa: /la flœʁ./
+      engine: olaph
   level: 566
   en-GB: The flower
 - phrase: La fleur pousse dans le jardin.
   emoji: 🌷
   ipas:
-    - ipa: la flœʁ pus dɑ̃ lə ʒaʁ.dɛ̃
-      category: vowels
+    - ipa: /la flœʁ pus dɑ̃ lə ʒaʁdɛ̃./
+      engine: olaph
   level: 628
   en-GB: The flower grows in the garden.
 - phrase: L'arbre
   emoji: 🌳
   ipas:
-    - ipa: laʁbʁ
-      category: vowels
+    - ipa: /laʁbʁ./
+      engine: olaph
   level: 639
   en-GB: The tree
 - phrase: L'arbre perd ses feuilles en automne.
   emoji: 🌳
   ipas:
-    - ipa: laʁbʁ pɛʁ se fœj ɑ̃n o.tɔn
-      category: vowels
+    - ipa: /laʁbʁ pɛʁ se fœj ɑ̃ otɔn./
+      engine: olaph
   level: 653
   en-GB: The tree loses its leaves in autumn.
 - phrase: La mer
   emoji: 🌊
   ipas:
-    - ipa: la mɛʁ
-      category: vowels
+    - ipa: /la mɛʁ./
+      engine: olaph
   level: 549
   en-GB: The sea
 - phrase: La mer est bleue et immense.
   emoji: 🌊
   ipas:
-    - ipa: la mɛʁ ɛ blø e i.mɑ̃s
-      category: vowels
+    - ipa: /la mɛʁ ɛst blø e imɑ̃s./
+      engine: olaph
   level: 576
   en-GB: The sea is blue and immense.
 - phrase: Le pain
   emoji: 🍞
   ipas:
-    - ipa: lə pɛ̃
-      category: vowels
+    - ipa: /lə pɛ̃./
+      engine: olaph
   level: 385
   en-GB: The bread
 - phrase: Le pain est frais et croustillant.
   emoji: 🍞
   ipas:
-    - ipa: lə pɛ̃ ɛ fʁɛ e kʁus.ti.jɑ̃
-      category: vowels
+    - ipa: /lə pɛ̃ ɛst fʁɛ e kʁustijɑ̃./
+      engine: olaph
   level: 579
   en-GB: The bread is fresh and crispy.
 - phrase: Le fromage
   emoji: 🧀
   ipas:
-    - ipa: lə fʁo.maʒ
-      category: vowels
+    - ipa: /lə fʁɔmaʒ./
+      engine: olaph
   level: 608
   en-GB: The cheese
 - phrase: Le fromage sent très bon.
   emoji: 🧀
   ipas:
-    - ipa: lə fʁo.maʒ sɑ̃ tʁɛ bɔ̃
-      category: vowels
+    - ipa: /lə fʁɔmaʒ sɑ̃ tʁɛ bɔ̃./
+      engine: olaph
   level: 618
   en-GB: The cheese smells very good.
 - phrase: Le vélo
   emoji: 🚲
   ipas:
-    - ipa: lə ve.lo
-      category: vowels
+    - ipa: /lə velo./
+      engine: olaph
   level: 558
   en-GB: The bike
 - phrase: Le vélo est un moyen de transport écologique.
   emoji: 🚲
   ipas:
-    - ipa: lə ve.lo ɛt œ̃ mwa.jɛ̃ də tʁɑ̃s.pɔʁ e.kɔ.lɔ.ʒik
-      category: vowels
+    - ipa: /lə velo ɛst œ̃ mwajɛ̃ də tʁɑ̃spɔʁ ekɔlɔʒik./
+      engine: olaph
   level: 662
   en-GB: The bicycle is an ecological means of transport.
 - phrase: L'école commence à huit heures.
   emoji: 🏫
   ipas:
-    - ipa: le.kɔl kɔ.mɑ̃s a ɥit œʁ
-      category: vowels
+    - ipa: /lekɔl kɔmɑ̃s a ʼɥit œʁ./
+      engine: olaph
   level: 648
   en-GB: School starts at eight o'clock.
 - phrase: Le café
   emoji: ☕
   ipas:
-    - ipa: lə ka.fe
-      category: vowels
+    - ipa: /lə kafe./
+      engine: olaph
   level: 558
   en-GB: The coffee
 - phrase: Le café est chaud et parfumé.
   emoji: ☕
   ipas:
-    - ipa: lə ka.fe ɛ ʃo e paʁ.fy.me
-      category: vowels
+    - ipa: /lə kafe ɛst ʃo e paʁfyme./
+      engine: olaph
   level: 618
   en-GB: The coffee is hot and fragrant.
 - phrase: La montagne
   emoji: ⛰️
   ipas:
-    - ipa: la mɔ̃.taɲ
-      category: vowels
+    - ipa: /la mɔ̃taɲ./
+      engine: olaph
   level: 616
   en-GB: The mountain
 - phrase: La montagne est couverte de neige.
   emoji: ⛰️
   ipas:
-    - ipa: la mɔ̃.taɲ ɛ ku.vɛʁt də nɛʒ
-      category: vowels
+    - ipa: /la mɔ̃taɲ ɛst kuvɛʁt də nɛʒ./
+      engine: olaph
   level: 649
   en-GB: The mountain is covered in snow.
 - phrase: La rivière
   emoji: 🏞️
   ipas:
-    - ipa: la ʁi.vjɛʁ
-      category: vowels
+    - ipa: /la ʁivjɛʁ./
+      engine: olaph
   level: 608
   en-GB: The river
 - phrase: La rivière coule doucement.
   emoji: 🏞️
   ipas:
-    - ipa: la ʁi.vjɛʁ kul dus.mɑ̃
-      category: vowels
+    - ipa: /la ʁivjɛʁ kul dusmɑ̃./
+      engine: olaph
   level: 659
   en-GB: The river flows gently.
 - phrase: Le papillon
   emoji: 🦋
   ipas:
-    - ipa: lə pa.pi.jɔ̃
-      category: vowels
+    - ipa: /lə papijɔ̃./
+      engine: olaph
   level: 616
   en-GB: The butterfly
 - phrase: Le papillon vole de fleur en fleur.
   emoji: 🦋
   ipas:
-    - ipa: lə pa.pi.jɔ̃ vɔl də flœʁ ɑ̃ flœʁ
-      category: vowels
+    - ipa: /lə papijɔ̃ vɔl də flœʁ ɑ̃ flœʁ./
+      engine: olaph
   level: 597
   en-GB: The butterfly flies from flower to flower.
 - phrase: La grenouille
   emoji: 🐸
   ipas:
-    - ipa: la ɡʁə.nuj
-      category: vowels
+    - ipa: /la gʁənuj./
+      engine: olaph
   level: 632
   en-GB: The frog
 - phrase: La grenouille saute dans l'étang.
   emoji: 🐸
   ipas:
-    - ipa: la ɡʁə.nuj sot dɑ̃ le.tɑ̃
-      category: vowels
+    - ipa: /la gʁənuj sot dɑ̃ l etɑ̃./
+      engine: olaph
   level: 649
   en-GB: The frog jumps into the pond.
 - phrase: Le chapeau
   emoji: 🎩
   ipas:
-    - ipa: lə ʃa.po
-      category: vowels
+    - ipa: /lə ʃapo./
+      engine: olaph
   level: 595
   en-GB: The hat
 - phrase: Le chapeau protège du soleil.
   emoji: 🎩
   ipas:
-    - ipa: lə ʃa.po pʁo.tɛʒ dy sɔ.lɛj
-      category: vowels
+    - ipa: /lə ʃapo pʁɔtɛʒ dy sɔlɛj./
+      engine: olaph
   level: 636
   en-GB: The hat protects from the sun.
 - phrase: La fenêtre
   emoji: 🪟
   ipas:
-    - ipa: la fə.nɛtʁ
-      category: vowels
+    - ipa: /la fnɛtʁ./
+      engine: olaph
   level: 595
   en-GB: The window
 - phrase: La fenêtre est ouverte ce matin.
   emoji: 🪟
   ipas:
-    - ipa: la fə.nɛtʁ ɛt u.vɛʁt sə ma.tɛ̃
-      category: vowels
+    - ipa: /la fnɛtʁ ɛst uvɛʁt sə matɛ̃./
+      engine: olaph
   level: 639
   en-GB: The window is open this morning.
 - phrase: Le lapin
   emoji: 🐰
   ipas:
-    - ipa: lə la.pɛ̃
-      category: vowels
+    - ipa: /lə lapɛ̃./
+      engine: olaph
   level: 578
   en-GB: The rabbit
 - phrase: Le lapin mange des carottes.
   emoji: 🐰
   ipas:
-    - ipa: lə la.pɛ̃ mɑ̃ʒ de ka.ʁɔt
-      category: vowels
+    - ipa: /lə lapɛ̃ mɑ̃ʒ de kaʁɔt./
+      engine: olaph
   level: 638
   en-GB: The rabbit eats carrots.
 - phrase: Le cheval
   emoji: 🐴
   ipas:
-    - ipa: lə ʃə.val
-      category: vowels
+    - ipa: /lə ʃval./
+      engine: olaph
   level: 587
   en-GB: The horse
 - phrase: Le cheval galope dans le pré.
   emoji: 🐴
   ipas:
-    - ipa: lə ʃə.val ɡa.lɔp dɑ̃ lə pʁe
-      category: vowels
+    - ipa: /lə ʃval galɔp dɑ̃ lə pʁe./
+      engine: olaph
   level: 627
   en-GB: The horse gallops in the meadow.
 - phrase: La vache
   emoji: 🐮
   ipas:
-    - ipa: la vaʃ
-      category: vowels
+    - ipa: /la vaʃ./
+      engine: olaph
   level: 578
   en-GB: The cow
 - phrase: La vache donne du lait.
   emoji: 🐮
   ipas:
-    - ipa: la vaʃ dɔn dy lɛ
-      category: vowels
+    - ipa: /la vaʃ dɔn dy lɛ./
+      engine: olaph
   level: 611
   en-GB: The cow gives milk.
 - phrase: Le cochon
   emoji: 🐷
   ipas:
-    - ipa: lə kɔ.ʃɔ̃
-      category: vowels
+    - ipa: /lə kɔʃɔ̃./
+      engine: olaph
   level: 587
   en-GB: The pig
 - phrase: Le cochon grogne.
   emoji: 🐷
   ipas:
-    - ipa: lə kɔ.ʃɔ̃ ɡʁɔɲ
-      category: vowels
+    - ipa: /lə kɔʃɔ̃ gʁɔɲ./
+      engine: olaph
   level: 617
   en-GB: The pig grunts.
 - phrase: Le mouton
   emoji: 🐑
   ipas:
-    - ipa: lə mu.tɔ̃
-      category: vowels
+    - ipa: /lə mutɔ̃./
+      engine: olaph
   level: 587
   en-GB: The sheep
 - phrase: Le mouton bêle.
   emoji: 🐑
   ipas:
-    - ipa: lə mu.tɔ̃ bɛl
-      category: vowels
+    - ipa: /lə mutɔ̃ bɛl./
+      engine: olaph
   level: 598
   en-GB: The sheep bleats.
 - phrase: Le lion
   emoji: 🦁
   ipas:
-    - ipa: lə ljɔ̃
-      category: vowels
+    - ipa: /lə ljɔ̃./
+      engine: olaph
   level: 383
   en-GB: The lion
 - phrase: Le lion rugit fort.
   emoji: 🦁
   ipas:
-    - ipa: lə ljɔ̃ ʁy.ʒi fɔʁ
-      category: vowels
+    - ipa: /lə ljɔ̃ ʁyʒi fɔʁ./
+      engine: olaph
   level: 435
   en-GB: The lion roared loudly.
 - phrase: L'ours
   emoji: 🐻
   ipas:
-    - ipa: luʁs
-      category: vowels
+    - ipa: /luʁs./
+      engine: olaph
   level: 598
   en-GB: The bear
 - phrase: L'ours mange du miel.
   emoji: 🐻
   ipas:
-    - ipa: luʁs mɑ̃ʒ dy mjɛl
-      category: vowels
+    - ipa: /luʁs mɑ̃ʒ dy mjɛl./
+      engine: olaph
   level: 609
   en-GB: The bear eats honey.
 - phrase: Le tigre
   emoji: 🐯
   ipas:
-    - ipa: lə tiɡʁ
-      category: vowels
+    - ipa: /lə tigʁ./
+      engine: olaph
   level: 578
   en-GB: The tiger
 - phrase: Le tigre court vite.
   emoji: 🐯
   ipas:
-    - ipa: lə tiɡʁ kuʁ vit
-      category: vowels
+    - ipa: /lə tigʁ kuʁ vit./
+      engine: olaph
   level: 538
   en-GB: The tiger runs fast.
 - phrase: L'éléphant
   emoji: 🐘
   ipas:
-    - ipa: le.le.fɑ̃
-      category: vowels
+    - ipa: /lelefɑ̃./
+      engine: olaph
   level: 664
   en-GB: The elephant
 - phrase: L'éléphant est très grand.
   emoji: 🐘
   ipas:
-    - ipa: le.le.fɑ̃ ɛ tʁɛ ɡʁɑ̃
-      category: vowels
+    - ipa: /lelefɑ̃ ɛst tʁɛ gʁɑ̃./
+      engine: olaph
   level: 623
   en-GB: The elephant is very big.
 - phrase: La girafe
   emoji: 🦒
   ipas:
-    - ipa: la ʒi.ʁaf
-      category: vowels
+    - ipa: /la ʒiʁaf./
+      engine: olaph
   level: 599
   en-GB: The giraffe
 - phrase: La girafe a un long cou.
   emoji: 🦒
   ipas:
-    - ipa: la ʒi.ʁaf a œ̃ lɔ̃ ku
-      category: vowels
+    - ipa: /la ʒiʁaf a œ̃ lɔ̃ ku./
+      engine: olaph
   level: 551
   en-GB: The giraffe has a long neck.
 - phrase: Le canard
   emoji: 🦆
   ipas:
-    - ipa: lə ka.naʁ
-      category: vowels
+    - ipa: /lə kanaʁ./
+      engine: olaph
   level: 587
   en-GB: The duck
 - phrase: Le canard nage sur l'étang.
   emoji: 🦆
   ipas:
-    - ipa: lə ka.naʁ naʒ syʁ le.tɑ̃
-      category: vowels
+    - ipa: /lə kanaʁ naʒ syʁ l etɑ̃./
+      engine: olaph
   level: 624
   en-GB: The duck swims on the pond.
 - phrase: Le hibou
   emoji: 🦉
   ipas:
-    - ipa: lə i.bu
-      category: vowels
+    - ipa: /lə ʼibu./
+      engine: olaph
   level: 578
   en-GB: The owl
 - phrase: Le hibou vole la nuit.
   emoji: 🦉
   ipas:
-    - ipa: lə i.bu vɔl la nɥi
-      category: vowels
+    - ipa: /lə ʼibu vɔl la nɥi./
+      engine: olaph
   level: 551
   en-GB: The owl flies at night.
 - phrase: Le renard
   emoji: 🦊
   ipas:
-    - ipa: lə ʁə.naʁ
-      category: vowels
+    - ipa: /lə ʁənaʁ./
+      engine: olaph
   level: 587
   en-GB: The fox
 - phrase: Le renard est rusé.
   emoji: 🦊
   ipas:
-    - ipa: lə ʁə.naʁ ɛ ʁy.ze
-      category: vowels
+    - ipa: /lə ʁənaʁ ɛst ʁyze./
+      engine: olaph
   level: 600
   en-GB: The fox is cunning.
 - phrase: Le singe
   emoji: 🐵
   ipas:
-    - ipa: lə sɛ̃ʒ
-      category: vowels
+    - ipa: /lə sɛ̃ʒ./
+      engine: olaph
   level: 578
   en-GB: The monkey
 - phrase: Le singe grimpe aux arbres.
   emoji: 🐵
   ipas:
-    - ipa: lə sɛ̃ʒ ɡʁɛ̃p o zaʁbʁ
-      category: vowels
+    - ipa: /lə sɛ̃ʒ gʁɛ̃p o aʁbʁ./
+      engine: olaph
   level: 629
   en-GB: The monkey climbs trees.
 - phrase: La baleine
   emoji: 🐳
   ipas:
-    - ipa: la ba.lɛn
-      category: vowels
+    - ipa: /la balɛn./
+      engine: olaph
   level: 608
   en-GB: The whale
 - phrase: La baleine nage dans la mer.
   emoji: 🐳
   ipas:
-    - ipa: la ba.lɛn naʒ dɑ̃ la mɛʁ
-      category: vowels
+    - ipa: /la balɛn naʒ dɑ̃ la mɛʁ./
+      engine: olaph
   level: 624
   en-GB: The whale swims in the sea.
 - phrase: Le dauphin
   emoji: 🐬
   ipas:
-    - ipa: lə do.fɛ̃
-      category: vowels
+    - ipa: /lə dofɛ̃./
+      engine: olaph
   level: 595
   en-GB: The dolphin
 - phrase: Le dauphin saute hors de l'eau.
   emoji: 🐬
   ipas:
-    - ipa: lə do.fɛ̃ sot ɔʁ də lo
-      category: vowels
+    - ipa: /lə dofɛ̃ sot ʼɔʁ də l o./
+      engine: olaph
   level: 628
   en-GB: The dolphin jumps out of the water.
 - phrase: Le serpent
   emoji: 🐍
   ipas:
-    - ipa: lə sɛʁ.pɑ̃
-      category: vowels
+    - ipa: /lə sɛʁpɑ̃./
+      engine: olaph
   level: 595
   en-GB: The snake
 - phrase: Le serpent rampe par terre.
   emoji: 🐍
   ipas:
-    - ipa: lə sɛʁ.pɑ̃ ʁɑ̃p paʁ tɛʁ
-      category: vowels
+    - ipa: /lə sɛʁpɑ̃ ʁɑ̃p paʁ tɛʁ./
+      engine: olaph
   level: 629
   en-GB: The snake crawls on the ground.
 - phrase: L'araignée
   emoji: 🕷️
   ipas:
-    - ipa: la.ʁɛ.ɲe
-      category: vowels
+    - ipa: /laʁeɲe./
+      engine: olaph
   level: 714
   en-GB: The spider
 - phrase: L'araignée tisse une toile.
   emoji: 🕷️
   ipas:
-    - ipa: la.ʁɛ.ɲe tis yn twal
-      category: vowels
+    - ipa: /laʁeɲe tis yn twal./
+      engine: olaph
   level: 659
   en-GB: The spider weaves a web.
 - phrase: L'escargot
   emoji: 🐌
   ipas:
-    - ipa: lɛs.kaʁ.ɡo
-      category: vowels
+    - ipa: /lɛskaʁgo./
+      engine: olaph
   level: 714
   en-GB: The snail
 - phrase: L'escargot avance lentement.
   emoji: 🐌
   ipas:
-    - ipa: lɛs.kaʁ.ɡo a.vɑ̃s lɑ̃t.mɑ̃
-      category: vowels
+    - ipa: /lɛskaʁgo avɑ̃s lɑ̃tmɑ̃./
+      engine: olaph
   level: 712
   en-GB: The snail moves slowly.
 - phrase: La tortue
   emoji: 🐢
   ipas:
-    - ipa: la tɔʁ.ty
-      category: vowels
+    - ipa: /la tɔʁty./
+      engine: olaph
   level: 587
   en-GB: The turtle
 - phrase: La tortue vit longtemps.
   emoji: 🐢
   ipas:
-    - ipa: la tɔʁ.ty vi lɔ̃.tɑ̃
-      category: vowels
+    - ipa: /la tɔʁty vi lɔ̃tɑ̃./
+      engine: olaph
   level: 628
   en-GB: The turtle lives a long time.
 - phrase: L'abeille
   emoji: 🐝
   ipas:
-    - ipa: la.bɛj
-      category: vowels
+    - ipa: /labɛj./
+      engine: olaph
   level: 698
   en-GB: The bee
 - phrase: L'abeille produit du miel.
   emoji: 🐝
   ipas:
-    - ipa: la.bɛj pʁɔ.dɥi dy mjɛl
-      category: vowels
+    - ipa: /labɛj pʁɔdɥi dy mjɛl./
+      engine: olaph
   level: 642
   en-GB: The bee produces honey.
 - phrase: Le loup
   emoji: 🐺
   ipas:
-    - ipa: lə lu
-      category: vowels
+    - ipa: /lə lu./
+      engine: olaph
   level: 558
   en-GB: The wolf
 - phrase: Le loup hurle dans la forêt.
   emoji: 🐺
   ipas:
-    - ipa: lə lu yʁl dɑ̃ la fɔ.ʁɛ
-      category: vowels
+    - ipa: /lə lu ʼyʁl dɑ̃ la fɔʁɛ./
+      engine: olaph
   level: 616
   en-GB: The wolf howls in the forest.
 - phrase: Le panda
   emoji: 🐼
   ipas:
-    - ipa: lə pɑ̃.da
-      category: vowels
+    - ipa: /lə pɑ̃da./
+      engine: olaph
   level: 415
   en-GB: The panda
 - phrase: Le panda mange du bambou.
   emoji: 🐼
   ipas:
-    - ipa: lə pɑ̃.da mɑ̃ʒ dy bɑ̃.bu
-      category: vowels
+    - ipa: /lə pɑ̃da mɑ̃ʒ dy bɑ̃bu./
+      engine: olaph
   level: 557
   en-GB: The panda eats bamboo.
 - phrase: Le pingouin
   emoji: 🐧
   ipas:
-    - ipa: lə pɛ̃.ɡwɛ̃
-      category: vowels
+    - ipa: /lə pɛ̃gwɛ̃./
+      engine: olaph
   level: 603
   en-GB: The penguin
 - phrase: Le pingouin nage bien.
   emoji: 🐧
   ipas:
-    - ipa: lə pɛ̃.ɡwɛ̃ naʒ bjɛ̃
-      category: vowels
+    - ipa: /lə pɛ̃gwɛ̃ naʒ bjɛ̃./
+      engine: olaph
   level: 619
   en-GB: The penguin swims well.
 - phrase: L'aigle
   emoji: 🦅
   ipas:
-    - ipa: lɛɡl
-      category: vowels
+    - ipa: /lɛgl./
+      engine: olaph
   level: 639
   en-GB: The eagle
 - phrase: L'aigle vole très haut.
   emoji: 🦅
   ipas:
-    - ipa: lɛɡl vɔl tʁɛ o
-      category: vowels
+    - ipa: /lɛgl vɔl tʁɛ ʼo./
+      engine: olaph
   level: 553
   en-GB: The eagle flies very high.
 - phrase: La fourmi
   emoji: 🐜
   ipas:
-    - ipa: la fuʁ.mi
-      category: vowels
+    - ipa: /la fuʁmi./
+      engine: olaph
   level: 587
   en-GB: The ant
 - phrase: La fourmi est très petite.
   emoji: 🐜
   ipas:
-    - ipa: la fuʁ.mi ɛ tʁɛ pə.tit
-      category: vowels
+    - ipa: /la fuʁmi ɛst tʁɛ pətit./
+      engine: olaph
   level: 626
   en-GB: The ant is very small.
 - phrase: Rouge
   emoji: 🔴
   ipas:
-    - ipa: ʁuʒ
-      category: vowels
+    - ipa: /ʁuʒ./
+      engine: olaph
   level: 606
   en-GB: red
 - phrase: Bleu
   emoji: 🔵
   ipas:
-    - ipa: blø
-      category: vowels
+    - ipa: /blø./
+      engine: olaph
   level: 564
   en-GB: blue
 - phrase: Vert
   emoji: 💚
   ipas:
-    - ipa: vɛʁ
-      category: vowels
+    - ipa: /vɛʁ./
+      engine: olaph
   level: 564
   en-GB: green
 - phrase: Jaune
   emoji: 💛
   ipas:
-    - ipa: ʒon
-      category: vowels
+    - ipa: /ʒon./
+      engine: olaph
   level: 606
   en-GB: yellow
 - phrase: Blanc
   emoji: ⬜
   ipas:
-    - ipa: blɑ̃
-      category: vowels
+    - ipa: /blɑ̃./
+      engine: olaph
   level: 581
   en-GB: white
 - phrase: Noir
   emoji: 🖤
   ipas:
-    - ipa: nwaʁ
-      category: vowels
+    - ipa: /nwaʁ./
+      engine: olaph
   level: 564
   en-GB: black
 - phrase: Rose
   emoji: 🩷
   ipas:
-    - ipa: ʁoz
-      category: vowels
+    - ipa: /ʁoz./
+      engine: olaph
   level: 263
   en-GB: pink
 - phrase: Violet
   emoji: 💜
   ipas:
-    - ipa: vjɔ.lɛ
-      category: vowels
+    - ipa: /vjɔlɛ./
+      engine: olaph
   level: 308
   en-GB: purple
 - phrase: La tête
   emoji: 👤
   ipas:
-    - ipa: la tɛt
-      category: vowels
+    - ipa: /la tɛt./
+      engine: olaph
   level: 558
   en-GB: The head
 - phrase: La tête pense.
   emoji: 👤
   ipas:
-    - ipa: la tɛt pɑ̃s
-      category: vowels
+    - ipa: /la tɛt pɑ̃s./
+      engine: olaph
   level: 593
   en-GB: The head thinks.
 - phrase: Le bras
   emoji: 💪
   ipas:
-    - ipa: lə bʁa
-      category: vowels
+    - ipa: /lə bʁa./
+      engine: olaph
   level: 558
   en-GB: The arm
 - phrase: Le bras est fort.
   emoji: 💪
   ipas:
-    - ipa: lə bʁa ɛ fɔʁ
-      category: vowels
+    - ipa: /lə bʁa ɛst fɔʁ./
+      engine: olaph
   level: 507
   en-GB: The arm is strong.
 - phrase: La jambe
   emoji: 🦵
   ipas:
-    - ipa: la ʒɑ̃b
-      category: vowels
+    - ipa: /la ʒɑ̃b./
+      engine: olaph
   level: 578
   en-GB: The leg
 - phrase: La jambe court vite.
   emoji: 🦵
   ipas:
-    - ipa: la ʒɑ̃b kuʁ vit
-      category: vowels
+    - ipa: /la ʒɑ̃b kuʁ vit./
+      engine: olaph
   level: 538
   en-GB: The leg runs fast.
 - phrase: Le nez
   emoji: 👃
   ipas:
-    - ipa: lə ne
-      category: vowels
+    - ipa: /lə ne./
+      engine: olaph
   level: 549
   en-GB: The nose
 - phrase: Le nez sent les fleurs.
   emoji: 👃
   ipas:
-    - ipa: lə ne sɑ̃ le flœʁ
-      category: vowels
+    - ipa: /lə ne sɑ̃ le flœʁ./
+      engine: olaph
   level: 601
   en-GB: The nose smells of flowers.
 - phrase: L'oreille
   emoji: 👂
   ipas:
-    - ipa: lɔ.ʁɛj
-      category: vowels
+    - ipa: /lɔʁɛj./
+      engine: olaph
   level: 698
   en-GB: The ear
 - phrase: L'oreille entend les sons.
   emoji: 👂
   ipas:
-    - ipa: lɔ.ʁɛj ɑ̃.tɑ̃ le sɔ̃
-      category: vowels
+    - ipa: /lɔʁɛj ɑ̃tɑ̃ le sɔ̃./
+      engine: olaph
   level: 642
   en-GB: The ear hears sounds.
 - phrase: La bouche
   emoji: 👄
   ipas:
-    - ipa: la buʃ
-      category: vowels
+    - ipa: /la buʃ./
+      engine: olaph
   level: 587
   en-GB: The mouth
 - phrase: La bouche parle et mange.
   emoji: 👄
   ipas:
-    - ipa: la buʃ paʁl e mɑ̃ʒ
-      category: vowels
+    - ipa: /la buʃ paʁl e mɑ̃ʒ./
+      engine: olaph
   level: 622
   en-GB: The mouth speaks and eats.
 - phrase: La dent
   emoji: 🦷
   ipas:
-    - ipa: la dɑ̃
-      category: vowels
+    - ipa: /la dɑ̃./
+      engine: olaph
   level: 558
   en-GB: The tooth
 - phrase: La dent est blanche.
   emoji: 🦷
   ipas:
-    - ipa: la dɑ̃ ɛ blɑ̃ʃ
-      category: vowels
+    - ipa: /la dɑ̃ ɛst blɑ̃ʃ./
+      engine: olaph
   level: 605
   en-GB: The tooth is white.
 - phrase: Le doigt
   emoji: ☝️
   ipas:
-    - ipa: lə dwa
-      category: vowels
+    - ipa: /lə dwa./
+      engine: olaph
   level: 566
   en-GB: The finger
 - phrase: Le doigt montre le chemin.
   emoji: ☝️
   ipas:
-    - ipa: lə dwa mɔ̃tʁ lə ʃə.mɛ̃
-      category: vowels
+    - ipa: /lə dwa mɔ̃tʁ lə ʃmɛ̃./
+      engine: olaph
   level: 621
   en-GB: The finger shows the way.
 - phrase: L'œil
   emoji: 👁️
   ipas:
-    - ipa: lœj
-      category: vowels
+    - ipa: /lœj./
+      engine: olaph
   level: 581
   en-GB: The eye
 - phrase: L'œil voit les couleurs.
   emoji: 👁️
   ipas:
-    - ipa: lœj vwa le ku.lœʁ
-      category: vowels
+    - ipa: /lœj vwa le kulœʁ./
+      engine: olaph
   level: 621
   en-GB: The eye sees colors.
 - phrase: Le train
   emoji: 🚂
   ipas:
-    - ipa: lə tʁɛ̃
-      category: vowels
+    - ipa: /lə tʁɛ̃./
+      engine: olaph
   level: 392
   en-GB: The train
 - phrase: Le train roule vite.
   emoji: 🚂
   ipas:
-    - ipa: lə tʁɛ̃ ʁul vit
-      category: vowels
+    - ipa: /lə tʁɛ̃ ʁul vit./
+      engine: olaph
   level: 524
   en-GB: The train is moving fast.
 - phrase: L'avion
   emoji: ✈️
   ipas:
-    - ipa: la.vjɔ̃
-      category: vowels
+    - ipa: /lavjɔ̃./
+      engine: olaph
   level: 639
   en-GB: The plane
 - phrase: L'avion vole dans le ciel.
   emoji: ✈️
   ipas:
-    - ipa: la.vjɔ̃ vɔl dɑ̃ lə sjɛl
-      category: vowels
+    - ipa: /lavjɔ̃ vɔl dɑ̃ lə sjɛl./
+      engine: olaph
   level: 564
   en-GB: The plane is flying in the sky.
 - phrase: Le bateau
   emoji: 🚢
   ipas:
-    - ipa: lə ba.to
-      category: vowels
+    - ipa: /lə bato./
+      engine: olaph
   level: 587
   en-GB: The boat
 - phrase: Le bateau navigue sur la mer.
   emoji: 🚢
   ipas:
-    - ipa: lə ba.to na.viɡ syʁ la mɛʁ
-      category: vowels
+    - ipa: /lə bato navig syʁ la mɛʁ./
+      engine: olaph
   level: 627
   en-GB: The boat is sailing on the sea.
 - phrase: Le bus
   emoji: 🚌
   ipas:
-    - ipa: lə bys
-      category: vowels
+    - ipa: /lə bys./
+      engine: olaph
   level: 373
   en-GB: The bus
 - phrase: Le bus transporte les gens.
   emoji: 🚌
   ipas:
-    - ipa: lə bys tʁɑ̃s.pɔʁt le ʒɑ̃
-      category: vowels
+    - ipa: /lə bys tʁɑ̃spɔʁt le ʒɑ̃./
+      engine: olaph
   level: 554
   en-GB: The bus transports people.
 - phrase: La moto
   emoji: 🏍️
   ipas:
-    - ipa: la mɔ.to
-      category: vowels
+    - ipa: /la mɔto./
+      engine: olaph
   level: 570
   en-GB: The motorcycle
 - phrase: La moto va très vite.
   emoji: 🏍️
   ipas:
-    - ipa: la mɔ.to va tʁɛ vit
-      category: vowels
+    - ipa: /la mɔto va tʁɛ vit./
+      engine: olaph
   level: 604
   en-GB: The bike goes very fast.
 - phrase: L'arc-en-ciel
   emoji: 🌈
   ipas:
-    - ipa: laʁk.ɑ̃.sjɛl
-      category: vowels
+    - ipa: /laʁk ɑ̃ sjɛl./
+      engine: olaph
   level: 764
   en-GB: The rainbow
 - phrase: L'arc-en-ciel brille après la pluie.
   emoji: 🌈
   ipas:
-    - ipa: laʁk.ɑ̃.sjɛl bʁij a.pʁɛ la plɥi
-      category: vowels
+    - ipa: /laʁk ɑ̃ sjɛl bʁij apʁɛ la plɥi./
+      engine: olaph
   level: 659
   en-GB: The rainbow shines after the rain.
 - phrase: Le nuage
   emoji: ☁️
   ipas:
-    - ipa: lə nɥaʒ
-      category: vowels
+    - ipa: /lə nɥaʒ./
+      engine: olaph
   level: 578
   en-GB: The cloud
 - phrase: Le nuage cache le soleil.
   emoji: ☁️
   ipas:
-    - ipa: lə nɥaʒ kaʃ lə sɔ.lɛj
-      category: vowels
+    - ipa: /lə nɥaʒ kaʃ lə sɔlɛj./
+      engine: olaph
   level: 622
   en-GB: The cloud hides the sun.
 - phrase: La neige tombe doucement.
   emoji: ❄️
   ipas:
-    - ipa: la nɛʒ tɔ̃b dus.mɑ̃
-      category: vowels
+    - ipa: /la nɛʒ tɔ̃b dusmɑ̃./
+      engine: olaph
   level: 644
   en-GB: The snow is falling slowly.
 - phrase: La pluie
   emoji: 🌧️
   ipas:
-    - ipa: la plɥi
-      category: vowels
+    - ipa: /la plɥi./
+      engine: olaph
   level: 566
   en-GB: The rain
 - phrase: La pluie tombe sur le jardin.
   emoji: 🌧️
   ipas:
-    - ipa: la plɥi tɔ̃b syʁ lə ʒaʁ.dɛ̃
-      category: vowels
+    - ipa: /la plɥi tɔ̃b syʁ lə ʒaʁdɛ̃./
+      engine: olaph
   level: 623
   en-GB: The rain falls on the garden.
 - phrase: Le vent
   emoji: 💨
   ipas:
-    - ipa: lə vɑ̃
-      category: vowels
+    - ipa: /lə vɑ̃./
+      engine: olaph
   level: 558
   en-GB: The wind
 - phrase: Le vent souffle fort.
   emoji: 💨
   ipas:
-    - ipa: lə vɑ̃ sufl fɔʁ
-      category: vowels
+    - ipa: /lə vɑ̃ sufl fɔʁ./
+      engine: olaph
   level: 530
   en-GB: The wind is blowing hard.
 - phrase: L'étoile
   emoji: ⭐
   ipas:
-    - ipa: le.twal
-      category: vowels
+    - ipa: /letwal./
+      engine: olaph
   level: 656
   en-GB: The star
 - phrase: L'étoile brille dans le ciel.
   emoji: ⭐
   ipas:
-    - ipa: le.twal bʁij dɑ̃ lə sjɛl
-      category: vowels
+    - ipa: /letwal bʁij dɑ̃ lə sjɛl./
+      engine: olaph
   level: 631
   en-GB: The star shines in the sky.
 - phrase: La plage
   emoji: 🏖️
   ipas:
-    - ipa: la plaʒ
-      category: vowels
+    - ipa: /la plaʒ./
+      engine: olaph
   level: 578
   en-GB: The beach
 - phrase: La plage est belle et ensoleillée.
   emoji: 🏖️
   ipas:
-    - ipa: la plaʒ ɛ bɛl e ɑ̃.sɔ.le.je
-      category: vowels
+    - ipa: /la plaʒ ɛst bɛl e ɑ̃sɔleje./
+      engine: olaph
   level: 649
   en-GB: The beach is beautiful and sunny.
 - phrase: L'île
   emoji: 🏝️
   ipas:
-    - ipa: lil
-      category: vowels
+    - ipa: /lil./
+      engine: olaph
   level: 581
   en-GB: The island
 - phrase: L'île est entourée d'eau.
   emoji: 🏝️
   ipas:
-    - ipa: lil ɛt ɑ̃.tu.ʁe do
-      category: vowels
+    - ipa: /lil ɛst ɑ̃tuʁe d o./
+      engine: olaph
   level: 632
   en-GB: The island is surrounded by water.
 - phrase: La forêt
   emoji: 🌲
   ipas:
-    - ipa: la fɔ.ʁɛ
-      category: vowels
+    - ipa: /la fɔʁɛ./
+      engine: olaph
   level: 566
   en-GB: The forest
 - phrase: La forêt est calme et verte.
   emoji: 🌲
   ipas:
-    - ipa: la fɔ.ʁɛ ɛ kalm e vɛʁt
-      category: vowels
+    - ipa: /la fɔʁɛ ɛst kalm e vɛʁt./
+      engine: olaph
   level: 620
   en-GB: The forest is calm and green.
 - phrase: Le feu
   emoji: 🔥
   ipas:
-    - ipa: lə fø
-      category: vowels
+    - ipa: /lə fø./
+      engine: olaph
   level: 549
   en-GB: The fire
 - phrase: Le feu brûle dans la cheminée.
   emoji: 🔥
   ipas:
-    - ipa: lə fø bʁyl dɑ̃ la ʃə.mi.ne
-      category: vowels
+    - ipa: /lə fø bʁyl dɑ̃ la ʃəmine./
+      engine: olaph
   level: 625
   en-GB: The fire burns in the fireplace.
 - phrase: L'éclair
   emoji: ⚡
   ipas:
-    - ipa: le.klɛʁ
-      category: vowels
+    - ipa: /leklɛʁ./
+      engine: olaph
   level: 631
   en-GB: The lightning
 - phrase: L'éclair illumine le ciel.
   emoji: ⚡
   ipas:
-    - ipa: le.klɛʁ i.ly.min lə sjɛl
-      category: vowels
+    - ipa: /leklɛʁ ilymin lə sjɛl./
+      engine: olaph
   level: 642
   en-GB: Lightning illuminates the sky.
 - phrase: Le volcan
   emoji: 🌋
   ipas:
-    - ipa: lə vɔl.kɑ̃
-      category: vowels
+    - ipa: /lə vɔlkɑ̃./
+      engine: olaph
   level: 587
   en-GB: The volcano
 - phrase: Le volcan entre en éruption.
   emoji: 🌋
   ipas:
-    - ipa: lə vɔl.kɑ̃ ɑ̃tʁ ɑ̃ e.ʁyp.sjɔ̃
-      category: vowels
+    - ipa: /lə vɔlkɑ̃ ɑ̃tʁ ɑ̃ eʁypsjɔ̃./
+      engine: olaph
   level: 632
   en-GB: The volcano erupts
 - phrase: L'orange
   emoji: 🍊
   ipas:
-    - ipa: lɔ.ʁɑ̃ʒ
-      category: vowels
+    - ipa: /lɔʁɑ̃ʒ./
+      engine: olaph
   level: 681
   en-GB: The orange
 - phrase: L'orange est juteuse et sucrée.
   emoji: 🍊
   ipas:
-    - ipa: lɔ.ʁɑ̃ʒ ɛ ʒy.tøz e sy.kʁe
-      category: vowels
+    - ipa: /lɔʁɑ̃ʒ ɛst ʒytøz e sykʁe./
+      engine: olaph
   level: 652
   en-GB: The orange is juicy and sweet.
 - phrase: Le raisin
   emoji: 🍇
   ipas:
-    - ipa: lə ʁɛ.zɛ̃
-      category: vowels
+    - ipa: /lə ʁɛzɛ̃./
+      engine: olaph
   level: 417
   en-GB: The grape
 - phrase: Le raisin est doux et juteux.
   emoji: 🍇
   ipas:
-    - ipa: lə ʁɛ.zɛ̃ ɛ du e ʒy.tø
-      category: vowels
+    - ipa: /lə ʁɛzɛ̃ ɛst du e ʒytø./
+      engine: olaph
   level: 566
   en-GB: The grapes are sweet and juicy.
 - phrase: La cerise
   emoji: 🍒
   ipas:
-    - ipa: la sə.ʁiz
-      category: vowels
+    - ipa: /la səʁiz./
+      engine: olaph
   level: 599
   en-GB: The cherry
 - phrase: La cerise est petite et rouge.
   emoji: 🍒
   ipas:
-    - ipa: la sə.ʁiz ɛ pə.tit e ʁuʒ
-      category: vowels
+    - ipa: /la səʁiz ɛst pətit e ʁuʒ./
+      engine: olaph
   level: 638
   en-GB: The cherry is small and red.
 - phrase: La tomate
   emoji: 🍅
   ipas:
-    - ipa: la tɔ.mat
-      category: vowels
+    - ipa: /la tɔmat./
+      engine: olaph
   level: 599
   en-GB: The tomato
 - phrase: La tomate est rouge et ronde.
   emoji: 🍅
   ipas:
-    - ipa: la tɔ.mat ɛ ʁuʒ e ʁɔ̃d
-      category: vowels
+    - ipa: /la tɔmat ɛst ʁuʒ e ʁɔ̃d./
+      engine: olaph
   level: 631
   en-GB: The tomato is red and round.
 - phrase: La carotte
   emoji: 🥕
   ipas:
-    - ipa: la ka.ʁɔt
-      category: vowels
+    - ipa: /la kaʁɔt./
+      engine: olaph
   level: 608
   en-GB: The carrot
 - phrase: La carotte est bonne pour les yeux.
   emoji: 🥕
   ipas:
-    - ipa: la ka.ʁɔt ɛ bɔn puʁ le jø
-      category: vowels
+    - ipa: /la kaʁɔt ɛst bɔn puʁ le jø./
+      engine: olaph
   level: 637
   en-GB: Carrot is good for the eyes.
 - phrase: La pomme de terre
   emoji: 🥔
   ipas:
-    - ipa: la pɔm də tɛʁ
-      category: vowels
+    - ipa: /la pɔm də tɛʁ./
+      engine: olaph
   level: 598
   en-GB: The potato
 - phrase: La pomme de terre cuit dans l'eau.
   emoji: 🥔
   ipas:
-    - ipa: la pɔm də tɛʁ kɥi dɑ̃ lo
-      category: vowels
+    - ipa: /la pɔm də tɛʁ kɥi dɑ̃ l o./
+      engine: olaph
   level: 631
   en-GB: The potato cooks in water.
 - phrase: Le chocolat est délicieux.
   emoji: 🍫
   ipas:
-    - ipa: lə ʃɔ.kɔ.la ɛ de.li.sjø
-      category: vowels
+    - ipa: /lə ʃɔkɔla ɛst delisjø./
+      engine: olaph
   level: 642
   en-GB: The chocolate is delicious.
 - phrase: La glace
   emoji: 🍦
   ipas:
-    - ipa: la ɡlas
-      category: vowels
+    - ipa: /la glas./
+      engine: olaph
   level: 578
   en-GB: Ice cream
 - phrase: La glace fond au soleil.
   emoji: 🍦
   ipas:
-    - ipa: la ɡlas fɔ̃ o sɔ.lɛj
-      category: vowels
+    - ipa: /la glas fɔ̃ o sɔlɛj./
+      engine: olaph
   level: 555
   en-GB: The ice melts in the sun.
 - phrase: La pizza
   emoji: 🍕
   ipas:
-    - ipa: la pit.sa
-      category: vowels
+    - ipa: /la pidza./
+      engine: olaph
   level: 414
   en-GB: The pizza
 - phrase: La pizza est chaude et savoureuse.
   emoji: 🍕
   ipas:
-    - ipa: la pit.sa ɛ ʃod e sa.vu.ʁøz
-      category: vowels
+    - ipa: /la pidza ɛst ʃod e savuʁøz./
+      engine: olaph
   level: 594
   en-GB: The pizza is hot and tasty.
 - phrase: L'eau est essentielle à la vie.
   emoji: 💧
   ipas:
-    - ipa: lo ɛt e.sɑ̃.sjɛl a la vi
-      category: vowels
+    - ipa: /ləo ɛst esɑ̃sjɛl a la vi./
+      engine: olaph
   level: 632
   en-GB: Water is essential for life.
 - phrase: Le lait est blanc et nutritif.
   emoji: 🥛
   ipas:
-    - ipa: lə lɛ ɛ blɑ̃ e ny.tʁi.tif
-      category: vowels
+    - ipa: /lə lɛ ɛst blɑ̃ e nytʁitif./
+      engine: olaph
   level: 625
   en-GB: The milk is white and nutritious.
 - phrase: L'œuf
   emoji: 🥚
   ipas:
-    - ipa: lœf
-      category: vowels
+    - ipa: /lœf./
+      engine: olaph
   level: 581
   en-GB: The egg
 - phrase: L'œuf est frais et rond.
   emoji: 🥚
   ipas:
-    - ipa: lœf ɛ fʁɛ e ʁɔ̃
-      category: vowels
+    - ipa: /lœf ɛst fʁɛ e ʁɔ̃./
+      engine: olaph
   level: 604
   en-GB: The egg is fresh and round.
 - phrase: Le miel est doux et sucré.
   emoji: 🍯
   ipas:
-    - ipa: lə mjɛl ɛ du e sy.kʁe
-      category: vowels
+    - ipa: /lə mjɛl ɛst du e sykʁe./
+      engine: olaph
   level: 606
   en-GB: Honey is sweet and sweet.
 - phrase: La soupe
   emoji: 🍲
   ipas:
-    - ipa: la sup
-      category: vowels
+    - ipa: /la sup./
+      engine: olaph
   level: 578
   en-GB: The soup
 - phrase: La soupe est chaude et bonne.
   emoji: 🍲
   ipas:
-    - ipa: la sup ɛ ʃod e bɔn
-      category: vowels
+    - ipa: /la sup ɛst ʃod e bɔn./
+      engine: olaph
   level: 627
   en-GB: The soup is hot and good.
 - phrase: Le riz cuit dans la casserole.
   emoji: 🍚
   ipas:
-    - ipa: lə ʁi kɥi dɑ̃ la ka.sʁɔl
-      category: vowels
+    - ipa: /lə ʁi kɥi dɑ̃ la kasʁɔl./
+      engine: olaph
   level: 629
   en-GB: The rice cooks in the pan.
 - phrase: Le gâteau
   emoji: 🍰
   ipas:
-    - ipa: lə ɡa.to
-      category: vowels
+    - ipa: /lə gato./
+      engine: olaph
   level: 574
   en-GB: The cake
 - phrase: Le gâteau est sucré et moelleux.
   emoji: 🍰
   ipas:
-    - ipa: lə ɡa.to ɛ sy.kʁe e mwa.lø
-      category: vowels
+    - ipa: /lə gato ɛst sykʁe e mwalø./
+      engine: olaph
   level: 627
   en-GB: The cake is sweet and moist.
 - phrase: Les frites sont croustillantes.
   emoji: 🍟
   ipas:
-    - ipa: le fʁit sɔ̃ kʁus.ti.jɑ̃t
-      category: vowels
+    - ipa: /le fʁit sɔ̃ kʁustijɑ̃t./
+      engine: olaph
   level: 669
   en-GB: The fries are crispy.
 - phrase: Le sandwich
   emoji: 🥪
   ipas:
-    - ipa: lə sɑ̃d.witʃ
-      category: vowels
+    - ipa: /lə sɑ̃dwitʃ./
+      engine: olaph
   level: 432
   en-GB: The sandwich
 - phrase: Le sandwich est délicieux.
   emoji: 🥪
   ipas:
-    - ipa: lə sɑ̃d.witʃ ɛ de.li.sjø
-      category: vowels
+    - ipa: /lə sɑ̃dwitʃ ɛst delisjø./
+      engine: olaph
   level: 550
   en-GB: The sandwich is delicious.
 - phrase: Le pantalon
   emoji: 👖
   ipas:
-    - ipa: lə pɑ̃.ta.lɔ̃
-      category: vowels
+    - ipa: /lə pɑ̃talɔ̃./
+      engine: olaph
   level: 616
   en-GB: The pants
 - phrase: Le pantalon est confortable.
   emoji: 👖
   ipas:
-    - ipa: lə pɑ̃.ta.lɔ̃ ɛ kɔ̃.fɔʁ.tabl
-      category: vowels
+    - ipa: /lə pɑ̃talɔ̃ ɛst kɔ̃fɔʁtabl./
+      engine: olaph
   level: 663
   en-GB: The pants are comfortable.
 - phrase: La veste
   emoji: 🧥
   ipas:
-    - ipa: la vɛst
-      category: vowels
+    - ipa: /la vɛst./
+      engine: olaph
   level: 578
   en-GB: The jacket
 - phrase: La veste garde au chaud.
   emoji: 🧥
   ipas:
-    - ipa: la vɛst ɡaʁd o ʃo
-      category: vowels
+    - ipa: /la vɛst gaʁd o ʃo./
+      engine: olaph
   level: 614
   en-GB: The jacket keeps you warm.
 - phrase: L'écharpe
   emoji: 🧣
   ipas:
-    - ipa: le.ʃaʁp
-      category: vowels
+    - ipa: /leʃaʁp./
+      engine: olaph
   level: 672
   en-GB: The scarf
 - phrase: L'écharpe protège du froid.
   emoji: 🧣
   ipas:
-    - ipa: le.ʃaʁp pʁɔ.tɛʒ dy fʁwa
-      category: vowels
+    - ipa: /leʃaʁp pʁɔtɛʒ dy fʁwa./
+      engine: olaph
   level: 640
   en-GB: The scarf protects from the cold.
 - phrase: Le bonnet couvre les oreilles.
   emoji: 🧢
   ipas:
-    - ipa: lə bɔ.nɛ kuvʁ le zɔ.ʁɛj
-      category: vowels
+    - ipa: /lə bɔnɛ kuvʁ le ɔʁɛj./
+      engine: olaph
   level: 587
   en-GB: The hat covers the ears.
 - phrase: La chaussette
   emoji: 🧦
   ipas:
-    - ipa: la ʃo.sɛt
-      category: vowels
+    - ipa: /la ʃosɛt./
+      engine: olaph
   level: 632
   en-GB: The sock
 - phrase: La chaussette tient les pieds au chaud.
   emoji: 🧦
   ipas:
-    - ipa: la ʃo.sɛt tjɛ̃ le pje o ʃo
-      category: vowels
+    - ipa: /la ʃosɛt tjɛ̃ le pje o ʃo./
+      engine: olaph
   level: 643
   en-GB: The sock keeps your feet warm.
 - phrase: La robe
   emoji: 👗
   ipas:
-    - ipa: la ʁɔb
-      category: vowels
+    - ipa: /la ʁɔb./
+      engine: olaph
   level: 416
   en-GB: The dress
 - phrase: La robe est belle et élégante.
   emoji: 👗
   ipas:
-    - ipa: la ʁɔb ɛ bɛl e e.le.ɡɑ̃t
-      category: vowels
+    - ipa: /la ʁɔb ɛst bɛl e elegɑ̃t./
+      engine: olaph
   level: 578
   en-GB: The dress is beautiful and elegant.
 - phrase: La chaussure
   emoji: 👞
   ipas:
-    - ipa: la ʃo.syʁ
-      category: vowels
+    - ipa: /la ʃosyʁ./
+      engine: olaph
   level: 624
   en-GB: The shoe
 - phrase: La chaussure protège le pied.
   emoji: 👞
   ipas:
-    - ipa: la ʃo.syʁ pʁɔ.tɛʒ lə pje
-      category: vowels
+    - ipa: /la ʃosyʁ pʁɔtɛʒ lə pje./
+      engine: olaph
   level: 636
   en-GB: The shoe protects the foot.
 - phrase: Les lunettes
   emoji: 👓
   ipas:
-    - ipa: le ly.nɛt
-      category: vowels
+    - ipa: /le lynɛt./
+      engine: olaph
   level: 624
   en-GB: The glasses
 - phrase: Les lunettes aident à voir.
   emoji: 👓
   ipas:
-    - ipa: le ly.nɛt ɛd a vwaʁ
-      category: vowels
+    - ipa: /le lynɛt ɛd a vwaʁ./
+      engine: olaph
   level: 629
   en-GB: Glasses help you see.
 - phrase: Le gant
   emoji: 🧤
   ipas:
-    - ipa: lə ɡɑ̃
-      category: vowels
+    - ipa: /lə gɑ̃./
+      engine: olaph
   level: 558
   en-GB: The glove
 - phrase: Le gant protège les mains.
   emoji: 🧤
   ipas:
-    - ipa: lə ɡɑ̃ pʁɔ.tɛʒ le mɛ̃
-      category: vowels
+    - ipa: /lə gɑ̃ pʁɔtɛʒ le mɛ̃./
+      engine: olaph
   level: 616
   en-GB: The glove protects the hands.
 - phrase: La porte
   emoji: 🚪
   ipas:
-    - ipa: la pɔʁt
-      category: vowels
+    - ipa: /la pɔʁt./
+      engine: olaph
   level: 578
   en-GB: The door
 - phrase: La porte s'ouvre et se ferme.
   emoji: 🚪
   ipas:
-    - ipa: la pɔʁt suvʁ e sə fɛʁm
-      category: vowels
+    - ipa: /la pɔʁt suvʁ e sə fɛʁm./
+      engine: olaph
   level: 627
   en-GB: The door opens and closes.
 - phrase: Le lit
   emoji: 🛏️
   ipas:
-    - ipa: lə li
-      category: vowels
+    - ipa: /lə li./
+      engine: olaph
   level: 549
   en-GB: The bed
 - phrase: Le lit est doux et confortable.
   emoji: 🛏️
   ipas:
-    - ipa: lə li ɛ du e kɔ̃.fɔʁ.tabl
-      category: vowels
+    - ipa: /lə li ɛst du e kɔ̃fɔʁtabl./
+      engine: olaph
   level: 632
   en-GB: The bed is soft and comfortable.
 - phrase: La chaise
   emoji: 🪑
   ipas:
-    - ipa: la ʃɛz
-      category: vowels
+    - ipa: /la ʃɛz./
+      engine: olaph
   level: 587
   en-GB: The chair
 - phrase: La chaise est pour s'asseoir.
   emoji: 🪑
   ipas:
-    - ipa: la ʃɛz ɛ puʁ sa.swaʁ
-      category: vowels
+    - ipa: /la ʃɛz ɛst puʁ sasswaʁ./
+      engine: olaph
   level: 631
   en-GB: The chair is for sitting.
 - phrase: La clé
   emoji: 🔑
   ipas:
-    - ipa: la kle
-      category: vowels
+    - ipa: /la kle./
+      engine: olaph
   level: 549
   en-GB: The key
 - phrase: La clé ouvre la porte.
   emoji: 🔑
   ipas:
-    - ipa: la kle uvʁ la pɔʁt
-      category: vowels
+    - ipa: /la kle uvʁ la pɔʁt./
+      engine: olaph
   level: 608
   en-GB: The key opens the door.
 - phrase: La lampe
   emoji: 💡
   ipas:
-    - ipa: la lɑ̃p
-      category: vowels
+    - ipa: /la lɑ̃p./
+      engine: olaph
   level: 578
   en-GB: The lamp
 - phrase: La lampe éclaire la pièce.
   emoji: 💡
   ipas:
-    - ipa: la lɑ̃p e.klɛʁ la pjɛs
-      category: vowels
+    - ipa: /la lɑ̃p eklɛʁ la pjɛs./
+      engine: olaph
   level: 626
   en-GB: The lamp illuminates the room.
 - phrase: Le canapé
   emoji: 🛋️
   ipas:
-    - ipa: lə ka.na.pe
-      category: vowels
+    - ipa: /lə kanape./
+      engine: olaph
   level: 587
   en-GB: The sofa
 - phrase: Le canapé est confortable.
   emoji: 🛋️
   ipas:
-    - ipa: lə ka.na.pe ɛ kɔ̃.fɔʁ.tabl
-      category: vowels
+    - ipa: /lə kanape ɛst kɔ̃fɔʁtabl./
+      engine: olaph
   level: 648
   en-GB: The sofa is comfortable.
 - phrase: L'hôpital
   emoji: 🏥
   ipas:
-    - ipa: lo.pi.tal
-      category: vowels
+    - ipa: /lɔpital./
+      engine: olaph
   level: 672
   en-GB: The hospital
 - phrase: L'hôpital soigne les malades.
   emoji: 🏥
   ipas:
-    - ipa: lo.pi.tal swaɲ le ma.lad
-      category: vowels
+    - ipa: /lɔpital swaɲ le malad./
+      engine: olaph
   level: 661
   en-GB: The hospital treats the sick.
 - phrase: L'église
   emoji: ⛪
   ipas:
-    - ipa: le.ɡliz
-      category: vowels
+    - ipa: /legliz./
+      engine: olaph
   level: 656
   en-GB: The church
 - phrase: L'église est belle et ancienne.
   emoji: ⛪
   ipas:
-    - ipa: le.ɡliz ɛ bɛl e ɑ̃.sjɛn
-      category: vowels
+    - ipa: /legliz ɛst bɛl e ɑ̃sjɛn./
+      engine: olaph
   level: 648
   en-GB: The church is beautiful and old.
 - phrase: Le château
   emoji: 🏰
   ipas:
-    - ipa: lə ʃa.to
-      category: vowels
+    - ipa: /lə ʃato./
+      engine: olaph
   level: 582
   en-GB: The castle
 - phrase: Le château est très vieux.
   emoji: 🏰
   ipas:
-    - ipa: lə ʃa.to ɛ tʁɛ vjø
-      category: vowels
+    - ipa: /lə ʃato ɛst tʁɛ vjø./
+      engine: olaph
   level: 611
   en-GB: The castle is very old.
 - phrase: La montre
   emoji: ⌚
   ipas:
-    - ipa: /la mˈɔ̃tʁ/
-      category: vowels
+    - ipa: /la mɔ̃tʁ./
+      engine: olaph
   level: 689
   en-GB: The clock
 - phrase: Le parapluie
   emoji: ☂️
   ipas:
-    - ipa: /lə paʁaplyˈi/
-      category: vowels
+    - ipa: /lə paʁaplɥi./
+      engine: olaph
   level: 838
   en-GB: The umbrella keeps you dry
 - phrase: Le ballon de foot
   emoji: ⚽
   ipas:
-    - ipa: /lə balˈɔ̃ də fˈʊt/
-      category: vowels
+    - ipa: /lə balɔ̃ də fut./
+      engine: olaph
   level: 353
   en-GB: The soccer ball
 - phrase: La tente
   emoji: ⛺
   ipas:
-    - ipa: /la tˈɑ̃t/
-      category: vowels
+    - ipa: /la tɑ̃t./
+      engine: olaph
   level: 652
   en-GB: The tent
 - phrase: La main
   emoji: ✋
   ipas:
-    - ipa: /la mˈɛ̃/
-      category: vowels
+    - ipa: /la mɛ̃./
+      engine: olaph
   level: 1
   en-GB: The hand
 - phrase: Le crayon à papier
   emoji: ✏️
   ipas:
-    - ipa: /lə kʁɛjˈɔ̃ a papjˈe/
-      category: vowels
+    - ipa: /lə kʁɛjɔ̃ a papje./
+      engine: olaph
   level: 393
   en-GB: The pencil
 - phrase: Le cœur
   emoji: ❤️
   ipas:
-    - ipa: /lə kˈœʁ/
-      category: vowels
+    - ipa: /lə kœʁ./
+      engine: olaph
   level: 571
   en-GB: The heart
 - phrase: La neige tombante
   emoji: 🌨️
   ipas:
-    - ipa: /la nˈɛʒ tɔ̃bˈɑ̃t/
-      category: vowels
+    - ipa: /la nɛʒ tɔ̃bɑ̃t./
+      engine: olaph
   level: 846
   en-GB: Falling snow
 - phrase: Le vent qui souffle
   emoji: 🌬️
   ipas:
-    - ipa: /lə vˈɑ̃ ki sˈufl/
-      category: vowels
+    - ipa: /lə vɑ̃ ki sufl./
+      engine: olaph
   level: 741
   en-GB: The wind that blows
 - phrase: La rose
   emoji: 🌹
   ipas:
-    - ipa: /la ʁˈɔz/
-      category: vowels
+    - ipa: /la ʁoz./
+      engine: olaph
   level: 1
   en-GB: The rose
 - phrase: La feuille d'automne
   emoji: 🍁
   ipas:
-    - ipa: /la fˈœj dotˈɔn/
-      category: vowels
+    - ipa: /la fœj dotɔn./
+      engine: olaph
   level: 911
   en-GB: The autumn leaf
 - phrase: La viande
   emoji: 🍖
   ipas:
-    - ipa: /la vjˈɑ̃d/
-      category: vowels
+    - ipa: /la vjɑ̃d./
+      engine: olaph
   level: 689
   en-GB: The meat
 - phrase: Les pâtes
   emoji: 🍝
   ipas:
-    - ipa: /le pˈaːt/
-      category: vowels
+    - ipa: /le pat./
+      engine: olaph
   level: 636
   en-GB: pasta
 - phrase: Le beignet
   emoji: 🍩
   ipas:
-    - ipa: /lə bɛnjˈɛ/
-      category: vowels
+    - ipa: /lə bɛɲɛ./
+      engine: olaph
   level: 721
   en-GB: The donut
 - phrase: Le bonbon
   emoji: 🍭
   ipas:
-    - ipa: /lə bɔ̃bˈɔ̃/
-      category: vowels
+    - ipa: /lə bɔ̃bɔ̃./
+      engine: olaph
   level: 689
   en-GB: The candy
 - phrase: Le cadeau
   emoji: 🎁
   ipas:
-    - ipa: /lə kadˈo/
-      category: vowels
+    - ipa: /lə kado./
+      engine: olaph
   level: 689
   en-GB: The gift
 - phrase: La guitare
   emoji: 🎸
   ipas:
-    - ipa: /la ɡitˈaʁ/
-      category: vowels
+    - ipa: /la gitaʁ./
+      engine: olaph
   level: 774
   en-GB: The guitar
 - phrase: Le piano
   emoji: 🎹
   ipas:
-    - ipa: /lə pjanˈo/
-      category: vowels
+    - ipa: /lə pjano./
+      engine: olaph
   level: 1
   en-GB: The piano
 - phrase: La trompette
   emoji: 🎺
   ipas:
-    - ipa: /la tʁɔ̃pˈɛt/
-      category: vowels
+    - ipa: /la tʁɔ̃pɛt./
+      engine: olaph
   level: 838
   en-GB: The trumpet
 - phrase: Le violon
   emoji: 🎻
   ipas:
-    - ipa: /lə vjolˈɔ̃/
-      category: vowels
+    - ipa: /lə vjɔlɔ̃./
+      engine: olaph
   level: 689
   en-GB: The violin
 - phrase: Le chantier
   emoji: 🏗️
   ipas:
-    - ipa: /lə ʃɑ̃tjˈe/
-      category: vowels
+    - ipa: /lə ʃɑ̃tje./
+      engine: olaph
   level: 753
   en-GB: The construction site
 - phrase: Le crocodile
   emoji: 🐊
   ipas:
-    - ipa: /lə kʁokodˈil/
-      category: vowels
+    - ipa: /lə kʁɔkɔdil./
+      engine: olaph
   level: 199
   en-GB: The crocodile
 - phrase: La chèvre
   emoji: 🐐
   ipas:
-    - ipa: /la ʃˈɛvʁ/
-      category: vowels
+    - ipa: /la ʃɛvʁ./
+      engine: olaph
   level: 636
   en-GB: The goat
 - phrase: Le coq
   emoji: 🐓
   ipas:
-    - ipa: /lə kˈɔk/
-      category: vowels
+    - ipa: /lə kɔk./
+      engine: olaph
   level: 535
   en-GB: The rooster
 - phrase: Le hamster
   emoji: 🐹
   ipas:
-    - ipa: /lə amstˈɛʁ/
-      category: vowels
+    - ipa: /lə ʼamstɛʁ./
+      engine: olaph
   level: 29
   en-GB: The hamster
 - phrase: La langue
   emoji: 👅
   ipas:
-    - ipa: /la lˈɑ̃ɡ/
-      category: vowels
+    - ipa: /la lɑ̃g./
+      engine: olaph
   level: 689
   en-GB: The language
 - phrase: Le garçon
   emoji: 👦
   ipas:
-    - ipa: /lə ɡaʁsˈɔ̃/
-      category: vowels
+    - ipa: /lə gaʁsɔ̃./
+      engine: olaph
   level: 689
   en-GB: The young
 - phrase: La fille
   emoji: 👧
   ipas:
-    - ipa: /la fˈij/
-      category: vowels
+    - ipa: /la fij./
+      engine: olaph
   level: 652
   en-GB: The girl
 - phrase: L'homme
   emoji: 👨
   ipas:
-    - ipa: /lˈɔm/
-      category: vowels
+    - ipa: /lɔm./
+      engine: olaph
   level: 899
   en-GB: The man
 - phrase: La femme
   emoji: 👩
   ipas:
-    - ipa: /la fˈam/
-      category: vowels
+    - ipa: /la fam./
+      engine: olaph
   level: 652
   en-GB: The woman
 - phrase: La chapelle
   emoji: 💒
   ipas:
-    - ipa: /la ʃapˈɛl/
-      category: vowels
+    - ipa: /la ʃapɛl./
+      engine: olaph
   level: 806
   en-GB: The chapel
 - phrase: L'ordinateur
   emoji: 💻
   ipas:
-    - ipa: /lɔʁdinatˈœʁ/
-      category: vowels
+    - ipa: /lɔʁdinatœʁ./
+      engine: olaph
   level: 1000
   en-GB: The computer
 - phrase: La feuille de papier
   emoji: 📃
   ipas:
-    - ipa: /la fˈœj də papjˈe/
-      category: vowels
+    - ipa: /la fœj də papje./
+      engine: olaph
   level: 786
   en-GB: The sheet of paper
 - phrase: L'appareil photo
   emoji: 📷
   ipas:
-    - ipa: /lapaʁˈɛj fotˈo/
-      category: vowels
+    - ipa: /lapaʁɛj fɔto./
+      engine: olaph
   level: 357
   en-GB: The camera
 - phrase: La télévision
   emoji: 📺
   ipas:
-    - ipa: /la televizjˈɔ̃/
-      category: vowels
+    - ipa: /la televizjɔ̃./
+      engine: olaph
   level: 822
   en-GB: The TV
 - phrase: Le marteau
   emoji: 🔨
   ipas:
-    - ipa: /lə maʁtˈo/
-      category: vowels
+    - ipa: /lə maʁto./
+      engine: olaph
   level: 721
   en-GB: The hammer
 - phrase: Le couteau
   emoji: 🔪
   ipas:
-    - ipa: /lə kutˈo/
-      category: vowels
+    - ipa: /lə kuto./
+      engine: olaph
   level: 721
   en-GB: The knife
 - phrase: Le télescope
   emoji: 🔭
   ipas:
-    - ipa: /lə telɛskˈɔp/
-      category: vowels
+    - ipa: /lə teleskɔp./
+      engine: olaph
   level: 838
   en-GB: The telescope
 - phrase: Le stylo
   emoji: 🖊️
   ipas:
-    - ipa: /lə stilˈo/
-      category: vowels
+    - ipa: /lə stilo./
+      engine: olaph
   level: 604
   en-GB: The pen
 - phrase: La fusée
   emoji: 🚀
   ipas:
-    - ipa: /la fyzˈe/
-      category: vowels
+    - ipa: /la fyze./
+      engine: olaph
   level: 652
   en-GB: The rocket
 - phrase: L'hélicoptère
   emoji: 🚁
   ipas:
-    - ipa: /lelikɔptˈɛʁ/
-      category: vowels
+    - ipa: /lelikɔptɛʁ./
+      engine: olaph
   level: 1000
   en-GB: The helicopter
 - phrase: Le bateau à moteur
   emoji: 🚤
   ipas:
-    - ipa: /lə batˈo a motˈœʁ/
-      category: vowels
+    - ipa: /lə bato a mɔtœʁ./
+      engine: olaph
   level: 749
   en-GB: The motor boat
 - phrase: La batterie de musique
   emoji: 🥁
   ipas:
-    - ipa: /la batʁˈi də myzˈik/
-      category: vowels
+    - ipa: /la batʁi də myzik./
+      engine: olaph
   level: 871
   en-GB: The drum is loud
 - phrase: La salade
   emoji: 🥗
   ipas:
-    - ipa: /la salˈad/
-      category: vowels
+    - ipa: /la salad./
+      engine: olaph
   level: 737
   en-GB: The salad
 - phrase: La cacahuète
   emoji: 🥜
   ipas:
-    - ipa: /la kakayˈɛt/
-      category: vowels
+    - ipa: /la kakawɛt./
+      engine: olaph
   level: 891
   en-GB: The peanut
 - phrase: Le kiwi
   emoji: 🥝
   ipas:
-    - ipa: /lə kjwˈi/
-      category: vowels
+    - ipa: /lə kiwi./
+      engine: olaph
   level: 1
   en-GB: The kiwi
 - phrase: La chauve-souris
   emoji: 🦇
   ipas:
-    - ipa: /la ʃˈovsuʁˈi/
-      category: vowels
+    - ipa: /la ʃov suʁi./
+      engine: olaph
   level: 1000
   en-GB: The bat
 - phrase: Le requin
   emoji: 🦈
   ipas:
-    - ipa: /lə ʁəkˈɛ̃/
-      category: vowels
+    - ipa: /lə ʁəkɛ̃./
+      engine: olaph
   level: 689
   en-GB: The shark
 - phrase: Le cerf
   emoji: 🦌
   ipas:
-    - ipa: /lə sˈɛʁ/
-      category: vowels
+    - ipa: /lə sɛʁ./
+      engine: olaph
   level: 571
   en-GB: The deer
 - phrase: Le kangourou
   emoji: 🦘
   ipas:
-    - ipa: /lə kɑ̃ɡuʁˈu/
-      category: vowels
+    - ipa: /lə kɑ̃guʁu./
+      engine: olaph
   level: 838
   en-GB: The kangaroo
 - phrase: Le paon
   emoji: 🦚
   ipas:
-    - ipa: /lə pˈɑ̃/
-      category: vowels
+    - ipa: /lə pɑ̃./
+      engine: olaph
   level: 571
   en-GB: The peacock
 - phrase: Le perroquet
   emoji: 🦜
   ipas:
-    - ipa: /lə pɛʁokˈɛ/
-      category: vowels
+    - ipa: /lə peʁɔkɛ./
+      engine: olaph
   level: 838
   en-GB: The parrot
 - phrase: Le flamant rose
   emoji: 🦩
   ipas:
-    - ipa: /lə flamˈɑ̃ ʁˈɔz/
-      category: vowels
+    - ipa: /lə flamɑ̃ ʁoz./
+      engine: olaph
   level: 329
   en-GB: The pink flamingo
 - phrase: Le pied
   emoji: 🦶
   ipas:
-    - ipa: /lə pjˈe/
-      category: vowels
+    - ipa: /lə pje./
+      engine: olaph
   level: 571
   en-GB: The foot
 - phrase: L'oignon
   emoji: 🧅
   ipas:
-    - ipa: /lonjˈɔ̃/
-      category: vowels
+    - ipa: /lwaɲɔ̃./
+      engine: olaph
   level: 968
   en-GB: The onion
 - phrase: La gaufre
   emoji: 🧇
   ipas:
-    - ipa: /la ɡˈofʁ/
-      category: vowels
+    - ipa: /la gofʁ./
+      engine: olaph
   level: 689
   en-GB: The waffle
 - phrase: L'aimant
   emoji: 🧲
   ipas:
-    - ipa: /lɛmˈɑ̃/
-      category: vowels
+    - ipa: /lɛmɑ̃./
+      engine: olaph
   level: 968
   en-GB: The magnet
 - phrase: L'ours en peluche
   emoji: 🧸
   ipas:
-    - ipa: /lˈuʁs ɑ̃ pəlˈyʃ/
-      category: vowels
+    - ipa: /luʁs ɑ̃ pəlyʃ./
+      engine: olaph
   level: 810
   en-GB: The teddy bear
 - phrase: Zéro
   emoji: 0️⃣
   ipas:
-    - ipa: /zeʁˈo/
-      category: vowels
+    - ipa: /zeʁo./
+      engine: olaph
   level: 596
   en-GB: zero
 - phrase: Le clavier
   emoji: ⌨️
   ipas:
-    - ipa: /lə klavjˈe/
-      category: vowels
+    - ipa: /lə klavje./
+      engine: olaph
   level: 721
   en-GB: The keyboard
 - phrase: Le bonhomme de neige
   emoji: ☃️
   ipas:
-    - ipa: /lə bɔnˈɔm də nˈɛʒ/
-      category: vowels
+    - ipa: /lə bɔnɔm də nɛʒ./
+      engine: olaph
   level: 810
   en-GB: The snowman
 - phrase: La comète
   emoji: ☄️
   ipas:
-    - ipa: /la komˈɛt/
-      category: vowels
+    - ipa: /la kɔmɛt./
+      engine: olaph
   level: 689
   en-GB: The comet
 - phrase: Le trèfle
   emoji: ☘️
   ipas:
-    - ipa: /lə tʁˈɛfl/
-      category: vowels
+    - ipa: /lə tʁɛfl./
+      engine: olaph
   level: 636
   en-GB: The clover
 - phrase: La paix
   emoji: ☮️
   ipas:
-    - ipa: /la pˈɛ/
-      category: vowels
+    - ipa: /la pɛ./
+      engine: olaph
   level: 571
-  en-GB: peace
+  en-GB: The peace
 - phrase: Le cancer
   emoji: ♋
   ipas:
-    - ipa: /lə kɑ̃sˈɛʁ/
-      category: vowels
+    - ipa: /lə kɑ̃sɛʁ./
+      engine: olaph
   level: 118
-  en-GB: cancer
+  en-GB: The cancer
 - phrase: L'ancre
   emoji: ⚓
   ipas:
-    - ipa: /lˈɑ̃kʁ/
-      category: vowels
+    - ipa: /lɑ̃kʁ./
+      engine: olaph
   level: 899
   en-GB: The anchor
 - phrase: La balance
   emoji: ⚖️
   ipas:
-    - ipa: /la balˈɑ̃s/
-      category: vowels
+    - ipa: /la balɑ̃s./
+      engine: olaph
   level: 774
   en-GB: The scales
 - phrase: L'engrenage
   emoji: ⚙️
   ipas:
-    - ipa: /lɑ̃ɡʁənˈaʒ/
-      category: vowels
+    - ipa: /lɑ̃gʁənaʒ./
+      engine: olaph
   level: 1000
   en-GB: The gear
 - phrase: L'atome
   emoji: ⚛️
   ipas:
-    - ipa: /latˈom/
-      category: vowels
+    - ipa: /latɔm./
+      engine: olaph
   level: 1000
   en-GB: The atom
 - phrase: L'avertissement
   emoji: ⚠️
   ipas:
-    - ipa: /lavɛʁtismˈɑ̃/
-      category: vowels
+    - ipa: /lavɛʁtismɑ̃./
+      engine: olaph
   level: 1000
   en-GB: The warning
 - phrase: Le cercueil
   emoji: ⚰️
   ipas:
-    - ipa: /lə sɛʁkˈœj/
-      category: vowels
+    - ipa: /lə sɛʁkœj./
+      engine: olaph
   level: 753
   en-GB: The coffin
 - phrase: L'orage
   emoji: ⛈️
   ipas:
-    - ipa: /loʁˈaʒ/
-      category: vowels
+    - ipa: /lɔʁaʒ./
+      engine: olaph
   level: 1000
   en-GB: The storm
 - phrase: Le pic
   emoji: ⛏️
   ipas:
-    - ipa: /lə pˈik/
-      category: vowels
+    - ipa: /lə pik./
+      engine: olaph
   level: 535
   en-GB: The peak
 - phrase: La chaîne
   emoji: ⛓️
   ipas:
-    - ipa: /la ʃˈɛn/
-      category: vowels
+    - ipa: /la ʃɛn./
+      engine: olaph
   level: 689
   en-GB: The chain
 - phrase: Interdit
   emoji: ⛔
   ipas:
-    - ipa: /ɛ̃tɛʁdˈi/
-      category: vowels
+    - ipa: /ɛ̃tɛʁdi./
+      engine: olaph
   level: 1000
   en-GB: entry
 - phrase: Le parasol
   emoji: ⛱️
   ipas:
-    - ipa: /lə paʁasˈɔl/
-      category: vowels
+    - ipa: /lə paʁasɔl./
+      engine: olaph
   level: 774
   en-GB: The parasol
 - phrase: La fontaine
   emoji: ⛲
   ipas:
-    - ipa: /la fɔ̃tˈɛn/
-      category: vowels
+    - ipa: /la fɔ̃tɛn./
+      engine: olaph
   level: 806
   en-GB: The fountain
 - phrase: Le golf
   emoji: ⛳
   ipas:
-    - ipa: /lə ɡˈɔlf/
-      category: vowels
+    - ipa: /lə gɔlf./
+      engine: olaph
   level: 1
-  en-GB: golf
+  en-GB: The golf
 - phrase: Le ferry
   emoji: ⛴️
   ipas:
-    - ipa: /lə fˈɛɹi/
-      category: vowels
+    - ipa: /lə fɛʁi./
+      engine: olaph
   level: 1
   en-GB: The ferry
 - phrase: La victoire
   emoji: ✌️
   ipas:
-    - ipa: /la viktwˈaʁ/
-      category: vowels
+    - ipa: /la viktwaʁ./
+      engine: olaph
   level: 806
   en-GB: victory
 - phrase: L'écriture
   emoji: ✍️
   ipas:
-    - ipa: /lekʁitˈyʁ/
-      category: vowels
+    - ipa: /lekʁityʁ./
+      engine: olaph
   level: 1000
   en-GB: write
 - phrase: La croix
   emoji: ✝️
   ipas:
-    - ipa: /la kʁwˈa/
-      category: vowels
+    - ipa: /la kʁwa./
+      engine: olaph
   level: 604
   en-GB: The cross
 - phrase: Les étoiles filantes
   emoji: ✨
   ipas:
-    - ipa: /le-z etwˈal filˈɑ̃t/
-      category: vowels
+    - ipa: /le etwal filɑ̃t./
+      engine: olaph
   level: 911
   en-GB: Shooting stars
 - phrase: La question
   emoji: ❓
   ipas:
-    - ipa: /la kɛstjˈɔ̃/
-      category: vowels
+    - ipa: /la kɛstjɔ̃./
+      engine: olaph
   level: 74
   en-GB: The question
 - phrase: Le cercle
   emoji: ⭕
   ipas:
-    - ipa: /lə sˈɛʁkl/
-      category: vowels
+    - ipa: /lə sɛʁkl./
+      engine: olaph
   level: 689
   en-GB: The circle
 - phrase: Gratuit
   emoji: 🆓
   ipas:
-    - ipa: /ɡʁatyˈi/
-      category: vowels
+    - ipa: /gʁatɥi./
+      engine: olaph
   level: 899
   en-GB: free
 - phrase: Nouveau
   emoji: 🆕
   ipas:
-    - ipa: /nuvˈo/
-      category: vowels
+    - ipa: /nuvo./
+      engine: olaph
   level: 899
   en-GB: new
 - phrase: En haut
   emoji: 🆙
   ipas:
-    - ipa: /ɑ̃ ˈo/
-      category: vowels
+    - ipa: /ɑ̃ ʼo./
+      engine: olaph
   level: 571
   en-GB: up
 - phrase: Service
   emoji: 🈂️
   ipas:
-    - ipa: /sɛʁvˈis/
-      category: vowels
+    - ipa: /sɛʁvis./
+      engine: olaph
   level: 1
   en-GB: service
 - phrase: Réservé
   emoji: 🈯
   ipas:
-    - ipa: /ʁezɛʁvˈe/
-      category: vowels
+    - ipa: /ʁezɛʁve./
+      engine: olaph
   level: 798
   en-GB: reserved
 - phrase: Reçu
   emoji: 🈴
   ipas:
-    - ipa: /ʁəsˈy/
-      category: vowels
+    - ipa: /ʁəsy./
+      engine: olaph
   level: 697
   en-GB: pass
 - phrase: Complet
   emoji: 🈵
   ipas:
-    - ipa: /kɔ̃plˈɛ/
-      category: vowels
+    - ipa: /kɔ̃plɛ./
+      engine: olaph
   level: 899
   en-GB: full
 - phrase: Accepté
   emoji: 🉑
   ipas:
-    - ipa: /aksɛptˈe/
-      category: vowels
+    - ipa: /aksɛpte./
+      engine: olaph
   level: 899
   en-GB: accept
 - phrase: Le cyclone
   emoji: 🌀
   ipas:
-    - ipa: /lə siklˈɔn/
-      category: vowels
+    - ipa: /lə siklon./
+      engine: olaph
   level: 191
   en-GB: The cyclone
 - phrase: La tornade
   emoji: 🌪️
   ipas:
-    - ipa: /la tɔʁnˈad/
-      category: vowels
+    - ipa: /la tɔʁnad./
+      engine: olaph
   level: 774
   en-GB: The tornado
 - phrase: La châtaigne
   emoji: 🌰
   ipas:
-    - ipa: /la ʃatˈɛɲ/
-      category: vowels
+    - ipa: /la ʃatɛɲ./
+      engine: olaph
   level: 790
   en-GB: The chestnut
 - phrase: Le cactus
   emoji: 🌵
   ipas:
-    - ipa: /lə kaktˈys/
-      category: vowels
+    - ipa: /lə kaktys./
+      engine: olaph
   level: 50
   en-GB: The cactus
 - phrase: Le piment
   emoji: 🌶️
   ipas:
-    - ipa: /lə pimˈɑ̃/
-      category: vowels
+    - ipa: /lə pimɑ̃./
+      engine: olaph
   level: 689
   en-GB: The pepper
 - phrase: Le blé
   emoji: 🌾
   ipas:
-    - ipa: /lə blˈe/
-      category: vowels
+    - ipa: /lə ble./
+      engine: olaph
   level: 535
   en-GB: The grain
 - phrase: L'herbe aromatique
   emoji: 🌿
   ipas:
-    - ipa: /lˈɛʁb aʁomatˈik/
-      category: vowels
+    - ipa: /lɛʁb aʁɔmatik./
+      engine: olaph
   level: 1000
   en-GB: The aromatic herb
 - phrase: Le melon
   emoji: 🍈
   ipas:
-    - ipa: /lə məlˈɔ̃/
-      category: vowels
+    - ipa: /lə məlɔ̃./
+      engine: olaph
   level: 5
   en-GB: The melon
 - phrase: La boule de riz
   emoji: 🍙
   ipas:
-    - ipa: /la bˈul də ʁˈi/
-      category: vowels
+    - ipa: /la bul də ʁi./
+      engine: olaph
   level: 676
   en-GB: The rice ball
 - phrase: La crevette
   emoji: 🍤
   ipas:
-    - ipa: /la kʁəvˈɛt/
-      category: vowels
+    - ipa: /la kʁəvɛt./
+      engine: olaph
   level: 806
   en-GB: The shrimp
 - phrase: Le sorbet
   emoji: 🍧
   ipas:
-    - ipa: /lə sɔʁbˈɛ/
-      category: vowels
+    - ipa: /lə sɔʁbɛ./
+      engine: olaph
   level: 689
   en-GB: The sorbet
 - phrase: Le pudding
   emoji: 🍮
   ipas:
-    - ipa: /lə pˈʊdɪŋ/
-      category: vowels
+    - ipa: /lə pudiŋ./
+      engine: olaph
   level: 17
   en-GB: The pudding
 - phrase: Le vin
   emoji: 🍷
   ipas:
-    - ipa: /lə vˈɛ̃/
-      category: vowels
+    - ipa: /lə vɛ̃./
+      engine: olaph
   level: 535
   en-GB: The wine
 - phrase: Le cocktail
   emoji: 🍸
   ipas:
-    - ipa: /lə kɔktˈaj/
-      category: vowels
+    - ipa: /lə kɔktɛl./
+      engine: olaph
   level: 256
   en-GB: The cocktail
 - phrase: Le biberon
   emoji: 🍼
   ipas:
-    - ipa: /lə bibʁˈɔ̃/
-      category: vowels
+    - ipa: /lə bibʁɔ̃./
+      engine: olaph
   level: 774
   en-GB: The bottle
 - phrase: La fête
   emoji: 🎉
   ipas:
-    - ipa: /la fˈɛt/
-      category: vowels
+    - ipa: /la fɛt./
+      engine: olaph
   level: 571
   en-GB: The party
 - phrase: Les poupées
   emoji: 🎎
   ipas:
-    - ipa: /le pupˈe/
-      category: vowels
+    - ipa: /le pupe./
+      engine: olaph
   level: 753
   en-GB: The dolls
 - phrase: La carpe
   emoji: 🎏
   ipas:
-    - ipa: /la kˈaʁp/
-      category: vowels
+    - ipa: /la kaʁp./
+      engine: olaph
   level: 652
   en-GB: The carp
 - phrase: Le carillon
   emoji: 🎐
   ipas:
-    - ipa: /lə kaʁijˈɔ̃/
-      category: vowels
+    - ipa: /lə kaʁijɔ̃./
+      engine: olaph
   level: 806
   en-GB: The chime
 - phrase: Le microphone
   emoji: 🎙️
   ipas:
-    - ipa: /lə mikʁofˈɔn/
-      category: vowels
+    - ipa: /lə mikʁɔfɔn./
+      engine: olaph
   level: 288
   en-GB: The microphone
 - phrase: La grande roue
   emoji: 🎡
   ipas:
-    - ipa: /la ɡʁˈɑ̃d ʁˈu/
-      category: vowels
+    - ipa: /la gʁɑ̃d ʁu./
+      engine: olaph
   level: 713
   en-GB: The Ferris wheel
 - phrase: Les montagnes russes
   emoji: 🎢
   ipas:
-    - ipa: /le mɔ̃tˈanj ʁˈys/
-      category: vowels
+    - ipa: /le mɔ̃taɲ ʁys./
+      engine: olaph
   level: 911
   en-GB: The roller coaster
 - phrase: Le cirque
   emoji: 🎪
   ipas:
-    - ipa: /lə sˈiʁk/
-      category: vowels
+    - ipa: /lə siʁk./
+      engine: olaph
   level: 689
   en-GB: The circus
 - phrase: Le jeu vidéo
   emoji: 🎮
   ipas:
-    - ipa: /lə ʒˈø videˈo/
-      category: vowels
+    - ipa: /lə ʒø video./
+      engine: olaph
   level: 664
   en-GB: The video game
 - phrase: Le billard
   emoji: 🎱
   ipas:
-    - ipa: /lə bijˈaʁ/
-      category: vowels
+    - ipa: /lə bijaʁ./
+      engine: olaph
   level: 721
   en-GB: pool
 - phrase: Le dé
   emoji: 🎲
   ipas:
-    - ipa: /lə dˈe/
-      category: vowels
+    - ipa: /lə de./
+      engine: olaph
   level: 503
   en-GB: The cube
 - phrase: La note de musique
   emoji: 🎵
   ipas:
-    - ipa: /la nˈɔt də myzˈik/
-      category: vowels
+    - ipa: /la nɔt də myzik./
+      engine: olaph
   level: 454
   en-GB: The musical note
 - phrase: Le saxophone
   emoji: 🎷
   ipas:
-    - ipa: /lə saksofˈɔn/
-      category: vowels
+    - ipa: /lə saksɔfɔn./
+      engine: olaph
   level: 284
   en-GB: The saxophone
 - phrase: La partition
   emoji: 🎼
   ipas:
-    - ipa: /la paʁtisjˈɔ̃/
-      category: vowels
+    - ipa: /la paʁtisjɔ̃./
+      engine: olaph
   level: 838
   en-GB: The score
 - phrase: Le maillot de sport
   emoji: 🎽
   ipas:
-    - ipa: /lə majˈo də spˈɔʁ/
-      category: vowels
+    - ipa: /lə majo də spɔʁ./
+      engine: olaph
   level: 405
   en-GB: The sports jersey
 - phrase: Le ski
   emoji: 🎿
   ipas:
-    - ipa: /lə skˈi/
-      category: vowels
+    - ipa: /lə ski./
+      engine: olaph
   level: 1
   en-GB: Skiing
 - phrase: Le basketball
   emoji: 🏀
   ipas:
-    - ipa: /lə bˈaskɪtbˌɔːl/
-      category: vowels
+    - ipa: /lə baskɛtball./
+      engine: olaph
   level: 232
-  en-GB: basketball
+  en-GB: The basketball
 - phrase: La course à pied
   emoji: 🏃
   ipas:
-    - ipa: /la kˈuʁs a pjˈe/
-      category: vowels
+    - ipa: /la kuʁs a pje./
+      engine: olaph
   level: 397
   en-GB: Running
 - phrase: Le football américain
   emoji: 🏈
   ipas:
-    - ipa: /lə fˈʊtbɔːl ameʁikˈɛ̃/
-      category: vowels
+    - ipa: /lə futbol ameʁikɛ̃./
+      engine: olaph
   level: 482
   en-GB: football
 - phrase: Le rugby
   emoji: 🏉
   ipas:
-    - ipa: /lə ʁyɡbˈi/
-      category: vowels
+    - ipa: /lə ʁygbi./
+      engine: olaph
   level: 1
   en-GB: rugby
 - phrase: La natation
   emoji: 🏊
   ipas:
-    - ipa: /la natasjˈɔ̃/
-      category: vowels
+    - ipa: /la natasjɔ̃./
+      engine: olaph
   level: 806
   en-GB: Swimming
 - phrase: Le cricket
   emoji: 🏏
   ipas:
-    - ipa: /lə kʁikˈɛt/
-      category: vowels
+    - ipa: /lə kʁikɛt./
+      engine: olaph
   level: 106
   en-GB: cricket
 - phrase: Le hockey
   emoji: 🏒
   ipas:
-    - ipa: /lə ɔkˈɛ/
-      category: vowels
+    - ipa: /lə ʼɔkɛ./
+      engine: olaph
   level: 74
   en-GB: hockey
 - phrase: Le musée
   emoji: 🏛️
   ipas:
-    - ipa: /lə myzˈe/
-      category: vowels
+    - ipa: /lə myze./
+      engine: olaph
   level: 652
   en-GB: The museum
 - phrase: Le bureau
   emoji: 🏢
   ipas:
-    - ipa: /lə byʁˈo/
-      category: vowels
+    - ipa: /lə byʁo./
+      engine: olaph
   level: 689
   en-GB: The office
 - phrase: La poste
   emoji: 🏣
   ipas:
-    - ipa: /la pˈɔst/
-      category: vowels
+    - ipa: /la pɔst./
+      engine: olaph
   level: 652
   en-GB: The post office
 - phrase: La banque
   emoji: 🏦
   ipas:
-    - ipa: /la bˈɑ̃k/
-      category: vowels
+    - ipa: /la bɑ̃k./
+      engine: olaph
   level: 689
   en-GB: The bank
 - phrase: L'hôtel
   emoji: 🏨
   ipas:
-    - ipa: /lotˈɛl/
-      category: vowels
+    - ipa: /lotɛl./
+      engine: olaph
   level: 798
   en-GB: The hotel
 - phrase: Le magasin
   emoji: 🏬
   ipas:
-    - ipa: /lə maɡazˈɛ̃/
-      category: vowels
+    - ipa: /lə magazɛ̃./
+      engine: olaph
   level: 774
   en-GB: The store
 - phrase: L'usine
   emoji: 🏭
   ipas:
-    - ipa: /lyzˈin/
-      category: vowels
+    - ipa: /lyzin./
+      engine: olaph
   level: 1000
   en-GB: The factory
 - phrase: L'étiquette
   emoji: 🏷️
   ipas:
-    - ipa: /letikˈɛt/
-      category: vowels
+    - ipa: /letikɛt./
+      engine: olaph
   level: 1000
   en-GB: The label
 - phrase: Le tir à l'arc
   emoji: 🏹
   ipas:
-    - ipa: /lə tˈiʁ a lˈaʁk/
-      category: vowels
+    - ipa: /lə tiʁ a laʁk./
+      engine: olaph
   level: 632
-  en-GB: archery
+  en-GB: The archery
 - phrase: Le buffle
   emoji: 🐃
   ipas:
-    - ipa: /lə bˈyfl/
-      category: vowels
+    - ipa: /lə byfl./
+      engine: olaph
   level: 689
   en-GB: The buffalo
 - phrase: Le léopard
   emoji: 🐆
   ipas:
-    - ipa: /lə leopˈaʁ/
-      category: vowels
+    - ipa: /lə leɔpaʁ./
+      engine: olaph
   level: 721
   en-GB: The leopard
 - phrase: La pieuvre
   emoji: 🐙
   ipas:
-    - ipa: /la pjˈøvʁ/
-      category: vowels
+    - ipa: /la pjœvʁ./
+      engine: olaph
   level: 721
   en-GB: The octopus
 - phrase: La chenille
   emoji: 🐛
   ipas:
-    - ipa: /la ʃənˈij/
-      category: vowels
+    - ipa: /la ʃənij./
+      engine: olaph
   level: 806
   en-GB: The caterpillar
 - phrase: Le koala
   emoji: 🐨
   ipas:
-    - ipa: /lə kɔalˈa/
-      category: vowels
+    - ipa: /lə kɔala./
+      engine: olaph
   level: 21
   en-GB: The koala
 - phrase: Le caniche
   emoji: 🐩
   ipas:
-    - ipa: /lə kanˈiʃ/
-      category: vowels
+    - ipa: /lə kaniʃ./
+      engine: olaph
   level: 774
   en-GB: The poodle
 - phrase: Le chameau
   emoji: 🐪
   ipas:
-    - ipa: /lə ʃamˈo/
-      category: vowels
+    - ipa: /lə ʃamo./
+      engine: olaph
   level: 721
   en-GB: The camel
 - phrase: Les yeux
   emoji: 👀
   ipas:
-    - ipa: /le-z jˈø/
-      category: vowels
+    - ipa: /le jø./
+      engine: olaph
   level: 604
   en-GB: The eyes
 - phrase: Vers le bas
   emoji: 👇
   ipas:
-    - ipa: /vɛʁ lə bˈa/
-      category: vowels
+    - ipa: /vɛʁ lə ba./
+      engine: olaph
   level: 612
   en-GB: down
 - phrase: Vers la droite
   emoji: 👉
   ipas:
-    - ipa: /vɛʁ la dʁwˈat/
-      category: vowels
+    - ipa: /vɛʁ la dʁwat./
+      engine: olaph
   level: 713
   en-GB: right
 - phrase: Le poing
   emoji: 👊
   ipas:
-    - ipa: /lə pwˈɛ̃/
-      category: vowels
+    - ipa: /lə pwɛ̃./
+      engine: olaph
   level: 604
   en-GB: The fist
 - phrase: Le signe de la main
   emoji: 👋
   ipas:
-    - ipa: /lə sˈiɲ də la mˈɛ̃/
-      category: vowels
+    - ipa: /lə siɲ də la mɛ̃./
+      engine: olaph
   level: 454
   en-GB: The hand sign
 - phrase: La couronne
   emoji: 👑
   ipas:
-    - ipa: /la kuʁˈɔn/
-      category: vowels
+    - ipa: /la kuʁɔn./
+      engine: olaph
   level: 806
   en-GB: The crown
 - phrase: La cravate
   emoji: 👔
   ipas:
-    - ipa: /la kʁavˈat/
-      category: vowels
+    - ipa: /la kʁavat./
+      engine: olaph
   level: 774
   en-GB: The tie
 - phrase: Le porte-monnaie
   emoji: 👛
   ipas:
-    - ipa: /lə pˈɔʁtmɔnˈɛ/
-      category: vowels
+    - ipa: /lə pɔʁt mɔnɛ./
+      engine: olaph
   level: 1000
   en-GB: The wallet
 - phrase: Le sac à main
   emoji: 👜
   ipas:
-    - ipa: /lə sˈak a mˈɛ̃/
-      category: vowels
+    - ipa: /lə sak a mɛ̃./
+      engine: olaph
   level: 296
   en-GB: The handbag
 - phrase: La pochette
   emoji: 👝
   ipas:
-    - ipa: /la poʃˈɛt/
-      category: vowels
+    - ipa: /la pɔʃɛt./
+      engine: olaph
   level: 806
   en-GB: The cover
 - phrase: La chaussure à talon
   emoji: 👠
   ipas:
-    - ipa: /la ʃosˈyʁ a talˈɔ̃/
-      category: vowels
+    - ipa: /la ʃosyʁ a talɔ̃./
+      engine: olaph
   level: 810
   en-GB: The heeled shoe
 - phrase: La botte
   emoji: 👢
   ipas:
-    - ipa: /la bˈɔt/
-      category: vowels
+    - ipa: /la bɔt./
+      engine: olaph
   level: 652
   en-GB: The boot
 - phrase: Aveugle
   emoji: 👨‍🦯
   ipas:
-    - ipa: /avˈøɡl/
-      category: vowels
+    - ipa: /avœgl./
+      engine: olaph
   level: 1000
   en-GB: blind
 - phrase: La famille
   emoji: 👪
   ipas:
-    - ipa: /la famˈij/
-      category: vowels
+    - ipa: /la famij./
+      engine: olaph
   level: 774
   en-GB: The family
 - phrase: Le couple
   emoji: 👫
   ipas:
-    - ipa: /lə kˈupl/
-      category: vowels
+    - ipa: /lə kupl./
+      engine: olaph
   level: 78
   en-GB: The couple
 - phrase: Les danseurs
   emoji: 👯
   ipas:
-    - ipa: /le dɑ̃sˈœʁ/
-      category: vowels
+    - ipa: /le dɑ̃sœʁ./
+      engine: olaph
   level: 790
   en-GB: The dancers
 - phrase: La mariée
   emoji: 👰
   ipas:
-    - ipa: /la maʁjˈe/
-      category: vowels
+    - ipa: /la maʁje./
+      engine: olaph
   level: 737
   en-GB: The bride
 - phrase: La princesse
   emoji: 👸
   ipas:
-    - ipa: /la pʁɛ̃sˈɛs/
-      category: vowels
+    - ipa: /la pʁɛ̃sɛs./
+      engine: olaph
   level: 838
   en-GB: The princess
 - phrase: L'ange
   emoji: 👼
   ipas:
-    - ipa: /lˈɑ̃ʒ/
-      category: vowels
+    - ipa: /lɑ̃ʒ./
+      engine: olaph
   level: 830
   en-GB: The angel
 - phrase: Le garde
   emoji: 💂
   ipas:
-    - ipa: /lə ɡˈaʁd/
-      category: vowels
+    - ipa: /lə gaʁd./
+      engine: olaph
   level: 652
   en-GB: The Guardian
 - phrase: La danse
   emoji: 💃
   ipas:
-    - ipa: /la dˈɑ̃s/
-      category: vowels
+    - ipa: /la dɑ̃s./
+      engine: olaph
   level: 652
   en-GB: The dance
 - phrase: La seringue
   emoji: 💉
   ipas:
-    - ipa: /la səʁˈɛ̃ɡ/
-      category: vowels
+    - ipa: /la səʁɛ̃g./
+      engine: olaph
   level: 806
   en-GB: The syringe
 - phrase: Le comprimé
   emoji: 💊
   ipas:
-    - ipa: /lə kɔ̃pʁimˈe/
-      category: vowels
+    - ipa: /lə kɔ̃pʁime./
+      engine: olaph
   level: 753
   en-GB: The tablet
 - phrase: L'anneau
   emoji: 💍
   ipas:
-    - ipa: /lanˈo/
-      category: vowels
+    - ipa: /lano./
+      engine: olaph
   level: 968
   en-GB: The ring
 - phrase: Le diamant
   emoji: 💎
   ipas:
-    - ipa: /lə djamˈɑ̃/
-      category: vowels
+    - ipa: /lə djamɑ̃./
+      engine: olaph
   level: 721
   en-GB: The diamond
 - phrase: Le baiser
   emoji: 💏
   ipas:
-    - ipa: /lə bɛzˈe/
-      category: vowels
+    - ipa: /lə bɛze./
+      engine: olaph
   level: 689
   en-GB: The kiss
 - phrase: La bombe
   emoji: 💣
   ipas:
-    - ipa: /la bˈɔ̃b/
-      category: vowels
+    - ipa: /la bɔ̃b./
+      engine: olaph
   level: 652
   en-GB: The bomb
 - phrase: Le sommeil
   emoji: 💤
   ipas:
-    - ipa: /lə sɔmˈɛj/
-      category: vowels
+    - ipa: /lə sɔmɛj./
+      engine: olaph
   level: 721
   en-GB: sleep
 - phrase: Le vertige
   emoji: 💫
   ipas:
-    - ipa: /lə vɛʁtˈiʒ/
-      category: vowels
+    - ipa: /lə vɛʁtiʒ./
+      engine: olaph
   level: 774
   en-GB: dizzy
 - phrase: La carte de crédit
   emoji: 💳
   ipas:
-    - ipa: /la kˈaʁt də kʁedˈi/
-      category: vowels
+    - ipa: /la kaʁt də kʁedi./
+      engine: olaph
   level: 725
   en-GB: The credit card
 - phrase: Le dollar
   emoji: 💵
   ipas:
-    - ipa: /lə dɔlˈaʁ/
-      category: vowels
+    - ipa: /lə dɔlaʁ./
+      engine: olaph
   level: 66
   en-GB: The dollar
 - phrase: La livre sterling
   emoji: 💷
   ipas:
-    - ipa: /la lˈivʁ stˈɜːlɪŋ/
-      category: vowels
+    - ipa: /la livʁ stɛʁliŋ./
+      engine: olaph
   level: 810
   en-GB: The pound
 - phrase: Le siège
   emoji: 💺
   ipas:
-    - ipa: /lə sjˈɛʒ/
-      category: vowels
+    - ipa: /lə sjɛʒ./
+      engine: olaph
   level: 652
   en-GB: The seat
 - phrase: Le dossier
   emoji: 📁
   ipas:
-    - ipa: /lə dɔsjˈe/
-      category: vowels
+    - ipa: /lə dosje./
+      engine: olaph
   level: 721
   en-GB: The file
 - phrase: Le calendrier
   emoji: 📅
   ipas:
-    - ipa: /lə kalɑ̃dʁiˈe/
-      category: vowels
+    - ipa: /lə kalɑ̃dʁije./
+      engine: olaph
   level: 871
   en-GB: The calendar
 - phrase: La règle
   emoji: 📏
   ipas:
-    - ipa: /la ʁˈɛɡl/
-      category: vowels
+    - ipa: /la ʁɛgl./
+      engine: olaph
   level: 604
   en-GB: The rule
 - phrase: L'équerre
   emoji: 📐
   ipas:
-    - ipa: /lekˈɛʁ/
-      category: vowels
+    - ipa: /lekɛʁ./
+      engine: olaph
   level: 1000
   en-GB: The square
 - phrase: Le carnet
   emoji: 📔
   ipas:
-    - ipa: /lə kaʁnˈɛ/
-      category: vowels
+    - ipa: /lə kaʁnɛ./
+      engine: olaph
   level: 689
   en-GB: The notebook
 - phrase: Le badge
   emoji: 📛
   ipas:
-    - ipa: /lə bˈadʒ/
-      category: vowels
+    - ipa: /lə badʒ./
+      engine: olaph
   level: 1
   en-GB: The badge
 - phrase: Le signal
   emoji: 📶
   ipas:
-    - ipa: /lə sinjˈal/
-      category: vowels
+    - ipa: /lə siɲal./
+      engine: olaph
   level: 62
   en-GB: The signal
 - phrase: La vidéo
   emoji: 📹
   ipas:
-    - ipa: /la videˈo/
-      category: vowels
+    - ipa: /la video./
+      engine: olaph
   level: 652
   en-GB: The video
 - phrase: La radio
   emoji: 📻
   ipas:
-    - ipa: /la ʁadjˈo/
-      category: vowels
+    - ipa: /la ʁadjo./
+      engine: olaph
   level: 1
   en-GB: The radio
 - phrase: La cassette
   emoji: 📼
   ipas:
-    - ipa: /la kasˈɛt/
-      category: vowels
+    - ipa: /la kasɛt./
+      engine: olaph
   level: 806
   en-GB: The cassette
 - phrase: Le projecteur
   emoji: 📽️
   ipas:
-    - ipa: /lə pʁoʒɛktˈœʁ/
-      category: vowels
+    - ipa: /lə pʁɔʒɛktœʁ./
+      engine: olaph
   level: 871
   en-GB: The projector
 - phrase: La batterie électrique
   emoji: 🔋
   ipas:
-    - ipa: /la batʁˈi elɛktʁˈik/
-      category: vowels
+    - ipa: /la batʁi elɛktʁik./
+      engine: olaph
   level: 992
   en-GB: The electric battery
 - phrase: La prise électrique
   emoji: 🔌
   ipas:
-    - ipa: /la pʁˈiz elɛktʁˈik/
-      category: vowels
+    - ipa: /la pʁiz elɛktʁik./
+      engine: olaph
   level: 891
   en-GB: The electrical outlet
 - phrase: La clé à molette
   emoji: 🔧
   ipas:
-    - ipa: /la klˈe a molˈɛt/
-      category: vowels
+    - ipa: /la kle a mɔlɛt./
+      engine: olaph
   level: 717
   en-GB: The adjustable wrench
 - phrase: Le pistolet
   emoji: 🔫
   ipas:
-    - ipa: /lə pistolˈɛ/
-      category: vowels
+    - ipa: /lə pistɔlɛ./
+      engine: olaph
   level: 806
   en-GB: The gun
 - phrase: Le microscope
   emoji: 🔬
   ipas:
-    - ipa: /lə mikʁɔskˈɔp/
-      category: vowels
+    - ipa: /lə mikʁɔskɔp./
+      engine: olaph
   level: 357
   en-GB: The microscope
 - phrase: La colombe
   emoji: 🕊️
   ipas:
-    - ipa: /la kolˈɔ̃b/
-      category: vowels
+    - ipa: /la kɔlɔ̃b./
+      engine: olaph
   level: 774
   en-GB: The pigeon
 - phrase: La mosquée
   emoji: 🕌
   ipas:
-    - ipa: /la mɔskˈe/
-      category: vowels
+    - ipa: /la mɔske./
+      engine: olaph
   level: 774
   en-GB: The mosque
 - phrase: La synagogue
   emoji: 🕍
   ipas:
-    - ipa: /la sinaɡˈoɡ/
-      category: vowels
+    - ipa: /la sinagɔg./
+      engine: olaph
   level: 325
   en-GB: The synagogue
 - phrase: La bougie
   emoji: 🕯️
   ipas:
-    - ipa: /la buʒˈi/
-      category: vowels
+    - ipa: /la buʒi./
+      engine: olaph
   level: 689
   en-GB: The candle
 - phrase: Le pinceau
   emoji: 🖌️
   ipas:
-    - ipa: /lə pɛ̃sˈo/
-      category: vowels
+    - ipa: /lə pɛ̃so./
+      engine: olaph
   level: 721
   en-GB: The brush
 - phrase: Le crayon de couleur
   emoji: 🖍️
   ipas:
-    - ipa: /lə kʁɛjˈɔ̃ də kulˈœʁ/
-      category: vowels
+    - ipa: /lə kʁɛjɔ̃ də kulœʁ./
+      engine: olaph
   level: 426
   en-GB: The colored pencil
 - phrase: Le doigt d'honneur
   emoji: 🖕
   ipas:
-    - ipa: /lə dwˈa dɔnˈœʁ/
-      category: vowels
+    - ipa: /lə dwa dɔnœʁ./
+      engine: olaph
   level: 802
   en-GB: The middle finger
 - phrase: La souris d'ordinateur
   emoji: 🖱️
   ipas:
-    - ipa: /la suʁˈi dɔʁdinatˈœʁ/
-      category: vowels
+    - ipa: /la suʁi dɔʁdinatœʁ./
+      engine: olaph
   level: 992
   en-GB: The computer mouse
 - phrase: La boîte de rangement
   emoji: 🗃️
   ipas:
-    - ipa: /la bwˈat də ʁɑ̃ʒmˈɑ̃/
-      category: vowels
+    - ipa: /la bwat də ʁɑ̃ʒmɑ̃./
+      engine: olaph
   level: 826
   en-GB: The storage box
 - phrase: L'armoire
   emoji: 🗄️
   ipas:
-    - ipa: /laʁmwˈaʁ/
-      category: vowels
+    - ipa: /laʁmwaʁ./
+      engine: olaph
   level: 1000
   en-GB: The wardrobe
 - phrase: La poubelle
   emoji: 🗑️
   ipas:
-    - ipa: /la pubˈɛl/
-      category: vowels
+    - ipa: /la pubɛl./
+      engine: olaph
   level: 806
   en-GB: The trash can
 - phrase: Le bloc-notes
   emoji: 🗒️
   ipas:
-    - ipa: /lə blˈɔknˈot/
-      category: vowels
+    - ipa: /lə blɔk nɔt./
+      engine: olaph
   level: 871
   en-GB: The notepad
 - phrase: L'épée
   emoji: 🗡️
   ipas:
-    - ipa: /lepˈe/
-      category: vowels
+    - ipa: /lepe./
+      engine: olaph
   level: 733
   en-GB: The sword
 - phrase: La parole
   emoji: 🗣️
   ipas:
-    - ipa: /la paʁˈɔl/
-      category: vowels
+    - ipa: /la paʁɔl./
+      engine: olaph
   level: 232
   en-GB: The word
 - phrase: La tour
   emoji: 🗼
   ipas:
-    - ipa: /la tˈuʁ/
-      category: vowels
+    - ipa: /la tuʁ./
+      engine: olaph
   level: 1
   en-GB: The tower
 - phrase: La statue de la Liberté
   emoji: 🗽
   ipas:
-    - ipa: /la statˈy də la libɛʁtˈe/
-      category: vowels
+    - ipa: /la staty də la libɛʁte./
+      engine: olaph
   level: 523
   en-GB: The Statue of Liberty
 - phrase: La statue
   emoji: 🗿
   ipas:
-    - ipa: /la statˈy/
-      category: vowels
+    - ipa: /la staty./
+      engine: olaph
   level: 33
   en-GB: The statue
 - phrase: S'incliner
   emoji: 🙇
   ipas:
-    - ipa: /sɛ̃klinˈe/
-      category: vowels
+    - ipa: /sɛ̃kline./
+      engine: olaph
   level: 1000
   en-GB: bow
 - phrase: Lever la main
   emoji: 🙋
   ipas:
-    - ipa: /ləvˈe la mˈɛ̃/
-      category: vowels
+    - ipa: /ləve la mɛ̃./
+      engine: olaph
   level: 260
   en-GB: Raise your hand
 - phrase: Faire la tête
   emoji: 🙍
   ipas:
-    - ipa: /fˈɛʁ la tˈɛt/
-      category: vowels
+    - ipa: /fɛʁ la tɛt./
+      engine: olaph
   level: 689
   en-GB: Make a face
 - phrase: Prier
   emoji: 🙏
   ipas:
-    - ipa: /pʁiˈe/
-      category: vowels
+    - ipa: /pʁije./
+      engine: olaph
   level: 664
   en-GB: pray
 - phrase: Le tramway
   emoji: 🚋
   ipas:
-    - ipa: /lə tʁamwˈɛ/
-      category: vowels
+    - ipa: /lə tʁamwɛ./
+      engine: olaph
   level: 721
   en-GB: The tram
 - phrase: L'arrêt de bus
   emoji: 🚏
   ipas:
-    - ipa: /laʁˈɛ də bˈys/
-      category: vowels
+    - ipa: /laʁɛ də bys./
+      engine: olaph
   level: 203
   en-GB: The bus stop
 - phrase: Le minibus
   emoji: 🚐
   ipas:
-    - ipa: /lə minibˈys/
-      category: vowels
+    - ipa: /lə minibys./
+      engine: olaph
   level: 774
   en-GB: The minibus
 - phrase: L'ambulance
   emoji: 🚑
   ipas:
-    - ipa: /lɑ̃bylˈɑ̃s/
-      category: vowels
+    - ipa: /lɑ̃bylɑ̃s./
+      engine: olaph
   level: 1000
   en-GB: The ambulance
 - phrase: La voiture de police
   emoji: 🚓
   ipas:
-    - ipa: /la vwatˈyʁ də polˈis/
-      category: vowels
+    - ipa: /la vwatyʁ də pɔlis./
+      engine: olaph
   level: 503
   en-GB: The police car
 - phrase: Le taxi
   emoji: 🚕
   ipas:
-    - ipa: /lə taksˈi/
-      category: vowels
+    - ipa: /lə taksi./
+      engine: olaph
   level: 1
   en-GB: The taxi
 - phrase: Le camion
   emoji: 🚛
   ipas:
-    - ipa: /lə kamjˈɔ̃/
-      category: vowels
+    - ipa: /lə kamjɔ̃./
+      engine: olaph
   level: 689
   en-GB: The truck
 - phrase: Le tracteur
   emoji: 🚜
   ipas:
-    - ipa: /lə tʁaktˈœʁ/
-      category: vowels
+    - ipa: /lə tʁaktœʁ./
+      engine: olaph
   level: 753
   en-GB: The tractor
 - phrase: Le feu rouge
   emoji: 🚦
   ipas:
-    - ipa: /lə fˈø ʁˈuʒ/
-      category: vowels
+    - ipa: /lə fø ʁuʒ./
+      engine: olaph
   level: 664
   en-GB: The red light
 - phrase: La cigarette
   emoji: 🚬
   ipas:
-    - ipa: /la siɡaʁˈɛt/
-      category: vowels
+    - ipa: /la sigaʁɛt./
+      engine: olaph
   level: 272
   en-GB: The cigarette
 - phrase: Pas de déchets
   emoji: 🚯
   ipas:
-    - ipa: /pa də deʃˈɛ/
-      category: vowels
+    - ipa: /pa də deʃɛ./
+      engine: olaph
   level: 676
   en-GB: No waste
 - phrase: Eau non potable
   emoji: 🚱
   ipas:
-    - ipa: /ˈo nɔ̃ potˈabl/
-      category: vowels
+    - ipa: /o nɔ̃ pɔtabl./
+      engine: olaph
   level: 765
   en-GB: Non-potable water
 - phrase: Le cyclisme
   emoji: 🚴
   ipas:
-    - ipa: /lə siklˈism/
-      category: vowels
+    - ipa: /lə siklism./
+      engine: olaph
   level: 753
   en-GB: Cycling
 - phrase: Les enfants
   emoji: 🚸
   ipas:
-    - ipa: /le-z ɑ̃fˈɑ̃/
-      category: vowels
+    - ipa: /le ɑ̃fɑ̃./
+      engine: olaph
   level: 753
   en-GB: The children
 - phrase: Les femmes
   emoji: 🚺
   ipas:
-    - ipa: /le fˈam/
-      category: vowels
+    - ipa: /le fam./
+      engine: olaph
   level: 721
   en-GB: women
 - phrase: Le bébé
   emoji: 🚼
   ipas:
-    - ipa: /lə bebˈe/
-      category: vowels
+    - ipa: /lə bebe./
+      engine: olaph
   level: 571
   en-GB: The baby
 - phrase: Les toilettes
   emoji: 🚽
   ipas:
-    - ipa: /le twalˈɛt/
-      category: vowels
+    - ipa: /le twalɛt./
+      engine: olaph
   level: 871
   en-GB: The toilets
 - phrase: Le lieu de culte
   emoji: 🛐
   ipas:
-    - ipa: /lə ljˈø də kˈylt/
-      category: vowels
+    - ipa: /lə ljø də kylt./
+      engine: olaph
   level: 693
   en-GB: The place of worship
 - phrase: Le temple
   emoji: 🛕
   ipas:
-    - ipa: /lə tˈɑ̃pl/
-      category: vowels
+    - ipa: /lə tɑ̃pl./
+      engine: olaph
   level: 86
   en-GB: The temple
 - phrase: L'ascenseur
   emoji: 🛗
   ipas:
-    - ipa: /lasɑ̃sˈœʁ/
-      category: vowels
+    - ipa: /lasɑ̃sœʁ./
+      engine: olaph
   level: 1000
   en-GB: The elevator
 - phrase: Le bouclier
   emoji: 🛡️
   ipas:
-    - ipa: /lə bukliˈe/
-      category: vowels
+    - ipa: /lə buklije./
+      engine: olaph
   level: 753
   en-GB: The shield
 - phrase: Le tonneau
   emoji: 🛢️
   ipas:
-    - ipa: /lə tɔnˈo/
-      category: vowels
+    - ipa: /lə tɔno./
+      engine: olaph
   level: 721
   en-GB: The barrel
 - phrase: La trottinette
   emoji: 🛴
   ipas:
-    - ipa: /la tʁɔtinˈɛt/
-      category: vowels
+    - ipa: /la tʁɔtinɛt./
+      engine: olaph
   level: 956
   en-GB: The scooter
 - phrase: Le canoë
   emoji: 🛶
   ipas:
-    - ipa: /lə kanɔˈe/
-      category: vowels
+    - ipa: /lə kanɔe./
+      engine: olaph
   level: 652
   en-GB: The canoe
 - phrase: Pincer
   emoji: 🤏
   ipas:
-    - ipa: /pɛ̃sˈe/
-      category: vowels
+    - ipa: /pɛ̃se./
+      engine: olaph
   level: 830
   en-GB: pinch
 - phrase: Rock
   emoji: 🤘
   ipas:
-    - ipa: /ʁˈɔk/
-      category: vowels
+    - ipa: /ʁɔk./
+      engine: olaph
   level: 1
   en-GB: rock
 - phrase: L'appel
   emoji: 🤙
   ipas:
-    - ipa: /lapˈɛl/
-      category: vowels
+    - ipa: /lapɛl./
+      engine: olaph
   level: 899
   en-GB: The call
 - phrase: Les doigts croisés
   emoji: 🤞
   ipas:
-    - ipa: /le dwˈa kʁwazˈe/
-      category: vowels
+    - ipa: /le dwa kʁwaze./
+      engine: olaph
   level: 765
-  en-GB: fingers
+  en-GB: The fingers
 - phrase: L'amour
   emoji: 🤟
   ipas:
-    - ipa: /lamˈuʁ/
-      category: vowels
+    - ipa: /lamuʁ./
+      engine: olaph
   level: 899
   en-GB: love
 - phrase: Les mains ouvertes
   emoji: 🤲
   ipas:
-    - ipa: /le mˈɛ̃z uvˈɛʁt/
-      category: vowels
+    - ipa: /le mɛ̃ uvɛʁt./
+      engine: olaph
   level: 834
-  en-GB: hands
+  en-GB: The hands
 - phrase: Le prince
   emoji: 🤴
   ipas:
-    - ipa: /lə pʁˈɛ̃s/
-      category: vowels
+    - ipa: /lə pʁɛ̃s./
+      engine: olaph
   level: 1
   en-GB: The prince
 - phrase: Le haussement d'épaules
   emoji: 🤷
   ipas:
-    - ipa: /lə osmˈɑ̃ depˈol/
-      category: vowels
+    - ipa: /lə ʼosmɑ̃ depol./
+      engine: olaph
   level: 980
   en-GB: The shrug
 - phrase: Le jonglage
   emoji: 🤹
   ipas:
-    - ipa: /lə ʒɔ̃ɡlˈaʒ/
-      category: vowels
+    - ipa: /lə ʒɔ̃glage./
+      engine: olaph
   level: 806
   en-GB: juggle
 - phrase: L'escrime
   emoji: 🤺
   ipas:
-    - ipa: /lɛskʁˈim/
-      category: vowels
+    - ipa: /lekʁim./
+      engine: olaph
   level: 1000
-  en-GB: fence
+  en-GB: The fence
 - phrase: Le but
   emoji: 🥅
   ipas:
-    - ipa: /lə bˈyt/
-      category: vowels
+    - ipa: /lə by./
+      engine: olaph
   level: 535
   en-GB: The goal
 - phrase: La boxe
   emoji: 🥊
   ipas:
-    - ipa: /la bˈɔks/
-      category: vowels
+    - ipa: /la bɔks./
+      engine: olaph
   level: 620
   en-GB: boxing
 - phrase: Les arts martiaux
   emoji: 🥋
   ipas:
-    - ipa: /le-z ˈaʁ maʁsjˈo/
-      category: vowels
+    - ipa: /le aʁ maʁsjo./
+      engine: olaph
   level: 369
   en-GB: Martial arts
 - phrase: La crêpe
   emoji: 🥞
   ipas:
-    - ipa: /la kʁˈɛp/
-      category: vowels
+    - ipa: /la kʁɛp./
+      engine: olaph
   level: 604
   en-GB: The crepe
 - phrase: Le bretzel
   emoji: 🥨
   ipas:
-    - ipa: /lə bʁɛtsˈɛl/
-      category: vowels
+    - ipa: /lə bʁɛtzɛl./
+      engine: olaph
   level: 721
   en-GB: The pretzel
 - phrase: Le steak
   emoji: 🥩
   ipas:
-    - ipa: /lə stˈeɪk/
-      category: vowels
+    - ipa: /lə stɛk./
+      engine: olaph
   level: 1
   en-GB: The steak
 - phrase: La blouse de laboratoire
   emoji: 🥼
   ipas:
-    - ipa: /la blˈuz də laboʁatwˈaʁ/
-      category: vowels
+    - ipa: /la bluz də labɔʁatwaʁ./
+      engine: olaph
   level: 624
   en-GB: The lab coat
 - phrase: Les lunettes de protection
   emoji: 🥽
   ipas:
-    - ipa: /le lynˈɛt də pʁotɛksjˈɔ̃/
-      category: vowels
+    - ipa: /le lynɛt də pʁɔtɛksjɔ̃./
+      engine: olaph
   level: 648
   en-GB: The safety glasses
 - phrase: Le crabe
   emoji: 🦀
   ipas:
-    - ipa: /lə kʁˈab/
-      category: vowels
+    - ipa: /lə kʁab./
+      engine: olaph
   level: 652
   en-GB: The crab
 - phrase: Le scorpion
   emoji: 🦂
   ipas:
-    - ipa: /lə skɔʁpjˈɔ̃/
-      category: vowels
+    - ipa: /lə skɔʁpjɔ̃./
+      engine: olaph
   level: 122
   en-GB: The Scorpion
 - phrase: La licorne
   emoji: 🦄
   ipas:
-    - ipa: /la likˈɔʁn/
-      category: vowels
+    - ipa: /la likɔʁn./
+      engine: olaph
   level: 774
   en-GB: The unicorn
 - phrase: Le gorille
   emoji: 🦍
   ipas:
-    - ipa: /lə ɡoʁˈij/
-      category: vowels
+    - ipa: /lə gɔʁij./
+      engine: olaph
   level: 774
   en-GB: The gorilla
 - phrase: Le lézard
   emoji: 🦎
   ipas:
-    - ipa: /lə lezˈaʁ/
-      category: vowels
+    - ipa: /lə lezaʁ./
+      engine: olaph
   level: 636
   en-GB: The lizard
 - phrase: Le calmar
   emoji: 🦑
   ipas:
-    - ipa: /lə kalmˈaʁ/
-      category: vowels
+    - ipa: /lə kalmaʁ./
+      engine: olaph
   level: 689
   en-GB: The squid
 - phrase: Le dinosaure
   emoji: 🦖
   ipas:
-    - ipa: /lə dinozˈɔʁ/
-      category: vowels
+    - ipa: /lə dinozɔʁ./
+      engine: olaph
   level: 891
   en-GB: The dinosaur
 - phrase: L'hippopotame
   emoji: 🦛
   ipas:
-    - ipa: /lipopotˈam/
-      category: vowels
+    - ipa: /lipɔpɔtam./
+      engine: olaph
   level: 1000
   en-GB: The hippopotamus
 - phrase: Le cygne
   emoji: 🦢
   ipas:
-    - ipa: /lə sˈiɲ/
-      category: vowels
+    - ipa: /lə siɲ./
+      engine: olaph
   level: 604
   en-GB: The swan
 - phrase: La canne
   emoji: 🦯
   ipas:
-    - ipa: /la kˈan/
-      category: vowels
+    - ipa: /la kan./
+      engine: olaph
   level: 652
   en-GB: The stick
 - phrase: L'os
   emoji: 🦴
   ipas:
-    - ipa: /lˈɔs/
-      category: vowels
+    - ipa: /lɔs./
+      engine: olaph
   level: 596
   en-GB: The bone
 - phrase: Le gilet de sécurité
   emoji: 🦺
   ipas:
-    - ipa: /lə ʒilˈɛ də sekyʁitˈe/
-      category: vowels
+    - ipa: /lə ʒilɛ də sekyʁite./
+      engine: olaph
   level: 786
   en-GB: The safety vest
 - phrase: Le bras robotique
   emoji: 🦾
   ipas:
-    - ipa: /lə bʁˈa ʁobotˈik/
-      category: vowels
+    - ipa: /lə bʁa ʁɔbɔtik./
+      engine: olaph
   level: 846
   en-GB: The robot arm
 - phrase: Debout
   emoji: 🧍
   ipas:
-    - ipa: /dəbˈu/
-      category: vowels
+    - ipa: /dəbu./
+      engine: olaph
   level: 830
   en-GB: stand
 - phrase: S'agenouiller
   emoji: 🧎
   ipas:
-    - ipa: /saʒnujˈe/
-      category: vowels
+    - ipa: /saʒnuje./
+      engine: olaph
   level: 1000
   en-GB: kneel
 - phrase: Sourd
   emoji: 🧏
   ipas:
-    - ipa: /sˈuʁ/
-      category: vowels
+    - ipa: /suʁ./
+      engine: olaph
   level: 664
   en-GB: deaf
 - phrase: La personne
   emoji: 🧑
   ipas:
-    - ipa: /la pɛʁsˈɔn/
-      category: vowels
+    - ipa: /la pɛʁsɔn./
+      engine: olaph
   level: 806
   en-GB: The person
 - phrase: La personne âgée
   emoji: 🧓
   ipas:
-    - ipa: /la pɛʁsˈɔn aʒˈe/
-      category: vowels
+    - ipa: /la pɛʁsɔn aʒe./
+      engine: olaph
   level: 790
   en-GB: The elderly person
 - phrase: Le sauna
   emoji: 🧖
   ipas:
-    - ipa: /lə sonˈa/
-      category: vowels
+    - ipa: /lə sona./
+      engine: olaph
   level: 122
   en-GB: The sauna
 - phrase: L'escalade
   emoji: 🧗
   ipas:
-    - ipa: /lɛskalˈad/
-      category: vowels
+    - ipa: /lɛskalad./
+      engine: olaph
   level: 1000
   en-GB: climb
 - phrase: La fée
   emoji: 🧚
   ipas:
-    - ipa: /la fˈe/
-      category: vowels
+    - ipa: /la fe./
+      engine: olaph
   level: 535
   en-GB: The fairy
 - phrase: Le vampire
   emoji: 🧛
   ipas:
-    - ipa: /lə vɑ̃pˈiʁ/
-      category: vowels
+    - ipa: /lə vɑ̃piʁ./
+      engine: olaph
   level: 159
   en-GB: The vampire
 - phrase: L'elfe
   emoji: 🧝
   ipas:
-    - ipa: /lˈɛlf/
-      category: vowels
+    - ipa: /lɛlf./
+      engine: olaph
   level: 830
   en-GB: The elf
 - phrase: L'enveloppe rouge
   emoji: 🧧
   ipas:
-    - ipa: /lɑ̃vlˈɔp ʁˈuʒ/
-      category: vowels
+    - ipa: /lɑ̃vlɔp ʁuʒ./
+      engine: olaph
   level: 1000
   en-GB: The red envelope
 - phrase: La boussole
   emoji: 🧭
   ipas:
-    - ipa: /la busˈɔl/
-      category: vowels
+    - ipa: /la busɔl./
+      engine: olaph
   level: 806
   en-GB: The compass
 - phrase: L'extincteur
   emoji: 🧯
   ipas:
-    - ipa: /lɛkstɛ̃ktˈœʁ/
-      category: vowels
+    - ipa: /lɛkstɛ̃ktœʁ./
+      engine: olaph
   level: 1000
   en-GB: The fire extinguisher
 - phrase: L'épingle à nourrice
   emoji: 🧷
   ipas:
-    - ipa: /lepˈɛ̃ɡl a nuʁˈis/
-      category: vowels
+    - ipa: /lepɛ̃gl a nuʁis./
+      engine: olaph
   level: 911
   en-GB: The safety pin
 - phrase: Le balai
   emoji: 🧹
   ipas:
-    - ipa: /lə balˈɛ/
-      category: vowels
+    - ipa: /lə balɛ./
+      engine: olaph
   level: 652
   en-GB: The broom
 - phrase: Le panier
   emoji: 🧺
   ipas:
-    - ipa: /lə panjˈe/
-      category: vowels
+    - ipa: /lə panje./
+      engine: olaph
   level: 689
   en-GB: The basket
 - phrase: Le rouleau de papier
   emoji: 🧻
   ipas:
-    - ipa: /lə ʁulˈo də papjˈe/
-      category: vowels
+    - ipa: /lə ʁulo də papje./
+      engine: olaph
   level: 786
   en-GB: The roll of paper
 - phrase: L'éponge
   emoji: 🧽
   ipas:
-    - ipa: /lepˈɔ̃ʒ/
-      category: vowels
+    - ipa: /lepɔ̃ʒ./
+      engine: olaph
   level: 968
   en-GB: The sponge
 - phrase: Le pansement
   emoji: 🩹
   ipas:
-    - ipa: /lə pɑ̃smˈɑ̃/
-      category: vowels
+    - ipa: /lə pɑ̃smɑ̃./
+      engine: olaph
   level: 838
   en-GB: The dressing
 - phrase: Le stéthoscope
   emoji: 🩺
   ipas:
-    - ipa: /lə stˈeɪθəskˌəʊp/
-      category: vowels
+    - ipa: /lə stetɔskɔp./
+      engine: olaph
   level: 907
   en-GB: The stethoscope
 - phrase: Le parachute
   emoji: 🪂
   ipas:
-    - ipa: /lə paʁaʃˈyt/
-      category: vowels
+    - ipa: /lə paʁaʃyt./
+      engine: olaph
   level: 252
   en-GB: The parachute
 - phrase: Le rasoir
   emoji: 🪒
   ipas:
-    - ipa: /lə ʁazwˈaʁ/
-      category: vowels
+    - ipa: /lə ʁazwaʁ./
+      engine: olaph
   level: 689
   en-GB: The razor
 - phrase: La lampe à huile
   emoji: 🪔
   ipas:
-    - ipa: /la lˈɑ̃p a yˈil/
-      category: vowels
+    - ipa: /la lɑ̃p a ɥil./
+      engine: olaph
   level: 717
   en-GB: The oil lamp
 - phrase: Le banjo
   emoji: 🪕
   ipas:
-    - ipa: /lə bɑ̃ʒˈo/
-      category: vowels
+    - ipa: /lə bɑ̃ʒo./
+      engine: olaph
   level: 86
   en-GB: The banjo
 - phrase: Le miroir
   emoji: 🪞
   ipas:
-    - ipa: /lə miʁwˈaʁ/
-      category: vowels
+    - ipa: /lə miʁwaʁ./
+      engine: olaph
   level: 689
   en-GB: The mirror
 - phrase: Le biscuit
   emoji: 🍪
   ipas:
-    - ipa: /lə biskyˈi/
-      category: vowels
+    - ipa: /lə biskɥi./
+      engine: olaph
   level: 17
   en-GB: The cookie
 - phrase: Le ballon
   emoji: 🎈
   ipas:
-    - ipa: /lə balˈɔ̃/
-      category: vowels
+    - ipa: /lə balɔ̃./
+      engine: olaph
   level: 689
   en-GB: The ball
 - phrase: La souris
   emoji: 🐭
   ipas:
-    - ipa: /la suʁˈi/
-      category: vowels
+    - ipa: /la suʁi./
+      engine: olaph
   level: 689
   en-GB: The mouse
 - phrase: Le t-shirt
   emoji: 👕
   ipas:
-    - ipa: /lə tˈiːʃˈɜːt/
-      category: vowels
+    - ipa: /lə t sʼiʁt./
+      engine: olaph
   level: 668
   en-GB: The t-shirt
 - phrase: La peinture
   emoji: 🎨
   ipas:
-    - ipa: /la pɛ̃tˈyʁ/
-      category: vowels
+    - ipa: /la pɛ̃tyʁ./
+      engine: olaph
   level: 806
   en-GB: Painting
 - phrase: Lumineux
   emoji: 🔆
   ipas:
-    - ipa: /lyminˈø/
-      category: vowels
+    - ipa: /lyminø./
+      engine: olaph
   level: 1000
   en-GB: bright
 - phrase: Sombre
   emoji: 🔅
   ipas:
-    - ipa: /sˈɔ̃bʁ/
-      category: vowels
+    - ipa: /sɔ̃bʁ./
+      engine: olaph
   level: 830
   en-GB: dim
 - phrase: Le globe terrestre
   emoji: 🌍
   ipas:
-    - ipa: /lə ɡlˈɔb tɛʁˈɛstʁ/
-      category: vowels
+    - ipa: /lə glɔb tɛʁɛstʁ./
+      engine: olaph
   level: 458
   en-GB: The terrestrial globe
 - phrase: La poignée de main
   emoji: 🤝
   ipas:
-    - ipa: /la pwanjˈe də mˈɛ̃/
-      category: vowels
+    - ipa: /la pwaɲe də mɛ̃./
+      engine: olaph
   level: 405
   en-GB: The handshake
 - phrase: La montagne enneigée
   emoji: 🏔️
   ipas:
-    - ipa: /la mɔ̃tˈaɲ ɛnɛʒˈe/
-      category: vowels
+    - ipa: /la mɔ̃taɲ ɑ̃neʒe./
+      engine: olaph
   level: 947
   en-GB: The snowy mountain
 - phrase: La lutte
   emoji: 🤼
   ipas:
-    - ipa: /la lˈyt/
-      category: vowels
+    - ipa: /la lyt./
+      engine: olaph
   level: 652
   en-GB: The struggle
 - phrase: Le nourrisson
   emoji: 👶
   ipas:
-    - ipa: /lə nuʁisˈɔ̃/
-      category: vowels
+    - ipa: /lə nuʁisɔ̃./
+      engine: olaph
   level: 871
   en-GB: The baby is crying
 - phrase: La vache laitière
   emoji: 🐄
   ipas:
-    - ipa: /la vˈaʃ lɛtjˈɛʁ/
-      category: vowels
+    - ipa: /la vaʃ lɛtjɛʁ./
+      engine: olaph
   level: 846
   en-GB: The dairy cow
 - phrase: Le livre rouge
   emoji: 📕
   ipas:
-    - ipa: /lə lˈivʁ ʁˈuʒ/
-      category: vowels
+    - ipa: /lə livʁ ʁuʒ./
+      engine: olaph
   level: 745
   en-GB: The red book
 - phrase: Le chapeau de paille
   emoji: 👒
   ipas:
-    - ipa: /lə ʃapˈo də pˈaj/
-      category: vowels
+    - ipa: /lə ʃapo də paj./
+      engine: olaph
   level: 786
   en-GB: The straw hat
 - phrase: La fleur de cerisier
   emoji: 🌸
   ipas:
-    - ipa: /la flˈœʁ də səʁizjˈe/
-      category: vowels
+    - ipa: /la flœʁ də səʁizje./
+      engine: olaph
   level: 786
   en-GB: The cherry blossom
 - phrase: Le labrador
   emoji: 🐕
   ipas:
-    - ipa: /lə labʁadˈɔʁ/
-      category: vowels
+    - ipa: /lə labʁadɔʁ./
+      engine: olaph
   level: 806
   en-GB: The Labrador
-- phrase: arts
+- phrase: Les arts
   emoji: 🎨
   ipas:
-    - ipa: /ˈaʁ/
-      category: standard
+    - ipa: /le aʁ./
+      engine: olaph
   level: 293
-  en-GB: arts
-- phrase: sac
+  en-GB: The arts
+- phrase: Le sac
   emoji: 👜
   ipas:
-    - ipa: /sˈak/
-      category: standard
+    - ipa: /lə sak./
+      engine: olaph
   level: 122
-  en-GB: bag
-- phrase: bandage
+  en-GB: The bag
+- phrase: Le bandage
   emoji: 🩹
   ipas:
-    - ipa: /bɑ̃dˈaʒ/
-      category: standard
+    - ipa: /lə bɑ̃daʒ./
+      engine: olaph
   level: 537
-  en-GB: bandage
-- phrase: ampoule
+  en-GB: The bandage
+- phrase: L'ampoule
   emoji: 💡
   ipas:
-    - ipa: /ɑ̃pˈul/
-      category: standard
+    - ipa: /lɑ̃pul./
+      engine: olaph
   level: 236
-  en-GB: bulb
+  en-GB: The bulb
 - phrase: lapin
   emoji: 👯
   ipas:
-    - ipa: /lapˈɛ̃/
-      category: standard
+    - ipa: /lapɛ̃./
+      engine: olaph
   level: 169
   en-GB: bunny
 - phrase: bousiller
   emoji: 👤
   ipas:
-    - ipa: /buzijˈe/
-      category: standard
+    - ipa: /buzije./
+      engine: olaph
   level: 429
   en-GB: bust
 - phrase: capuchon
   emoji: 🧢
   ipas:
-    - ipa: /kapyʃˈɔ̃/
-      category: standard
+    - ipa: /kapyʃɔ̃./
+      engine: olaph
   level: 166
   en-GB: cap
 - phrase: carte
   emoji: 💳
   ipas:
-    - ipa: /kˈaʁt/
-      category: standard
+    - ipa: /kaʁt./
+      engine: olaph
   level: 194
   en-GB: card
 - phrase: vérifier
   emoji: ✅
   ipas:
-    - ipa: /veʁifjˈe/
-      category: standard
+    - ipa: /veʁifje./
+      engine: olaph
   level: 309
   en-GB: check
 - phrase: montagnes russes
   emoji: 🎢
   ipas:
-    - ipa: /mɔ̃tˈanj ʁˈys/
-      category: standard
+    - ipa: /mɔ̃taɲ ʁys./
+      engine: olaph
   level: 543
   en-GB: coaster
 - phrase: manteau
   emoji: 🥼
   ipas:
-    - ipa: /mɑ̃tˈo/
-      category: standard
+    - ipa: /mɑ̃to./
+      engine: olaph
   level: 147
   en-GB: coat
-- phrase: construction
+- phrase: La construction
   emoji: 🚧
   ipas:
-    - ipa: /kɔ̃stʁyksjˈɔ̃/
-      category: standard
+    - ipa: /la kɔ̃stʁyksjɔ̃./
+      engine: olaph
   level: 949
-  en-GB: construction
+  en-GB: The construction
 - phrase: tambour
   emoji: 🛢️
   ipas:
-    - ipa: /tɑ̃bˈuʁ/
-      category: standard
+    - ipa: /tɑ̃buʁ./
+      engine: olaph
   level: 191
   en-GB: drum
 - phrase: enveloppe
   emoji: 🧧
   ipas:
-    - ipa: /ɑ̃vlˈɔp/
-      category: standard
+    - ipa: /ɑ̃vlɔp./
+      engine: olaph
   level: 705
   en-GB: envelope
 - phrase: froncer les sourcils
   emoji: 🙍
   ipas:
-    - ipa: /fʁɔ̃sˈe le suʁsˈil/
-      category: standard
+    - ipa: /fʁɔ̃se le suʁsi./
+      engine: olaph
   level: 296
   en-GB: frown
-- phrase: gemme
+- phrase: La gemme
   emoji: 💎
   ipas:
-    - ipa: /ʒˈɛm/
-      category: standard
+    - ipa: /la ʒɛm./
+      engine: olaph
   level: 226
-  en-GB: gem
-- phrase: gants
+  en-GB: The gem
+- phrase: Les gants
   emoji: 🧤
   ipas:
-    - ipa: /ɡˈɑ̃/
-      category: standard
+    - ipa: /le gɑ̃./
+      engine: olaph
   level: 350
-  en-GB: gloves
+  en-GB: The gloves
 - phrase: des lunettes
   emoji: 🥽
   ipas:
-    - ipa: /de lynˈɛt/
-      category: standard
+    - ipa: /de lynɛt./
+      engine: olaph
   level: 496
   en-GB: goggles
 - phrase: talon
   emoji: 👠
   ipas:
-    - ipa: /talˈɔ̃/
-      category: standard
+    - ipa: /talɔ̃./
+      engine: olaph
   level: 217
   en-GB: heel
-- phrase: jeans
+- phrase: Le jean
   emoji: 👖
   ipas:
-    - ipa: /ʒˈɑ̃/
-      category: standard
+    - ipa: /lə dʒin./
+      engine: olaph
   level: 321
-  en-GB: jeans
+  en-GB: The jeans
 - phrase: liberté
   emoji: 🗽
   ipas:
-    - ipa: /libɛʁtˈe/
-      category: standard
+    - ipa: /libɛʁte./
+      engine: olaph
   level: 683
   en-GB: liberty
 - phrase: lumière
   emoji: 🚦
   ipas:
-    - ipa: /lymjˈɛʁ/
-      category: standard
+    - ipa: /lymjɛʁ./
+      engine: olaph
   level: 207
   en-GB: light
 - phrase: litière
   emoji: 🚯
   ipas:
-    - ipa: /litjˈɛʁ/
-      category: standard
+    - ipa: /litjɛʁ./
+      engine: olaph
   level: 426
   en-GB: litter
 - phrase: martial
   emoji: 🥋
   ipas:
-    - ipa: /maʁsjˈal/
-      category: standard
+    - ipa: /maʁsjal./
+      engine: olaph
   level: 673
   en-GB: martial
 - phrase: copain
   emoji: 🤝
   ipas:
-    - ipa: /kopˈɛ̃/
-      category: standard
+    - ipa: /kɔpɛ̃./
+      engine: olaph
   level: 347
   en-GB: mate
-- phrase: muscle
+- phrase: Le muscle
   emoji: 💪
   ipas:
-    - ipa: /mˈyskl/
-      category: standard
+    - ipa: /lə myskl./
+      engine: olaph
   level: 467
-  en-GB: muscle
+  en-GB: The muscle
 - phrase: plus vieux
   emoji: 🧓
   ipas:
-    - ipa: /ply vjˈø/
-      category: standard
+    - ipa: /ply vjø./
+      engine: olaph
   level: 334
   en-GB: older
 - phrase: page
   emoji: 📃
   ipas:
-    - ipa: /pˈaʒ/
-      category: standard
+    - ipa: /paʒ./
+      engine: olaph
   level: 277
   en-GB: The paper
 - phrase: prendre
   emoji: ⛏️
   ipas:
-    - ipa: /pʁˈɑ̃dʁ/
-      category: standard
+    - ipa: /pʁɑ̃dʁ./
+      engine: olaph
   level: 172
-  en-GB: pick
+  en-GB: The pick
 - phrase: épingle
   emoji: 🧷
   ipas:
-    - ipa: /epˈɛ̃ɡl/
-      category: standard
+    - ipa: /epɛ̃gl./
+      engine: olaph
   level: 160
   en-GB: pin
-- phrase: police
+- phrase: La police
   emoji: 🚓
   ipas:
-    - ipa: /polˈis/
-      category: standard
+    - ipa: /la pɔlis./
+      engine: olaph
   level: 483
-  en-GB: police
+  en-GB: The police
 - phrase: augmenter
   emoji: 🙋
   ipas:
-    - ipa: /oɡmɑ̃tˈe/
-      category: standard
+    - ipa: /ogmɑ̃te./
+      engine: olaph
   level: 420
   en-GB: raise
 - phrase: courir
   emoji: 🏃
   ipas:
-    - ipa: /kuʁˈiʁ/
-      category: standard
+    - ipa: /kuʁiʁ./
+      engine: olaph
   level: 80
   en-GB: run
 - phrase: éclat
   emoji: ✨
   ipas:
-    - ipa: /eklˈa/
-      category: standard
+    - ipa: /ekla./
+      engine: olaph
   level: 435
   en-GB: sparkle
 - phrase: parler
   emoji: 🗣️
   ipas:
-    - ipa: /paʁlˈe/
-      category: standard
+    - ipa: /paʁle./
+      engine: olaph
   level: 226
   en-GB: speak
 - phrase: arrêt
   emoji: 🚏
   ipas:
-    - ipa: /aʁˈɛ/
-      category: standard
+    - ipa: /aʁɛ./
+      engine: olaph
   level: 134
   en-GB: stop
 - phrase: nager
   emoji: 🏊
   ipas:
-    - ipa: /naʒˈe/
-      category: standard
+    - ipa: /naʒe./
+      engine: olaph
   level: 175
   en-GB: swim
 - phrase: ruban adhésif
   emoji: 📼
   ipas:
-    - ipa: /ʁybˈɑ̃ adezˈif/
-      category: standard
+    - ipa: /ʁybɑ̃ adezif./
+      engine: olaph
   level: 302
-  en-GB: tape
-- phrase: tulipe
+  en-GB: The tape
+- phrase: La tulipe
   emoji: 🌷
   ipas:
-    - ipa: /tylˈip/
-      category: standard
+    - ipa: /la tylip./
+      engine: olaph
   level: 394
-  en-GB: tulip
+  en-GB: The tulip
 - phrase: parapluie
   emoji: ⛱️
   ipas:
-    - ipa: /paʁaplyˈi/
-      category: standard
+    - ipa: /paʁaplɥi./
+      engine: olaph
   level: 553
   en-GB: umbrella
 - phrase: van
   emoji: 🚐
   ipas:
-    - ipa: /vˈan/
-      category: standard
+    - ipa: /vɑ̃./
+      engine: olaph
   level: 125
   en-GB: van
-- phrase: gilet
+- phrase: Le gilet
   emoji: 🦺
   ipas:
-    - ipa: /ʒilˈɛ/
-      category: standard
+    - ipa: /lə ʒilɛ./
+      engine: olaph
   level: 217
-  en-GB: vest
+  en-GB: The vest
 - phrase: vague
   emoji: 👋
   ipas:
-    - ipa: /vˈaɡ/
-      category: standard
+    - ipa: /vag./
+      engine: olaph
   level: 258
   en-GB: wave
-- phrase: roue
+- phrase: La roue
   emoji: 🎡
   ipas:
-    - ipa: /ʁˈu/
-      category: standard
+    - ipa: /la ʁu./
+      engine: olaph
   level: 188
-  en-GB: wheel
+  en-GB: The wheel
 - phrase: culte
   emoji: 🛐
   ipas:
-    - ipa: /kˈylt/
-      category: standard
+    - ipa: /kylt./
+      engine: olaph
   level: 553
   en-GB: worship
 - phrase: lutter
   emoji: 🤼
   ipas:
-    - ipa: /lytˈe/
-      category: standard
+    - ipa: /lyte./
+      engine: olaph
   level: 524
   en-GB: wrestle
 - phrase: Le kiwi est vert
   emoji: 🥝
   ipas:
-    - ipa: /lə kjwˈi ɛ vˈɛʁ/
-      category: standard
+    - ipa: /lə kiwi ɛst vɛʁ./
+      engine: olaph
   level: 819
   en-GB: The kiwi is green
 - phrase: La pastèque est grosse
   emoji: 🍉
   ipas:
-    - ipa: /la pastˈɛk ɛ ɡʁˈos/
-      category: standard
+    - ipa: /la pastɛk ɛst gʁos./
+      engine: olaph
   level: 1000
   en-GB: The watermelon is big
 - phrase: L'œuf est rond
   emoji: 🥚
   ipas:
-    - ipa: /lˈœf ɛ ʁˈɔ̃/
-      category: standard
+    - ipa: /lœf ɛst ʁɔ̃./
+      engine: olaph
   level: 1000
   en-GB: The egg is round
 - phrase: La gaufre est chaude
   emoji: 🧇
   ipas:
-    - ipa: /la ɡˈofʁ ɛ ʃˈod/
-      category: standard
+    - ipa: /la gofʁ ɛst ʃod./
+      engine: olaph
   level: 1000
   en-GB: The waffle is warm
 - phrase: Le beignet est sucré
   emoji: 🍩
   ipas:
-    - ipa: /lə bɛnjˈɛ ɛ sykʁˈe/
-      category: standard
+    - ipa: /lə bɛɲɛ ɛst sykʁe./
+      engine: olaph
   level: 1000
   en-GB: The donut is sweet
 - phrase: Le kangourou saute loin
   emoji: 🦘
   ipas:
-    - ipa: /lə kɑ̃ɡuʁˈu sˈot lwˈɛ̃/
-      category: standard
+    - ipa: /lə kɑ̃guʁu sot lwɛ̃./
+      engine: olaph
   level: 1000
   en-GB: The kangaroo jumps far
 - phrase: Le crocodile est gros
   emoji: 🐊
   ipas:
-    - ipa: /lə kʁokodˈil ɛ ɡʁˈo/
-      category: standard
+    - ipa: /lə kʁɔkɔdil ɛst gʁo./
+      engine: olaph
   level: 1000
   en-GB: The crocodile is big
 - phrase: Le flamant rose est rose
   emoji: 🦩
   ipas:
-    - ipa: /lə flamˈɑ̃ ʁˈɔz ɛ ʁˈɔz/
-      category: standard
+    - ipa: /lə flamɑ̃ ʁoz ɛst ʁoz./
+      engine: olaph
   level: 1000
   en-GB: The flamingo is pink
 - phrase: Le requin nage vite
   emoji: 🦈
   ipas:
-    - ipa: /lə ʁəkˈɛ̃ nˈaʒ vˈit/
-      category: standard
+    - ipa: /lə ʁəkɛ̃ naʒ vit./
+      engine: olaph
   level: 826
   en-GB: The shark swims fast
 - phrase: Le perroquet parle beaucoup
   emoji: 🦜
   ipas:
-    - ipa: /lə pɛʁokˈɛ pˈaʁl bokˈu/
-      category: standard
+    - ipa: /lə peʁɔkɛ paʁl boku./
+      engine: olaph
   level: 1000
   en-GB: The parrot talks a lot
 - phrase: La guitare sonne bien
   emoji: 🎸
   ipas:
-    - ipa: /la ɡitˈaʁ sˈɔn bjˈɛ̃/
-      category: standard
+    - ipa: /la gitaʁ sɔn bjɛ̃./
+      engine: olaph
   level: 908
   en-GB: The guitar sounds great
 - phrase: La trompette est forte
   emoji: 🎺
   ipas:
-    - ipa: /la tʁɔ̃pˈɛt ɛ fˈɔʁt/
-      category: standard
+    - ipa: /la tʁɔ̃pɛt ɛst fɔʁt./
+      engine: olaph
   level: 841
   en-GB: The trumpet is loud
 - phrase: Le violon sonne bien
   emoji: 🎻
   ipas:
-    - ipa: /lə vjolˈɔ̃ sˈɔn bjˈɛ̃/
-      category: standard
+    - ipa: /lə vjɔlɔ̃ sɔn bjɛ̃./
+      engine: olaph
   level: 911
   en-GB: The violin sounds great
 - phrase: Le télescope montre les étoiles
   emoji: 🔭
   ipas:
-    - ipa: /lə telɛskˈɔp mˈɔ̃tʁ le-z etwˈal/
-      category: standard
+    - ipa: /lə teleskɔp mɔ̃tʁ le etwal./
+      engine: olaph
   level: 1000
   en-GB: The telescope shows stars
 - phrase: L'ours en peluche est doux
   emoji: 🧸
   ipas:
-    - ipa: /lˈuʁs ɑ̃ pəlˈyʃ ɛ dˈu/
-      category: standard
+    - ipa: /luʁs ɑ̃ pəlyʃ ɛst du./
+      engine: olaph
   level: 918
   en-GB: The teddy bear is soft
 - phrase: L'hélicoptère vole haut
   emoji: 🚁
   ipas:
-    - ipa: /lelikɔptˈɛʁ vˈɔl ˈo/
-      category: standard
+    - ipa: /lelikɔptɛʁ vɔl ʼo./
+      engine: olaph
   level: 962
   en-GB: The helicopter flies high
 - phrase: La fusée vole haut
   emoji: 🚀
   ipas:
-    - ipa: /la fyzˈe vˈɔl ˈo/
-      category: standard
+    - ipa: /la fyze vɔl ʼo./
+      engine: olaph
   level: 867
   en-GB: The rocket flies high
 - phrase: Le brocoli est sain
   emoji: 🥦
   ipas:
-    - ipa: /lə bʁokolˈi ɛ sˈɛ̃/
-      category: standard
+    - ipa: /lə bʁɔkɔli ɛst sɛ̃./
+      engine: olaph
   level: 930
   en-GB: The broccoli is healthy
 - phrase: L'oignon sent fort
   emoji: 🧅
   ipas:
-    - ipa: /lonjˈɔ̃ sˈɑ̃ fˈɔʁ/
-      category: standard
+    - ipa: /lwaɲɔ̃ sɑ̃ fɔʁ./
+      engine: olaph
   level: 895
   en-GB: The onion smells strong
 - phrase: La soupe est chaude
   emoji: 🍲
   ipas:
-    - ipa: /la sˈup ɛ ʃˈod/
-      category: standard
+    - ipa: /la sup ɛst ʃod./
+      engine: olaph
   level: 1000
   en-GB: The soup is hot
 - phrase: Le miel est doux
   emoji: 🍯
   ipas:
-    - ipa: /lə mjˈɛl ɛ dˈu/
-      category: standard
+    - ipa: /lə mjɛl ɛst du./
+      engine: olaph
   level: 816
   en-GB: The honey is sweet
 - phrase: La forêt est verte et calme
   emoji: 🌲
   ipas:
-    - ipa: /la foʁˈɛ ɛ vˈɛʁt e kˈalm/
-      category: standard
+    - ipa: /la fɔʁɛ ɛst vɛʁt e kalm./
+      engine: olaph
   level: 886
   en-GB: The forest is green and calm
 - phrase: La plage est chaude et ensoleillée
   emoji: 🏖️
   ipas:
-    - ipa: /la plˈaʒ ɛ ʃˈod e ɑ̃solɛjˈe/
-      category: standard
+    - ipa: /la plaʒ ɛst ʃod e ɑ̃sɔleje./
+      engine: olaph
   level: 851
   en-GB: The beach is warm and sunny
 - phrase: Le piano sonne magnifiquement
   emoji: 🎹
   ipas:
-    - ipa: /lə pjanˈo sˈɔn maɲifikmˈɑ̃/
-      category: standard
+    - ipa: /lə pjano sɔn maɲifikmɑ̃./
+      engine: olaph
   level: 975
   en-GB: The piano sounds beautiful
 - phrase: chapeau haut de forme
   emoji: 🎩
   ipas:
-    - ipa: /ʃapˈo ˈo də fˈɔʁm/
-      category: standard
+    - ipa: /ʃapo ʼo də fɔʁm./
+      engine: olaph
   level: 128
   en-GB: The cylinder
 - phrase: bâtiment d'église
   emoji: ⛪
   ipas:
-    - ipa: /batimˈɑ̃ deɡlˈiz/
-      category: standard
+    - ipa: /batimɑ̃ degliz./
+      engine: olaph
   level: 439
   en-GB: The church building
 - phrase: vache laitière
   emoji: 🐄
   ipas:
-    - ipa: /vˈaʃ lɛtjˈɛʁ/
-      category: standard
+    - ipa: /vaʃ lɛtjɛʁ./
+      engine: olaph
   level: 724
   en-GB: The cow moos
 - phrase: Art
   emoji: 🎨
   ipas:
-    - ipa: /ˈaʁ/
-      category: standard
+    - ipa: /aʁ./
+      engine: olaph
   level: 417
   en-GB: Art
 - phrase: La colère
   emoji: 💢
   ipas:
-    - ipa: /la kolˈɛʁ/
-      category: standard
+    - ipa: /la kɔlɛʁ./
+      engine: olaph
   level: 378
   en-GB: The anger
 - phrase: Le bacon
   emoji: 🥓
   ipas:
-    - ipa: /lə bakˈɔ̃/
-      category: standard
+    - ipa: /lə bekɔn./
+      engine: olaph
   level: 801
   en-GB: The bacon
 - phrase: Le bambou
   emoji: 🎋
   ipas:
-    - ipa: /lə bɑ̃bˈu/
-      category: standard
+    - ipa: /lə bɑ̃bu./
+      engine: olaph
   level: 850
   en-GB: The bamboo
 - phrase: La batterie
   emoji: 🔋
   ipas:
-    - ipa: /la batʁˈi/
-      category: standard
+    - ipa: /la batʁi./
+      engine: olaph
   level: 533
   en-GB: The battery
 - phrase: La plage est chaude
   emoji: 🏖️
   ipas:
-    - ipa: /la plˈaʒ ɛ ʃˈod/
-      category: standard
+    - ipa: /la plaʒ ɛst ʃod./
+      engine: olaph
   level: 477
   en-GB: The beach is warm
 - phrase: L'abeille bourdonne
   emoji: 🐝
   ipas:
-    - ipa: /labˈɛj buʁdˈɔn/
-      category: standard
+    - ipa: /labɛj buʁdɔn./
+      engine: olaph
   level: 676
   en-GB: The bee buzzes
 - phrase: La bière
   emoji: 🍺
   ipas:
-    - ipa: /la bjˈɛʁ/
-      category: standard
+    - ipa: /la bjɛʁ./
+      engine: olaph
   level: 526
   en-GB: The beer
 - phrase: La boîte
   emoji: 🗃️
   ipas:
-    - ipa: /la bwˈat/
-      category: standard
+    - ipa: /la bwat./
+      engine: olaph
   level: 1
   en-GB: The box
 - phrase: Le brocoli
   emoji: 🥦
   ipas:
-    - ipa: /lə bʁokolˈi/
-      category: standard
+    - ipa: /lə bʁɔkɔli./
+      engine: olaph
   level: 917
   en-GB: The broccoli
 - phrase: Le brocoli est vert
   emoji: 🥦
   ipas:
-    - ipa: /lə bʁokolˈi ɛ vˈɛʁ/
-      category: standard
+    - ipa: /lə bʁɔkɔli ɛst vɛʁ./
+      engine: olaph
   level: 896
   en-GB: The broccoli is green
 - phrase: Le bâtiment
   emoji: 🏗️
   ipas:
-    - ipa: /lə batimˈɑ̃/
-      category: standard
+    - ipa: /lə batimɑ̃./
+      engine: olaph
   level: 600
   en-GB: The building
 - phrase: Les lapins
   emoji: 👯
   ipas:
-    - ipa: /le lapˈɛ̃/
-      category: standard
+    - ipa: /le lapɛ̃./
+      engine: olaph
   level: 484
   en-GB: The bunnies
 - phrase: L'entreprise
   emoji: 🏬
   ipas:
-    - ipa: /lɑ̃tʁəpʁˈiz/
-      category: standard
+    - ipa: /lɑ̃ʁəpʁiz./
+      engine: olaph
   level: 889
   en-GB: The business
 - phrase: Le gâteau est sucré
   emoji: 🍰
   ipas:
-    - ipa: /lə ɡatˈo ɛ sykʁˈe/
-      category: standard
+    - ipa: /lə gato ɛst sykʁe./
+      engine: olaph
   level: 535
   en-GB: The cake is sweet
 - phrase: Le chocolat
   emoji: 🍫
   ipas:
-    - ipa: /lə ʃokolˈa/
-      category: standard
+    - ipa: /lə ʃɔkɔla./
+      engine: olaph
   level: 667
   en-GB: The chocolate
 - phrase: Le service religieux
   emoji: 🛐
   ipas:
-    - ipa: /lə sɛʁvˈis ʁəliʒjˈø/
-      category: standard
+    - ipa: /lə sɛʁvis ʁəliʒjø./
+      engine: olaph
   level: 995
   en-GB: The church service
 - phrase: Le cinéma
   emoji: 🎦
   ipas:
-    - ipa: /lə sinemˈa/
-      category: standard
+    - ipa: /lə sinema./
+      engine: olaph
   level: 810
   en-GB: The cinema
 - phrase: Le nuage bouge
   emoji: ☁️
   ipas:
-    - ipa: /lə nyˈaʒ bˈuʒ/
-      category: standard
+    - ipa: /lə nɥaʒ buʒ./
+      engine: olaph
   level: 674
   en-GB: The cloud is moving
 - phrase: L'embrayage
   emoji: 👝
   ipas:
-    - ipa: /lɑ̃bʁɛjˈaʒ/
-      category: standard
+    - ipa: /lɑ̃bʁɛjaʒ./
+      engine: olaph
   level: 119
   en-GB: The clutch
 - phrase: Les confettis
   emoji: 🎊
   ipas:
-    - ipa: /le kɔ̃fɛtˈi/
-      category: standard
+    - ipa: /le kɔ̃feti./
+      engine: olaph
   level: 917
   en-GB: The confetti
 - phrase: Le maïs
   emoji: 🌽
   ipas:
-    - ipa: /lə maˈis/
-      category: standard
+    - ipa: /lə mais./
+      engine: olaph
   level: 783
   en-GB: The corn
 - phrase: Le crocodile claque
   emoji: 🐊
   ipas:
-    - ipa: /lə kʁokodˈil klˈak/
-      category: standard
+    - ipa: /lə kʁɔkɔdil klak./
+      engine: olaph
   level: 926
   en-GB: The crocodile snaps
 - phrase: Le placard
   emoji: 🗄️
   ipas:
-    - ipa: /lə plakˈaʁ/
-      category: standard
+    - ipa: /lə plakaʁ./
+      engine: olaph
   level: 840
   en-GB: The cupboard
 - phrase: Le curry
   emoji: 🍛
   ipas:
-    - ipa: /lə kˈʌɹi/
-      category: standard
+    - ipa: /lə kyʁi./
+      engine: olaph
   level: 457
   en-GB: The curry
 - phrase: Le canard cancane
   emoji: 🦆
   ipas:
-    - ipa: /lə kanˈaʁ kɑ̃kˈan/
-      category: standard
+    - ipa: /lə kanaʁ kɑ̃kan./
+      engine: olaph
   level: 658
   en-GB: The duck quacks
 - phrase: L'éléphant est lourd
   emoji: 🐘
   ipas:
-    - ipa: /lelefˈɑ̃ ɛ lˈuʁ/
-      category: standard
+    - ipa: /lelefɑ̃ ɛst luʁ./
+      engine: olaph
   level: 794
   en-GB: The elephant is heavy
 - phrase: Le feu brûle
   emoji: 🔥
   ipas:
-    - ipa: /lə fˈø bʁˈyːl/
-      category: standard
+    - ipa: /lə fø bʁyl./
+      engine: olaph
   level: 669
   en-GB: The fire is burning
 - phrase: Le flash brille de mille feux
   emoji: ⚡
   ipas:
-    - ipa: /lə flˈaʃ bʁˈij də mˈil fˈø/
-      category: standard
+    - ipa: /lə flaʃ bʁij də mil fø./
+      engine: olaph
   level: 723
   en-GB: The flash shines brightly
 - phrase: La forêt est verte
   emoji: 🌲
   ipas:
-    - ipa: /la foʁˈɛ ɛ vˈɛʁt/
-      category: standard
+    - ipa: /la fɔʁɛ ɛst vɛʁt./
+      engine: olaph
   level: 829
   en-GB: The forest is green
 - phrase: Les frites
   emoji: 🍟
   ipas:
-    - ipa: /le fʁˈit/
-      category: standard
+    - ipa: /le fʁit./
+      engine: olaph
   level: 463
   en-GB: The fries
 - phrase: La grenouille coasse
   emoji: 🐸
   ipas:
-    - ipa: /la ɡʁənˈuj kɔˈas/
-      category: standard
+    - ipa: /la gʁənuj kɔas./
+      engine: olaph
   level: 672
   en-GB: The frog croaks
 - phrase: Le carburant
   emoji: ⛽
   ipas:
-    - ipa: /lə kaʁbyʁˈɑ̃/
-      category: standard
+    - ipa: /lə kaʁbyʁɑ̃./
+      engine: olaph
   level: 926
   en-GB: The fuel
 - phrase: Le jeu
   emoji: 🎮
   ipas:
-    - ipa: /lə ʒˈø/
-      category: standard
+    - ipa: /lə ʒø./
+      engine: olaph
   level: 801
   en-GB: The game
 - phrase: L'ail
   emoji: 🧄
   ipas:
-    - ipa: /lˈaj/
-      category: standard
+    - ipa: /lɛl./
+      engine: olaph
   level: 907
   en-GB: The garlic
 - phrase: La girafe est grande
   emoji: 🦒
   ipas:
-    - ipa: /la ʒiʁˈaf ɛ ɡʁˈɑ̃d/
-      category: standard
+    - ipa: /la ʒiʁaf ɛst gʁɑ̃d./
+      engine: olaph
   level: 584
   en-GB: The giraffe is big
 - phrase: Le monde
   emoji: 🌍
   ipas:
-    - ipa: /lə mˈɔ̃d/
-      category: standard
+    - ipa: /lə mɔ̃d./
+      engine: olaph
   level: 533
   en-GB: The globe
 - phrase: La note
   emoji: 🎵
   ipas:
-    - ipa: /la nˈɔt/
-      category: standard
+    - ipa: /la nɔt./
+      engine: olaph
   level: 59
   en-GB: The grade
 - phrase: L'hélicoptère s'envole
   emoji: 🚁
   ipas:
-    - ipa: /lelikɔptˈɛʁ sɑ̃vˈɔl/
-      category: standard
+    - ipa: /lelikɔptɛʁ sɛ̃vɔl./
+      engine: olaph
   level: 963
   en-GB: The helicopter flies up
 - phrase: L'herbe
   emoji: 🌿
   ipas:
-    - ipa: /lˈɛʁb/
-      category: standard
+    - ipa: /lɛʁb./
+      engine: olaph
   level: 801
   en-GB: The herb
 - phrase: Le miel
   emoji: 🍯
   ipas:
-    - ipa: /lə mjˈɛl/
-      category: standard
+    - ipa: /lə mjɛl./
+      engine: olaph
   level: 831
   en-GB: The honey
 - phrase: Le cheval court
   emoji: 🐴
   ipas:
-    - ipa: /lə ʃəvˈal kˈuʁ/
-      category: standard
+    - ipa: /lə ʃval kuʁ./
+      engine: olaph
   level: 658
   en-GB: The horse is running
 - phrase: L'ouragan
   emoji: 🌀
   ipas:
-    - ipa: /luʁaɡˈɑ̃/
-      category: standard
+    - ipa: /luʁagɑ̃./
+      engine: olaph
   level: 975
   en-GB: The hurricane
 - phrase: La glace fond
   emoji: 🍦
   ipas:
-    - ipa: /la ɡlˈas fˈɔ̃/
-      category: standard
+    - ipa: /la glas fɔ̃./
+      engine: olaph
   level: 674
   en-GB: The ice is melting
 - phrase: L'île est petite
   emoji: 🏝️
   ipas:
-    - ipa: /lˈil ɛ pətˈit/
-      category: standard
+    - ipa: /lil ɛst pətit./
+      engine: olaph
   level: 669
   en-GB: The island is small
 - phrase: La veste est chaude
   emoji: 🧥
   ipas:
-    - ipa: /la vˈɛst ɛ ʃˈod/
-      category: standard
+    - ipa: /la vɛst ɛst ʃod./
+      engine: olaph
   level: 459
   en-GB: The jacket is warm
 - phrase: L'échelle
   emoji: 🪜
   ipas:
-    - ipa: /leʃˈɛl/
-      category: standard
+    - ipa: /leʃɛl./
+      engine: olaph
   level: 463
   en-GB: The ladder
 - phrase: Le paysage
   emoji: 🏞️
   ipas:
-    - ipa: /lə pɛizˈaʒ/
-      category: standard
+    - ipa: /lə peizaʒ./
+      engine: olaph
   level: 542
   en-GB: The landscape
 - phrase: La feuille
   emoji: 🍁
   ipas:
-    - ipa: /la fˈœj/
-      category: standard
+    - ipa: /la fœj./
+      engine: olaph
   level: 487
   en-GB: The leaf
 - phrase: Le citron
   emoji: 🍋
   ipas:
-    - ipa: /lə sitʁˈɔ̃/
-      category: standard
+    - ipa: /lə sitʁɔ̃./
+      engine: olaph
   level: 602
   en-GB: The lemon
 - phrase: La laitue
   emoji: 🥬
   ipas:
-    - ipa: /la lɛtˈy/
-      category: standard
+    - ipa: /la lety./
+      engine: olaph
   level: 935
   en-GB: The lettuce
 - phrase: Le lion rugit
   emoji: 🦁
   ipas:
-    - ipa: /lə ljˈɔ̃ ʁyʒˈi/
-      category: standard
+    - ipa: /lə ljɔ̃ ʁyʒi./
+      engine: olaph
   level: 674
   en-GB: The lion roars
 - phrase: Le rouge à lèvres
   emoji: 💄
   ipas:
-    - ipa: /lə ʁˈuʒ a lˈɛvʁ/
-      category: standard
+    - ipa: /lə ʁuʒ a lɛvʁ./
+      engine: olaph
   level: 975
   en-GB: The lipstick
 - phrase: L'aimant attire le fer
   emoji: 🧲
   ipas:
-    - ipa: /lɛmˈɑ̃ atˈiʁ lə fˈɛʁ/
-      category: standard
+    - ipa: /lɛmɑ̃ atiʁ lə fɛʁ./
+      engine: olaph
   level: 903
   en-GB: The magnet attracts iron
 - phrase: Le lait
   emoji: 🥛
   ipas:
-    - ipa: /lə lˈɛ/
-      category: standard
+    - ipa: /lə lɛ./
+      engine: olaph
   level: 475
   en-GB: The milk
 - phrase: Le lait est blanc
   emoji: 🥛
   ipas:
-    - ipa: /lə lˈɛt ɛ blˈɑ̃/
-      category: standard
+    - ipa: /lə lɛ ɛst blɑ̃./
+      engine: olaph
   level: 517
   en-GB: The milk is white
 - phrase: L'argent
   emoji: 💰
   ipas:
-    - ipa: /laʁʒˈɑ̃/
-      category: standard
+    - ipa: /laʁʒɑ̃./
+      engine: olaph
   level: 482
   en-GB: The money
 - phrase: Le singe grimpe
   emoji: 🐵
   ipas:
-    - ipa: /lə sˈɛ̃ʒ ɡʁˈɛ̃p/
-      category: standard
+    - ipa: /lə sɛ̃ʒ gʁɛ̃p./
+      engine: olaph
   level: 734
   en-GB: The monkey climbs
 - phrase: La montagne est haute
   emoji: ⛰️
   ipas:
-    - ipa: /la mɔ̃tˈaɲ ɛ ˈot/
-      category: standard
+    - ipa: /la mɔ̃taɲ ɛst ʼot./
+      engine: olaph
   level: 829
   en-GB: The mountain is high
 - phrase: La souris émet un bip
   emoji: 🐭
   ipas:
-    - ipa: /la suʁˈi emˈɛt œ̃ bˈip/
-      category: standard
+    - ipa: /la suʁi emɛ œ̃ bip./
+      engine: olaph
   level: 653
   en-GB: The mouse beeps
 - phrase: Le nom
   emoji: 📛
   ipas:
-    - ipa: /lə nˈɔ̃/
-      category: standard
+    - ipa: /lə nɔ̃./
+      engine: olaph
   level: 392
   en-GB: The name
 - phrase: Les nouilles
   emoji: 🍝
   ipas:
-    - ipa: /le nˈuj/
-      category: standard
+    - ipa: /le nuj./
+      engine: olaph
   level: 463
   en-GB: The noodles
 - phrase: Les nouilles sont délicieuses
   emoji: 🍝
   ipas:
-    - ipa: /le nˈuj sˈɔ̃ delisjˈøz/
-      category: standard
+    - ipa: /le nuj sɔ̃ delisjøz./
+      engine: olaph
   level: 713
   en-GB: The noodles are delicious
 - phrase: Le pantalon est confortable
   emoji: 👖
   ipas:
-    - ipa: /lə pɑ̃talˈɔ̃ ɛ kɔ̃fɔʁtˈabl/
-      category: standard
+    - ipa: /lə pɑ̃talɔ̃ ɛst kɔ̃fɔʁtabl./
+      engine: olaph
   level: 683
   en-GB: The pants are comfortable
 - phrase: Le paragraphe
   emoji: 👠
   ipas:
-    - ipa: /lə paʁaɡʁˈaf/
-      category: standard
+    - ipa: /lə paʁagʁaf./
+      engine: olaph
   level: 850
   en-GB: The paragraph
 - phrase: Le trottoir
   emoji: 🩹
   ipas:
-    - ipa: /lə tʁɔtwˈaʁ/
-      category: standard
+    - ipa: /lə tʁɔtwaʁ./
+      engine: olaph
   level: 889
   en-GB: The pavement
 - phrase: La cacahuète est délicieuse
   emoji: 🥜
   ipas:
-    - ipa: /la kakayˈɛt ɛ delisjˈøz/
-      category: standard
+    - ipa: /la kakawɛt ɛst delisjøz./
+      engine: olaph
   level: 713
   en-GB: The peanut is delicious
 - phrase: La pioche
   emoji: ⛏️
   ipas:
-    - ipa: /la pjˈɔʃ/
-      category: standard
+    - ipa: /la pjɔʃ./
+      engine: olaph
   level: 570
   en-GB: The pickaxe
 - phrase: Le cochon grogne
   emoji: 🐷
   ipas:
-    - ipa: /lə koʃˈɔ̃ ɡʁˈɔɲ/
-      category: standard
+    - ipa: /lə kɔʃɔ̃ gʁɔɲ./
+      engine: olaph
   level: 695
   en-GB: The pig grunts
 - phrase: La pilule
   emoji: 💊
   ipas:
-    - ipa: /la pilˈyl/
-      category: standard
+    - ipa: /la pilyl./
+      engine: olaph
   level: 445
   en-GB: The pill
 - phrase: L'ananas
   emoji: 🍍
   ipas:
-    - ipa: /lananˈa/
-      category: standard
+    - ipa: /lanana./
+      engine: olaph
   level: 494
   en-GB: The pineapple
 - phrase: La pizza a bon goût
   emoji: 🍕
   ipas:
-    - ipa: /la pizzˈa a bˈɔ̃ ɡˈu/
-      category: standard
+    - ipa: /la pidza a bɔ̃ gu./
+      engine: olaph
   level: 729
   en-GB: The pizza tastes good
 - phrase: La prise
   emoji: 🔌
   ipas:
-    - ipa: /la pʁˈiz/
-      category: standard
+    - ipa: /la pʁiz./
+      engine: olaph
   level: 868
   en-GB: The plug
 - phrase: Le lapin rit
   emoji: 🐰
   ipas:
-    - ipa: /lə lapˈɛ̃ ʁˈi/
-      category: standard
+    - ipa: /lə lapɛ̃ ʁi./
+      engine: olaph
   level: 931
   en-GB: The rabbit laughs
 - phrase: La pluie tombe
   emoji: 🌧️
   ipas:
-    - ipa: /la plyˈi tˈɔ̃b/
-      category: standard
+    - ipa: /la plɥi tɔ̃b./
+      engine: olaph
   level: 674
   en-GB: The rain is falling
 - phrase: L'arc-en-ciel brille
   emoji: 🌈
   ipas:
-    - ipa: /lˈaʁkɑ̃sjˈɛl bʁˈij/
-      category: standard
+    - ipa: /laʁk ɑ̃ sjɛl bʁij./
+      engine: olaph
   level: 840
   en-GB: The rainbow shines
 - phrase: Le riz
   emoji: 🍚
   ipas:
-    - ipa: /lə ʁˈi/
-      category: standard
+    - ipa: /lə ʁi./
+      engine: olaph
   level: 783
   en-GB: The rice
 - phrase: La fusée vole dans l'espace
   emoji: 🚀
   ipas:
-    - ipa: /la fyzˈe vˈɔl dɑ̃ lɛspˈas/
-      category: standard
+    - ipa: /la fyze vɔl dɑ̃ lɛspas./
+      engine: olaph
   level: 584
   en-GB: The rocket flies into space
 - phrase: Le dirigeant
   emoji: 📏
   ipas:
-    - ipa: /lə diʁiʒˈɑ̃/
-      category: standard
+    - ipa: /lə diʁiʒɑ̃./
+      engine: olaph
   level: 850
   en-GB: The ruler
 - phrase: Le coureur
   emoji: 🏃
   ipas:
-    - ipa: /lə kuʁˈœʁ/
-      category: standard
+    - ipa: /lə kuʁœʁ./
+      engine: olaph
   level: 850
   en-GB: The runner
 - phrase: L'école
   emoji: 🏫
   ipas:
-    - ipa: /lekˈɔl/
-      category: standard
+    - ipa: /lekɔl./
+      engine: olaph
   level: 535
   en-GB: The school
 - phrase: Les ciseaux
   emoji: ✂️
   ipas:
-    - ipa: /le sizˈo/
-      category: standard
+    - ipa: /le sizo./
+      engine: olaph
   level: 463
   en-GB: The scissors
 - phrase: La mer est bleue
   emoji: 🌊
   ipas:
-    - ipa: /la mˈɛʁ ɛ blˈø/
-      category: standard
+    - ipa: /la mɛʁ ɛst blø./
+      engine: olaph
   level: 829
   en-GB: The sea is blue
 - phrase: Le navire
   emoji: 🚢
   ipas:
-    - ipa: /lə navˈiʁ/
-      category: standard
+    - ipa: /lə naviʁ./
+      engine: olaph
   level: 507
   en-GB: The ship
 - phrase: La chemise
   emoji: 👕
   ipas:
-    - ipa: /la ʃəmˈiz/
-      category: standard
+    - ipa: /la ʃmiz./
+      engine: olaph
   level: 480
   en-GB: The shirt
 - phrase: La neige
   emoji: 🌨️
   ipas:
-    - ipa: /la nˈɛʒ/
-      category: standard
+    - ipa: /la nɛʒ./
+      engine: olaph
   level: 503
   en-GB: The snow
 - phrase: La neige tombe
   emoji: ❄️
   ipas:
-    - ipa: /la nˈɛʒ tˈɔ̃b/
-      category: standard
+    - ipa: /la nɛʒ tɔ̃b./
+      engine: olaph
   level: 667
   en-GB: The snow is falling
 - phrase: La chemise de sport
   emoji: 🎽
   ipas:
-    - ipa: /la ʃəmˈiz də spˈɔʁ/
-      category: standard
+    - ipa: /la ʃmiz də spɔʁ./
+      engine: olaph
   level: 907
   en-GB: The sports shirt
 - phrase: Le nuage d'orage
   emoji: 🌩️
   ipas:
-    - ipa: /lə nyˈaʒ doʁˈaʒ/
-      category: standard
+    - ipa: /lə nɥaʒ dɔʁaʒ./
+      engine: olaph
   level: 685
   en-GB: The storm cloud
 - phrase: Le tennis
   emoji: 🎾
   ipas:
-    - ipa: /lə tenˈis/
-      category: standard
+    - ipa: /lə tenis./
+      engine: olaph
   level: 484
   en-GB: The tennis
 - phrase: La tente est dans la forêt
   emoji: ⛺
   ipas:
-    - ipa: /la tˈɑ̃t ɛ dɑ̃ la foʁˈɛ/
-      category: standard
+    - ipa: /la tɑ̃t ɛst dɑ̃ la fɔʁɛ./
+      engine: olaph
   level: 857
   en-GB: The tent is in the forest
 - phrase: Le papier toilette
   emoji: 🧻
   ipas:
-    - ipa: /lə papjˈe twalˈɛt/
-      category: standard
+    - ipa: /lə papje twalɛt./
+      engine: olaph
   level: 1000
   en-GB: The toilet paper
 - phrase: Le feu de circulation
   emoji: 🚦
   ipas:
-    - ipa: /lə fˈø də siʁkylasjˈɔ̃/
-      category: standard
+    - ipa: /lə fø də siʁkylasjɔ̃./
+      engine: olaph
   level: 445
   en-GB: The traffic light
 - phrase: Le triangle
   emoji: 📐
   ipas:
-    - ipa: /lə tʁiˈɑ̃ɡl/
-      category: standard
+    - ipa: /lə tʁijɑ̃gl./
+      engine: olaph
   level: 840
   en-GB: The triangle
 - phrase: La trompette sonne fort
   emoji: 🎺
   ipas:
-    - ipa: /la tʁɔ̃pˈɛt sˈɔn fˈɔʁ/
-      category: standard
+    - ipa: /la tʁɔ̃pɛt sɔn fɔʁ./
+      engine: olaph
   level: 732
   en-GB: The trumpet sounds loud
 - phrase: La tortue rampe
   emoji: 🐢
   ipas:
-    - ipa: /la tɔʁtˈy ʁˈɑ̃p/
-      category: standard
+    - ipa: /la tɔʁty ʁɑ̃p./
+      engine: olaph
   level: 817
   en-GB: The turtle crawls
 - phrase: Le violon sonne magnifiquement
   emoji: 🎻
   ipas:
-    - ipa: /lə vjolˈɔ̃ sˈɔn maɲifikmˈɑ̃/
-      category: standard
+    - ipa: /lə vjɔlɔ̃ sɔn maɲifikmɑ̃./
+      engine: olaph
   level: 699
   en-GB: The violin sounds beautiful
 - phrase: L'eau
   emoji: 💧
   ipas:
-    - ipa: /lˈo/
-      category: standard
+    - ipa: /ləo./
+      engine: olaph
   level: 517
   en-GB: The water
 - phrase: L'eau coule
   emoji: 💧
   ipas:
-    - ipa: /lˈo kˈul/
-      category: standard
+    - ipa: /ləo kul./
+      engine: olaph
   level: 690
   en-GB: The water flows
 - phrase: La pastèque
   emoji: 🍉
   ipas:
-    - ipa: /la pastˈɛk/
-      category: standard
+    - ipa: /la pastɛk./
+      engine: olaph
   level: 667
   en-GB: The watermelon
 - phrase: Le carillon éolien
   emoji: 🎐
   ipas:
-    - ipa: /lə kaʁijˈɔ̃ eoljˈɛ̃/
-      category: standard
+    - ipa: /lə kaʁijɔ̃ eɔljɛ̃./
+      engine: olaph
   level: 907
   en-GB: The wind chime
 - phrase: Le vent souffle
   emoji: 💨
   ipas:
-    - ipa: /lə vˈɑ̃ sˈufl/
-      category: standard
+    - ipa: /lə vɑ̃ sufl./
+      engine: olaph
   level: 630
   en-GB: The wind is blowing
 - phrase: Tableau
   emoji: 🪑
   ipas:
-    - ipa: /tablˈo/
-      category: standard
+    - ipa: /tablo./
+      engine: olaph
   level: 200
   en-GB: Table
 - phrase: Mère
   emoji: 👩
   ipas:
-    - ipa: /mˈɛʁ/
-      category: standard
+    - ipa: /mɛʁ./
+      engine: olaph
   level: 140
   en-GB: Mother
 - phrase: Père
   emoji: 👨
   ipas:
-    - ipa: /pˈɛʁ/
-      category: standard
+    - ipa: /pɛʁ./
+      engine: olaph
   level: 140
   en-GB: Father
 - phrase: Ami
   emoji: 🤝
   ipas:
-    - ipa: /amˈi/
-      category: standard
+    - ipa: /ami./
+      engine: olaph
   level: 130
   en-GB: Friend
 - phrase: Nourriture
   emoji: 🍽️
   ipas:
-    - ipa: /nuʁitˈyʁ/
-      category: standard
+    - ipa: /nuʁityʁ./
+      engine: olaph
   level: 120
   en-GB: Food
 - phrase: Temps
   emoji: ⏰
   ipas:
-    - ipa: /tˈɑ̃/
-      category: standard
+    - ipa: /tɑ̃./
+      engine: olaph
   level: 140
   en-GB: Time
 - phrase: Jour
   emoji: 📅
   ipas:
-    - ipa: /ʒˈuʁ/
-      category: standard
+    - ipa: /ʒuʁ./
+      engine: olaph
   level: 100
   en-GB: Day
 - phrase: Nuit
   emoji: 🌙
   ipas:
-    - ipa: /nyˈi/
-      category: standard
+    - ipa: /nɥi./
+      engine: olaph
   level: 110
   en-GB: Night
 - phrase: Bonjour
   emoji: 👋
   ipas:
-    - ipa: /bɔ̃ʒˈuʁ/
-      category: standard
+    - ipa: /bɔ̃ʒuʁ./
+      engine: olaph
   level: 260
   en-GB: Good morning
 - phrase: Bonne soirée
   emoji: 🌆
   ipas:
-    - ipa: /bˈɔn swaʁˈe/
-      category: standard
+    - ipa: /bɔn swaʁe./
+      engine: olaph
   level: 270
   en-GB: Good evening
 - phrase: Bonne nuit
   emoji: 🌙
   ipas:
-    - ipa: /bˈɔn nyˈi/
-      category: standard
+    - ipa: /bɔn nɥi./
+      engine: olaph
   level: 260
   en-GB: Good night
 - phrase: Merci
   emoji: 🙏
   ipas:
-    - ipa: /mɛʁsˈi/
-      category: standard
+    - ipa: /mɛʁsi./
+      engine: olaph
   level: 180
   en-GB: Thank you
 - phrase: Vous êtes les bienvenus
   emoji: 😊
   ipas:
-    - ipa: /vuz ɛt le bjɛ̃vnˈy/
-      category: standard
+    - ipa: /vu ɛt le bjɛ̃vny./
+      engine: olaph
   level: 220
   en-GB: You're welcome
 - phrase: Excusez-moi
   emoji: 🙋
   ipas:
-    - ipa: /ɛkskyzˈemwˈa/
-      category: standard
+    - ipa: /ɛkskyze mwa./
+      engine: olaph
   level: 240
   en-GB: Excuse me
 - phrase: S'il te plaît
   emoji: 🙏
   ipas:
-    - ipa: /sil tə plˈɛ/
-      category: standard
+    - ipa: /s‿il tə plɛ./
+      engine: olaph
   level: 140
   en-GB: Please
 - phrase: Comment vas-tu?
   emoji: 😊
   ipas:
-    - ipa: /kɔmˌɑ̃ vˈatˈy/
-      category: standard
+    - ipa: /kɔmɑ̃ va ty?/
+      engine: olaph
   level: 300
   en-GB: How are you?
 - phrase: Très bien, merci
   emoji: 👍
   ipas:
-    - ipa: /tʁɛ bjˈɛ̃ mɛʁsˈi/
-      category: standard
+    - ipa: /tʁɛ bjɛ̃, mɛʁsi./
+      engine: olaph
   level: 320
   en-GB: Fine, thank you
 - phrase: Quel est ton nom?
   emoji: 🤔
   ipas:
-    - ipa: /kɛl ɛ tɔ̃ nˈɔ̃/
-      category: standard
+    - ipa: /kɛl ɛst tɔ̃ nɔ̃?/
+      engine: olaph
   level: 360
   en-GB: What is your name?
 - phrase: Mon nom est...
   emoji: 👤
   ipas:
-    - ipa: /mɔ̃ nˈɔ̃ ˈɛ/
-      category: standard
+    - ipa: /mɔ̃ nɔ̃ ɛst.../
+      engine: olaph
   level: 310
   en-GB: My name is...
 - phrase: Où es-tu?
   emoji: 🗺️
   ipas:
-    - ipa: /u ɛtˈy/
-      category: standard
+    - ipa: /u ɛ ty?/
+      engine: olaph
   level: 330
   en-GB: Where are you?
 - phrase: Combien ça coûte?
   emoji: 💰
   ipas:
-    - ipa: /kɔ̃bjˈɛ̃ sa kˈut/
-      category: standard
+    - ipa: /kɔ̃bjɛ̃ sa kut?/
+      engine: olaph
   level: 380
   en-GB: How much does it cost?
 - phrase: Je ne comprends pas
   emoji: 😕
   ipas:
-    - ipa: /ʒə nə kɔ̃pʁˈɑ̃ pˈa/
-      category: standard
+    - ipa: /ʒə nə kɔ̃pʁɑ̃ pa./
+      engine: olaph
   level: 380
   en-GB: I don't understand
 - phrase: Parlez-vous italien ?
   emoji: 🇮🇹
   ipas:
-    - ipa: /paʁlˈevuz italjˈɛ̃/
-      category: standard
+    - ipa: /paʁle vu italjɛ̃?/
+      engine: olaph
   level: 420
   en-GB: Do you speak Italian?
 - phrase: L'enfant mange la pomme.
   emoji: 🍎
   ipas:
-    - ipa: /lɑ̃fˈɑ̃ mˈɑ̃ʒ la pˈɔm/
-      category: standard
+    - ipa: /lɑ̃fɑ̃ mɑ̃ʒ la pɔm./
+      engine: olaph
   level: 540
   en-GB: The child is eating the apple.
 - phrase: La femme lit un livre.
   emoji: 📚
   ipas:
-    - ipa: /la fˈam lˈi œ̃ lˈivʁ/
-      category: standard
+    - ipa: /la fam li œ̃ livʁ./
+      engine: olaph
   level: 560
   en-GB: The woman is reading a book.
 - phrase: Le soleil brille.
   emoji: ☀️
   ipas:
-    - ipa: /lə solˈɛj bʁˈij/
-      category: standard
+    - ipa: /lə sɔlɛj bʁij./
+      engine: olaph
   level: 480
   en-GB: The sun is shining.
 - phrase: Il fait beau aujourd'hui.
   emoji: ☀️
   ipas:
-    - ipa: /il fˈɛ bˈo oʒuʁdyˈi/
-      category: standard
+    - ipa: /il fɛ bo oʒuʁdɥi./
+      engine: olaph
   level: 500
   en-GB: The weather is nice today.
 - phrase: Où est la gare ?
   emoji: 🚉
   ipas:
-    - ipa: /u ɛ la ɡˈaʁ/
-      category: standard
+    - ipa: /u ɛst la gaʁ?/
+      engine: olaph
   level: 520
   en-GB: Where is the train station?
 - phrase: Je voudrais un café.
   emoji: ☕
   ipas:
-    - ipa: /ʒə vudʁˈɛz œ̃ kafˈe/
-      category: standard
+    - ipa: /ʒə vudʁɛ œ̃ kafe./
+      engine: olaph
   level: 460
   en-GB: I would like a coffee.
 - phrase: Le train arrive en retard.
   emoji: 🚆
   ipas:
-    - ipa: /lə tʁˈɛ̃ aʁˈiv ɑ̃ ʁətˈaʁ/
-      category: standard
+    - ipa: /lə tʁɛ̃ aʁiv ɑ̃ ʁətaʁ./
+      engine: olaph
   level: 590
   en-GB: The train is arriving late.
 - phrase: J'habite à Rome.
   emoji: 🏛️
   ipas:
-    - ipa: /ʒabˈit a ʁˈɔm/
-      category: standard
+    - ipa: /ʒabit a ʁɔm./
+      engine: olaph
   level: 430
   en-GB: I live in Rome.
 - phrase: J'aime les pizzas.
   emoji: 🍕
   ipas:
-    - ipa: /ʒˈɛm le pizzˈa/
-      category: standard
+    - ipa: /ʒ‿ɛm le pidza./
+      engine: olaph
   level: 440
   en-GB: I like pizza.
 - phrase: La pizza est délicieuse.
   emoji: 🍕
   ipas:
-    - ipa: /la pizzˈa ɛ delisjˈøz/
-      category: standard
+    - ipa: /la pidza ɛst delisjøz./
+      engine: olaph
   level: 490
   en-GB: The pizza is delicious.
 - phrase: Allons à la plage !
   emoji: 🏖️
   ipas:
-    - ipa: /alˈɔ̃z a la plˈaʒ/
-      category: standard
+    - ipa: /alɔ̃ a la plaʒ!/
+      engine: olaph
   level: 470
   en-GB: Let's go to the beach!
 - phrase: Quelle belle journée !
   emoji: ☀️
   ipas:
-    - ipa: /kɛl bˈɛl ʒuʁnˈe/
-      category: standard
+    - ipa: /kɛl bɛl ʒuʁne!/
+      engine: olaph
   level: 510
   en-GB: What a beautiful day!
 - phrase: J'ai faim.
   emoji: 🍽️
   ipas:
-    - ipa: /ʒe fˈɛ̃/
-      category: standard
+    - ipa: /ʒe fɛ̃./
+      engine: olaph
   level: 310
   en-GB: I am hungry.
 - phrase: J'ai soif.
   emoji: 💧
   ipas:
-    - ipa: /ʒe swˈaf/
-      category: standard
+    - ipa: /ʒe swaf./
+      engine: olaph
   level: 320
   en-GB: I am thirsty.
 - phrase: Je suis fatigué.
   emoji: 😴
   ipas:
-    - ipa: /ʒə syˌi fatiɡˈe/
-      category: standard
+    - ipa: /ʒə sɥi fatige./
+      engine: olaph
   level: 330
   en-GB: I am tired.
 - phrase: Je suis heureux.
   emoji: 😊
   ipas:
-    - ipa: /ʒə syˌiz øʁˈø/
-      category: standard
+    - ipa: /ʒə sɥi œʁø./
+      engine: olaph
   level: 340
   en-GB: I am happy.
 - phrase: Où se trouvent les toilettes?
   emoji: 🚽
   ipas:
-    - ipa: /u sə tʁˈuv le twalˈɛt/
-      category: standard
+    - ipa: /u sə tʁuv le twalɛt?/
+      engine: olaph
   level: 390
   en-GB: Where is the bathroom?
 - phrase: Puis-je avoir la facture ?
   emoji: 🧾
   ipas:
-    - ipa: /pyˈiʒ avwˈaʁ la faktˈyʁ/
-      category: standard
+    - ipa: /pɥi ʒə avwaʁ la faktyʁ?/
+      engine: olaph
   level: 510
   en-GB: Can I have the bill?
 - phrase: Bon appétit!
   emoji: 🍽️
   ipas:
-    - ipa: /bˈɔ̃n apetˈi/
-      category: standard
+    - ipa: /bɔ̃ apeti!/
+      engine: olaph
   level: 290
   en-GB: Enjoy your meal!
 - phrase: Acclamations!
   emoji: 🥂
   ipas:
-    - ipa: /aklamasjˈɔ̃/
-      category: standard
+    - ipa: /aklamasjɔ̃!/
+      engine: olaph
   level: 180
   en-GB: Cheers!
 - phrase: Félicitations!
   emoji: 🎉
   ipas:
-    - ipa: /felisitasjˈɔ̃/
-      category: standard
+    - ipa: /felisitasjɔ̃!/
+      engine: olaph
   level: 440
   en-GB: Congratulations!
 - phrase: Bonne chance!
   emoji: 🤞
   ipas:
-    - ipa: /bˈɔn ʃˈɑ̃s/
-      category: standard
+    - ipa: /bɔn ʃɑ̃s!/
+      engine: olaph
   level: 200
   en-GB: Good luck!
 - phrase: Université
   emoji: 🎓
   ipas:
-    - ipa: /ynivɛʁsitˈe/
-      category: standard
+    - ipa: /ynivɛʁsite./
+      engine: olaph
   level: 360
   en-GB: University
 - phrase: Travail
   emoji: 💼
   ipas:
-    - ipa: /tʁavˈaj/
-      category: standard
+    - ipa: /tʁavaj./
+      engine: olaph
   level: 140
   en-GB: Work
 - phrase: Boutique
   emoji: 🛒
   ipas:
-    - ipa: /butˈik/
-      category: standard
+    - ipa: /butik./
+      engine: olaph
   level: 160
   en-GB: Shop
 - phrase: Marché
   emoji: 🛍️
   ipas:
-    - ipa: /maʁʃˈe/
-      category: standard
+    - ipa: /maʁʃe./
+      engine: olaph
   level: 220
   en-GB: Market
 - phrase: Pharmacie
   emoji: 💊
   ipas:
-    - ipa: /faʁmasˈi/
-      category: standard
+    - ipa: /faʁmasi./
+      engine: olaph
   level: 360
   en-GB: Pharmacy
 - phrase: Restaurant
   emoji: 🍽️
   ipas:
-    - ipa: /ʁɛstoʁˈɑ̃/
-      category: standard
+    - ipa: /ʁɛstɔʁɑ̃./
+      engine: olaph
   level: 300
   en-GB: Restaurant
 - phrase: Grand
   emoji: 🔝
   ipas:
-    - ipa: /ɡʁˈɑ̃/
-      category: standard
+    - ipa: /gʁɑ̃./
+      engine: olaph
   level: 80
   en-GB: Big
 - phrase: Petit
   emoji: 🔽
   ipas:
-    - ipa: /pətˈi/
-      category: standard
+    - ipa: /pəti./
+      engine: olaph
   level: 100
   en-GB: Small
 - phrase: Beau
   emoji: 😍
   ipas:
-    - ipa: /bˈo/
-      category: standard
+    - ipa: /bo./
+      engine: olaph
   level: 260
   en-GB: Beautiful
 - phrase: Laid
   emoji: 😬
   ipas:
-    - ipa: /lˈɛd/
-      category: standard
+    - ipa: /lɛ./
+      engine: olaph
   level: 170
   en-GB: Ugly
 - phrase: Vieux
   emoji: 🕰️
   ipas:
-    - ipa: /vjˈø/
-      category: standard
+    - ipa: /vjø./
+      engine: olaph
   level: 90
   en-GB: Old
 - phrase: Chaud
   emoji: 🌡️
   ipas:
-    - ipa: /ʃˈo/
-      category: standard
+    - ipa: /ʃo./
+      engine: olaph
   level: 80
   en-GB: Hot
 - phrase: Froid
   emoji: ❄️
   ipas:
-    - ipa: /fʁwˈa/
-      category: standard
+    - ipa: /fʁwa./
+      engine: olaph
   level: 90
   en-GB: Cold
 - phrase: Un
   emoji: 1️⃣
   ipas:
-    - ipa: /ˈœ̃/
-      category: standard
+    - ipa: /œ̃./
+      engine: olaph
   level: 60
   en-GB: One
 - phrase: Deux
   emoji: 2️⃣
   ipas:
-    - ipa: /dˈø/
-      category: standard
+    - ipa: /dø./
+      engine: olaph
   level: 60
   en-GB: Two
 - phrase: Trois
   emoji: 3️⃣
   ipas:
-    - ipa: /tʁwˈa/
-      category: standard
+    - ipa: /tʁwa./
+      engine: olaph
   level: 70
   en-GB: Three
 - phrase: Quatre
   emoji: 4️⃣
   ipas:
-    - ipa: /kˈatʁ/
-      category: standard
+    - ipa: /katʁ./
+      engine: olaph
   level: 70
   en-GB: Four
 - phrase: Cinq
   emoji: 5️⃣
   ipas:
-    - ipa: /sˈɛ̃k/
-      category: standard
+    - ipa: /sɛ̃k./
+      engine: olaph
   level: 80
   en-GB: Five
 - phrase: Six
   emoji: 6️⃣
   ipas:
-    - ipa: /sˈis/
-      category: standard
+    - ipa: /sis./
+      engine: olaph
   level: 80
   en-GB: Six
 - phrase: Sept
   emoji: 7️⃣
   ipas:
-    - ipa: /sˈɛt/
-      category: standard
+    - ipa: /sɛt./
+      engine: olaph
   level: 90
   en-GB: Seven
 - phrase: Huit
   emoji: 8️⃣
   ipas:
-    - ipa: /yˈit/
-      category: standard
+    - ipa: /ʼɥit./
+      engine: olaph
   level: 90
   en-GB: Eight
 - phrase: Neuf
   emoji: 9️⃣
   ipas:
-    - ipa: /nˈœf/
-      category: standard
+    - ipa: /nœf./
+      engine: olaph
   level: 90
   en-GB: Nine
 - phrase: Dix
   emoji: 🔟
   ipas:
-    - ipa: /dˈis/
-      category: standard
+    - ipa: /dis./
+      engine: olaph
   level: 100
   en-GB: Ten
 - phrase: Lundi
   emoji: 📅
   ipas:
-    - ipa: /lœ̃dˈi/
-      category: standard
+    - ipa: /lœ̃di./
+      engine: olaph
   level: 220
   en-GB: Monday
 - phrase: Mardi
   emoji: 📅
   ipas:
-    - ipa: /maʁdˈi/
-      category: standard
+    - ipa: /maʁdi./
+      engine: olaph
   level: 230
   en-GB: Tuesday
 - phrase: Mercredi
   emoji: 📅
   ipas:
-    - ipa: /mɛʁkʁədˈi/
-      category: standard
+    - ipa: /mɛʁkʁədi./
+      engine: olaph
   level: 240
   en-GB: Wednesday
 - phrase: Jeudi
   emoji: 📅
   ipas:
-    - ipa: /ʒødˈi/
-      category: standard
+    - ipa: /ʒødi./
+      engine: olaph
   level: 230
   en-GB: Thursday
 - phrase: Vendredi
   emoji: 📅
   ipas:
-    - ipa: /vɑ̃dʁədˈi/
-      category: standard
+    - ipa: /vɑ̃dʁədi./
+      engine: olaph
   level: 220
   en-GB: Friday
 - phrase: Samedi
   emoji: 📅
   ipas:
-    - ipa: /samdˈi/
-      category: standard
+    - ipa: /samdi./
+      engine: olaph
   level: 240
   en-GB: Saturday
 - phrase: Dimanche
   emoji: 📅
   ipas:
-    - ipa: /dimˈɑ̃ʃ/
-      category: standard
+    - ipa: /dimɑ̃ʃ./
+      engine: olaph
   level: 220
   en-GB: Sunday
 - phrase: Janvier
   emoji: 📆
   ipas:
-    - ipa: /ʒɑ̃vjˈe/
-      category: standard
+    - ipa: /ʒɑ̃vje./
+      engine: olaph
   level: 290
   en-GB: January
 - phrase: Février
   emoji: 📆
   ipas:
-    - ipa: /fevʁiˈe/
-      category: standard
+    - ipa: /fevʁije./
+      engine: olaph
   level: 300
   en-GB: February
 - phrase: Mars
   emoji: 📆
   ipas:
-    - ipa: /mˈaʁs/
-      category: standard
+    - ipa: /maʁs./
+      engine: olaph
   level: 200
   en-GB: March
 - phrase: Avril
   emoji: 📆
   ipas:
-    - ipa: /avʁˈil/
-      category: standard
+    - ipa: /avʁil./
+      engine: olaph
   level: 220
   en-GB: April
 - phrase: Peut
   emoji: 📆
   ipas:
-    - ipa: /pˈø/
-      category: standard
+    - ipa: /pø./
+      engine: olaph
   level: 140
   en-GB: May
 - phrase: Juin
   emoji: 📆
   ipas:
-    - ipa: /ʒyˈɛ̃/
-      category: standard
+    - ipa: /ʒɥɛ̃./
+      engine: olaph
   level: 160
   en-GB: June
 - phrase: Juillet
   emoji: 📆
   ipas:
-    - ipa: /ʒyijˈɛ/
-      category: standard
+    - ipa: /ʒɥijɛ./
+      engine: olaph
   level: 220
   en-GB: July
 - phrase: Août
   emoji: 📆
   ipas:
-    - ipa: /ˈut/
-      category: standard
+    - ipa: /u./
+      engine: olaph
   level: 220
   en-GB: August
 - phrase: Septembre
   emoji: 📆
   ipas:
-    - ipa: /sɛptˈɑ̃bʁ/
-      category: standard
+    - ipa: /sɛptɑ̃bʁ./
+      engine: olaph
   level: 300
   en-GB: September
 - phrase: Octobre
   emoji: 📆
   ipas:
-    - ipa: /ɔktˈɔbʁ/
-      category: standard
+    - ipa: /ɔktɔbʁ./
+      engine: olaph
   level: 280
   en-GB: October
 - phrase: Novembre
   emoji: 📆
   ipas:
-    - ipa: /novˈɑ̃bʁ/
-      category: standard
+    - ipa: /nɔvɑ̃bʁ./
+      engine: olaph
   level: 280
   en-GB: November
 - phrase: Décembre
   emoji: 📆
   ipas:
-    - ipa: /desˈɑ̃bʁ/
-      category: standard
+    - ipa: /desɑ̃bʁ./
+      engine: olaph
   level: 280
   en-GB: December
 - phrase: Printemps
   emoji: 🌸
   ipas:
-    - ipa: /pʁɛ̃tˈɑ̃/
-      category: standard
+    - ipa: /pʁɛ̃tɑ̃./
+      engine: olaph
   level: 200
   en-GB: Spring
 - phrase: Été
   emoji: ☀️
   ipas:
-    - ipa: /etˈe/
-      category: standard
+    - ipa: /ete./
+      engine: olaph
   level: 180
   en-GB: Summer
 - phrase: Automne
   emoji: 🍂
   ipas:
-    - ipa: /otˈɔn/
-      category: standard
+    - ipa: /otɔn./
+      engine: olaph
   level: 220
   en-GB: Autumn
 - phrase: Hiver
   emoji: ❄️
   ipas:
-    - ipa: /ivˈɛʁ/
-      category: standard
+    - ipa: /ivɛʁ./
+      engine: olaph
   level: 200
   en-GB: Winter
 - phrase: Ville
   emoji: 🏙️
   ipas:
-    - ipa: /vˈil/
-      category: standard
+    - ipa: /vil./
+      engine: olaph
   level: 180
   en-GB: City
 - phrase: Village
   emoji: 🏘️
   ipas:
-    - ipa: /vilˈaʒ/
-      category: standard
+    - ipa: /vilaʒ./
+      engine: olaph
   level: 220
   en-GB: Village
 - phrase: Italie
   emoji: 🇮🇹
   ipas:
-    - ipa: /italˈi/
-      category: standard
+    - ipa: /itali./
+      engine: olaph
   level: 180
   en-GB: Italy
 - phrase: Rome
   emoji: 🏛️
   ipas:
-    - ipa: /ʁˈɔm/
-      category: standard
+    - ipa: /ʁɔm./
+      engine: olaph
   level: 120
   en-GB: Rome
 - phrase: Milan
   emoji: 🏙️
   ipas:
-    - ipa: /milˈɑ̃/
-      category: standard
+    - ipa: /milɑ̃./
+      engine: olaph
   level: 180
   en-GB: Milan
 - phrase: Venise
   emoji: 🛶
   ipas:
-    - ipa: /vənˈiz/
-      category: standard
+    - ipa: /vəniz./
+      engine: olaph
   level: 200
   en-GB: Venice
 - phrase: Florence
   emoji: 🌸
   ipas:
-    - ipa: /floʁˈɑ̃s/
-      category: standard
+    - ipa: /flɔʁɑ̃s./
+      engine: olaph
   level: 200
   en-GB: Florence
 - phrase: Naples
   emoji: 🍕
   ipas:
-    - ipa: /nˈapl/
-      category: standard
+    - ipa: /napl./
+      engine: olaph
   level: 200
   en-GB: Naples

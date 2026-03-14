@@ -541,6 +541,28 @@ class PhonemePartyDB {
   }
 
   /**
+   * Delete all user documents without destroying the DB connection.
+   * Safer than clearAll() in tests: avoids the IndexedDB "connection is closing"
+   * race condition that occurs when destroy() + new PouchDB() happen in quick
+   * succession.
+   */
+  async clearAllDocs(): Promise<void> {
+    await this.indexesReady;
+    const result = await this.db.allDocs();
+    // Skip design documents (_design/*) — those hold the indexes.
+    const deletions = result.rows
+      .filter((row) => !row.id.startsWith("_design/"))
+      .map((row) => ({
+        _id: row.id,
+        _rev: row.value.rev,
+        _deleted: true as const,
+      }));
+    if (deletions.length > 0) {
+      await this.db.bulkDocs(deletions);
+    }
+  }
+
+  /**
    * Get database info
    */
   async getInfo(): Promise<PouchDB.Core.DatabaseInfo> {
@@ -655,6 +677,46 @@ class PhonemePartyDB {
       return doc.enabled;
     } catch {
       return true; // Default: enabled
+    }
+  }
+
+  async saveCatchItSettings(settings: {
+    phraseCount: number;
+    duration: number;
+    speedStart: number;
+    speedEnd: number;
+    wordsPerSec: number;
+    wordLifetime: number;
+  }): Promise<void> {
+    const docId = "setting_catch_it";
+    try {
+      const existingDoc = await this.db.get(docId);
+      await this.db.put({ ...existingDoc, ...settings, timestamp: Date.now() });
+    } catch {
+      await this.db.put({ _id: docId, type: "setting", ...settings, timestamp: Date.now() });
+    }
+  }
+
+  async getCatchItSettings(): Promise<{
+    phraseCount?: number;
+    duration?: number;
+    speedStart?: number;
+    speedEnd?: number;
+    wordsPerSec?: number;
+    wordLifetime?: number;
+  } | null> {
+    const docId = "setting_catch_it";
+    try {
+      return (await this.db.get(docId)) as {
+        phraseCount?: number;
+        duration?: number;
+        speedStart?: number;
+        speedEnd?: number;
+        wordsPerSec?: number;
+        wordLifetime?: number;
+      };
+    } catch {
+      return null;
     }
   }
 }

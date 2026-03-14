@@ -8,6 +8,7 @@ function printHelp() {
   console.log(`Usage: ./run tsx scripts/compare-ipa.ts <expected-ipa> <recognized-ipa> <lang>
 
 Compare two IPA strings and output a similarity score using PanPhon feature distance.
+Uses the same PanPhon scoring algorithm as the web UI.
 
 Arguments:
   <expected-ipa>    The reference IPA string (from phrase data)

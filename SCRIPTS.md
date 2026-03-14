@@ -23,36 +23,6 @@ Record mode: record audio directly from microphone.
 Requires: ffmpeg, sox (for recording mode: arecord)
 ```
 
-## add-twemoji-phrases.py
-
-```
-usage: add-twemoji-phrases.py [-h]
-
-Add a predefined set of Twemoji-based phrases (animals, colors, body parts,
-food, etc.) to phrases-de-DE.yaml, phrases-en-GB.yaml, and phrases-fr-FR.yaml.
-Skips phrases that already exist.
-
-options:
-  -h, --help  show this help message and exit
-```
-
-## analyze-phrase-ipas.py
-
-```
-usage: analyze-phrase-ipas.py [-h] [--top TOP] [--lang LANG] [--voice VOICE]
-
-Analyze detected IPAs from static/audio/ipas.json against expected IPAs.
-Computes panphon feature distance between detected and expected IPA, reports
-worst-performing phrases and voi --- ces. Usage: python scripts/analyze-
-phrase-ipas.py [--top N] [--lang LANG] [--voice VOICE]
-
-options:
-  -h, --help     show this help message and exit
-  --top TOP      Number of worst phrases to show per voice
-  --lang LANG    Filter by language (e.g. de-DE)
-  --voice VOICE  Filter by voice name
-```
-
 ## apply-blacklist.py
 
 ```
@@ -83,12 +53,24 @@ options:
   -h, --help  show this help message and exit
 ```
 
+## compare-ipa-engines.ts
+
+```
+Usage: ./run tsx scripts/compare-ipa-engines.ts [lang] [--top N] [--min-sim S] [--ref engine/method]
+
+  lang         optional, e.g. de-DE (defaults to all languages)
+  --top N      show only top N phrases per language (default: all)
+  --min-sim S  only show rows where at least one method scores below S%
+  --ref        reference engine/method, e.g. onnx-audio/edge-tts-male
+```
+
 ## compare-ipa.ts
 
 ```
 Usage: ./run tsx scripts/compare-ipa.ts <expected-ipa> <recognized-ipa> <lang>
 
 Compare two IPA strings and output a similarity score using PanPhon feature distance.
+Uses the same PanPhon scoring algorithm as the web UI.
 
 Arguments:
   <expected-ipa>    The reference IPA string (from phrase data)
@@ -104,19 +86,6 @@ Output:
 Examples:
   ./run tsx scripts/compare-ipa.ts "ˈfaːɐ̯ʁaːt" "faːʁaːt" de-DE
   ./run tsx scripts/compare-ipa.ts "/dɛɐ̯ ˈhʊnt/" "deːɐ̯ hʊnt" de-DE
-```
-
-## compare-opus-ipa.ts
-
-```
-Usage: ./run tsx scripts/compare-opus-ipa.ts [options]
-
-Options:
-  --threshold <n>  Similarity threshold in % below which files are shown (default: 85)
-  --lang <lang>    Filter by language code, e.g. de-DE (default: all)
-  --all            Show all results, not just those below threshold
-  --delete         Delete opus + debug.yaml files below threshold
-  --help           Show this help
 ```
 
 ## deploy-exec-on-remote.sh
@@ -144,34 +113,13 @@ Build and deploy the Phoneme Party Node.js server to the remote server.
 Requires SSH access to host 'tg' as root.
 ```
 
-## detect-phrase-ipas.py
+## download-cdn-assets.sh
 
 ```
-usage: detect-phrase-ipas.py [-h] [--workers WORKERS]
+Usage: ./scripts/download-cdn-assets.sh
 
-Detect IPA from all pre-generated opus files in static/audio/. Output:
-static/audio/ipas.json (lang → voice → phrase → detected_ipa) Usage: python
-scripts/detect-phrase-ipas.py [--workers N] Resumable: re-running skips
-already-completed entries.
-
-options:
-  -h, --help         show this help message and exit
-  --workers WORKERS  Number of parallel workers (default: cpu count)
-```
-
-## espeak-ipa.py
-
-```
-usage: espeak-ipa.py [-h] text
-
-Generate IPA pronunciation using espeak-ng and output as JSON. Used internally
-by other scripts.
-
-positional arguments:
-  text        Text to convert to IPA (German)
-
-options:
-  -h, --help  show this help message and exit
+Download external CDN assets needed by tests into the local cache.
+Run once before running tests. Assets are cached in ~/.cache/phoneme-party/cdn/.
 ```
 
 ## export_panphon_features.py
@@ -179,8 +127,9 @@ options:
 ```
 usage: export_panphon_features.py [-h]
 
-Export PanPhon IPA feature table to build/data/panphon_features.json (build
-artifact, called by Taskfile).
+Export PanPhon IPA feature table to build/data/panphon_features.json. Called
+by Taskfile via './run task panphon'. The output is loaded by the browser for
+client-side phoneme distance calculations (same scoring as web UI).
 
 options:
   -h, --help  show this help message and exit
@@ -211,23 +160,6 @@ Output:
   JSON with phrase info, recognized IPA, expected IPA, and similarity scores.
 ```
 
-## extract_emoji_low_aoa.py
-
-```
-usage: extract_emoji_low_aoa.py [-h] [--max-aoa MAX_AOA]
-                                [--output-dir OUTPUT_DIR]
-
-Extract emojis with low AoA for language learning
-
-options:
-  -h, --help            show this help message and exit
-  --max-aoa MAX_AOA     Maximum Age of Acquisition threshold (default: 12
-                        years)
-  --output-dir OUTPUT_DIR
-                        Output directory for generated files (default: current
-                        directory)
-```
-
 ## generate-debug-html.ts
 
 ```
@@ -252,7 +184,9 @@ Example:
 ```
 usage: generate_edge_tts_audio.py [-h] {check,create,delete-orphans} ...
 
-Generate or check edge-tts opus audio files for all phrases.
+Generate or check edge-tts opus audio files for all phrases. edge-tts is a
+free Microsoft Azure Text-to-Speech service accessible via the 'edge-tts'
+Python library without an API key.
 
 positional arguments:
   {check,create,delete-orphans}
@@ -265,50 +199,22 @@ options:
   -h, --help            show this help message and exit
 ```
 
-## generate-edge-tts-test-data-en-gb.sh
+## generate-ipa-espeak.ts
 
 ```
-Usage: ./scripts/generate-edge-tts-test-data-en-gb.sh
-
-Generate edge-tts audio test recordings for all en-GB phrases.
-Uses the en-GB-RyanNeural voice (Microsoft Azure via edge-tts).
-Skips phrases that already have a recording. Creates .flac and .flac.yaml files
-in tests/data/en-GB/<phrase>/ directories.
-
-Requires: edge-tts, ffmpeg, nix environment (for tsx).
+(no --help output)
 ```
 
-## generate-missing-phrases.py
+## generate-ipa-olaph.py
 
 ```
-usage: generate-missing-phrases.py [-h] [--lang {de-DE,fr-FR,it-IT}]
-                                   [--dry-run]
-
-Generate missing phrase translations
-
-options:
-  -h, --help            show this help message and exit
-  --lang {de-DE,fr-FR,it-IT}
-                        Only process this language
-  --dry-run             Print what would be added, do not write
+(no --help output)
 ```
 
-## import_phrases.py
+## generate-ipa-wiktionary.py
 
 ```
-usage: import_phrases.py [-h] [--skip-ipa] [--skip-difficulty]
-                         input_file yaml_file
-
-Import new phrases from text file into YAML
-
-positional arguments:
-  input_file         Input text file with phrases (one per line)
-  yaml_file          Target YAML file (phrases-{lang}.yaml)
-
-options:
-  -h, --help         show this help message and exit
-  --skip-ipa         Skip running update-ipa.ts
-  --skip-difficulty  Skip running update-difficulty.py
+(no --help output)
 ```
 
 ## lint.sh
@@ -324,12 +230,6 @@ Run all formatting and lint checks:
   - Deprecated import check
 
 Called by Taskfile as part of the 'check' task. Requires nix/direnv environment.
-```
-
-## phrase2phonemes.ts
-
-```
-(no --help output)
 ```
 
 ## phrase_difficulty.py
@@ -368,18 +268,18 @@ Example:
   ./run tsx scripts/show-frames.ts tests/data/de-DE/Der_Panda/Der_Panda-Thomas.flac.yaml
 ```
 
-## similarity-test-expected-to-actual-ipa.ts
+## static-phrase-audio-ipa.ts
 
 ```
-Usage: ./run tsx scripts/similarity-test-expected-to-actual-ipa.ts <expected_ipa> <actual_phonemes> [lang]
+Usage: ./run tsx scripts/static-phrase-audio-ipa.ts <subcommand> [options]
 
-Examples:
-  ./run tsx scripts/similarity-test-expected-to-actual-ipa.ts "moːnt" "m u n d"               # Compare expected vs actual (default: German)
-  ./run tsx scripts/similarity-test-expected-to-actual-ipa.ts "moːnt" "m u n d a"            # Test with extra phoneme
-  ./run tsx scripts/similarity-test-expected-to-actual-ipa.ts "moːnt" "m u n d" "de-DE"      # Explicit language
+Subcommands:
+  extract   Extract IPA from all *.opus files in static/audio/ and write
+            *.opus.debug.yaml next to each file.
+  compare   Compare extracted IPA (from *.opus.debug.yaml) against expected IPA
+            from phrase YAML files. Run 'extract' first.
 
-The script calculates phonetic similarity using PanPhon features.
-Similarity ranges from 0% (completely different) to 100% (identical).
+Run './run tsx scripts/static-phrase-audio-ipa.ts <subcommand> --help' for subcommand options.
 ```
 
 ## test-all-flac.ts
@@ -387,9 +287,13 @@ Similarity ranges from 0% (completely different) to 100% (identical).
 ```
 Usage: ./run tsx scripts/test-all-flac.ts [options] [pattern]
 
+Run the ONNX phoneme model on all FLAC test recordings in tests/data/ and
+compare recognized IPA against expected IPA stored in .flac.yaml files.
+Use --update to write new recognized_ipa values back to those YAML files.
+
 Options:
   --list, -l     List all audio files without processing
-  --update, -u   Update YAML files with new IPA values
+  --update, -u   Update .flac.yaml files with newly recognized IPA values
   --help, -h     Show help message
 
 Pattern:
@@ -402,19 +306,6 @@ Examples:
   ./run tsx scripts/test-all-flac.ts "Sch*"       # Test matching "Sch*"
 ```
 
-## test-all-opus.ts
-
-```
-Usage: ./run tsx scripts/test-all-opus.ts [--force]
-
-Options:
-  --force   Re-process files even if .debug.yaml already exists
-  --help    Show this help
-
-Writes {file}.opus.debug.yaml next to each opus file.
-Press Ctrl-C to stop; already-written files are kept.
-```
-
 ## test-code-duplication.sh
 
 ```
@@ -424,22 +315,6 @@ Check for code duplication across the codebase using jscpd.
 Fails if duplicated code exceeds 3% of the total codebase.
 
 Called by lint.sh as part of the format and lint step. Requires nix environment.
-```
-
-## tts-test-evaluate.ts
-
-```
-Usage: ./run tsx scripts/tts-test-evaluate.ts
-
-Evaluate TTS audio quality for the TTS test suite.
-Reads tts-test/results/audio-manifest.json, extracts IPA from each audio file
-using the ONNX phoneme model, compares with target IPA using PanPhon distance,
-and writes results to tts-test/results/evaluation.json and report.md.
-
-Internal TTS evaluation tool — requires running the TTS audio generation step first.
-
-Options:
-  --help    Show this help message
 ```
 
 ## update-difficulty.py
@@ -467,36 +342,7 @@ options:
 ## update-ipa-in-phrases-yaml-files.ts
 
 ```
-Usage: ./run tsx scripts/update-ipa-in-phrases-yaml-files.ts <phrases-file> [--update-all]
-
-Fetch IPA pronunciations from Wiktionary and update a phrases-*.yaml file.
-By default, only fills in missing IPA entries. Use --update-all to re-fetch everything.
-
-Arguments:
-  <phrases-file>    Path to a phrases-*.yaml file (e.g. phrases-de-DE.yaml)
-
-Options:
-  --update-all      Re-fetch and overwrite all existing IPA entries
-  --help            Show this help message
-
-Examples:
-  ./run tsx scripts/update-ipa-in-phrases-yaml-files.ts phrases-de-DE.yaml
-  ./run tsx scripts/update-ipa-in-phrases-yaml-files.ts phrases-de-DE.yaml --update-all
-```
-
-## update-yaml-baseline.ts
-
-```
-Usage: ./run tsx scripts/update-yaml-baseline.ts
-
-Re-run the phoneme model on all test FLAC files in tests/data/ and update
-the recognized_ipa field in the corresponding .flac.yaml metadata files.
-
-Internal test maintenance tool — use when the model or feature extraction changes
-and you need to update all baseline IPA values to reflect the new output.
-
-Options:
-  --help    Show this help message
+(no --help output)
 ```
 
 ## validate-phrases-en-GB.py

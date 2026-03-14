@@ -4,7 +4,7 @@ test.describe("User Stats - getUserStats", () => {
   test("should return the NEWEST 30 results, not the oldest 30", async ({ modelPage: page }) => {
     const result = await page.evaluate(async () => {
       const { db } = await import("/phoneme-party/src/db.ts");
-      await db.clearAll();
+      await db.clearAllDocs();
 
       // Save 35 results:
       // - First 30 (oldest) have score < 95 (not mastered)

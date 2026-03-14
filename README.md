@@ -82,7 +82,6 @@ sending data to external servers.
 - Node.js (v20+)
 - pnpm
 - ffmpeg (for audio processing in tests)
-- edge-tts (only needed for generating new TTS audio): `pip install edge-tts`
 
 ### Install Dependencies
 
@@ -109,60 +108,17 @@ pnpm lint
 pnpm test
 ```
 
+See [SCRIPTS.md](SCRIPTS.md) for all available helper scripts.
+
 ## Phoneme Extraction Tests
 
 Test IPA extraction on all FLAC files in `tests/data/`:
 
 ```bash
-# Test all FLAC files (runs in parallel for speed)
-./run tsx scripts/test-all-flac.ts
-
-# Update YAML metadata files with new IPA values
-./run tsx scripts/test-all-flac.ts --update
-
-# List all audio files without processing
-./run tsx scripts/test-all-flac.ts --list
-
-# Test specific phrase(s)
-./run tsx scripts/test-all-flac.ts Wasser
-./run tsx scripts/test-all-flac.ts "Sch*"
-
-# Show help
-./run tsx scripts/test-all-flac.ts --help
+./run tsx scripts/test-all-flac.ts          # test all
+./run tsx scripts/test-all-flac.ts --update # update YAML files with new IPA
+./run tsx scripts/test-all-flac.ts Wasser   # test specific phrase
 ```
-
-The script:
-
-- Processes all FLAC/WAV files in parallel using worker threads
-- Extracts IPA phonemes from audio using the ONNX model
-- Compares extracted IPA with expected IPA from phrase lists
-- Detects improvements, regressions, and changes in results
-- Updates YAML metadata files with new values (when `--update` is used or improvements detected)
-
-## Similarity Testing (without running the model)
-
-Test phoneme similarity calculations directly without audio processing:
-
-```bash
-# Compare expected IPA to actual phonemes
-./scripts/similarity-test-expected-to-actual-ipa-expected-to-actual-ipa.sh "moːnt" "m u n d"
-
-# Check effect of extra phonemes
-./scripts/similarity-test.sh "moːnt" "m u n d a"
-```
-
-This is useful for:
-
-- Understanding how similarity scores are calculated
-- Testing the PanPhon distance algorithm
-- Debugging phoneme alignment without running the full model
-
-The test:
-
-- Downloads the ONNX model (cached in `~/.cache/phoneme-party/`)
-- Uses pre-generated TTS audio from `tests/data/` (committed to git)
-- Only generates new audio via edge-tts if files are missing
-- Runs phoneme extraction and compares results
 
 ### Test Data Structure
 
@@ -170,12 +126,12 @@ Audio test files are stored in git under `tests/data/`:
 
 ```text
 tests/data/
-├── de/
+├── de-DE/
 │   ├── Apfel/
 │   │   ├── Apfel-edge-tts-conrad.flac
 │   │   └── Apfel-edge-tts-conrad.flac.yaml
 │   └── ...
-└── en/
+└── en-GB/
     ├── Apple/
     │   ├── Apple-edge-tts-guy.flac
     │   └── Apple-edge-tts-guy.flac.yaml

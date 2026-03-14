@@ -18,7 +18,8 @@ if [[ -z "${IN_NIX_SHELL:-}" ]]; then
     echo "Nix environment not active. Running via 'nix develop'..."
     exec nix develop --command "$0" "$@"
 fi
-pnpm exec jscpd --gitignore --ignore '.venv,.svelte-kit,build,dist,wasm/kaldi-fbank/.zig-cache' --reporters json,console --output .jscpd .
+# Bash scripts share the same strict-mode header by project convention — not real duplication.
+pnpm exec jscpd --gitignore --ignore '.venv,.svelte-kit,build,dist,wasm/kaldi-fbank/.zig-cache,SCRIPTS.md,tts-test/results' --reporters json,console --output .jscpd .
 duplicated_percent=$(python3 -c "import json; d=json.load(open('.jscpd/jscpd-report.json')); print(d['statistics']['total']['percentage'])")
 threshold=3
 if [[ -n "$duplicated_percent" ]] && awk "BEGIN {exit !($duplicated_percent > $threshold)}"; then

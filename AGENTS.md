@@ -80,6 +80,14 @@ When running scripts:
 - pyproject.toml for Python
 - flake.nix for system stuff.
 
+**Never use `pip install` directly.** Always use `uv` to manage Python dependencies so that
+`uv.lock` stays authoritative:
+
+- Add/upgrade a package: `uv add <package>` or `uv lock --upgrade-package <package> && uv sync`
+- Install from lockfile: `uv sync`
+
+Using `pip install` bypasses the lockfile and can silently install wrong versions.
+
 ## Code Quality
 
 Before considering any task complete, run `./run pnpm check` to autoformat, lint and run tests. Fix

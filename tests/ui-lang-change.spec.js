@@ -1,7 +1,15 @@
 import { test, expect } from "./fixtures.js";
 
 test.describe("uiLang change", () => {
-  test("changing uiLang updates t() template expressions", async ({ modelPage: page }) => {
+  test("changing uiLang updates t() template expressions", async ({ page }) => {
+    // Use a fresh page (not the shared modelPage) since we navigate to /settings/
+    await page.addInitScript(() => {
+      localStorage.setItem("phoneme-party-study-lang", "de-DE");
+      localStorage.setItem("phoneme-party-language", "en-GB");
+    });
+    await page.goto("/phoneme-party/settings/");
+    await page.locator("#ui-lang-select").waitFor({ state: "visible", timeout: 10000 });
+
     const studyLangLabel = page.locator('label[for="study-lang-select"]');
 
     // Switch to English

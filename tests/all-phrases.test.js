@@ -219,16 +219,16 @@ function parseYamlFile(filePath) {
     }
     // New IPA entry
     else if (trimmed.startsWith("- ipa:") && currentPhrase) {
-      currentIpa = { ipa: trimmed.slice(6).trim(), category: "" };
+      currentIpa = { ipa: trimmed.slice(6).trim(), source: "" };
       currentPhrase.ipas.push(currentIpa);
     }
     // ipa field (when not using array syntax)
     else if (trimmed.startsWith("ipa:") && currentIpa) {
       currentIpa.ipa = trimmed.slice(4).trim();
     }
-    // category field
-    else if (trimmed.startsWith("category:") && currentIpa) {
-      currentIpa.category = trimmed.slice(9).trim();
+    // source field
+    else if (trimmed.startsWith("source:") && currentIpa) {
+      currentIpa.source = trimmed.slice(7).trim();
     }
   }
 

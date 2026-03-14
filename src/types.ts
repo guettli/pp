@@ -2,10 +2,10 @@
  * Core type definitions for Phoneme Party
  */
 
-// IPA pronunciation with category
+// IPA pronunciation with source
 export interface IPA {
   ipa: string;
-  category: string;
+  source: string;
 }
 
 // Phrase data

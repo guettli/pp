@@ -29,9 +29,14 @@ test.describe("Phoneme Party - Pronunciation Practice", () => {
 
       expect(errors, `Found ${errors.length} errors - see console output above`).toHaveLength(0);
 
-      // Set studyLang to de-DE and uiLang to en-GB
-      await page.locator('[id="study-lang-select"]').selectOption("de-DE");
-      await page.locator('[id="ui-lang-select"]').selectOption("en-GB");
+      // studyLang (de-DE) and uiLang (en-GB) are pre-set via localStorage in the fixture
+      // Click "Press to Play" to load the first phrase (pre-set studyLang doesn't auto-trigger it)
+      await page
+        .locator(
+          "button:has-text('Press to Play'), button:has-text('Zum Spielen drücken'), button:has-text('Appuyez pour jouer')",
+        )
+        .first()
+        .click();
 
       // Wait for a study phrase to appear
       await page.locator("#phrase-text").waitFor({ state: "visible", timeout: 5000 });

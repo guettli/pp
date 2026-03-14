@@ -1,5712 +1,5712 @@
 - phrase: Tavolo
   emoji: 🪑
   ipas:
-    - ipa: /ˈtaːvolo/
-      category: standard
+    - ipa: /tˈavolo/
+      engine: espeak-ng
   level: 180
   en-GB: Table
 - phrase: Madre
   emoji: 👩
   ipas:
-    - ipa: /ˈmaːdre/
-      category: standard
+    - ipa: /mˈadre/
+      engine: espeak-ng
   level: 100
   en-GB: Mother
 - phrase: Padre
   emoji: 👨
   ipas:
-    - ipa: /ˈpaːdre/
-      category: standard
+    - ipa: /pˈadre/
+      engine: espeak-ng
   level: 100
   en-GB: Father
 - phrase: Amore
   emoji: ❤️
   ipas:
-    - ipa: /aˈmoːre/
-      category: standard
+    - ipa: /amˈore/
+      engine: espeak-ng
   level: 150
   en-GB: love
 - phrase: Amico
   emoji: 🤝
   ipas:
-    - ipa: /aˈmiːko/
-      category: standard
+    - ipa: /amˈiko/
+      engine: espeak-ng
   level: 160
   en-GB: Friend
 - phrase: Cibo
   emoji: 🍽️
   ipas:
-    - ipa: /ˈtʃiːbo/
-      category: standard
+    - ipa: /tʃˈibo/
+      engine: espeak-ng
   level: 130
   en-GB: Food
 - phrase: Tempo
   emoji: ⏰
   ipas:
-    - ipa: /ˈtɛmpo/
-      category: standard
+    - ipa: /tˈɛmpo/
+      engine: espeak-ng
   level: 200
   en-GB: Time
 - phrase: Giorno
   emoji: 📅
   ipas:
-    - ipa: /ˈdʒorno/
-      category: standard
+    - ipa: /dʒˈorno/
+      engine: espeak-ng
   level: 120
   en-GB: Day
 - phrase: Notte
   emoji: 🌙
   ipas:
-    - ipa: /ˈnɔtte/
-      category: standard
+    - ipa: /nˈɔtːe/
+      engine: espeak-ng
   level: 110
   en-GB: Night
 - phrase: Buongiorno
   emoji: 👋
   ipas:
-    - ipa: /bwonˈdʒorno/
-      category: standard
+    - ipa: /bʊondʒˈɔrno/
+      engine: espeak-ng
   level: 250
   en-GB: Good morning
 - phrase: Buonasera
   emoji: 🌆
   ipas:
-    - ipa: /bwɔnaˈseːra/
-      category: standard
+    - ipa: /bwˌɔnasˈera/
+      engine: espeak-ng
   level: 270
   en-GB: Good evening
 - phrase: Buonanotte
   emoji: 🌙
   ipas:
-    - ipa: /bwɔnaˈnɔtte/
-      category: standard
+    - ipa: /bʊonanˈɔtːe/
+      engine: espeak-ng
   level: 280
   en-GB: Good night
 - phrase: Grazie
   emoji: 🙏
   ipas:
-    - ipa: /ˈɡraːtsje/
-      category: standard
+    - ipa: /ɡrˈatsje/
+      engine: espeak-ng
   level: 150
   en-GB: Thank you
 - phrase: Prego
   emoji: 😊
   ipas:
-    - ipa: /ˈprɛːɡo/
-      category: standard
+    - ipa: /prˈɛɡo/
+      engine: espeak-ng
   level: 160
   en-GB: You're welcome
 - phrase: Scusi
   emoji: 🙋
   ipas:
-    - ipa: /ˈskuːzi/
-      category: standard
+    - ipa: /skˈuzɪ/
+      engine: espeak-ng
   level: 200
   en-GB: Excuse me
 - phrase: Per favore
   emoji: 🙏
   ipas:
-    - ipa: /per faˈvoːre/
-      category: standard
+    - ipa: /per favˈore/
+      engine: espeak-ng
   level: 220
   en-GB: Please
 - phrase: Come stai?
   emoji: 😊
   ipas:
-    - ipa: /ˈkoːme ˈstaːi/
-      category: standard
+    - ipa: /kˌome stˈaj/
+      engine: espeak-ng
   level: 280
   en-GB: How are you?
 - phrase: Bene, grazie
   emoji: 👍
   ipas:
-    - ipa: /ˈbɛːne ˈɡraːtsje/
-      category: standard
+    - ipa: /bˈɛne ɡrˈatsje/
+      engine: espeak-ng
   level: 300
   en-GB: Fine, thank you
 - phrase: Come ti chiami?
   emoji: 🤔
   ipas:
-    - ipa: /ˈkoːme ti ˈkjaːmi/
-      category: standard
+    - ipa: /kˌome tɪ kjˈamɪ/
+      engine: espeak-ng
   level: 350
   en-GB: What is your name?
 - phrase: Mi chiamo...
   emoji: 👤
   ipas:
-    - ipa: /mi ˈkjaːmo/
-      category: standard
+    - ipa: /mɪ kjˈamo/
+      engine: espeak-ng
   level: 300
   en-GB: My name is...
 - phrase: Dove sei?
   emoji: 🗺️
   ipas:
-    - ipa: /ˈdoːve ˈsɛːi/
-      category: standard
+    - ipa: /dˈove sˈɛi/
+      engine: espeak-ng
   level: 320
   en-GB: Where are you?
 - phrase: Quanto costa?
   emoji: 💰
   ipas:
-    - ipa: /ˈkwanto ˈkɔsta/
-      category: standard
+    - ipa: /kwˈanto kˈɔsta/
+      engine: espeak-ng
   level: 350
   en-GB: How much does it cost?
 - phrase: Non capisco
   emoji: 😕
   ipas:
-    - ipa: /non kaˈpisko/
-      category: standard
+    - ipa: /non kapˈisko/
+      engine: espeak-ng
   level: 370
   en-GB: I don't understand
 - phrase: Parla italiano?
   emoji: 🇮🇹
   ipas:
-    - ipa: /ˈparla itaˈljaːno/
-      category: standard
+    - ipa: /pˈarla italiˈano/
+      engine: espeak-ng
   level: 400
   en-GB: Do you speak Italian?
 - phrase: Il gatto dorme sul divano.
   emoji: 🐱
   ipas:
-    - ipa: /il ˈɡatto ˈdorme sul diˈvaːno/
-      category: standard
+    - ipa: /il ɡˈatːo dˈɔrme sʊl divˈano/
+      engine: espeak-ng
   level: 500
   en-GB: The cat is sleeping on the sofa.
 - phrase: Il bambino mangia la mela.
   emoji: 🍎
   ipas:
-    - ipa: /il bamˈbiːno ˈmandʒa la ˈmɛːla/
-      category: standard
+    - ipa: /il bambˈino mˈandʒa la mˈɛla/
+      engine: espeak-ng
   level: 520
   en-GB: The child is eating the apple.
 - phrase: La donna legge un libro.
   emoji: 📚
   ipas:
-    - ipa: /la ˈdɔnna ˈlɛddʒe un ˈliːbro/
-      category: standard
+    - ipa: /la dˈɔnna lˈedʒːe ʊn lˈibro/
+      engine: espeak-ng
   level: 540
   en-GB: The woman is reading a book.
 - phrase: Il sole splende.
   emoji: ☀️
   ipas:
-    - ipa: /il ˈsoːle ˈsplɛnde/
-      category: standard
+    - ipa: /il sˈole splˈɛnde/
+      engine: espeak-ng
   level: 460
   en-GB: The sun is shining.
 - phrase: Oggi fa bel tempo.
   emoji: ☀️
   ipas:
-    - ipa: /ˈɔddʒi fa bɛl ˈtɛmpo/
-      category: standard
+    - ipa: /ˈɔdʒːɪ fˈa bˈɛl tˈɛmpo/
+      engine: espeak-ng
   level: 480
   en-GB: The weather is nice today.
 - phrase: Dove è la stazione?
   emoji: 🚉
   ipas:
-    - ipa: /ˈdoːve ɛ la statˈtsjone/
-      category: standard
+    - ipa: /dˈove e la statsiˈone/
+      engine: espeak-ng
   level: 500
   en-GB: Where is the train station?
 - phrase: Vorrei un caffè.
   emoji: ☕
   ipas:
-    - ipa: /vorˈrɛːi un kafˈfɛ/
-      category: standard
+    - ipa: /vorɾˈɛi ʊn kaffˈɛ/
+      engine: espeak-ng
   level: 450
   en-GB: I would like a coffee.
 - phrase: Il treno arriva in ritardo.
   emoji: 🚆
   ipas:
-    - ipa: /il ˈtrɛːno arˈriːva in riˈtardo/
-      category: standard
+    - ipa: /il trˈɛno arɾˈiva in ritˈardo/
+      engine: espeak-ng
   level: 580
   en-GB: The train is arriving late.
 - phrase: Abito a Roma.
   emoji: 🏛️
   ipas:
-    - ipa: /ˈaːbito a ˈroːma/
-      category: standard
+    - ipa: /ˈabito a rˈoma/
+      engine: espeak-ng
   level: 420
   en-GB: I live in Rome.
 - phrase: Mi piace la pizza.
   emoji: 🍕
   ipas:
-    - ipa: /mi ˈpjaːtʃe la ˈpittsa/
-      category: standard
+    - ipa: /mɪ pjˈatʃe la pˈitsːa/
+      engine: espeak-ng
   level: 440
   en-GB: I like pizza.
 - phrase: La pizza è deliziosa.
   emoji: 🍕
   ipas:
-    - ipa: /la ˈpittsa ɛ delitˈtsjosa/
-      category: standard
+    - ipa: /la pˈitsːa e delitsjˈɔza/
+      engine: espeak-ng
   level: 480
   en-GB: The pizza is delicious.
 - phrase: Andiamo al mare!
   emoji: 🏖️
   ipas:
-    - ipa: /anˈdjaːmo al ˈmaːre/
-      category: standard
+    - ipa: /andjˈamo al mˈare/
+      engine: espeak-ng
   level: 460
   en-GB: Let's go to the beach!
 - phrase: Che bella giornata!
   emoji: ☀️
   ipas:
-    - ipa: /ke ˈbɛlla dʒorˈnaːta/
-      category: standard
+    - ipa: /ke bˈɛlla dʒornˈata/
+      engine: espeak-ng
   level: 500
   en-GB: What a beautiful day!
 - phrase: Ho fame.
   emoji: 🍽️
   ipas:
-    - ipa: /ɔ ˈfaːme/
-      category: standard
+    - ipa: /o fˈame/
+      engine: espeak-ng
   level: 300
   en-GB: I am hungry.
 - phrase: Ho sete.
   emoji: 💧
   ipas:
-    - ipa: /ɔ ˈseːte/
-      category: standard
+    - ipa: /o sˈete/
+      engine: espeak-ng
   level: 300
   en-GB: I am thirsty.
 - phrase: Sono stanco.
   emoji: 😴
   ipas:
-    - ipa: /ˈsoːno ˈstaŋko/
-      category: standard
+    - ipa: /sˌono stˈanko/
+      engine: espeak-ng
   level: 320
   en-GB: I am tired.
 - phrase: Sono felice.
   emoji: 😊
   ipas:
-    - ipa: /ˈsoːno feˈliːtʃe/
-      category: standard
+    - ipa: /sˌono felˈitʃe/
+      engine: espeak-ng
   level: 340
   en-GB: I am happy.
 - phrase: Dov'è il bagno?
   emoji: 🚽
   ipas:
-    - ipa: /doˈvɛ il ˈbaɲɲo/
-      category: standard
+    - ipa: /dovˈɛ il bˈaɲɲo/
+      engine: espeak-ng
   level: 380
   en-GB: Where is the bathroom?
 - phrase: Posso avere il conto?
   emoji: 🧾
   ipas:
-    - ipa: /ˈpɔsso aˈveːre il ˈkonto/
-      category: standard
+    - ipa: /pˈɔsso avˈere il kˈonto/
+      engine: espeak-ng
   level: 500
   en-GB: Can I have the bill?
 - phrase: Buon appetito!
   emoji: 🍽️
   ipas:
-    - ipa: /bwon appeˈtiːto/
-      category: standard
+    - ipa: /bwˌɔn apːetˈito/
+      engine: espeak-ng
   level: 280
   en-GB: Enjoy your meal!
 - phrase: Salute!
   emoji: 🥂
   ipas:
-    - ipa: /saˈluːte/
-      category: standard
+    - ipa: /salˈute/
+      engine: espeak-ng
   level: 200
   en-GB: Cheers!
 - phrase: Auguri!
   emoji: 🎉
   ipas:
-    - ipa: /auˈɡuːri/
-      category: standard
+    - ipa: /aʊɡˈurɪ/
+      engine: espeak-ng
   level: 220
   en-GB: Congratulations!
 - phrase: In bocca al lupo!
   emoji: 🐺
   ipas:
-    - ipa: /in ˈbɔkka al ˈluːpo/
-      category: standard
+    - ipa: /in bˈokːa al lˈupo/
+      engine: espeak-ng
   level: 600
   en-GB: Good luck!
 - phrase: Gelato
   emoji: 🍦
   ipas:
-    - ipa: /dʒeˈlaːto/
-      category: standard
+    - ipa: /dʒelˈato/
+      engine: espeak-ng
   level: 180
   en-GB: Ice cream
 - phrase: Università
   emoji: 🎓
   ipas:
-    - ipa: /universiˈta/
-      category: standard
+    - ipa: /ʊniversitˈa/
+      engine: espeak-ng
   level: 300
   en-GB: University
 - phrase: Lavoro
   emoji: 💼
   ipas:
-    - ipa: /laˈvoːro/
-      category: standard
+    - ipa: /lavˈɔro/
+      engine: espeak-ng
   level: 200
   en-GB: Work
 - phrase: Negozio
   emoji: 🛒
   ipas:
-    - ipa: /neˈɡɔːtsjo/
-      category: standard
+    - ipa: /neɡˈɔtsio/
+      engine: espeak-ng
   level: 240
   en-GB: Shop
 - phrase: Mercato
   emoji: 🛍️
   ipas:
-    - ipa: /merˈkaːto/
-      category: standard
+    - ipa: /merkˈato/
+      engine: espeak-ng
   level: 260
   en-GB: Market
 - phrase: Farmacia
   emoji: 💊
   ipas:
-    - ipa: /farˈmaːtʃa/
-      category: standard
+    - ipa: /farmatʃˈiːa/
+      engine: espeak-ng
   level: 340
   en-GB: Pharmacy
 - phrase: Ristorante
   emoji: 🍽️
   ipas:
-    - ipa: /ristoˈrante/
-      category: standard
+    - ipa: /ristorˈante/
+      engine: espeak-ng
   level: 300
   en-GB: Restaurant
 - phrase: Rosso
   emoji: 🔴
   ipas:
-    - ipa: /ˈrɔsso/
-      category: standard
+    - ipa: /rˈosso/
+      engine: espeak-ng
   level: 100
   en-GB: red
 - phrase: Blu
   emoji: 🔵
   ipas:
-    - ipa: /blu/
-      category: standard
+    - ipa: /blˈu/
+      engine: espeak-ng
   level: 60
   en-GB: blue
 - phrase: Verde
   emoji: 🟢
   ipas:
-    - ipa: /ˈvɛrde/
-      category: standard
+    - ipa: /vˈerde/
+      engine: espeak-ng
   level: 100
   en-GB: green
 - phrase: Giallo
   emoji: 🟡
   ipas:
-    - ipa: /ˈdʒallo/
-      category: standard
+    - ipa: /dʒˈallo/
+      engine: espeak-ng
   level: 120
   en-GB: yellow
 - phrase: Bianco
   emoji: ⚪
   ipas:
-    - ipa: /ˈbjaŋko/
-      category: standard
+    - ipa: /bjˈanko/
+      engine: espeak-ng
   level: 100
   en-GB: white
 - phrase: Nero
   emoji: ⚫
   ipas:
-    - ipa: /ˈnɛːro/
-      category: standard
+    - ipa: /nˈero/
+      engine: espeak-ng
   level: 80
   en-GB: black
 - phrase: Grande
   emoji: 🔝
   ipas:
-    - ipa: /ˈɡrande/
-      category: standard
+    - ipa: /ɡrˈande/
+      engine: espeak-ng
   level: 120
   en-GB: Big
 - phrase: Piccolo
   emoji: 🔽
   ipas:
-    - ipa: /ˈpikkolo/
-      category: standard
+    - ipa: /pˈikːolo/
+      engine: espeak-ng
   level: 150
   en-GB: Small
 - phrase: Bello
   emoji: 😍
   ipas:
-    - ipa: /ˈbɛllo/
-      category: standard
+    - ipa: /bˈɛllo/
+      engine: espeak-ng
   level: 100
   en-GB: Beautiful
 - phrase: Brutto
   emoji: 😬
   ipas:
-    - ipa: /ˈbrutto/
-      category: standard
+    - ipa: /brˈutːo/
+      engine: espeak-ng
   level: 120
   en-GB: Ugly
 - phrase: Nuovo
   emoji: ✨
   ipas:
-    - ipa: /ˈnwɔːvo/
-      category: standard
+    - ipa: /nʊˈɔvo/
+      engine: espeak-ng
   level: 140
   en-GB: new
 - phrase: Vecchio
   emoji: 🕰️
   ipas:
-    - ipa: /ˈvɛkkjo/
-      category: standard
+    - ipa: /vˈɛkːio/
+      engine: espeak-ng
   level: 160
   en-GB: Old
 - phrase: Caldo
   emoji: 🌡️
   ipas:
-    - ipa: /ˈkaldo/
-      category: standard
+    - ipa: /kˈaldo/
+      engine: espeak-ng
   level: 120
   en-GB: Hot
 - phrase: Freddo
   emoji: ❄️
   ipas:
-    - ipa: /ˈfrɛddo/
-      category: standard
+    - ipa: /frˈedːo/
+      engine: espeak-ng
   level: 130
   en-GB: Cold
 - phrase: Uno
   emoji: 1️⃣
   ipas:
-    - ipa: /ˈuːno/
-      category: standard
+    - ipa: /ˈuno/
+      engine: espeak-ng
   level: 40
   en-GB: One
 - phrase: Due
   emoji: 2️⃣
   ipas:
-    - ipa: /ˈduːe/
-      category: standard
+    - ipa: /dˈue/
+      engine: espeak-ng
   level: 40
   en-GB: Two
 - phrase: Tre
   emoji: 3️⃣
   ipas:
-    - ipa: /tre/
-      category: standard
+    - ipa: /trˈe/
+      engine: espeak-ng
   level: 40
   en-GB: Three
 - phrase: Quattro
   emoji: 4️⃣
   ipas:
-    - ipa: /ˈkwattro/
-      category: standard
+    - ipa: /kwˈatːro/
+      engine: espeak-ng
   level: 60
   en-GB: Four
 - phrase: Cinque
   emoji: 5️⃣
   ipas:
-    - ipa: /ˈtʃiŋkwe/
-      category: standard
+    - ipa: /tʃˈinkwe/
+      engine: espeak-ng
   level: 60
   en-GB: Five
 - phrase: Sei
   emoji: 6️⃣
   ipas:
-    - ipa: /sɛːi/
-      category: standard
+    - ipa: /sˈɛi/
+      engine: espeak-ng
   level: 60
   en-GB: Six
 - phrase: Sette
   emoji: 7️⃣
   ipas:
-    - ipa: /ˈsɛtte/
-      category: standard
+    - ipa: /sˈɛtːe/
+      engine: espeak-ng
   level: 70
   en-GB: Seven
 - phrase: Otto
   emoji: 8️⃣
   ipas:
-    - ipa: /ˈɔtto/
-      category: standard
+    - ipa: /ˈɔtːo/
+      engine: espeak-ng
   level: 70
   en-GB: Eight
 - phrase: Nove
   emoji: 9️⃣
   ipas:
-    - ipa: /ˈnɔːve/
-      category: standard
+    - ipa: /nˈɔve/
+      engine: espeak-ng
   level: 70
   en-GB: Nine
 - phrase: Dieci
   emoji: 🔟
   ipas:
-    - ipa: /ˈdjɛːtʃi/
-      category: standard
+    - ipa: /djˈɛtʃɪ/
+      engine: espeak-ng
   level: 80
   en-GB: Ten
 - phrase: Lunedì
   emoji: 📅
   ipas:
-    - ipa: /luneˈdi/
-      category: standard
+    - ipa: /lʊnedˈi/
+      engine: espeak-ng
   level: 180
   en-GB: Monday
 - phrase: Martedì
   emoji: 📅
   ipas:
-    - ipa: /marteˈdi/
-      category: standard
+    - ipa: /martedˈi/
+      engine: espeak-ng
   level: 190
   en-GB: Tuesday
 - phrase: Mercoledì
   emoji: 📅
   ipas:
-    - ipa: /merkoˈledi/
-      category: standard
+    - ipa: /merkoledˈi/
+      engine: espeak-ng
   level: 200
   en-GB: Wednesday
 - phrase: Giovedì
   emoji: 📅
   ipas:
-    - ipa: /dʒoveˈdi/
-      category: standard
+    - ipa: /dʒovedˈi/
+      engine: espeak-ng
   level: 200
   en-GB: Thursday
 - phrase: Venerdì
   emoji: 📅
   ipas:
-    - ipa: /venerˈdi/
-      category: standard
+    - ipa: /venerdˈi/
+      engine: espeak-ng
   level: 200
   en-GB: Friday
 - phrase: Sabato
   emoji: 📅
   ipas:
-    - ipa: /ˈsaːbato/
-      category: standard
+    - ipa: /sˈabato/
+      engine: espeak-ng
   level: 190
   en-GB: Saturday
 - phrase: Domenica
   emoji: 📅
   ipas:
-    - ipa: /doˈmɛːnika/
-      category: standard
+    - ipa: /domˈenika/
+      engine: espeak-ng
   level: 220
   en-GB: Sunday
 - phrase: Gennaio
   emoji: 📆
   ipas:
-    - ipa: /dʒenˈnaːjo/
-      category: standard
+    - ipa: /dʒennˈaio/
+      engine: espeak-ng
   level: 260
   en-GB: January
 - phrase: Febbraio
   emoji: 📆
   ipas:
-    - ipa: /febˈbraːjo/
-      category: standard
+    - ipa: /febːrˈaio/
+      engine: espeak-ng
   level: 270
   en-GB: February
 - phrase: Marzo
   emoji: 📆
   ipas:
-    - ipa: /ˈmartso/
-      category: standard
+    - ipa: /mˈartso/
+      engine: espeak-ng
   level: 240
   en-GB: March
 - phrase: Aprile
   emoji: 📆
   ipas:
-    - ipa: /aˈpriːle/
-      category: standard
+    - ipa: /aprˈile/
+      engine: espeak-ng
   level: 240
   en-GB: April
 - phrase: Maggio
   emoji: 📆
   ipas:
-    - ipa: /ˈmaddʒo/
-      category: standard
+    - ipa: /mˈadʒːo/
+      engine: espeak-ng
   level: 240
   en-GB: May
 - phrase: Giugno
   emoji: 📆
   ipas:
-    - ipa: /ˈdʒuɲɲo/
-      category: standard
+    - ipa: /dʒˈuɲɲo/
+      engine: espeak-ng
   level: 240
   en-GB: June
 - phrase: Luglio
   emoji: 📆
   ipas:
-    - ipa: /ˈluʎʎo/
-      category: standard
+    - ipa: /lˈuʎo/
+      engine: espeak-ng
   level: 240
   en-GB: July
 - phrase: Agosto
   emoji: 📆
   ipas:
-    - ipa: /aˈɡɔsto/
-      category: standard
+    - ipa: /aɡˈosto/
+      engine: espeak-ng
   level: 240
   en-GB: August
 - phrase: Settembre
   emoji: 📆
   ipas:
-    - ipa: /setˈtɛmbre/
-      category: standard
+    - ipa: /setːˈɛmbre/
+      engine: espeak-ng
   level: 300
   en-GB: September
 - phrase: Ottobre
   emoji: 📆
   ipas:
-    - ipa: /otˈtoːbre/
-      category: standard
+    - ipa: /ˌɔtːˈobre/
+      engine: espeak-ng
   level: 290
   en-GB: October
 - phrase: Novembre
   emoji: 📆
   ipas:
-    - ipa: /noˈvɛmbre/
-      category: standard
+    - ipa: /novˈɛmbre/
+      engine: espeak-ng
   level: 290
   en-GB: November
 - phrase: Dicembre
   emoji: 📆
   ipas:
-    - ipa: /diˈtʃɛmbre/
-      category: standard
+    - ipa: /ditʃˈɛmbre/
+      engine: espeak-ng
   level: 290
   en-GB: December
 - phrase: Primavera
   emoji: 🌸
   ipas:
-    - ipa: /primaˈvɛːra/
-      category: standard
+    - ipa: /primavˈɛra/
+      engine: espeak-ng
   level: 280
   en-GB: Spring
 - phrase: Estate
   emoji: ☀️
   ipas:
-    - ipa: /eˈstaːte/
-      category: standard
+    - ipa: /estˈate/
+      engine: espeak-ng
   level: 260
   en-GB: Summer
 - phrase: Autunno
   emoji: 🍂
   ipas:
-    - ipa: /auˈtunno/
-      category: standard
+    - ipa: /aʊtˈunno/
+      engine: espeak-ng
   level: 280
   en-GB: Autumn
 - phrase: Inverno
   emoji: ❄️
   ipas:
-    - ipa: /inˈvɛrno/
-      category: standard
+    - ipa: /invˈɛrno/
+      engine: espeak-ng
   level: 260
   en-GB: Winter
 - phrase: Città
   emoji: 🏙️
   ipas:
-    - ipa: /tʃitˈta/
-      category: standard
+    - ipa: /tʃitːˈa/
+      engine: espeak-ng
   level: 200
   en-GB: City
 - phrase: Paese
   emoji: 🏘️
   ipas:
-    - ipa: /paˈeːze/
-      category: standard
+    - ipa: /paˈeze/
+      engine: espeak-ng
   level: 220
   en-GB: Village
 - phrase: Italia
   emoji: 🇮🇹
   ipas:
-    - ipa: /iˈtaːlja/
-      category: standard
+    - ipa: /itˈalia/
+      engine: espeak-ng
   level: 160
   en-GB: Italy
 - phrase: Roma
   emoji: 🏛️
   ipas:
-    - ipa: /ˈroːma/
-      category: standard
+    - ipa: /rˈoma/
+      engine: espeak-ng
   level: 100
   en-GB: Rome
 - phrase: Milano
   emoji: 🏙️
   ipas:
-    - ipa: /miˈlaːno/
-      category: standard
+    - ipa: /milˈano/
+      engine: espeak-ng
   level: 140
   en-GB: Milan
 - phrase: Venezia
   emoji: 🛶
   ipas:
-    - ipa: /veˈnɛːtsja/
-      category: standard
+    - ipa: /venˈɛtsia/
+      engine: espeak-ng
   level: 200
   en-GB: Venice
 - phrase: Firenze
   emoji: 🌸
   ipas:
-    - ipa: /fiˈrɛntse/
-      category: standard
+    - ipa: /firˈɛntse/
+      engine: espeak-ng
   level: 200
   en-GB: Florence
 - phrase: Napoli
   emoji: 🍕
   ipas:
-    - ipa: /ˈnaːpoli/
-      category: standard
+    - ipa: /nˈapolɪ/
+      engine: espeak-ng
   level: 160
   en-GB: Naples
 - phrase: accettare
   emoji: 🉑
   ipas:
     - ipa: /atʃːetːˈare/
-      category: standard
+      engine: espeak-ng
   level: 508
   en-GB: accept
 - phrase: tiro con l'arco
   emoji: 🏹
   ipas:
     - ipa: /tˈiro kon lˈarko/
-      category: standard
+      engine: espeak-ng
   level: 613
-  en-GB: archery
-- phrase: arti
+  en-GB: The archery
+- phrase: Le arti
   emoji: 🎨
   ipas:
-    - ipa: /ˈartɪ/
-      category: standard
+    - ipa: /le ˈartɪ/
+      engine: espeak-ng
   level: 293
-  en-GB: arts
-- phrase: borsa
+  en-GB: The arts
+- phrase: La borsa
   emoji: 👜
   ipas:
-    - ipa: /bˈorsa/
-      category: standard
+    - ipa: /la bˈorsa/
+      engine: espeak-ng
   level: 122
-  en-GB: bag
+  en-GB: The bag
 - phrase: bendare
   emoji: 🩹
   ipas:
     - ipa: /bendˈare/
-      category: standard
+      engine: espeak-ng
   level: 537
-  en-GB: bandage
-- phrase: pallacanestro
+  en-GB: The bandage
+- phrase: La pallacanestro
   emoji: 🏀
   ipas:
-    - ipa: /pallakanˈɛstro/
-      category: standard
+    - ipa: /la pallakanˈɛstro/
+      engine: espeak-ng
   level: 727
-  en-GB: basketball
+  en-GB: The basketball
 - phrase: cieco
   emoji: 👨‍🦯
   ipas:
     - ipa: /tʃˈɛko/
-      category: standard
+      engine: espeak-ng
   level: 299
   en-GB: blind
 - phrase: arco
   emoji: 🙇
   ipas:
     - ipa: /ˈarko/
-      category: standard
+      engine: espeak-ng
   level: 166
   en-GB: bow
 - phrase: boxe
   emoji: 🥊
   ipas:
     - ipa: /bˈokse/
-      category: standard
+      engine: espeak-ng
   level: 477
   en-GB: boxing
 - phrase: luminoso
   emoji: 🔆
   ipas:
     - ipa: /lʊminˈozo/
-      category: standard
+      engine: espeak-ng
   level: 309
   en-GB: bright
-- phrase: lampadina
+- phrase: La lampadina
   emoji: 💡
   ipas:
-    - ipa: /lampadˈina/
-      category: standard
+    - ipa: /la lampadˈina/
+      engine: espeak-ng
   level: 236
-  en-GB: bulb
+  en-GB: The bulb
 - phrase: coniglietto
   emoji: 👯
   ipas:
     - ipa: /koniʎˈetːo/
-      category: standard
+      engine: espeak-ng
   level: 169
   en-GB: bunny
 - phrase: torace
   emoji: 👤
   ipas:
     - ipa: /torˈatʃe/
-      category: standard
+      engine: espeak-ng
   level: 429
   en-GB: bust
 - phrase: mobiletto
   emoji: 🗄️
   ipas:
     - ipa: /mobilˈetːo/
-      category: standard
+      engine: espeak-ng
   level: 616
   en-GB: The wardrobe
-- phrase: cancro
+- phrase: Il cancro
   emoji: ♋
   ipas:
-    - ipa: /kˈankro/
-      category: standard
+    - ipa: /il kˈankro/
+      engine: espeak-ng
   level: 550
-  en-GB: cancer
+  en-GB: The cancer
 - phrase: berretto
   emoji: 🧢
   ipas:
     - ipa: /berɾˈetːo/
-      category: standard
+      engine: espeak-ng
   level: 166
   en-GB: cap
 - phrase: carta
   emoji: 💳
   ipas:
     - ipa: /kˈarta/
-      category: standard
+      engine: espeak-ng
   level: 194
   en-GB: card
 - phrase: controllo
   emoji: ✅
   ipas:
     - ipa: /kontrˈɔllo/
-      category: standard
+      engine: espeak-ng
   level: 309
   en-GB: check
 - phrase: scalata
   emoji: 🧗
   ipas:
     - ipa: /skalˈata/
-      category: standard
+      engine: espeak-ng
   level: 264
   en-GB: climb
 - phrase: sottobicchiere
   emoji: 🎢
   ipas:
     - ipa: /sotːobikːiˈɛre/
-      category: standard
+      engine: espeak-ng
   level: 543
   en-GB: coaster
 - phrase: cappotto
   emoji: 🥼
   ipas:
     - ipa: /kapːˈɔtːo/
-      category: standard
+      engine: espeak-ng
   level: 147
   en-GB: coat
-- phrase: costruzione
+- phrase: La costruzione
   emoji: 🚧
   ipas:
-    - ipa: /kostrʊtsiˈone/
-      category: standard
+    - ipa: /la kostrʊtsiˈone/
+      engine: espeak-ng
   level: 949
-  en-GB: construction
+  en-GB: The construction
 - phrase: pastello
   emoji: 🖍️
   ipas:
     - ipa: /pastˈɛllo/
-      category: standard
+      engine: espeak-ng
   level: 315
   en-GB: The colored pencil
 - phrase: cricket
   emoji: 🏏
   ipas:
     - ipa: /krˈikːet/
-      category: standard
+      engine: espeak-ng
   level: 531
   en-GB: cricket
 - phrase: sordo
   emoji: 🧏
   ipas:
     - ipa: /sˈordo/
-      category: standard
+      engine: espeak-ng
   level: 245
   en-GB: deaf
 - phrase: dadi
   emoji: 🎲
   ipas:
     - ipa: /dˈadɪ/
-      category: standard
+      engine: espeak-ng
   level: 309
   en-GB: The cube
 - phrase: debole
   emoji: 🔅
   ipas:
     - ipa: /dˈebole/
-      category: standard
+      engine: espeak-ng
   level: 245
   en-GB: dim
 - phrase: dare le vertigini
   emoji: 💫
   ipas:
     - ipa: /dˈare le vertˈidʒinɪ/
-      category: standard
+      engine: espeak-ng
   level: 302
   en-GB: dizzy
 - phrase: giù
   emoji: 👇
   ipas:
     - ipa: /dʒˈu/
-      category: standard
+      engine: espeak-ng
   level: 131
   en-GB: down
 - phrase: tamburo
   emoji: 🛢️
   ipas:
     - ipa: /tambˈuro/
-      category: standard
+      engine: espeak-ng
   level: 191
   en-GB: drum
 - phrase: iscrizione
   emoji: ⛔
   ipas:
     - ipa: /iskritsiˈone/
-      category: standard
+      engine: espeak-ng
   level: 347
   en-GB: entry
 - phrase: busta
   emoji: 🧧
   ipas:
     - ipa: /bˈusta/
-      category: standard
+      engine: espeak-ng
   level: 705
   en-GB: envelope
-- phrase: recinzione
+- phrase: La recinzione
   emoji: 🤺
   ipas:
-    - ipa: /retʃintsiˈone/
-      category: standard
+    - ipa: /la retʃintsiˈone/
+      engine: espeak-ng
   level: 350
-  en-GB: fence
-- phrase: dita
+  en-GB: The fence
+- phrase: Le dita
   emoji: 🤞
   ipas:
-    - ipa: /dˈita/
-      category: standard
+    - ipa: /le dˈita/
+      engine: espeak-ng
   level: 382
-  en-GB: fingers
+  en-GB: The fingers
 - phrase: calcio
   emoji: 🏈
   ipas:
     - ipa: /kˈaltʃo/
-      category: standard
+      engine: espeak-ng
   level: 486
   en-GB: football
 - phrase: gratuito
   emoji: 🆓
   ipas:
     - ipa: /ɡratˈuːito/
-      category: standard
+      engine: espeak-ng
   level: 207
   en-GB: free
 - phrase: cipiglio
   emoji: 🙍
   ipas:
     - ipa: /tʃipˈiʎo/
-      category: standard
+      engine: espeak-ng
   level: 296
   en-GB: frown
 - phrase: pieno
   emoji: 🈵
   ipas:
     - ipa: /pjˈɛno/
-      category: standard
+      engine: espeak-ng
   level: 153
   en-GB: full
-- phrase: gemma
+- phrase: La gemma
   emoji: 💎
   ipas:
-    - ipa: /dʒˈɛmma/
-      category: standard
+    - ipa: /la dʒˈɛmma/
+      engine: espeak-ng
   level: 226
-  en-GB: gem
-- phrase: guanti
+  en-GB: The gem
+- phrase: I guanti
   emoji: 🧤
   ipas:
-    - ipa: /ɡwˈantɪ/
-      category: standard
+    - ipa: /i ɡwˈantɪ/
+      engine: espeak-ng
   level: 350
-  en-GB: gloves
+  en-GB: The gloves
 - phrase: occhiali
   emoji: 🥽
   ipas:
     - ipa: /okːjˈalɪ/
-      category: standard
+      engine: espeak-ng
   level: 496
   en-GB: goggles
-- phrase: golf
+- phrase: Il golf
   emoji: ⛳
   ipas:
-    - ipa: /ɡˈɔlf/
-      category: standard
+    - ipa: /il ɡˈɔlf/
+      engine: espeak-ng
   level: 252
-  en-GB: golf
-- phrase: mani
+  en-GB: The golf
+- phrase: Le mani
   emoji: 🤲
   ipas:
-    - ipa: /mˈanɪ/
-      category: standard
+    - ipa: /le mˈanɪ/
+      engine: espeak-ng
   level: 201
-  en-GB: hands
+  en-GB: The hands
 - phrase: tallone
   emoji: 👠
   ipas:
     - ipa: /tallˈone/
-      category: standard
+      engine: espeak-ng
   level: 217
   en-GB: heel
 - phrase: hockey
   emoji: 🏒
   ipas:
     - ipa: /ˈokːeɪ/
-      category: standard
+      engine: espeak-ng
   level: 480
   en-GB: hockey
-- phrase: jeans
+- phrase: I jeans
   emoji: 👖
   ipas:
-    - ipa: /dʒˈiːns/
-      category: standard
+    - ipa: /i dʒˈiːns/
+      engine: espeak-ng
   level: 321
-  en-GB: jeans
+  en-GB: The jeans
 - phrase: destreggiarsi
   emoji: 🤹
   ipas:
     - ipa: /destredʒːˈarsɪ/
-      category: standard
+      engine: espeak-ng
   level: 448
   en-GB: juggle
 - phrase: inginocchiarsi
   emoji: 🧎
   ipas:
     - ipa: /indʒinokːjˈarsɪ/
-      category: standard
+      engine: espeak-ng
   level: 274
   en-GB: kneel
 - phrase: libertà
   emoji: 🗽
   ipas:
     - ipa: /libertˈa/
-      category: standard
+      engine: espeak-ng
   level: 683
   en-GB: liberty
 - phrase: sollevare
   emoji: 🛗
   ipas:
     - ipa: /sollevˈare/
-      category: standard
+      engine: espeak-ng
   level: 213
   en-GB: The elevator
 - phrase: leggero
   emoji: 🚦
   ipas:
     - ipa: /ledʒːˈɛro/
-      category: standard
+      engine: espeak-ng
   level: 207
   en-GB: light
 - phrase: rifiuti
   emoji: 🚯
   ipas:
     - ipa: /rifjˈutɪ/
-      category: standard
+      engine: espeak-ng
   level: 426
   en-GB: litter
 - phrase: marziale
   emoji: 🥋
   ipas:
     - ipa: /martsjˈale/
-      category: standard
+      engine: espeak-ng
   level: 673
   en-GB: martial
 - phrase: compagno
   emoji: 🤝
   ipas:
     - ipa: /kompˈaɲɲo/
-      category: standard
+      engine: espeak-ng
   level: 347
   en-GB: mate
-- phrase: muscolo
+- phrase: Il muscolo
   emoji: 💪
   ipas:
-    - ipa: /mˈuskolo/
-      category: standard
+    - ipa: /il mˈuskolo/
+      engine: espeak-ng
   level: 467
-  en-GB: muscle
+  en-GB: The muscle
 - phrase: nota
   emoji: 🎵
   ipas:
     - ipa: /nˈɔta/
-      category: standard
+      engine: espeak-ng
   level: 331
   en-GB: The musical note
 - phrase: più vecchio
   emoji: 🧓
   ipas:
     - ipa: /pjʊ vˈɛkːio/
-      category: standard
+      engine: espeak-ng
   level: 334
   en-GB: older
 - phrase: pagina
   emoji: 📃
   ipas:
     - ipa: /pˈadʒina/
-      category: standard
+      engine: espeak-ng
   level: 277
   en-GB: The paper
 - phrase: passaggio
   emoji: 🈴
   ipas:
     - ipa: /passˈadʒːo/
-      category: standard
+      engine: espeak-ng
   level: 220
   en-GB: pass
 - phrase: pasta
   emoji: 🍝
   ipas:
     - ipa: /pˈasta/
-      category: standard
+      engine: espeak-ng
   level: 334
   en-GB: pasta
-- phrase: pace
+- phrase: La pace
   emoji: ☮️
   ipas:
-    - ipa: /pˈatʃe/
-      category: standard
+    - ipa: /la pˈatʃe/
+      engine: espeak-ng
   level: 401
-  en-GB: peace
+  en-GB: The peace
 - phrase: scegliere
   emoji: ⛏️
   ipas:
     - ipa: /ʃˈeʎere/
-      category: standard
+      engine: espeak-ng
   level: 172
-  en-GB: pick
+  en-GB: The pick
 - phrase: spillo
   emoji: 🧷
   ipas:
     - ipa: /spˈillo/
-      category: standard
+      engine: espeak-ng
   level: 160
   en-GB: pin
 - phrase: pizzico
   emoji: 🤏
   ipas:
     - ipa: /pˈitsːiko/
-      category: standard
+      engine: espeak-ng
   level: 264
   en-GB: pinch
 - phrase: Polizia Stradale
   emoji: 🚓
   ipas:
     - ipa: /politsˈia stradˈale/
-      category: standard
+      engine: espeak-ng
   level: 483
-  en-GB: police
+  en-GB: The police
 - phrase: piscina
   emoji: 🎱
   ipas:
     - ipa: /piʃˈina/
-      category: standard
+      engine: espeak-ng
   level: 198
   en-GB: pool
 - phrase: inviare
   emoji: 🏣
   ipas:
     - ipa: /inviˈare/
-      category: standard
+      engine: espeak-ng
   level: 210
   en-GB: The post office
 - phrase: pregare
   emoji: 🙏
   ipas:
     - ipa: /preɡˈare/
-      category: standard
+      engine: espeak-ng
   level: 213
   en-GB: pray
 - phrase: aumentare
   emoji: 🙋
   ipas:
     - ipa: /aʊmentˈare/
-      category: standard
+      engine: espeak-ng
   level: 420
   en-GB: raise
 - phrase: prenotato
   emoji: 🈯
   ipas:
     - ipa: /prenotˈato/
-      category: standard
+      engine: espeak-ng
   level: 781
   en-GB: reserved
 - phrase: Giusto
   emoji: 👉
   ipas:
     - ipa: /dʒˈusto/
-      category: standard
+      engine: espeak-ng
   level: 198
   en-GB: right
 - phrase: roccia
   emoji: 🤘
   ipas:
     - ipa: /rˈɔtʃːa/
-      category: standard
+      engine: espeak-ng
   level: 166
   en-GB: rock
 - phrase: rugby
   emoji: 🏉
   ipas:
     - ipa: /rˈaɡbɪ/
-      category: standard
+      engine: espeak-ng
   level: 359
   en-GB: rugby
 - phrase: correre
   emoji: 🏃
   ipas:
     - ipa: /kˈorɾere/
-      category: standard
+      engine: espeak-ng
   level: 80
   en-GB: run
 - phrase: servizio
   emoji: 🈂️
   ipas:
     - ipa: /servˈitsio/
-      category: standard
+      engine: espeak-ng
   level: 664
   en-GB: service
 - phrase: sonno
   emoji: 💤
   ipas:
     - ipa: /sˈonno/
-      category: standard
+      engine: espeak-ng
   level: 175
   en-GB: sleep
 - phrase: scintillare
   emoji: ✨
   ipas:
     - ipa: /ʃintillˈare/
-      category: standard
+      engine: espeak-ng
   level: 435
   en-GB: sparkle
 - phrase: parlare
   emoji: 🗣️
   ipas:
     - ipa: /parlˈare/
-      category: standard
+      engine: espeak-ng
   level: 226
   en-GB: speak
 - phrase: in piedi
   emoji: 🧍
   ipas:
     - ipa: /in pjˈedɪ/
-      category: standard
+      engine: espeak-ng
   level: 252
   en-GB: stand
 - phrase: fermare
   emoji: 🚏
   ipas:
     - ipa: /fermˈare/
-      category: standard
+      engine: espeak-ng
   level: 134
   en-GB: stop
 - phrase: nuotare
   emoji: 🏊
   ipas:
     - ipa: /nʊotˈare/
-      category: standard
+      engine: espeak-ng
   level: 175
   en-GB: swim
-- phrase: nastro
+- phrase: Il nastro
   emoji: 📼
   ipas:
-    - ipa: /nˈastro/
-      category: standard
+    - ipa: /il nˈastro/
+      engine: espeak-ng
   level: 302
-  en-GB: tape
+  en-GB: The tape
 - phrase: spazzatura
   emoji: 🗑️
   ipas:
     - ipa: /spatsːatˈura/
-      category: standard
+      engine: espeak-ng
   level: 372
   en-GB: The trash can
-- phrase: tulipano
+- phrase: Il tulipano
   emoji: 🌷
   ipas:
-    - ipa: /tʊlipˈano/
-      category: standard
+    - ipa: /il tʊlipˈano/
+      engine: espeak-ng
   level: 394
-  en-GB: tulip
+  en-GB: The tulip
 - phrase: ombrello
   emoji: ⛱️
   ipas:
     - ipa: /ombrˈɛllo/
-      category: standard
+      engine: espeak-ng
   level: 553
   en-GB: umbrella
 - phrase: su
   emoji: 🆙
   ipas:
     - ipa: /sˈu/
-      category: standard
+      engine: espeak-ng
   level: 1
   en-GB: up
 - phrase: furgone
   emoji: 🚐
   ipas:
     - ipa: /fʊrɡˈone/
-      category: standard
+      engine: espeak-ng
   level: 125
   en-GB: van
-- phrase: maglia
+- phrase: La maglia
   emoji: 🦺
   ipas:
-    - ipa: /mˈaʎa/
-      category: standard
+    - ipa: /la mˈaʎa/
+      engine: espeak-ng
   level: 217
-  en-GB: vest
+  en-GB: The vest
 - phrase: vittoria
   emoji: ✌️
   ipas:
     - ipa: /vitːˈɔria/
-      category: standard
+      engine: espeak-ng
   level: 581
   en-GB: victory
 - phrase: onda
   emoji: 👋
   ipas:
     - ipa: /ˈonda/
-      category: standard
+      engine: espeak-ng
   level: 258
   en-GB: wave
-- phrase: ruota
+- phrase: La ruota
   emoji: 🎡
   ipas:
-    - ipa: /rʊˈɔta/
-      category: standard
+    - ipa: /la rʊˈɔta/
+      engine: espeak-ng
   level: 188
-  en-GB: wheel
+  en-GB: The wheel
 - phrase: donne
   emoji: 🚺
   ipas:
     - ipa: /dˈɔnne/
-      category: standard
+      engine: espeak-ng
   level: 315
   en-GB: women
 - phrase: culto
   emoji: 🛐
   ipas:
     - ipa: /kˈulto/
-      category: standard
+      engine: espeak-ng
   level: 553
   en-GB: worship
 - phrase: lottare
   emoji: 🤼
   ipas:
     - ipa: /lotːˈare/
-      category: standard
+      engine: espeak-ng
   level: 524
   en-GB: wrestle
 - phrase: scrivere
   emoji: ✍️
   ipas:
     - ipa: /skrˈivere/
-      category: standard
+      engine: espeak-ng
   level: 331
   en-GB: write
 - phrase: zero
   emoji: 0️⃣
   ipas:
     - ipa: /dzˈɛro/
-      category: standard
+      engine: espeak-ng
   level: 277
   en-GB: zero
 - phrase: orsacchiotto di peluche
   emoji: 🧸
   ipas:
     - ipa: /orsakːjˈɔtːo dɪ pelˈuʃ/
-      category: standard
+      engine: espeak-ng
   level: 772
   en-GB: The teddy bear
 - phrase: Il kiwi è verde
   emoji: 🥝
   ipas:
     - ipa: /il kˈiwɪ e vˈerde/
-      category: standard
+      engine: espeak-ng
   level: 819
   en-GB: The kiwi is green
 - phrase: L'anguria è grande
   emoji: 🍉
   ipas:
     - ipa: /laŋɡˈuria e ɡrˈande/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The watermelon is big
 - phrase: L'uovo è rotondo
   emoji: 🥚
   ipas:
     - ipa: /lwˈɔvo e rotˈondo/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The egg is round
 - phrase: La cialda è calda
   emoji: 🧇
   ipas:
     - ipa: /la tʃˈalda e kˈalda/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The waffle is warm
 - phrase: La ciambella è dolce
   emoji: 🍩
   ipas:
     - ipa: /la tʃambˈɛlla e dˈoltʃe/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The donut is sweet
 - phrase: Il canguro salta lontano
   emoji: 🦘
   ipas:
     - ipa: /il kaŋɡˈuro sˈalta lontˈano/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The kangaroo jumps far
 - phrase: Il coccodrillo è grande
   emoji: 🐊
   ipas:
     - ipa: /il kokːodrˈillo e ɡrˈande/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The crocodile is big
 - phrase: Il fenicottero è rosa
   emoji: 🦩
   ipas:
     - ipa: /il fenikˈɔtːero e rˈɔza/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The flamingo is pink
 - phrase: Lo squalo nuota velocemente
   emoji: 🦈
   ipas:
     - ipa: /lo skwˈalo nʊˈɔta velotʃemˈente/
-      category: standard
+      engine: espeak-ng
   level: 826
   en-GB: The shark swims fast
 - phrase: Il pappagallo parla molto
   emoji: 🦜
   ipas:
     - ipa: /il papːaɡˈallo pˈarla mˈolto/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The parrot talks a lot
 - phrase: Il pavone è colorato
   emoji: 🦚
   ipas:
     - ipa: /il pavˈone e kolorˈato/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The peacock
 - phrase: La chitarra suona alla grande
   emoji: 🎸
   ipas:
     - ipa: /la kitˈarɾa sʊˈona ˌalla ɡrˈande/
-      category: standard
+      engine: espeak-ng
   level: 908
   en-GB: The guitar sounds great
 - phrase: Il tamburo è forte
   emoji: 🥁
   ipas:
     - ipa: /il tambˈuro e fˈɔrte/
-      category: standard
+      engine: espeak-ng
   level: 765
   en-GB: The drum is loud
 - phrase: La tromba è forte
   emoji: 🎺
   ipas:
     - ipa: /la trˈomba e fˈɔrte/
-      category: standard
+      engine: espeak-ng
   level: 841
   en-GB: The trumpet is loud
 - phrase: Il violino suona alla grande
   emoji: 🎻
   ipas:
     - ipa: /il vjolˈino sʊˈona ˌalla ɡrˈande/
-      category: standard
+      engine: espeak-ng
   level: 911
   en-GB: The violin sounds great
 - phrase: L'ombrello ti mantiene asciutto
   emoji: ☂️
   ipas:
     - ipa: /lombrˈɛllo tɪ mantjˈɛne aʃˈutːo/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The umbrella keeps you dry
 - phrase: Il magnete attira il ferro
   emoji: 🧲
   ipas:
     - ipa: /il maɲˈɛte atːˈira il fˈɛrɾo/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The magnet
 - phrase: Il telescopio mostra le stelle
   emoji: 🔭
   ipas:
     - ipa: /il teleskˈopio mˈostra le stˈelle/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The telescope shows stars
 - phrase: L'orsacchiotto è morbido
   emoji: 🧸
   ipas:
     - ipa: /lorsakːjˈɔtːo e mˈɔrbido/
-      category: standard
+      engine: espeak-ng
   level: 918
   en-GB: The teddy bear is soft
 - phrase: La tenda si trova nel bosco
   emoji: ⛺
   ipas:
     - ipa: /la tˈɛnda sɪ trˈɔva nel bˈɔsko/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The tent
 - phrase: L'elicottero vola alto
   emoji: 🚁
   ipas:
     - ipa: /lelikˈɔtːero vˈola ˈalto/
-      category: standard
+      engine: espeak-ng
   level: 962
   en-GB: The helicopter flies high
 - phrase: Il razzo vola alto
   emoji: 🚀
   ipas:
     - ipa: /il rˈadzːo vˈola ˈalto/
-      category: standard
+      engine: espeak-ng
   level: 867
   en-GB: The rocket flies high
 - phrase: I broccoli sono sani
   emoji: 🥦
   ipas:
     - ipa: /i brˈokːolɪ sˌono sˈanɪ/
-      category: standard
+      engine: espeak-ng
   level: 930
   en-GB: The broccoli is healthy
 - phrase: La cipolla ha un odore forte
   emoji: 🧅
   ipas:
     - ipa: /la tʃipˈolla a ʊn odˈore fˈɔrte/
-      category: standard
+      engine: espeak-ng
   level: 895
   en-GB: The onion smells strong
 - phrase: L'arachide è gustosa
   emoji: 🥜
   ipas:
     - ipa: /laɾˈakide e ɡʊstˈoza/
-      category: standard
+      engine: espeak-ng
   level: 854
   en-GB: The peanut
 - phrase: viola
   emoji: 💜
   ipas:
     - ipa: /vjˈɔla/
-      category: standard
+      engine: espeak-ng
   level: 331
   en-GB: purple
 - phrase: rosa
   emoji: 🩷
   ipas:
     - ipa: /rˈɔza/
-      category: standard
+      engine: espeak-ng
   level: 144
   en-GB: pink
 - phrase: La zuppa è calda
   emoji: 🍲
   ipas:
     - ipa: /la dzˈupːa e kˈalda/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The soup is hot
 - phrase: Il miele è dolce
   emoji: 🍯
   ipas:
     - ipa: /il mjˈɛle e dˈoltʃe/
-      category: standard
+      engine: espeak-ng
   level: 816
   en-GB: The honey is sweet
 - phrase: Il vulcano erutta
   emoji: 🌋
   ipas:
     - ipa: /il vʊlkˈano erˈutːa/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The volcano erupts
 - phrase: La foresta è verde e calma
   emoji: 🌲
   ipas:
     - ipa: /la forˈɛsta e vˈerde e kˈalma/
-      category: standard
+      engine: espeak-ng
   level: 886
   en-GB: The forest is green and calm
 - phrase: La spiaggia è calda e soleggiata
   emoji: 🏖️
   ipas:
     - ipa: /la spjˈadʒːa e kˈalda e soledʒːˈata/
-      category: standard
+      engine: espeak-ng
   level: 851
   en-GB: The beach is warm and sunny
 - phrase: Il pianoforte suona benissimo
   emoji: 🎹
   ipas:
     - ipa: /il pjanofˈɔrte sʊˈona benˈissimo/
-      category: standard
+      engine: espeak-ng
   level: 975
   en-GB: The piano sounds beautiful
 - phrase: cappello a cilindro
   emoji: 🎩
   ipas:
     - ipa: /kapːˈɛllo a tʃilˈindro/
-      category: standard
+      engine: espeak-ng
   level: 128
   en-GB: The cylinder
 - phrase: edificio della chiesa
   emoji: ⛪
   ipas:
     - ipa: /edifˈitʃo dˌella kjˈɛza/
-      category: standard
+      engine: espeak-ng
   level: 439
   en-GB: The church building
 - phrase: mucca da latte
   emoji: 🐄
   ipas:
     - ipa: /mˈukːa da lˈatːe/
-      category: standard
+      engine: espeak-ng
   level: 724
   en-GB: The cow moos
 - phrase: Arte
   emoji: 🎨
   ipas:
     - ipa: /ˈarte/
-      category: standard
+      engine: espeak-ng
   level: 417
   en-GB: Art
 - phrase: La carota fa bene agli occhi.
   emoji: 🥕
   ipas:
     - ipa: /la karˈɔta fˈa bˈɛne ˌaʎɪ ˈɔkːɪ/
-      category: standard
+      engine: espeak-ng
   level: 637
   en-GB: Carrot is good for the eyes.
 - phrase: Ciclismo
   emoji: 🚴
   ipas:
     - ipa: /tʃiklˈizmo/
-      category: standard
+      engine: espeak-ng
   level: 753
   en-GB: Cycling
 - phrase: Neve che cade
   emoji: 🌨️
   ipas:
     - ipa: /nˈɛve ke kˈade/
-      category: standard
+      engine: espeak-ng
   level: 846
   en-GB: Falling snow
 - phrase: Gli occhiali ti aiutano a vedere.
   emoji: 👓
   ipas:
     - ipa: /ʎɪ okːjˈalɪ tɪ ajˈutano a vedˈere/
-      category: standard
+      engine: espeak-ng
   level: 629
   en-GB: Glasses help you see.
 - phrase: Il miele è dolce e dolce.
   emoji: 🍯
   ipas:
     - ipa: /il mjˈɛle e dˈoltʃe e dˈoltʃe/
-      category: standard
+      engine: espeak-ng
   level: 606
   en-GB: Honey is sweet and sweet.
 - phrase: Il limone è acido e giallo.
   emoji: 🍋
   ipas:
     - ipa: /il limˈone e ˈatʃido e dʒˈallo/
-      category: standard
+      engine: espeak-ng
   level: 631
   en-GB: Lemon is sour and yellow.
 - phrase: I fulmini illuminano il cielo.
   emoji: ⚡
   ipas:
     - ipa: /i fˈulminɪ illˈuminano il tʃˈɛlo/
-      category: standard
+      engine: espeak-ng
   level: 642
   en-GB: Lightning illuminates the sky.
 - phrase: Fai una faccia
   emoji: 🙍
   ipas:
     - ipa: /fˈaːi ˌʊna fˈatʃːa/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: Make a face
 - phrase: Arti marziali
   emoji: 🥋
   ipas:
     - ipa: /ˈartɪ martsjˈalɪ/
-      category: standard
+      engine: espeak-ng
   level: 369
   en-GB: Martial arts
 - phrase: Nessuno spreco
   emoji: 🚯
   ipas:
     - ipa: /nessˌʊno sprˈɛko/
-      category: standard
+      engine: espeak-ng
   level: 676
   en-GB: No waste
 - phrase: Acqua non potabile
   emoji: 🚱
   ipas:
     - ipa: /ˈakːwa non potˈabile/
-      category: standard
+      engine: espeak-ng
   level: 765
   en-GB: Non-potable water
 - phrase: Pittura
   emoji: 🎨
   ipas:
     - ipa: /pitːˈura/
-      category: standard
+      engine: espeak-ng
   level: 806
   en-GB: Painting
 - phrase: Occhiali protettivi
   emoji: 🥽
   ipas:
     - ipa: /okːjˈalɪ protetːˈivɪ/
-      category: standard
+      engine: espeak-ng
   level: 648
   en-GB: The safety glasses
 - phrase: Alza la mano
   emoji: 🙋
   ipas:
     - ipa: /ˈaltsa la mˈano/
-      category: standard
+      engine: espeak-ng
   level: 260
   en-GB: Raise your hand
 - phrase: Corsa
   emoji: 🏃
   ipas:
     - ipa: /kˈorsa/
-      category: standard
+      engine: espeak-ng
   level: 397
   en-GB: Running
 - phrase: La scuola inizia alle otto.
   emoji: 🏫
   ipas:
     - ipa: /la skʊˈɔla inˈitsia ˌalle ˈɔtːo/
-      category: standard
+      engine: espeak-ng
   level: 648
   en-GB: School starts at eight o'clock.
 - phrase: Stelle cadenti
   emoji: ✨
   ipas:
     - ipa: /stˈelle kadˈɛntɪ/
-      category: standard
+      engine: espeak-ng
   level: 911
   en-GB: Shooting stars
 - phrase: Sciare
   emoji: 🎿
   ipas:
     - ipa: /ʃiˈare/
-      category: standard
+      engine: espeak-ng
   level: 1
   en-GB: Skiing
 - phrase: Nuoto
   emoji: 🏊
   ipas:
     - ipa: /nʊˈɔto/
-      category: standard
+      engine: espeak-ng
   level: 806
   en-GB: Swimming
 - phrase: La Mela
   emoji: 🍎
   ipas:
     - ipa: /la mˈɛla/
-      category: standard
+      engine: espeak-ng
   level: 498
   en-GB: The apple
 - phrase: La Banca
   emoji: 🏦
   ipas:
     - ipa: /la bˈanka/
-      category: standard
+      engine: espeak-ng
   level: 29
   en-GB: The bank
 - phrase: L'Aquila
   emoji: 🦅
   ipas:
     - ipa: /lˈakwila/
-      category: standard
+      engine: espeak-ng
   level: 639
   en-GB: The eagle
 - phrase: La ruota panoramica
   emoji: 🎡
   ipas:
     - ipa: /la rʊˈɔta panorˈamika/
-      category: standard
+      engine: espeak-ng
   level: 713
   en-GB: The Ferris wheel
 - phrase: Il Guardiano
   emoji: 💂
   ipas:
     - ipa: /il ɡwardjˈano/
-      category: standard
+      engine: espeak-ng
   level: 868
   en-GB: The Guardian
 - phrase: Il Labrador
   emoji: 🐕
   ipas:
     - ipa: /il lˈabrador/
-      category: standard
+      engine: espeak-ng
   level: 806
   en-GB: The Labrador
 - phrase: La lucertola
   emoji: 🦎
   ipas:
     - ipa: /la lʊtʃˈɛrtola/
-      category: standard
+      engine: espeak-ng
   level: 636
   en-GB: The lizard
 - phrase: Il Museo
   emoji: 🏛️
   ipas:
     - ipa: /il mʊzˈɛo/
-      category: standard
+      engine: espeak-ng
   level: 491
   en-GB: The museum
 - phrase: Il principe
   emoji: 🤴
   ipas:
     - ipa: /il prˈintʃipe/
-      category: standard
+      engine: espeak-ng
   level: 801
   en-GB: The prince
 - phrase: La principessa
   emoji: 👸
   ipas:
     - ipa: /la printʃipˈessa/
-      category: standard
+      engine: espeak-ng
   level: 570
   en-GB: The princess
 - phrase: Lo Scorpione
   emoji: 🦂
   ipas:
     - ipa: /lo skorpjˈone/
-      category: standard
+      engine: espeak-ng
   level: 122
   en-GB: The Scorpion
 - phrase: La Statua della Libertà
   emoji: 🗽
   ipas:
     - ipa: /la stˈatʊa dˌella libertˈa/
-      category: standard
+      engine: espeak-ng
   level: 523
   en-GB: The Statue of Liberty
 - phrase: Il cigno
   emoji: 🦢
   ipas:
     - ipa: /il tʃˈiɲɲo/
-      category: standard
+      engine: espeak-ng
   level: 820
   en-GB: The swan
 - phrase: La televisione
   emoji: 📺
   ipas:
     - ipa: /la televiziˈone/
-      category: standard
+      engine: espeak-ng
   level: 625
   en-GB: The TV
 - phrase: Il Tempio
   emoji: 🛕
   ipas:
     - ipa: /il tˈempio/
-      category: standard
+      engine: espeak-ng
   level: 850
   en-GB: The temple
 - phrase: La Tigre
   emoji: 🐯
   ipas:
     - ipa: /la tˈiɡre/
-      category: standard
+      engine: espeak-ng
   level: 514
   en-GB: The tiger
 - phrase: La chiave regolabile
   emoji: 🔧
   ipas:
     - ipa: /la kjˈave reɡolˈabile/
-      category: standard
+      engine: espeak-ng
   level: 717
   en-GB: The adjustable wrench
 - phrase: L'ambulanza
   emoji: 🚑
   ipas:
     - ipa: /lambʊlˈantsa/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The ambulance
 - phrase: L'ancora
   emoji: ⚓
   ipas:
     - ipa: /lˈankora/
-      category: standard
+      engine: espeak-ng
   level: 899
   en-GB: The anchor
 - phrase: L'angelo
   emoji: 👼
   ipas:
     - ipa: /lˈandʒelo/
-      category: standard
+      engine: espeak-ng
   level: 830
   en-GB: The angel
 - phrase: La rabbia
   emoji: 💢
   ipas:
     - ipa: /la rˈabːia/
-      category: standard
+      engine: espeak-ng
   level: 378
   en-GB: The anger
 - phrase: La formica
   emoji: 🐜
   ipas:
     - ipa: /la formˈika/
-      category: standard
+      engine: espeak-ng
   level: 587
   en-GB: The ant
 - phrase: La formica è molto piccola.
   emoji: 🐜
   ipas:
     - ipa: /la formˈika e mˈolto pˈikːola/
-      category: standard
+      engine: espeak-ng
   level: 626
   en-GB: The ant is very small.
 - phrase: La mela è rossa e dolce.
   emoji: 🍎
   ipas:
     - ipa: /la mˈɛla e rˈossa e dˈoltʃe/
-      category: standard
+      engine: espeak-ng
   level: 627
   en-GB: The apple is red and sweet.
 - phrase: Il braccio
   emoji: 💪
   ipas:
     - ipa: /il brˈatʃːo/
-      category: standard
+      engine: espeak-ng
   level: 558
   en-GB: The arm
 - phrase: Il braccio è forte.
   emoji: 💪
   ipas:
     - ipa: /il brˈatʃːo e fˈɔrte/
-      category: standard
+      engine: espeak-ng
   level: 507
   en-GB: The arm is strong.
 - phrase: L'erba aromatica
   emoji: 🌿
   ipas:
     - ipa: /lˈɛrba aromˈatika/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The aromatic herb
 - phrase: L'atomo
   emoji: ⚛️
   ipas:
     - ipa: /lˈatomo/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The atom
 - phrase: La foglia d'autunno
   emoji: 🍁
   ipas:
     - ipa: /la fˈɔʎa daʊtˈunno/
-      category: standard
+      engine: espeak-ng
   level: 911
   en-GB: The autumn leaf
 - phrase: Il bambino
   emoji: 🚼
   ipas:
     - ipa: /il bambˈino/
-      category: standard
+      engine: espeak-ng
   level: 571
   en-GB: The baby
 - phrase: Il biberon
   emoji: 🍼
   ipas:
     - ipa: /il biberˈon/
-      category: standard
+      engine: espeak-ng
   level: 591
   en-GB: The bottle
 - phrase: Il bambino sta piangendo
   emoji: 👶
   ipas:
     - ipa: /il bambˈino stˈa pjandʒˈɛndo/
-      category: standard
+      engine: espeak-ng
   level: 639
   en-GB: The baby is crying
 - phrase: La pancetta
   emoji: 🥓
   ipas:
     - ipa: /la pantʃˈetːa/
-      category: standard
+      engine: espeak-ng
   level: 801
   en-GB: The bacon
 - phrase: Il distintivo
   emoji: 📛
   ipas:
     - ipa: /il distintˈivo/
-      category: standard
+      engine: espeak-ng
   level: 1
   en-GB: The badge
 - phrase: La palla
   emoji: 🎈
   ipas:
     - ipa: /la pˈalla/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The ball
 - phrase: Il bambù
   emoji: 🎋
   ipas:
     - ipa: /il bambˈu/
-      category: standard
+      engine: espeak-ng
   level: 850
   en-GB: The bamboo
 - phrase: La banana
   emoji: 🍌
   ipas:
     - ipa: /la banˈana/
-      category: standard
+      engine: espeak-ng
   level: 599
   en-GB: The banana
 - phrase: La banana è gialla e dolce.
   emoji: 🍌
   ipas:
     - ipa: /la banˈana e dʒˈalla e dˈoltʃe/
-      category: standard
+      engine: espeak-ng
   level: 631
   en-GB: The banana is yellow and sweet.
 - phrase: Il banjo
   emoji: 🪕
   ipas:
     - ipa: /il bˈandʒo/
-      category: standard
+      engine: espeak-ng
   level: 86
   en-GB: The banjo
 - phrase: La botte
   emoji: 🛢️
   ipas:
     - ipa: /la bˈɔtːe/
-      category: standard
+      engine: espeak-ng
   level: 721
   en-GB: The barrel
 - phrase: Il cestino
   emoji: 🧺
   ipas:
     - ipa: /il tʃestˈino/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The basket
 - phrase: Il pipistrello
   emoji: 🦇
   ipas:
     - ipa: /il pipistrˈɛllo/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The bat
 - phrase: La batteria
   emoji: 🔋
   ipas:
     - ipa: /la batːerˈia/
-      category: standard
+      engine: espeak-ng
   level: 533
   en-GB: The battery
 - phrase: La spiaggia
   emoji: 🏖️
   ipas:
     - ipa: /la spjˈadʒːa/
-      category: standard
+      engine: espeak-ng
   level: 578
   en-GB: The beach
 - phrase: La spiaggia è bellissima e soleggiata.
   emoji: 🏖️
   ipas:
     - ipa: /la spjˈadʒːa e bellˈissima e soledʒːˈata/
-      category: standard
+      engine: espeak-ng
   level: 649
   en-GB: The beach is beautiful and sunny.
 - phrase: La spiaggia è calda
   emoji: 🏖️
   ipas:
     - ipa: /la spjˈadʒːa e kˈalda/
-      category: standard
+      engine: espeak-ng
   level: 477
   en-GB: The beach is warm
 - phrase: L'orso
   emoji: 🐻
   ipas:
     - ipa: /lˈorso/
-      category: standard
+      engine: espeak-ng
   level: 598
   en-GB: The bear
 - phrase: L'orso mangia il miele.
   emoji: 🐻
   ipas:
     - ipa: /lˈorso mˈandʒa il mjˈɛle/
-      category: standard
+      engine: espeak-ng
   level: 609
   en-GB: The bear eats honey.
 - phrase: Il letto
   emoji: 🛏️
   ipas:
     - ipa: /il lˈɛtːo/
-      category: standard
+      engine: espeak-ng
   level: 549
   en-GB: The bed
 - phrase: Il letto è morbido e confortevole.
   emoji: 🛏️
   ipas:
     - ipa: /il lˈɛtːo e mˈɔrbido e konfortˈevole/
-      category: standard
+      engine: espeak-ng
   level: 632
   en-GB: The bed is soft and comfortable.
 - phrase: L'ape
   emoji: 🐝
   ipas:
     - ipa: /lˈape/
-      category: standard
+      engine: espeak-ng
   level: 698
   en-GB: The bee
 - phrase: L'ape ronza
   emoji: 🐝
   ipas:
     - ipa: /lˈape rˈontsa/
-      category: standard
+      engine: espeak-ng
   level: 676
   en-GB: The bee buzzes
 - phrase: L'ape produce il miele.
   emoji: 🐝
   ipas:
     - ipa: /lˈape prodˈutʃe il mjˈɛle/
-      category: standard
+      engine: espeak-ng
   level: 642
   en-GB: The bee produces honey.
 - phrase: La birra
   emoji: 🍺
   ipas:
     - ipa: /la bˈirɾa/
-      category: standard
+      engine: espeak-ng
   level: 526
   en-GB: The beer
 - phrase: La bicicletta è un mezzo di trasporto ecologico.
   emoji: 🚲
   ipas:
     - ipa: /la bitʃiklˈetːa e ʊn mˈɛdzːo dɪ traspˈɔrto ekolˈɔdʒiko/
-      category: standard
+      engine: espeak-ng
   level: 662
   en-GB: The bicycle is an ecological means of transport.
 - phrase: La bicicletta
   emoji: 🚲
   ipas:
     - ipa: /la bitʃiklˈetːa/
-      category: standard
+      engine: espeak-ng
   level: 558
   en-GB: The bike
 - phrase: La bici va molto veloce.
   emoji: 🏍️
   ipas:
     - ipa: /la bˈitʃɪ vˈa mˈolto velˈotʃe/
-      category: standard
+      engine: espeak-ng
   level: 604
   en-GB: The bike goes very fast.
 - phrase: L'uccello
   emoji: 🐦
   ipas:
     - ipa: /lʊtʃːˈɛllo/
-      category: standard
+      engine: espeak-ng
   level: 656
   en-GB: The bird
 - phrase: L'uccello canta sull'albero.
   emoji: 🐦
   ipas:
     - ipa: /lʊtʃːˈɛllo kˈanta sʊllˈalbero/
-      category: standard
+      engine: espeak-ng
   level: 655
   en-GB: The bird sings in the tree.
 - phrase: La barca
   emoji: 🚢
   ipas:
     - ipa: /la bˈarka/
-      category: standard
+      engine: espeak-ng
   level: 587
   en-GB: The boat
 - phrase: La barca naviga sul mare.
   emoji: 🚢
   ipas:
     - ipa: /la bˈarka nˈaviɡa sʊl mˈare/
-      category: standard
+      engine: espeak-ng
   level: 627
   en-GB: The boat is sailing on the sea.
 - phrase: La bomba
   emoji: 💣
   ipas:
     - ipa: /la bˈomba/
-      category: standard
+      engine: espeak-ng
   level: 652
   en-GB: The bomb
 - phrase: L'osso
   emoji: 🦴
   ipas:
     - ipa: /lˈɔsso/
-      category: standard
+      engine: espeak-ng
   level: 596
   en-GB: The bone
 - phrase: Il libro
   emoji: 📖
   ipas:
     - ipa: /il lˈibro/
-      category: standard
+      engine: espeak-ng
   level: 578
   en-GB: The book
 - phrase: Il libro racconta una bellissima storia.
   emoji: 📖
   ipas:
     - ipa: /il lˈibro rakːˈonta ˌʊna bellˈissima stˈɔria/
-      category: standard
+      engine: espeak-ng
   level: 663
   en-GB: The book tells a beautiful story.
 - phrase: Lo stivale
   emoji: 👢
   ipas:
     - ipa: /lo stivˈale/
-      category: standard
+      engine: espeak-ng
   level: 652
   en-GB: The boot
 - phrase: La scatola
   emoji: 🗃️
   ipas:
     - ipa: /la skˈatola/
-      category: standard
+      engine: espeak-ng
   level: 1
   en-GB: The box
 - phrase: Il ragazzo
   emoji: 👦
   ipas:
     - ipa: /il raɡˈatsːo/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The young
 - phrase: Il pane
   emoji: 🍞
   ipas:
     - ipa: /il pˈane/
-      category: standard
+      engine: espeak-ng
   level: 385
   en-GB: The bread
 - phrase: Il pane è fresco e croccante.
   emoji: 🍞
   ipas:
     - ipa: /il pˈane e frˈesko e krokːˈante/
-      category: standard
+      engine: espeak-ng
   level: 579
   en-GB: The bread is fresh and crispy.
 - phrase: La sposa
   emoji: 👰
   ipas:
     - ipa: /la spˈoza/
-      category: standard
+      engine: espeak-ng
   level: 737
   en-GB: The bride
 - phrase: I broccoli
   emoji: 🥦
   ipas:
     - ipa: /i brˈokːolɪ/
-      category: standard
+      engine: espeak-ng
   level: 917
   en-GB: The broccoli
 - phrase: I broccoli sono verdi
   emoji: 🥦
   ipas:
     - ipa: /i brˈokːolɪ sˌono vˈerdɪ/
-      category: standard
+      engine: espeak-ng
   level: 896
   en-GB: The broccoli is green
 - phrase: La scopa
   emoji: 🧹
   ipas:
     - ipa: /la skˈopa/
-      category: standard
+      engine: espeak-ng
   level: 652
   en-GB: The broom
 - phrase: Il pennello
   emoji: 🖌️
   ipas:
     - ipa: /il pennˈɛllo/
-      category: standard
+      engine: espeak-ng
   level: 721
   en-GB: The brush
 - phrase: Il bufalo
   emoji: 🐃
   ipas:
     - ipa: /il bˈufalo/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The buffalo
 - phrase: L'edificio
   emoji: 🏗️
   ipas:
     - ipa: /ledifˈitʃo/
-      category: standard
+      engine: espeak-ng
   level: 600
   en-GB: The building
 - phrase: I coniglietti
   emoji: 👯
   ipas:
     - ipa: /i koniʎˈetːɪ/
-      category: standard
+      engine: espeak-ng
   level: 484
   en-GB: The bunnies
 - phrase: L'autobus
   emoji: 🚌
   ipas:
     - ipa: /lˈaːʊtobʊs/
-      category: standard
+      engine: espeak-ng
   level: 373
   en-GB: The bus
 - phrase: La fermata dell'autobus
   emoji: 🚏
   ipas:
     - ipa: /la fermˈata dellˈaːʊtobʊs/
-      category: standard
+      engine: espeak-ng
   level: 203
   en-GB: The bus stop
 - phrase: L'autobus trasporta persone.
   emoji: 🚌
   ipas:
     - ipa: /lˈaːʊtobʊs traspˈɔrta persˈone/
-      category: standard
+      engine: espeak-ng
   level: 554
   en-GB: The bus transports people.
 - phrase: L'affare
   emoji: 🏬
   ipas:
     - ipa: /laffˈare/
-      category: standard
+      engine: espeak-ng
   level: 889
   en-GB: The business
 - phrase: La farfalla
   emoji: 🦋
   ipas:
     - ipa: /la farfˈalla/
-      category: standard
+      engine: espeak-ng
   level: 616
   en-GB: The butterfly
 - phrase: La farfalla vola di fiore in fiore.
   emoji: 🦋
   ipas:
     - ipa: /la farfˈalla vˈola dɪ fjˈore in fjˈore/
-      category: standard
+      engine: espeak-ng
   level: 597
   en-GB: The butterfly flies from flower to flower.
 - phrase: Il cactus
   emoji: 🌵
   ipas:
     - ipa: /il kˈaktʊs/
-      category: standard
+      engine: espeak-ng
   level: 50
   en-GB: The cactus
 - phrase: La torta
   emoji: 🍰
   ipas:
     - ipa: /la tˈɔrta/
-      category: standard
+      engine: espeak-ng
   level: 574
   en-GB: The cake
 - phrase: La torta è dolce
   emoji: 🍰
   ipas:
     - ipa: /la tˈɔrta e dˈoltʃe/
-      category: standard
+      engine: espeak-ng
   level: 535
   en-GB: The cake is sweet
 - phrase: La torta è dolce e umida.
   emoji: 🍰
   ipas:
     - ipa: /la tˈɔrta e dˈoltʃe e ˈumida/
-      category: standard
+      engine: espeak-ng
   level: 627
   en-GB: The cake is sweet and moist.
 - phrase: Il calendario
   emoji: 📅
   ipas:
     - ipa: /il kalendˈario/
-      category: standard
+      engine: espeak-ng
   level: 871
   en-GB: The calendar
 - phrase: La chiamata
   emoji: 🤙
   ipas:
     - ipa: /la kjamˈata/
-      category: standard
+      engine: espeak-ng
   level: 899
   en-GB: The call
 - phrase: Il cammello
   emoji: 🐪
   ipas:
     - ipa: /il kammˈɛllo/
-      category: standard
+      engine: espeak-ng
   level: 721
   en-GB: The camel
 - phrase: La fotocamera
   emoji: 📷
   ipas:
     - ipa: /la fotokˈamera/
-      category: standard
+      engine: espeak-ng
   level: 357
   en-GB: The camera
 - phrase: La candela
   emoji: 🕯️
   ipas:
     - ipa: /la kandˈela/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The candle
 - phrase: La caramella
   emoji: 🍭
   ipas:
     - ipa: /la kaɾamˈɛlla/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The candy
 - phrase: La canna
   emoji: 🦯
   ipas:
     - ipa: /la kˈanna/
-      category: standard
+      engine: espeak-ng
   level: 652
   en-GB: The stick
 - phrase: La canoa
   emoji: 🛶
   ipas:
     - ipa: /la kanˈɔa/
-      category: standard
+      engine: espeak-ng
   level: 652
   en-GB: The canoe
 - phrase: La macchina
   emoji: 🚗
   ipas:
     - ipa: /la mˈakːina/
-      category: standard
+      engine: espeak-ng
   level: 608
   en-GB: The car
 - phrase: L'auto sta guidando velocemente sulla strada.
   emoji: 🚗
   ipas:
     - ipa: /lˈaʊto stˈa ɡwidˈando velotʃemˈente sˌʊlla strˈada/
-      category: standard
+      engine: espeak-ng
   level: 644
   en-GB: The car is driving fast on the road.
 - phrase: La carpa
   emoji: 🎏
   ipas:
     - ipa: /la kˈarpa/
-      category: standard
+      engine: espeak-ng
   level: 652
   en-GB: The carp
 - phrase: La carota
   emoji: 🥕
   ipas:
     - ipa: /la karˈɔta/
-      category: standard
+      engine: espeak-ng
   level: 608
   en-GB: The carrot
 - phrase: La cassetta
   emoji: 📼
   ipas:
     - ipa: /la kassˈetːa/
-      category: standard
+      engine: espeak-ng
   level: 806
   en-GB: The cassette
 - phrase: Il castello
   emoji: 🏰
   ipas:
     - ipa: /il kastˈɛllo/
-      category: standard
+      engine: espeak-ng
   level: 582
   en-GB: The castle
 - phrase: Il castello è molto antico.
   emoji: 🏰
   ipas:
     - ipa: /il kastˈɛllo e mˈolto antˈiko/
-      category: standard
+      engine: espeak-ng
   level: 611
   en-GB: The castle is very old.
 - phrase: Il gatto
   emoji: 🐱
   ipas:
     - ipa: /il ɡˈatːo/
-      category: standard
+      engine: espeak-ng
   level: 558
   en-GB: The cat
 - phrase: Il bruco
   emoji: 🐛
   ipas:
     - ipa: /il brˈuko/
-      category: standard
+      engine: espeak-ng
   level: 806
   en-GB: The caterpillar
 - phrase: La catena
   emoji: ⛓️
   ipas:
     - ipa: /la katˈena/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The chain
 - phrase: La sedia
   emoji: 🪑
   ipas:
     - ipa: /la sˈɛdia/
-      category: standard
+      engine: espeak-ng
   level: 587
   en-GB: The chair
 - phrase: La sedia serve per sedersi.
   emoji: 🪑
   ipas:
     - ipa: /la sˈɛdia sˈɛrve per sedˈersɪ/
-      category: standard
+      engine: espeak-ng
   level: 631
   en-GB: The chair is for sitting.
 - phrase: La cappella
   emoji: 💒
   ipas:
     - ipa: /la kapːˈɛlla/
-      category: standard
+      engine: espeak-ng
   level: 806
   en-GB: The chapel
 - phrase: Il formaggio
   emoji: 🧀
   ipas:
     - ipa: /il formˈadʒːo/
-      category: standard
+      engine: espeak-ng
   level: 608
   en-GB: The cheese
 - phrase: Il formaggio ha un profumo molto buono.
   emoji: 🧀
   ipas:
     - ipa: /il formˈadʒːo a ʊn profˈumo mˈolto bʊˈɔno/
-      category: standard
+      engine: espeak-ng
   level: 618
   en-GB: The cheese smells very good.
 - phrase: La ciliegia
   emoji: 🍒
   ipas:
     - ipa: /la tʃiliˈɛdʒa/
-      category: standard
+      engine: espeak-ng
   level: 599
   en-GB: The cherry
 - phrase: Il fiore di ciliegio
   emoji: 🌸
   ipas:
     - ipa: /il fjˈore dɪ tʃiliˈɛdʒo/
-      category: standard
+      engine: espeak-ng
   level: 786
   en-GB: The cherry blossom
 - phrase: La ciliegia è piccola e rossa.
   emoji: 🍒
   ipas:
     - ipa: /la tʃiliˈɛdʒa e pˈikːola e rˈossa/
-      category: standard
+      engine: espeak-ng
   level: 638
   en-GB: The cherry is small and red.
 - phrase: La castagna
   emoji: 🌰
   ipas:
     - ipa: /la kastˈaɲɲa/
-      category: standard
+      engine: espeak-ng
   level: 790
   en-GB: The chestnut
 - phrase: I bambini
   emoji: 🚸
   ipas:
     - ipa: /i bambˈinɪ/
-      category: standard
+      engine: espeak-ng
   level: 753
   en-GB: The children
 - phrase: Il peperoncino
   emoji: 🌶️
   ipas:
     - ipa: /il peperontʃˈino/
-      category: standard
+      engine: espeak-ng
   level: 618
   en-GB: The pepper
 - phrase: Il suono
   emoji: 🎐
   ipas:
     - ipa: /il sʊˈɔno/
-      category: standard
+      engine: espeak-ng
   level: 806
   en-GB: The chime
 - phrase: Il cioccolato
   emoji: 🍫
   ipas:
     - ipa: /il tʃokːolˈato/
-      category: standard
+      engine: espeak-ng
   level: 667
   en-GB: The chocolate
 - phrase: Il cioccolato è delizioso.
   emoji: 🍫
   ipas:
     - ipa: /il tʃokːolˈato e delitsjˈozo/
-      category: standard
+      engine: espeak-ng
   level: 642
   en-GB: The chocolate is delicious.
 - phrase: La chiesa
   emoji: ⛪
   ipas:
     - ipa: /la kjˈɛza/
-      category: standard
+      engine: espeak-ng
   level: 656
   en-GB: The church
 - phrase: La chiesa è bella e antica.
   emoji: ⛪
   ipas:
     - ipa: /la kjˈɛza e bˈɛlla e antˈika/
-      category: standard
+      engine: espeak-ng
   level: 648
   en-GB: The church is beautiful and old.
 - phrase: Il servizio in chiesa
   emoji: 🛐
   ipas:
     - ipa: /il servˈitsio in kjˈɛza/
-      category: standard
+      engine: espeak-ng
   level: 995
   en-GB: The church service
 - phrase: La sigaretta
   emoji: 🚬
   ipas:
     - ipa: /la siɡarˈetːa/
-      category: standard
+      engine: espeak-ng
   level: 272
   en-GB: The cigarette
 - phrase: Il cinema
   emoji: 🎦
   ipas:
     - ipa: /il tʃˈinema/
-      category: standard
+      engine: espeak-ng
   level: 810
   en-GB: The cinema
 - phrase: Il cerchio
   emoji: ⭕
   ipas:
     - ipa: /il tʃˈerkio/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The circle
 - phrase: Il circo
   emoji: 🎪
   ipas:
     - ipa: /il tʃˈirko/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The circus
 - phrase: L'orologio
   emoji: 🕐
   ipas:
     - ipa: /lorolˈodʒo/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The clock
 - phrase: La nuvola
   emoji: ☁️
   ipas:
     - ipa: /la nˈuvola/
-      category: standard
+      engine: espeak-ng
   level: 578
   en-GB: The cloud
 - phrase: La nuvola nasconde il sole.
   emoji: ☁️
   ipas:
     - ipa: /la nˈuvola naskˈonde il sˈole/
-      category: standard
+      engine: espeak-ng
   level: 622
   en-GB: The cloud hides the sun.
 - phrase: La nuvola si sta muovendo
   emoji: ☁️
   ipas:
     - ipa: /la nˈuvola sɪ stˈa mʊovˈɛndo/
-      category: standard
+      engine: espeak-ng
   level: 674
   en-GB: The cloud is moving
 - phrase: Il trifoglio
   emoji: ☘️
   ipas:
     - ipa: /il trifˈɔʎo/
-      category: standard
+      engine: espeak-ng
   level: 636
   en-GB: The clover
 - phrase: La frizione
   emoji: 👝
   ipas:
     - ipa: /la fritsiˈone/
-      category: standard
+      engine: espeak-ng
   level: 119
   en-GB: The clutch
 - phrase: Il cocktail
   emoji: 🍸
   ipas:
     - ipa: /il kˈɔktˌɛl/
-      category: standard
+      engine: espeak-ng
   level: 256
   en-GB: The cocktail
 - phrase: Il caffè
   emoji: ☕
   ipas:
     - ipa: /il kaffˈɛ/
-      category: standard
+      engine: espeak-ng
   level: 558
   en-GB: The coffee
 - phrase: Il caffè è caldo e profumato.
   emoji: ☕
   ipas:
     - ipa: /il kaffˈɛ e kˈaldo e profʊmˈato/
-      category: standard
+      engine: espeak-ng
   level: 618
   en-GB: The coffee is hot and fragrant.
 - phrase: La bara
   emoji: ⚰️
   ipas:
     - ipa: /la bˈaɾa/
-      category: standard
+      engine: espeak-ng
   level: 753
   en-GB: The coffin
 - phrase: La cometa
   emoji: ☄️
   ipas:
     - ipa: /la komˈeta/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The comet
 - phrase: La bussola
   emoji: 🧭
   ipas:
     - ipa: /la bˈussola/
-      category: standard
+      engine: espeak-ng
   level: 806
   en-GB: The compass
 - phrase: Il computer
   emoji: 💻
   ipas:
     - ipa: /il kompjˈuter/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The computer
 - phrase: Il mouse del computer
   emoji: 🖱️
   ipas:
     - ipa: /il mˈaʊs del kompjˈuter/
-      category: standard
+      engine: espeak-ng
   level: 992
   en-GB: The computer mouse
 - phrase: I coriandoli
   emoji: 🎊
   ipas:
     - ipa: /i koriˈandolɪ/
-      category: standard
+      engine: espeak-ng
   level: 917
   en-GB: The confetti
 - phrase: Il cantiere
   emoji: 🏗️
   ipas:
     - ipa: /il kantiˈɛre/
-      category: standard
+      engine: espeak-ng
   level: 753
   en-GB: The construction site
 - phrase: Il biscotto
   emoji: 🍪
   ipas:
     - ipa: /il biskˈɔtːo/
-      category: standard
+      engine: espeak-ng
   level: 17
   en-GB: The cookie
 - phrase: Il mais
   emoji: 🌽
   ipas:
     - ipa: /il mˈajs/
-      category: standard
+      engine: espeak-ng
   level: 783
   en-GB: The corn
 - phrase: La coppia
   emoji: 👫
   ipas:
     - ipa: /la kˈɔpːia/
-      category: standard
+      engine: espeak-ng
   level: 78
   en-GB: The couple
 - phrase: La copertina
   emoji: 👝
   ipas:
     - ipa: /la kopertˈina/
-      category: standard
+      engine: espeak-ng
   level: 806
   en-GB: The cover
 - phrase: La mucca
   emoji: 🐮
   ipas:
     - ipa: /la mˈukːa/
-      category: standard
+      engine: espeak-ng
   level: 578
   en-GB: The cow
 - phrase: La mucca dà il latte.
   emoji: 🐮
   ipas:
     - ipa: /la mˈukːa dˈa il lˈatːe/
-      category: standard
+      engine: espeak-ng
   level: 611
   en-GB: The cow gives milk.
 - phrase: Il granchio
   emoji: 🦀
   ipas:
     - ipa: /il ɡrˈankio/
-      category: standard
+      engine: espeak-ng
   level: 652
   en-GB: The crab
 - phrase: La carta di credito
   emoji: 💳
   ipas:
     - ipa: /la kˈarta dɪ krˈedito/
-      category: standard
+      engine: espeak-ng
   level: 725
   en-GB: The credit card
 - phrase: La crêpe
   emoji: 🥞
   ipas:
     - ipa: /la krˈepe/
-      category: standard
+      engine: espeak-ng
   level: 604
   en-GB: The crepe
 - phrase: Il coccodrillo
   emoji: 🐊
   ipas:
     - ipa: /il kokːodrˈillo/
-      category: standard
+      engine: espeak-ng
   level: 199
   en-GB: The crocodile
 - phrase: Il coccodrillo scatta
   emoji: 🐊
   ipas:
     - ipa: /il kokːodrˈillo skˈatːa/
-      category: standard
+      engine: espeak-ng
   level: 926
   en-GB: The crocodile snaps
 - phrase: La croce
   emoji: ✝️
   ipas:
     - ipa: /la krˈotʃe/
-      category: standard
+      engine: espeak-ng
   level: 604
   en-GB: The cross
 - phrase: La corona
   emoji: 👑
   ipas:
     - ipa: /la korˈona/
-      category: standard
+      engine: espeak-ng
   level: 806
   en-GB: The crown
 - phrase: L'armadio
   emoji: 🗄️
   ipas:
     - ipa: /larmˈadio/
-      category: standard
+      engine: espeak-ng
   level: 840
   en-GB: The cupboard
 - phrase: Il curry
   emoji: 🍛
   ipas:
     - ipa: /il kˈurɾɪ/
-      category: standard
+      engine: espeak-ng
   level: 457
   en-GB: The curry
 - phrase: Il ciclone
   emoji: 🌀
   ipas:
     - ipa: /il tʃiklˈone/
-      category: standard
+      engine: espeak-ng
   level: 191
   en-GB: The cyclone
 - phrase: La mucca da latte
   emoji: 🐄
   ipas:
     - ipa: /la mˈukːa da lˈatːe/
-      category: standard
+      engine: espeak-ng
   level: 846
   en-GB: The dairy cow
 - phrase: La danza
   emoji: 💃
   ipas:
     - ipa: /la dˈantsa/
-      category: standard
+      engine: espeak-ng
   level: 652
   en-GB: The dance
 - phrase: I ballerini
   emoji: 👯
   ipas:
     - ipa: /i ballerˈinɪ/
-      category: standard
+      engine: espeak-ng
   level: 790
   en-GB: The dancers
 - phrase: Il cervo
   emoji: 🦌
   ipas:
     - ipa: /il tʃˈɛrvo/
-      category: standard
+      engine: espeak-ng
   level: 571
   en-GB: The deer
 - phrase: Il diamante
   emoji: 💎
   ipas:
     - ipa: /il djamˈante/
-      category: standard
+      engine: espeak-ng
   level: 721
   en-GB: The diamond
 - phrase: Il dinosauro
   emoji: 🦖
   ipas:
     - ipa: /il dinozˈaʊro/
-      category: standard
+      engine: espeak-ng
   level: 891
   en-GB: The dinosaur
 - phrase: Il cane
   emoji: 🐶
   ipas:
     - ipa: /il kˈane/
-      category: standard
+      engine: espeak-ng
   level: 566
   en-GB: The dog
 - phrase: Il cane sta giocando in giardino.
   emoji: 🐶
   ipas:
     - ipa: /il kˈane stˈa dʒokˈando in dʒardˈino/
-      category: standard
+      engine: espeak-ng
   level: 618
   en-GB: The dog is playing in the garden.
 - phrase: Il dollaro
   emoji: 💵
   ipas:
     - ipa: /il dˈɔllaro/
-      category: standard
+      engine: espeak-ng
   level: 66
   en-GB: The dollar
 - phrase: Le bambole
   emoji: 🎎
   ipas:
     - ipa: /le bˈambole/
-      category: standard
+      engine: espeak-ng
   level: 753
   en-GB: The dolls
 - phrase: Il delfino
   emoji: 🐬
   ipas:
     - ipa: /il delfˈino/
-      category: standard
+      engine: espeak-ng
   level: 595
   en-GB: The dolphin
 - phrase: Il delfino salta fuori dall'acqua.
   emoji: 🐬
   ipas:
     - ipa: /il delfˈino sˈalta fʊˈorɪ dallˈakːwa/
-      category: standard
+      engine: espeak-ng
   level: 628
   en-GB: The dolphin jumps out of the water.
 - phrase: La ciambella
   emoji: 🍩
   ipas:
     - ipa: /la tʃambˈɛlla/
-      category: standard
+      engine: espeak-ng
   level: 721
   en-GB: The donut
 - phrase: La porta
   emoji: 🚪
   ipas:
     - ipa: /la pˈɔrta/
-      category: standard
+      engine: espeak-ng
   level: 578
   en-GB: The door
 - phrase: La porta si apre e si chiude.
   emoji: 🚪
   ipas:
     - ipa: /la pˈɔrta sɪ ˈapre e sɪ kjˈude/
-      category: standard
+      engine: espeak-ng
   level: 627
   en-GB: The door opens and closes.
 - phrase: La colomba
   emoji: 🕊️
   ipas:
     - ipa: /la kolˈomba/
-      category: standard
+      engine: espeak-ng
   level: 774
   en-GB: The pigeon
 - phrase: Il vestito
   emoji: 👗
   ipas:
     - ipa: /il vestˈito/
-      category: standard
+      engine: espeak-ng
   level: 416
   en-GB: The dress
 - phrase: L'abito è bellissimo ed elegante.
   emoji: 👗
   ipas:
     - ipa: /lˈabito e bellˈissimo ed eleɡˈante/
-      category: standard
+      engine: espeak-ng
   level: 578
   en-GB: The dress is beautiful and elegant.
 - phrase: Il condimento
   emoji: 🩹
   ipas:
     - ipa: /il kondimˈento/
-      category: standard
+      engine: espeak-ng
   level: 838
   en-GB: The dressing
 - phrase: L'anatra
   emoji: 🦆
   ipas:
     - ipa: /lˈanatra/
-      category: standard
+      engine: espeak-ng
   level: 587
   en-GB: The duck
 - phrase: L'anatra starnazza
   emoji: 🦆
   ipas:
     - ipa: /lˈanatra starnˈatsːa/
-      category: standard
+      engine: espeak-ng
   level: 658
   en-GB: The duck quacks
 - phrase: L'anatra nuota nello stagno.
   emoji: 🦆
   ipas:
     - ipa: /lˈanatra nʊˈɔta nˈello stˈaɲɲo/
-      category: standard
+      engine: espeak-ng
   level: 624
   en-GB: The duck swims on the pond.
 - phrase: L'aquila vola molto in alto.
   emoji: 🦅
   ipas:
     - ipa: /lˈakwila vˈola mˈolto in ˈalto/
-      category: standard
+      engine: espeak-ng
   level: 553
   en-GB: The eagle flies very high.
 - phrase: L'orecchio
   emoji: 👂
   ipas:
     - ipa: /lorˈekːio/
-      category: standard
+      engine: espeak-ng
   level: 698
   en-GB: The ear
 - phrase: L'orecchio sente i suoni.
   emoji: 👂
   ipas:
     - ipa: /lorˈekːio sˈente i sʊˈonɪ/
-      category: standard
+      engine: espeak-ng
   level: 642
   en-GB: The ear hears sounds.
 - phrase: L'uovo
   emoji: 🥚
   ipas:
     - ipa: /lwˈɔvo/
-      category: standard
+      engine: espeak-ng
   level: 581
   en-GB: The egg
 - phrase: L'uovo è fresco e rotondo.
   emoji: 🥚
   ipas:
     - ipa: /lwˈɔvo e frˈesko e rotˈondo/
-      category: standard
+      engine: espeak-ng
   level: 604
   en-GB: The egg is fresh and round.
 - phrase: La persona anziana
   emoji: 🧓
   ipas:
     - ipa: /la persˈona antsjˈana/
-      category: standard
+      engine: espeak-ng
   level: 790
   en-GB: The elderly person
 - phrase: La batteria elettrica
   emoji: 🔋
   ipas:
     - ipa: /la batːerˈia elˈɛtːrika/
-      category: standard
+      engine: espeak-ng
   level: 992
   en-GB: The electric battery
 - phrase: La presa elettrica
   emoji: 🔌
   ipas:
     - ipa: /la prˈeza elˈɛtːrika/
-      category: standard
+      engine: espeak-ng
   level: 891
   en-GB: The electrical outlet
 - phrase: L'elefante
   emoji: 🐘
   ipas:
     - ipa: /lelefˈante/
-      category: standard
+      engine: espeak-ng
   level: 664
   en-GB: The elephant
 - phrase: L'elefante è pesante
   emoji: 🐘
   ipas:
     - ipa: /lelefˈante e pezˈante/
-      category: standard
+      engine: espeak-ng
   level: 794
   en-GB: The elephant is heavy
 - phrase: L'elefante è molto grande.
   emoji: 🐘
   ipas:
     - ipa: /lelefˈante e mˈolto ɡrˈande/
-      category: standard
+      engine: espeak-ng
   level: 623
   en-GB: The elephant is very big.
 - phrase: L'elfo
   emoji: 🧝
   ipas:
     - ipa: /lˈɛlfo/
-      category: standard
+      engine: espeak-ng
   level: 830
   en-GB: The elf
 - phrase: L'occhio
   emoji: 👁️
   ipas:
     - ipa: /lˈɔkːio/
-      category: standard
+      engine: espeak-ng
   level: 581
   en-GB: The eye
 - phrase: L'occhio vede i colori.
   emoji: 👁️
   ipas:
     - ipa: /lˈɔkːio vˈede i kolˈorɪ/
-      category: standard
+      engine: espeak-ng
   level: 621
   en-GB: The eye sees colors.
 - phrase: Gli occhi
   emoji: 👀
   ipas:
     - ipa: /ʎɪ ˈɔkːɪ/
-      category: standard
+      engine: espeak-ng
   level: 604
   en-GB: The eyes
 - phrase: La fabbrica
   emoji: 🏭
   ipas:
     - ipa: /la fˈabːrika/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The factory
 - phrase: La fata
   emoji: 🧚
   ipas:
     - ipa: /la fˈata/
-      category: standard
+      engine: espeak-ng
   level: 535
   en-GB: The fairy
 - phrase: La famiglia
   emoji: 👪
   ipas:
     - ipa: /la famˈiʎa/
-      category: standard
+      engine: espeak-ng
   level: 774
   en-GB: The family
 - phrase: Il traghetto
   emoji: ⛴️
   ipas:
     - ipa: /il traɡˈetːo/
-      category: standard
+      engine: espeak-ng
   level: 1
   en-GB: The ferry
 - phrase: Il dossier
   emoji: 📁
   ipas:
     - ipa: /il dossjˈɛr/
-      category: standard
+      engine: espeak-ng
   level: 721
   en-GB: The file
 - phrase: Il dito
   emoji: ☝️
   ipas:
     - ipa: /il dˈito/
-      category: standard
+      engine: espeak-ng
   level: 566
   en-GB: The finger
 - phrase: Il dito indica la strada.
   emoji: ☝️
   ipas:
     - ipa: /il dˈito ˈindika la strˈada/
-      category: standard
+      engine: espeak-ng
   level: 621
   en-GB: The finger shows the way.
 - phrase: Il fuoco
   emoji: 🔥
   ipas:
     - ipa: /il fʊˈɔko/
-      category: standard
+      engine: espeak-ng
   level: 549
   en-GB: The fire
 - phrase: Il fuoco arde nel camino.
   emoji: 🔥
   ipas:
     - ipa: /il fʊˈɔko ˈarde nel kamˈino/
-      category: standard
+      engine: espeak-ng
   level: 625
   en-GB: The fire burns in the fireplace.
 - phrase: L'estintore
   emoji: 🧯
   ipas:
     - ipa: /lestintˈore/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The fire extinguisher
 - phrase: Il fuoco sta bruciando
   emoji: 🔥
   ipas:
     - ipa: /il fʊˈɔko stˈa brʊtʃˈando/
-      category: standard
+      engine: espeak-ng
   level: 669
   en-GB: The fire is burning
 - phrase: Il pesce
   emoji: 🐟
   ipas:
     - ipa: /il pˈeʃe/
-      category: standard
+      engine: espeak-ng
   level: 595
   en-GB: The fish
 - phrase: Il pesce nuota nell'acqua.
   emoji: 🐟
   ipas:
     - ipa: /il pˈeʃe nʊˈɔta nellˈakːwa/
-      category: standard
+      engine: espeak-ng
   level: 624
   en-GB: The fish swims in the water.
 - phrase: Il pugno
   emoji: 👊
   ipas:
     - ipa: /il pˈuɲɲo/
-      category: standard
+      engine: espeak-ng
   level: 604
   en-GB: The fist
 - phrase: Il fenicottero
   emoji: 🦩
   ipas:
     - ipa: /il fenikˈɔtːero/
-      category: standard
+      engine: espeak-ng
   level: 917
   en-GB: The pink flamingo
 - phrase: Il flash brilla intensamente
   emoji: ⚡
   ipas:
     - ipa: /il flˈaʃ brˈilla intensamˈente/
-      category: standard
+      engine: espeak-ng
   level: 723
   en-GB: The flash shines brightly
 - phrase: Il fiore
   emoji: 🌷
   ipas:
     - ipa: /il fjˈore/
-      category: standard
+      engine: espeak-ng
   level: 566
   en-GB: The flower
 - phrase: Il fiore cresce nel giardino.
   emoji: 🌷
   ipas:
     - ipa: /il fjˈore krˈeʃe nel dʒardˈino/
-      category: standard
+      engine: espeak-ng
   level: 628
   en-GB: The flower grows in the garden.
 - phrase: Il piede
   emoji: 🦶
   ipas:
     - ipa: /il pjˈɛde/
-      category: standard
+      engine: espeak-ng
   level: 571
   en-GB: The foot
 - phrase: La foresta
   emoji: 🌲
   ipas:
     - ipa: /la forˈɛsta/
-      category: standard
+      engine: espeak-ng
   level: 566
   en-GB: The forest
 - phrase: La foresta è calma e verde.
   emoji: 🌲
   ipas:
     - ipa: /la forˈɛsta e kˈalma e vˈerde/
-      category: standard
+      engine: espeak-ng
   level: 620
   en-GB: The forest is calm and green.
 - phrase: La foresta è verde
   emoji: 🌲
   ipas:
     - ipa: /la forˈɛsta e vˈerde/
-      category: standard
+      engine: espeak-ng
   level: 829
   en-GB: The forest is green
 - phrase: La fontana
   emoji: ⛲
   ipas:
     - ipa: /la fontˈana/
-      category: standard
+      engine: espeak-ng
   level: 806
   en-GB: The fountain
 - phrase: La volpe
   emoji: 🦊
   ipas:
     - ipa: /la vˈolpe/
-      category: standard
+      engine: espeak-ng
   level: 587
   en-GB: The fox
 - phrase: La volpe è astuta.
   emoji: 🦊
   ipas:
     - ipa: /la vˈolpe e astˈuta/
-      category: standard
+      engine: espeak-ng
   level: 600
   en-GB: The fox is cunning.
 - phrase: Le patatine fritte
   emoji: 🍟
   ipas:
     - ipa: /le patatˈine frˈitːe/
-      category: standard
+      engine: espeak-ng
   level: 463
   en-GB: The fries
 - phrase: Le patatine sono croccanti.
   emoji: 🍟
   ipas:
     - ipa: /le patatˈine sˌono krokːˈantɪ/
-      category: standard
+      engine: espeak-ng
   level: 669
   en-GB: The fries are crispy.
 - phrase: La rana
   emoji: 🐸
   ipas:
     - ipa: /la rˈana/
-      category: standard
+      engine: espeak-ng
   level: 632
   en-GB: The frog
 - phrase: La rana gracchia
   emoji: 🐸
   ipas:
     - ipa: /la rˈana ɡrˈakːia/
-      category: standard
+      engine: espeak-ng
   level: 672
   en-GB: The frog croaks
 - phrase: La rana salta nello stagno.
   emoji: 🐸
   ipas:
     - ipa: /la rˈana sˈalta nˈello stˈaɲɲo/
-      category: standard
+      engine: espeak-ng
   level: 649
   en-GB: The frog jumps into the pond.
 - phrase: Il carburante
   emoji: ⛽
   ipas:
     - ipa: /il karbʊrˈante/
-      category: standard
+      engine: espeak-ng
   level: 926
   en-GB: The fuel
 - phrase: Il gioco
   emoji: 🎮
   ipas:
     - ipa: /il dʒˈɔko/
-      category: standard
+      engine: espeak-ng
   level: 801
   en-GB: The game
 - phrase: L'aglio
   emoji: 🧄
   ipas:
     - ipa: /lˈaʎo/
-      category: standard
+      engine: espeak-ng
   level: 907
   en-GB: The garlic
 - phrase: Il cancello
   emoji: 🥅
   ipas:
     - ipa: /il kantʃˈɛllo/
-      category: standard
+      engine: espeak-ng
   level: 764
   en-GB: The goal
 - phrase: L'ingranaggio
   emoji: ⚙️
   ipas:
     - ipa: /liŋɡranˈadʒːo/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The gear
 - phrase: Il regalo
   emoji: 🎁
   ipas:
     - ipa: /il reɡˈalo/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The gift
 - phrase: La giraffa
   emoji: 🦒
   ipas:
     - ipa: /la dʒirˈaffa/
-      category: standard
+      engine: espeak-ng
   level: 599
   en-GB: The giraffe
 - phrase: La giraffa ha un collo lungo.
   emoji: 🦒
   ipas:
     - ipa: /la dʒirˈaffa a ʊn kˈollo lˈuŋɡo/
-      category: standard
+      engine: espeak-ng
   level: 551
   en-GB: The giraffe has a long neck.
 - phrase: La giraffa è grande
   emoji: 🦒
   ipas:
     - ipa: /la dʒirˈaffa e ɡrˈande/
-      category: standard
+      engine: espeak-ng
   level: 584
   en-GB: The giraffe is big
 - phrase: La ragazza
   emoji: 👧
   ipas:
     - ipa: /la raɡˈatsːa/
-      category: standard
+      engine: espeak-ng
   level: 652
   en-GB: The girl
 - phrase: Gli occhiali
   emoji: 👓
   ipas:
     - ipa: /ʎɪ okːjˈalɪ/
-      category: standard
+      engine: espeak-ng
   level: 624
   en-GB: The glasses
 - phrase: Il globo
   emoji: 🌍
   ipas:
     - ipa: /il ɡlˈɔbo/
-      category: standard
+      engine: espeak-ng
   level: 533
   en-GB: The globe
 - phrase: Il guanto
   emoji: 🧤
   ipas:
     - ipa: /il ɡwˈanto/
-      category: standard
+      engine: espeak-ng
   level: 558
   en-GB: The glove
 - phrase: Il guanto protegge le mani.
   emoji: 🧤
   ipas:
     - ipa: /il ɡwˈanto protˈɛdʒːe le mˈanɪ/
-      category: standard
+      engine: espeak-ng
   level: 616
   en-GB: The glove protects the hands.
 - phrase: La capra
   emoji: 🐐
   ipas:
     - ipa: /la kˈapra/
-      category: standard
+      engine: espeak-ng
   level: 636
   en-GB: The goat
 - phrase: Il gorilla
   emoji: 🦍
   ipas:
     - ipa: /il ɡorˈilla/
-      category: standard
+      engine: espeak-ng
   level: 774
   en-GB: The gorilla
 - phrase: Il grado
   emoji: 🎵
   ipas:
     - ipa: /il ɡrˈado/
-      category: standard
+      engine: espeak-ng
   level: 59
   en-GB: The grade
 - phrase: Il grano
   emoji: 🌾
   ipas:
     - ipa: /il ɡrˈano/
-      category: standard
+      engine: espeak-ng
   level: 917
   en-GB: The grain
 - phrase: L'uva
   emoji: 🍇
   ipas:
     - ipa: /lˈuva/
-      category: standard
+      engine: espeak-ng
   level: 417
   en-GB: The grape
 - phrase: L'uva è dolce e succosa.
   emoji: 🍇
   ipas:
     - ipa: /lˈuva e dˈoltʃe e sʊkːˈoza/
-      category: standard
+      engine: espeak-ng
   level: 566
   en-GB: The grapes are sweet and juicy.
 - phrase: La chitarra
   emoji: 🎸
   ipas:
     - ipa: /la kitˈarɾa/
-      category: standard
+      engine: espeak-ng
   level: 774
   en-GB: The guitar
 - phrase: La pistola
   emoji: 🔫
   ipas:
     - ipa: /la pistˈɔla/
-      category: standard
+      engine: espeak-ng
   level: 806
   en-GB: The gun
 - phrase: Il martello
   emoji: 🔨
   ipas:
     - ipa: /il martˈɛllo/
-      category: standard
+      engine: espeak-ng
   level: 721
   en-GB: The hammer
 - phrase: Il criceto
   emoji: 🐹
   ipas:
     - ipa: /il kritʃˈɛto/
-      category: standard
+      engine: espeak-ng
   level: 29
   en-GB: The hamster
 - phrase: La mano
   emoji: ✋
   ipas:
     - ipa: /la mˈano/
-      category: standard
+      engine: espeak-ng
   level: 1
   en-GB: The hand
 - phrase: Il segno della mano
   emoji: 👋
   ipas:
     - ipa: /il sˈeɲɲo dˌella mˈano/
-      category: standard
+      engine: espeak-ng
   level: 454
   en-GB: The hand sign
 - phrase: La borsetta
   emoji: 👜
   ipas:
     - ipa: /la borsˈetːa/
-      category: standard
+      engine: espeak-ng
   level: 296
   en-GB: The handbag
 - phrase: La stretta di mano
   emoji: 🤝
   ipas:
     - ipa: /la strˈetːa dɪ mˈano/
-      category: standard
+      engine: espeak-ng
   level: 405
   en-GB: The handshake
 - phrase: Il cappello
   emoji: 🎩
   ipas:
     - ipa: /il kapːˈɛllo/
-      category: standard
+      engine: espeak-ng
   level: 595
   en-GB: The hat
 - phrase: Il cappello copre le orecchie.
   emoji: 🧢
   ipas:
     - ipa: /il kapːˈɛllo kˈɔpre le orˈekːje/
-      category: standard
+      engine: espeak-ng
   level: 587
   en-GB: The hat covers the ears.
 - phrase: Il cappello protegge dal sole.
   emoji: 🎩
   ipas:
     - ipa: /il kapːˈɛllo protˈɛdʒːe dal sˈole/
-      category: standard
+      engine: espeak-ng
   level: 636
   en-GB: The hat protects from the sun.
 - phrase: La testa
   emoji: 👤
   ipas:
     - ipa: /la tˈɛsta/
-      category: standard
+      engine: espeak-ng
   level: 558
   en-GB: The head
 - phrase: La testa pensa.
   emoji: 👤
   ipas:
     - ipa: /la tˈɛsta pˈɛnsa/
-      category: standard
+      engine: espeak-ng
   level: 593
   en-GB: The head thinks.
 - phrase: Il cuore
   emoji: ❤️
   ipas:
     - ipa: /il kʊˈɔre/
-      category: standard
+      engine: espeak-ng
   level: 571
   en-GB: The heart
 - phrase: La scarpa col tacco
   emoji: 👠
   ipas:
     - ipa: /la skˈarpa kol tˈakːo/
-      category: standard
+      engine: espeak-ng
   level: 810
   en-GB: The heeled shoe
 - phrase: L'elicottero
   emoji: 🚁
   ipas:
     - ipa: /lelikˈɔtːero/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The helicopter
 - phrase: L'elicottero vola in alto
   emoji: 🚁
   ipas:
     - ipa: /lelikˈɔtːero vˈola in ˈalto/
-      category: standard
+      engine: espeak-ng
   level: 963
   en-GB: The helicopter flies up
 - phrase: L'erba
   emoji: 🌿
   ipas:
     - ipa: /lˈɛrba/
-      category: standard
+      engine: espeak-ng
   level: 801
   en-GB: The herb
 - phrase: L'ippopotamo
   emoji: 🦛
   ipas:
     - ipa: /lipːopˈɔtamo/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The hippopotamus
 - phrase: Il miele
   emoji: 🍯
   ipas:
     - ipa: /il mjˈɛle/
-      category: standard
+      engine: espeak-ng
   level: 831
   en-GB: The honey
 - phrase: Il cavallo
   emoji: 🐴
   ipas:
     - ipa: /il kavˈallo/
-      category: standard
+      engine: espeak-ng
   level: 587
   en-GB: The horse
 - phrase: Il cavallo galoppa nel prato.
   emoji: 🐴
   ipas:
     - ipa: /il kavˈallo ɡalˈɔpːa nel prˈato/
-      category: standard
+      engine: espeak-ng
   level: 627
   en-GB: The horse gallops in the meadow.
 - phrase: Il cavallo sta correndo
   emoji: 🐴
   ipas:
     - ipa: /il kavˈallo stˈa korɾˈɛndo/
-      category: standard
+      engine: espeak-ng
   level: 658
   en-GB: The horse is running
 - phrase: L'ospedale
   emoji: 🏥
   ipas:
     - ipa: /lospedˈale/
-      category: standard
+      engine: espeak-ng
   level: 672
   en-GB: The hospital
 - phrase: L'ospedale cura i malati.
   emoji: 🏥
   ipas:
     - ipa: /lospedˈale kˈura i malˈatɪ/
-      category: standard
+      engine: espeak-ng
   level: 661
   en-GB: The hospital treats the sick.
 - phrase: L'albergo
   emoji: 🏨
   ipas:
     - ipa: /lalbˈɛrɡo/
-      category: standard
+      engine: espeak-ng
   level: 798
   en-GB: The hotel
 - phrase: La casa
   emoji: 🏠
   ipas:
     - ipa: /la kˈaza/
-      category: standard
+      engine: espeak-ng
   level: 587
   en-GB: The house
 - phrase: La casa è grande e bella.
   emoji: 🏠
   ipas:
     - ipa: /la kˈaza e ɡrˈande e bˈɛlla/
-      category: standard
+      engine: espeak-ng
   level: 629
   en-GB: The house is big and beautiful.
 - phrase: L'uragano
   emoji: 🌀
   ipas:
     - ipa: /lʊraɡˈano/
-      category: standard
+      engine: espeak-ng
   level: 975
   en-GB: The hurricane
 - phrase: Il gelato
   emoji: 🍧
   ipas:
     - ipa: /il dʒelˈato/
-      category: standard
+      engine: espeak-ng
   level: 764
   en-GB: The sorbet
 - phrase: Il ghiaccio si sta sciogliendo
   emoji: 🍦
   ipas:
     - ipa: /il ɡjˈatʃːo sɪ stˈa ʃoʎˈɛndo/
-      category: standard
+      engine: espeak-ng
   level: 674
   en-GB: The ice is melting
 - phrase: Il ghiaccio si scioglie al sole.
   emoji: 🍦
   ipas:
     - ipa: /il ɡjˈatʃːo sɪ ʃˈɔʎe al sˈole/
-      category: standard
+      engine: espeak-ng
   level: 555
   en-GB: The ice melts in the sun.
 - phrase: L'isola
   emoji: 🏝️
   ipas:
     - ipa: /lˈizola/
-      category: standard
+      engine: espeak-ng
   level: 581
   en-GB: The island
 - phrase: L'isola è piccola
   emoji: 🏝️
   ipas:
     - ipa: /lˈizola e pˈikːola/
-      category: standard
+      engine: espeak-ng
   level: 669
   en-GB: The island is small
 - phrase: L'isola è circondata dall'acqua.
   emoji: 🏝️
   ipas:
     - ipa: /lˈizola e tʃirkondˈata dallˈakːwa/
-      category: standard
+      engine: espeak-ng
   level: 632
   en-GB: The island is surrounded by water.
 - phrase: La giacca
   emoji: 🧥
   ipas:
     - ipa: /la dʒˈakːa/
-      category: standard
+      engine: espeak-ng
   level: 578
   en-GB: The jacket
 - phrase: La giacca è calda
   emoji: 🧥
   ipas:
     - ipa: /la dʒˈakːa e kˈalda/
-      category: standard
+      engine: espeak-ng
   level: 459
   en-GB: The jacket is warm
 - phrase: La giacca ti tiene caldo.
   emoji: 🧥
   ipas:
     - ipa: /la dʒˈakːa tɪ tjˈɛne kˈaldo/
-      category: standard
+      engine: espeak-ng
   level: 614
   en-GB: The jacket keeps you warm.
 - phrase: Il canguro
   emoji: 🦘
   ipas:
     - ipa: /il kaŋɡˈuro/
-      category: standard
+      engine: espeak-ng
   level: 838
   en-GB: The kangaroo
 - phrase: La chiave
   emoji: 🔑
   ipas:
     - ipa: /la kjˈave/
-      category: standard
+      engine: espeak-ng
   level: 549
   en-GB: The key
 - phrase: La chiave apre la porta.
   emoji: 🔑
   ipas:
     - ipa: /la kjˈave ˈapre la pˈɔrta/
-      category: standard
+      engine: espeak-ng
   level: 608
   en-GB: The key opens the door.
 - phrase: La tastiera
   emoji: ⌨️
   ipas:
     - ipa: /la tastiˈɛra/
-      category: standard
+      engine: espeak-ng
   level: 721
   en-GB: The keyboard
 - phrase: Il bacio
   emoji: 💏
   ipas:
     - ipa: /il bˈatʃo/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The kiss
 - phrase: Il kiwi
   emoji: 🥝
   ipas:
     - ipa: /il kˈiwɪ/
-      category: standard
+      engine: espeak-ng
   level: 1
   en-GB: The kiwi
 - phrase: Il coltello
   emoji: 🔪
   ipas:
     - ipa: /il koltˈɛllo/
-      category: standard
+      engine: espeak-ng
   level: 721
   en-GB: The knife
 - phrase: Il koala
   emoji: 🐨
   ipas:
     - ipa: /il koˈala/
-      category: standard
+      engine: espeak-ng
   level: 21
   en-GB: The koala
 - phrase: Il camice da laboratorio
   emoji: 🥼
   ipas:
     - ipa: /il kˈamitʃe da laboratˈɔrio/
-      category: standard
+      engine: espeak-ng
   level: 624
   en-GB: The lab coat
 - phrase: L'etichetta
   emoji: 🏷️
   ipas:
     - ipa: /letikˈetːa/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The label
 - phrase: La scala
   emoji: 🪜
   ipas:
     - ipa: /la skˈala/
-      category: standard
+      engine: espeak-ng
   level: 463
   en-GB: The ladder
 - phrase: La lampada
   emoji: 💡
   ipas:
     - ipa: /la lˈampada/
-      category: standard
+      engine: espeak-ng
   level: 578
   en-GB: The lamp
 - phrase: La lampada illumina la stanza.
   emoji: 💡
   ipas:
     - ipa: /la lˈampada illˈumina la stˈantsa/
-      category: standard
+      engine: espeak-ng
   level: 626
   en-GB: The lamp illuminates the room.
 - phrase: Il paesaggio
   emoji: 🏞️
   ipas:
     - ipa: /il paezˈadʒːo/
-      category: standard
+      engine: espeak-ng
   level: 542
   en-GB: The landscape
 - phrase: La lingua
   emoji: 👅
   ipas:
     - ipa: /la lˈiŋɡwa/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The language
 - phrase: La foglia
   emoji: 🍁
   ipas:
     - ipa: /la fˈɔʎa/
-      category: standard
+      engine: espeak-ng
   level: 487
   en-GB: The leaf
 - phrase: La gamba
   emoji: 🦵
   ipas:
     - ipa: /la ɡˈamba/
-      category: standard
+      engine: espeak-ng
   level: 578
   en-GB: The leg
 - phrase: La gamba corre veloce.
   emoji: 🦵
   ipas:
     - ipa: /la ɡˈamba kˈɔrɾe velˈotʃe/
-      category: standard
+      engine: espeak-ng
   level: 538
   en-GB: The leg runs fast.
 - phrase: Il limone
   emoji: 🍋
   ipas:
     - ipa: /il limˈone/
-      category: standard
+      engine: espeak-ng
   level: 602
   en-GB: The lemon
 - phrase: Il leopardo
   emoji: 🐆
   ipas:
     - ipa: /il leopˈardo/
-      category: standard
+      engine: espeak-ng
   level: 721
   en-GB: The leopard
 - phrase: La lattuga
   emoji: 🥬
   ipas:
     - ipa: /la latːˈuɡa/
-      category: standard
+      engine: espeak-ng
   level: 935
   en-GB: The lettuce
 - phrase: Il fulmine
   emoji: ⚡
   ipas:
     - ipa: /il fˈulmine/
-      category: standard
+      engine: espeak-ng
   level: 631
   en-GB: The lightning
 - phrase: Il leone
   emoji: 🦁
   ipas:
     - ipa: /il leˈone/
-      category: standard
+      engine: espeak-ng
   level: 383
   en-GB: The lion
 - phrase: Il leone ruggì forte.
   emoji: 🦁
   ipas:
     - ipa: /il leˈone rʊdʒːˈi fˈɔrte/
-      category: standard
+      engine: espeak-ng
   level: 435
   en-GB: The lion roared loudly.
 - phrase: Il leone ruggisce
   emoji: 🦁
   ipas:
     - ipa: /il leˈone rʊdʒːˈiʃe/
-      category: standard
+      engine: espeak-ng
   level: 674
   en-GB: The lion roars
 - phrase: Il rossetto
   emoji: 💄
   ipas:
     - ipa: /il rossˈetːo/
-      category: standard
+      engine: espeak-ng
   level: 975
   en-GB: The lipstick
 - phrase: Il magnete attrae il ferro
   emoji: 🧲
   ipas:
     - ipa: /il maɲˈɛte atːrˈae il fˈɛrɾo/
-      category: standard
+      engine: espeak-ng
   level: 903
   en-GB: The magnet attracts iron
 - phrase: L'uomo
   emoji: 👨
   ipas:
     - ipa: /lwˈɔmo/
-      category: standard
+      engine: espeak-ng
   level: 899
   en-GB: The man
 - phrase: La carne
   emoji: 🍖
   ipas:
     - ipa: /la kˈarne/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The meat
 - phrase: Il melone
   emoji: 🍈
   ipas:
     - ipa: /il melˈone/
-      category: standard
+      engine: espeak-ng
   level: 5
   en-GB: The melon
 - phrase: Il microfono
   emoji: 🎙️
   ipas:
     - ipa: /il mikrˈɔfono/
-      category: standard
+      engine: espeak-ng
   level: 288
   en-GB: The microphone
 - phrase: Il microscopio
   emoji: 🔬
   ipas:
     - ipa: /il mikroskˈopio/
-      category: standard
+      engine: espeak-ng
   level: 357
   en-GB: The microscope
 - phrase: Il dito medio
   emoji: 🖕
   ipas:
     - ipa: /il dˈito mˈɛdio/
-      category: standard
+      engine: espeak-ng
   level: 802
   en-GB: The middle finger
 - phrase: Il latte
   emoji: 🥛
   ipas:
     - ipa: /il lˈatːe/
-      category: standard
+      engine: espeak-ng
   level: 475
   en-GB: The milk
 - phrase: Il latte è bianco
   emoji: 🥛
   ipas:
     - ipa: /il lˈatːe e bjˈanko/
-      category: standard
+      engine: espeak-ng
   level: 517
   en-GB: The milk is white
 - phrase: Il latte è bianco e nutriente.
   emoji: 🥛
   ipas:
     - ipa: /il lˈatːe e bjˈanko e nʊtriˈɛnte/
-      category: standard
+      engine: espeak-ng
   level: 625
   en-GB: The milk is white and nutritious.
 - phrase: Il minibus
   emoji: 🚐
   ipas:
     - ipa: /il minˈibʊs/
-      category: standard
+      engine: espeak-ng
   level: 774
   en-GB: The minibus
 - phrase: Lo specchio
   emoji: 🪞
   ipas:
     - ipa: /lo spˈɛkːio/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The mirror
 - phrase: I soldi
   emoji: 💰
   ipas:
     - ipa: /i sˈɔldɪ/
-      category: standard
+      engine: espeak-ng
   level: 482
   en-GB: The money
 - phrase: La scimmia
   emoji: 🐵
   ipas:
     - ipa: /la ʃˈimmia/
-      category: standard
+      engine: espeak-ng
   level: 578
   en-GB: The monkey
 - phrase: La scimmia si arrampica
   emoji: 🐵
   ipas:
     - ipa: /la ʃˈimmia sɪ arɾˈampika/
-      category: standard
+      engine: espeak-ng
   level: 734
   en-GB: The monkey climbs
 - phrase: La scimmia si arrampica sugli alberi.
   emoji: 🐵
   ipas:
     - ipa: /la ʃˈimmia sɪ arɾˈampika sˌʊʎɪ ˈalberɪ/
-      category: standard
+      engine: espeak-ng
   level: 629
   en-GB: The monkey climbs trees.
 - phrase: La luna
   emoji: 🌙
   ipas:
     - ipa: /la lˈuna/
-      category: standard
+      engine: espeak-ng
   level: 470
   en-GB: the moon
 - phrase: La luna splende nella notte.
   emoji: 🌙
   ipas:
     - ipa: /la lˈuna splˈɛnde nˈella nˈɔtːe/
-      category: standard
+      engine: espeak-ng
   level: 620
   en-GB: The moon shines in the night.
 - phrase: La moschea
   emoji: 🕌
   ipas:
     - ipa: /la moskˈɛa/
-      category: standard
+      engine: espeak-ng
   level: 774
   en-GB: The mosque
 - phrase: La barca a motore
   emoji: 🚤
   ipas:
     - ipa: /la bˈarka a motˈore/
-      category: standard
+      engine: espeak-ng
   level: 749
   en-GB: The motor boat
 - phrase: La motocicletta
   emoji: 🏍️
   ipas:
     - ipa: /la mototʃiklˈetːa/
-      category: standard
+      engine: espeak-ng
   level: 570
   en-GB: The motorcycle
 - phrase: La montagna
   emoji: ⛰️
   ipas:
     - ipa: /la montˈaɲɲa/
-      category: standard
+      engine: espeak-ng
   level: 616
   en-GB: The mountain
 - phrase: La montagna è coperta di neve.
   emoji: ⛰️
   ipas:
     - ipa: /la montˈaɲɲa e kopˈɛrta dɪ nˈɛve/
-      category: standard
+      engine: espeak-ng
   level: 649
   en-GB: The mountain is covered in snow.
 - phrase: La montagna è alta
   emoji: ⛰️
   ipas:
     - ipa: /la montˈaɲɲa e ˈalta/
-      category: standard
+      engine: espeak-ng
   level: 829
   en-GB: The mountain is high
 - phrase: Il topo
   emoji: 🐭
   ipas:
     - ipa: /il tˈɔpo/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The mouse
 - phrase: Il mouse emette un segnale acustico
   emoji: 🐭
   ipas:
     - ipa: /il mˈaʊs emˈetːe ʊn seɲˈale akˈustiko/
-      category: standard
+      engine: espeak-ng
   level: 653
   en-GB: The mouse beeps
 - phrase: La bocca
   emoji: 👄
   ipas:
     - ipa: /la bˈokːa/
-      category: standard
+      engine: espeak-ng
   level: 587
   en-GB: The mouth
 - phrase: La bocca parla e mangia.
   emoji: 👄
   ipas:
     - ipa: /la bˈokːa pˈarla e mˈandʒa/
-      category: standard
+      engine: espeak-ng
   level: 622
   en-GB: The mouth speaks and eats.
 - phrase: Il nome
   emoji: 📛
   ipas:
     - ipa: /il nˈome/
-      category: standard
+      engine: espeak-ng
   level: 392
   en-GB: The name
 - phrase: Le tagliatelle
   emoji: 🍝
   ipas:
     - ipa: /le taʎatˈɛlle/
-      category: standard
+      engine: espeak-ng
   level: 463
   en-GB: The noodles
 - phrase: Le tagliatelle sono deliziose
   emoji: 🍝
   ipas:
     - ipa: /le taʎatˈɛlle sˌono delitsjˈɔze/
-      category: standard
+      engine: espeak-ng
   level: 713
   en-GB: The noodles are delicious
 - phrase: Il naso
   emoji: 👃
   ipas:
     - ipa: /il nˈazo/
-      category: standard
+      engine: espeak-ng
   level: 549
   en-GB: The nose
 - phrase: Il naso profuma di fiori.
   emoji: 👃
   ipas:
     - ipa: /il nˈazo profˈuma dɪ fjˈorɪ/
-      category: standard
+      engine: espeak-ng
   level: 601
   en-GB: The nose smells of flowers.
 - phrase: Il taccuino
   emoji: 📔
   ipas:
     - ipa: /il takːʊˈino/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The notebook
 - phrase: Il blocco note
   emoji: 🗒️
   ipas:
     - ipa: /il blˈɔkːo nˈɔte/
-      category: standard
+      engine: espeak-ng
   level: 871
   en-GB: The notepad
 - phrase: Il polpo
   emoji: 🐙
   ipas:
     - ipa: /il pˈolpo/
-      category: standard
+      engine: espeak-ng
   level: 721
   en-GB: The octopus
 - phrase: L'ufficio
   emoji: 🏢
   ipas:
     - ipa: /lʊffˈitʃo/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The office
 - phrase: La lampada a olio
   emoji: 🪔
   ipas:
     - ipa: /la lˈampada a ˈɔlio/
-      category: standard
+      engine: espeak-ng
   level: 717
   en-GB: The oil lamp
 - phrase: La cipolla
   emoji: 🧅
   ipas:
     - ipa: /la tʃipˈolla/
-      category: standard
+      engine: espeak-ng
   level: 968
   en-GB: The onion
 - phrase: L'arancia
   emoji: 🍊
   ipas:
     - ipa: /laɾˈantʃa/
-      category: standard
+      engine: espeak-ng
   level: 681
   en-GB: The orange
 - phrase: L'arancia è succosa e dolce.
   emoji: 🍊
   ipas:
     - ipa: /laɾˈantʃa e sʊkːˈoza e dˈoltʃe/
-      category: standard
+      engine: espeak-ng
   level: 652
   en-GB: The orange is juicy and sweet.
 - phrase: Il gufo
   emoji: 🦉
   ipas:
     - ipa: /il ɡˈufo/
-      category: standard
+      engine: espeak-ng
   level: 578
   en-GB: The owl
 - phrase: Il gufo vola di notte.
   emoji: 🦉
   ipas:
     - ipa: /il ɡˈufo vˈola dɪ nˈɔtːe/
-      category: standard
+      engine: espeak-ng
   level: 551
   en-GB: The owl flies at night.
 - phrase: Il panda
   emoji: 🐼
   ipas:
     - ipa: /il pˈanda/
-      category: standard
+      engine: espeak-ng
   level: 415
   en-GB: The panda
 - phrase: Il panda mangia il bambù.
   emoji: 🐼
   ipas:
     - ipa: /il pˈanda mˈandʒa il bambˈu/
-      category: standard
+      engine: espeak-ng
   level: 557
   en-GB: The panda eats bamboo.
 - phrase: I pantaloni
   emoji: 👖
   ipas:
     - ipa: /i pantalˈonɪ/
-      category: standard
+      engine: espeak-ng
   level: 616
   en-GB: The pants
 - phrase: I pantaloni sono comodi
   emoji: 👖
   ipas:
     - ipa: /i pantalˈonɪ sˌono kˈɔmodɪ/
-      category: standard
+      engine: espeak-ng
   level: 683
   en-GB: The pants are comfortable
 - phrase: I pantaloni sono comodi.
   emoji: 👖
   ipas:
     - ipa: /i pantalˈonɪ sˌono kˈɔmodɪ/
-      category: standard
+      engine: espeak-ng
   level: 663
   en-GB: The pants are comfortable.
 - phrase: Il paracadute
   emoji: 🪂
   ipas:
     - ipa: /il paɾakadˈute/
-      category: standard
+      engine: espeak-ng
   level: 252
   en-GB: The parachute
 - phrase: Il paragrafo
   emoji: 👠
   ipas:
     - ipa: /il paɾˈaɡrafo/
-      category: standard
+      engine: espeak-ng
   level: 850
   en-GB: The paragraph
 - phrase: L'ombrellone
   emoji: ⛱️
   ipas:
     - ipa: /lombrellˈone/
-      category: standard
+      engine: espeak-ng
   level: 774
   en-GB: The parasol
 - phrase: Il pappagallo
   emoji: 🦜
   ipas:
     - ipa: /il papːaɡˈallo/
-      category: standard
+      engine: espeak-ng
   level: 838
   en-GB: The parrot
 - phrase: La festa
   emoji: 🎉
   ipas:
     - ipa: /la fˈɛsta/
-      category: standard
+      engine: espeak-ng
   level: 571
   en-GB: The party
 - phrase: Il marciapiede
   emoji: 🩹
   ipas:
     - ipa: /il martʃapjˈɛde/
-      category: standard
+      engine: espeak-ng
   level: 889
   en-GB: The pavement
 - phrase: Il picco
   emoji: ⛏️
   ipas:
     - ipa: /il pˈikːo/
-      category: standard
+      engine: espeak-ng
   level: 535
   en-GB: The peak
 - phrase: L'arachide è deliziosa
   emoji: 🥜
   ipas:
     - ipa: /laɾˈakide e delitsjˈɔza/
-      category: standard
+      engine: espeak-ng
   level: 713
   en-GB: The peanut is delicious
 - phrase: La penna
   emoji: 🖊️
   ipas:
     - ipa: /la pˈenna/
-      category: standard
+      engine: espeak-ng
   level: 604
   en-GB: The pen
 - phrase: La matita
   emoji: ✏️
   ipas:
     - ipa: /la matˈita/
-      category: standard
+      engine: espeak-ng
   level: 393
   en-GB: The pencil
 - phrase: Il pinguino
   emoji: 🐧
   ipas:
     - ipa: /il piŋɡwˈino/
-      category: standard
+      engine: espeak-ng
   level: 603
   en-GB: The penguin
 - phrase: Il pinguino nuota bene.
   emoji: 🐧
   ipas:
     - ipa: /il piŋɡwˈino nʊˈɔta bˈɛne/
-      category: standard
+      engine: espeak-ng
   level: 619
   en-GB: The penguin swims well.
 - phrase: La persona
   emoji: 🧑
   ipas:
     - ipa: /la persˈona/
-      category: standard
+      engine: espeak-ng
   level: 806
   en-GB: The person
 - phrase: Il pianoforte
   emoji: 🎹
   ipas:
     - ipa: /il pjanofˈɔrte/
-      category: standard
+      engine: espeak-ng
   level: 1
   en-GB: The piano
 - phrase: Il piccone
   emoji: ⛏️
   ipas:
     - ipa: /il pikːˈone/
-      category: standard
+      engine: espeak-ng
   level: 570
   en-GB: The pickaxe
 - phrase: Il maiale
   emoji: 🐷
   ipas:
     - ipa: /il majˈale/
-      category: standard
+      engine: espeak-ng
   level: 587
   en-GB: The pig
 - phrase: Il maiale grugnisce
   emoji: 🐷
   ipas:
     - ipa: /il majˈale ɡrʊɲˈiʃe/
-      category: standard
+      engine: espeak-ng
   level: 695
   en-GB: The pig grunts
 - phrase: Il maiale grugnisce.
   emoji: 🐷
   ipas:
     - ipa: /il majˈale ɡrʊɲˈiʃe/
-      category: standard
+      engine: espeak-ng
   level: 617
   en-GB: The pig grunts.
 - phrase: La pillola
   emoji: 💊
   ipas:
     - ipa: /la pˈillola/
-      category: standard
+      engine: espeak-ng
   level: 445
   en-GB: The pill
 - phrase: L'ananas
   emoji: 🍍
   ipas:
     - ipa: /lanˈanas/
-      category: standard
+      engine: espeak-ng
   level: 494
   en-GB: The pineapple
 - phrase: La pizza
   emoji: 🍕
   ipas:
     - ipa: /la pˈitsːa/
-      category: standard
+      engine: espeak-ng
   level: 414
   en-GB: The pizza
 - phrase: La pizza è calda e gustosa.
   emoji: 🍕
   ipas:
     - ipa: /la pˈitsːa e kˈalda e ɡʊstˈoza/
-      category: standard
+      engine: espeak-ng
   level: 594
   en-GB: The pizza is hot and tasty.
 - phrase: La pizza ha un buon sapore
   emoji: 🍕
   ipas:
     - ipa: /la pˈitsːa a ʊn bwˌɔn sapˈore/
-      category: standard
+      engine: espeak-ng
   level: 729
   en-GB: The pizza tastes good
 - phrase: Il luogo di culto
   emoji: 🛐
   ipas:
     - ipa: /il lʊˈɔɡo dɪ kˈulto/
-      category: standard
+      engine: espeak-ng
   level: 693
   en-GB: The place of worship
 - phrase: L'aereo
   emoji: ✈️
   ipas:
     - ipa: /laˈɛːreo/
-      category: standard
+      engine: espeak-ng
   level: 639
   en-GB: The plane
 - phrase: L'aereo sta volando nel cielo.
   emoji: ✈️
   ipas:
     - ipa: /laˈɛːreo stˈa volˈando nel tʃˈɛlo/
-      category: standard
+      engine: espeak-ng
   level: 564
   en-GB: The plane is flying in the sky.
 - phrase: La spina
   emoji: 🔌
   ipas:
     - ipa: /la spˈina/
-      category: standard
+      engine: espeak-ng
   level: 868
   en-GB: The plug
 - phrase: L'auto della polizia
   emoji: 🚓
   ipas:
     - ipa: /lˈaʊto dˌella politsˈia/
-      category: standard
+      engine: espeak-ng
   level: 503
   en-GB: The police car
 - phrase: Il barboncino
   emoji: 🐩
   ipas:
     - ipa: /il barbontʃˈino/
-      category: standard
+      engine: espeak-ng
   level: 774
   en-GB: The poodle
 - phrase: La patata
   emoji: 🥔
   ipas:
     - ipa: /la patˈata/
-      category: standard
+      engine: espeak-ng
   level: 598
   en-GB: The potato
 - phrase: La patata cuoce in acqua.
   emoji: 🥔
   ipas:
     - ipa: /la patˈata kʊˈotʃe in ˈakːwa/
-      category: standard
+      engine: espeak-ng
   level: 631
   en-GB: The potato cooks in water.
 - phrase: La sterlina
   emoji: 💷
   ipas:
     - ipa: /la sterlˈina/
-      category: standard
+      engine: espeak-ng
   level: 801
   en-GB: The pound
 - phrase: Il pretzel
   emoji: 🥨
   ipas:
     - ipa: /il prˈeθθel/
-      category: standard
+      engine: espeak-ng
   level: 721
   en-GB: The pretzel
 - phrase: Il proiettore
   emoji: 📽️
   ipas:
     - ipa: /il proietːˈore/
-      category: standard
+      engine: espeak-ng
   level: 871
   en-GB: The projector
 - phrase: Il budino
   emoji: 🍮
   ipas:
     - ipa: /il bʊdˈino/
-      category: standard
+      engine: espeak-ng
   level: 17
   en-GB: The pudding
 - phrase: La domanda
   emoji: ❓
   ipas:
     - ipa: /la domˈanda/
-      category: standard
+      engine: espeak-ng
   level: 74
   en-GB: The question
 - phrase: Il coniglio
   emoji: 🐰
   ipas:
     - ipa: /il konˈiʎo/
-      category: standard
+      engine: espeak-ng
   level: 578
   en-GB: The rabbit
 - phrase: Il coniglio mangia le carote.
   emoji: 🐰
   ipas:
     - ipa: /il konˈiʎo mˈandʒa le karˈɔte/
-      category: standard
+      engine: espeak-ng
   level: 638
   en-GB: The rabbit eats carrots.
 - phrase: Il coniglio ride
   emoji: 🐰
   ipas:
     - ipa: /il konˈiʎo rˈide/
-      category: standard
+      engine: espeak-ng
   level: 931
   en-GB: The rabbit laughs
 - phrase: La radio
   emoji: 📻
   ipas:
     - ipa: /la rˈadio/
-      category: standard
+      engine: espeak-ng
   level: 1
   en-GB: The radio
 - phrase: La pioggia
   emoji: 🌧️
   ipas:
     - ipa: /la pjˈɔdʒːa/
-      category: standard
+      engine: espeak-ng
   level: 566
   en-GB: The rain
 - phrase: La pioggia cade sul giardino.
   emoji: 🌧️
   ipas:
     - ipa: /la pjˈɔdʒːa kˈade sʊl dʒardˈino/
-      category: standard
+      engine: espeak-ng
   level: 623
   en-GB: The rain falls on the garden.
 - phrase: La pioggia sta cadendo
   emoji: 🌧️
   ipas:
     - ipa: /la pjˈɔdʒːa stˈa kadˈɛndo/
-      category: standard
+      engine: espeak-ng
   level: 674
   en-GB: The rain is falling
 - phrase: L'arcobaleno
   emoji: 🌈
   ipas:
     - ipa: /larkobalˈeno/
-      category: standard
+      engine: espeak-ng
   level: 764
   en-GB: The rainbow
 - phrase: L'arcobaleno splende
   emoji: 🌈
   ipas:
     - ipa: /larkobalˈeno splˈɛnde/
-      category: standard
+      engine: espeak-ng
   level: 840
   en-GB: The rainbow shines
 - phrase: L'arcobaleno splende dopo la pioggia.
   emoji: 🌈
   ipas:
     - ipa: /larkobalˈeno splˈɛnde dˈopo la pjˈɔdʒːa/
-      category: standard
+      engine: espeak-ng
   level: 659
   en-GB: The rainbow shines after the rain.
 - phrase: Il rasoio
   emoji: 🪒
   ipas:
     - ipa: /il razˈojo/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The razor
 - phrase: Il libro rosso
   emoji: 📕
   ipas:
     - ipa: /il lˈibro rˈosso/
-      category: standard
+      engine: espeak-ng
   level: 745
   en-GB: The red book
 - phrase: La busta rossa
   emoji: 🧧
   ipas:
     - ipa: /la bˈusta rˈossa/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The red envelope
 - phrase: La luce rossa
   emoji: 🚦
   ipas:
     - ipa: /la lˈutʃe rˈossa/
-      category: standard
+      engine: espeak-ng
   level: 664
   en-GB: The red light
 - phrase: Il riso
   emoji: 🍚
   ipas:
     - ipa: /il rˈizo/
-      category: standard
+      engine: espeak-ng
   level: 783
   en-GB: The rice
 - phrase: La polpetta di riso
   emoji: 🍙
   ipas:
     - ipa: /la polpˈetːa dɪ rˈizo/
-      category: standard
+      engine: espeak-ng
   level: 676
   en-GB: The rice ball
 - phrase: Il riso cuoce in padella.
   emoji: 🍚
   ipas:
     - ipa: /il rˈizo kʊˈotʃe in padˈɛlla/
-      category: standard
+      engine: espeak-ng
   level: 629
   en-GB: The rice cooks in the pan.
 - phrase: L'anello
   emoji: 💍
   ipas:
     - ipa: /lanˈɛllo/
-      category: standard
+      engine: espeak-ng
   level: 968
   en-GB: The ring
 - phrase: Il fiume
   emoji: 🏞️
   ipas:
     - ipa: /il fjˈume/
-      category: standard
+      engine: espeak-ng
   level: 608
   en-GB: The river
 - phrase: Il fiume scorre dolcemente.
   emoji: 🏞️
   ipas:
     - ipa: /il fjˈume skˈɔrɾe doltʃemˈente/
-      category: standard
+      engine: espeak-ng
   level: 659
   en-GB: The river flows gently.
 - phrase: Il braccio robotico
   emoji: 🦾
   ipas:
     - ipa: /il brˈatʃːo robˈɔtiko/
-      category: standard
+      engine: espeak-ng
   level: 984
   en-GB: The robot arm
 - phrase: Il razzo
   emoji: 🚀
   ipas:
     - ipa: /il rˈadzːo/
-      category: standard
+      engine: espeak-ng
   level: 652
   en-GB: The rocket
 - phrase: Il razzo vola nello spazio
   emoji: 🚀
   ipas:
     - ipa: /il rˈadzːo vˈola nˈello spˈatsio/
-      category: standard
+      engine: espeak-ng
   level: 584
   en-GB: The rocket flies into space
 - phrase: Il rotolo di carta
   emoji: 🧻
   ipas:
     - ipa: /il rˈɔtolo dɪ kˈarta/
-      category: standard
+      engine: espeak-ng
   level: 786
   en-GB: The roll of paper
 - phrase: Le montagne russe
   emoji: 🎢
   ipas:
     - ipa: /le montˈaɲɲe rˈusse/
-      category: standard
+      engine: espeak-ng
   level: 911
   en-GB: The roller coaster
 - phrase: Il gallo
   emoji: 🐓
   ipas:
     - ipa: /il ɡˈallo/
-      category: standard
+      engine: espeak-ng
   level: 535
   en-GB: The rooster
 - phrase: La rosa
   emoji: 🌹
   ipas:
     - ipa: /la rˈɔza/
-      category: standard
+      engine: espeak-ng
   level: 1
   en-GB: The rose
 - phrase: La regola
   emoji: 📏
   ipas:
     - ipa: /la rˈɛɡola/
-      category: standard
+      engine: espeak-ng
   level: 604
   en-GB: The rule
 - phrase: Il sovrano
   emoji: 📏
   ipas:
     - ipa: /il sovrˈano/
-      category: standard
+      engine: espeak-ng
   level: 850
   en-GB: The ruler
 - phrase: Il corridore
   emoji: 🏃
   ipas:
     - ipa: /il korɾidˈore/
-      category: standard
+      engine: espeak-ng
   level: 850
   en-GB: The runner
 - phrase: La spilla da balia
   emoji: 🧷
   ipas:
     - ipa: /la spˈilla da bˈalia/
-      category: standard
+      engine: espeak-ng
   level: 911
   en-GB: The safety pin
 - phrase: Il giubbotto di sicurezza
   emoji: 🦺
   ipas:
     - ipa: /il dʒʊbːˈɔtːo dɪ sikʊrˈetsːa/
-      category: standard
+      engine: espeak-ng
   level: 786
   en-GB: The safety vest
 - phrase: L'insalata
   emoji: 🥗
   ipas:
     - ipa: /linsalˈata/
-      category: standard
+      engine: espeak-ng
   level: 737
   en-GB: The salad
 - phrase: Il panino
   emoji: 🥪
   ipas:
     - ipa: /il panˈino/
-      category: standard
+      engine: espeak-ng
   level: 432
   en-GB: The sandwich
 - phrase: Il panino è delizioso.
   emoji: 🥪
   ipas:
     - ipa: /il panˈino e delitsjˈozo/
-      category: standard
+      engine: espeak-ng
   level: 550
   en-GB: The sandwich is delicious.
 - phrase: La sauna
   emoji: 🧖
   ipas:
     - ipa: /la sˈaʊna/
-      category: standard
+      engine: espeak-ng
   level: 122
   en-GB: The sauna
 - phrase: Le scale
   emoji: ⚖️
   ipas:
     - ipa: /le skˈale/
-      category: standard
+      engine: espeak-ng
   level: 445
   en-GB: The scales
 - phrase: La sciarpa
   emoji: 🧣
   ipas:
     - ipa: /la ʃˈarpa/
-      category: standard
+      engine: espeak-ng
   level: 672
   en-GB: The scarf
 - phrase: La sciarpa protegge dal freddo.
   emoji: 🧣
   ipas:
     - ipa: /la ʃˈarpa protˈɛdʒːe dal frˈedːo/
-      category: standard
+      engine: espeak-ng
   level: 640
   en-GB: The scarf protects from the cold.
 - phrase: La scuola
   emoji: 🏫
   ipas:
     - ipa: /la skʊˈɔla/
-      category: standard
+      engine: espeak-ng
   level: 535
   en-GB: The school
 - phrase: Le forbici
   emoji: ✂️
   ipas:
     - ipa: /le fˈɔrbitʃɪ/
-      category: standard
+      engine: espeak-ng
   level: 463
   en-GB: The scissors
 - phrase: Lo scooter
   emoji: 🛴
   ipas:
     - ipa: /lo skˈuter/
-      category: standard
+      engine: espeak-ng
   level: 956
   en-GB: The scooter
 - phrase: Il punteggio
   emoji: 🎼
   ipas:
     - ipa: /il pʊntˈedʒːo/
-      category: standard
+      engine: espeak-ng
   level: 838
   en-GB: The score
 - phrase: Il mare
   emoji: 🌊
   ipas:
     - ipa: /il mˈare/
-      category: standard
+      engine: espeak-ng
   level: 549
   en-GB: The sea
 - phrase: Il mare è blu
   emoji: 🌊
   ipas:
     - ipa: /il mˈare e blˈu/
-      category: standard
+      engine: espeak-ng
   level: 829
   en-GB: The sea is blue
 - phrase: Il mare è azzurro e immenso.
   emoji: 🌊
   ipas:
     - ipa: /il mˈare e adzːˈurɾo e immˈɛnso/
-      category: standard
+      engine: espeak-ng
   level: 576
   en-GB: The sea is blue and immense.
 - phrase: Il sedile
   emoji: 💺
   ipas:
     - ipa: /il sedˈile/
-      category: standard
+      engine: espeak-ng
   level: 652
   en-GB: The seat
 - phrase: Lo squalo
   emoji: 🦈
   ipas:
     - ipa: /lo skwˈalo/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The shark
 - phrase: Le pecore
   emoji: 🐑
   ipas:
     - ipa: /le pˈɛkore/
-      category: standard
+      engine: espeak-ng
   level: 587
   en-GB: The sheep
 - phrase: La pecora bela.
   emoji: 🐑
   ipas:
     - ipa: /la pˈɛkora bˈɛla/
-      category: standard
+      engine: espeak-ng
   level: 598
   en-GB: The sheep bleats.
 - phrase: Il foglio di carta
   emoji: 📃
   ipas:
     - ipa: /il fˈɔʎo dɪ kˈarta/
-      category: standard
+      engine: espeak-ng
   level: 786
   en-GB: The sheet of paper
 - phrase: Lo scudo
   emoji: 🛡️
   ipas:
     - ipa: /lo skˈudo/
-      category: standard
+      engine: espeak-ng
   level: 753
   en-GB: The shield
 - phrase: La nave
   emoji: 🚢
   ipas:
     - ipa: /la nˈave/
-      category: standard
+      engine: espeak-ng
   level: 507
   en-GB: The ship
 - phrase: La camicia
   emoji: 👕
   ipas:
     - ipa: /la kamˈitʃa/
-      category: standard
+      engine: espeak-ng
   level: 480
   en-GB: The shirt
 - phrase: La scarpa
   emoji: 👞
   ipas:
     - ipa: /la skˈarpa/
-      category: standard
+      engine: espeak-ng
   level: 624
   en-GB: The shoe
 - phrase: La scarpa protegge il piede.
   emoji: 👞
   ipas:
     - ipa: /la skˈarpa protˈɛdʒːe il pjˈɛde/
-      category: standard
+      engine: espeak-ng
   level: 636
   en-GB: The shoe protects the foot.
 - phrase: I gamberetti
   emoji: 🍤
   ipas:
     - ipa: /i ɡamberˈetːɪ/
-      category: standard
+      engine: espeak-ng
   level: 806
   en-GB: The shrimp
 - phrase: L'alzata di spalle
   emoji: 🤷
   ipas:
     - ipa: /laltsˈata dɪ spˈalle/
-      category: standard
+      engine: espeak-ng
   level: 980
   en-GB: The shrug
 - phrase: Il segnale
   emoji: 📶
   ipas:
     - ipa: /il seɲˈale/
-      category: standard
+      engine: espeak-ng
   level: 62
   en-GB: The signal
 - phrase: La lumaca
   emoji: 🐌
   ipas:
     - ipa: /la lʊmˈaka/
-      category: standard
+      engine: espeak-ng
   level: 714
   en-GB: The snail
 - phrase: La lumaca si muove lentamente.
   emoji: 🐌
   ipas:
     - ipa: /la lʊmˈaka sɪ mʊˈove lentamˈente/
-      category: standard
+      engine: espeak-ng
   level: 712
   en-GB: The snail moves slowly.
 - phrase: Il serpente
   emoji: 🐍
   ipas:
     - ipa: /il serpˈɛnte/
-      category: standard
+      engine: espeak-ng
   level: 595
   en-GB: The snake
 - phrase: Il serpente striscia per terra.
   emoji: 🐍
   ipas:
     - ipa: /il serpˈɛnte strˈiʃa per tˈɛrɾa/
-      category: standard
+      engine: espeak-ng
   level: 629
   en-GB: The snake crawls on the ground.
 - phrase: La neve
   emoji: 🌨️
   ipas:
     - ipa: /la nˈɛve/
-      category: standard
+      engine: espeak-ng
   level: 503
   en-GB: The snow
 - phrase: La neve sta cadendo
   emoji: ❄️
   ipas:
     - ipa: /la nˈɛve stˈa kadˈɛndo/
-      category: standard
+      engine: espeak-ng
   level: 667
   en-GB: The snow is falling
 - phrase: La neve cade lentamente.
   emoji: ❄️
   ipas:
     - ipa: /la nˈɛve kˈade lentamˈente/
-      category: standard
+      engine: espeak-ng
   level: 644
   en-GB: The snow is falling slowly.
 - phrase: Il pupazzo di neve
   emoji: ☃️
   ipas:
     - ipa: /il pʊpˈatsːo dɪ nˈɛve/
-      category: standard
+      engine: espeak-ng
   level: 810
   en-GB: The snowman
 - phrase: La montagna innevata
   emoji: 🏔️
   ipas:
     - ipa: /la montˈaɲɲa innevˈata/
-      category: standard
+      engine: espeak-ng
   level: 947
   en-GB: The snowy mountain
 - phrase: Il pallone da calcio
   emoji: ⚽
   ipas:
     - ipa: /il pallˈone da kˈaltʃo/
-      category: standard
+      engine: espeak-ng
   level: 353
   en-GB: The soccer ball
 - phrase: Il calzino
   emoji: 🧦
   ipas:
     - ipa: /il kaltsˈino/
-      category: standard
+      engine: espeak-ng
   level: 632
   en-GB: The sock
 - phrase: La calza mantiene i piedi caldi.
   emoji: 🧦
   ipas:
     - ipa: /la kˈaltsa mantjˈɛne i pjˈedɪ kˈaldɪ/
-      category: standard
+      engine: espeak-ng
   level: 643
   en-GB: The sock keeps your feet warm.
 - phrase: Il divano
   emoji: 🛋️
   ipas:
     - ipa: /il divˈano/
-      category: standard
+      engine: espeak-ng
   level: 587
   en-GB: The sofa
 - phrase: Il divano è comodo.
   emoji: 🛋️
   ipas:
     - ipa: /il divˈano e kˈɔmodo/
-      category: standard
+      engine: espeak-ng
   level: 648
   en-GB: The sofa is comfortable.
 - phrase: La zuppa
   emoji: 🍲
   ipas:
     - ipa: /la dzˈupːa/
-      category: standard
+      engine: espeak-ng
   level: 578
   en-GB: The soup
 - phrase: La zuppa è calda e buona.
   emoji: 🍲
   ipas:
     - ipa: /la dzˈupːa e kˈalda e bʊˈɔna/
-      category: standard
+      engine: espeak-ng
   level: 627
   en-GB: The soup is hot and good.
 - phrase: Il ragno
   emoji: 🕷️
   ipas:
     - ipa: /il rˈaɲɲo/
-      category: standard
+      engine: espeak-ng
   level: 714
   en-GB: The spider
 - phrase: Il ragno tesse una tela.
   emoji: 🕷️
   ipas:
     - ipa: /il rˈaɲɲo tˈɛsse ˌʊna tˈɛla/
-      category: standard
+      engine: espeak-ng
   level: 659
   en-GB: The spider weaves a web.
 - phrase: La spugna
   emoji: 🧽
   ipas:
     - ipa: /la spˈuɲɲa/
-      category: standard
+      engine: espeak-ng
   level: 968
   en-GB: The sponge
 - phrase: La maglia sportiva
   emoji: 🎽
   ipas:
     - ipa: /la mˈaʎa sportˈiva/
-      category: standard
+      engine: espeak-ng
   level: 405
   en-GB: The sports jersey
 - phrase: La maglietta sportiva
   emoji: 🎽
   ipas:
     - ipa: /la maʎˈetːa sportˈiva/
-      category: standard
+      engine: espeak-ng
   level: 907
   en-GB: The sports shirt
 - phrase: La piazza
   emoji: 📐
   ipas:
     - ipa: /la pjˈatsːa/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The square
 - phrase: I calamari
   emoji: 🦑
   ipas:
     - ipa: /i kalamˈarɪ/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The squid
 - phrase: La stella
   emoji: ⭐
   ipas:
     - ipa: /la stˈella/
-      category: standard
+      engine: espeak-ng
   level: 656
   en-GB: The star
 - phrase: La stella brilla nel cielo.
   emoji: ⭐
   ipas:
     - ipa: /la stˈella brˈilla nel tʃˈɛlo/
-      category: standard
+      engine: espeak-ng
   level: 631
   en-GB: The star shines in the sky.
 - phrase: La statua
   emoji: 🗿
   ipas:
     - ipa: /la stˈatʊa/
-      category: standard
+      engine: espeak-ng
   level: 33
   en-GB: The statue
 - phrase: La bistecca
   emoji: 🥩
   ipas:
     - ipa: /la bistˈekːa/
-      category: standard
+      engine: espeak-ng
   level: 1
   en-GB: The steak
 - phrase: Lo stetoscopio
   emoji: 🩺
   ipas:
     - ipa: /lo stetoskˈopio/
-      category: standard
+      engine: espeak-ng
   level: 907
   en-GB: The stethoscope
 - phrase: La scatola portaoggetti
   emoji: 🗃️
   ipas:
     - ipa: /la skˈatola portaodʒːˈetːɪ/
-      category: standard
+      engine: espeak-ng
   level: 826
   en-GB: The storage box
 - phrase: Il negozio
   emoji: 🏬
   ipas:
     - ipa: /il neɡˈɔtsio/
-      category: standard
+      engine: espeak-ng
   level: 774
   en-GB: The store
 - phrase: La tempesta
   emoji: ⛈️
   ipas:
     - ipa: /la tempˈɛsta/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The storm
 - phrase: La nuvola temporalesca
   emoji: 🌩️
   ipas:
     - ipa: /la nˈuvola temporalˈeska/
-      category: standard
+      engine: espeak-ng
   level: 685
   en-GB: The storm cloud
 - phrase: Il cappello di paglia
   emoji: 👒
   ipas:
     - ipa: /il kapːˈɛllo dɪ pˈaʎa/
-      category: standard
+      engine: espeak-ng
   level: 786
   en-GB: The straw hat
 - phrase: La fragola
   emoji: 🍓
   ipas:
     - ipa: /la frˈaɡola/
-      category: standard
+      engine: espeak-ng
   level: 587
   en-GB: The strawberry
 - phrase: La fragola è piccola e rossa.
   emoji: 🍓
   ipas:
     - ipa: /la frˈaɡola e pˈikːola e rˈossa/
-      category: standard
+      engine: espeak-ng
   level: 634
   en-GB: The strawberry is small and red.
 - phrase: La lotta
   emoji: 🤼
   ipas:
     - ipa: /la lˈɔtːa/
-      category: standard
+      engine: espeak-ng
   level: 652
   en-GB: The struggle
 - phrase: Il sole
   emoji: ☀️
   ipas:
     - ipa: /il sˈole/
-      category: standard
+      engine: espeak-ng
   level: 587
   en-GB: The sun
 - phrase: Il sole splende ogni mattina.
   emoji: ☀️
   ipas:
     - ipa: /il sˈole splˈɛnde ˌoɲɲɪ matːˈina/
-      category: standard
+      engine: espeak-ng
   level: 644
   en-GB: The sun shines every morning.
 - phrase: La spada
   emoji: 🗡️
   ipas:
     - ipa: /la spˈada/
-      category: standard
+      engine: espeak-ng
   level: 733
   en-GB: The sword
 - phrase: La sinagoga
   emoji: 🕍
   ipas:
     - ipa: /la sinaɡˈɔɡa/
-      category: standard
+      engine: espeak-ng
   level: 325
   en-GB: The synagogue
 - phrase: La siringa
   emoji: 💉
   ipas:
     - ipa: /la sirˈiŋɡa/
-      category: standard
+      engine: espeak-ng
   level: 806
   en-GB: The syringe
 - phrase: La maglietta
   emoji: 👕
   ipas:
     - ipa: /la maʎˈetːa/
-      category: standard
+      engine: espeak-ng
   level: 668
   en-GB: The t-shirt
 - phrase: La tavoletta
   emoji: 💊
   ipas:
     - ipa: /la tavolˈetːa/
-      category: standard
+      engine: espeak-ng
   level: 753
   en-GB: The tablet
 - phrase: Il taxi
   emoji: 🚕
   ipas:
     - ipa: /il tˈaksɪ/
-      category: standard
+      engine: espeak-ng
   level: 1
   en-GB: The taxi
 - phrase: Il telescopio
   emoji: 🔭
   ipas:
     - ipa: /il teleskˈopio/
-      category: standard
+      engine: espeak-ng
   level: 838
   en-GB: The telescope
 - phrase: Il tennis
   emoji: 🎾
   ipas:
     - ipa: /il tˈɛnnis/
-      category: standard
+      engine: espeak-ng
   level: 484
   en-GB: The tennis
 - phrase: La tenda è nella foresta
   emoji: ⛺
   ipas:
     - ipa: /la tˈɛnda e nˈella forˈɛsta/
-      category: standard
+      engine: espeak-ng
   level: 857
   en-GB: The tent is in the forest
 - phrase: Il globo terrestre
   emoji: 🌍
   ipas:
     - ipa: /il ɡlˈɔbo terɾˈɛstre/
-      category: standard
+      engine: espeak-ng
   level: 458
   en-GB: The terrestrial globe
 - phrase: La cravatta
   emoji: 👔
   ipas:
     - ipa: /la kravˈatːa/
-      category: standard
+      engine: espeak-ng
   level: 774
   en-GB: The tie
 - phrase: La tigre corre veloce.
   emoji: 🐯
   ipas:
     - ipa: /la tˈiɡre kˈɔrɾe velˈotʃe/
-      category: standard
+      engine: espeak-ng
   level: 538
   en-GB: The tiger runs fast.
 - phrase: La toilette
   emoji: 🚽
   ipas:
     - ipa: /la twalˈetː/
-      category: standard
+      engine: espeak-ng
   level: 533
   en-GB: The toilets
 - phrase: La carta igienica
   emoji: 🧻
   ipas:
     - ipa: /la kˈarta idʒˈɛnika/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The toilet paper
 - phrase: Il pomodoro
   emoji: 🍅
   ipas:
     - ipa: /il pomodˈɔro/
-      category: standard
+      engine: espeak-ng
   level: 599
   en-GB: The tomato
 - phrase: Il pomodoro è rosso e rotondo.
   emoji: 🍅
   ipas:
     - ipa: /il pomodˈɔro e rˈosso e rotˈondo/
-      category: standard
+      engine: espeak-ng
   level: 631
   en-GB: The tomato is red and round.
 - phrase: Il dente
   emoji: 🦷
   ipas:
     - ipa: /il dˈɛnte/
-      category: standard
+      engine: espeak-ng
   level: 558
   en-GB: The tooth
 - phrase: Il dente è bianco.
   emoji: 🦷
   ipas:
     - ipa: /il dˈɛnte e bjˈanko/
-      category: standard
+      engine: espeak-ng
   level: 605
   en-GB: The tooth is white.
 - phrase: Il tornado
   emoji: 🌪️
   ipas:
     - ipa: /il tornˈado/
-      category: standard
+      engine: espeak-ng
   level: 774
   en-GB: The tornado
 - phrase: La torre
   emoji: 🗼
   ipas:
     - ipa: /la tˈorɾe/
-      category: standard
+      engine: espeak-ng
   level: 1
   en-GB: The tower
 - phrase: Il trattore
   emoji: 🚜
   ipas:
     - ipa: /il tratːˈore/
-      category: standard
+      engine: espeak-ng
   level: 753
   en-GB: The tractor
 - phrase: Il semaforo
   emoji: 🚦
   ipas:
     - ipa: /il semˈaforo/
-      category: standard
+      engine: espeak-ng
   level: 445
   en-GB: The traffic light
 - phrase: Il treno
   emoji: 🚂
   ipas:
     - ipa: /il trˈɛno/
-      category: standard
+      engine: espeak-ng
   level: 392
   en-GB: The train
 - phrase: Il treno si muove velocemente.
   emoji: 🚂
   ipas:
     - ipa: /il trˈɛno sɪ mʊˈove velotʃemˈente/
-      category: standard
+      engine: espeak-ng
   level: 524
   en-GB: The train is moving fast.
 - phrase: Il tram
   emoji: 🚋
   ipas:
     - ipa: /il trˈam/
-      category: standard
+      engine: espeak-ng
   level: 721
   en-GB: The tram
 - phrase: L'albero
   emoji: 🌳
   ipas:
     - ipa: /lˈalbero/
-      category: standard
+      engine: espeak-ng
   level: 639
   en-GB: The tree
 - phrase: L'albero perde le foglie in autunno.
   emoji: 🌳
   ipas:
     - ipa: /lˈalbero pˈɛrde le fˈɔʎe in aʊtˈunno/
-      category: standard
+      engine: espeak-ng
   level: 653
   en-GB: The tree loses its leaves in autumn.
 - phrase: Il triangolo
   emoji: 📐
   ipas:
     - ipa: /il triˈaŋɡolo/
-      category: standard
+      engine: espeak-ng
   level: 840
   en-GB: The triangle
 - phrase: Il camion
   emoji: 🚛
   ipas:
     - ipa: /il kˈamjon/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The truck
 - phrase: La tromba
   emoji: 🎺
   ipas:
     - ipa: /la trˈomba/
-      category: standard
+      engine: espeak-ng
   level: 838
   en-GB: The trumpet
 - phrase: La tromba suona forte
   emoji: 🎺
   ipas:
     - ipa: /la trˈomba sʊˈona fˈɔrte/
-      category: standard
+      engine: espeak-ng
   level: 732
   en-GB: The trumpet sounds loud
 - phrase: La tartaruga
   emoji: 🐢
   ipas:
     - ipa: /la tartarˈuɡa/
-      category: standard
+      engine: espeak-ng
   level: 587
   en-GB: The turtle
 - phrase: La tartaruga striscia
   emoji: 🐢
   ipas:
     - ipa: /la tartarˈuɡa strˈiʃa/
-      category: standard
+      engine: espeak-ng
   level: 817
   en-GB: The turtle crawls
 - phrase: La tartaruga vive a lungo.
   emoji: 🐢
   ipas:
     - ipa: /la tartarˈuɡa vˈive a lˈuŋɡo/
-      category: standard
+      engine: espeak-ng
   level: 628
   en-GB: The turtle lives a long time.
 - phrase: L'unicorno
   emoji: 🦄
   ipas:
     - ipa: /lʊnikˈɔrno/
-      category: standard
+      engine: espeak-ng
   level: 774
   en-GB: The unicorn
 - phrase: Il vampiro
   emoji: 🧛
   ipas:
     - ipa: /il vampˈiro/
-      category: standard
+      engine: espeak-ng
   level: 159
   en-GB: The vampire
 - phrase: Il video
   emoji: 📹
   ipas:
     - ipa: /il vˈideo/
-      category: standard
+      engine: espeak-ng
   level: 652
   en-GB: The video
 - phrase: Il videogioco
   emoji: 🎮
   ipas:
     - ipa: /il videodʒˈɔko/
-      category: standard
+      engine: espeak-ng
   level: 664
   en-GB: The video game
 - phrase: Il violino
   emoji: 🎻
   ipas:
     - ipa: /il vjolˈino/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The violin
 - phrase: Il violino suona benissimo
   emoji: 🎻
   ipas:
     - ipa: /il vjolˈino sʊˈona benˈissimo/
-      category: standard
+      engine: espeak-ng
   level: 699
   en-GB: The violin sounds beautiful
 - phrase: Il vulcano
   emoji: 🌋
   ipas:
     - ipa: /il vʊlkˈano/
-      category: standard
+      engine: espeak-ng
   level: 587
   en-GB: The volcano
 - phrase: La cialda
   emoji: 🧇
   ipas:
     - ipa: /la tʃˈalda/
-      category: standard
+      engine: espeak-ng
   level: 689
   en-GB: The waffle
 - phrase: Il portafoglio
   emoji: 👛
   ipas:
     - ipa: /il portafˈɔʎo/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The wallet
 - phrase: L'avvertimento
   emoji: ⚠️
   ipas:
     - ipa: /lavvertimˈento/
-      category: standard
+      engine: espeak-ng
   level: 1000
   en-GB: The warning
 - phrase: L'acqua
   emoji: 💧
   ipas:
     - ipa: /lˈakːwa/
-      category: standard
+      engine: espeak-ng
   level: 517
   en-GB: The water
 - phrase: L'acqua scorre
   emoji: 💧
   ipas:
     - ipa: /lˈakːwa skˈɔrɾe/
-      category: standard
+      engine: espeak-ng
   level: 690
   en-GB: The water flows
 - phrase: L'anguria
   emoji: 🍉
   ipas:
     - ipa: /laŋɡˈuria/
-      category: standard
+      engine: espeak-ng
   level: 667
   en-GB: The watermelon
 - phrase: La balena
   emoji: 🐳
   ipas:
     - ipa: /la balˈena/
-      category: standard
+      engine: espeak-ng
   level: 608
   en-GB: The whale
 - phrase: La balena nuota nel mare.
   emoji: 🐳
   ipas:
     - ipa: /la balˈena nʊˈɔta nel mˈare/
-      category: standard
+      engine: espeak-ng
   level: 624
   en-GB: The whale swims in the sea.
 - phrase: Il vento
   emoji: 💨
   ipas:
     - ipa: /il vˈɛnto/
-      category: standard
+      engine: espeak-ng
   level: 558
   en-GB: The wind
 - phrase: Il carillon del vento
   emoji: 🎐
   ipas:
     - ipa: /il karˈillon del vˈɛnto/
-      category: standard
+      engine: espeak-ng
   level: 907
   en-GB: The wind chime
 - phrase: Il vento sta soffiando
   emoji: 💨
   ipas:
     - ipa: /il vˈɛnto stˈa soffjˈando/
-      category: standard
+      engine: espeak-ng
   level: 630
   en-GB: The wind is blowing
 - phrase: Il vento soffia forte.
   emoji: 💨
   ipas:
     - ipa: /il vˈɛnto sˈoffia fˈɔrte/
-      category: standard
+      engine: espeak-ng
   level: 530
   en-GB: The wind is blowing hard.
 - phrase: Il vento che soffia
   emoji: 🌬️
   ipas:
     - ipa: /il vˈɛnto ke sˈoffia/
-      category: standard
+      engine: espeak-ng
   level: 741
   en-GB: The wind that blows
 - phrase: La finestra
   emoji: 🪟
   ipas:
     - ipa: /la finˈɛstra/
-      category: standard
+      engine: espeak-ng
   level: 595
   en-GB: The window
 - phrase: La finestra è aperta stamattina.
   emoji: 🪟
   ipas:
     - ipa: /la finˈɛstra e apˈɛrta stamatːˈina/
-      category: standard
+      engine: espeak-ng
   level: 639
   en-GB: The window is open this morning.
 - phrase: Il vino
   emoji: 🍷
   ipas:
     - ipa: /il vˈino/
-      category: standard
+      engine: espeak-ng
   level: 535
   en-GB: The wine
 - phrase: Il lupo
   emoji: 🐺
   ipas:
     - ipa: /il lˈupo/
-      category: standard
+      engine: espeak-ng
   level: 558
   en-GB: The wolf
 - phrase: Il lupo ulula nella foresta.
   emoji: 🐺
   ipas:
     - ipa: /il lˈupo ˈulʊla nˈella forˈɛsta/
-      category: standard
+      engine: espeak-ng
   level: 616
   en-GB: The wolf howls in the forest.
 - phrase: La donna
   emoji: 👩
   ipas:
     - ipa: /la dˈɔnna/
-      category: standard
+      engine: espeak-ng
   level: 652
   en-GB: The woman
 - phrase: La parola
   emoji: 🗣️
   ipas:
     - ipa: /la paɾˈɔla/
-      category: standard
+      engine: espeak-ng
   level: 232
   en-GB: The word
 - phrase: L’acqua è essenziale per la vita.
   emoji: 💧
   ipas:
     - ipa: /lˈakːwa e essentsjˈale per la vˈita/
-      category: standard
+      engine: espeak-ng
   level: 632
   en-GB: Water is essential for life.
 - phrase: Il sassofono
   emoji: 🎷
   ipas:
     - ipa: /il sassˈɔfono/
-      category: standard
+      engine: espeak-ng
   level: 284
   en-GB: The saxophone

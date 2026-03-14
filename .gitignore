@@ -24,6 +24,10 @@ tmp/
 # Task runner cache
 .task/
 
+# Lint caches (speed up repeat runs)
+.eslintcache
+.prettier-cache
+
 # Build output
 dist/
 build/
@@ -34,6 +38,7 @@ build/
 test-results/
 playwright-report/
 playwright/.cache/
+playwright-results.json
 
 *-debug.html
 /*.log

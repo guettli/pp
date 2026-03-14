@@ -8,14 +8,7 @@
   import { AudioRecorder } from "../audio/recorder.js";
   import { scorePronunciation } from "../comparison/scorer.js";
   import { db } from "../db.js";
-  import {
-    t as _t,
-    getUiLang,
-    initI18n,
-    isUiLangAuto,
-    onUiLangChange,
-    setUiLang,
-  } from "../i18n.js";
+  import { t as _t, getUiLang, initI18n, onUiLangChange } from "../i18n.js";
   import {
     extractPhonemes,
     extractPhonemesDetailed,
@@ -102,7 +95,6 @@
   let modelDetailsLoading = $state(false);
 
   let studyLangValue = $state(getStudyLang() ?? "");
-  let uiLangValue = $state(isUiLangAuto() ? "auto" : getUiLang());
   let uiLang = $state(getUiLang());
 
   interface TimingStep {
@@ -1135,7 +1127,6 @@
 
       onUiLangChange(() => {
         uiLang = getUiLang();
-        uiLangValue = isUiLangAuto() ? "auto" : getUiLang();
       });
 
       if (import.meta.env.DEV) {
@@ -1299,67 +1290,6 @@
   <header class="text-center mb-5">
     <h1 class="display-4 fw-bold">{t("header.title")}</h1>
     <p class="lead text-muted">{t("header.subtitle")}</p>
-    <div class="d-flex justify-content-center align-items-center gap-3 mt-3 flex-wrap">
-      <div class="d-flex align-items-center gap-2">
-        <label for="study-lang-select" class="form-label mb-0">{t("study-lang.label")}</label>
-        <select
-          id="study-lang-select"
-          class="form-select form-select-sm w-auto"
-          value={studyLangValue}
-          onchange={(e) => {
-            const val = (e.target as HTMLSelectElement).value;
-            if (val) setStudyLang(val as StudyLanguage);
-          }}
-        >
-          <option value="">{t("study-lang.choose")}</option>
-          <option value="en-GB">{t("study-lang.en-GB")}</option>
-          <option value="de-DE">{t("study-lang.de")}</option>
-          <option value="fr-FR">{t("study-lang.fr-FR")}</option>
-          <option value="it-IT">{t("study-lang.it-IT")}</option>
-        </select>
-      </div>
-      <div class="d-flex align-items-center gap-2">
-        <label for="ui-lang-select" class="form-label mb-0">{t("ui-lang.label")}</label>
-        <select
-          id="ui-lang-select"
-          class="form-select form-select-sm w-auto"
-          value={uiLangValue}
-          onchange={(e) => {
-            const val = (e.target as HTMLSelectElement).value;
-            setUiLang(val as "auto" | "de-DE" | "en-GB" | "fr-FR" | "it-IT");
-          }}
-        >
-          <option value="auto">{t("ui-lang.auto")}</option>
-          <option value="de-DE">{t("language.de")}</option>
-          <option value="en-GB">{t("language.en")}</option>
-          <option value="fr-FR">{t("language.fr")}</option>
-          <option value="it-IT">{t("language.it")}</option>
-        </select>
-      </div>
-      {#if availableVoices.length > 0}
-        <div class="d-flex align-items-center gap-2">
-          <label for="voice-select" class="form-label mb-0">{t("voice.label")}</label>
-          <select
-            id="voice-select"
-            class="form-select form-select-sm w-auto"
-            value={selectedVoiceName}
-            onchange={(e) => {
-              const val = (e.target as HTMLSelectElement).value;
-              selectedVoiceName = val;
-              const sl = getStudyLang();
-              if (sl) void db.savePreferredVoice(sl, val);
-              // Play the current phrase with the newly selected voice
-              if (currentPhrase) autoPlayPhrase(currentPhrase);
-            }}
-          >
-            <option value={RANDOM_VOICE_NAME}>Random</option>
-            {#each availableVoices as voice (voice.name)}
-              <option value={voice.name}>{voice.label}</option>
-            {/each}
-          </select>
-        </div>
-      {/if}
-    </div>
 
     <!-- Level Control -->
     {#if studyLangValue}

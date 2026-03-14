@@ -1,4930 +1,4928 @@
 - phrase: accept
   emoji: 🉑
   ipas:
-    - ipa: /əkˈsɛpt/
-      category: standard
+    - ipa: /ɐksˈɛpt./
+      engine: olaph
   level: 508
-- phrase: archery
+- phrase: The archery
   emoji: 🏹
   ipas:
-    - ipa: /ˈɑɹt͡ʃəɹiː/
-      category: standard
+    - ipa: /ði ˈɑːt‍ʃəɹi./
+      engine: olaph
   level: 613
-- phrase: arts
+- phrase: The arts
   emoji: 🎨
   ipas:
-    - ipa: /ɑɹts/
-      category: standard
+    - ipa: /ði ˈɑɹts./
+      engine: olaph
   level: 293
-- phrase: bag
+- phrase: The bag
   emoji: 👜
   ipas:
-    - ipa: /ˈbæɡ/
-      category: standard
+    - ipa: /ðə bˈæɡ./
+      engine: olaph
   level: 122
-- phrase: bandage
+- phrase: The bandage
   emoji: 🩹
   ipas:
-    - ipa: /ˈbændɪd͡ʒ/
-      category: standard
+    - ipa: /ðə bˈændɪd‍ʒ./
+      engine: olaph
   level: 537
-- phrase: basketball
+- phrase: The basketball
   emoji: 🏀
   ipas:
-    - ipa: /ˈbɑːs.kɪt.bɔːl/
-      category: standard
+    - ipa: /ðə bˈɑːskɪtbˌɔːl./
+      engine: olaph
   level: 727
 - phrase: blind
   emoji: 👨‍🦯
   ipas:
-    - ipa: /blaɪnd/
-      category: standard
+    - ipa: /blˈa‍ɪnd./
+      engine: olaph
   level: 299
 - phrase: bow
   emoji: 🙇
   ipas:
-    - ipa: /bəʊ/
-      category: standard
+    - ipa: /ˈbaʊ./
+      engine: olaph
   level: 166
 - phrase: boxing
   emoji: 🥊
   ipas:
-    - ipa: /ˈbɒksɪŋ/
-      category: standard
+    - ipa: /bˈɒksɪŋ./
+      engine: olaph
   level: 477
 - phrase: bright
   emoji: 🔆
   ipas:
-    - ipa: /bɹaɪt/
-      category: standard
+    - ipa: /bɹˈa‍ɪt./
+      engine: olaph
   level: 309
-- phrase: bulb
+- phrase: The bulb
   emoji: 💡
   ipas:
-    - ipa: /ˈbʌlb/
-      category: standard
+    - ipa: /ðə bˈʌlb./
+      engine: olaph
   level: 236
 - phrase: bunny
   emoji: 👯
   ipas:
-    - ipa: /ˈbʌni/
-      category: standard
+    - ipa: /bˈʌni./
+      engine: olaph
   level: 169
 - phrase: bust
   emoji: 👤
   ipas:
-    - ipa: /ˈbʌst/
-      category: standard
+    - ipa: /bˈʌst./
+      engine: olaph
   level: 429
-- phrase: cancer
+- phrase: The cancer
   blacklisted: true
   emoji: ♋
   ipas:
-    - ipa: /ˈkænsə/
-      category: standard
+    - ipa: /ðə kˈænsɐ./
+      engine: olaph
   level: 550
 - phrase: cap
   emoji: 🧢
   ipas:
-    - ipa: /kæp/
-      category: standard
+    - ipa: /kˈæp./
+      engine: olaph
   level: 166
 - phrase: card
   emoji: 💳
   ipas:
-    - ipa: /kɑːd/
-      category: standard
+    - ipa: /kˈɑːd./
+      engine: olaph
   level: 194
 - phrase: check
   emoji: ✅
   ipas:
-    - ipa: /t͡ʃɛk/
-      category: standard
+    - ipa: /t‍ʃˈɛk./
+      engine: olaph
   level: 309
 - phrase: climb
   emoji: 🧗
   ipas:
-    - ipa: /klaɪm/
-      category: standard
+    - ipa: /klˈa‍ɪm./
+      engine: olaph
   level: 264
 - phrase: coaster
   emoji: 🎢
   ipas:
-    - ipa: /ˈkəʊ̯s.tə/
-      category: standard
+    - ipa: /kˈə‍ʊstɐ./
+      engine: olaph
   level: 543
 - phrase: coat
   emoji: 🥼
   ipas:
-    - ipa: /koʊt/
-      category: standard
+    - ipa: /kˈə‍ʊt./
+      engine: olaph
   level: 147
-- phrase: construction
+- phrase: The construction
   emoji: 🚧
   ipas:
-    - ipa: /kənˈstɹʌkʃən/
-      category: standard
+    - ipa: /ðə kənstɹˈʌkʃən./
+      engine: olaph
   level: 949
 - phrase: cricket
   emoji: 🏏
   ipas:
-    - ipa: /ˈkɹɪkᵻt/
-      category: standard
+    - ipa: /kɹˈɪkɪt./
+      engine: olaph
   level: 531
 - phrase: deaf
   emoji: 🧏
   ipas:
-    - ipa: /dɛf/
-      category: standard
+    - ipa: /dˈɛf./
+      engine: olaph
   level: 245
 - phrase: dim
   emoji: 🔅
   ipas:
-    - ipa: /dɪm/
-      category: standard
+    - ipa: /dˈɪm./
+      engine: olaph
   level: 245
 - phrase: dizzy
   emoji: 💫
   ipas:
-    - ipa: /ˈdɪzi/
-      category: standard
+    - ipa: /dˈɪzi./
+      engine: olaph
   level: 302
 - phrase: down
   emoji: 👇
   ipas:
-    - ipa: /daʊn/
-      category: standard
+    - ipa: /dˈa‍ʊn./
+      engine: olaph
   level: 131
 - phrase: drum
   emoji: 🛢️
   ipas:
-    - ipa: /ˈdɹʌm/
-      category: standard
+    - ipa: /dɹˈʌm./
+      engine: olaph
   level: 191
 - phrase: entry
   emoji: ⛔
   ipas:
-    - ipa: /ˈɛntɹi/
-      category: standard
+    - ipa: /ˈɛntɹi./
+      engine: olaph
   level: 347
 - phrase: envelope
   emoji: 🧧
   ipas:
-    - ipa: /ˈɛnvələʊp/
-      category: standard
+    - ipa: /ˈɛnvəˌɫoʊp./
+      engine: olaph
   level: 705
-- phrase: fence
+- phrase: The fence
   emoji: 🤺
   ipas:
-    - ipa: /fɛns/
-      category: standard
+    - ipa: /ðə fˈɛns./
+      engine: olaph
   level: 350
-- phrase: fingers
+- phrase: The fingers
   emoji: 🤞
   ipas:
-    - ipa: /ˈfɪŋɡɚz/
-      category: standard
+    - ipa: /ðə fˈɪŋɡəz./
+      engine: olaph
   level: 382
 - phrase: football
   emoji: 🏈
   ipas:
-    - ipa: /ˈfʊtbɔːl/
-      category: standard
+    - ipa: /fˈʊtbɔːl./
+      engine: olaph
   level: 486
 - phrase: free
   emoji: 🆓
   ipas:
-    - ipa: /fɹiː/
-      category: standard
+    - ipa: /fɹˈiː./
+      engine: olaph
   level: 207
 - phrase: frown
   emoji: 🙍
   ipas:
-    - ipa: /fɹaʊn/
-      category: standard
+    - ipa: /fɹˈa‍ʊn./
+      engine: olaph
   level: 296
 - phrase: full
   emoji: 🈵
   ipas:
-    - ipa: /fʊl/
-      category: standard
+    - ipa: /fˈʊl./
+      engine: olaph
   level: 153
-- phrase: gem
+- phrase: The gem
   emoji: 💎
   ipas:
-    - ipa: /d͡ʒɛm/
-      category: standard
+    - ipa: /ðə d‍ʒˈɛm./
+      engine: olaph
   level: 226
-- phrase: gloves
+- phrase: The gloves
   emoji: 🧤
   ipas:
-    - ipa: /ɡlʌvz/
-      category: standard
+    - ipa: /ðə ɡlˈʌvz./
+      engine: olaph
   level: 350
 - phrase: goggles
   emoji: 🥽
   ipas:
-    - ipa: /ˈɡɑ.ɡəlz/
-      category: standard
+    - ipa: /ɡˈɒɡə‍lz./
+      engine: olaph
   level: 496
-- phrase: golf
+- phrase: The golf
   emoji: ⛳
   ipas:
-    - ipa: /ɡɒlf/
-      category: standard
+    - ipa: /ðə ɡˈɒlf./
+      engine: olaph
   level: 252
-- phrase: hands
+- phrase: The hands
   emoji: 🤲
   ipas:
-    - ipa: /hændz/
-      category: standard
-    - ipa: /hænz/
-      category: standard
+    - ipa: /ðə ˈhændz./
+      engine: olaph
   level: 201
 - phrase: heel
   emoji: 👠
   ipas:
-    - ipa: /hiːl/
-      category: standard
+    - ipa: /hˈiːl./
+      engine: olaph
   level: 217
 - phrase: hockey
   emoji: 🏒
   ipas:
-    - ipa: /ˈhɒki/
-      category: standard
+    - ipa: /hˈɒki./
+      engine: olaph
   level: 480
-- phrase: jeans
+- phrase: The jeans
   emoji: 👖
   ipas:
-    - ipa: /d͡ʒiːnz/
-      category: standard
+    - ipa: /ðə ˈdʒinz./
+      engine: olaph
   level: 321
 - phrase: juggle
   emoji: 🤹
   ipas:
-    - ipa: /ˈd͡ʒʌɡəl/
-      category: standard
+    - ipa: /d‍ʒˈʌɡə‍l./
+      engine: olaph
   level: 448
 - phrase: kneel
   emoji: 🧎
   ipas:
-    - ipa: /niːl/
-      category: standard
+    - ipa: /nˈiːl./
+      engine: olaph
   level: 274
 - phrase: liberty
   emoji: 🗽
   ipas:
-    - ipa: /ˈlɪb.ɪ.ti/
-      category: standard
+    - ipa: /lˈɪbəti./
+      engine: olaph
   level: 683
 - phrase: light
   emoji: 🚦
   ipas:
-    - ipa: /laɪt/
-      category: standard
+    - ipa: /lˈa‍ɪt./
+      engine: olaph
   level: 207
 - phrase: litter
   emoji: 🚯
   ipas:
-    - ipa: /ˈlɪt.ɚ/
-      category: standard
+    - ipa: /lˈɪtɐ./
+      engine: olaph
   level: 426
 - phrase: love
   emoji: 🤟
   ipas:
-    - ipa: /lʌv/
-      category: standard
+    - ipa: /lˈʌv./
+      engine: olaph
   level: 220
 - phrase: martial
   emoji: 🥋
   ipas:
-    - ipa: /ˈmɑːʃəl/
-      category: standard
+    - ipa: /mˈɑːʃə‍l./
+      engine: olaph
   level: 673
 - phrase: mate
   emoji: 🤝
   ipas:
-    - ipa: /meɪt/
-      category: standard
+    - ipa: /ˈmeɪt./
+      engine: olaph
   level: 347
-- phrase: muscle
+- phrase: The muscle
   emoji: 💪
   ipas:
-    - ipa: /ˈmʌs.əl/
-      category: standard
+    - ipa: /ðə mˈʌsə‍l./
+      engine: olaph
   level: 467
 - phrase: new
   emoji: 🆕
   ipas:
-    - ipa: /njuː/
-      category: standard
+    - ipa: /njˈuː./
+      engine: olaph
   level: 106
 - phrase: older
   emoji: 🧓
   ipas:
-    - ipa: /ˈəʊldə/
-      category: standard
+    - ipa: /ˈə‍ʊldɐ./
+      engine: olaph
   level: 334
 - phrase: pass
   emoji: 🈴
   ipas:
-    - ipa: /pɑːs/
-      category: standard
+    - ipa: /pˈɑːs./
+      engine: olaph
   level: 220
 - phrase: pasta
   emoji: 🍝
   ipas:
-    - ipa: /ˈpæstə/
-      category: standard
+    - ipa: /pˈɑːstɐ./
+      engine: olaph
   level: 334
-- phrase: peace
+- phrase: The peace
   emoji: ☮️
   ipas:
-    - ipa: /piːs/
-      category: standard
+    - ipa: /ðə pˈiːs./
+      engine: olaph
   level: 401
-- phrase: pick
+- phrase: The pick
   emoji: ⛏️
   ipas:
-    - ipa: /pɪk/
-      category: standard
+    - ipa: /ðə pˈɪk./
+      engine: olaph
   level: 172
 - phrase: pin
   emoji: 🧷
   ipas:
-    - ipa: /pɪn/
-      category: standard
+    - ipa: /pˈɪn./
+      engine: olaph
   level: 160
 - phrase: pinch
   emoji: 🤏
   ipas:
-    - ipa: /pɪnt͡ʃ/
-      category: standard
+    - ipa: /pˈɪnt‍ʃ./
+      engine: olaph
   level: 264
-- phrase: police
+- phrase: The police
   emoji: 🚓
   ipas:
-    - ipa: /pəˈliːs/
-      category: standard
+    - ipa: /ðə pəlˈiːs./
+      engine: olaph
   level: 483
 - phrase: pool
   emoji: 🎱
   ipas:
-    - ipa: /puːl/
-      category: standard
+    - ipa: /pˈuːl./
+      engine: olaph
   level: 198
 - phrase: pray
   emoji: 🙏
   ipas:
-    - ipa: /pɹeɪ/
-      category: standard
+    - ipa: /pɹˈe‍ɪ./
+      engine: olaph
   level: 213
 - phrase: raise
   emoji: 🙋
   ipas:
-    - ipa: /ɹeɪz/
-      category: standard
+    - ipa: /ɹˈe‍ɪz./
+      engine: olaph
   level: 420
 - phrase: reserved
   emoji: 🈯
   ipas:
-    - ipa: /ɹɪˈzɝvd/
-      category: standard
+    - ipa: /ɹiˈzɝvd./
+      engine: olaph
   level: 781
 - phrase: right
   emoji: 👉
   ipas:
-    - ipa: /ˈɹaɪt/
-      category: standard
+    - ipa: /ɹˈa‍ɪt./
+      engine: olaph
   level: 198
 - phrase: rock
   emoji: 🤘
   ipas:
-    - ipa: /ɹɒk/
-      category: standard
+    - ipa: /ɹˈɒk./
+      engine: olaph
   level: 166
 - phrase: rugby
   emoji: 🏉
   ipas:
-    - ipa: /ˈɹʌɡbi/
-      category: standard
+    - ipa: /ɹˈʌɡbi./
+      engine: olaph
   level: 359
 - phrase: run
   emoji: 🏃
   ipas:
-    - ipa: /ɹʌn/
-      category: standard
+    - ipa: /ɹˈʌn./
+      engine: olaph
   level: 80
 - phrase: service
   emoji: 🈂️
   ipas:
-    - ipa: /ˈsɜː.vɪs/
-      category: standard
+    - ipa: /sˈɜːvɪs./
+      engine: olaph
   level: 664
 - phrase: sleep
   emoji: 💤
   ipas:
-    - ipa: /sliːp/
-      category: standard
+    - ipa: /slˈiːp./
+      engine: olaph
   level: 175
 - phrase: sparkle
   emoji: ✨
   ipas:
-    - ipa: /ˈspɑː.kəl/
-      category: standard
+    - ipa: /spˈɑːkə‍l./
+      engine: olaph
   level: 435
 - phrase: speak
   emoji: 🗣️
   ipas:
-    - ipa: /spiːk/
-      category: standard
+    - ipa: /spˈiːk./
+      engine: olaph
   level: 226
 - phrase: stand
   emoji: 🧍
   ipas:
-    - ipa: /stænd/
-      category: standard
+    - ipa: /stˈænd./
+      engine: olaph
   level: 252
 - phrase: stop
   emoji: 🚏
   ipas:
-    - ipa: /stɒp/
-      category: standard
+    - ipa: /stˈɒp./
+      engine: olaph
   level: 134
 - phrase: swim
   emoji: 🏊
   ipas:
-    - ipa: /swɪm/
-      category: standard
+    - ipa: /swˈɪm./
+      engine: olaph
   level: 175
-- phrase: tape
+- phrase: The tape
   emoji: 📼
   ipas:
-    - ipa: /teɪ̯p/
-      category: standard
+    - ipa: /ðə tˈe‍ɪp./
+      engine: olaph
   level: 302
-- phrase: tulip
+- phrase: The tulip
   emoji: 🌷
   ipas:
-    - ipa: /ˈtulɪp/
-      category: standard
+    - ipa: /ðə tjˈuːlɪp./
+      engine: olaph
   level: 394
 - phrase: umbrella
   emoji: ⛱️
   ipas:
-    - ipa: /ʌmˈbɹɛl.ə/
-      category: standard
+    - ipa: /ʌmbɹˈɛlɐ./
+      engine: olaph
   level: 553
 - phrase: up
   emoji: 🆙
   ipas:
-    - ipa: /ʌp/
-      category: standard
+    - ipa: /ˈʌp./
+      engine: olaph
   level: 1
 - phrase: van
   emoji: 🚐
   ipas:
-    - ipa: /væn/
-      category: standard
+    - ipa: /vˈæn./
+      engine: olaph
   level: 125
-- phrase: vest
+- phrase: The vest
   emoji: 🦺
   ipas:
-    - ipa: /vɛst/
-      category: standard
+    - ipa: /ðə vˈɛst./
+      engine: olaph
   level: 217
 - phrase: victory
   emoji: ✌️
   ipas:
-    - ipa: /ˈvɪk.tə.ɹi/
-      category: standard
+    - ipa: /vˈɪktəɹˌi./
+      engine: olaph
   level: 581
 - phrase: wave
   emoji: 👋
   ipas:
-    - ipa: /weɪv/
-      category: standard
+    - ipa: /wˈe‍ɪv./
+      engine: olaph
   level: 258
-- phrase: wheel
+- phrase: The wheel
   emoji: 🎡
   ipas:
-    - ipa: /wiːl/
-      category: standard
+    - ipa: /ðə wˈiːl./
+      engine: olaph
   level: 188
 - phrase: women
   emoji: 🚺
   ipas:
-    - ipa: /ˈwɪm.ɪn/
-      category: standard
+    - ipa: /wˈɪmɪn./
+      engine: olaph
   level: 315
 - phrase: worship
   emoji: 🛐
   ipas:
-    - ipa: /ˈwɜː.ʃɪp/
-      category: standard
+    - ipa: /wˈɜːʃɪp./
+      engine: olaph
   level: 553
 - phrase: wrestle
   emoji: 🤼
   ipas:
-    - ipa: /ˈɹɛsl̩/
-      category: standard
+    - ipa: /ɹˈɛsə‍l./
+      engine: olaph
   level: 524
 - phrase: write
   emoji: ✍️
   ipas:
-    - ipa: /ɹaɪt/
-      category: standard
+    - ipa: /ɹˈa‍ɪt./
+      engine: olaph
   level: 331
 - phrase: zero
   emoji: 0️⃣
   ipas:
-    - ipa: /ˈzɪəɹəʊ/
-      category: standard
+    - ipa: /zˈi‍əɹə‍ʊ./
+      engine: olaph
   level: 277
 - phrase: The kiwi is green
   emoji: 🥝
   ipas:
-    - ipa: /ðə ˈkiː.wi ɪz ɡɹiːn/
-      category: standard
+    - ipa: /ðə kˈiːwiː ˈɪz ɡɹˈiːn./
+      engine: olaph
   level: 819
 - phrase: The watermelon is big
   emoji: 🍉
   ipas:
-    - ipa: /ðə ˈwɔː.tə.mɛl.ən ɪz bɪɡ/
-      category: standard
+    - ipa: /ðə wˈɔːtəmˌɛlən ˈɪz bˈɪɡ./
+      engine: olaph
   level: 1000
 - phrase: The egg is round
   emoji: 🥚
   ipas:
-    - ipa: /ðɪ ɛɡ ɪz ɹaʊnd/
-      category: standard
+    - ipa: /ði ˈɛɡ ˈɪz ˈɹaʊnd./
+      engine: olaph
   level: 1000
 - phrase: The waffle is warm
   emoji: 🧇
   ipas:
-    - ipa: /ðə ˈwɒf.əl ɪz wɔːm/
-      category: standard
+    - ipa: /ðə wˈɒfə‍l ˈɪz wˈɔːm./
+      engine: olaph
   level: 1000
 - phrase: The donut is sweet
   blacklisted: true
   emoji: 🍩
   ipas:
-    - ipa: /ðə ˈdəʊ.nʌt ɪz swiːt/
-      category: standard
+    - ipa: /ðə dˈə‍ʊnʌt ˈɪz swˈiːt./
+      engine: olaph
   level: 1000
 - phrase: The kangaroo jumps far
   emoji: 🦘
   ipas:
-    - ipa: /ðə ˌkæŋ.ɡəˈruː dʒʌmps fɑː/
-      category: standard
+    - ipa: /ðə kˈæŋɡɐɹˌuː d‍ʒˈʌmps fˈɑː./
+      engine: olaph
   level: 1000
 - phrase: The crocodile is big
   emoji: 🐊
   ipas:
-    - ipa: /ðə ˈkɹɒk.ə.daɪl ɪz bɪɡ/
-      category: standard
+    - ipa: /ðə kɹˈɒkədˌa‍ɪl ˈɪz bˈɪɡ./
+      engine: olaph
   level: 1000
 - phrase: The flamingo is pink
   emoji: 🦩
   ipas:
-    - ipa: /ðə fləˈmɪŋ.ɡəʊ ɪz pɪŋk/
-      category: standard
+    - ipa: /ðə flɛmˈɪŋɡə‍ʊ ˈɪz pˈɪŋk./
+      engine: olaph
   level: 1000
 - phrase: The shark swims fast
   blacklisted: true
   emoji: 🦈
   ipas:
-    - ipa: /ðə ʃɑːk swɪmz fɑːst/
-      category: standard
+    - ipa: /ðə ʃˈɑːk swˈɪmz fˈɑːst./
+      engine: olaph
   level: 826
 - phrase: The parrot talks a lot
   emoji: 🦜
   ipas:
-    - ipa: /ðə ˈpær.ət tɔːks ə lɒt/
-      category: standard
+    - ipa: /ðə pˈæɹət ˈtɔks ə lˈɒt./
+      engine: olaph
   level: 1000
 - phrase: The guitar sounds great
   emoji: 🎸
   ipas:
-    - ipa: /ðə ɡɪˈtɑː saʊndz ɡɹeɪt/
-      category: standard
+    - ipa: /ðə ɡɪtˈɑː ˈsaʊndz ɡɹˈe‍ɪt./
+      engine: olaph
   level: 908
 - phrase: The drum is loud
   emoji: 🥁
   ipas:
-    - ipa: /ðə dɹʌm ɪz laʊd/
-      category: standard
+    - ipa: /ðə dɹˈʌm ˈɪz lˈa‍ʊd./
+      engine: olaph
   level: 765
 - phrase: The trumpet is loud
   emoji: 🎺
   ipas:
-    - ipa: /ðə ˈtɹʌm.pɪt ɪz laʊd/
-      category: standard
+    - ipa: /ðə tɹˈʌmpɪt ˈɪz lˈa‍ʊd./
+      engine: olaph
   level: 841
 - phrase: The violin sounds great
   emoji: 🎻
   ipas:
-    - ipa: /ðə vaɪəˈlɪn saʊndz ɡɹeɪt/
-      category: standard
+    - ipa: /ðə va‍ɪ‍əlˈɪn ˈsaʊndz ɡɹˈe‍ɪt./
+      engine: olaph
   level: 911
 - phrase: The umbrella keeps you dry
   emoji: ☂️
   ipas:
-    - ipa: /ðə ʌmˈbɹɛl.ə kiːps jə dɹaɪ/
-      category: standard
+    - ipa: /ði ʌmbɹˈɛlɐ kˈiːps jˈuː dɹˈa‍ɪ./
+      engine: olaph
   level: 1000
 - phrase: The telescope shows stars
   emoji: 🔭
   ipas:
-    - ipa: /ðə ˈtɛl.ɪ.skəʊp ʃəʊz stɑːz/
-      category: standard
+    - ipa: /ðə tˈɛlɪskˌə‍ʊp ˈʃoʊz ˈstɑɹz./
+      engine: olaph
   level: 1000
 - phrase: The teddy bear is soft
   emoji: 🧸
   ipas:
-    - ipa: /ðə ˈtɛd.i bɛː ɪz sɒft/
-      category: standard
+    - ipa: /ðə tˈɛdi bˈe‍ə ˈɪz sˈɒft./
+      engine: olaph
   level: 918
 - phrase: The helicopter flies high
   emoji: 🚁
   ipas:
-    - ipa: /ðə ˈhɛl.ɪ.kɒp.tə flaɪz haɪ/
-      category: standard
+    - ipa: /ðə hˈɛlɪkˌɒptɐ flˈa‍ɪz hˈa‍ɪ./
+      engine: olaph
   level: 962
 - phrase: The rocket flies high
   emoji: 🚀
   ipas:
-    - ipa: /ðə ˈɹɒk.ɪt flaɪz haɪ/
-      category: standard
+    - ipa: /ðə ɹˈɒkɪt flˈa‍ɪz hˈa‍ɪ./
+      engine: olaph
   level: 867
 - phrase: The broccoli is healthy
   emoji: 🥦
   ipas:
-    - ipa: /ðə ˈbɹɒk.ə.li ɪz ˈhɛl.θi/
-      category: standard
+    - ipa: /ðə bɹˈɒkəlˌi ˈɪz hˈɛlθi./
+      engine: olaph
   level: 930
 - phrase: The onion smells strong
   emoji: 🧅
   ipas:
-    - ipa: /ðɪ ˈʌn.jən smɛlz stɹɒŋ/
-      category: standard
+    - ipa: /ði ˈʌni‍ən smˈɛlz stɹˈɒŋ./
+      engine: olaph
   level: 895
 - phrase: red
   emoji: 🔴
   ipas:
-    - ipa: /ʁɛd/
-      category: standard
+    - ipa: /ɹˈɛd./
+      engine: olaph
   level: 52
 - phrase: blue
   emoji: 🔵
   ipas:
-    - ipa: /bluː/
-      category: standard
+    - ipa: /blˈuː./
+      engine: olaph
   level: 137
 - phrase: green
   emoji: 💚
   ipas:
-    - ipa: /ɡɹiːn/
-      category: standard
+    - ipa: /ɡɹˈiːn./
+      engine: olaph
   level: 201
 - phrase: yellow
   emoji: 💛
   ipas:
-    - ipa: /ˈjɛl.əʊ/
-      category: standard
+    - ipa: /jˈɛlə‍ʊ./
+      engine: olaph
   level: 283
 - phrase: black
   emoji: 🖤
   ipas:
-    - ipa: /blæk/
-      category: standard
+    - ipa: /blˈæk./
+      engine: olaph
   level: 207
 - phrase: white
   emoji: ⬜
   ipas:
-    - ipa: /waɪt/
-      category: standard
+    - ipa: /wˈa‍ɪt./
+      engine: olaph
   level: 286
 - phrase: purple
   emoji: 💜
   ipas:
-    - ipa: /ˈpɜː.pl̩/
-      category: standard
+    - ipa: /pˈɜːpə‍l./
+      engine: olaph
   level: 331
 - phrase: pink
   emoji: 🩷
   ipas:
-    - ipa: /pɪŋk/
-      category: standard
+    - ipa: /pˈɪŋk./
+      engine: olaph
   level: 144
 - phrase: The soup is hot
   emoji: 🍲
   ipas:
-    - ipa: /ðə suːp ɪz hɒt/
-      category: standard
+    - ipa: /ðə sˈuːp ˈɪz hˈɒt./
+      engine: olaph
   level: 1000
 - phrase: The honey is sweet
   emoji: 🍯
   ipas:
-    - ipa: /ðə ˈhʌni ɪz swiːt/
-      category: standard
+    - ipa: /ðə hˈʌni ˈɪz swˈiːt./
+      engine: olaph
   level: 816
 - phrase: The volcano erupts
   emoji: 🌋
   ipas:
-    - ipa: /ðə vɒlˈkeɪ.nəʊ ɪˈɹʌpts/
-      category: standard
+    - ipa: /ðə vɒlkˈe‍ɪnə‍ʊ ɪɹˈʌpts./
+      engine: olaph
   level: 1000
 - phrase: The forest is green and calm
   emoji: 🌲
   ipas:
-    - ipa: /ðə ˈfɒ.rɪst ɪz ɡɹiːn ənd kɑːm/
-      category: standard
+    - ipa: /ðə fˈɒɹɪst ˈɪz ɡɹˈiːn ˈænd kˈɑːm./
+      engine: olaph
   level: 886
 - phrase: The beach is warm and sunny
   emoji: 🏖️
   ipas:
-    - ipa: /ðə biːtʃ ɪz wɔːm ənd ˈsʌni/
-      category: standard
+    - ipa: /ðə bˈiːt‍ʃ ˈɪz wˈɔːm ˈænd sˈʌni./
+      engine: olaph
   level: 851
 - phrase: The piano sounds beautiful
   emoji: 🎹
   ipas:
-    - ipa: /ðə piˈæn.əʊ saʊndz ˈbjuː.tɪ.fəl/
-      category: standard
+    - ipa: /ðə pɪˈænə‍ʊ ˈsaʊndz bjˈuːtɪfə‍l./
+      engine: olaph
   level: 975
 - phrase: Art
   emoji: 🎨
   level: 417
   ipas:
-    - ipa: ˈɑːt
-      category: standard
+    - ipa: /ˈɑːt./
+      engine: olaph
 - phrase: Carrot is good for the eyes.
   emoji: 🥕
   level: 637
   ipas:
-    - ipa: kˈaɹət ɪz ɡˈʊd fəðɪ ˈaɪz
-      category: standard
+    - ipa: /kˈæɹət ˈɪz ɡˈʊd fˈɔː ði ˈaɪz./
+      engine: olaph
 - phrase: Cycling
   emoji: 🚴
   level: 753
   ipas:
-    - ipa: sˈaɪklɪŋ
-      category: standard
+    - ipa: /sˈa‍ɪklɪŋ./
+      engine: olaph
 - phrase: Falling snow
   emoji: 🌨️
   level: 846
   ipas:
-    - ipa: fˈɔːlɪŋ snˈəʊ
-      category: standard
+    - ipa: /fˈɔːlɪŋ snˈə‍ʊ./
+      engine: olaph
 - phrase: Glasses help you see.
   emoji: 👓
   level: 629
   ipas:
-    - ipa: ɡlˈasɪz hˈɛlp juː sˈiː
-      category: standard
+    - ipa: /ɡlˈɑːsɪz hˈɛlp jˈuː sˈiː./
+      engine: olaph
 - phrase: Honey is sweet and sweet.
   emoji: 🍯
   level: 606
   ipas:
-    - ipa: hˈʌni ɪz swˈiːt and swˈiːt
-      category: standard
+    - ipa: /hˈʌni ˈɪz swˈiːt ˈænd swˈiːt./
+      engine: olaph
 - phrase: Ice cream
   emoji: 🍦
   level: 578
   ipas:
-    - ipa: ˈaɪs kɹˈiːm
-      category: standard
+    - ipa: /ˈa‍ɪs kɹˈiːm./
+      engine: olaph
 - phrase: Lemon is sour and yellow.
   emoji: 🍋
   level: 631
   ipas:
-    - ipa: lˈɛmən ɪz sˈaʊə and jˈɛləʊ
-      category: standard
+    - ipa: /lˈɛmən ˈɪz sˈa‍ʊ‍ə ˈænd jˈɛlə‍ʊ./
+      engine: olaph
 - phrase: Lightning illuminates the sky.
   emoji: ⚡
   level: 642
   ipas:
-    - ipa: lˈaɪtnɪŋ ɪlˈuːmɪnˌeɪts ðə skˈaɪ
-      category: standard
+    - ipa: /lˈa‍ɪtnɪŋ ɪlˈuːmɪnˌe‍ɪts ðə skˈa‍ɪ./
+      engine: olaph
 - phrase: Make a face
   emoji: 🙍
   level: 689
   ipas:
-    - ipa: mˌeɪk ɐ fˈeɪs
-      category: standard
+    - ipa: /mˈe‍ɪk ə fˈe‍ɪs./
+      engine: olaph
 - phrase: Martial arts
   emoji: 🥋
   level: 369
   ipas:
-    - ipa: mˈɑːʃəl ˈɑːts
-      category: standard
+    - ipa: /mˈɑːʃə‍l ˈɑɹts./
+      engine: olaph
 - phrase: No waste
   emoji: 🚯
   level: 676
   ipas:
-    - ipa: nˈəʊ wˈeɪst
-      category: standard
+    - ipa: /ˈnoʊ wˈe‍ɪst./
+      engine: olaph
 - phrase: Non-potable water
   emoji: 🚱
   level: 765
   ipas:
-    - ipa: nˈɒnpˈəʊtəbəl wˈɔːtə
-      category: standard
+    - ipa: /nˈɒn pˈə‍ʊtəbə‍l wˈɔːtɐ./
+      engine: olaph
 - phrase: Painting
   emoji: 🎨
   level: 806
   ipas:
-    - ipa: pˈeɪntɪŋ
-      category: standard
+    - ipa: /pˈe‍ɪntɪŋ./
+      engine: olaph
 - phrase: Raise your hand
   emoji: 🙋
   level: 260
   ipas:
-    - ipa: ɹˈeɪz jɔː hˈand
-      category: standard
+    - ipa: /ɹˈe‍ɪz jˈɔː hˈænd./
+      engine: olaph
 - phrase: Running
   emoji: 🏃
   level: 397
   ipas:
-    - ipa: ɹˈʌnɪŋ
-      category: standard
+    - ipa: /ɹˈʌnɪŋ./
+      engine: olaph
 - phrase: School starts at eight o'clock.
   emoji: 🏫
   level: 648
   ipas:
-    - ipa: skˈuːl stˈɑːts at ˈeɪt əklˈɒk
-      category: standard
+    - ipa: /skˈuːl stˈɑːts ˈæt ˈe‍ɪt əˈklɒk./
+      engine: olaph
 - phrase: Shooting stars
   emoji: ✨
   level: 911
   ipas:
-    - ipa: ʃˈuːtɪŋ stˈɑːz
-      category: standard
+    - ipa: /ʃˈuːtɪŋ ˈstɑɹz./
+      engine: olaph
 - phrase: Skiing
   emoji: 🎿
   level: 1
   ipas:
-    - ipa: skˈiːɪŋ
-      category: standard
+    - ipa: /skˈiːɪŋ./
+      engine: olaph
 - phrase: Swimming
   emoji: 🏊
   level: 806
   ipas:
-    - ipa: swˈɪmɪŋ
-      category: standard
+    - ipa: /swˈɪmɪŋ./
+      engine: olaph
 - phrase: The Ferris wheel
   emoji: 🎡
   level: 713
   ipas:
-    - ipa: ðə fˈɛɹɪs wˈiːl
-      category: standard
+    - ipa: /ðə ˈfɛɹɪs wˈiːl./
+      engine: olaph
 - phrase: The Guardian
   emoji: 💂
   level: 868
   ipas:
-    - ipa: ðə ɡˈɑːdiən
-      category: standard
+    - ipa: /ðə ɡˈɑːdi‍ən./
+      engine: olaph
 - phrase: The Labrador
   emoji: 🐕
   level: 806
   ipas:
-    - ipa: ðə lˈabɹɐdˌɔː
-      category: standard
+    - ipa: /ðə ˈɫæbɹəˌdɔɹ./
+      engine: olaph
 - phrase: The Scorpion
   blacklisted: true
   emoji: 🦂
   level: 122
   ipas:
-    - ipa: ðə skˈɔːpiən
-      category: standard
+    - ipa: /ðə skˈɔːpi‍ən./
+      engine: olaph
 - phrase: The Statue of Liberty
   emoji: 🗽
   level: 523
   ipas:
-    - ipa: ðə stˈatʃuː ɒv lˈɪbəti
-      category: standard
+    - ipa: /ðə stˈæt‍ʃuː ˈɒv lˈɪbəti./
+      engine: olaph
 - phrase: The TV
   emoji: 📺
   level: 625
   ipas:
-    - ipa: ðə tˌiːvˈiː
-      category: standard
+    - ipa: /ðə teːˈfaʊ̯./
+      engine: olaph
 - phrase: The adjustable wrench
   emoji: 🔧
   level: 717
   ipas:
-    - ipa: ðɪ ɐdʒˈʌstəbəl ɹˈɛntʃ
-      category: standard
+    - ipa: /ði ɐd‍ʒˈʌstəbə‍l ɹˈɛnt‍ʃ./
+      engine: olaph
 - phrase: The ambulance
   emoji: 🚑
   level: 1000
   ipas:
-    - ipa: ðɪ ˈambjʊləns
-      category: standard
+    - ipa: /ði ˈæmbjʊləns./
+      engine: olaph
 - phrase: The anchor
   emoji: ⚓
   level: 899
   ipas:
-    - ipa: ðɪ ˈaŋkə
-      category: standard
+    - ipa: /ði ˈænkɐ./
+      engine: olaph
 - phrase: The angel
   emoji: 👼
   level: 830
   ipas:
-    - ipa: ðɪ ˈeɪndʒəl
-      category: standard
+    - ipa: /ði ˈe‍ɪnd‍ʒə‍l./
+      engine: olaph
 - phrase: The anger
   emoji: 💢
   level: 378
   ipas:
-    - ipa: ðɪ ˈaŋɡə
-      category: standard
+    - ipa: /ði ˈæŋɡɐ./
+      engine: olaph
 - phrase: The ant
   emoji: 🐜
   level: 587
   ipas:
-    - ipa: ðɪ ˈant
-      category: standard
+    - ipa: /ði ˈænt./
+      engine: olaph
 - phrase: The ant is very small.
   emoji: 🐜
   level: 626
   ipas:
-    - ipa: ðɪ ˈant ɪz vˈɛɹi smˈɔːl
-      category: standard
+    - ipa: /ði ˈænt ˈɪz vˈɛɹi smˈɔːl./
+      engine: olaph
 - phrase: The apple
   emoji: 🍎
   level: 578
   ipas:
-    - ipa: ðɪ ˈapəl
-      category: standard
+    - ipa: /ði ˈæpə‍l./
+      engine: olaph
 - phrase: The apple is red and sweet.
   emoji: 🍎
   level: 627
   ipas:
-    - ipa: ðɪ ˈapəl ɪz ɹˈɛd and swˈiːt
-      category: standard
+    - ipa: /ði ˈæpə‍l ˈɪz ɹˈɛd ˈænd swˈiːt./
+      engine: olaph
 - phrase: The arm
   emoji: 💪
   level: 558
   ipas:
-    - ipa: ðɪ ˈɑːm
-      category: standard
+    - ipa: /ði ˈɑːm./
+      engine: olaph
 - phrase: The arm is strong.
   emoji: 💪
   level: 507
   ipas:
-    - ipa: ðɪ ˈɑːm ɪz stɹˈɒŋ
-      category: standard
+    - ipa: /ði ˈɑːm ˈɪz stɹˈɒŋ./
+      engine: olaph
 - phrase: The aromatic herb
   emoji: 🌿
   level: 1000
   ipas:
-    - ipa: ðɪ ɐɹəʊmˈatɪk hˈɜːb
-      category: standard
+    - ipa: /ði ɐɹə‍ʊmˈætɪk hˈɜːb./
+      engine: olaph
 - phrase: The atom
   emoji: ⚛️
   level: 1000
   ipas:
-    - ipa: ðɪ ˈatəm
-      category: standard
+    - ipa: /ði ˈætəm./
+      engine: olaph
 - phrase: The autumn leaf
   emoji: 🍁
   level: 911
   ipas:
-    - ipa: ðɪ ˈɔːtʌm lˈiːf
-      category: standard
+    - ipa: /ði ˈɔːtʌm lˈiːf./
+      engine: olaph
 - phrase: The baby
   emoji: 🚼
   level: 571
   ipas:
-    - ipa: ðə bˈeɪbi
-      category: standard
+    - ipa: /ðə bˈe‍ɪbi./
+      engine: olaph
 - phrase: The baby is crying
   emoji: 👶
   level: 639
   ipas:
-    - ipa: ðə bˈeɪbi ɪz kɹˈaɪɪŋ
-      category: standard
+    - ipa: /ðə bˈe‍ɪbi ˈɪz kɹˈa‍ɪɪŋ./
+      engine: olaph
 - phrase: The bacon
   emoji: 🥓
   level: 801
   ipas:
-    - ipa: ðə bˈeɪkən
-      category: standard
+    - ipa: /ðə bˈe‍ɪkən./
+      engine: olaph
 - phrase: The badge
   emoji: 📛
   level: 1
   ipas:
-    - ipa: ðə bˈadʒ
-      category: standard
+    - ipa: /ðə bˈæd‍ʒ./
+      engine: olaph
 - phrase: The ball
   emoji: 🎈
   level: 689
   ipas:
-    - ipa: ðə bˈɔːl
-      category: standard
+    - ipa: /ðə bˈɔːl./
+      engine: olaph
 - phrase: The bamboo
   emoji: 🎋
   level: 850
   ipas:
-    - ipa: ðə bambˈuː
-      category: standard
+    - ipa: /ðə bæmˈbu./
+      engine: olaph
 - phrase: The banana
   emoji: 🍌
   level: 599
   ipas:
-    - ipa: ðə bɐnˈɑːnə
-      category: standard
+    - ipa: /ðə bɐnˈɑːnɐ./
+      engine: olaph
 - phrase: The banana is yellow and sweet.
   emoji: 🍌
   level: 631
   ipas:
-    - ipa: ðə bɐnˈɑːnəɹ ɪz jˈɛləʊ and swˈiːt
-      category: standard
+    - ipa: /ðə bɐnˈɑːnɐ ˈɪz jˈɛlə‍ʊ ˈænd swˈiːt./
+      engine: olaph
 - phrase: The banjo
   emoji: 🪕
   level: 86
   ipas:
-    - ipa: ðə bˈandʒəʊ
-      category: standard
+    - ipa: /ðə bˈænd‍ʒə‍ʊ./
+      engine: olaph
 - phrase: The bank
   emoji: 🏦
   level: 689
   ipas:
-    - ipa: ðə bˈaŋk
-      category: standard
+    - ipa: /ðə bˈæŋk./
+      engine: olaph
 - phrase: The barrel
   emoji: 🛢️
   level: 721
   ipas:
-    - ipa: ðə bˈaɹəl
-      category: standard
+    - ipa: /ðə bˈæɹə‍l./
+      engine: olaph
 - phrase: The basket
   emoji: 🧺
   level: 689
   ipas:
-    - ipa: ðə bˈaskɪt
-      category: standard
+    - ipa: /ðə bˈɑːskɪt./
+      engine: olaph
 - phrase: The bat
   emoji: 🦇
   level: 1000
   ipas:
-    - ipa: ðə bˈat
-      category: standard
+    - ipa: /ðə bˈæt./
+      engine: olaph
 - phrase: The battery
   emoji: 🔋
   level: 533
   ipas:
-    - ipa: ðə bˈatəɹi
-      category: standard
+    - ipa: /ðə bˈætəɹi./
+      engine: olaph
 - phrase: The beach
   emoji: 🏖️
   level: 578
   ipas:
-    - ipa: ðə bˈiːtʃ
-      category: standard
+    - ipa: /ðə bˈiːt‍ʃ./
+      engine: olaph
 - phrase: The beach is beautiful and sunny.
   emoji: 🏖️
   level: 649
   ipas:
-    - ipa: ðə bˈiːtʃ ɪz bjˈuːtifəl and sˈʌni
-      category: standard
+    - ipa: /ðə bˈiːt‍ʃ ˈɪz bjˈuːtɪfə‍l ˈænd sˈʌni./
+      engine: olaph
 - phrase: The beach is warm
   emoji: 🏖️
   level: 477
   ipas:
-    - ipa: ðə bˈiːtʃ ɪz wˈɔːm
-      category: standard
+    - ipa: /ðə bˈiːt‍ʃ ˈɪz wˈɔːm./
+      engine: olaph
 - phrase: The bear
   emoji: 🐻
   level: 598
   ipas:
-    - ipa: ðə bˈeə
-      category: standard
+    - ipa: /ðə bˈe‍ə./
+      engine: olaph
 - phrase: The bear eats honey.
   emoji: 🐻
   level: 609
   ipas:
-    - ipa: ðə bˈeəɹ ˈiːts hˈʌni
-      category: standard
+    - ipa: /ðə bˈe‍ə ˈiːts hˈʌni./
+      engine: olaph
 - phrase: The bed
   emoji: 🛏️
   level: 549
   ipas:
-    - ipa: ðə bˈɛd
-      category: standard
+    - ipa: /ðə bˈɛd./
+      engine: olaph
 - phrase: The bed is soft and comfortable.
   emoji: 🛏️
   level: 632
   ipas:
-    - ipa: ðə bˈɛd ɪz sˈɒft and kˈʌmftəbəl
-      category: standard
+    - ipa: /ðə bˈɛd ˈɪz sˈɒft ˈænd kˈʌmftəbə‍l./
+      engine: olaph
 - phrase: The bee
   emoji: 🐝
   level: 698
   ipas:
-    - ipa: ðə bˈiː
-      category: standard
+    - ipa: /ðə bˈiː./
+      engine: olaph
 - phrase: The bee buzzes
   emoji: 🐝
   level: 676
   ipas:
-    - ipa: ðə bˈiː bˈʌzɪz
-      category: standard
+    - ipa: /ðə bˈiː bˈʌzɪz./
+      engine: olaph
 - phrase: The bee produces honey.
   emoji: 🐝
   level: 642
   ipas:
-    - ipa: ðə bˈiː pɹədjˈuːsɪz hˈʌni
-      category: standard
+    - ipa: /ðə bˈiː pɹədjˈuːsɪz hˈʌni./
+      engine: olaph
 - phrase: The beer
   blacklisted: true
   emoji: 🍺
   level: 526
   ipas:
-    - ipa: ðə bˈiə
-      category: standard
+    - ipa: /ðə bˈi‍ə./
+      engine: olaph
 - phrase: The bicycle is an ecological means of transport.
   emoji: 🚲
   level: 662
   ipas:
-    - ipa: ðə bˈaɪsɪkəl ɪz ɐn ˌɛkəlˈɒdʒɪkəl mˈiːnz ɒv tɹˈanspɔːt
-      category: standard
+    - ipa: /ðə bˈa‍ɪsɪkə‍l ˈɪz ˈɐn ˌɛkəlˈɒd‍ʒɪkə‍l mˈiːnz ˈɒv ˈtɹænspɔɹt./
+      engine: olaph
 - phrase: The bike
   emoji: 🚲
   level: 558
   ipas:
-    - ipa: ðə bˈaɪk
-      category: standard
+    - ipa: /ðə bˈa‍ɪk./
+      engine: olaph
 - phrase: The bike goes very fast.
   emoji: 🏍️
   level: 604
   ipas:
-    - ipa: ðə bˈaɪk ɡəʊz vˈɛɹi fˈast
-      category: standard
+    - ipa: /ðə bˈa‍ɪk ɡˈə‍ʊz vˈɛɹi fˈɑːst./
+      engine: olaph
 - phrase: The bird
   emoji: 🐦
   level: 656
   ipas:
-    - ipa: ðə bˈɜːd
-      category: standard
+    - ipa: /ðə bˈɜːd./
+      engine: olaph
 - phrase: The bird sings in the tree.
   emoji: 🐦
   level: 655
   ipas:
-    - ipa: ðə bˈɜːd sˈɪŋz ɪnðə tɹˈiː
-      category: standard
+    - ipa: /ðə bˈɜːd ˈsɪŋz ˈɪn ðə tɹˈiː./
+      engine: olaph
 - phrase: The boat
   emoji: 🚢
   level: 587
   ipas:
-    - ipa: ðə bˈəʊt
-      category: standard
+    - ipa: /ðə bˈə‍ʊt./
+      engine: olaph
 - phrase: The boat is sailing on the sea.
   emoji: 🚢
   level: 627
   ipas:
-    - ipa: ðə bˈəʊt ɪz sˈeɪlɪŋ ɒnðə sˈiː
-      category: standard
+    - ipa: /ðə bˈə‍ʊt ˈɪz sˈe‍ɪlɪŋ ˈɒn ðə sˈiː./
+      engine: olaph
 - phrase: The bomb
   blacklisted: true
   emoji: 💣
   level: 652
   ipas:
-    - ipa: ðə bˈɒm
-      category: standard
+    - ipa: /ðə bˈɒm./
+      engine: olaph
 - phrase: The bone
   emoji: 🦴
   level: 596
   ipas:
-    - ipa: ðə bˈəʊn
-      category: standard
+    - ipa: /ðə bˈə‍ʊn./
+      engine: olaph
 - phrase: The book
   emoji: 📖
   level: 578
   ipas:
-    - ipa: ðə bˈʊk
-      category: standard
+    - ipa: /ðə bˈʊk./
+      engine: olaph
 - phrase: The book tells a beautiful story.
   emoji: 📖
   level: 663
   ipas:
-    - ipa: ðə bˈʊk tˈɛlz ɐ bjˈuːtifəl stˈɔːɹi
-      category: standard
+    - ipa: /ðə bˈʊk tˈɛlz ə bjˈuːtɪfə‍l stˈɔːɹi./
+      engine: olaph
 - phrase: The boot
   emoji: 👢
   level: 652
   ipas:
-    - ipa: ðə bˈuːt
-      category: standard
+    - ipa: /ðə bˈuːt./
+      engine: olaph
 - phrase: The bottle
   emoji: 🍼
   level: 774
   ipas:
-    - ipa: ðə bˈɒtəl
-      category: standard
+    - ipa: /ðə bˈɒtə‍l./
+      engine: olaph
 - phrase: The box
   emoji: 🗃️
   level: 1
   ipas:
-    - ipa: ðə bˈɒks
-      category: standard
+    - ipa: /ðə bˈɒks./
+      engine: olaph
 - phrase: The bread
   emoji: 🍞
   level: 385
   ipas:
-    - ipa: ðə bɹˈɛd
-      category: standard
+    - ipa: /ðə bɹˈɛd./
+      engine: olaph
 - phrase: The bread is fresh and crispy.
   emoji: 🍞
   level: 579
   ipas:
-    - ipa: ðə bɹˈɛd ɪz fɹˈɛʃ and kɹˈɪspi
-      category: standard
+    - ipa: /ðə bɹˈɛd ˈɪz fɹˈɛʃ ˈænd kɹˈɪspi./
+      engine: olaph
 - phrase: The bride
   emoji: 👰
   level: 737
   ipas:
-    - ipa: ðə bɹˈaɪd
-      category: standard
+    - ipa: /ðə bɹˈa‍ɪd./
+      engine: olaph
 - phrase: The broccoli
   emoji: 🥦
   level: 917
   ipas:
-    - ipa: ðə bɹˈɒkəli
-      category: standard
+    - ipa: /ðə bɹˈɒkəlˌi./
+      engine: olaph
 - phrase: The broccoli is green
   emoji: 🥦
   level: 896
   ipas:
-    - ipa: ðə bɹˈɒkəli ɪz ɡɹˈiːn
-      category: standard
+    - ipa: /ðə bɹˈɒkəlˌi ˈɪz ɡɹˈiːn./
+      engine: olaph
 - phrase: The broom
   emoji: 🧹
   level: 652
   ipas:
-    - ipa: ðə bɹˈuːm
-      category: standard
+    - ipa: /ðə bɹˈuːm./
+      engine: olaph
 - phrase: The brush
   emoji: 🖌️
   level: 721
   ipas:
-    - ipa: ðə bɹˈʌʃ
-      category: standard
+    - ipa: /ðə bɹˈʌʃ./
+      engine: olaph
 - phrase: The buffalo
   emoji: 🐃
   level: 689
   ipas:
-    - ipa: ðə bˈʌfəlˌəʊ
-      category: standard
+    - ipa: /ðə bˈʌfəlˌə‍ʊ./
+      engine: olaph
 - phrase: The building
   emoji: 🏗️
   level: 600
   ipas:
-    - ipa: ðə bˈɪldɪŋ
-      category: standard
+    - ipa: /ðə bˈɪldɪŋ./
+      engine: olaph
 - phrase: The bunnies
   emoji: 👯
   level: 484
   ipas:
-    - ipa: ðə bˈʌnɪz
-      category: standard
+    - ipa: /ðə bˈʌnɪz./
+      engine: olaph
 - phrase: The bus
   emoji: 🚌
   level: 373
   ipas:
-    - ipa: ðə bˈʌs
-      category: standard
+    - ipa: /ðə bˈʌs./
+      engine: olaph
 - phrase: The bus stop
   emoji: 🚏
   level: 203
   ipas:
-    - ipa: ðə bˈʌs stˈɒp
-      category: standard
+    - ipa: /ðə bˈʌs stˈɒp./
+      engine: olaph
 - phrase: The bus transports people.
   emoji: 🚌
   level: 554
   ipas:
-    - ipa: ðə bˈʌs tɹˈanspɔːts pˈiːpəl
-      category: standard
+    - ipa: /ðə bˈʌs ˈtɹænspɔɹts pˈiːpə‍l./
+      engine: olaph
 - phrase: The business
   emoji: 🏬
   level: 889
   ipas:
-    - ipa: ðə bˈɪznəs
-      category: standard
+    - ipa: /ðə bˈɪznəs./
+      engine: olaph
 - phrase: The butterfly
   emoji: 🦋
   level: 616
   ipas:
-    - ipa: ðə bˈʌtəflˌaɪ
-      category: standard
+    - ipa: /ðə bˈʌtəflˌa‍ɪ./
+      engine: olaph
 - phrase: The butterfly flies from flower to flower.
   emoji: 🦋
   level: 597
   ipas:
-    - ipa: ðə bˈʌtəflˌaɪ flˈaɪz fɹɒm flˈaʊə tə flˈaʊə
-      category: standard
+    - ipa: /ðə bˈʌtəflˌa‍ɪ flˈa‍ɪz fɹˈɒm ˈfɫaʊɝ tˈuː ˈfɫaʊɝ./
+      engine: olaph
 - phrase: The cactus
   emoji: 🌵
   level: 50
   ipas:
-    - ipa: ðə kˈaktəs
-      category: standard
+    - ipa: /ðə kˈæktəs./
+      engine: olaph
 - phrase: The cake
   blacklisted: true
   emoji: 🍰
   level: 574
   ipas:
-    - ipa: ðə kˈeɪk
-      category: standard
+    - ipa: /ðə kˈe‍ɪk./
+      engine: olaph
 - phrase: The cake is sweet
   blacklisted: true
   emoji: 🍰
   level: 535
   ipas:
-    - ipa: ðə kˈeɪk ɪz swˈiːt
-      category: standard
+    - ipa: /ðə kˈe‍ɪk ˈɪz swˈiːt./
+      engine: olaph
 - phrase: The cake is sweet and moist.
   blacklisted: true
   emoji: 🍰
   level: 627
   ipas:
-    - ipa: ðə kˈeɪk ɪz swˈiːt and mˈɔɪst
-      category: standard
+    - ipa: /ðə kˈe‍ɪk ˈɪz swˈiːt ˈænd mˈɔ‍ɪst./
+      engine: olaph
 - phrase: The calendar
   emoji: 📅
   level: 871
   ipas:
-    - ipa: ðə kˈaləndə
-      category: standard
+    - ipa: /ðə kˈæləndɐ./
+      engine: olaph
 - phrase: The call
   emoji: 🤙
   level: 899
   ipas:
-    - ipa: ðə kˈɔːl
-      category: standard
+    - ipa: /ðə kˈɔːl./
+      engine: olaph
 - phrase: The camel
   emoji: 🐪
   level: 721
   ipas:
-    - ipa: ðə kˈaməl
-      category: standard
+    - ipa: /ðə kˈæmə‍l./
+      engine: olaph
 - phrase: The camera
   emoji: 📷
   level: 357
   ipas:
-    - ipa: ðə kˈamɹə
-      category: standard
+    - ipa: /ðə kˈæmɹɐ./
+      engine: olaph
 - phrase: The candle
   emoji: 🕯️
   level: 689
   ipas:
-    - ipa: ðə kˈandəl
-      category: standard
+    - ipa: /ðə kˈændə‍l./
+      engine: olaph
 - phrase: The candy
   blacklisted: true
   emoji: 🍭
   level: 689
   ipas:
-    - ipa: ðə kˈandi
-      category: standard
+    - ipa: /ðə kˈændi./
+      engine: olaph
 - phrase: The canoe
   emoji: 🛶
   level: 652
   ipas:
-    - ipa: ðə kənˈuː
-      category: standard
+    - ipa: /ðə kənˈuː./
+      engine: olaph
 - phrase: The car
   emoji: 🚗
   level: 608
   ipas:
-    - ipa: ðə kˈɑː
-      category: standard
+    - ipa: /ðə kˈɑː./
+      engine: olaph
 - phrase: The car is driving fast on the road.
   emoji: 🚗
   level: 644
   ipas:
-    - ipa: ðə kˈɑːɹ ɪz dɹˈaɪvɪŋ fˈast ɒnðə ɹˈəʊd
-      category: standard
+    - ipa: /ðə kˈɑː ˈɪz dɹˈa‍ɪvɪŋ fˈɑːst ˈɒn ðə ɹˈə‍ʊd./
+      engine: olaph
 - phrase: The carp
   emoji: 🎏
   level: 652
   ipas:
-    - ipa: ðə kˈɑːp
-      category: standard
+    - ipa: /ðə kˈɑːp./
+      engine: olaph
 - phrase: The carrot
   emoji: 🥕
   level: 608
   ipas:
-    - ipa: ðə kˈaɹət
-      category: standard
+    - ipa: /ðə kˈæɹət./
+      engine: olaph
 - phrase: The cassette
   emoji: 📼
   level: 806
   ipas:
-    - ipa: ðə kɐsˈɛt
-      category: standard
+    - ipa: /ðə kɐsˈɛt./
+      engine: olaph
 - phrase: The castle
   emoji: 🏰
   level: 582
   ipas:
-    - ipa: ðə kˈasəl
-      category: standard
+    - ipa: /ðə kˈɑːsə‍l./
+      engine: olaph
 - phrase: The castle is very old.
   emoji: 🏰
   level: 611
   ipas:
-    - ipa: ðə kˈasəl ɪz vˈɛɹi ˈəʊld
-      category: standard
+    - ipa: /ðə kˈɑːsə‍l ˈɪz vˈɛɹi ˈə‍ʊld./
+      engine: olaph
 - phrase: The cat
   emoji: 🐱
   level: 558
   ipas:
-    - ipa: ðə kˈat
-      category: standard
+    - ipa: /ðə kˈæt./
+      engine: olaph
 - phrase: The cat is sleeping on the sofa.
   emoji: 🐱
   level: 613
   ipas:
-    - ipa: ðə kˈat ɪz slˈiːpɪŋ ɒnðə sˈəʊfə
-      category: standard
+    - ipa: /ðə kˈæt ˈɪz slˈiːpɪŋ ˈɒn ðə sˈə‍ʊfɐ./
+      engine: olaph
 - phrase: The caterpillar
   emoji: 🐛
   level: 806
   ipas:
-    - ipa: ðə kˈatəpˌɪlə
-      category: standard
+    - ipa: /ðə kˈætəpˌɪlɐ./
+      engine: olaph
 - phrase: The chain
   emoji: ⛓️
   level: 689
   ipas:
-    - ipa: ðə tʃˈeɪn
-      category: standard
+    - ipa: /ðə t‍ʃˈe‍ɪn./
+      engine: olaph
 - phrase: The chair
   emoji: 🪑
   level: 587
   ipas:
-    - ipa: ðə tʃˈeə
-      category: standard
+    - ipa: /ðə t‍ʃˈe‍ə./
+      engine: olaph
 - phrase: The chair is for sitting.
   emoji: 🪑
   level: 631
   ipas:
-    - ipa: ðə tʃˈeəɹ ɪz fɔː sˈɪtɪŋ
-      category: standard
+    - ipa: /ðə t‍ʃˈe‍ə ˈɪz fˈɔː sˈɪtɪŋ./
+      engine: olaph
 - phrase: The chapel
   emoji: 💒
   level: 806
   ipas:
-    - ipa: ðə tʃˈapəl
-      category: standard
+    - ipa: /ðə t‍ʃˈæpə‍l./
+      engine: olaph
 - phrase: The cheese
   emoji: 🧀
   level: 608
   ipas:
-    - ipa: ðə tʃˈiːz
-      category: standard
+    - ipa: /ðə t‍ʃˈiːz./
+      engine: olaph
 - phrase: The cheese smells very good.
   emoji: 🧀
   level: 618
   ipas:
-    - ipa: ðə tʃˈiːz smˈɛlz vˈɛɹi ɡˈʊd
-      category: standard
+    - ipa: /ðə t‍ʃˈiːz smˈɛlz vˈɛɹi ɡˈʊd./
+      engine: olaph
 - phrase: The cherry
   emoji: 🍒
   level: 599
   ipas:
-    - ipa: ðə tʃˈɛɹi
-      category: standard
+    - ipa: /ðə t‍ʃˈɛɹi./
+      engine: olaph
 - phrase: The cherry blossom
   emoji: 🌸
   level: 786
   ipas:
-    - ipa: ðə tʃˈɛɹi blˈɒsəm
-      category: standard
+    - ipa: /ðə t‍ʃˈɛɹi blˈɒsəm./
+      engine: olaph
 - phrase: The cherry is small and red.
   emoji: 🍒
   level: 638
   ipas:
-    - ipa: ðə tʃˈɛɹi ɪz smˈɔːl and ɹˈɛd
-      category: standard
+    - ipa: /ðə t‍ʃˈɛɹi ˈɪz smˈɔːl ˈænd ɹˈɛd./
+      engine: olaph
 - phrase: The chestnut
   emoji: 🌰
   level: 790
   ipas:
-    - ipa: ðə tʃˈɛstnʌt
-      category: standard
+    - ipa: /ðə t‍ʃˈɛstnʌt./
+      engine: olaph
 - phrase: The children
   emoji: 🚸
   level: 753
   ipas:
-    - ipa: ðə tʃˈɪldɹən
-      category: standard
+    - ipa: /ðə t‍ʃˈɪldɹən./
+      engine: olaph
 - phrase: The chime
   emoji: 🎐
   level: 806
   ipas:
-    - ipa: ðə tʃˈaɪm
-      category: standard
+    - ipa: /ðə t‍ʃˈa‍ɪm./
+      engine: olaph
 - phrase: The chocolate
   blacklisted: true
   emoji: 🍫
   level: 667
   ipas:
-    - ipa: ðə tʃˈɒklət
-      category: standard
+    - ipa: /ðə t‍ʃˈɒklət./
+      engine: olaph
 - phrase: The chocolate is delicious.
   blacklisted: true
   emoji: 🍫
   level: 642
   ipas:
-    - ipa: ðə tʃˈɒklət ɪz dɪlˈɪʃəs
-      category: standard
+    - ipa: /ðə t‍ʃˈɒklət ˈɪz dɪlˈɪʃəs./
+      engine: olaph
 - phrase: The church
   emoji: ⛪
   level: 656
   ipas:
-    - ipa: ðə tʃˈɜːtʃ
-      category: standard
+    - ipa: /ðə t‍ʃˈɜːt‍ʃ./
+      engine: olaph
 - phrase: The church building
   emoji: ⛪
   level: 1000
   ipas:
-    - ipa: ðə tʃˈɜːtʃ bˈɪldɪŋ
-      category: standard
+    - ipa: /ðə t‍ʃˈɜːt‍ʃ bˈɪldɪŋ./
+      engine: olaph
 - phrase: The church is beautiful and old.
   emoji: ⛪
   level: 648
   ipas:
-    - ipa: ðə tʃˈɜːtʃ ɪz bjˈuːtifəl and ˈəʊld
-      category: standard
+    - ipa: /ðə t‍ʃˈɜːt‍ʃ ˈɪz bjˈuːtɪfə‍l ˈænd ˈə‍ʊld./
+      engine: olaph
 - phrase: The church service
   emoji: 🛐
   level: 995
   ipas:
-    - ipa: ðə tʃˈɜːtʃ sˈɜːvɪs
-      category: standard
+    - ipa: /ðə t‍ʃˈɜːt‍ʃ sˈɜːvɪs./
+      engine: olaph
 - phrase: The cigarette
   blacklisted: true
   emoji: 🚬
   level: 272
   ipas:
-    - ipa: ðə sˌɪɡəɹˈɛt
-      category: standard
+    - ipa: /ðə sˌɪɡəɹˈɛt./
+      engine: olaph
 - phrase: The cinema
   emoji: 🎦
   level: 810
   ipas:
-    - ipa: ðə sˈɪnəmə
-      category: standard
+    - ipa: /ðə sˈɪnəmɐ./
+      engine: olaph
 - phrase: The circle
   emoji: ⭕
   level: 689
   ipas:
-    - ipa: ðə sˈɜːkəl
-      category: standard
+    - ipa: /ðə sˈɜːkə‍l./
+      engine: olaph
 - phrase: The circus
   emoji: 🎪
   level: 689
   ipas:
-    - ipa: ðə sˈɜːkəs
-      category: standard
+    - ipa: /ðə sˈɜːkəs./
+      engine: olaph
 - phrase: The clock
   emoji: 🕐
   level: 1000
   ipas:
-    - ipa: ðə klˈɒk
-      category: standard
+    - ipa: /ðə klˈɒk./
+      engine: olaph
 - phrase: The cloud
   emoji: ☁️
   level: 578
   ipas:
-    - ipa: ðə klˈaʊd
-      category: standard
+    - ipa: /ðə klˈa‍ʊd./
+      engine: olaph
 - phrase: The cloud hides the sun.
   emoji: ☁️
   level: 622
   ipas:
-    - ipa: ðə klˈaʊd hˈaɪdz ðə sˈʌn
-      category: standard
+    - ipa: /ðə klˈa‍ʊd hˈa‍ɪdz ðə sˈʌn./
+      engine: olaph
 - phrase: The cloud is moving
   emoji: ☁️
   level: 674
   ipas:
-    - ipa: ðə klˈaʊd ɪz mˈuːvɪŋ
-      category: standard
+    - ipa: /ðə klˈa‍ʊd ˈɪz mˈuːvɪŋ./
+      engine: olaph
 - phrase: The clover
   emoji: ☘️
   level: 636
   ipas:
-    - ipa: ðə klˈəʊvə
-      category: standard
+    - ipa: /ðə klˈə‍ʊvɐ./
+      engine: olaph
 - phrase: The clutch
   emoji: 👝
   level: 119
   ipas:
-    - ipa: ðə klˈʌtʃ
-      category: standard
+    - ipa: /ðə klˈʌt‍ʃ./
+      engine: olaph
 - phrase: The cocktail
   blacklisted: true
   emoji: 🍸
   level: 256
   ipas:
-    - ipa: ðə kˈɒkteɪl
-      category: standard
+    - ipa: /ðə kˈɒkte‍ɪl./
+      engine: olaph
 - phrase: The coffee
   emoji: ☕
   level: 558
   ipas:
-    - ipa: ðə kˈɒfi
-      category: standard
+    - ipa: /ðə kˈɒfi./
+      engine: olaph
 - phrase: The coffee is hot and fragrant.
   emoji: ☕
   level: 618
   ipas:
-    - ipa: ðə kˈɒfi ɪz hˈɒt and fɹˈeɪɡɹənt
-      category: standard
+    - ipa: /ðə kˈɒfi ˈɪz hˈɒt ˈænd fɹˈe‍ɪɡɹənt./
+      engine: olaph
 - phrase: The coffin
   emoji: ⚰️
   level: 753
   ipas:
-    - ipa: ðə kˈɒfɪn
-      category: standard
+    - ipa: /ðə kˈɒfɪn./
+      engine: olaph
 - phrase: The colored pencil
   emoji: 🖍️
   level: 426
   ipas:
-    - ipa: ðə kˈʌləd pˈɛnsəl
-      category: standard
+    - ipa: /ðə kˈʌləd pˈɛnsə‍l./
+      engine: olaph
 - phrase: The comet
   emoji: ☄️
   level: 689
   ipas:
-    - ipa: ðə kˈɒmɪt
-      category: standard
+    - ipa: /ðə kˈɒmɪt./
+      engine: olaph
 - phrase: The compass
   emoji: 🧭
   level: 806
   ipas:
-    - ipa: ðə kˈʌmpəs
-      category: standard
+    - ipa: /ðə kˈʌmpəs./
+      engine: olaph
 - phrase: The computer
   emoji: 💻
   level: 1000
   ipas:
-    - ipa: ðə kəmpjˈuːtə
-      category: standard
+    - ipa: /ðə kəmpjˈuːtɐ./
+      engine: olaph
 - phrase: The computer mouse
   emoji: 🖱️
   level: 992
   ipas:
-    - ipa: ðə kəmpjˈuːtə mˈaʊs
-      category: standard
+    - ipa: /ðə kəmpjˈuːtɐ ˈmaʊs./
+      engine: olaph
 - phrase: The confetti
   emoji: 🎊
   level: 917
   ipas:
-    - ipa: ðə kənfˈɛti
-      category: standard
+    - ipa: /ðə kənfˈɛti./
+      engine: olaph
 - phrase: The construction site
   emoji: 🏗️
   level: 753
   ipas:
-    - ipa: ðə kənstɹˈʌkʃən sˈaɪt
-      category: standard
+    - ipa: /ðə kənstɹˈʌkʃən sˈa‍ɪt./
+      engine: olaph
 - phrase: The cookie
   blacklisted: true
   emoji: 🍪
   level: 17
   ipas:
-    - ipa: ðə kˈʊki
-      category: standard
+    - ipa: /ðə kˈʊki./
+      engine: olaph
 - phrase: The corn
   emoji: 🌽
   level: 783
   ipas:
-    - ipa: ðə kˈɔːn
-      category: standard
+    - ipa: /ðə kˈɔːn./
+      engine: olaph
 - phrase: The couple
   emoji: 👫
   level: 78
   ipas:
-    - ipa: ðə kˈʌpəl
-      category: standard
+    - ipa: /ðə kˈʌpə‍l./
+      engine: olaph
 - phrase: The cover
   emoji: 👝
   level: 806
   ipas:
-    - ipa: ðə kˈʌvə
-      category: standard
+    - ipa: /ðə kˈʌvɐ./
+      engine: olaph
 - phrase: The cow
   emoji: 🐮
   level: 578
   ipas:
-    - ipa: ðə kˈaʊ
-      category: standard
+    - ipa: /ðə kˈa‍ʊ./
+      engine: olaph
 - phrase: The cow gives milk.
   emoji: 🐮
   level: 611
   ipas:
-    - ipa: ðə kˈaʊ ɡˈɪvz mˈɪlk
-      category: standard
+    - ipa: /ðə kˈa‍ʊ ɡˈɪvz mˈɪlk./
+      engine: olaph
 - phrase: The cow moos
   emoji: 🐄
   level: 611
   ipas:
-    - ipa: ðə kˈaʊ mˈuːz
-      category: standard
+    - ipa: /ðə kˈa‍ʊ mˈuːz./
+      engine: olaph
 - phrase: The crab
   emoji: 🦀
   level: 652
   ipas:
-    - ipa: ðə kɹˈab
-      category: standard
+    - ipa: /ðə kɹˈæb./
+      engine: olaph
 - phrase: The credit card
   emoji: 💳
   level: 725
   ipas:
-    - ipa: ðə kɹˈɛdɪt kˈɑːd
-      category: standard
+    - ipa: /ðə kɹˈɛdɪt kˈɑːd./
+      engine: olaph
 - phrase: The crepe
   emoji: 🥞
   level: 604
   ipas:
-    - ipa: ðə kɹˈeɪp
-      category: standard
+    - ipa: /ðə kɹˈe‍ɪp./
+      engine: olaph
 - phrase: The crocodile
   emoji: 🐊
   level: 199
   ipas:
-    - ipa: ðə kɹˈɒkədˌaɪl
-      category: standard
+    - ipa: /ðə kɹˈɒkədˌa‍ɪl./
+      engine: olaph
 - phrase: The crocodile snaps
   emoji: 🐊
   level: 926
   ipas:
-    - ipa: ðə kɹˈɒkədˌaɪl snˈaps
-      category: standard
+    - ipa: /ðə kɹˈɒkədˌa‍ɪl snˈæps./
+      engine: olaph
 - phrase: The cross
   emoji: ✝️
   level: 604
   ipas:
-    - ipa: ðə kɹˈɒs
-      category: standard
+    - ipa: /ðə kɹˈɒs./
+      engine: olaph
 - phrase: The crown
   emoji: 👑
   level: 806
   ipas:
-    - ipa: ðə kɹˈaʊn
-      category: standard
+    - ipa: /ðə kɹˈa‍ʊn./
+      engine: olaph
 - phrase: The cube
   emoji: 🎲
   level: 850
   ipas:
-    - ipa: ðə kjˈuːb
-      category: standard
+    - ipa: /ðə ˈkjub./
+      engine: olaph
 - phrase: The cupboard
   emoji: 🗄️
   level: 840
   ipas:
-    - ipa: ðə kˈʌbəd
-      category: standard
+    - ipa: /ðə kˈʌbəd./
+      engine: olaph
 - phrase: The curry
   emoji: 🍛
   level: 457
   ipas:
-    - ipa: ðə kˈʌɹi
-      category: standard
+    - ipa: /ðə kˈʌɹi./
+      engine: olaph
 - phrase: The cyclone
   emoji: 🌀
   level: 191
   ipas:
-    - ipa: ðə sˈaɪkləʊn
-      category: standard
+    - ipa: /ðə sˈa‍ɪklə‍ʊn./
+      engine: olaph
 - phrase: The cylinder
   emoji: 🎩
   level: 889
   ipas:
-    - ipa: ðə sˈɪlɪndə
-      category: standard
+    - ipa: /ðə sˈɪlɪndɐ./
+      engine: olaph
 - phrase: The dairy cow
   emoji: 🐄
   level: 846
   ipas:
-    - ipa: ðə dˈeəɹi kˈaʊ
-      category: standard
+    - ipa: /ðə dˈe‍əɹi kˈa‍ʊ./
+      engine: olaph
 - phrase: The dance
   emoji: 💃
   level: 652
   ipas:
-    - ipa: ðə dˈans
-      category: standard
+    - ipa: /ðə dˈɑːns./
+      engine: olaph
 - phrase: The dancers
   emoji: 👯
   level: 790
   ipas:
-    - ipa: ðə dˈansəz
-      category: standard
+    - ipa: /ðə ˈdænsɝz./
+      engine: olaph
 - phrase: The deer
   emoji: 🦌
   level: 571
   ipas:
-    - ipa: ðə dˈiə
-      category: standard
+    - ipa: /ðə dˈi‍ə./
+      engine: olaph
 - phrase: The diamond
   emoji: 💎
   level: 721
   ipas:
-    - ipa: ðə dˈaɪəmənd
-      category: standard
+    - ipa: /ðə dˈa‍ɪ‍əmənd./
+      engine: olaph
 - phrase: The dinosaur
   emoji: 🦖
   level: 891
   ipas:
-    - ipa: ðə dˈaɪnəsˌɔː
-      category: standard
+    - ipa: /ðə dˈa‍ɪnəsˌɔː./
+      engine: olaph
 - phrase: The dog
   emoji: 🐶
   level: 566
   ipas:
-    - ipa: ðə dˈɒɡ
-      category: standard
+    - ipa: /ðə dˈɒɡ./
+      engine: olaph
 - phrase: The dog is playing in the garden.
   emoji: 🐶
   level: 618
   ipas:
-    - ipa: ðə dˈɒɡ ɪz plˈeɪɪŋ ɪnðə ɡˈɑːdən
-      category: standard
+    - ipa: /ðə dˈɒɡ ˈɪz plˈe‍ɪɪŋ ˈɪn ðə ɡˈɑːdən./
+      engine: olaph
 - phrase: The dollar
   emoji: 💵
   level: 66
   ipas:
-    - ipa: ðə dˈɒlə
-      category: standard
+    - ipa: /ðə dˈɒlɐ./
+      engine: olaph
 - phrase: The dolls
   emoji: 🎎
   level: 753
   ipas:
-    - ipa: ðə dˈɒlz
-      category: standard
+    - ipa: /ðə ˈdɑɫz./
+      engine: olaph
 - phrase: The dolphin
   emoji: 🐬
   level: 595
   ipas:
-    - ipa: ðə dˈɒlfɪn
-      category: standard
+    - ipa: /ðə dˈɒlfɪn./
+      engine: olaph
 - phrase: The dolphin jumps out of the water.
   emoji: 🐬
   level: 628
   ipas:
-    - ipa: ðə dˈɒlfɪn dʒˈʌmps ˌaʊtəv ðə wˈɔːtə
-      category: standard
+    - ipa: /ðə dˈɒlfɪn d‍ʒˈʌmps ˈa‍ʊt ˈɒv ðə wˈɔːtɐ./
+      engine: olaph
 - phrase: The donut
   blacklisted: true
   emoji: 🍩
   level: 721
   ipas:
-    - ipa: ðə dˈəʊnʌt
-      category: standard
+    - ipa: /ðə dˈə‍ʊnʌt./
+      engine: olaph
 - phrase: The door
   emoji: 🚪
   level: 578
   ipas:
-    - ipa: ðə dˈɔː
-      category: standard
+    - ipa: /ðə dˈɔː./
+      engine: olaph
 - phrase: The door opens and closes.
   emoji: 🚪
   level: 627
   ipas:
-    - ipa: ðə dˈɔːɹ ˈəʊpənz and klˈəʊzɪz
-      category: standard
+    - ipa: /ðə dˈɔː ˈə‍ʊpənz ˈænd ˈkɫoʊzɪz./
+      engine: olaph
 - phrase: The dress
   emoji: 👗
   level: 416
   ipas:
-    - ipa: ðə dɹˈɛs
-      category: standard
+    - ipa: /ðə dɹˈɛs./
+      engine: olaph
 - phrase: The dress is beautiful and elegant.
   emoji: 👗
   level: 578
   ipas:
-    - ipa: ðə dɹˈɛs ɪz bjˈuːtifəl and ˈɛlɪɡənt
-      category: standard
+    - ipa: /ðə dɹˈɛs ˈɪz bjˈuːtɪfə‍l ˈænd ˈɛlɪɡənt./
+      engine: olaph
 - phrase: The dressing
   emoji: 🩹
   level: 838
   ipas:
-    - ipa: ðə dɹˈɛsɪŋ
-      category: standard
+    - ipa: /ðə dɹˈɛsɪŋ./
+      engine: olaph
 - phrase: The duck
   emoji: 🦆
   level: 587
   ipas:
-    - ipa: ðə dˈʌk
-      category: standard
+    - ipa: /ðə dˈʌk./
+      engine: olaph
 - phrase: The duck quacks
   emoji: 🦆
   level: 658
   ipas:
-    - ipa: ðə dˈʌk kwˈaks
-      category: standard
+    - ipa: /ðə dˈʌk kwˈæks./
+      engine: olaph
 - phrase: The duck swims on the pond.
   emoji: 🦆
   level: 624
   ipas:
-    - ipa: ðə dˈʌk swˈɪmz ɒnðə pˈɒnd
-      category: standard
+    - ipa: /ðə dˈʌk swˈɪmz ˈɒn ðə pˈɒnd./
+      engine: olaph
 - phrase: The eagle
   emoji: 🦅
   level: 540
   ipas:
-    - ipa: ðɪ ˈiːɡəl
-      category: standard
+    - ipa: /ði ˈiːɡə‍l./
+      engine: olaph
 - phrase: The eagle flies very high.
   emoji: 🦅
   level: 553
   ipas:
-    - ipa: ðɪ ˈiːɡəl flˈaɪz vˈɛɹi hˈaɪ
-      category: standard
+    - ipa: /ði ˈiːɡə‍l flˈa‍ɪz vˈɛɹi hˈa‍ɪ./
+      engine: olaph
 - phrase: The ear
   emoji: 👂
   level: 698
   ipas:
-    - ipa: ðɪ ˈiə
-      category: standard
+    - ipa: /ði ˈi‍ə./
+      engine: olaph
 - phrase: The ear hears sounds.
   emoji: 👂
   level: 642
   ipas:
-    - ipa: ðɪ ˈiə hˈiəz sˈaʊndz
-      category: standard
+    - ipa: /ði ˈi‍ə hˈi‍əz ˈsaʊndz./
+      engine: olaph
 - phrase: The egg
   emoji: 🥚
   level: 581
   ipas:
-    - ipa: ðɪ ˈɛɡ
-      category: standard
+    - ipa: /ði ˈɛɡ./
+      engine: olaph
 - phrase: The egg is fresh and round.
   emoji: 🥚
   level: 604
   ipas:
-    - ipa: ðɪ ˈɛɡ ɪz fɹˈɛʃ and ɹˈaʊnd
-      category: standard
+    - ipa: /ði ˈɛɡ ˈɪz fɹˈɛʃ ˈænd ˈɹaʊnd./
+      engine: olaph
 - phrase: The elderly person
   emoji: 🧓
   level: 790
   ipas:
-    - ipa: ðɪ ˈɛldəli pˈɜːsən
-      category: standard
+    - ipa: /ði ˈɛldəli pˈɜːsən./
+      engine: olaph
 - phrase: The electric battery
   emoji: 🔋
   level: 992
   ipas:
-    - ipa: ðɪ ɪlˈɛktɹɪk bˈatəɹi
-      category: standard
+    - ipa: /ði ɪlˈɛktɹɪk bˈætəɹi./
+      engine: olaph
 - phrase: The electrical outlet
   emoji: 🔌
   level: 891
   ipas:
-    - ipa: ðɪ ɪlˈɛktɹɪkəl ˈaʊtlɛt
-      category: standard
+    - ipa: /ði ɪlˈɛktɹɪkə‍l ˈa‍ʊtlɛt./
+      engine: olaph
 - phrase: The elephant
   emoji: 🐘
   level: 664
   ipas:
-    - ipa: ðɪ ˈɛlɪfənt
-      category: standard
+    - ipa: /ði ˈɛlɪfənt./
+      engine: olaph
 - phrase: The elephant is heavy
   emoji: 🐘
   level: 794
   ipas:
-    - ipa: ðɪ ˈɛlɪfənt ɪz hˈɛvi
-      category: standard
+    - ipa: /ði ˈɛlɪfənt ˈɪz hˈɛvi./
+      engine: olaph
 - phrase: The elephant is very big.
   emoji: 🐘
   level: 623
   ipas:
-    - ipa: ðɪ ˈɛlɪfənt ɪz vˈɛɹi bˈɪɡ
-      category: standard
+    - ipa: /ði ˈɛlɪfənt ˈɪz vˈɛɹi bˈɪɡ./
+      engine: olaph
 - phrase: The elevator
   emoji: 🛗
   level: 1000
   ipas:
-    - ipa: ðɪ ˈɛlɪvˌeɪtə
-      category: standard
+    - ipa: /ði ˈɛlɪvˌe‍ɪtɐ./
+      engine: olaph
 - phrase: The elf
   emoji: 🧝
   level: 830
   ipas:
-    - ipa: ðɪ ˈɛlf
-      category: standard
+    - ipa: /ði ˈɛlf./
+      engine: olaph
 - phrase: The eye
   emoji: 👁️
   level: 581
   ipas:
-    - ipa: ðɪ ˈaɪ
-      category: standard
+    - ipa: /ði ˈa‍ɪ./
+      engine: olaph
 - phrase: The eye sees colors.
   emoji: 👁️
   level: 621
   ipas:
-    - ipa: ðɪ ˈaɪ sˈiːz kˈʌləz
-      category: standard
+    - ipa: /ði ˈa‍ɪ sˈiːz kˈʌləz./
+      engine: olaph
 - phrase: The eyes
   emoji: 👀
   level: 604
   ipas:
-    - ipa: ðɪ ˈaɪz
-      category: standard
+    - ipa: /ði ˈaɪz./
+      engine: olaph
 - phrase: The factory
   emoji: 🏭
   level: 1000
   ipas:
-    - ipa: ðə fˈaktəɹi
-      category: standard
+    - ipa: /ðə fˈæktəɹˌi./
+      engine: olaph
 - phrase: The fairy
   emoji: 🧚
   level: 535
   ipas:
-    - ipa: ðə fˈeəɹi
-      category: standard
+    - ipa: /ðə fˈe‍əɹi./
+      engine: olaph
 - phrase: The family
   emoji: 👪
   level: 774
   ipas:
-    - ipa: ðə fˈamɪli
-      category: standard
+    - ipa: /ðə fˈæmɪli./
+      engine: olaph
 - phrase: The ferry
   emoji: ⛴️
   level: 1
   ipas:
-    - ipa: ðə fˈɛɹi
-      category: standard
+    - ipa: /ðə fˈɛɹi./
+      engine: olaph
 - phrase: The file
   emoji: 📁
   level: 721
   ipas:
-    - ipa: ðə fˈaɪl
-      category: standard
+    - ipa: /ðə ˈfaɪɫ./
+      engine: olaph
 - phrase: The finger
   emoji: ☝️
   level: 566
   ipas:
-    - ipa: ðə fˈɪŋɡə
-      category: standard
+    - ipa: /ðə fˈɪŋɡɐ./
+      engine: olaph
 - phrase: The finger shows the way.
   emoji: ☝️
   level: 621
   ipas:
-    - ipa: ðə fˈɪŋɡə ʃˈəʊz ðə wˈeɪ
-      category: standard
+    - ipa: /ðə fˈɪŋɡɐ ˈʃoʊz ðə wˈe‍ɪ./
+      engine: olaph
 - phrase: The fire
   blacklisted: true
   emoji: 🔥
   level: 549
   ipas:
-    - ipa: ðə fˈaɪə
-      category: standard
+    - ipa: /ðə fˈa‍ɪ‍ə./
+      engine: olaph
 - phrase: The fire burns in the fireplace.
   blacklisted: true
   emoji: 🔥
   level: 625
   ipas:
-    - ipa: ðə fˈaɪə bˈɜːnz ɪnðə fˈaɪəpleɪs
-      category: standard
+    - ipa: /ðə fˈa‍ɪ‍ə bˈɜːnz ˈɪn ðə fˈa‍ɪ‍əple‍ɪs./
+      engine: olaph
 - phrase: The fire extinguisher
   blacklisted: true
   emoji: 🧯
   level: 1000
   ipas:
-    - ipa: ðə fˈaɪəɹ ɛkstˈɪŋɡwɪʃə
-      category: standard
+    - ipa: /ðə fˈa‍ɪ‍ə ɛkstˈɪŋɡwɪʃɐ./
+      engine: olaph
 - phrase: The fire is burning
   blacklisted: true
   emoji: 🔥
   level: 669
   ipas:
-    - ipa: ðə fˈaɪəɹ ɪz bˈɜːnɪŋ
-      category: standard
+    - ipa: /ðə fˈa‍ɪ‍ə ˈɪz bˈɜːnɪŋ./
+      engine: olaph
 - phrase: The fish
   emoji: 🐟
   level: 595
   ipas:
-    - ipa: ðə fˈɪʃ
-      category: standard
+    - ipa: /ðə fˈɪʃ./
+      engine: olaph
 - phrase: The fish swims in the water.
   emoji: 🐟
   level: 624
   ipas:
-    - ipa: ðə fˈɪʃ swˈɪmz ɪnðə wˈɔːtə
-      category: standard
+    - ipa: /ðə fˈɪʃ swˈɪmz ˈɪn ðə wˈɔːtɐ./
+      engine: olaph
 - phrase: The fist
   emoji: 👊
   level: 604
   ipas:
-    - ipa: ðə fˈɪst
-      category: standard
+    - ipa: /ðə fˈɪst./
+      engine: olaph
 - phrase: The flash shines brightly
   emoji: ⚡
   level: 723
   ipas:
-    - ipa: ðə flˈaʃ ʃˈaɪnz bɹˈaɪtli
-      category: standard
+    - ipa: /ðə flˈæʃ ʃˈa‍ɪnz bɹˈa‍ɪtli./
+      engine: olaph
 - phrase: The flower
   emoji: 🌷
   level: 566
   ipas:
-    - ipa: ðə flˈaʊə
-      category: standard
+    - ipa: /ðə ˈfɫaʊɝ./
+      engine: olaph
 - phrase: The flower grows in the garden.
   emoji: 🌷
   level: 628
   ipas:
-    - ipa: ðə flˈaʊə ɡɹˈəʊz ɪnðə ɡˈɑːdən
-      category: standard
+    - ipa: /ðə ˈfɫaʊɝ ɡɹˈə‍ʊz ˈɪn ðə ɡˈɑːdən./
+      engine: olaph
 - phrase: The foot
   emoji: 🦶
   level: 571
   ipas:
-    - ipa: ðə fˈʊt
-      category: standard
+    - ipa: /ðə fˈʊt./
+      engine: olaph
 - phrase: The forest
   emoji: 🌲
   level: 566
   ipas:
-    - ipa: ðə fˈɒɹɪst
-      category: standard
+    - ipa: /ðə fˈɒɹɪst./
+      engine: olaph
 - phrase: The forest is calm and green.
   emoji: 🌲
   level: 620
   ipas:
-    - ipa: ðə fˈɒɹɪst ɪz kˈɑːm and ɡɹˈiːn
-      category: standard
+    - ipa: /ðə fˈɒɹɪst ˈɪz kˈɑːm ˈænd ɡɹˈiːn./
+      engine: olaph
 - phrase: The forest is green
   emoji: 🌲
   level: 829
   ipas:
-    - ipa: ðə fˈɒɹɪst ɪz ɡɹˈiːn
-      category: standard
+    - ipa: /ðə fˈɒɹɪst ˈɪz ɡɹˈiːn./
+      engine: olaph
 - phrase: The fountain
   emoji: ⛲
   level: 806
   ipas:
-    - ipa: ðə fˈaʊntɪn
-      category: standard
+    - ipa: /ðə fˈa‍ʊntɪn./
+      engine: olaph
 - phrase: The fox
   emoji: 🦊
   level: 587
   ipas:
-    - ipa: ðə fˈɒks
-      category: standard
+    - ipa: /ðə fˈɒks./
+      engine: olaph
 - phrase: The fox is cunning.
   emoji: 🦊
   level: 600
   ipas:
-    - ipa: ðə fˈɒks ɪz kˈʌnɪŋ
-      category: standard
+    - ipa: /ðə fˈɒks ˈɪz kˈʌnɪŋ./
+      engine: olaph
 - phrase: The fries
   emoji: 🍟
   level: 463
   ipas:
-    - ipa: ðə fɹˈaɪz
-      category: standard
+    - ipa: /ðə fɹˈa‍ɪz./
+      engine: olaph
 - phrase: The fries are crispy.
   emoji: 🍟
   level: 669
   ipas:
-    - ipa: ðə fɹˈaɪz ɑː kɹˈɪspi
-      category: standard
+    - ipa: /ðə fɹˈa‍ɪz ˈɑɹ kɹˈɪspi./
+      engine: olaph
 - phrase: The frog
   emoji: 🐸
   level: 632
   ipas:
-    - ipa: ðə fɹˈɒɡ
-      category: standard
+    - ipa: /ðə fɹˈɒɡ./
+      engine: olaph
 - phrase: The frog croaks
   emoji: 🐸
   level: 672
   ipas:
-    - ipa: ðə fɹˈɒɡ kɹˈəʊks
-      category: standard
+    - ipa: /ðə fɹˈɒɡ kɹˈə‍ʊks./
+      engine: olaph
 - phrase: The frog jumps into the pond.
   emoji: 🐸
   level: 649
   ipas:
-    - ipa: ðə fɹˈɒɡ dʒˈʌmps ˌɪntʊ ðə pˈɒnd
-      category: standard
+    - ipa: /ðə fɹˈɒɡ d‍ʒˈʌmps ˈɪntʊ ðə pˈɒnd./
+      engine: olaph
 - phrase: The fuel
   emoji: ⛽
   level: 926
   ipas:
-    - ipa: ðə fjˈuːəl
-      category: standard
+    - ipa: /ðə fjˈuːəl./
+      engine: olaph
 - phrase: The game
   emoji: 🎮
   level: 801
   ipas:
-    - ipa: ðə ɡˈeɪm
-      category: standard
+    - ipa: /ðə ɡˈe‍ɪm./
+      engine: olaph
 - phrase: The garlic
   emoji: 🧄
   level: 907
   ipas:
-    - ipa: ðə ɡˈɑːlɪk
-      category: standard
+    - ipa: /ðə ɡˈɑːlɪk./
+      engine: olaph
 - phrase: The gear
   emoji: ⚙️
   level: 1000
   ipas:
-    - ipa: ðə ɡˈiə
-      category: standard
+    - ipa: /ðə ɡˈi‍ə./
+      engine: olaph
 - phrase: The gift
   emoji: 🎁
   level: 689
   ipas:
-    - ipa: ðə ɡˈɪft
-      category: standard
+    - ipa: /ðə ɡˈɪft./
+      engine: olaph
 - phrase: The giraffe
   emoji: 🦒
   level: 599
   ipas:
-    - ipa: ðə dʒɪɹˈaf
-      category: standard
+    - ipa: /ðə d‍ʒɪɹˈɑːf./
+      engine: olaph
 - phrase: The giraffe has a long neck.
   emoji: 🦒
   level: 551
   ipas:
-    - ipa: ðə dʒɪɹˈaf hɐz ɐ lˈɒŋ nˈɛk
-      category: standard
+    - ipa: /ðə d‍ʒɪɹˈɑːf hˈæz ə lˈɒŋ nˈɛk./
+      engine: olaph
 - phrase: The giraffe is big
   emoji: 🦒
   level: 584
   ipas:
-    - ipa: ðə dʒɪɹˈaf ɪz bˈɪɡ
-      category: standard
+    - ipa: /ðə d‍ʒɪɹˈɑːf ˈɪz bˈɪɡ./
+      engine: olaph
 - phrase: The girl
   emoji: 👧
   level: 652
   ipas:
-    - ipa: ðə ɡˈɜːl
-      category: standard
+    - ipa: /ðə ɡˈɜːl./
+      engine: olaph
 - phrase: The glasses
   emoji: 👓
   level: 624
   ipas:
-    - ipa: ðə ɡlˈasɪz
-      category: standard
+    - ipa: /ðə ɡlˈɑːsɪz./
+      engine: olaph
 - phrase: The globe
   emoji: 🌍
   level: 533
   ipas:
-    - ipa: ðə ɡlˈəʊb
-      category: standard
+    - ipa: /ðə ɡlˈə‍ʊb./
+      engine: olaph
 - phrase: The glove
   emoji: 🧤
   level: 558
   ipas:
-    - ipa: ðə ɡlˈʌv
-      category: standard
+    - ipa: /ðə ɡlˈʌv./
+      engine: olaph
 - phrase: The glove protects the hands.
   emoji: 🧤
   level: 616
   ipas:
-    - ipa: ðə ɡlˈʌv pɹətˈɛkts ðə hˈandz
-      category: standard
+    - ipa: /ðə ɡlˈʌv pɹətˈɛkts ðə ˈhændz./
+      engine: olaph
 - phrase: The goal
   emoji: 🥅
   level: 535
   ipas:
-    - ipa: ðə ɡˈəʊl
-      category: standard
+    - ipa: /ðə ɡˈə‍ʊl./
+      engine: olaph
 - phrase: The goat
   emoji: 🐐
   level: 636
   ipas:
-    - ipa: ðə ɡˈəʊt
-      category: standard
+    - ipa: /ðə ɡˈə‍ʊt./
+      engine: olaph
 - phrase: The gorilla
   emoji: 🦍
   level: 774
   ipas:
-    - ipa: ðə ɡəɹˈɪlə
-      category: standard
+    - ipa: /ðə ɡəɹˈɪlɐ./
+      engine: olaph
 - phrase: The grade
   emoji: 🎵
   level: 59
   ipas:
-    - ipa: ðə ɡɹˈeɪd
-      category: standard
+    - ipa: /ðə ɡɹˈe‍ɪd./
+      engine: olaph
 - phrase: The grain
   emoji: 🌾
   level: 917
   ipas:
-    - ipa: ðə ɡɹˈeɪn
-      category: standard
+    - ipa: /ðə ɡɹˈe‍ɪn./
+      engine: olaph
 - phrase: The grape
   emoji: 🍇
   level: 417
   ipas:
-    - ipa: ðə ɡɹˈeɪp
-      category: standard
+    - ipa: /ðə ɡɹˈe‍ɪp./
+      engine: olaph
 - phrase: The grapes are sweet and juicy.
   emoji: 🍇
   level: 566
   ipas:
-    - ipa: ðə ɡɹˈeɪps ɑː swˈiːt and dʒˈuːsi
-      category: standard
+    - ipa: /ðə ɡɹˈe‍ɪps ˈɑɹ swˈiːt ˈænd d‍ʒˈuːsi./
+      engine: olaph
 - phrase: The guitar
   emoji: 🎸
   level: 774
   ipas:
-    - ipa: ðə ɡɪtˈɑː
-      category: standard
+    - ipa: /ðə ɡɪtˈɑː./
+      engine: olaph
 - phrase: The gun
   blacklisted: true
   emoji: 🔫
   level: 806
   ipas:
-    - ipa: ðə ɡˈʌn
-      category: standard
+    - ipa: /ðə ɡˈʌn./
+      engine: olaph
 - phrase: The hammer
   emoji: 🔨
   level: 721
   ipas:
-    - ipa: ðə hˈamə
-      category: standard
+    - ipa: /ðə hˈæmɐ./
+      engine: olaph
 - phrase: The hamster
   emoji: 🐹
   level: 29
   ipas:
-    - ipa: ðə hˈamstə
-      category: standard
+    - ipa: /ðə hˈæmstɐ./
+      engine: olaph
 - phrase: The hand
   emoji: ✋
   level: 1
   ipas:
-    - ipa: ðə hˈand
-      category: standard
+    - ipa: /ðə hˈænd./
+      engine: olaph
 - phrase: The hand sign
   emoji: 👋
   level: 454
   ipas:
-    - ipa: ðə hˈand sˈaɪn
-      category: standard
+    - ipa: /ðə hˈænd sˈa‍ɪn./
+      engine: olaph
 - phrase: The handbag
   emoji: 👜
   level: 296
   ipas:
-    - ipa: ðə hˈandbaɡ
-      category: standard
+    - ipa: /ðə hˈændbæɡ./
+      engine: olaph
 - phrase: The handshake
   emoji: 🤝
   level: 405
   ipas:
-    - ipa: ðə hˈandʃeɪk
-      category: standard
+    - ipa: /ðə hˈændʃe‍ɪk./
+      engine: olaph
 - phrase: The hat
   emoji: 🎩
   level: 595
   ipas:
-    - ipa: ðə hˈat
-      category: standard
+    - ipa: /ðə hˈæt./
+      engine: olaph
 - phrase: The hat covers the ears.
   emoji: 🧢
   level: 587
   ipas:
-    - ipa: ðə hˈat kˈʌvəz ðɪ ˈiəz
-      category: standard
+    - ipa: /ðə hˈæt kˈʌvəz ði ˈi‍əz./
+      engine: olaph
 - phrase: The hat protects from the sun.
   emoji: 🎩
   level: 636
   ipas:
-    - ipa: ðə hˈat pɹətˈɛkts fɹʌmðə sˈʌn
-      category: standard
+    - ipa: /ðə hˈæt pɹətˈɛkts fɹˈɒm ðə sˈʌn./
+      engine: olaph
 - phrase: The head
   emoji: 👤
   level: 558
   ipas:
-    - ipa: ðə hˈɛd
-      category: standard
+    - ipa: /ðə hˈɛd./
+      engine: olaph
 - phrase: The head thinks.
   emoji: 👤
   level: 593
   ipas:
-    - ipa: ðə hˈɛd θˈɪŋks
-      category: standard
+    - ipa: /ðə hˈɛd ˈθɪŋks./
+      engine: olaph
 - phrase: The heart
   emoji: ❤️
   level: 571
   ipas:
-    - ipa: ðə hˈɑːt
-      category: standard
+    - ipa: /ðə hˈɑːt./
+      engine: olaph
 - phrase: The heeled shoe
   emoji: 👠
   level: 810
   ipas:
-    - ipa: ðə hˈiːld ʃˈuː
-      category: standard
+    - ipa: /ðə hˈiːld ʃˈuː./
+      engine: olaph
 - phrase: The helicopter
   emoji: 🚁
   level: 1000
   ipas:
-    - ipa: ðə hˈɛlɪkˌɒptə
-      category: standard
+    - ipa: /ðə hˈɛlɪkˌɒptɐ./
+      engine: olaph
 - phrase: The helicopter flies up
   emoji: 🚁
   level: 963
   ipas:
-    - ipa: ðə hˈɛlɪkˌɒptə flˈaɪz ˈʌp
-      category: standard
+    - ipa: /ðə hˈɛlɪkˌɒptɐ flˈa‍ɪz ˈʌp./
+      engine: olaph
 - phrase: The herb
   emoji: 🌿
   level: 801
   ipas:
-    - ipa: ðə hˈɜːb
-      category: standard
+    - ipa: /ðə hˈɜːb./
+      engine: olaph
 - phrase: The hippopotamus
   emoji: 🦛
   level: 1000
   ipas:
-    - ipa: ðə hˈɪpəpˌɒtaməs
-      category: standard
+    - ipa: /ðə hˈɪpəpˌɒtæməs./
+      engine: olaph
 - phrase: The honey
   emoji: 🍯
   level: 831
   ipas:
-    - ipa: ðə hˈʌni
-      category: standard
+    - ipa: /ðə hˈʌni./
+      engine: olaph
 - phrase: The horse
   emoji: 🐴
   level: 587
   ipas:
-    - ipa: ðə hˈɔːs
-      category: standard
+    - ipa: /ðə hˈɔːs./
+      engine: olaph
 - phrase: The horse gallops in the meadow.
   emoji: 🐴
   level: 627
   ipas:
-    - ipa: ðə hˈɔːs ɡˈaləps ɪnðə mˈɛdəʊ
-      category: standard
+    - ipa: /ðə hˈɔːs ɡˈæləps ˈɪn ðə mˈɛdə‍ʊ./
+      engine: olaph
 - phrase: The horse is running
   emoji: 🐴
   level: 658
   ipas:
-    - ipa: ðə hˈɔːs ɪz ɹˈʌnɪŋ
-      category: standard
+    - ipa: /ðə hˈɔːs ˈɪz ɹˈʌnɪŋ./
+      engine: olaph
 - phrase: The hospital
   blacklisted: true
   emoji: 🏥
   level: 672
   ipas:
-    - ipa: ðə hˈɒspɪtəl
-      category: standard
+    - ipa: /ðə hˈɒspɪtə‍l./
+      engine: olaph
 - phrase: The hospital treats the sick.
   blacklisted: true
   emoji: 🏥
   level: 661
   ipas:
-    - ipa: ðə hˈɒspɪtəl tɹˈiːts ðə sˈɪk
-      category: standard
+    - ipa: /ðə hˈɒspɪtə‍l tɹˈiːts ðə sˈɪk./
+      engine: olaph
 - phrase: The hotel
   emoji: 🏨
   level: 798
   ipas:
-    - ipa: ðə həʊtˈɛl
-      category: standard
+    - ipa: /ðə hə‍ʊtˈɛl./
+      engine: olaph
 - phrase: The house
   emoji: 🏠
   level: 587
   ipas:
-    - ipa: ðə hˈaʊs
-      category: standard
+    - ipa: /ðə ˈhaʊs./
+      engine: olaph
 - phrase: The house is big and beautiful.
   emoji: 🏠
   level: 629
   ipas:
-    - ipa: ðə hˈaʊs ɪz bˈɪɡ and bjˈuːtifəl
-      category: standard
+    - ipa: /ðə ˈhaʊs ˈɪz bˈɪɡ ˈænd bjˈuːtɪfə‍l./
+      engine: olaph
 - phrase: The hurricane
   emoji: 🌀
   level: 975
   ipas:
-    - ipa: ðə hˈʌɹɪkˌeɪn
-      category: standard
+    - ipa: /ðə hˈʌɹɪkˌe‍ɪn./
+      engine: olaph
 - phrase: The ice is melting
   emoji: 🍦
   level: 674
   ipas:
-    - ipa: ðɪ ˈaɪs ɪz mˈɛltɪŋ
-      category: standard
+    - ipa: /ði ˈa‍ɪs ˈɪz mˈɛltɪŋ./
+      engine: olaph
 - phrase: The ice melts in the sun.
   emoji: 🍦
   level: 555
   ipas:
-    - ipa: ðɪ ˈaɪs mˈɛlts ɪnðə sˈʌn
-      category: standard
+    - ipa: /ði ˈa‍ɪs mˈɛlts ˈɪn ðə sˈʌn./
+      engine: olaph
 - phrase: The island
   emoji: 🏝️
   level: 581
   ipas:
-    - ipa: ðɪ ˈaɪlənd
-      category: standard
+    - ipa: /ði ˈa‍ɪlənd./
+      engine: olaph
 - phrase: The island is small
   emoji: 🏝️
   level: 669
   ipas:
-    - ipa: ðɪ ˈaɪlənd ɪz smˈɔːl
-      category: standard
+    - ipa: /ði ˈa‍ɪlənd ˈɪz smˈɔːl./
+      engine: olaph
 - phrase: The island is surrounded by water.
   emoji: 🏝️
   level: 632
   ipas:
-    - ipa: ðɪ ˈaɪlənd ɪz səɹˈaʊndɪd baɪ wˈɔːtə
-      category: standard
+    - ipa: /ði ˈa‍ɪlənd ˈɪz səɹˈa‍ʊndɪd bˈa‍ɪ wˈɔːtɐ./
+      engine: olaph
 - phrase: The jacket
   emoji: 🧥
   level: 578
   ipas:
-    - ipa: ðə dʒˈakɪt
-      category: standard
+    - ipa: /ðə d‍ʒˈækɪt./
+      engine: olaph
 - phrase: The jacket is warm
   emoji: 🧥
   level: 459
   ipas:
-    - ipa: ðə dʒˈakɪt ɪz wˈɔːm
-      category: standard
+    - ipa: /ðə d‍ʒˈækɪt ˈɪz wˈɔːm./
+      engine: olaph
 - phrase: The jacket keeps you warm.
   emoji: 🧥
   level: 614
   ipas:
-    - ipa: ðə dʒˈakɪt kˈiːps juː wˈɔːm
-      category: standard
+    - ipa: /ðə d‍ʒˈækɪt kˈiːps jˈuː wˈɔːm./
+      engine: olaph
 - phrase: The kangaroo
   emoji: 🦘
   level: 838
   ipas:
-    - ipa: ðə kˈaŋɡɐɹˌuː
-      category: standard
+    - ipa: /ðə kˈæŋɡɐɹˌuː./
+      engine: olaph
 - phrase: The key
   emoji: 🔑
   level: 549
   ipas:
-    - ipa: ðə kˈiː
-      category: standard
+    - ipa: /ðə kˈiː./
+      engine: olaph
 - phrase: The key opens the door.
   emoji: 🔑
   level: 608
   ipas:
-    - ipa: ðə kˈiː ˈəʊpənz ðə dˈɔː
-      category: standard
+    - ipa: /ðə kˈiː ˈə‍ʊpənz ðə dˈɔː./
+      engine: olaph
 - phrase: The keyboard
   emoji: ⌨️
   level: 721
   ipas:
-    - ipa: ðə kˈiːbɔːd
-      category: standard
+    - ipa: /ðə kˈiːbɔːd./
+      engine: olaph
 - phrase: The kiss
   emoji: 💏
   level: 689
   ipas:
-    - ipa: ðə kˈɪs
-      category: standard
+    - ipa: /ðə kˈɪs./
+      engine: olaph
 - phrase: The kiwi
   emoji: 🥝
   level: 1
   ipas:
-    - ipa: ðə kˈiːwiː
-      category: standard
+    - ipa: /ðə kˈiːwiː./
+      engine: olaph
 - phrase: The knife
   blacklisted: true
   emoji: 🔪
   level: 721
   ipas:
-    - ipa: ðə nˈaɪf
-      category: standard
+    - ipa: /ðə nˈa‍ɪf./
+      engine: olaph
 - phrase: The koala
   emoji: 🐨
   level: 21
   ipas:
-    - ipa: ðə kəʊˈɑːlə
-      category: standard
+    - ipa: /ðə kə‍ʊˈɑːlɐ./
+      engine: olaph
 - phrase: The lab coat
   emoji: 🥼
   level: 624
   ipas:
-    - ipa: ðə lˈab kˈəʊt
-      category: standard
+    - ipa: /ðə lˈæb kˈə‍ʊt./
+      engine: olaph
 - phrase: The label
   emoji: 🏷️
   level: 1000
   ipas:
-    - ipa: ðə lˈeɪbəl
-      category: standard
+    - ipa: /ðə lˈe‍ɪbə‍l./
+      engine: olaph
 - phrase: The ladder
   emoji: 🪜
   level: 463
   ipas:
-    - ipa: ðə lˈadə
-      category: standard
+    - ipa: /ðə lˈædɐ./
+      engine: olaph
 - phrase: The lamp
   emoji: 💡
   level: 578
   ipas:
-    - ipa: ðə lˈamp
-      category: standard
+    - ipa: /ðə lˈæmp./
+      engine: olaph
 - phrase: The lamp illuminates the room.
   emoji: 💡
   level: 626
   ipas:
-    - ipa: ðə lˈamp ɪlˈuːmɪnˌeɪts ðə ɹˈuːm
-      category: standard
+    - ipa: /ðə lˈæmp ɪlˈuːmɪnˌe‍ɪts ðə ɹˈuːm./
+      engine: olaph
 - phrase: The landscape
   emoji: 🏞️
   level: 542
   ipas:
-    - ipa: ðə lˈandskeɪp
-      category: standard
+    - ipa: /ðə lˈændske‍ɪp./
+      engine: olaph
 - phrase: The language
   emoji: 👅
   level: 689
   ipas:
-    - ipa: ðə lˈaŋɡwɪdʒ
-      category: standard
+    - ipa: /ðə lˈæŋɡwɪd‍ʒ./
+      engine: olaph
 - phrase: The leaf
   emoji: 🍁
   level: 487
   ipas:
-    - ipa: ðə lˈiːf
-      category: standard
+    - ipa: /ðə lˈiːf./
+      engine: olaph
 - phrase: The leg
   emoji: 🦵
   level: 578
   ipas:
-    - ipa: ðə lˈɛɡ
-      category: standard
+    - ipa: /ðə lˈɛɡ./
+      engine: olaph
 - phrase: The leg runs fast.
   emoji: 🦵
   level: 538
   ipas:
-    - ipa: ðə lˈɛɡ ɹˈʌnz fˈast
-      category: standard
+    - ipa: /ðə lˈɛɡ ˈɹənz fˈɑːst./
+      engine: olaph
 - phrase: The lemon
   emoji: 🍋
   level: 602
   ipas:
-    - ipa: ðə lˈɛmən
-      category: standard
+    - ipa: /ðə lˈɛmən./
+      engine: olaph
 - phrase: The leopard
   emoji: 🐆
   level: 721
   ipas:
-    - ipa: ðə lˈɛpəd
-      category: standard
+    - ipa: /ðə lˈɛpəd./
+      engine: olaph
 - phrase: The lettuce
   emoji: 🥬
   level: 935
   ipas:
-    - ipa: ðə lˈɛtɪs
-      category: standard
+    - ipa: /ðə lˈɛtɪs./
+      engine: olaph
 - phrase: The lightning
   emoji: ⚡
   level: 631
   ipas:
-    - ipa: ðə lˈaɪtnɪŋ
-      category: standard
+    - ipa: /ðə lˈa‍ɪtnɪŋ./
+      engine: olaph
 - phrase: The lion
   emoji: 🦁
   level: 383
   ipas:
-    - ipa: ðə lˈaɪən
-      category: standard
+    - ipa: /ðə lˈa‍ɪ‍ən./
+      engine: olaph
 - phrase: The lion roared loudly.
   emoji: 🦁
   level: 435
   ipas:
-    - ipa: ðə lˈaɪən ɹˈɔːd lˈaʊdli
-      category: standard
+    - ipa: /ðə lˈa‍ɪ‍ən ɹˈɔːd lˈa‍ʊdli./
+      engine: olaph
 - phrase: The lion roars
   emoji: 🦁
   level: 674
   ipas:
-    - ipa: ðə lˈaɪən ɹˈɔːz
-      category: standard
+    - ipa: /ðə lˈa‍ɪ‍ən ɹˈɔːz./
+      engine: olaph
 - phrase: The lipstick
   emoji: 💄
   level: 975
   ipas:
-    - ipa: ðə lˈɪpstɪk
-      category: standard
+    - ipa: /ðə lˈɪpstɪk./
+      engine: olaph
 - phrase: The lizard
   emoji: 🦎
   level: 533
   ipas:
-    - ipa: ðə lˈɪzəd
-      category: standard
+    - ipa: /ðə lˈɪzəd./
+      engine: olaph
 - phrase: The magnet
   emoji: 🧲
   level: 968
   ipas:
-    - ipa: ðə mˈaɡnɪt
-      category: standard
+    - ipa: /ðə mˈæɡnɪt./
+      engine: olaph
 - phrase: The magnet attracts iron
   emoji: 🧲
   level: 903
   ipas:
-    - ipa: ðə mˈaɡnɪt ɐtɹˈakts ˈaɪən
-      category: standard
+    - ipa: /ðə mˈæɡnɪt ɐtɹˈækts ˈa‍ɪ‍ən./
+      engine: olaph
 - phrase: The man
   emoji: 👨
   level: 899
   ipas:
-    - ipa: ðə mˈan
-      category: standard
+    - ipa: /ðə mˈæn./
+      engine: olaph
 - phrase: The meat
   emoji: 🍖
   level: 689
   ipas:
-    - ipa: ðə mˈiːt
-      category: standard
+    - ipa: /ðə mˈiːt./
+      engine: olaph
 - phrase: The melon
   emoji: 🍈
   level: 5
   ipas:
-    - ipa: ðə mˈɛlən
-      category: standard
+    - ipa: /ðə mˈɛlən./
+      engine: olaph
 - phrase: The microphone
   emoji: 🎙️
   level: 288
   ipas:
-    - ipa: ðə mˈaɪkɹəfˌəʊn
-      category: standard
+    - ipa: /ðə mˈa‍ɪkɹəfˌə‍ʊn./
+      engine: olaph
 - phrase: The microscope
   emoji: 🔬
   level: 357
   ipas:
-    - ipa: ðə mˈaɪkɹəskˌəʊp
-      category: standard
+    - ipa: /ðə mˈa‍ɪkɹəskˌə‍ʊp./
+      engine: olaph
 - phrase: The middle finger
   emoji: 🖕
   level: 802
   ipas:
-    - ipa: ðə mˈɪdəl fˈɪŋɡə
-      category: standard
+    - ipa: /ðə mˈɪdə‍l fˈɪŋɡɐ./
+      engine: olaph
 - phrase: The milk
   emoji: 🥛
   level: 475
   ipas:
-    - ipa: ðə mˈɪlk
-      category: standard
+    - ipa: /ðə mˈɪlk./
+      engine: olaph
 - phrase: The milk is white
   emoji: 🥛
   level: 517
   ipas:
-    - ipa: ðə mˈɪlk ɪz wˈaɪt
-      category: standard
+    - ipa: /ðə mˈɪlk ˈɪz wˈa‍ɪt./
+      engine: olaph
 - phrase: The milk is white and nutritious.
   emoji: 🥛
   level: 625
   ipas:
-    - ipa: ðə mˈɪlk ɪz wˈaɪt and njuːtɹˈɪʃəs
-      category: standard
+    - ipa: /ðə mˈɪlk ˈɪz wˈa‍ɪt ˈænd njuːtɹˈɪʃəs./
+      engine: olaph
 - phrase: The minibus
   emoji: 🚐
   level: 774
   ipas:
-    - ipa: ðə mˈɪnɪbˌʌs
-      category: standard
+    - ipa: /ðə mˈɪnɪbˌʌs./
+      engine: olaph
 - phrase: The mirror
   emoji: 🪞
   level: 689
   ipas:
-    - ipa: ðə mˈɪɹə
-      category: standard
+    - ipa: /ðə mˈɪɹɐ./
+      engine: olaph
 - phrase: The money
   emoji: 💰
   level: 482
   ipas:
-    - ipa: ðə mˈʌni
-      category: standard
+    - ipa: /ðə mˈʌni./
+      engine: olaph
 - phrase: The monkey
   emoji: 🐵
   level: 578
   ipas:
-    - ipa: ðə mˈʌŋki
-      category: standard
+    - ipa: /ðə mˈʌnki./
+      engine: olaph
 - phrase: The monkey climbs
   emoji: 🐵
   level: 734
   ipas:
-    - ipa: ðə mˈʌŋki klˈaɪmz
-      category: standard
+    - ipa: /ðə mˈʌnki klˈa‍ɪmz./
+      engine: olaph
 - phrase: The monkey climbs trees.
   emoji: 🐵
   level: 629
   ipas:
-    - ipa: ðə mˈʌŋki klˈaɪmz tɹˈiːz
-      category: standard
+    - ipa: /ðə mˈʌnki klˈa‍ɪmz tɹˈiːz./
+      engine: olaph
 - phrase: The moon shines in the night.
   emoji: 🌙
   level: 620
   ipas:
-    - ipa: ðə mˈuːn ʃˈaɪnz ɪnðə nˈaɪt
-      category: standard
+    - ipa: /ðə mˈuːn ʃˈa‍ɪnz ˈɪn ðə nˈa‍ɪt./
+      engine: olaph
 - phrase: The mosque
   emoji: 🕌
   level: 774
   ipas:
-    - ipa: ðə mˈɒsk
-      category: standard
+    - ipa: /ðə mˈɒsk./
+      engine: olaph
 - phrase: The motor boat
   emoji: 🚤
   level: 749
   ipas:
-    - ipa: ðə mˈəʊtə bˈəʊt
-      category: standard
+    - ipa: /ðə mˈə‍ʊtɐ bˈə‍ʊt./
+      engine: olaph
 - phrase: The motorcycle
   emoji: 🏍️
   level: 570
   ipas:
-    - ipa: ðə mˈəʊtəsˌaɪkəl
-      category: standard
+    - ipa: /ðə mˈə‍ʊtəsˌa‍ɪkə‍l./
+      engine: olaph
 - phrase: The mountain
   emoji: ⛰️
   level: 616
   ipas:
-    - ipa: ðə mˈaʊntɪn
-      category: standard
+    - ipa: /ðə mˈa‍ʊntɪn./
+      engine: olaph
 - phrase: The mountain is covered in snow.
   emoji: ⛰️
   level: 649
   ipas:
-    - ipa: ðə mˈaʊntɪn ɪz kˈʌvəd ɪn snˈəʊ
-      category: standard
+    - ipa: /ðə mˈa‍ʊntɪn ˈɪz kˈʌvəd ˈɪn snˈə‍ʊ./
+      engine: olaph
 - phrase: The mountain is high
   emoji: ⛰️
   level: 829
   ipas:
-    - ipa: ðə mˈaʊntɪn ɪz hˈaɪ
-      category: standard
+    - ipa: /ðə mˈa‍ʊntɪn ˈɪz hˈa‍ɪ./
+      engine: olaph
 - phrase: The mouse
   emoji: 🐭
   level: 689
   ipas:
-    - ipa: ðə mˈaʊs
-      category: standard
+    - ipa: /ðə ˈmaʊs./
+      engine: olaph
 - phrase: The mouse beeps
   emoji: 🐭
   level: 653
   ipas:
-    - ipa: ðə mˈaʊs bˈiːps
-      category: standard
+    - ipa: /ðə ˈmaʊs bˈiːps./
+      engine: olaph
 - phrase: The mouth
   emoji: 👄
   level: 587
   ipas:
-    - ipa: ðə mˈaʊθ
-      category: standard
+    - ipa: /ðə ˈmaʊθ./
+      engine: olaph
 - phrase: The mouth speaks and eats.
   emoji: 👄
   level: 622
   ipas:
-    - ipa: ðə mˈaʊθ spˈiːks and ˈiːts
-      category: standard
+    - ipa: /ðə ˈmaʊθ spˈiːks ˈænd ˈiːts./
+      engine: olaph
 - phrase: The museum
   emoji: 🏛️
   level: 652
   ipas:
-    - ipa: ðə mjuːzˈiəm
-      category: standard
+    - ipa: /ðə mjuːzˈi‍əm./
+      engine: olaph
 - phrase: The musical note
   emoji: 🎵
   level: 454
   ipas:
-    - ipa: ðə mjˈuːzɪkəl nˈəʊt
-      category: standard
+    - ipa: /ðə mjˈuːzɪkə‍l nˈə‍ʊt./
+      engine: olaph
 - phrase: The name
   emoji: 📛
   level: 392
   ipas:
-    - ipa: ðə nˈeɪm
-      category: standard
+    - ipa: /ðə nˈe‍ɪm./
+      engine: olaph
 - phrase: The noodles
   emoji: 🍝
   level: 463
   ipas:
-    - ipa: ðə nˈuːdəlz
-      category: standard
+    - ipa: /ðə nˈuːdə‍lz./
+      engine: olaph
 - phrase: The noodles are delicious
   emoji: 🍝
   level: 713
   ipas:
-    - ipa: ðə nˈuːdəlz ɑː dɪlˈɪʃəs
-      category: standard
+    - ipa: /ðə nˈuːdə‍lz ˈɑɹ dɪlˈɪʃəs./
+      engine: olaph
 - phrase: The nose
   emoji: 👃
   level: 549
   ipas:
-    - ipa: ðə nˈəʊz
-      category: standard
+    - ipa: /ðə nˈə‍ʊz./
+      engine: olaph
 - phrase: The nose smells of flowers.
   emoji: 👃
   level: 601
   ipas:
-    - ipa: ðə nˈəʊz smˈɛlz ɒv flˈaʊəz
-      category: standard
+    - ipa: /ðə nˈə‍ʊz smˈɛlz ˈɒv ˈfɫaʊɝz./
+      engine: olaph
 - phrase: The notebook
   emoji: 📔
   level: 689
   ipas:
-    - ipa: ðə nˈəʊtbʊk
-      category: standard
+    - ipa: /ðə nˈə‍ʊtbʊk./
+      engine: olaph
 - phrase: The notepad
   emoji: 🗒️
   level: 871
   ipas:
-    - ipa: ðə nˈəʊtpad
-      category: standard
+    - ipa: /ðə nˈə‍ʊtpæd./
+      engine: olaph
 - phrase: The octopus
   emoji: 🐙
   level: 721
   ipas:
-    - ipa: ðɪ ˈɒktəpəs
-      category: standard
+    - ipa: /ði ˈɒktəpəs./
+      engine: olaph
 - phrase: The office
   emoji: 🏢
   level: 689
   ipas:
-    - ipa: ðɪ ˈɒfɪs
-      category: standard
+    - ipa: /ði ˈɒfɪs./
+      engine: olaph
 - phrase: The oil lamp
   emoji: 🪔
   level: 717
   ipas:
-    - ipa: ðɪ ˈɔɪl lˈamp
-      category: standard
+    - ipa: /ði ˈɔ‍ɪl lˈæmp./
+      engine: olaph
 - phrase: The onion
   emoji: 🧅
   level: 968
   ipas:
-    - ipa: ðɪ ˈʌniən
-      category: standard
+    - ipa: /ði ˈʌni‍ən./
+      engine: olaph
 - phrase: The orange
   emoji: 🍊
   level: 681
   ipas:
-    - ipa: ðɪ ˈɒɹɪndʒ
-      category: standard
+    - ipa: /ði ˈɒɹɪnd‍ʒ./
+      engine: olaph
 - phrase: The orange is juicy and sweet.
   emoji: 🍊
   level: 652
   ipas:
-    - ipa: ðɪ ˈɒɹɪndʒ ɪz dʒˈuːsi and swˈiːt
-      category: standard
+    - ipa: /ði ˈɒɹɪnd‍ʒ ˈɪz d‍ʒˈuːsi ˈænd swˈiːt./
+      engine: olaph
 - phrase: The owl
   emoji: 🦉
   level: 578
   ipas:
-    - ipa: ðɪ ˈaʊl
-      category: standard
+    - ipa: /ði ˈa‍ʊl./
+      engine: olaph
 - phrase: The owl flies at night.
   emoji: 🦉
   level: 551
   ipas:
-    - ipa: ðɪ ˈaʊl flˈaɪz at nˈaɪt
-      category: standard
+    - ipa: /ði ˈa‍ʊl flˈa‍ɪz ˈæt nˈa‍ɪt./
+      engine: olaph
 - phrase: The panda
   emoji: 🐼
   level: 415
   ipas:
-    - ipa: ðə pˈandə
-      category: standard
+    - ipa: /ðə pˈændɐ./
+      engine: olaph
 - phrase: The panda eats bamboo.
   emoji: 🐼
   level: 557
   ipas:
-    - ipa: ðə pˈandəɹ ˈiːts bambˈuː
-      category: standard
+    - ipa: /ðə pˈændɐ ˈiːts bæmˈbu./
+      engine: olaph
 - phrase: The pants
   emoji: 👖
   level: 616
   ipas:
-    - ipa: ðə pˈants
-      category: standard
+    - ipa: /ðə pˈɑːnts./
+      engine: olaph
 - phrase: The pants are comfortable
   emoji: 👖
   level: 683
   ipas:
-    - ipa: ðə pˈants ɑː kˈʌmftəbəl
-      category: standard
+    - ipa: /ðə pˈɑːnts ˈɑɹ kˈʌmftəbə‍l./
+      engine: olaph
 - phrase: The pants are comfortable.
   emoji: 👖
   level: 663
   ipas:
-    - ipa: ðə pˈants ɑː kˈʌmftəbəl
-      category: standard
+    - ipa: /ðə pˈɑːnts ˈɑɹ kˈʌmftəbə‍l./
+      engine: olaph
 - phrase: The paper
   emoji: 📃
   level: 540
   ipas:
-    - ipa: ðə pˈeɪpə
-      category: standard
+    - ipa: /ðə pˈe‍ɪpɐ./
+      engine: olaph
 - phrase: The parachute
   emoji: 🪂
   level: 252
   ipas:
-    - ipa: ðə pˈaɹəʃˌuːt
-      category: standard
+    - ipa: /ðə pˈæɹəʃˌuːt./
+      engine: olaph
 - phrase: The paragraph
   emoji: 👠
   level: 850
   ipas:
-    - ipa: ðə pˈaɹəɡɹˌaf
-      category: standard
+    - ipa: /ðə pˈæɹəɡɹˌæf./
+      engine: olaph
 - phrase: The parasol
   emoji: ⛱️
   level: 774
   ipas:
-    - ipa: ðə pˈaɹəsˌɒl
-      category: standard
+    - ipa: /ðə pˈæɹəsˌɒl./
+      engine: olaph
 - phrase: The parrot
   emoji: 🦜
   level: 838
   ipas:
-    - ipa: ðə pˈaɹət
-      category: standard
+    - ipa: /ðə pˈæɹət./
+      engine: olaph
 - phrase: The party
   emoji: 🎉
   level: 571
   ipas:
-    - ipa: ðə pˈɑːti
-      category: standard
+    - ipa: /ðə pˈɑːti./
+      engine: olaph
 - phrase: The pavement
   emoji: 🩹
   level: 889
   ipas:
-    - ipa: ðə pˈeɪvmənt
-      category: standard
+    - ipa: /ðə pˈe‍ɪvmənt./
+      engine: olaph
 - phrase: The peacock
   emoji: 🦚
   level: 571
   ipas:
-    - ipa: ðə pˈiːkɒk
-      category: standard
+    - ipa: /ðə pˈiːkɒk./
+      engine: olaph
 - phrase: The peak
   emoji: ⛏️
   level: 535
   ipas:
-    - ipa: ðə pˈiːk
-      category: standard
+    - ipa: /ðə pˈiːk./
+      engine: olaph
 - phrase: The peanut
   emoji: 🥜
   level: 891
   ipas:
-    - ipa: ðə pˈiːnʌt
-      category: standard
+    - ipa: /ðə pˈiːnʌt./
+      engine: olaph
 - phrase: The peanut is delicious
   emoji: 🥜
   level: 713
   ipas:
-    - ipa: ðə pˈiːnʌt ɪz dɪlˈɪʃəs
-      category: standard
+    - ipa: /ðə pˈiːnʌt ˈɪz dɪlˈɪʃəs./
+      engine: olaph
 - phrase: The pen
   emoji: 🖊️
   level: 604
   ipas:
-    - ipa: ðə pˈɛn
-      category: standard
+    - ipa: /ðə pˈɛn./
+      engine: olaph
 - phrase: The pencil
   emoji: ✏️
   level: 393
   ipas:
-    - ipa: ðə pˈɛnsəl
-      category: standard
+    - ipa: /ðə pˈɛnsə‍l./
+      engine: olaph
 - phrase: The penguin
   emoji: 🐧
   level: 603
   ipas:
-    - ipa: ðə pˈɛŋɡwɪn
-      category: standard
+    - ipa: /ðə pˈɛŋɡwɪn./
+      engine: olaph
 - phrase: The penguin swims well.
   emoji: 🐧
   level: 619
   ipas:
-    - ipa: ðə pˈɛŋɡwɪn swˈɪmz wˈɛl
-      category: standard
+    - ipa: /ðə pˈɛŋɡwɪn swˈɪmz ˈwiɫ./
+      engine: olaph
 - phrase: The pepper
   emoji: 🌶️
   level: 689
   ipas:
-    - ipa: ðə pˈɛpə
-      category: standard
+    - ipa: /ðə pˈɛpɐ./
+      engine: olaph
 - phrase: The person
   emoji: 🧑
   level: 806
   ipas:
-    - ipa: ðə pˈɜːsən
-      category: standard
+    - ipa: /ðə pˈɜːsən./
+      engine: olaph
 - phrase: The piano
   emoji: 🎹
   level: 1
   ipas:
-    - ipa: ðə piˈanəʊ
-      category: standard
+    - ipa: /ðə pɪˈænə‍ʊ./
+      engine: olaph
 - phrase: The pickaxe
   emoji: ⛏️
   level: 570
   ipas:
-    - ipa: ðə pˈɪkaks
-      category: standard
+    - ipa: /ðə pˈɪkæks./
+      engine: olaph
 - phrase: The pig
   emoji: 🐷
   level: 587
   ipas:
-    - ipa: ðə pˈɪɡ
-      category: standard
+    - ipa: /ðə pˈɪɡ./
+      engine: olaph
 - phrase: The pig grunts
   emoji: 🐷
   level: 695
   ipas:
-    - ipa: ðə pˈɪɡ ɡɹˈʌnts
-      category: standard
+    - ipa: /ðə pˈɪɡ ɡɹˈʌnts./
+      engine: olaph
 - phrase: The pig grunts.
   emoji: 🐷
   level: 617
   ipas:
-    - ipa: ðə pˈɪɡ ɡɹˈʌnts
-      category: standard
+    - ipa: /ðə pˈɪɡ ɡɹˈʌnts./
+      engine: olaph
 - phrase: The pigeon
   emoji: 🕊️
   level: 445
   ipas:
-    - ipa: ðə pˈɪdʒən
-      category: standard
+    - ipa: /ðə pˈɪd‍ʒən./
+      engine: olaph
 - phrase: The pill
   emoji: 💊
   level: 445
   ipas:
-    - ipa: ðə pˈɪl
-      category: standard
+    - ipa: /ðə pˈɪl./
+      engine: olaph
 - phrase: The pineapple
   emoji: 🍍
   level: 494
   ipas:
-    - ipa: ðə pˈaɪnapəl
-      category: standard
+    - ipa: /ðə pˈa‍ɪnæpə‍l./
+      engine: olaph
 - phrase: The pink flamingo
   emoji: 🦩
   level: 329
   ipas:
-    - ipa: ðə pˈɪŋk flɐmˈɪŋɡəʊ
-      category: standard
+    - ipa: /ðə pˈɪŋk flɛmˈɪŋɡə‍ʊ./
+      engine: olaph
 - phrase: The pizza
   emoji: 🍕
   level: 414
   ipas:
-    - ipa: ðə pˈiːtsə
-      category: standard
+    - ipa: /ðə pˈiːtsɐ./
+      engine: olaph
 - phrase: The pizza is hot and tasty.
   emoji: 🍕
   level: 594
   ipas:
-    - ipa: ðə pˈiːtsəɹ ɪz hˈɒt and tˈeɪsti
-      category: standard
+    - ipa: /ðə pˈiːtsɐ ˈɪz hˈɒt ˈænd tˈe‍ɪsti./
+      engine: olaph
 - phrase: The pizza tastes good
   emoji: 🍕
   level: 729
   ipas:
-    - ipa: ðə pˈiːtsə tˈeɪsts ɡˈʊd
-      category: standard
+    - ipa: /ðə pˈiːtsɐ tˈe‍ɪsts ɡˈʊd./
+      engine: olaph
 - phrase: The place of worship
   emoji: 🛐
   level: 693
   ipas:
-    - ipa: ðə plˈeɪs ɒv wˈɜːʃɪp
-      category: standard
+    - ipa: /ðə plˈe‍ɪs ˈɒv wˈɜːʃɪp./
+      engine: olaph
 - phrase: The plane
   emoji: ✈️
   level: 639
   ipas:
-    - ipa: ðə plˈeɪn
-      category: standard
+    - ipa: /ðə plˈe‍ɪn./
+      engine: olaph
 - phrase: The plane is flying in the sky.
   emoji: ✈️
   level: 564
   ipas:
-    - ipa: ðə plˈeɪn ɪz flˈaɪɪŋ ɪnðə skˈaɪ
-      category: standard
+    - ipa: /ðə plˈe‍ɪn ˈɪz flˈa‍ɪɪŋ ˈɪn ðə skˈa‍ɪ./
+      engine: olaph
 - phrase: The plug
   emoji: 🔌
   level: 868
   ipas:
-    - ipa: ðə plˈʌɡ
-      category: standard
+    - ipa: /ðə plˈʌɡ./
+      engine: olaph
 - phrase: The police car
   emoji: 🚓
   level: 503
   ipas:
-    - ipa: ðə pəlˈiːs kˈɑː
-      category: standard
+    - ipa: /ðə pəlˈiːs kˈɑː./
+      engine: olaph
 - phrase: The poodle
   emoji: 🐩
   level: 774
   ipas:
-    - ipa: ðə pˈuːdəl
-      category: standard
+    - ipa: /ðə pˈuːdə‍l./
+      engine: olaph
 - phrase: The post office
   emoji: 🏣
   level: 652
   ipas:
-    - ipa: ðə pˈəʊst ˈɒfɪs
-      category: standard
+    - ipa: /ðə pˈə‍ʊst ˈɒfɪs./
+      engine: olaph
 - phrase: The potato
   emoji: 🥔
   level: 598
   ipas:
-    - ipa: ðə pətˈeɪtəʊ
-      category: standard
+    - ipa: /ðə pətˈe‍ɪtə‍ʊ./
+      engine: olaph
 - phrase: The potato cooks in water.
   emoji: 🥔
   level: 631
   ipas:
-    - ipa: ðə pətˈeɪtəʊ kˈʊks ɪn wˈɔːtə
-      category: standard
+    - ipa: /ðə pətˈe‍ɪtə‍ʊ ˈkʊks ˈɪn wˈɔːtɐ./
+      engine: olaph
 - phrase: The pound
   emoji: 💷
   level: 801
   ipas:
-    - ipa: ðə pˈaʊnd
-      category: standard
+    - ipa: /ðə pˈa‍ʊnd./
+      engine: olaph
 - phrase: The pretzel
   emoji: 🥨
   level: 721
   ipas:
-    - ipa: ðə pɹˈɛtsəl
-      category: standard
+    - ipa: /ðə pɹˈɛtsə‍l./
+      engine: olaph
 - phrase: The prince
   emoji: 🤴
   level: 1
   ipas:
-    - ipa: ðə pɹˈɪns
-      category: standard
+    - ipa: /ðə pɹˈɪns./
+      engine: olaph
 - phrase: The princess
   emoji: 👸
   level: 838
   ipas:
-    - ipa: ðə pɹˈɪnsɛs
-      category: standard
+    - ipa: /ðə ˈpɹɪnsɛs./
+      engine: olaph
 - phrase: The projector
   emoji: 📽️
   level: 871
   ipas:
-    - ipa: ðə pɹədʒˈɛktə
-      category: standard
+    - ipa: /ðə pɹəd‍ʒˈɛktɐ./
+      engine: olaph
 - phrase: The pudding
   emoji: 🍮
   level: 17
   ipas:
-    - ipa: ðə pˈʊdɪŋ
-      category: standard
+    - ipa: /ðə pˈʊdɪŋ./
+      engine: olaph
 - phrase: The question
   emoji: ❓
   level: 74
   ipas:
-    - ipa: ðə kwˈɛstʃən
-      category: standard
+    - ipa: /ðə kwˈɛst‍ʃən./
+      engine: olaph
 - phrase: The rabbit
   emoji: 🐰
   level: 578
   ipas:
-    - ipa: ðə ɹˈabɪt
-      category: standard
+    - ipa: /ðə ɹˈæbɪt./
+      engine: olaph
 - phrase: The rabbit eats carrots.
   emoji: 🐰
   level: 638
   ipas:
-    - ipa: ðə ɹˈabɪt ˈiːts kˈaɹəts
-      category: standard
+    - ipa: /ðə ɹˈæbɪt ˈiːts kˈæɹəts./
+      engine: olaph
 - phrase: The rabbit laughs
   emoji: 🐰
   level: 931
   ipas:
-    - ipa: ðə ɹˈabɪt lˈafs
-      category: standard
+    - ipa: /ðə ɹˈæbɪt lˈɑːfz./
+      engine: olaph
 - phrase: The radio
   emoji: 📻
   level: 1
   ipas:
-    - ipa: ðə ɹˈeɪdɪˌəʊ
-      category: standard
+    - ipa: /ðə ɹˈe‍ɪdɪˌə‍ʊ./
+      engine: olaph
 - phrase: The rain
   emoji: 🌧️
   level: 566
   ipas:
-    - ipa: ðə ɹˈeɪn
-      category: standard
+    - ipa: /ðə ɹˈe‍ɪn./
+      engine: olaph
 - phrase: The rain falls on the garden.
   emoji: 🌧️
   level: 623
   ipas:
-    - ipa: ðə ɹˈeɪn fˈɔːlz ɒnðə ɡˈɑːdən
-      category: standard
+    - ipa: /ðə ɹˈe‍ɪn ˈfɔɫz ˈɒn ðə ɡˈɑːdən./
+      engine: olaph
 - phrase: The rain is falling
   emoji: 🌧️
   level: 674
   ipas:
-    - ipa: ðə ɹˈeɪn ɪz fˈɔːlɪŋ
-      category: standard
+    - ipa: /ðə ɹˈe‍ɪn ˈɪz fˈɔːlɪŋ./
+      engine: olaph
 - phrase: The rainbow
   emoji: 🌈
   level: 764
   ipas:
-    - ipa: ðə ɹˈeɪnbəʊ
-      category: standard
+    - ipa: /ðə ɹˈe‍ɪnbə‍ʊ./
+      engine: olaph
 - phrase: The rainbow shines
   emoji: 🌈
   level: 840
   ipas:
-    - ipa: ðə ɹˈeɪnbəʊ ʃˈaɪnz
-      category: standard
+    - ipa: /ðə ɹˈe‍ɪnbə‍ʊ ʃˈa‍ɪnz./
+      engine: olaph
 - phrase: The rainbow shines after the rain.
   emoji: 🌈
   level: 659
   ipas:
-    - ipa: ðə ɹˈeɪnbəʊ ʃˈaɪnz ˈaftə ðə ɹˈeɪn
-      category: standard
+    - ipa: /ðə ɹˈe‍ɪnbə‍ʊ ʃˈa‍ɪnz ˈɑːftɐ ðə ɹˈe‍ɪn./
+      engine: olaph
 - phrase: The razor
   emoji: 🪒
   level: 689
   ipas:
-    - ipa: ðə ɹˈeɪzə
-      category: standard
+    - ipa: /ðə ɹˈe‍ɪzɐ./
+      engine: olaph
 - phrase: The red book
   emoji: 📕
   level: 745
   ipas:
-    - ipa: ðə ɹˈɛd bˈʊk
-      category: standard
+    - ipa: /ðə ɹˈɛd bˈʊk./
+      engine: olaph
 - phrase: The red envelope
   emoji: 🧧
   level: 1000
   ipas:
-    - ipa: ðə ɹˈɛd ˈɛnvəlˌəʊp
-      category: standard
+    - ipa: /ðə ɹˈɛd ˈɛnvəˌɫoʊp./
+      engine: olaph
 - phrase: The red light
   emoji: 🚦
   level: 664
   ipas:
-    - ipa: ðə ɹˈɛd lˈaɪt
-      category: standard
+    - ipa: /ðə ɹˈɛd lˈa‍ɪt./
+      engine: olaph
 - phrase: The rice
   emoji: 🍚
   level: 783
   ipas:
-    - ipa: ðə ɹˈaɪs
-      category: standard
+    - ipa: /ðə ɹˈa‍ɪs./
+      engine: olaph
 - phrase: The rice ball
   emoji: 🍙
   level: 676
   ipas:
-    - ipa: ðə ɹˈaɪs bˈɔːl
-      category: standard
+    - ipa: /ðə ɹˈa‍ɪs bˈɔːl./
+      engine: olaph
 - phrase: The rice cooks in the pan.
   emoji: 🍚
   level: 629
   ipas:
-    - ipa: ðə ɹˈaɪs kˈʊks ɪnðə pˈan
-      category: standard
+    - ipa: /ðə ɹˈa‍ɪs ˈkʊks ˈɪn ðə ˈpæn./
+      engine: olaph
 - phrase: The ring
   emoji: 💍
   level: 968
   ipas:
-    - ipa: ðə ɹˈɪŋ
-      category: standard
+    - ipa: /ðə ɹˈɪŋ./
+      engine: olaph
 - phrase: The river
   emoji: 🏞️
   level: 608
   ipas:
-    - ipa: ðə ɹˈɪvə
-      category: standard
+    - ipa: /ðə ˈɹɪvɝ./
+      engine: olaph
 - phrase: The river flows gently.
   emoji: 🏞️
   level: 659
   ipas:
-    - ipa: ðə ɹˈɪvə flˈəʊz dʒˈɛntli
-      category: standard
+    - ipa: /ðə ˈɹɪvɝ flˈə‍ʊz d‍ʒˈɛntli./
+      engine: olaph
 - phrase: The robot arm
   emoji: 🦾
   level: 984
   ipas:
-    - ipa: ðə ɹˈəʊbɒt ˈɑːm
-      category: standard
+    - ipa: /ðə ɹˈə‍ʊbɒt ˈɑːm./
+      engine: olaph
 - phrase: The rocket
   emoji: 🚀
   level: 652
   ipas:
-    - ipa: ðə ɹˈɒkɪt
-      category: standard
+    - ipa: /ðə ɹˈɒkɪt./
+      engine: olaph
 - phrase: The rocket flies into space
   emoji: 🚀
   level: 584
   ipas:
-    - ipa: ðə ɹˈɒkɪt flˈaɪz ˌɪntʊ spˈeɪs
-      category: standard
+    - ipa: /ðə ɹˈɒkɪt flˈa‍ɪz ˈɪntʊ spˈe‍ɪs./
+      engine: olaph
 - phrase: The roll of paper
   emoji: 🧻
   level: 786
   ipas:
-    - ipa: ðə ɹˈəʊl ɒv pˈeɪpə
-      category: standard
+    - ipa: /ðə ɹˈə‍ʊl ˈɒv pˈe‍ɪpɐ./
+      engine: olaph
 - phrase: The roller coaster
   emoji: 🎢
   level: 911
   ipas:
-    - ipa: ðə ɹˈəʊlə kˈəʊstə
-      category: standard
+    - ipa: /ðə ɹˈə‍ʊlɐ kˈə‍ʊstɐ./
+      engine: olaph
 - phrase: The rooster
   emoji: 🐓
   level: 535
   ipas:
-    - ipa: ðə ɹˈuːstə
-      category: standard
+    - ipa: /ðə ɹˈuːstɐ./
+      engine: olaph
 - phrase: The rose
   emoji: 🌹
   level: 1
   ipas:
-    - ipa: ðə ɹˈəʊz
-      category: standard
+    - ipa: /ðə ˈɹoʊz./
+      engine: olaph
 - phrase: The rule
   emoji: 📏
   level: 604
   ipas:
-    - ipa: ðə ɹˈuːl
-      category: standard
+    - ipa: /ðə ɹˈuːl./
+      engine: olaph
 - phrase: The ruler
   emoji: 📏
   level: 850
   ipas:
-    - ipa: ðə ɹˈuːlə
-      category: standard
+    - ipa: /ðə ɹˈuːlɐ./
+      engine: olaph
 - phrase: The runner
   emoji: 🏃
   level: 850
   ipas:
-    - ipa: ðə ɹˈʌnə
-      category: standard
+    - ipa: /ðə ɹˈʌnɐ./
+      engine: olaph
 - phrase: The safety glasses
   emoji: 🥽
   level: 609
   ipas:
-    - ipa: ðə sˈeɪfti ɡlˈasɪz
-      category: standard
+    - ipa: /ðə sˈe‍ɪfti ɡlˈɑːsɪz./
+      engine: olaph
 - phrase: The safety pin
   emoji: 🧷
   level: 911
   ipas:
-    - ipa: ðə sˈeɪfti pˈɪn
-      category: standard
+    - ipa: /ðə sˈe‍ɪfti pˈɪn./
+      engine: olaph
 - phrase: The safety vest
   emoji: 🦺
   level: 786
   ipas:
-    - ipa: ðə sˈeɪfti vˈɛst
-      category: standard
+    - ipa: /ðə sˈe‍ɪfti vˈɛst./
+      engine: olaph
 - phrase: The salad
   emoji: 🥗
   level: 737
   ipas:
-    - ipa: ðə sˈaləd
-      category: standard
+    - ipa: /ðə sˈæləd./
+      engine: olaph
 - phrase: The sandwich
   emoji: 🥪
   level: 432
   ipas:
-    - ipa: ðə sˈandwɪtʃ
-      category: standard
+    - ipa: /ðə sˈændwɪt‍ʃ./
+      engine: olaph
 - phrase: The sandwich is delicious.
   emoji: 🥪
   level: 550
   ipas:
-    - ipa: ðə sˈandwɪtʃ ɪz dɪlˈɪʃəs
-      category: standard
+    - ipa: /ðə sˈændwɪt‍ʃ ˈɪz dɪlˈɪʃəs./
+      engine: olaph
 - phrase: The sauna
   emoji: 🧖
   level: 122
   ipas:
-    - ipa: ðə sˈɔːnə
-      category: standard
+    - ipa: /ðə sˈɔːnɐ./
+      engine: olaph
 - phrase: The saxophone
   emoji: 🎷
   level: 284
   ipas:
-    - ipa: ðə sˈaksəfˌəʊn
-      category: standard
+    - ipa: /ðə sˈæksəfˌə‍ʊn./
+      engine: olaph
 - phrase: The scales
   emoji: ⚖️
   level: 445
   ipas:
-    - ipa: ðə skˈeɪlz
-      category: standard
+    - ipa: /ðə skˈe‍ɪlz./
+      engine: olaph
 - phrase: The scarf
   emoji: 🧣
   level: 672
   ipas:
-    - ipa: ðə skˈɑːf
-      category: standard
+    - ipa: /ðə skˈɑːf./
+      engine: olaph
 - phrase: The scarf protects from the cold.
   emoji: 🧣
   level: 640
   ipas:
-    - ipa: ðə skˈɑːf pɹətˈɛkts fɹʌmðə kˈəʊld
-      category: standard
+    - ipa: /ðə skˈɑːf pɹətˈɛkts fɹˈɒm ðə kˈə‍ʊld./
+      engine: olaph
 - phrase: The school
   emoji: 🏫
   level: 535
   ipas:
-    - ipa: ðə skˈuːl
-      category: standard
+    - ipa: /ðə skˈuːl./
+      engine: olaph
 - phrase: The scissors
   emoji: ✂️
   level: 463
   ipas:
-    - ipa: ðə sˈɪsəz
-      category: standard
+    - ipa: /ðə sˈɪsəz./
+      engine: olaph
 - phrase: The scooter
   emoji: 🛴
   level: 956
   ipas:
-    - ipa: ðə skˈuːtə
-      category: standard
+    - ipa: /ðə skˈuːtɐ./
+      engine: olaph
 - phrase: The score
   emoji: 🎼
   level: 838
   ipas:
-    - ipa: ðə skˈɔː
-      category: standard
+    - ipa: /ðə skˈɔː./
+      engine: olaph
 - phrase: The sea
   emoji: 🌊
   level: 549
   ipas:
-    - ipa: ðə sˈiː
-      category: standard
+    - ipa: /ðə sˈiː./
+      engine: olaph
 - phrase: The sea is blue
   emoji: 🌊
   level: 829
   ipas:
-    - ipa: ðə sˈiː ɪz blˈuː
-      category: standard
+    - ipa: /ðə sˈiː ˈɪz blˈuː./
+      engine: olaph
 - phrase: The sea is blue and immense.
   emoji: 🌊
   level: 576
   ipas:
-    - ipa: ðə sˈiː ɪz blˈuː and ɪmˈɛns
-      category: standard
+    - ipa: /ðə sˈiː ˈɪz blˈuː ˈænd ɪmˈɛns./
+      engine: olaph
 - phrase: The seat
   emoji: 💺
   level: 652
   ipas:
-    - ipa: ðə sˈiːt
-      category: standard
+    - ipa: /ðə sˈiːt./
+      engine: olaph
 - phrase: The shark
   blacklisted: true
   emoji: 🦈
   level: 689
   ipas:
-    - ipa: ðə ʃˈɑːk
-      category: standard
+    - ipa: /ðə ʃˈɑːk./
+      engine: olaph
 - phrase: The sheep
   emoji: 🐑
   level: 587
   ipas:
-    - ipa: ðə ʃˈiːp
-      category: standard
+    - ipa: /ðə ʃˈiːp./
+      engine: olaph
 - phrase: The sheep bleats.
   emoji: 🐑
   level: 598
   ipas:
-    - ipa: ðə ʃˈiːp blˈiːts
-      category: standard
+    - ipa: /ðə ʃˈiːp blˈiːts./
+      engine: olaph
 - phrase: The sheet of paper
   emoji: 📃
   level: 786
   ipas:
-    - ipa: ðə ʃˈiːt ɒv pˈeɪpə
-      category: standard
+    - ipa: /ðə ʃˈiːt ˈɒv pˈe‍ɪpɐ./
+      engine: olaph
 - phrase: The shield
   emoji: 🛡️
   level: 753
   ipas:
-    - ipa: ðə ʃˈiːld
-      category: standard
+    - ipa: /ðə ʃˈiːld./
+      engine: olaph
 - phrase: The ship
   emoji: 🚢
   level: 507
   ipas:
-    - ipa: ðə ʃˈɪp
-      category: standard
+    - ipa: /ðə ʃˈɪp./
+      engine: olaph
 - phrase: The shirt
   emoji: 👕
   level: 480
   ipas:
-    - ipa: ðə ʃˈɜːt
-      category: standard
+    - ipa: /ðə ʃˈɜːt./
+      engine: olaph
 - phrase: The shoe
   emoji: 👞
   level: 624
   ipas:
-    - ipa: ðə ʃˈuː
-      category: standard
+    - ipa: /ðə ʃˈuː./
+      engine: olaph
 - phrase: The shoe protects the foot.
   emoji: 👞
   level: 636
   ipas:
-    - ipa: ðə ʃˈuː pɹətˈɛkts ðə fˈʊt
-      category: standard
+    - ipa: /ðə ʃˈuː pɹətˈɛkts ðə fˈʊt./
+      engine: olaph
 - phrase: The shrimp
   emoji: 🍤
   level: 806
   ipas:
-    - ipa: ðə ʃɹˈɪmp
-      category: standard
+    - ipa: /ðə ʃɹˈɪmp./
+      engine: olaph
 - phrase: The shrug
   emoji: 🤷
   level: 980
   ipas:
-    - ipa: ðə ʃɹˈʌɡ
-      category: standard
+    - ipa: /ðə ʃɹˈʌɡ./
+      engine: olaph
 - phrase: The signal
   emoji: 📶
   level: 62
   ipas:
-    - ipa: ðə sˈɪɡnəl
-      category: standard
+    - ipa: /ðə sˈɪɡnə‍l./
+      engine: olaph
 - phrase: The snail
   emoji: 🐌
   level: 714
   ipas:
-    - ipa: ðə snˈeɪl
-      category: standard
+    - ipa: /ðə snˈe‍ɪl./
+      engine: olaph
 - phrase: The snail moves slowly.
   emoji: 🐌
   level: 712
   ipas:
-    - ipa: ðə snˈeɪl mˈuːvz slˈəʊli
-      category: standard
+    - ipa: /ðə snˈe‍ɪl mˈuːvz slˈə‍ʊli./
+      engine: olaph
 - phrase: The snake
   emoji: 🐍
   level: 595
   ipas:
-    - ipa: ðə snˈeɪk
-      category: standard
+    - ipa: /ðə snˈe‍ɪk./
+      engine: olaph
 - phrase: The snake crawls on the ground.
   emoji: 🐍
   level: 629
   ipas:
-    - ipa: ðə snˈeɪk kɹˈɔːlz ɒnðə ɡɹˈaʊnd
-      category: standard
+    - ipa: /ðə snˈe‍ɪk kɹˈɔːlz ˈɒn ðə ɡɹˈa‍ʊnd./
+      engine: olaph
 - phrase: The snow
   emoji: 🌨️
   level: 503
   ipas:
-    - ipa: ðə snˈəʊ
-      category: standard
+    - ipa: /ðə snˈə‍ʊ./
+      engine: olaph
 - phrase: The snow is falling
   emoji: ❄️
   level: 667
   ipas:
-    - ipa: ðə snˈəʊ ɪz fˈɔːlɪŋ
-      category: standard
+    - ipa: /ðə snˈə‍ʊ ˈɪz fˈɔːlɪŋ./
+      engine: olaph
 - phrase: The snow is falling slowly.
   emoji: ❄️
   level: 644
   ipas:
-    - ipa: ðə snˈəʊ ɪz fˈɔːlɪŋ slˈəʊli
-      category: standard
+    - ipa: /ðə snˈə‍ʊ ˈɪz fˈɔːlɪŋ slˈə‍ʊli./
+      engine: olaph
 - phrase: The snowman
   emoji: ☃️
   level: 810
   ipas:
-    - ipa: ðə snˈəʊmən
-      category: standard
+    - ipa: /ðə snˈə‍ʊmən./
+      engine: olaph
 - phrase: The snowy mountain
   emoji: 🏔️
   level: 947
   ipas:
-    - ipa: ðə snˈəʊi mˈaʊntɪn
-      category: standard
+    - ipa: /ðə snˈə‍ʊi mˈa‍ʊntɪn./
+      engine: olaph
 - phrase: The soccer ball
   emoji: ⚽
   level: 353
   ipas:
-    - ipa: ðə sˈɒkə bˈɔːl
-      category: standard
+    - ipa: /ðə sˈɒkɐ bˈɔːl./
+      engine: olaph
 - phrase: The sock
   emoji: 🧦
   level: 632
   ipas:
-    - ipa: ðə sˈɒk
-      category: standard
+    - ipa: /ðə sˈɒk./
+      engine: olaph
 - phrase: The sock keeps your feet warm.
   emoji: 🧦
   level: 643
   ipas:
-    - ipa: ðə sˈɒk kˈiːps jɔː fˈiːt wˈɔːm
-      category: standard
+    - ipa: /ðə sˈɒk kˈiːps jˈɔː fˈiːt wˈɔːm./
+      engine: olaph
 - phrase: The sofa
   emoji: 🛋️
   level: 587
   ipas:
-    - ipa: ðə sˈəʊfə
-      category: standard
+    - ipa: /ðə sˈə‍ʊfɐ./
+      engine: olaph
 - phrase: The sofa is comfortable.
   emoji: 🛋️
   level: 648
   ipas:
-    - ipa: ðə sˈəʊfəɹ ɪz kˈʌmftəbəl
-      category: standard
+    - ipa: /ðə sˈə‍ʊfɐ ˈɪz kˈʌmftəbə‍l./
+      engine: olaph
 - phrase: The sorbet
   emoji: 🍧
   level: 689
   ipas:
-    - ipa: ðə sˈɔːbeɪ
-      category: standard
+    - ipa: /ðə sˈɔːbe‍ɪ./
+      engine: olaph
 - phrase: The soup
   emoji: 🍲
   level: 578
   ipas:
-    - ipa: ðə sˈuːp
-      category: standard
+    - ipa: /ðə sˈuːp./
+      engine: olaph
 - phrase: The soup is hot and good.
   emoji: 🍲
   level: 627
   ipas:
-    - ipa: ðə sˈuːp ɪz hˈɒt and ɡˈʊd
-      category: standard
+    - ipa: /ðə sˈuːp ˈɪz hˈɒt ˈænd ɡˈʊd./
+      engine: olaph
 - phrase: The spider
   blacklisted: true
   emoji: 🕷️
   level: 714
   ipas:
-    - ipa: ðə spˈaɪdə
-      category: standard
+    - ipa: /ðə spˈa‍ɪdɐ./
+      engine: olaph
 - phrase: The spider weaves a web.
   blacklisted: true
   emoji: 🕷️
   level: 659
   ipas:
-    - ipa: ðə spˈaɪdə wˈiːvz ɐ wˈɛb
-      category: standard
+    - ipa: /ðə spˈa‍ɪdɐ wˈiːvz ə wˈɛb./
+      engine: olaph
 - phrase: The sponge
   emoji: 🧽
   level: 968
   ipas:
-    - ipa: ðə spˈʌndʒ
-      category: standard
+    - ipa: /ðə spˈʌnd‍ʒ./
+      engine: olaph
 - phrase: The sports jersey
   emoji: 🎽
   level: 405
   ipas:
-    - ipa: ðə spˈɔːts dʒˈɜːsi
-      category: standard
+    - ipa: /ðə ˈspɔɹts d‍ʒˈɜːsi./
+      engine: olaph
 - phrase: The sports shirt
   emoji: 🎽
   level: 907
   ipas:
-    - ipa: ðə spˈɔːts ʃˈɜːt
-      category: standard
+    - ipa: /ðə ˈspɔɹts ʃˈɜːt./
+      engine: olaph
 - phrase: The square
   emoji: 📐
   level: 1000
   ipas:
-    - ipa: ðə skwˈeə
-      category: standard
+    - ipa: /ðə skwˈe‍ə./
+      engine: olaph
 - phrase: The squid
   emoji: 🦑
   level: 689
   ipas:
-    - ipa: ðə skwˈɪd
-      category: standard
+    - ipa: /ðə ˈskwɪd./
+      engine: olaph
 - phrase: The star
   emoji: ⭐
   level: 656
   ipas:
-    - ipa: ðə stˈɑː
-      category: standard
+    - ipa: /ðə stˈɑː./
+      engine: olaph
 - phrase: The star shines in the sky.
   emoji: ⭐
   level: 631
   ipas:
-    - ipa: ðə stˈɑː ʃˈaɪnz ɪnðə skˈaɪ
-      category: standard
+    - ipa: /ðə stˈɑː ʃˈa‍ɪnz ˈɪn ðə skˈa‍ɪ./
+      engine: olaph
 - phrase: The statue
   emoji: 🗿
   level: 33
   ipas:
-    - ipa: ðə stˈatʃuː
-      category: standard
+    - ipa: /ðə stˈæt‍ʃuː./
+      engine: olaph
 - phrase: The steak
   emoji: 🥩
   level: 1
   ipas:
-    - ipa: ðə stˈeɪk
-      category: standard
+    - ipa: /ðə stˈe‍ɪk./
+      engine: olaph
 - phrase: The stethoscope
   emoji: 🩺
   level: 907
   ipas:
-    - ipa: ðə stˈɛθəskˌəʊp
-      category: standard
+    - ipa: /ðə stˈɛθəskˌə‍ʊp./
+      engine: olaph
 - phrase: The stick
   emoji: 🦯
   level: 463
   ipas:
-    - ipa: ðə stˈɪk
-      category: standard
+    - ipa: /ðə stˈɪk./
+      engine: olaph
 - phrase: The storage box
   emoji: 🗃️
   level: 826
   ipas:
-    - ipa: ðə stˈɔːɹɪdʒ bˈɒks
-      category: standard
+    - ipa: /ðə stˈɔːɹɪd‍ʒ bˈɒks./
+      engine: olaph
 - phrase: The store
   emoji: 🏬
   level: 774
   ipas:
-    - ipa: ðə stˈɔː
-      category: standard
+    - ipa: /ðə stˈɔː./
+      engine: olaph
 - phrase: The storm
   emoji: ⛈️
   level: 1000
   ipas:
-    - ipa: ðə stˈɔːm
-      category: standard
+    - ipa: /ðə stˈɔːm./
+      engine: olaph
 - phrase: The storm cloud
   emoji: 🌩️
   level: 685
   ipas:
-    - ipa: ðə stˈɔːm klˈaʊd
-      category: standard
+    - ipa: /ðə stˈɔːm klˈa‍ʊd./
+      engine: olaph
 - phrase: The straw hat
   emoji: 👒
   level: 786
   ipas:
-    - ipa: ðə stɹˈɔː hˈat
-      category: standard
+    - ipa: /ðə stɹˈɔː hˈæt./
+      engine: olaph
 - phrase: The strawberry
   emoji: 🍓
   level: 587
   ipas:
-    - ipa: ðə stɹˈɔːbəɹi
-      category: standard
+    - ipa: /ðə stɹˈɔːbəɹi./
+      engine: olaph
 - phrase: The strawberry is small and red.
   emoji: 🍓
   level: 634
   ipas:
-    - ipa: ðə stɹˈɔːbəɹi ɪz smˈɔːl and ɹˈɛd
-      category: standard
+    - ipa: /ðə stɹˈɔːbəɹi ˈɪz smˈɔːl ˈænd ɹˈɛd./
+      engine: olaph
 - phrase: The struggle
   emoji: 🤼
   level: 652
   ipas:
-    - ipa: ðə stɹˈʌɡəl
-      category: standard
+    - ipa: /ðə stɹˈʌɡə‍l./
+      engine: olaph
 - phrase: The sun
   emoji: ☀️
   level: 587
   ipas:
-    - ipa: ðə sˈʌn
-      category: standard
+    - ipa: /ðə sˈʌn./
+      engine: olaph
 - phrase: The sun shines every morning.
   emoji: ☀️
   level: 644
   ipas:
-    - ipa: ðə sˈʌn ʃˈaɪnz ˈɛvɹɪ mˈɔːnɪŋ
-      category: standard
+    - ipa: /ðə sˈʌn ʃˈa‍ɪnz ˈɛvɹi mˈɔːnɪŋ./
+      engine: olaph
 - phrase: The swan
   emoji: 🦢
   level: 604
   ipas:
-    - ipa: ðə swˈɒn
-      category: standard
+    - ipa: /ðə swˈɒn./
+      engine: olaph
 - phrase: The sword
   blacklisted: true
   emoji: 🗡️
   level: 733
   ipas:
-    - ipa: ðə sˈɔːd
-      category: standard
+    - ipa: /ðə sˈɔːd./
+      engine: olaph
 - phrase: The synagogue
   emoji: 🕍
   level: 325
   ipas:
-    - ipa: ðə sˈɪnɐɡˌɒɡ
-      category: standard
+    - ipa: /ðə sˈɪnɐɡˌɒɡ./
+      engine: olaph
 - phrase: The syringe
   blacklisted: true
   emoji: 💉
   level: 806
   ipas:
-    - ipa: ðə sɪɹˈɪndʒ
-      category: standard
+    - ipa: /ðə sɪɹˈɪnd‍ʒ./
+      engine: olaph
 - phrase: The t-shirt
   emoji: 👕
   level: 668
   ipas:
-    - ipa: ðə tˈiːʃˈɜːt
-      category: standard
+    - ipa: /ðə tˈiː ʃˈɜːt./
+      engine: olaph
 - phrase: The tablet
   emoji: 💊
   level: 753
   ipas:
-    - ipa: ðə tˈablət
-      category: standard
+    - ipa: /ðə tˈæblət./
+      engine: olaph
 - phrase: The taxi
   emoji: 🚕
   level: 1
   ipas:
-    - ipa: ðə tˈaksi
-      category: standard
+    - ipa: /ðə tˈæksi./
+      engine: olaph
 - phrase: The teddy bear
   emoji: 🧸
   level: 810
   ipas:
-    - ipa: ðə tˈɛdi bˈeə
-      category: standard
+    - ipa: /ðə tˈɛdi bˈe‍ə./
+      engine: olaph
 - phrase: The telescope
   emoji: 🔭
   level: 838
   ipas:
-    - ipa: ðə tˈɛlɪskˌəʊp
-      category: standard
+    - ipa: /ðə tˈɛlɪskˌə‍ʊp./
+      engine: olaph
 - phrase: The temple
   emoji: 🛕
   level: 86
   ipas:
-    - ipa: ðə tˈɛmpəl
-      category: standard
+    - ipa: /ðə tˈɛmpə‍l./
+      engine: olaph
 - phrase: The tennis
   emoji: 🎾
   level: 484
   ipas:
-    - ipa: ðə tˈɛnɪs
-      category: standard
+    - ipa: /ðə tˈɛnɪs./
+      engine: olaph
 - phrase: The tent
   emoji: ⛺
   level: 652
   ipas:
-    - ipa: ðə tˈɛnt
-      category: standard
+    - ipa: /ðə tˈɛnt./
+      engine: olaph
 - phrase: The tent is in the forest
   emoji: ⛺
   level: 857
   ipas:
-    - ipa: ðə tˈɛnt ɪz ɪnðə fˈɒɹɪst
-      category: standard
+    - ipa: /ðə tˈɛnt ˈɪz ˈɪn ðə fˈɒɹɪst./
+      engine: olaph
 - phrase: The terrestrial globe
   emoji: 🌍
   level: 458
   ipas:
-    - ipa: ðə təɹˈɛstɹɪəl ɡlˈəʊb
-      category: standard
+    - ipa: /ðə təɹˈɛstɹɪəl ɡlˈə‍ʊb./
+      engine: olaph
 - phrase: The tie
   emoji: 👔
   level: 774
   ipas:
-    - ipa: ðə tˈaɪ
-      category: standard
+    - ipa: /ðə tˈa‍ɪ./
+      engine: olaph
 - phrase: The tiger
   emoji: 🐯
   level: 578
   ipas:
-    - ipa: ðə tˈaɪɡə
-      category: standard
+    - ipa: /ðə tˈa‍ɪɡɐ./
+      engine: olaph
 - phrase: The tiger runs fast.
   emoji: 🐯
   level: 538
   ipas:
-    - ipa: ðə tˈaɪɡə ɹˈʌnz fˈast
-      category: standard
+    - ipa: /ðə tˈa‍ɪɡɐ ˈɹənz fˈɑːst./
+      engine: olaph
 - phrase: The toilet paper
   emoji: 🧻
   level: 1000
   ipas:
-    - ipa: ðə tˈɔɪlɪt pˈeɪpə
-      category: standard
+    - ipa: /ðə tˈɔ‍ɪlət pˈe‍ɪpɐ./
+      engine: olaph
 - phrase: The toilets
   emoji: 🚽
   level: 871
   ipas:
-    - ipa: ðə tˈɔɪlɪts
-      category: standard
+    - ipa: /ðə ˈtɔɪɫəts./
+      engine: olaph
 - phrase: The tomato
   emoji: 🍅
   level: 599
   ipas:
-    - ipa: ðə təmˈɑːtəʊ
-      category: standard
+    - ipa: /ðə təmˈɑːtə‍ʊ./
+      engine: olaph
 - phrase: The tomato is red and round.
   emoji: 🍅
   level: 631
   ipas:
-    - ipa: ðə təmˈɑːtəʊ ɪz ɹˈɛd and ɹˈaʊnd
-      category: standard
+    - ipa: /ðə təmˈɑːtə‍ʊ ˈɪz ɹˈɛd ˈænd ˈɹaʊnd./
+      engine: olaph
 - phrase: The tooth
   emoji: 🦷
   level: 558
   ipas:
-    - ipa: ðə tˈuːθ
-      category: standard
+    - ipa: /ðə tˈuːθ./
+      engine: olaph
 - phrase: The tooth is white.
   emoji: 🦷
   level: 605
   ipas:
-    - ipa: ðə tˈuːθ ɪz wˈaɪt
-      category: standard
+    - ipa: /ðə tˈuːθ ˈɪz wˈa‍ɪt./
+      engine: olaph
 - phrase: The tornado
   blacklisted: true
   emoji: 🌪️
   level: 774
   ipas:
-    - ipa: ðə tɔːnˈeɪdəʊ
-      category: standard
+    - ipa: /ðə tɔːnˈe‍ɪdə‍ʊ./
+      engine: olaph
 - phrase: The tower
   emoji: 🗼
   level: 1
   ipas:
-    - ipa: ðə tˈaʊə
-      category: standard
+    - ipa: /ðə ˈtaʊɝ./
+      engine: olaph
 - phrase: The tractor
   emoji: 🚜
   level: 753
   ipas:
-    - ipa: ðə tɹˈaktə
-      category: standard
+    - ipa: /ðə tɹˈæktɐ./
+      engine: olaph
 - phrase: The traffic light
   emoji: 🚦
   level: 445
   ipas:
-    - ipa: ðə tɹˈafɪk lˈaɪt
-      category: standard
+    - ipa: /ðə tɹˈæfɪk lˈa‍ɪt./
+      engine: olaph
 - phrase: The train
   emoji: 🚂
   level: 392
   ipas:
-    - ipa: ðə tɹˈeɪn
-      category: standard
+    - ipa: /ðə tɹˈe‍ɪn./
+      engine: olaph
 - phrase: The train is moving fast.
   emoji: 🚂
   level: 524
   ipas:
-    - ipa: ðə tɹˈeɪn ɪz mˈuːvɪŋ fˈast
-      category: standard
+    - ipa: /ðə tɹˈe‍ɪn ˈɪz mˈuːvɪŋ fˈɑːst./
+      engine: olaph
 - phrase: The tram
   emoji: 🚋
   level: 721
   ipas:
-    - ipa: ðə tɹˈam
-      category: standard
+    - ipa: /ðə tɹˈæm./
+      engine: olaph
 - phrase: The trash can
   emoji: 🗑️
   level: 806
   ipas:
-    - ipa: ðə tɹˈaʃ kˈan
-      category: standard
+    - ipa: /ðə tɹˈæʃ kˈæn./
+      engine: olaph
 - phrase: The tree
   emoji: 🌳
   level: 639
   ipas:
-    - ipa: ðə tɹˈiː
-      category: standard
+    - ipa: /ðə tɹˈiː./
+      engine: olaph
 - phrase: The tree loses its leaves in autumn.
   emoji: 🌳
   level: 653
   ipas:
-    - ipa: ðə tɹˈiː lˈuːzɪz ɪts lˈiːvz ɪn ˈɔːtʌm
-      category: standard
+    - ipa: /ðə tɹˈiː lˈuːzɪz ˈɪts lˈiːvz ˈɪn ˈɔːtʌm./
+      engine: olaph
 - phrase: The triangle
   emoji: 📐
   level: 840
   ipas:
-    - ipa: ðə tɹˈaɪaŋɡəl
-      category: standard
+    - ipa: /ðə tɹˈa‍ɪæŋɡə‍l./
+      engine: olaph
 - phrase: The truck
   emoji: 🚛
   level: 689
   ipas:
-    - ipa: ðə tɹˈʌk
-      category: standard
+    - ipa: /ðə tɹˈʌk./
+      engine: olaph
 - phrase: The trumpet
   emoji: 🎺
   level: 838
   ipas:
-    - ipa: ðə tɹˈʌmpɪt
-      category: standard
+    - ipa: /ðə tɹˈʌmpɪt./
+      engine: olaph
 - phrase: The trumpet sounds loud
   emoji: 🎺
   level: 732
   ipas:
-    - ipa: ðə tɹˈʌmpɪt sˈaʊndz lˈaʊd
-      category: standard
+    - ipa: /ðə tɹˈʌmpɪt ˈsaʊndz lˈa‍ʊd./
+      engine: olaph
 - phrase: The turtle
   emoji: 🐢
   level: 587
   ipas:
-    - ipa: ðə tˈɜːtəl
-      category: standard
+    - ipa: /ðə tˈɜːtə‍l./
+      engine: olaph
 - phrase: The turtle crawls
   emoji: 🐢
   level: 817
   ipas:
-    - ipa: ðə tˈɜːtəl kɹˈɔːlz
-      category: standard
+    - ipa: /ðə tˈɜːtə‍l kɹˈɔːlz./
+      engine: olaph
 - phrase: The turtle lives a long time.
   emoji: 🐢
   level: 628
   ipas:
-    - ipa: ðə tˈɜːtəl lˈaɪvz ɐ lˈɒŋ tˈaɪm
-      category: standard
+    - ipa: /ðə tˈɜːtə‍l ˈɫaɪvz ə lˈɒŋ tˈa‍ɪm./
+      engine: olaph
 - phrase: The unicorn
   emoji: 🦄
   level: 774
   ipas:
-    - ipa: ðə jˈuːnɪkˌɔːn
-      category: standard
+    - ipa: /ðə jˈuːnɪkˌɔːn./
+      engine: olaph
 - phrase: The vampire
   blacklisted: true
   emoji: 🧛
   level: 159
   ipas:
-    - ipa: ðə vˈampaɪə
-      category: standard
+    - ipa: /ðə vˈæmpa‍ɪ‍ə./
+      engine: olaph
 - phrase: The video
   emoji: 📹
   level: 652
   ipas:
-    - ipa: ðə vˈɪdɪəʊ
-      category: standard
+    - ipa: /ðə vˈɪdɪə‍ʊ./
+      engine: olaph
 - phrase: The video game
   emoji: 🎮
   level: 664
   ipas:
-    - ipa: ðə vˈɪdɪəʊ ɡˈeɪm
-      category: standard
+    - ipa: /ðə vˈɪdɪə‍ʊ ɡˈe‍ɪm./
+      engine: olaph
 - phrase: The violin
   emoji: 🎻
   level: 689
   ipas:
-    - ipa: ðə vaɪəlˈɪn
-      category: standard
+    - ipa: /ðə va‍ɪ‍əlˈɪn./
+      engine: olaph
 - phrase: The violin sounds beautiful
   emoji: 🎻
   level: 699
   ipas:
-    - ipa: ðə vaɪəlˈɪn sˈaʊndz bjˈuːtifəl
-      category: standard
+    - ipa: /ðə va‍ɪ‍əlˈɪn ˈsaʊndz bjˈuːtɪfə‍l./
+      engine: olaph
 - phrase: The volcano
   emoji: 🌋
   level: 587
   ipas:
-    - ipa: ðə vɒlkˈeɪnəʊ
-      category: standard
+    - ipa: /ðə vɒlkˈe‍ɪnə‍ʊ./
+      engine: olaph
 - phrase: The waffle
   emoji: 🧇
   level: 689
   ipas:
-    - ipa: ðə wˈɒfəl
-      category: standard
+    - ipa: /ðə wˈɒfə‍l./
+      engine: olaph
 - phrase: The wallet
   emoji: 👛
   level: 1000
   ipas:
-    - ipa: ðə wˈɒlɪt
-      category: standard
+    - ipa: /ðə wˈɒlɪt./
+      engine: olaph
 - phrase: The wardrobe
   emoji: 🗄️
   level: 1000
   ipas:
-    - ipa: ðə wˈɔːdɹəʊb
-      category: standard
+    - ipa: /ðə wˈɔːdɹə‍ʊb./
+      engine: olaph
 - phrase: The warning
   emoji: ⚠️
   level: 1000
   ipas:
-    - ipa: ðə wˈɔːnɪŋ
-      category: standard
+    - ipa: /ðə wˈɔːnɪŋ./
+      engine: olaph
 - phrase: The water
   emoji: 💧
   level: 517
   ipas:
-    - ipa: ðə wˈɔːtə
-      category: standard
+    - ipa: /ðə wˈɔːtɐ./
+      engine: olaph
 - phrase: The water flows
   emoji: 💧
   level: 690
   ipas:
-    - ipa: ðə wˈɔːtə flˈəʊz
-      category: standard
+    - ipa: /ðə wˈɔːtɐ flˈə‍ʊz./
+      engine: olaph
 - phrase: The watermelon
   emoji: 🍉
   level: 667
   ipas:
-    - ipa: ðə wˈɔːtəmˌɛlən
-      category: standard
+    - ipa: /ðə wˈɔːtəmˌɛlən./
+      engine: olaph
 - phrase: The whale
   emoji: 🐳
   level: 608
   ipas:
-    - ipa: ðə wˈeɪl
-      category: standard
+    - ipa: /ðə wˈe‍ɪl./
+      engine: olaph
 - phrase: The whale swims in the sea.
   emoji: 🐳
   level: 624
   ipas:
-    - ipa: ðə wˈeɪl swˈɪmz ɪnðə sˈiː
-      category: standard
+    - ipa: /ðə wˈe‍ɪl swˈɪmz ˈɪn ðə sˈiː./
+      engine: olaph
 - phrase: The wind
   emoji: 💨
   level: 558
   ipas:
-    - ipa: ðə wˈɪnd
-      category: standard
+    - ipa: /ðə ˈwɪnd./
+      engine: olaph
 - phrase: The wind chime
   emoji: 🎐
   level: 907
   ipas:
-    - ipa: ðə wˈɪnd tʃˈaɪm
-      category: standard
+    - ipa: /ðə ˈwɪnd t‍ʃˈa‍ɪm./
+      engine: olaph
 - phrase: The wind is blowing
   emoji: 💨
   level: 630
   ipas:
-    - ipa: ðə wˈɪnd ɪz blˈəʊɪŋ
-      category: standard
+    - ipa: /ðə ˈwɪnd ˈɪz blˈə‍ʊɪŋ./
+      engine: olaph
 - phrase: The wind is blowing hard.
   emoji: 💨
   level: 530
   ipas:
-    - ipa: ðə wˈɪnd ɪz blˈəʊɪŋ hˈɑːd
-      category: standard
+    - ipa: /ðə ˈwɪnd ˈɪz blˈə‍ʊɪŋ hˈɑːd./
+      engine: olaph
 - phrase: The wind that blows
   emoji: 🌬️
   level: 741
   ipas:
-    - ipa: ðə wˈɪnd ðat blˈəʊz
-      category: standard
+    - ipa: /ðə ˈwɪnd ðˈæt blˈə‍ʊz./
+      engine: olaph
 - phrase: The window
   emoji: 🪟
   level: 595
   ipas:
-    - ipa: ðə wˈɪndəʊ
-      category: standard
+    - ipa: /ðə wˈɪndə‍ʊ./
+      engine: olaph
 - phrase: The window is open this morning.
   emoji: 🪟
   level: 639
   ipas:
-    - ipa: ðə wˈɪndəʊ ɪz ˈəʊpən ðɪs mˈɔːnɪŋ
-      category: standard
+    - ipa: /ðə wˈɪndə‍ʊ ˈɪz ˈə‍ʊpən ðˈɪs mˈɔːnɪŋ./
+      engine: olaph
 - phrase: The wine
   blacklisted: true
   emoji: 🍷
   level: 535
   ipas:
-    - ipa: ðə wˈaɪn
-      category: standard
+    - ipa: /ðə wˈa‍ɪn./
+      engine: olaph
 - phrase: The wolf
   emoji: 🐺
   level: 558
   ipas:
-    - ipa: ðə wˈʊlf
-      category: standard
+    - ipa: /ðə wˈʊlf./
+      engine: olaph
 - phrase: The wolf howls in the forest.
   emoji: 🐺
   level: 616
   ipas:
-    - ipa: ðə wˈʊlf hˈaʊlz ɪnðə fˈɒɹɪst
-      category: standard
+    - ipa: /ðə wˈʊlf hˈa‍ʊlz ˈɪn ðə fˈɒɹɪst./
+      engine: olaph
 - phrase: The woman
   emoji: 👩
   level: 652
   ipas:
-    - ipa: ðə wˈʊmən
-      category: standard
+    - ipa: /ðə wˈʊmən./
+      engine: olaph
 - phrase: The word
   emoji: 🗣️
   level: 232
   ipas:
-    - ipa: ðə wˈɜːd
-      category: standard
+    - ipa: /ðə wˈɜːd./
+      engine: olaph
 - phrase: The young
   emoji: 👦
   level: 496
   ipas:
-    - ipa: ðə jˈʌŋ
-      category: standard
+    - ipa: /ðə jˈʌŋ./
+      engine: olaph
 - phrase: Water is essential for life.
   emoji: 💧
   level: 632
   ipas:
-    - ipa: wˈɔːtəɹ ɪz ɪsˈɛnʃəl fɔː lˈaɪf
-      category: standard
+    - ipa: /wˈɔːtɐ ˈɪz ɪsˈɛnʃə‍l fˈɔː lˈa‍ɪf./
+      engine: olaph
 - phrase: the moon
   emoji: 🌙
   level: 570
   ipas:
-    - ipa: ðə mˈuːn
-      category: standard
+    - ipa: /ðə mˈuːn./
+      engine: olaph
 - phrase: Table
   emoji: 🪑
   ipas:
-    - ipa: /ˈteɪbəl/
-      category: standard
+    - ipa: /tˈe‍ɪbə‍l./
+      engine: olaph
   level: 200
 - phrase: Mother
   emoji: 👩
   ipas:
-    - ipa: /ˈmʌðə/
-      category: standard
+    - ipa: /ˈməðɝ./
+      engine: olaph
   level: 140
 - phrase: Father
   emoji: 👨
   ipas:
-    - ipa: /ˈfɑːðə/
-      category: standard
+    - ipa: /fˈɑːðɐ./
+      engine: olaph
   level: 140
 - phrase: Friend
   emoji: 🤝
   ipas:
-    - ipa: /frɛnd/
-      category: standard
+    - ipa: /fɹˈɛnd./
+      engine: olaph
   level: 130
 - phrase: Food
   emoji: 🍽️
   ipas:
-    - ipa: /fuːd/
-      category: standard
+    - ipa: /fˈuːd./
+      engine: olaph
   level: 120
 - phrase: Time
   emoji: ⏰
   ipas:
-    - ipa: /taɪm/
-      category: standard
+    - ipa: /tˈa‍ɪm./
+      engine: olaph
   level: 140
 - phrase: Day
   emoji: 📅
   ipas:
-    - ipa: /deɪ/
-      category: standard
+    - ipa: /dˈe‍ɪ./
+      engine: olaph
   level: 100
 - phrase: Night
   emoji: 🌙
   ipas:
-    - ipa: /naɪt/
-      category: standard
+    - ipa: /nˈa‍ɪt./
+      engine: olaph
   level: 110
 - phrase: Good morning
   emoji: 👋
   ipas:
-    - ipa: /ɡʊd ˈmɔːnɪŋ/
-      category: standard
+    - ipa: /ɡˈʊd mˈɔːnɪŋ./
+      engine: olaph
   level: 260
 - phrase: Good evening
   emoji: 🌆
   ipas:
-    - ipa: /ɡʊd ˈiːvnɪŋ/
-      category: standard
+    - ipa: /ɡˈʊd ˈivnɪŋ./
+      engine: olaph
   level: 270
 - phrase: Good night
   emoji: 🌙
   ipas:
-    - ipa: /ɡʊd naɪt/
-      category: standard
+    - ipa: /ɡˈʊd nˈa‍ɪt./
+      engine: olaph
   level: 260
 - phrase: Thank you
   emoji: 🙏
   ipas:
-    - ipa: /θæŋk juː/
-      category: standard
+    - ipa: /θˈæŋk jˈuː./
+      engine: olaph
   level: 180
 - phrase: You're welcome
   emoji: 😊
   ipas:
-    - ipa: /jɔː ˈwɛlkəm/
-      category: standard
+    - ipa: /ˈjuɹ wˈɛlkʌm./
+      engine: olaph
   level: 220
 - phrase: Excuse me
   emoji: 🙋
   ipas:
-    - ipa: /ɪkˈskjuːz miː/
-      category: standard
+    - ipa: /ɪkˈskjuz mˈiː./
+      engine: olaph
   level: 240
 - phrase: Please
   emoji: 🙏
   ipas:
-    - ipa: /pliːz/
-      category: standard
+    - ipa: /plˈiːz./
+      engine: olaph
   level: 140
 - phrase: How are you?
   emoji: 😊
   ipas:
-    - ipa: /haʊ ɑː juː/
-      category: standard
+    - ipa: /hˈa‍ʊ ˈɑɹ jˈuː?/
+      engine: olaph
   level: 300
 - phrase: Fine, thank you
   emoji: 👍
   ipas:
-    - ipa: /faɪn θæŋk juː/
-      category: standard
+    - ipa: /ˈfaɪn, θˈæŋk jˈuː./
+      engine: olaph
   level: 320
 - phrase: What is your name?
   emoji: 🤔
   ipas:
-    - ipa: /wɒt ɪz jɔː neɪm/
-      category: standard
+    - ipa: /wˈɒt ˈɪz jˈɔː nˈe‍ɪm?/
+      engine: olaph
   level: 360
 - phrase: My name is...
   emoji: 👤
   ipas:
-    - ipa: /maɪ neɪm ɪz/
-      category: standard
+    - ipa: /mˈa‍ɪ nˈe‍ɪm ˈɪz.../
+      engine: olaph
   level: 310
 - phrase: Where are you?
   emoji: 🗺️
   ipas:
-    - ipa: /wɛr ɑː juː/
-      category: standard
+    - ipa: /wˈe‍ə ˈɑɹ jˈuː?/
+      engine: olaph
   level: 330
 - phrase: How much does it cost?
   emoji: 💰
   ipas:
-    - ipa: /haʊ mʌtʃ dʌz ɪt kɒst/
-      category: standard
+    - ipa: /hˈa‍ʊ mˈʌt‍ʃ ˈdoʊz ˈɪt kˈɒst?/
+      engine: olaph
   level: 380
 - phrase: I don't understand
   emoji: 😕
   ipas:
-    - ipa: /aɪ dəʊnt ˌʌndəˈstænd/
-      category: standard
+    - ipa: /ˈaɪ ˈdoʊnt ˌʌndəstˈænd./
+      engine: olaph
   level: 380
 - phrase: Do you speak Italian?
   emoji: 🇮🇹
   ipas:
-    - ipa: /duː juː spiːk ɪˈtæljən/
-      category: standard
+    - ipa: /ˈdu jˈuː spˈiːk ˌɪˈtæɫjən?/
+      engine: olaph
   level: 420
 - phrase: The child is eating the apple.
   emoji: 🍎
   ipas:
-    - ipa: /ðə tʃaɪld ɪz ˈiːtɪŋ ðə ˈæpəl/
-      category: standard
+    - ipa: /ðə t‍ʃˈa‍ɪld ˈɪz ˈiːtɪŋ ði ˈæpə‍l./
+      engine: olaph
   level: 540
 - phrase: The woman is reading a book.
   emoji: 📚
   ipas:
-    - ipa: /ðə ˈwʊmən ɪz ˈriːdɪŋ ə bʊk/
-      category: standard
+    - ipa: /ðə wˈʊmən ˈɪz ˈɹɛdɪŋ ə bˈʊk./
+      engine: olaph
   level: 560
 - phrase: The sun is shining.
   emoji: ☀️
   ipas:
-    - ipa: /ðə sʌn ɪz ˈʃaɪnɪŋ/
-      category: standard
+    - ipa: /ðə sˈʌn ˈɪz ʃˈa‍ɪnɪŋ./
+      engine: olaph
   level: 480
 - phrase: The weather is nice today.
   emoji: ☀️
   ipas:
-    - ipa: /ðə ˈwɛðə ɪz naɪs təˈdeɪ/
-      category: standard
+    - ipa: /ðə wˈɛðɐ ˈɪz ˈnaɪs tədˈe‍ɪ./
+      engine: olaph
   level: 500
 - phrase: Where is the train station?
   emoji: 🚉
   ipas:
-    - ipa: /wɛr ɪz ðə treɪn ˈsteɪʃən/
-      category: standard
+    - ipa: /wˈe‍ə ˈɪz ðə tɹˈe‍ɪn stˈe‍ɪʃən?/
+      engine: olaph
   level: 520
 - phrase: I would like a coffee.
   emoji: ☕
   ipas:
-    - ipa: /aɪ wʊd laɪk ə ˈkɒfi/
-      category: standard
+    - ipa: /ˈaɪ wˈʊd lˈa‍ɪk ə kˈɒfi./
+      engine: olaph
   level: 460
 - phrase: The train is arriving late.
   emoji: 🚆
   ipas:
-    - ipa: /ðə treɪn ɪz əˈraɪvɪŋ leɪt/
-      category: standard
+    - ipa: /ðə tɹˈe‍ɪn ˈɪz ɐɹˈa‍ɪvɪŋ lˈe‍ɪt./
+      engine: olaph
   level: 590
 - phrase: I live in Rome.
   emoji: 🏛️
   ipas:
-    - ipa: /aɪ lɪv ɪn rəʊm/
-      category: standard
+    - ipa: /ˈaɪ ˈɫaɪv ˈɪn ˈɹoʊm./
+      engine: olaph
   level: 430
 - phrase: I like pizza.
   emoji: 🍕
   ipas:
-    - ipa: /aɪ laɪk ˈpiːtsə/
-      category: standard
+    - ipa: /ˈaɪ lˈa‍ɪk pˈiːtsɐ./
+      engine: olaph
   level: 440
 - phrase: The pizza is delicious.
   emoji: 🍕
   ipas:
-    - ipa: /ðə ˈpiːtsə ɪz dɪˈlɪʃəs/
-      category: standard
+    - ipa: /ðə pˈiːtsɐ ˈɪz dɪlˈɪʃəs./
+      engine: olaph
   level: 490
 - phrase: Let's go to the beach!
   emoji: 🏖️
   ipas:
-    - ipa: /lɛts ɡəʊ tə ðə biːtʃ/
-      category: standard
+    - ipa: /ˈɫɛts ɡˈə‍ʊ tˈuː ðə bˈiːt‍ʃ!/
+      engine: olaph
   level: 470
 - phrase: What a beautiful day!
   emoji: ☀️
   ipas:
-    - ipa: /wɒt ə ˈbjuːtɪfəl deɪ/
-      category: standard
+    - ipa: /wˈɒt ə bjˈuːtɪfə‍l dˈe‍ɪ!/
+      engine: olaph
   level: 510
 - phrase: I am hungry.
   emoji: 🍽️
   ipas:
-    - ipa: /aɪ æm ˈhʌŋɡri/
-      category: standard
+    - ipa: /ˈaɪ ˈæm hˈʌŋɡɹi./
+      engine: olaph
   level: 310
 - phrase: I am thirsty.
   emoji: 💧
   ipas:
-    - ipa: /aɪ æm ˈθɜːsti/
-      category: standard
+    - ipa: /ˈaɪ ˈæm θˈɜːsti./
+      engine: olaph
   level: 320
 - phrase: I am tired.
   emoji: 😴
   ipas:
-    - ipa: /aɪ æm ˈtaɪəd/
-      category: standard
+    - ipa: /ˈaɪ ˈæm tˈa‍ɪ‍əd./
+      engine: olaph
   level: 330
 - phrase: I am happy.
   emoji: 😊
   ipas:
-    - ipa: /aɪ æm ˈhæpi/
-      category: standard
+    - ipa: /ˈaɪ ˈæm hˈæpi./
+      engine: olaph
   level: 340
 - phrase: Where is the bathroom?
   emoji: 🚽
   ipas:
-    - ipa: /wɛr ɪz ðə ˈbɑːθruːm/
-      category: standard
+    - ipa: /wˈe‍ə ˈɪz ðə bˈɑːθɹuːm?/
+      engine: olaph
   level: 390
 - phrase: Can I have the bill?
   emoji: 🧾
   ipas:
-    - ipa: /kæn aɪ hæv ðə bɪl/
-      category: standard
+    - ipa: /kˈæn ˈaɪ ˈhæv ðə bˈɪl?/
+      engine: olaph
   level: 510
 - phrase: Enjoy your meal!
   emoji: 🍽️
   ipas:
-    - ipa: /ɪnˈdʒɔɪ jɔː miːl/
-      category: standard
+    - ipa: /ɛnd‍ʒˈɔ‍ɪ jˈɔː mˈiːl!/
+      engine: olaph
   level: 290
 - phrase: Cheers!
   emoji: 🥂
   ipas:
-    - ipa: /tʃɪəz/
-      category: standard
+    - ipa: /t‍ʃˈi‍əz!/
+      engine: olaph
   level: 180
 - phrase: Congratulations!
   emoji: 🎉
   ipas:
-    - ipa: /kənˌɡrætʃʊˈleɪʃənz/
-      category: standard
+    - ipa: /kənɡɹˈæt‍ʃʊlˈe‍ɪʃənz!/
+      engine: olaph
   level: 440
 - phrase: Good luck!
   emoji: 🤞
   ipas:
-    - ipa: /ɡʊd lʌk/
-      category: standard
+    - ipa: /ɡˈʊd lˈʌk!/
+      engine: olaph
   level: 200
 - phrase: University
   emoji: 🎓
   ipas:
-    - ipa: /ˌjuːnɪˈvɜːsɪti/
-      category: standard
+    - ipa: /jˌuːnɪvˈɜːsɪtˌi./
+      engine: olaph
   level: 360
 - phrase: Work
   emoji: 💼
   ipas:
-    - ipa: /wɜːk/
-      category: standard
+    - ipa: /wˈɜːk./
+      engine: olaph
   level: 140
 - phrase: Shop
   emoji: 🛒
   ipas:
-    - ipa: /ʃɒp/
-      category: standard
+    - ipa: /ʃˈɒp./
+      engine: olaph
   level: 160
 - phrase: Market
   emoji: 🛍️
   ipas:
-    - ipa: /ˈmɑːkɪt/
-      category: standard
+    - ipa: /mˈɑːkɪt./
+      engine: olaph
   level: 220
 - phrase: Pharmacy
   emoji: 💊
   ipas:
-    - ipa: /ˈfɑːməsi/
-      category: standard
+    - ipa: /fˈɑːməsi./
+      engine: olaph
   level: 360
 - phrase: Restaurant
   emoji: 🍽️
   ipas:
-    - ipa: /ˈrɛstərɒnt/
-      category: standard
+    - ipa: /ɹˈɛstɹɒnt./
+      engine: olaph
   level: 300
 - phrase: Big
   emoji: 🔝
   ipas:
-    - ipa: /bɪɡ/
-      category: standard
+    - ipa: /bˈɪɡ./
+      engine: olaph
   level: 80
 - phrase: Small
   emoji: 🔽
   ipas:
-    - ipa: /smɔːl/
-      category: standard
+    - ipa: /smˈɔːl./
+      engine: olaph
   level: 100
 - phrase: Beautiful
   emoji: 😍
   ipas:
-    - ipa: /ˈbjuːtɪfəl/
-      category: standard
+    - ipa: /bjˈuːtɪfə‍l./
+      engine: olaph
   level: 260
 - phrase: Ugly
   emoji: 😬
   ipas:
-    - ipa: /ˈʌɡli/
-      category: standard
+    - ipa: /ˈʌɡli./
+      engine: olaph
   level: 170
 - phrase: Old
   emoji: 🕰️
   ipas:
-    - ipa: /əʊld/
-      category: standard
+    - ipa: /ˈə‍ʊld./
+      engine: olaph
   level: 90
 - phrase: Hot
   emoji: 🌡️
   ipas:
-    - ipa: /hɒt/
-      category: standard
+    - ipa: /hˈɒt./
+      engine: olaph
   level: 80
 - phrase: Cold
   emoji: ❄️
   ipas:
-    - ipa: /kəʊld/
-      category: standard
+    - ipa: /kˈə‍ʊld./
+      engine: olaph
   level: 90
 - phrase: One
   emoji: 1️⃣
   ipas:
-    - ipa: /wʌn/
-      category: standard
+    - ipa: /wˈɒn./
+      engine: olaph
   level: 60
 - phrase: Two
   emoji: 2️⃣
   ipas:
-    - ipa: /tuː/
-      category: standard
+    - ipa: /tˈuː./
+      engine: olaph
   level: 60
 - phrase: Three
   emoji: 3️⃣
   ipas:
-    - ipa: /θriː/
-      category: standard
+    - ipa: /θɹˈiː./
+      engine: olaph
   level: 70
 - phrase: Four
   emoji: 4️⃣
   ipas:
-    - ipa: /fɔː/
-      category: standard
+    - ipa: /fˈɔː./
+      engine: olaph
   level: 70
 - phrase: Five
   emoji: 5️⃣
   ipas:
-    - ipa: /faɪv/
-      category: standard
+    - ipa: /fˈa‍ɪv./
+      engine: olaph
   level: 80
 - phrase: Six
   emoji: 6️⃣
   ipas:
-    - ipa: /sɪks/
-      category: standard
+    - ipa: /sˈɪks./
+      engine: olaph
   level: 80
 - phrase: Seven
   emoji: 7️⃣
   ipas:
-    - ipa: /ˈsɛvən/
-      category: standard
+    - ipa: /sˈɛvən./
+      engine: olaph
   level: 90
 - phrase: Eight
   emoji: 8️⃣
   ipas:
-    - ipa: /eɪt/
-      category: standard
+    - ipa: /ˈe‍ɪt./
+      engine: olaph
   level: 90
 - phrase: Nine
   emoji: 9️⃣
   ipas:
-    - ipa: /naɪn/
-      category: standard
+    - ipa: /nˈa‍ɪn./
+      engine: olaph
   level: 90
 - phrase: Ten
   emoji: 🔟
   ipas:
-    - ipa: /tɛn/
-      category: standard
+    - ipa: /tˈɛn./
+      engine: olaph
   level: 100
 - phrase: Monday
   emoji: 📅
   ipas:
-    - ipa: /ˈmʌndeɪ/
-      category: standard
+    - ipa: /ˈmənˌdeɪ./
+      engine: olaph
   level: 220
 - phrase: Tuesday
   emoji: 📅
   ipas:
-    - ipa: /ˈtjuːzdeɪ/
-      category: standard
+    - ipa: /ˈtjuzˌdeɪ./
+      engine: olaph
   level: 230
 - phrase: Wednesday
   emoji: 📅
   ipas:
-    - ipa: /ˈwɛnzdeɪ/
-      category: standard
+    - ipa: /ˈwɛnzˌdeɪ./
+      engine: olaph
   level: 240
 - phrase: Thursday
   emoji: 📅
   ipas:
-    - ipa: /ˈθɜːzdeɪ/
-      category: standard
+    - ipa: /ˈθɝzˌdeɪ./
+      engine: olaph
   level: 230
 - phrase: Friday
   emoji: 📅
   ipas:
-    - ipa: /ˈfraɪdeɪ/
-      category: standard
+    - ipa: /ˈfɹaɪˌdeɪ./
+      engine: olaph
   level: 220
 - phrase: Saturday
   emoji: 📅
   ipas:
-    - ipa: /ˈsætədeɪ/
-      category: standard
+    - ipa: /ˈsæˌtɪˌdeɪ./
+      engine: olaph
   level: 240
 - phrase: Sunday
   emoji: 📅
   ipas:
-    - ipa: /ˈsʌndeɪ/
-      category: standard
+    - ipa: /ˈsənˌdeɪ./
+      engine: olaph
   level: 220
 - phrase: January
   emoji: 📆
   ipas:
-    - ipa: /ˈdʒænjuəri/
-      category: standard
+    - ipa: /ˈdʒænjuˌɛɹi./
+      engine: olaph
   level: 290
 - phrase: February
   emoji: 📆
   ipas:
-    - ipa: /ˈfɛbrʊəri/
-      category: standard
+    - ipa: /ˈfɛbjəˌwɛɹi./
+      engine: olaph
   level: 300
 - phrase: March
   emoji: 📆
   ipas:
-    - ipa: /mɑːtʃ/
-      category: standard
+    - ipa: /mˈɑːt‍ʃ./
+      engine: olaph
   level: 200
 - phrase: April
   emoji: 📆
   ipas:
-    - ipa: /ˈeɪprəl/
-      category: standard
+    - ipa: /ˈeɪpɹəɫ./
+      engine: olaph
   level: 220
 - phrase: May
   emoji: 📆
   ipas:
-    - ipa: /meɪ/
-      category: standard
+    - ipa: /mˈe‍ɪ./
+      engine: olaph
   level: 140
 - phrase: June
   emoji: 📆
   ipas:
-    - ipa: /dʒuːn/
-      category: standard
+    - ipa: /ˈdʒun./
+      engine: olaph
   level: 160
 - phrase: July
   emoji: 📆
   ipas:
-    - ipa: /dʒʊˈlaɪ/
-      category: standard
+    - ipa: /ˌdʒuˈɫaɪ./
+      engine: olaph
   level: 220
 - phrase: August
   emoji: 📆
   ipas:
-    - ipa: /ˈɔːɡəst/
-      category: standard
+    - ipa: /ˈɑɡəst./
+      engine: olaph
   level: 220
 - phrase: September
   emoji: 📆
   ipas:
-    - ipa: /sɛpˈtɛmbə/
-      category: standard
+    - ipa: /sɛpˈtɛmbɝ./
+      engine: olaph
   level: 300
 - phrase: October
   emoji: 📆
   ipas:
-    - ipa: /ɒkˈtəʊbə/
-      category: standard
+    - ipa: /ɑkˈtoʊbɝ./
+      engine: olaph
   level: 280
 - phrase: November
   emoji: 📆
   ipas:
-    - ipa: /nəʊˈvɛmbə/
-      category: standard
+    - ipa: /noʊˈvɛmbɝ./
+      engine: olaph
   level: 280
 - phrase: December
   emoji: 📆
   ipas:
-    - ipa: /dɪˈsɛmbə/
-      category: standard
+    - ipa: /dɪˈsɛmbɝ./
+      engine: olaph
   level: 280
 - phrase: Spring
   emoji: 🌸
   ipas:
-    - ipa: /sprɪŋ/
-      category: standard
+    - ipa: /spɹˈɪŋ./
+      engine: olaph
   level: 200
 - phrase: Summer
   emoji: ☀️
   ipas:
-    - ipa: /ˈsʌmə/
-      category: standard
+    - ipa: /sˈʌmɐ./
+      engine: olaph
   level: 180
 - phrase: Autumn
   emoji: 🍂
   ipas:
-    - ipa: /ˈɔːtəm/
-      category: standard
+    - ipa: /ˈɔːtʌm./
+      engine: olaph
   level: 220
 - phrase: Winter
   emoji: ❄️
   ipas:
-    - ipa: /ˈwɪntə/
-      category: standard
+    - ipa: /wˈɪntɐ./
+      engine: olaph
   level: 200
 - phrase: City
   emoji: 🏙️
   ipas:
-    - ipa: /ˈsɪti/
-      category: standard
+    - ipa: /sˈɪti./
+      engine: olaph
   level: 180
 - phrase: Village
   emoji: 🏘️
   ipas:
-    - ipa: /ˈvɪlɪdʒ/
-      category: standard
+    - ipa: /vˈɪlɪd‍ʒ./
+      engine: olaph
   level: 220
 - phrase: Italy
   emoji: 🇮🇹
   ipas:
-    - ipa: /ˈɪtəli/
-      category: standard
+    - ipa: /ˈɪtəɫi./
+      engine: olaph
   level: 180
 - phrase: Rome
   emoji: 🏛️
   ipas:
-    - ipa: /rəʊm/
-      category: standard
+    - ipa: /ˈɹoʊm./
+      engine: olaph
   level: 120
 - phrase: Milan
   emoji: 🏙️
   ipas:
-    - ipa: /mɪˈlæn/
-      category: standard
+    - ipa: /ˈmaɪˌɫæn./
+      engine: olaph
   level: 180
 - phrase: Venice
   emoji: 🛶
   ipas:
-    - ipa: /ˈvɛnɪs/
-      category: standard
+    - ipa: /ˈvɛnəs./
+      engine: olaph
   level: 200
 - phrase: Florence
   emoji: 🌸
   ipas:
-    - ipa: /ˈflɒrəns/
-      category: standard
+    - ipa: /ˈfɫɔɹəns./
+      engine: olaph
   level: 200
 - phrase: Naples
   emoji: 🍕
   ipas:
-    - ipa: /ˈneɪpəlz/
-      category: standard
+    - ipa: /ˈneɪpəɫz./
+      engine: olaph
   level: 200

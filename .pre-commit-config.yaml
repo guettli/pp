@@ -1,4 +1,13 @@
 repos:
+  - repo: local
+    hooks:
+      - id: uv-lock-check
+        name: uv.lock is up to date
+        entry: uv sync --frozen --check
+        language: system
+        pass_filenames: false
+        always_run: true
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:

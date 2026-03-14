@@ -23,11 +23,14 @@ fi
 
 # Autoformat with Prettier
 echo "🎨 Running Prettier..."
-pnpm exec prettier --write --log-level warn .
+pnpm exec prettier --write --log-level warn --cache .
 
 # Lint with ESLint
 echo "🔍 Running ESLint..."
-pnpm lint
+pnpm exec eslint --cache src
+
+echo "🔒 Checking uv.lock is in sync..."
+uv sync --frozen --check
 
 ./scripts/test-code-duplication.sh
 

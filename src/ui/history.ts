@@ -14,6 +14,11 @@ let isLoading = false;
 let hasMore = true;
 let scrollContainer: HTMLElement | null = null;
 
+// Key used to track the active scroll handler across HMR re-inits.
+// Vite HMR creates a new module instance with fresh state, so we use window
+// to remove the old handler before registering the new one.
+const SCROLL_HANDLER_KEY = "__phonemePartyScrollHandler";
+
 /**
  * Initialize history view
  */
@@ -23,6 +28,32 @@ export function initHistory() {
     console.error("History container not found");
     return;
   }
+
+  // Remove any previously registered scroll handler (handles HMR re-inits where
+  // the module is re-evaluated with fresh state but the DOM element persists).
+  const w = window as unknown as Window & Record<string, unknown>;
+  const prevHandler = w[SCROLL_HANDLER_KEY] as EventListener | undefined;
+  if (prevHandler) {
+    scrollContainer.removeEventListener("scroll", prevHandler);
+  }
+  w[SCROLL_HANDLER_KEY] = handleScroll as EventListener;
+
+  // Expose live state and refreshHistoryAsync on window from THIS module instance.
+  // Tests must call window.__phonemePartyRefreshHistoryAsync() instead of importing
+  // history.ts directly, because dynamic import() may return a different module
+  // instance (different URL) than the one owning the scroll handler.
+  w.__phonemePartyHistoryState = {
+    get currentPage() {
+      return currentPage;
+    },
+    get isLoading() {
+      return isLoading;
+    },
+    get hasMore() {
+      return hasMore;
+    },
+  };
+  w.__phonemePartyRefreshHistoryAsync = refreshHistoryAsync;
 
   // Set up infinite scroll
   scrollContainer.addEventListener("scroll", handleScroll);
@@ -293,4 +324,38 @@ function showEmptyState(show: boolean) {
  */
 export function refreshHistory() {
   void loadHistory(true);
+}
+
+/**
+ * Async version of refreshHistory for use in tests.
+ * Waits for any in-flight load to finish, then performs a fresh load and
+ * returns once the history list has been updated.
+ */
+export async function refreshHistoryAsync(): Promise<void> {
+  // If a load is already in progress (e.g. triggered by an onStudyLangChange
+  // listener), wait for it to settle before starting a new one.
+  while (isLoading) {
+    await new Promise((resolve) => setTimeout(resolve, 50));
+  }
+  await loadHistory(true);
+  // Wait for any concurrently-triggered load (e.g. from the app's event
+  // listeners that fire during the DB operations above) to also finish.
+  while (isLoading) {
+    await new Promise((resolve) => setTimeout(resolve, 50));
+  }
+}
+
+/**
+ * For testing: returns the current page index so tests can verify pagination
+ * state before triggering scroll events.
+ */
+export function getHistoryCurrentPage(): number {
+  return currentPage;
+}
+
+/**
+ * For testing: returns whether a history load is currently in progress.
+ */
+export function getHistoryIsLoading(): boolean {
+  return isLoading;
 }

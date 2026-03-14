@@ -17,7 +17,9 @@ import struct
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Export PanPhon IPA feature table to build/data/panphon_features.json (build artifact, called by Taskfile)."
+        description="Export PanPhon IPA feature table to build/data/panphon_features.json."
+        " Called by Taskfile via './run task panphon'. The output is loaded by the browser"
+        " for client-side phoneme distance calculations (same scoring as web UI)."
     )
     parser.parse_args()
 

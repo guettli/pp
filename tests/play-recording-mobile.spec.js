@@ -16,7 +16,8 @@
  *   is set synchronously before the click and cleared after the first microtask).
  *   This precisely replicates Android's behavior without relying on Chrome autoplay flags.
  */
-import { devices, expect, test } from "@playwright/test";
+import { devices } from "@playwright/test";
+import { expect, test } from "./fixtures.js";
 
 test.describe("play-recording-btn - mobile autoplay @slow", () => {
   test("plays without NotAllowedError when audio.play() is called within the gesture handler", async ({
@@ -31,6 +32,7 @@ test.describe("play-recording-btn - mobile autoplay @slow", () => {
     // HTMLAudioElement.prototype.play: rejects when called outside the gesture window,
     // exactly like Android's strict autoplay policy.
     await context.addInitScript(() => {
+      localStorage.setItem("phoneme-party-study-lang", "de-DE");
       window._pp_gestureActive = false;
 
       const originalPlay = HTMLAudioElement.prototype.play;

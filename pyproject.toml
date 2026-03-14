@@ -2,7 +2,7 @@
 name = "phoneme-party"
 version = "0.1.0"
 description = "Learn speaking clearly"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 dependencies = [
     "panphon",
     "onnx",
@@ -10,15 +10,33 @@ dependencies = [
     "huggingface_hub",
     "deep_translator",
     "google-cloud-texttospeech",
-    "edge-tts",
+    "edge-tts>=7.2.7",
     "soundfile",
     "soxr",
     "kaldi-native-fbank",
+    "phonemizer>=3.3.0",
+    "requests>=2.28.1",
+    "beautifulsoup4>=4.14.3",
+    "epitran>=1.26.0",
+    "gruut>=2.4.0",
+    "gruut-lang-de>=2.0.1",
+    "gruut-lang-fr>=2.0.2",
+    "gruut-lang-it>=2.0.1",
+    "olaph>=0.1.0",
+    "de-core-news-sm @ https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-3.8.0/de_core_news_sm-3.8.0-py3-none-any.whl",
+    "en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl",
+    "fr-core-news-sm @ https://github.com/explosion/spacy-models/releases/download/fr_core_news_sm-3.8.0/fr_core_news_sm-3.8.0-py3-none-any.whl",
+    "es-core-news-sm @ https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.8.0/es_core_news_sm-3.8.0-py3-none-any.whl",
+    "pl-core-news-sm @ https://github.com/explosion/spacy-models/releases/download/pl_core_news_sm-3.8.0/pl_core_news_sm-3.8.0-py3-none-any.whl",
 ]
 
 [tool.uv]
 extra-index-url = ["https://download.pytorch.org/whl/cpu"]
+index-strategy = "unsafe-best-match"
 override-dependencies = ["markupsafe<3.0.3"]
+
+[tool.uv.sources]
+olaph = { git = "https://github.com/guettli/olaph.git" }
 
 [build-system]
 requires = ["setuptools>=61.0"]

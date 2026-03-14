@@ -7,7 +7,6 @@
 #  Usage:
 #    ./tts-test/run-test.sh                          # all variants
 #    ./tts-test/run-test.sh espeak piper-thorsten    # specific variants
-#    ./tts-test/run-test.sh --eval-only              # skip audio gen
 #
 #  Available TTS variants:
 #    espeak, espeak-slow
@@ -27,8 +26,6 @@
 #  Output:
 #    tts-test/audio/<variant>/<id>_<text>.wav
 #    tts-test/results/audio-manifest.json
-#    tts-test/results/evaluation.json
-#    tts-test/results/report.md
 # ============================================================
 
 set -euo pipefail
@@ -38,18 +35,9 @@ VENV="$HOME/.cache/phoneme-party/tts-venv"
 PYTHON="$VENV/bin/python3"
 PIP="$VENV/bin/pip"
 GENERATE_SCRIPT=tts-test/generate-audio.py
-EVALUATE_SCRIPT=scripts/tts-test-evaluate.ts
 
 # ── Parse flags ───────────────────────────────────────────────
-EVAL_ONLY=false
-VARIANTS=()
-for arg in "$@"; do
-  if [[ "$arg" == "--eval-only" ]]; then
-    EVAL_ONLY=true
-  else
-    VARIANTS+=("$arg")
-  fi
-done
+VARIANTS=("$@")
 
 # ── 1. Check required system tools ───────────────────────────
 echo "==> Checking system tools..."
@@ -107,23 +95,14 @@ else
 fi
 
 # ── 4. Generate audio for all TTS variants ───────────────────
-if [ "$EVAL_ONLY" = false ]; then
-  echo ""
-  echo "==> Generating audio files..."
-  if [ ${#VARIANTS[@]} -gt 0 ]; then
-    "$PYTHON" "$GENERATE_SCRIPT" "${VARIANTS[@]}"
-  else
-    "$PYTHON" "$GENERATE_SCRIPT"
-  fi
-fi
-
-# ── 5. Extract IPA and evaluate ──────────────────────────────
 echo ""
-echo "==> Extracting IPA and evaluating similarity..."
-./run tsx "$EVALUATE_SCRIPT"
+echo "==> Generating audio files..."
+if [ ${#VARIANTS[@]} -gt 0 ]; then
+  "$PYTHON" "$GENERATE_SCRIPT" "${VARIANTS[@]}"
+else
+  "$PYTHON" "$GENERATE_SCRIPT"
+fi
 
 echo ""
 echo "==> Done!"
 echo "    Audio files:  tts-test/audio/"
-echo "    JSON results: tts-test/results/evaluation.json"
-echo "    Markdown:     tts-test/results/report.md"

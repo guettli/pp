@@ -4,7 +4,7 @@ test.describe("History - Database Functionality", () => {
   test("should verify history is sorted with newest first", async ({ modelPage: page }) => {
     const sortTest = await page.evaluate(async () => {
       const { db } = await import("/phoneme-party/src/db.ts");
-      await db.clearAll();
+      await db.clearAllDocs();
 
       // Add 5 items with specific timestamps
       const now = Date.now();
@@ -52,7 +52,7 @@ test.describe("History - Database Functionality", () => {
         const { db } = await import("/phoneme-party/src/db.ts");
 
         // Clear existing data - this recreates the database and indexes
-        await db.clearAll();
+        await db.clearAllDocs();
 
         // Test 1: Add a test result
         await db.savePhraseResult("TestPhrase", "de-DE", 85, "/test/", "/target/", 1000);
@@ -97,39 +97,24 @@ test.describe("History - Database Functionality", () => {
 // Full integration tests - may be slow due to model loading
 test.describe("History - Infinite Scroll (Full App)", () => {
   test("should display history and support infinite scroll", async ({ modelPage: page }) => {
-    // Set study lang and inject test data into PouchDB
+    // Use the current study lang so we don't call setStudyLang() — that triggers the
+    // app's onStudyLangChange listener (nextPhrase → saveSkippedPhrase → refreshHistory)
+    // causing a second concurrent history load and double-rendering.
     await page.evaluate(async () => {
-      const { setStudyLang } = await import("/phoneme-party/src/study-lang.ts");
-      setStudyLang("en-GB");
-
-      // Import db module
+      const { getStudyLang } = await import("/phoneme-party/src/study-lang.ts");
+      const studyLang = getStudyLang() ?? "de-DE";
       const { db } = await import("/phoneme-party/src/db.ts");
-
-      // Clear existing data
-      await db.clearAll();
-
-      // Add 50 test results for testing infinite scroll
-      const phrase = "Test";
-      const studyLang = "en-GB";
+      await db.clearAllDocs();
 
       for (let i = 0; i < 50; i++) {
-        const timestamp = Date.now() - i * 60000; // Each result 1 minute apart
-        const score = 50 + (i % 50); // Varying scores from 50-99
-
-        await db.savePhraseResult(`${phrase}${i}`, studyLang, score, "/test/", "/test/", 1000);
+        await db.savePhraseResult(`Test${i}`, studyLang, 50 + (i % 50), "/test/", "/test/", 1000);
       }
 
-      console.log("Added 50 test history items");
+      await window.__phonemePartyRefreshHistoryAsync();
     });
 
-    // Reload history view with the newly injected data
-    await page.evaluate(async () => {
-      const { initHistory } = await import("/phoneme-party/src/ui/history.ts");
-      initHistory();
-    });
-
-    // Wait for history items to appear
-    await page.locator(".history-item").first().waitFor({ timeout: 5000 });
+    // Items should already be in the DOM since we awaited refreshHistoryAsync
+    await page.locator(".history-item").first().waitFor({ timeout: 3000 });
 
     // Check that history section is visible
     const historyContainer = page.locator("#history-container");
@@ -137,8 +122,19 @@ test.describe("History - Infinite Scroll (Full App)", () => {
 
     // Check that initial items are loaded (should be at least 20)
     const initialItems = await page.locator(".history-item").count();
-    console.log(`Initial history items loaded: ${initialItems}`);
     expect(initialItems).toBeGreaterThanOrEqual(20);
+
+    // Wait for history to be fully settled (currentPage=1, not loading) before
+    // triggering scroll. Uses window.__phonemePartyHistoryState exposed by initHistory()
+    // in history.ts, which always reflects the module instance that owns the scroll handler.
+    await page.waitForFunction(
+      () => {
+        const s = window.__phonemePartyHistoryState;
+        return s?.currentPage === 1 && !s?.isLoading;
+      },
+      null,
+      { timeout: 10000 },
+    );
 
     // Get the history container for scrolling
     const container = page.locator("#history-container");
@@ -158,11 +154,20 @@ test.describe("History - Infinite Scroll (Full App)", () => {
 
     // Check that more items have been loaded
     const afterScrollItems = await page.locator(".history-item").count();
-    console.log(`History items after scroll: ${afterScrollItems}`);
     expect(afterScrollItems).toBeGreaterThan(initialItems);
 
     // Verify that we have loaded more items (should be around 40 now)
     expect(afterScrollItems).toBeGreaterThanOrEqual(40);
+
+    // Wait for history to settle at page 2 before triggering scroll 2
+    await page.waitForFunction(
+      () => {
+        const s = window.__phonemePartyHistoryState;
+        return s?.currentPage === 2 && !s?.isLoading;
+      },
+      null,
+      { timeout: 10000 },
+    );
 
     // Scroll to the bottom again to load the last page
     await container.evaluate((el) => {
@@ -177,7 +182,6 @@ test.describe("History - Infinite Scroll (Full App)", () => {
 
     // Check final count (should have all 50 items)
     const finalItems = await page.locator(".history-item").count();
-    console.log(`Final history items: ${finalItems}`);
     expect(finalItems).toBe(50);
 
     // Verify that each history item has the expected structure
@@ -194,18 +198,14 @@ test.describe("History - Infinite Scroll (Full App)", () => {
     // Clear all data
     await page.evaluate(async () => {
       const { db } = await import("/phoneme-party/src/db.ts");
-      await db.clearAll();
+      await db.clearAllDocs();
       console.log("Cleared all data");
     });
 
-    // Refresh history
+    // Refresh history and await completion
     await page.evaluate(async () => {
-      const { refreshHistory } = await import("/phoneme-party/src/ui/history.ts");
-      refreshHistory();
+      await window.__phonemePartyRefreshHistoryAsync();
     });
-
-    // Wait a moment
-    await page.waitForTimeout(500);
 
     // Check that empty state is visible
     const emptyState = page.locator("#history-empty");
@@ -216,43 +216,30 @@ test.describe("History - Infinite Scroll (Full App)", () => {
   });
 
   test("should update history after new recording", async ({ modelPage: page }) => {
-    // Set study lang and clear existing data
+    // Avoid setStudyLang() — it triggers onStudyLangChange → nextPhrase → refreshHistory
+    // causing a second concurrent load. Use the current study lang instead.
     await page.evaluate(async () => {
-      const { setStudyLang } = await import("/phoneme-party/src/study-lang.ts");
-      setStudyLang("en-GB");
       const { db } = await import("/phoneme-party/src/db.ts");
-      await db.clearAll();
+      await db.clearAllDocs();
+      await window.__phonemePartyRefreshHistoryAsync();
     });
 
-    // Refresh history
-    await page.evaluate(async () => {
-      const { refreshHistory } = await import("/phoneme-party/src/ui/history.ts");
-      refreshHistory();
-    });
-
-    // Wait for empty state
-    await page.waitForTimeout(500);
-    await expect(page.locator("#history-empty")).toBeVisible();
+    await expect(page.locator("#history-empty")).toBeVisible({ timeout: 3000 });
 
     // Get initial history count
     const initialCount = await page.locator(".history-item").count();
     console.log(`Initial history count: ${initialCount}`);
 
-    // Add a new result directly via DB
+    // Add a new result and await the history reload
     await page.evaluate(async () => {
+      const { getStudyLang } = await import("/phoneme-party/src/study-lang.ts");
+      const studyLang = getStudyLang() ?? "de-DE";
       const { db } = await import("/phoneme-party/src/db.ts");
-      await db.savePhraseResult("NewPhrase", "en-GB", 85, "/test/", "/test/", 1000);
-
-      // Refresh history
-      const { refreshHistory } = await import("/phoneme-party/src/ui/history.ts");
-      refreshHistory();
+      await db.savePhraseResult("NewPhrase", studyLang, 85, "/test/", "/test/", 1000);
+      await window.__phonemePartyRefreshHistoryAsync();
     });
 
-    // Wait for history to update
-    await page.waitForTimeout(500);
-
-    // Check that empty state is hidden
-    await expect(page.locator("#history-empty")).toBeHidden();
+    await expect(page.locator("#history-empty")).toBeHidden({ timeout: 3000 });
 
     // Check that a new item appears
     const newCount = await page.locator(".history-item").count();

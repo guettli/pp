@@ -1,12 +1,16 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures.js";
 
 test.describe("User feedback form", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem("phoneme-party-study-lang", "de-DE");
+      localStorage.setItem("phoneme-party-language", "en-GB");
+    });
+  });
+
   test("opens modal when feedback button is clicked", async ({ page }) => {
     await page.goto("/");
     await page.locator("#main-content").waitFor({ state: "visible", timeout: 30000 });
-
-    // Set study lang so there's a current phrase
-    await page.locator('[id="study-lang-select"]').selectOption("de-DE");
 
     const feedbackBtn = page.locator("#open-user-feedback-btn");
     await feedbackBtn.waitFor({ state: "visible" });
@@ -31,9 +35,6 @@ test.describe("User feedback form", () => {
   test("submits text feedback and shows success message", async ({ page }) => {
     await page.goto("/");
     await page.locator("#main-content").waitFor({ state: "visible", timeout: 30000 });
-
-    await page.locator('[id="study-lang-select"]').selectOption("de-DE");
-    await page.locator('[id="ui-lang-select"]').selectOption("en-GB");
 
     await page.locator("#open-user-feedback-btn").click();
     await expect(page.locator("#user-feedback-modal")).toBeVisible();

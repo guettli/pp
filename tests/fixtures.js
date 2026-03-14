@@ -1,4 +1,5 @@
 import { test as base } from "@playwright/test";
+import { setupCdnRoutes } from "./cdn-routes.js";
 
 /**
  * Worker-scoped `modelPage` fixture.
@@ -20,9 +21,20 @@ import { test as base } from "@playwright/test";
  * using the regular `page` fixture for a fresh context.
  */
 export const test = base.extend({
+  // Override the default context to intercept CDN requests for all regular tests.
+  context: async ({ context }, use) => {
+    await setupCdnRoutes(context);
+    await use(context);
+  },
+
   modelPage: [
     async ({ browser }, use) => {
       const context = await browser.newContext();
+      await setupCdnRoutes(context);
+      await context.addInitScript(() => {
+        localStorage.setItem("phoneme-party-study-lang", "de-DE");
+        localStorage.setItem("phoneme-party-language", "en-GB");
+      });
       const page = await context.newPage();
       await page.goto("/");
       // Wait for main content to appear, then wait for model to finish loading

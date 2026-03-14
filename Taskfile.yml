@@ -39,8 +39,24 @@ tasks:
   ts:
     desc: Build TypeScript (depends on panphon data and WASM)
     deps: [_nix-check, panphon, wasm]
+    sources:
+      - src/**/*
+      - static/**/*
+      - svelte.config.js
+      - vite.config.js
+      - tsconfig.json
+      - package.json
+      - pnpm-lock.yaml
+      - build/data/panphon_features.json
+      - wasm/kaldi-fbank/build/kaldi-fbank.wasm
+    generates:
+      - dist/index.html
     cmds:
-      - pnpm build
+      - |
+        START=$(date +%s)
+        pnpm build > /tmp/pp-build.log 2>&1 || { cat /tmp/pp-build.log; exit 1; }
+        END=$(date +%s)
+        echo "build: $((END - START))s"
 
   build-server:
     desc: Build server bundle with adapter-node (output in build-server/)
@@ -63,30 +79,60 @@ tasks:
     desc: Format and lint
     deps: [_nix-check]
     cmds:
-      - ./scripts/lint.sh
+      - |
+        START=$(date +%s)
+        ./scripts/lint.sh
+        END=$(date +%s)
+        echo "lint: $((END - START))s"
 
   typecheck:
     desc: TypeScript type check
     deps: [_nix-check]
     cmds:
-      - pnpm typecheck
+      - |
+        START=$(date +%s)
+        pnpm typecheck
+        END=$(date +%s)
+        echo "typecheck: $((END - START))s"
+
+  cache-cdn-assets:
+    desc: Download external CDN assets (fastenhancer ONNX model) into ~/.cache/phoneme-party/cdn/
+    deps: [_nix-check]
+    cmds:
+      - ./scripts/download-cdn-assets.sh
+    status:
+      - test -f "${XDG_CACHE_HOME:-$HOME/.cache}/phoneme-party/cdn/fastenhancer_b.onnx"
 
   test:
     desc: Run e2e tests (requires built dist/)
-    deps: [_nix-check, ts]
+    deps: [_nix-check, ts, cache-cdn-assets]
     cmds:
-      - pnpm test
+      # Kill any stale preview server so Playwright starts a fresh one each run.
+      # Prevents 404s caused by the preview server caching state from a previous build.
+      - pkill -f "vite.*8080" || true
+      - |
+        START=$(date +%s)
+        pnpm test
+        END=$(date +%s)
+        echo "e2e tests: $((END - START))s"
+      - node scripts/show-slowest-tests.js
+      - |
+        echo "Hint: playwright-results.json created. View with: pnpm playwright show-report"
 
   unit-test:
     desc: Run Node.js unit tests (similarity, phoneme logic)
     deps: [_nix-check, node]
     cmds:
-      - node tests/similarity.test.js
-      - node tests/phrase-selector.test.js
-      - node tests/i18n-completeness.test.js
-      - node tests/ipa-validity.test.js
-      - node tests/phrase-coverage.test.js
-      - node tests/phrase-audio-coverage.test.js
+      - |
+        START=$(date +%s)
+        node tests/similarity.test.js
+        node tests/phrase-selector.test.js
+        node tests/i18n-completeness.test.js
+        node tests/ipa-validity.test.js
+        node tests/phrase-coverage.test.js
+        node tests/phrase-audio-coverage.test.js
+        END=$(date +%s)
+        echo "unit-tests: $((END - START))s"
 
   check:
     desc: Run all checks (lint + typecheck + e2e + unit tests), concurrent where possible
@@ -122,6 +168,13 @@ tasks:
     desc: Build, check, deploy to server, and verify prod is up
     deps: [check, docs]
     cmds:
-      - rsync -az --delete --exclude='onnx' --exclude='*.debug.yaml' --stats dist/
-        tg:public_html/phoneme-party/
-      - task: check-prod
+      - |
+        START=$(date +%s)
+        rsync -az --delete --exclude='onnx' --exclude='*.debug.yaml' --stats dist/ tg:public_html/phoneme-party/
+        END=$(date +%s)
+        echo "rsync: $((END - START))s"
+      - |
+        START=$(date +%s)
+        pnpm playwright test --project=prod
+        END=$(date +%s)
+        echo "check-prod: $((END - START))s"

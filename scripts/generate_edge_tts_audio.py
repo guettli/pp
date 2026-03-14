@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
+import asyncio
 import re
 import yaml
-import subprocess
 from pathlib import Path
 
 
@@ -22,26 +22,40 @@ def phrase_to_filename(en_gb_text: str) -> str:
     return safe[:25] + "_" + djb2hex(en_gb_text)
 
 
-def main():
-    import argparse
+async def generate_one(phrase: str, voice_id: str, out_file: Path, sem: asyncio.Semaphore) -> str:
+    """Download TTS audio and convert to opus. Returns a status line."""
+    import edge_tts
 
-    parser = argparse.ArgumentParser(
-        description="Generate or check edge-tts opus audio files for all phrases.",
+    tmp_mp3 = out_file.with_suffix(".tmp.mp3")
+    max_retries = 5
+    async with sem:
+        for attempt in range(max_retries):
+            try:
+                communicate = edge_tts.Communicate(phrase, voice_id)
+                await communicate.save(str(tmp_mp3))
+                break
+            except Exception as e:
+                tmp_mp3.unlink(missing_ok=True)
+                if attempt == max_retries - 1:
+                    raise RuntimeError(f"edge-tts failed after {max_retries} attempts: {e}") from e
+                wait = 2 ** attempt
+                print(f"  Retry {attempt + 1}/{max_retries} for '{phrase}' (error: {e}) — waiting {wait}s")
+                await asyncio.sleep(wait)
+
+    proc = await asyncio.create_subprocess_exec(
+        "ffmpeg", "-y", "-i", str(tmp_mp3), "-c:a", "libopus", "-b:a", "24k", "-ac", "1", str(out_file),
+        stdout=asyncio.subprocess.DEVNULL,
+        stderr=asyncio.subprocess.PIPE,
     )
-    subparsers = parser.add_subparsers(dest="subcommand")
-    subparsers.add_parser("check", help="Print missing and orphaned opus files without changing anything.")
-    subparsers.add_parser("create", help="Generate missing opus files using edge-tts.")
-    subparsers.add_parser("delete-orphans", help="Delete opus files with no matching phrase.")
+    _, stderr = await proc.communicate()
+    tmp_mp3.unlink(missing_ok=True)
+    if proc.returncode != 0:
+        last_line = stderr.decode().strip().splitlines()[-1] if stderr.strip() else "(no error output)"
+        raise RuntimeError(f"ffmpeg failed: {last_line}")
+    return f"  OK  {out_file.name}"
 
-    args = parser.parse_args()
 
-    if args.subcommand is None:
-        parser.print_help()
-        return
-
-    check_only = args.subcommand == "check"
-    delete_orphans = args.subcommand == "delete-orphans"
-
+async def async_main(check_only: bool, delete_orphans: bool) -> None:
     project_root = Path(__file__).parent.parent
     audio_dir = project_root / "static" / "audio"
 
@@ -51,6 +65,9 @@ def main():
         "fr-FR": {"male": "fr-FR-HenriNeural", "female": "fr-FR-DeniseNeural"},
         "it-IT": {"male": "it-IT-DiegoNeural", "female": "it-IT-ElsaNeural"},
     }
+
+    # Limit concurrent TTS network requests to avoid rate-limiting
+    sem = asyncio.Semaphore(5)
 
     for lang_code, voices in languages.items():
         lang_phrases_file = project_root / f"phrases-{lang_code}.yaml"
@@ -70,7 +87,15 @@ def main():
             en_gb_text = phrase if lang_code == "en-GB" else (item.get("en-GB") or phrase)
             expected_stems.add(phrase_to_filename(en_gb_text))
 
-        for voice_type, voice_id in voices.items():
+        # Sort phrases by stem for deterministic generation order
+        sorted_phrases = sorted(
+            (item for item in phrases_data if item.get("phrase")),
+            key=lambda item: phrase_to_filename(
+                item["phrase"] if lang_code == "en-GB" else (item.get("en-GB") or item["phrase"])
+            ),
+        )
+
+        for voice_type, voice_id in sorted(voices.items()):
             voice_name = f"edge-tts-{voice_type}"
             voice_audio_dir = audio_dir / lang_code / voice_name
             voice_audio_dir.mkdir(parents=True, exist_ok=True)
@@ -84,50 +109,63 @@ def main():
                         else:
                             print(f"ORPHAN   {lang_code}/{voice_name}/{opus_file.name}")
 
-            for item in phrases_data:
-                phrase = item.get("phrase")
-                if not phrase:
-                    continue
+            if check_only:
+                for item in sorted_phrases:
+                    phrase = item["phrase"]
+                    en_gb_text = phrase if lang_code == "en-GB" else (item.get("en-GB") or phrase)
+                    stem = phrase_to_filename(en_gb_text)
+                    out_file = voice_audio_dir / f"{stem}.opus"
+                    if not out_file.exists():
+                        print(f"MISSING  {lang_code}/{voice_name}/{out_file.name}  (phrase: {phrase})")
+                continue
 
-                # Use en-GB translation for filename; fall back to native phrase
-                if lang_code == "en-GB":
-                    en_gb_text = phrase
-                else:
-                    en_gb_text = item.get("en-GB") or phrase
-
+            # Build tasks for all missing phrases in this voice
+            tasks = []
+            for item in sorted_phrases:
+                phrase = item["phrase"]
+                en_gb_text = phrase if lang_code == "en-GB" else (item.get("en-GB") or phrase)
                 stem = phrase_to_filename(en_gb_text)
                 out_file = voice_audio_dir / f"{stem}.opus"
                 if out_file.exists():
-                    if not check_only:
-                        print(f"Skipping existing phrase: {phrase}")
                     continue
+                print(f"Queuing: '{phrase}' [{lang_code}/{voice_name}]")
+                tasks.append(generate_one(phrase, voice_id, out_file, sem))
 
-                if check_only:
-                    print(f"MISSING  {lang_code}/{voice_name}/{out_file.name}  (phrase: {phrase})")
-                    continue
+            if not tasks:
+                continue
 
-                print(f"Generating audio for '{phrase}' in {lang_code} with voice {voice_id}")
-                tmp_mp3 = voice_audio_dir / f"{stem}.tmp.mp3"
-                try:
-                    subprocess.run(
-                        ["edge-tts", "--voice", voice_id, "--text", phrase, "--write-media", str(tmp_mp3)],
-                        check=True,
-                        capture_output=True,
-                        text=True,
-                    )
-                    subprocess.run(
-                        ["ffmpeg", "-y", "-i", str(tmp_mp3), "-c:a", "libopus", "-b:a", "24k", "-ac", "1",
-                         str(out_file)],
-                        check=True,
-                        capture_output=True,
-                        text=True,
-                    )
-                    tmp_mp3.unlink()
-                    print(f"  ... success. File: {out_file.name}")
-                except subprocess.CalledProcessError as e:
-                    print(f"  ... failed: {e.stderr}")
-                    tmp_mp3.unlink(missing_ok=True)
+            print(f"Generating {len(tasks)} files for {lang_code}/{voice_name} ...")
+            results = await asyncio.gather(*tasks, return_exceptions=True)
+            for result in results:
+                if isinstance(result, Exception):
+                    print(f"  ERROR: {result}")
+                    raise SystemExit(1)
+                print(result)
 
+
+def main():
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="Generate or check edge-tts opus audio files for all phrases."
+        " edge-tts is a free Microsoft Azure Text-to-Speech service accessible"
+        " via the 'edge-tts' Python library without an API key.",
+    )
+    subparsers = parser.add_subparsers(dest="subcommand")
+    subparsers.add_parser("check", help="Print missing and orphaned opus files without changing anything.")
+    subparsers.add_parser("create", help="Generate missing opus files using edge-tts.")
+    subparsers.add_parser("delete-orphans", help="Delete opus files with no matching phrase.")
+
+    args = parser.parse_args()
+
+    if args.subcommand is None:
+        parser.print_help()
+        return
+
+    asyncio.run(async_main(
+        check_only=args.subcommand == "check",
+        delete_orphans=args.subcommand == "delete-orphans",
+    ))
     print("Done.")
 
 

@@ -49,9 +49,13 @@ async function downloadModelFiles(): Promise<{ modelPath: string; vocabPath: str
 function printHelp(): void {
   console.log(`Usage: ./run tsx scripts/test-all-flac.ts [options] [pattern]
 
+Run the ONNX phoneme model on all FLAC test recordings in tests/data/ and
+compare recognized IPA against expected IPA stored in .flac.yaml files.
+Use --update to write new recognized_ipa values back to those YAML files.
+
 Options:
   --list, -l     List all audio files without processing
-  --update, -u   Update YAML files with new IPA values
+  --update, -u   Update .flac.yaml files with newly recognized IPA values
   --help, -h     Show help message
 
 Pattern:
