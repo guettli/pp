@@ -18,13 +18,14 @@ import path from "path";
 import yaml from "js-yaml";
 import { PROJECT_ROOT, phraseToFilename, type PhraseEntry } from "./lib/phrase-audio-utils.js";
 
-const LANGS = ["de-DE", "en-GB", "fr-FR", "it-IT"];
+const LANGS = ["de-DE", "en-GB", "fr-FR", "it-IT", "es-ES"];
 
 const LANG_ENGINE: Record<string, { engine: string }> = {
   "de-DE": { engine: "olaph" },
   "en-GB": { engine: "olaph" },
   "fr-FR": { engine: "olaph" },
   "it-IT": { engine: "espeak-ng" },
+  "es-ES": { engine: "olaph" },
 };
 
 function readIpaFile(lang: string, engine: string, stem: string): string | null {

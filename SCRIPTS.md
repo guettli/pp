@@ -217,6 +217,23 @@ options:
 (no --help output)
 ```
 
+## generate-translated-phrases.py
+
+```
+usage: generate-translated-phrases.py [-h] [--all] [--force] [LANG ...]
+
+Bootstrap phrases-{lang}.yaml by translating en-GB phrases.
+
+positional arguments:
+  LANG        language(s) to generate, e.g. es-ES de-DE (choices: de-DE, fr-
+              FR, it-IT, es-ES)
+
+options:
+  -h, --help  show this help message and exit
+  --all       generate all supported languages
+  --force     overwrite existing phrase files
+```
+
 ## lint.sh
 
 ```

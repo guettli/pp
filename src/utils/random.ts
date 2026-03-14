@@ -3,6 +3,7 @@ import phrasesDeYaml from "../../phrases-de-DE.yaml?raw";
 import phrasesEnYaml from "../../phrases-en-GB.yaml?raw";
 import phrasesFrYaml from "../../phrases-fr-FR.yaml?raw";
 import phrasesItYaml from "../../phrases-it-IT.yaml?raw";
+import phrasesEsYaml from "../../phrases-es-ES.yaml?raw";
 import type { Phrase, SupportedLanguage } from "../types.js";
 
 // Parse YAML files
@@ -10,6 +11,7 @@ const phrasesDe: Phrase[] = load(phrasesDeYaml) as Phrase[];
 const phrasesEn: Phrase[] = load(phrasesEnYaml) as Phrase[];
 const phrasesFr: Phrase[] = load(phrasesFrYaml) as Phrase[];
 const phrasesIt: Phrase[] = load(phrasesItYaml) as Phrase[];
+const phrasesEs: Phrase[] = load(phrasesEsYaml) as Phrase[];
 
 // Set of blacklisted en-GB phrase keys for cross-language filtering
 const blacklistedEnKeys = new Set(phrasesEn.filter((p) => p.blacklisted).map((p) => p.phrase));
@@ -18,6 +20,7 @@ function getPhraseList(phraseLang: string): Phrase[] {
   if (phraseLang === "de-DE") return phrasesDe;
   if (phraseLang === "fr-FR") return phrasesFr;
   if (phraseLang === "it-IT") return phrasesIt;
+  if (phraseLang === "es-ES") return phrasesEs;
   return phrasesEn;
 }
 

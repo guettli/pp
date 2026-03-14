@@ -250,8 +250,9 @@
       if (slider) {
         const yTarget = _phraseSliderYAtDragStart;
         // Iterative rAF correction: keep scrolling until the slider is back at yTarget.
-        // Runs after CSS scroll anchoring (which fires during the rendering pipeline)
-        // and converges within 2–3 frames. Restores overflow-anchor on the last pass.
+        // Runs after CSS scroll anchoring (which fires during the rendering pipeline).
+        // overflow-anchor is restored first, then one final correction pass runs to
+        // compensate for any shift the browser applies upon anchor restoration.
         let _rafAttempts = 4;
         const _correctScroll = () => {
           const delta = slider.getBoundingClientRect().top - yTarget;
@@ -261,8 +262,11 @@
           _rafAttempts--;
           if (_rafAttempts > 0) {
             requestAnimationFrame(_correctScroll);
-          } else {
+          } else if (_rafAttempts === 0) {
+            // Restore anchor and do one final pass to catch any browser-induced shift.
             document.documentElement.style.overflowAnchor = "";
+            _rafAttempts = -1;
+            requestAnimationFrame(_correctScroll);
           }
         };
         requestAnimationFrame(_correctScroll);

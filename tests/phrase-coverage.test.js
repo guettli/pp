@@ -18,7 +18,7 @@ import yaml from "js-yaml";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const NON_EN_LANGS = ["de-DE", "fr-FR", "it-IT"];
+const NON_EN_LANGS = ["de-DE", "fr-FR", "it-IT", "es-ES"];
 
 function loadPhrases(filename) {
   const filePath = path.join(__dirname, "..", filename);

@@ -20,7 +20,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.join(__dirname, "..");
 
-const LANGS = ["de-DE", "en-GB", "fr-FR", "it-IT"];
+const LANGS = ["de-DE", "en-GB", "fr-FR", "it-IT", "es-ES"];
 const VOICES = ["edge-tts-male", "edge-tts-female"];
 
 // ── filename algorithm (mirrors src/speech/phrase-audio.ts) ──────────────────

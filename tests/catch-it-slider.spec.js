@@ -59,13 +59,15 @@ async function releasePhraseSlider(page, toVal) {
       }),
     );
   }, toVal);
-  // Wait for the iterative rAF correction to complete (4 rAF passes + one more for scrollBy).
+  // Wait for the iterative rAF correction to complete (4 passes + anchor restore + final pass).
   await page.evaluate(
     () =>
       new Promise((r) =>
         requestAnimationFrame(() =>
           requestAnimationFrame(() =>
-            requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(r))),
+            requestAnimationFrame(() =>
+              requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(r))),
+            ),
           ),
         ),
       ),

@@ -25,6 +25,7 @@ const PHRASE_FILES = [
   "phrases-en-GB.yaml",
   "phrases-fr-FR.yaml",
   "phrases-it-IT.yaml",
+  "phrases-es-ES.yaml",
 ];
 
 // Regex matching a parenthesised ISO 639-1 or BCP-47 language tag embedded in IPA,
@@ -35,8 +36,9 @@ const LANG_MARKER_RE = /\([a-z]{2}(?:-[A-Z]{2})?\)/;
 // Standard IPA uses a plain space for word boundaries.
 const HYPHEN_SPACE_RE = /- /;
 
-// "?" is a placeholder for an unknown/missing phoneme, e.g. /dɛɾ tˈ??m/.
-const QUESTION_MARK_RE = /\?/;
+// "??" (consecutive question marks) is a placeholder for an unknown/missing phoneme,
+// e.g. /dɛɾ tˈ??m/. A single "?" is valid IPA punctuation for question sentences.
+const QUESTION_MARK_RE = /\?\?/;
 
 function checkIpaString(ipa) {
   const errors = [];
@@ -47,7 +49,7 @@ function checkIpaString(ipa) {
     errors.push(`espeak-ng hyphen-space artifact in IPA: "${ipa}"`);
   }
   if (QUESTION_MARK_RE.test(ipa)) {
-    errors.push(`question mark placeholder in IPA: "${ipa}"`);
+    errors.push(`double question mark placeholder in IPA: "${ipa}"`);
   }
   return errors;
 }

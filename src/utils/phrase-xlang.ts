@@ -3,6 +3,7 @@ import phrasesDe from "../../phrases-de-DE.yaml?raw";
 import phrasesEn from "../../phrases-en-GB.yaml?raw";
 import phrasesFr from "../../phrases-fr-FR.yaml?raw";
 import phrasesIt from "../../phrases-it-IT.yaml?raw";
+import phrasesEs from "../../phrases-es-ES.yaml?raw";
 import type { Phrase } from "../types";
 
 const phrasesByLang: Record<string, Phrase[]> = {
@@ -10,6 +11,7 @@ const phrasesByLang: Record<string, Phrase[]> = {
   "fr-FR": yaml.load(phrasesFr) as Phrase[],
   "en-GB": yaml.load(phrasesEn) as Phrase[],
   "it-IT": yaml.load(phrasesIt) as Phrase[],
+  "es-ES": yaml.load(phrasesEs) as Phrase[],
 };
 
 /**

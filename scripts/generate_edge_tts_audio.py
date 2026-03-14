@@ -64,6 +64,7 @@ async def async_main(check_only: bool, delete_orphans: bool) -> None:
         "en-GB": {"male": "en-GB-RyanNeural", "female": "en-GB-LibbyNeural"},
         "fr-FR": {"male": "fr-FR-HenriNeural", "female": "fr-FR-DeniseNeural"},
         "it-IT": {"male": "it-IT-DiegoNeural", "female": "it-IT-ElsaNeural"},
+        "es-ES": {"male": "es-ES-AlvaroNeural", "female": "es-ES-ElviraNeural"},
     }
 
     # Limit concurrent TTS network requests to avoid rate-limiting

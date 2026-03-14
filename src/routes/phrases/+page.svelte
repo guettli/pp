@@ -183,6 +183,7 @@
     "en-GB": "English",
     "fr-FR": "Français",
     "it-IT": "Italiano",
+    "es-ES": "Español",
   };
 </script>
 

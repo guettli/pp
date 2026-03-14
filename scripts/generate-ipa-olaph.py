@@ -21,12 +21,13 @@ sys.path.insert(0, str(Path(__file__).parent))
 from olaph import Olaph
 from lib.ipa_gen_utils import load_phrases, write_ipa, ipa_exists
 
-SUPPORTED_LANGS = ["de-DE", "en-GB", "fr-FR"]
+SUPPORTED_LANGS = ["de-DE", "en-GB", "fr-FR", "es-ES"]
 
 OLAPH_LANG: dict[str, str] = {
     "de-DE": "de",
     "en-GB": "en",
     "fr-FR": "fr",
+    "es-ES": "es",
 }
 
 

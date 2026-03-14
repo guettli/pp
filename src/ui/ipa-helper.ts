@@ -9,6 +9,7 @@ interface LanguageExamples {
   "en-GB"?: string;
   "fr-FR"?: string;
   "it-IT"?: string;
+  "es-ES"?: string;
 }
 
 type IPACategory = "consonants" | "vowels" | "diphthongs" | "modifiers";
