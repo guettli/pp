@@ -32,7 +32,7 @@
     studyLangToPhraseLang,
     type StudyLanguage,
   } from "../study-lang.js";
-  import { type Phrase, type Score } from "../types.js";
+  import { type Phrase, type Score, type SupportedLanguage } from "../types.js";
   import { initHistory, refreshHistory } from "../ui/history.js";
   import { generateExplanationsHTML } from "../ui/ipa-helper.js";
   import { generateModelDetailsHTML } from "../ui/model-details-view.js";
@@ -41,6 +41,7 @@
   import { getTopPhrasesForPrefetch, selectNextPhrase } from "../utils/phrase-selector.js";
   import { getPhraseInLang } from "../utils/phrase-xlang";
   import { findPhraseByEnGBKey, findPhraseByName } from "../utils/random.js";
+  import { preloadPhrases } from "../utils/phrase-loader.js";
   import {
     initNoiseSuppressor,
     processChunk,
@@ -57,6 +58,15 @@
 
   // ── Reactive state ───────────────────────────────────────────────────────────
 
+  // iOS 17 and older have a WASM memory bug in ORT 1.19+ (fixed in iOS 18 by Apple).
+  // Detect iOS version: returns major version number or null if not iOS.
+  function getIOSVersion(): number | null {
+    const match = navigator.userAgent.match(/OS (\d+)_/);
+    return match ? parseInt(match[1], 10) : null;
+  }
+  const iosVersion = getIOSVersion();
+  const isUnsupportedIOS = iosVersion !== null && iosVersion < 18;
+
   let isModelLoaded = $state(false);
   let loadingProgress = $state(0);
   let loadError = $state<Error | null>(null);
@@ -69,6 +79,8 @@
   let isRecording = $state(false);
   let audioQuality = $state<AudioQuality | null>(null);
   let qualityHistory = $state<AudioQuality[]>([]);
+  let tooQuietPeakRms = $state<number | null>(null);
+  let showStaleBanner = $state(false);
   let isProcessing = $state(false);
   let processingProgress = $state(0);
   let lastRecordingBlob = $state<Blob | null>(null);
@@ -475,6 +487,7 @@
     resetNoiseSuppressorState();
     audioQuality = null;
     qualityHistory = [];
+    tooQuietPeakRms = null;
 
     if (isModelLoaded) {
       // Full real-time detection with model
@@ -579,6 +592,12 @@
       if (duration < recorder.minDuration) {
         showRecorderAlert("record.too_short_title", "record.too_short_body", "info", 5000);
         return;
+      }
+
+      // Warn if peak RMS across all chunks is below threshold (audio too quiet)
+      if (qualityHistory.length > 0) {
+        const peakRms = Math.max(...qualityHistory.map((q) => q.rms));
+        tooQuietPeakRms = peakRms < 0.02 ? peakRms : null;
       }
 
       if (!isModelLoaded) {
@@ -703,12 +722,7 @@
           phrase.ipas[0].ipa,
           duration,
         );
-        const newLevel = adjustUserLevel(
-          userLevel,
-          actualUserLevel,
-          scoreResult.similarity * 100,
-          phrase.level || 1,
-        );
+        const newLevel = adjustUserLevel(userLevel, actualUserLevel, scoreResult.similarity * 100);
         if (newLevel !== userLevel) {
           userLevel = newLevel;
           await saveUserLevel(sl, newLevel);
@@ -793,7 +807,7 @@
   }
 
   // ── Navigation ────────────────────────────────────────────────────────────────
-  function getPhraseFromQueryString(): Phrase | null {
+  async function getPhraseFromQueryString(): Promise<Phrase | null> {
     const params = new URLSearchParams(window.location.search);
     const p = params.get("phrase");
     if (!p) return null;
@@ -1026,6 +1040,21 @@
     setupConsoleInterceptor();
     initI18n();
 
+    // Check if the running app is stale (served from an old build)
+    try {
+      const res = await fetch(resolve("/api/version", {}));
+      if (res.ok) {
+        const { buildTime } = await res.json();
+        const serverMs = new Date(buildTime).getTime();
+        const clientMs = new Date(__BUILD_DATE__).getTime();
+        if (serverMs > clientMs + 2 * 60 * 60 * 1000) {
+          showStaleBanner = true;
+        }
+      }
+    } catch {
+      // Network error — ignore, banner is not critical
+    }
+
     webgpuAvailable = typeof navigator !== "undefined" && !!navigator.gpu;
     webgpuEnabled = localStorage.getItem("webgpu-enabled") === "true";
     noiseReductionEnabled = await db.getNoiseReductionEnabled();
@@ -1037,9 +1066,17 @@
 
     recorder = new AudioRecorder();
 
+    // Preload phrase data so sync lookups (getPhraseInLang etc.) work immediately after
+    const _sl = getStudyLang();
+    await Promise.all([
+      _sl ? preloadPhrases(studyLangToPhraseLang(_sl)) : Promise.resolve(),
+      preloadPhrases("en-GB"),
+      preloadPhrases(uiLang as SupportedLanguage),
+    ]);
+
     // Non-model initialization runs immediately (no waiting for model)
     try {
-      const queryPhrase = getPhraseFromQueryString();
+      const queryPhrase = await getPhraseFromQueryString();
       if (queryPhrase) {
         currentPhrase = queryPhrase;
         recentPhrases = [queryPhrase.phrase];
@@ -1070,12 +1107,12 @@
       await tick();
       initHistory();
 
-      window.addEventListener("load-phrase", (event) => {
+      window.addEventListener("load-phrase", async (event) => {
         const { lang, phrase } = (event as CustomEvent<{ lang: string; phrase: string }>).detail;
         if (lang !== getStudyLang()) {
           setStudyLang(lang as StudyLanguage);
         }
-        const found = findPhraseByName(phrase, lang as StudyLanguage);
+        const found = await findPhraseByName(phrase, lang as StudyLanguage);
         if (found) {
           currentPhrase = found;
           score = null;
@@ -1087,14 +1124,14 @@
         }
       });
 
-      onStudyLangChange(() => {
+      onStudyLangChange(async () => {
         studyLangValue = getStudyLang() ?? "";
         // Try to keep the current phrase translated into the new study language.
         // Use the en-GB key as a cross-language lookup key.
         const newSl = getStudyLang();
         if (newSl && currentPhrase) {
           const enKey = currentPhrase["en-GB"] ?? currentPhrase.phrase;
-          const equivalent = findPhraseByEnGBKey(enKey, studyLangToPhraseLang(newSl));
+          const equivalent = await findPhraseByEnGBKey(enKey, studyLangToPhraseLang(newSl));
           if (equivalent) {
             currentPhrase = equivalent;
             score = null;
@@ -1165,6 +1202,8 @@
     if (noiseReductionEnabled) initNoiseSuppressor();
 
     // Load model in background (non-blocking — UI is already interactive)
+    if (isUnsupportedIOS) return;
+
     const loadStart = performance.now();
 
     updateLoadingProgressState({ status: "downloading", progress: 0 });
@@ -1286,6 +1325,26 @@
 </script>
 
 <div id="app" class="container py-5" class:model-loaded={isModelLoaded}>
+  {#if showStaleBanner}
+    <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+      <strong>{t("stale.title")}</strong>
+      {t("stale.body")}
+      <button
+        type="button"
+        class="btn btn-sm btn-outline-danger ms-2"
+        onclick={() => window.location.reload()}>{t("stale.reload")}</button
+      >
+      <button
+        type="button"
+        class="btn-close"
+        onclick={() => {
+          showStaleBanner = false;
+        }}
+        aria-label={t("buttons.close")}
+      ></button>
+    </div>
+  {/if}
+
   <!-- Header -->
   <header class="text-center mb-5">
     <h1 class="display-4 fw-bold">{t("header.title")}</h1>
@@ -1328,6 +1387,17 @@
       </div>
     {/if}
   </header>
+
+  <!-- Unsupported iOS warning -->
+  {#if isUnsupportedIOS}
+    <div class="alert alert-warning mb-4" role="alert">
+      <h5 class="alert-heading">iOS {iosVersion} is not supported</h5>
+      <p class="mb-0">
+        This app requires iOS 18 or newer. Please upgrade your iPhone to use the pronunciation
+        practice feature.
+      </p>
+    </div>
+  {/if}
 
   <!-- Load Error -->
   {#if loadError}
@@ -1425,6 +1495,26 @@
         ></button>
       </div>
     {/each}
+
+    {#if tooQuietPeakRms !== null}
+      {@const levelPct = Math.min(100, Math.round((tooQuietPeakRms / 0.02) * 100))}
+      <div class="alert alert-warning alert-dismissible fade show mt-2">
+        <strong>{t("record.too_quiet_title")}</strong>
+        <p class="mb-1 mt-1">{t("record.too_quiet_body")}</p>
+        <div class="progress" style="height: 8px;">
+          <div class="progress-bar bg-warning" style="width: {levelPct}%"></div>
+        </div>
+        <div class="small text-muted mt-1">{levelPct}%</div>
+        <button
+          type="button"
+          class="btn-close"
+          onclick={() => {
+            tooQuietPeakRms = null;
+          }}
+          aria-label={t("buttons.close")}
+        ></button>
+      </div>
+    {/if}
 
     <!-- Controls -->
     {#if currentPhrase}

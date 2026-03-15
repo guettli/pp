@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 import { readdirSync } from "fs";
 import { resolve } from "path";
 
-const PROD_URL = "https://thomas-guettler.de/phoneme-party/";
+const PROD_URL = `https://${process.env.REMOTE_HOST ?? "relaxandplay.de"}/phoneme-party/`;
 
 /** Pick up to `n` random items from `arr` without repetition. */
 function pickRandom(arr, n) {

@@ -490,7 +490,7 @@ class PhonemePartyDB {
     // Get phrase levels for mastered phrases
     const levels: number[] = [];
     for (const doc of mastered) {
-      const phrase = findPhraseByName(doc.phrase, studyLang);
+      const phrase = await findPhraseByName(doc.phrase, studyLang);
       if (phrase?.level) {
         levels.push(phrase.level);
       }

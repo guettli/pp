@@ -1,4 +1,4 @@
-import { test, expect } from "./fixtures.js";
+import { test, expect } from "../fixtures.js";
 import path from "path";
 import fs from "fs";
 import yaml from "js-yaml";

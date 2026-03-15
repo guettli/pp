@@ -1,4 +1,4 @@
-import { expect, test } from "./fixtures.js";
+import { expect, test } from "../fixtures.js";
 
 test.describe("Phoneme Word Boundaries", () => {
   test('should correctly group phonemes by words for "Das Feuer brennt"', async ({

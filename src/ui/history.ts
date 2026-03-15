@@ -5,7 +5,7 @@
 import { db, type PhraseResultDoc } from "../db.js";
 import { t } from "../i18n.js";
 import { getStudyLang } from "../study-lang.js";
-import { findPhraseByName } from "../utils/random.js";
+import { getCachedPhrases } from "../utils/phrase-loader.js";
 import escapeHtml from "escape-html";
 
 const ITEMS_PER_PAGE = 20;
@@ -25,7 +25,6 @@ const SCROLL_HANDLER_KEY = "__phonemePartyScrollHandler";
 export function initHistory() {
   scrollContainer = document.getElementById("history-container");
   if (!scrollContainer) {
-    console.error("History container not found");
     return;
   }
 
@@ -218,8 +217,9 @@ function createHistoryItem(item: PhraseResultDoc): HTMLElement {
 
   const timeAgo = formatTimeAgo(item.timestamp);
 
-  // Get phrase level from phrase data
-  const phrase = findPhraseByName(item.phrase, item.language);
+  // Get phrase level from phrase data (cache must be pre-populated via preloadPhrases)
+  const cached = getCachedPhrases(item.language);
+  const phrase = cached?.find((p) => p.phrase.toLowerCase() === item.phrase.toLowerCase());
   const phraseLevel = phrase?.level;
   const levelBadge = phraseLevel
     ? `<span class="badge bg-secondary ms-2" title="Phrase level">L${phraseLevel}</span>`

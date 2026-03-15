@@ -36,9 +36,23 @@ tasks:
     generates:
       - build/data/panphon_features.json
 
+  phrases-json:
+    desc: Generate static/phrases/{lang}.json from phrases-{lang}.yaml
+    cmds:
+      - python scripts/generate-phrase-json.py
+    sources:
+      - phrases-*.yaml
+      - scripts/generate-phrase-json.py
+    generates:
+      - static/phrases/de-DE.json
+      - static/phrases/en-GB.json
+      - static/phrases/fr-FR.json
+      - static/phrases/it-IT.json
+      - static/phrases/es-ES.json
+
   ts:
     desc: Build TypeScript (depends on panphon data and WASM)
-    deps: [_nix-check, panphon, wasm]
+    deps: [_nix-check, panphon, wasm, phrases-json]
     sources:
       - src/**/*
       - static/**/*
@@ -60,7 +74,7 @@ tasks:
 
   build-server:
     desc: Build server bundle with adapter-node (output in build-server/)
-    deps: [_nix-check, panphon, wasm]
+    deps: [_nix-check, panphon, wasm, phrases-json]
     cmds:
       - BUILD_SERVER=1 pnpm build
 
@@ -131,6 +145,7 @@ tasks:
         node tests/ipa-validity.test.js
         node tests/phrase-coverage.test.js
         node tests/phrase-audio-coverage.test.js
+        node tests/i18n-dead-keys.test.js
         END=$(date +%s)
         echo "unit-tests: $((END - START))s"
 
@@ -140,6 +155,13 @@ tasks:
     cmds:
       - ./scripts/validate-phrases-en-GB.py
       - python scripts/apply-blacklist.py
+
+  test-webkit:
+    desc: Run e2e tests on WebKit (Safari engine) — manual use only
+    deps: [_nix-check, ts, cache-cdn-assets]
+    cmds:
+      - pkill -f "vite.*8080" || true
+      - pnpm playwright test --project=webkit
 
   check-prod:
     desc: Run smoke tests against the live production site
@@ -164,15 +186,30 @@ tasks:
     generates:
       - SCRIPTS.md
 
+  fast-deploy:
+    desc: Build and deploy to server (skips tests and checks)
+    deps: [ts, docs]
+    cmds:
+      - |
+        START=$(date +%s)
+        ./scripts/deploy-server.sh
+        END=$(date +%s)
+        echo "deploy-server: $((END - START))s"
+      - |
+        START=$(date +%s)
+        pnpm playwright test --project=prod
+        END=$(date +%s)
+        echo "check-prod: $((END - START))s"
+
   deploy:
     desc: Build, check, deploy to server, and verify prod is up
     deps: [check, docs]
     cmds:
       - |
         START=$(date +%s)
-        rsync -az --delete --exclude='onnx' --exclude='*.debug.yaml' --stats dist/ tg:public_html/phoneme-party/
+        ./scripts/deploy-server.sh
         END=$(date +%s)
-        echo "rsync: $((END - START))s"
+        echo "deploy-server: $((END - START))s"
       - |
         START=$(date +%s)
         pnpm playwright test --project=prod

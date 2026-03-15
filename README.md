@@ -9,7 +9,7 @@ Two language settings:
 - **ui-lang**: language of the UI (auto-detected from browser, changeable)
 - **study-lang**: language being practised (must be chosen explicitly; en-GB or de)
 
-Demo: <https://thomas-guettler.de/phoneme-party/>
+Demo: <https://relaxandplay.de/phoneme-party/>
 
 Build on:
 

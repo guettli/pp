@@ -1,0 +1,6 @@
+# Deployment configuration — copy to deploy.conf and fill in your values.
+# deploy.conf is gitignored (contains environment-specific settings).
+
+REMOTE_HOST=relaxandplay.de
+USERNAME=pp
+CERTBOT_EMAIL=admin@relaxandplay.de

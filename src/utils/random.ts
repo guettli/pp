@@ -1,27 +1,9 @@
-import { load } from "js-yaml";
-import phrasesDeYaml from "../../phrases-de-DE.yaml?raw";
-import phrasesEnYaml from "../../phrases-en-GB.yaml?raw";
-import phrasesFrYaml from "../../phrases-fr-FR.yaml?raw";
-import phrasesItYaml from "../../phrases-it-IT.yaml?raw";
-import phrasesEsYaml from "../../phrases-es-ES.yaml?raw";
 import type { Phrase, SupportedLanguage } from "../types.js";
+import { preloadPhrases, getCachedPhrases } from "./phrase-loader.js";
 
-// Parse YAML files
-const phrasesDe: Phrase[] = load(phrasesDeYaml) as Phrase[];
-const phrasesEn: Phrase[] = load(phrasesEnYaml) as Phrase[];
-const phrasesFr: Phrase[] = load(phrasesFrYaml) as Phrase[];
-const phrasesIt: Phrase[] = load(phrasesItYaml) as Phrase[];
-const phrasesEs: Phrase[] = load(phrasesEsYaml) as Phrase[];
-
-// Set of blacklisted en-GB phrase keys for cross-language filtering
-const blacklistedEnKeys = new Set(phrasesEn.filter((p) => p.blacklisted).map((p) => p.phrase));
-
-function getPhraseList(phraseLang: string): Phrase[] {
-  if (phraseLang === "de-DE") return phrasesDe;
-  if (phraseLang === "fr-FR") return phrasesFr;
-  if (phraseLang === "it-IT") return phrasesIt;
-  if (phraseLang === "es-ES") return phrasesEs;
-  return phrasesEn;
+function getBlacklistedEnKeys(): Set<string> {
+  const en = getCachedPhrases("en-GB") ?? [];
+  return new Set(en.filter((p) => p.blacklisted).map((p) => p.phrase));
 }
 
 /**
@@ -45,46 +27,27 @@ export function filterByLevel(phrases: Phrase[], userLevel: number): Phrase[] {
 }
 
 /**
- * Get a random phrase from the phrase list, avoiding recently shown phrases.
- * @param phraseLang - The target language
- * @param userLevel - User level (1-1000). Filters phrases within ±80 levels, expanding if needed
- * @param recentPhrases - Phrase texts to avoid (most recent shown); relaxed if no alternatives exist
- */
-export function getRandomPhrase(
-  phraseLang: SupportedLanguage,
-  userLevel: number,
-  recentPhrases: string[] = [],
-): Phrase {
-  const phrasesData = getPhraseList(phraseLang);
-  const filteredPhrases = filterByLevel(phrasesData, userLevel);
-
-  // Exclude recently shown phrases if alternatives exist
-  const recentSet = new Set(recentPhrases);
-  const candidates = filteredPhrases.filter((p) => !recentSet.has(p.phrase));
-  const pool = candidates.length > 0 ? candidates : filteredPhrases;
-
-  const index = Math.floor(Math.random() * pool.length);
-  return pool[index];
-}
-
-/**
  * Get the full phrase list, excluding blacklisted phrases.
  * For en-GB: excludes phrases with blacklisted: true.
  * For other languages: also excludes phrases whose en-GB key is blacklisted.
  */
-export function getAllPhrases(phraseLang: SupportedLanguage): Phrase[] {
-  return getPhraseList(phraseLang).filter(
-    (p) => !p.blacklisted && !blacklistedEnKeys.has(p["en-GB"] ?? ""),
-  );
+export async function getAllPhrases(phraseLang: SupportedLanguage): Promise<Phrase[]> {
+  await preloadPhrases(phraseLang);
+  if (phraseLang !== "en-GB") await preloadPhrases("en-GB");
+  const phrases = getCachedPhrases(phraseLang);
+  if (!phrases) throw new Error(`Phrases not loaded for ${phraseLang}`);
+  const blacklistedEnKeys = getBlacklistedEnKeys();
+  return phrases.filter((p) => !p.blacklisted && !blacklistedEnKeys.has(p["en-GB"] ?? ""));
 }
 
 /**
  * Find a phrase by name (case-insensitive)
  */
-export function findPhraseByName(name: string, phraseLang: string): Phrase | null {
-  const phrasesData = getPhraseList(phraseLang);
+export async function findPhraseByName(name: string, phraseLang: string): Promise<Phrase | null> {
+  await preloadPhrases(phraseLang as SupportedLanguage);
+  const phrases = getCachedPhrases(phraseLang) ?? [];
   const lowerName = name.toLowerCase();
-  return phrasesData.find((w) => w.phrase?.toLowerCase() === lowerName) || null;
+  return phrases.find((w) => w.phrase?.toLowerCase() === lowerName) ?? null;
 }
 
 /**
@@ -92,10 +55,14 @@ export function findPhraseByName(name: string, phraseLang: string): Phrase | nul
  * For en-GB phrases the phrase text itself is the key (no "en-GB" field).
  * Returns null if no match is found.
  */
-export function findPhraseByEnGBKey(enKey: string, phraseLang: string): Phrase | null {
-  const phrasesData = getPhraseList(phraseLang);
+export async function findPhraseByEnGBKey(
+  enKey: string,
+  phraseLang: string,
+): Promise<Phrase | null> {
+  await preloadPhrases(phraseLang as SupportedLanguage);
+  const phrases = getCachedPhrases(phraseLang) ?? [];
   if (phraseLang === "en-GB") {
-    return phrasesData.find((p) => p.phrase === enKey) || null;
+    return phrases.find((p) => p.phrase === enKey) ?? null;
   }
-  return phrasesData.find((p) => p["en-GB"] === enKey) || null;
+  return phrases.find((p) => p["en-GB"] === enKey) ?? null;
 }

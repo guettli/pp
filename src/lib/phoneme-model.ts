@@ -9,6 +9,7 @@ import {
   extractFrameData,
   type PhonemeWithConfidence,
 } from "../speech/phoneme-decoder.js";
+import { extractLogitsTensor } from "../speech/phoneme-postprocess.js";
 
 // Polyfill atob for Node.js
 if (typeof globalThis.atob === "undefined") {
@@ -98,18 +99,10 @@ export async function extractPhonemes(
 
   const feeds = await buildPhonemeFeeds(audioData, ort.Tensor);
   const results = await session.run(feeds);
-
-  // Handle different possible output names
-  const logitsTensor = results.logits || results.log_probs || results[Object.keys(results)[0]];
-  if (!logitsTensor) {
-    throw new Error(`No output tensor found. Available keys: ${Object.keys(results).join(", ")}`);
-  }
-  const logits = logitsTensor.data as ArrayLike<number>;
-  const seqLen = logitsTensor.dims[1];
-  const vocabSize = logitsTensor.dims[2];
+  const { logitsData, seqLen, vocabSize } = extractLogitsTensor(results);
 
   // Use shared decoder with confidence filtering
-  return decodePhonemes(logits, seqLen, vocabSize, idToToken, {
+  return decodePhonemes(logitsData, seqLen, vocabSize, idToToken, {
     minConfidence,
     returnDetails,
   });

@@ -1,4 +1,4 @@
-import { expect, test } from "./fixtures.js";
+import { expect, test } from "../fixtures.js";
 
 test.describe("User feedback form", () => {
   test.beforeEach(async ({ page }) => {

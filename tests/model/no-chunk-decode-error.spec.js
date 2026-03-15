@@ -1,7 +1,5 @@
-import fs from "fs";
-import yaml from "js-yaml";
-import path from "path";
-import { expect, test } from "./fixtures.js";
+import { expect, test } from "../fixtures.js";
+import { loadDieRoseTestData } from "../helpers/streaming-setup.js";
 
 /**
  * Test to ensure RealTimePhonemeDetector works correctly with AudioWorklet Float32Array chunks.
@@ -12,23 +10,10 @@ test.describe("No Individual Chunk Decode Errors", () => {
   test("Should not produce 'Unable to decode audio data' errors during streaming", async ({
     modelPage: page,
   }) => {
-    // Load test data
-    const yamlPath = path.join(
-      process.cwd(),
-      "tests/data/de-DE/Die_Rose/Die_Rose-Thomas.flac.yaml",
-    );
-    const yamlContent = fs.readFileSync(yamlPath, "utf8");
-    const expectedData = yaml.load(yamlContent);
-
-    const expectedIPA = expectedData.recognized_ipa;
-    const phrase = expectedData.phrase;
+    const { expectedIPA, phrase, audioBuffer } = loadDieRoseTestData();
 
     console.log(`\nTesting: ${phrase}`);
     console.log(`Expected IPA: ${expectedIPA}\n`);
-
-    // Load audio file
-    const audioPath = path.join(process.cwd(), "tests/data/de-DE/Die_Rose/Die_Rose-Thomas.flac");
-    const audioBuffer = fs.readFileSync(audioPath);
 
     // Capture console errors (model already loaded via modelPage fixture)
     const consoleErrors = [];

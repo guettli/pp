@@ -14,6 +14,7 @@
   import "../../styles/main.css";
   import type { Phrase, SupportedLanguage } from "../../types.js";
   import { getPhraseInLang } from "../../utils/phrase-xlang.js";
+  import { preloadPhrases } from "../../utils/phrase-loader.js";
   import { getAllPhrases } from "../../utils/random.js";
 
   // @ts-expect-error TS2554
@@ -185,7 +186,14 @@
     isSettingsLoaded = true;
 
     const phraseLang = studyLangToPhraseLang(sl);
-    allShortPhrases = getAllPhrases(phraseLang).filter((p) => p.phrase.length <= MAX_PHRASE_LEN);
+    await Promise.all([
+      preloadPhrases(phraseLang),
+      preloadPhrases("en-GB"),
+      preloadPhrases(uiLang),
+    ]);
+    allShortPhrases = (await getAllPhrases(phraseLang)).filter(
+      (p) => p.phrase.length <= MAX_PHRASE_LEN,
+    );
     gameState = "intro"; // $effect picks targets when gameState becomes "intro"
 
     _popstateHandler = () => {

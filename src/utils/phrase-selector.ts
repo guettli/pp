@@ -14,7 +14,7 @@ export async function getTopPhrasesForPrefetch(
   studyLang: string,
   n: number = 100,
 ): Promise<Phrase[]> {
-  const levelFiltered = filterByLevel(getAllPhrases(phraseLang), userLevel);
+  const levelFiltered = filterByLevel(await getAllPhrases(phraseLang), userLevel);
   const stateList = await db.getAllPhraseStates(studyLang);
   const stateMap = new Map<string, PhraseHistory>(
     stateList.map((s) => [
@@ -54,7 +54,7 @@ export async function selectNextPhrase(
   hasAudio: ((phraseText: string) => boolean) | null = null,
 ): Promise<Phrase> {
   // 1. Level-filtered candidate pool
-  const levelFiltered = filterByLevel(getAllPhrases(phraseLang), userLevel);
+  const levelFiltered = filterByLevel(await getAllPhrases(phraseLang), userLevel);
 
   // 1b. Restrict to phrases that have pre-generated audio (if filter provided)
   const audioFiltered =

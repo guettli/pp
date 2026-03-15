@@ -5,7 +5,7 @@ import adapterStatic from "@sveltejs/adapter-static";
 const config = {
   kit: {
     adapter: process.env.BUILD_SERVER
-      ? adapterNode({ out: "build-server" })
+      ? adapterNode({ out: "build-server", precompress: false })
       : adapterStatic({
           fallback: "index.html",
           pages: "dist",

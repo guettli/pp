@@ -8,6 +8,7 @@ User={{USER}}
 WorkingDirectory=/opt/{{USER}}
 ExecStart=/usr/bin/node /opt/{{USER}}/build-server/index.js
 Environment=PORT=3001
+Environment=HOST=127.0.0.1
 Restart=always
 RestartSec=10
 

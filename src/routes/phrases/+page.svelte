@@ -5,6 +5,7 @@
   import { t as _t, getUiLang, initI18n, onUiLangChange } from "../../i18n.js";
   import type { SupportedLanguage, Phrase, IPA } from "../../types.js";
   import { getAllPhrases } from "../../utils/random.js";
+  import { preloadPhrases } from "../../utils/phrase-loader.js";
   import type { StudyLanguage } from "../../study-lang.js";
   import { SUPPORTED_STUDY_LANGS } from "../../study-lang.js";
   import { playPhraseAudio } from "../../speech/phrase-audio.js";
@@ -31,12 +32,12 @@
     langs: Partial<Record<StudyLanguage, LangEntry>>;
   };
 
-  // Build cross-language groups at module level (happens once)
-  function buildGroups(): PhraseGroup[] {
+  // Build cross-language groups (loaded asynchronously in onMount)
+  async function buildGroups(): Promise<PhraseGroup[]> {
     const groupMap = new Map<string, PhraseGroup>();
 
     for (const lang of SUPPORTED_STUDY_LANGS) {
-      for (const phrase of getAllPhrases(lang)) {
+      for (const phrase of await getAllPhrases(lang)) {
         const enKey = lang === "en-GB" ? phrase.phrase : (phrase["en-GB"] ?? phrase.phrase);
         if (!groupMap.has(enKey)) {
           groupMap.set(enKey, { enKey, emoji: phrase.emoji, langs: {} });
@@ -54,7 +55,7 @@
     );
   }
 
-  const allGroups: PhraseGroup[] = buildGroups();
+  let allGroups = $state<PhraseGroup[]>([]);
 
   // --- URL param helpers ---
   function parseUrlLangs(): Set<StudyLanguage> {
@@ -144,6 +145,11 @@
   onMount(() => {
     initI18n();
     uiLang = getUiLang();
+
+    void (async () => {
+      await Promise.all(SUPPORTED_STUDY_LANGS.map((lang) => preloadPhrases(lang)));
+      allGroups = await buildGroups();
+    })();
 
     observer = new IntersectionObserver(
       (entries) => {

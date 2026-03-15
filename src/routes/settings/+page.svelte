@@ -111,10 +111,11 @@
       onchange={(e) => onStudyLangChange((e.target as HTMLSelectElement).value)}
     >
       <option value="">{t("study-lang.choose")}</option>
-      <option value="en-GB">{t("study-lang.en-GB")}</option>
-      <option value="de-DE">{t("study-lang.de")}</option>
-      <option value="fr-FR">{t("study-lang.fr-FR")}</option>
-      <option value="it-IT">{t("study-lang.it-IT")}</option>
+      <option value="en-GB">🇬🇧 {t("study-lang.en-GB")}</option>
+      <option value="de-DE">🇩🇪 {t("study-lang.de")}</option>
+      <option value="fr-FR">🇫🇷 {t("study-lang.fr-FR")}</option>
+      <option value="it-IT">🇮🇹 {t("study-lang.it-IT")}</option>
+      <option value="es-ES">🇪🇸 {t("study-lang.es-ES")}</option>
     </select>
   </div>
 
@@ -130,10 +131,11 @@
       }}
     >
       <option value="auto">{t("ui-lang.auto")}</option>
-      <option value="de-DE">{t("language.de")}</option>
-      <option value="en-GB">{t("language.en")}</option>
-      <option value="fr-FR">{t("language.fr")}</option>
-      <option value="it-IT">{t("language.it")}</option>
+      <option value="de-DE">🇩🇪 {t("language.de")}</option>
+      <option value="en-GB">🇬🇧 {t("language.en")}</option>
+      <option value="fr-FR">🇫🇷 {t("language.fr")}</option>
+      <option value="it-IT">🇮🇹 {t("language.it")}</option>
+      <option value="es-ES">🇪🇸 {t("language.es")}</option>
     </select>
   </div>
 

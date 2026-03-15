@@ -1,0 +1,38 @@
+# Phoneme Party — nginx site config for {{HOST}}
+# Rendered and deployed by deploy-server.sh; do not edit on the server by hand.
+# HTTPS is configured automatically by certbot on every deploy.
+#
+# Permissions: nginx (www-data) needs read access to /opt/{{USER}}/build-server/client.
+# deploy-exec-on-remote.sh sets chmod o+rX automatically on each deploy.
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name {{HOST}};
+
+    # Static files served directly from the app deployment directory.
+    # Dynamic routes fall back to the Node.js SSR server.
+    root /opt/{{USER}}/build-server/client;
+
+    # Redirect bare domain to app
+    location = / {
+        return 301 /phoneme-party/;
+    }
+
+    location /phoneme-party/ {
+        try_files $uri @nodejs;
+    }
+
+    # Immutable content-hashed assets — safe to cache forever
+    location ~* /phoneme-party/_app/immutable/ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+        try_files $uri @nodejs;
+    }
+
+    location @nodejs {
+        proxy_pass http://127.0.0.1:3001;
+        include /etc/nginx/proxy_params;
+        proxy_redirect off;
+    }
+}

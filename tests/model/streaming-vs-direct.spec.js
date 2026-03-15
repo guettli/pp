@@ -1,7 +1,7 @@
 import fs from "fs";
 import yaml from "js-yaml";
 import path from "path";
-import { expect, test } from "./fixtures.js";
+import { expect, test } from "../fixtures.js";
 
 /**
  * Test that compares direct extraction vs streaming detection

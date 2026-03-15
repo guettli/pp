@@ -1887,7 +1887,7 @@ wheels = [
 [[package]]
 name = "olaph"
 version = "0.1.24"
-source = { git = "https://github.com/guettli/olaph.git#5c4f19fffea8d7bd09e82b855047340144635610" }
+source = { git = "https://github.com/guettli/olaph.git#2b449b83cbb7f6258a5240d8cd2610babbb6abda" }
 dependencies = [
     { name = "annotated-types" },
     { name = "blis" },

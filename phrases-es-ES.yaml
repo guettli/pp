@@ -1646,7 +1646,7 @@
 - phrase: el casete
   emoji: 📼
   ipas:
-    - ipa: /te kassette./
+    - ipa: /el kasete./
       engine: olaph
   level: 806
   en-GB: The cassette
@@ -3228,7 +3228,7 @@
 - phrase: el minibús
   emoji: 🚐
   ipas:
-    - ipa: /el ˈbuːʃ./
+    - ipa: /el miniˈβus./
       engine: olaph
   level: 774
   en-GB: The minibus

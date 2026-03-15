@@ -91,11 +91,12 @@ Examples:
 ## deploy-exec-on-remote.sh
 
 ```
-Usage: ./scripts/deploy-exec-on-remote.sh <username>
+Usage: ./scripts/deploy-exec-on-remote.sh <username> <hostname> <certbot-email>
 
 Execute server installation steps on the remote host.
 Creates the app user, installs build artifacts to /opt/<username>,
-and installs/restarts the systemd service.
+installs/restarts the systemd service, installs the nginx site config,
+and obtains a Let's Encrypt certificate if not already present.
 
 Called by deploy-server.sh on the remote host. Not intended for direct use.
 ```
@@ -107,10 +108,10 @@ Usage: ./scripts/deploy-server.sh
 
 Build and deploy the Phoneme Party Node.js server to the remote server.
   1. Builds the server bundle (adapter-node) via Taskfile
-  2. Rsyncs build artifacts to root@tg:/tmp/pp-server-install/
+  2. Rsyncs build artifacts to root@relaxandplay.de:/tmp/pp-server-install/
   3. Runs deploy-exec-on-remote.sh on the remote to install the systemd service
 
-Requires SSH access to host 'tg' as root.
+Requires SSH access to host 'relaxandplay.de' as root.
 ```
 
 ## download-cdn-assets.sh
@@ -215,6 +216,16 @@ options:
 
 ```
 (no --help output)
+```
+
+## generate-phrase-json.py
+
+```
+Generated static/phrases/de-DE.json
+Generated static/phrases/en-GB.json
+Generated static/phrases/fr-FR.json
+Generated static/phrases/it-IT.json
+Generated static/phrases/es-ES.json
 ```
 
 ## generate-translated-phrases.py

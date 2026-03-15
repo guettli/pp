@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const PROD_URL = "https://thomas-guettler.de/phoneme-party/";
+const PROD_URL = `https://${process.env.REMOTE_HOST ?? "relaxandplay.de"}/phoneme-party/`;
 
 test.describe("Production smoke test", () => {
   test("page loads and returns 200", async ({ page }) => {

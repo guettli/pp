@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+    branches: [testing, main]
+  pull_request:
+
+jobs:
+  lint:
+    name: Lint & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Get pnpm store path
+        id: pnpm-cache
+        run: echo "dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.dir }}
+          key: pnpm-${{ runner.os }}-${{ hashFiles('**/package.json') }}
+          restore-keys: pnpm-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Prettier check
+        run: pnpm exec prettier --check --log-level warn .
+
+      - name: ESLint
+        run: pnpm exec eslint src
+
+      - name: Generate SvelteKit types
+        run: pnpm exec svelte-kit sync
+
+      - name: Type check
+        run: pnpm exec svelte-check --tsconfig ./tsconfig.json
+
+      - name: Check for deprecated base import
+        run: |
+          if grep -rn "import {[^}]*\bbase\b[^}]*} from \"\$app/paths\"" src/ --include="*.svelte"; then
+            echo "Error: 'base' from \$app/paths is deprecated. Use resolve() instead."
+            exit 1
+          fi
+          echo "No deprecated base imports found."
+
+  phrase-checks:
+    name: Phrase validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+
+      - name: Install Python dependencies
+        run: uv sync --frozen
+
+      - name: Check duplicate phrases
+        run: python3 ./scripts/check-phrase-duplicates.py
+
+      - name: Validate en-GB translations
+        run: python3 ./scripts/validate-phrases-en-GB.py
+
+      - name: Check phrase blacklist applied
+        run: python3 ./scripts/apply-blacklist.py

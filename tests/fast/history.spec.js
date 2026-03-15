@@ -1,4 +1,4 @@
-import { expect, test } from "./fixtures.js";
+import { expect, test } from "../fixtures.js";
 
 test.describe("History - Database Functionality", () => {
   test("should verify history is sorted with newest first", async ({ modelPage: page }) => {

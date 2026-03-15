@@ -1,4 +1,4 @@
-import { expect, test } from "./fixtures.js";
+import { expect, test } from "../fixtures.js";
 
 /**
  * Simulate a slider drag: pointerdown at fromVal, pointermove to toVal,

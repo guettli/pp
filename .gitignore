@@ -1,5 +1,6 @@
 .vscode
 .env
+deploy.conf
 .direnv/
 .claude
 
@@ -31,6 +32,7 @@ tmp/
 # Build output
 dist/
 build/
+build-server/
 /static/
 .svelte-kit/
 

@@ -1,7 +1,5 @@
-import fs from "fs";
-import yaml from "js-yaml";
-import path from "path";
-import { expect, test } from "./fixtures.js";
+import { expect, test } from "../fixtures.js";
+import { loadDieRoseTestData } from "../helpers/streaming-setup.js";
 
 /**
  * Test that RealTimePhonemeDetector correctly processes Float32Array PCM chunks
@@ -12,23 +10,10 @@ test.describe("Streaming Chunk Decode Bug", () => {
   test("RealTimePhonemeDetector should process accumulated chunks, not individual fragments", async ({
     modelPage: page,
   }) => {
-    // Load test data
-    const yamlPath = path.join(
-      process.cwd(),
-      "tests/data/de-DE/Die_Rose/Die_Rose-Thomas.flac.yaml",
-    );
-    const yamlContent = fs.readFileSync(yamlPath, "utf8");
-    const expectedData = yaml.load(yamlContent);
-
-    const expectedIPA = expectedData.recognized_ipa;
-    const phrase = expectedData.phrase;
+    const { expectedIPA, phrase, audioBuffer } = loadDieRoseTestData();
 
     console.log(`\nTesting: ${phrase}`);
     console.log(`Expected IPA: ${expectedIPA}\n`);
-
-    // Load audio file
-    const audioPath = path.join(process.cwd(), "tests/data/de-DE/Die_Rose/Die_Rose-Thomas.flac");
-    const audioBuffer = fs.readFileSync(audioPath);
 
     // Test: simulate AudioWorklet-style Float32Array chunks
     const result = await page.evaluate(

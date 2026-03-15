@@ -1,5 +1,22 @@
 <!-- markdownlint-disable -->
 
+fast-deploy: dont run slow tests!
+
+---
+
+SCRIPTS.md: ## generate-ipa-espeak.ts
+
+(no --help output)
+
+Every script should have a --help.
+
+---
+
+iOS WASM OOM: ORT 1.19+ has a WASM memory bug on iOS 17 (Emscripten issue), fixed in iOS 18.
+If needed for older iOS: use onnxruntime-web@1.18 for iOS<18, current for iOS>=18 (int8 model works on 1.18).
+
+---
+
 relaxandplay.de
 
 ---
@@ -141,7 +158,7 @@ use int8 model. How much does toIpa detection decrease?
 Pp, ui Text von phrase ist Englisch, sollte Deutsch sein
 Posteingang
 
-https://thomas-guettler.de/phoneme-party/?lang=it-IT&phrase=Come+stai%3F
+https://relaxandplay.de/phoneme-party/?lang=it-IT&phrase=Come+stai%3F
 
 ---
 
@@ -151,7 +168,7 @@ dropdown box to change studyLang: Show corresponding flag before Language. Same 
 
 Building: Text and Icon do not match
 
-https://thomas-guettler.de/phoneme-party/?lang=en-GB&phrase=building
+https://relaxandplay.de/phoneme-party/?lang=en-GB&phrase=building
 
 ---
 
@@ -501,7 +518,7 @@ Mond Thomas 80% /moːnt/ m u n d a
   m a n d
 
 - Check browser warnings.
-- Linux shows a square, not a heart: <https://thomas-guettler.de/phoneme-party/?lang=de&word=Herz>
+- Linux shows a square, not a heart: <https://relaxandplay.de/phoneme-party/?lang=de&word=Herz>
 - Phoneme recognition still bad. How to fix??? Write test, adjust parameters?
 - Auto-play input and should.
 - Avoid code duplications. Via Linter

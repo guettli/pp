@@ -3,7 +3,7 @@
  * Runs model loading and inference off the main thread to keep the UI responsive.
  */
 
-import * as ort from "onnxruntime-web/webgpu";
+import type * as OrtType from "onnxruntime-web/webgpu";
 import { buildPhonemeFeeds } from "./phoneme-feeds.js";
 import {
   clearPartialDownload,
@@ -17,12 +17,24 @@ import {
 } from "./model-cache.js";
 import { decodePhonemes, extractFrameData } from "./phoneme-decoder.js";
 import type { PhonemeWithConfidence, FrameData } from "./phoneme-decoder.js";
+import { extractLogitsTensor } from "./phoneme-postprocess.js";
 
-// Point WASM binaries to CDN — Vite does not bundle .wasm files automatically
-ort.env.wasm.wasmPaths = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.24.2/dist/";
-ort.env.wasm.numThreads = self.crossOriginIsolated ? navigator.hardwareConcurrency || 4 : 1;
-// Suppress non-critical ORT warnings (e.g. CPU vendor detection in sandboxed environments)
-ort.env.logLevel = "error";
+function isMobile(): boolean {
+  return typeof navigator !== "undefined" && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+}
+
+let _ort: typeof OrtType | null = null;
+
+async function ensureOrt(): Promise<typeof OrtType> {
+  if (_ort) return _ort;
+  _ort = await import("onnxruntime-web/webgpu");
+  // Point WASM binaries to CDN — Vite does not bundle .wasm files automatically
+  _ort.env.wasm.wasmPaths = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.24.2/dist/";
+  _ort.env.wasm.numThreads = self.crossOriginIsolated ? navigator.hardwareConcurrency || 4 : 1;
+  // Suppress non-critical ORT warnings (e.g. CPU vendor detection in sandboxed environments)
+  _ort.env.logLevel = "error";
+  return _ort;
+}
 
 interface ProgressInfo {
   status: string;
@@ -180,13 +192,14 @@ async function fetchHFChecksum(hfRepo: string, modelFile: string): Promise<strin
   }
 }
 
-let session: ort.InferenceSession | null = null;
+let session: OrtType.InferenceSession | null = null;
 let idToToken: Record<number, string> | null = null;
 let webgpuValidationFailed = false;
 
 async function validateSession(): Promise<boolean> {
   if (!session) return false;
   try {
+    const ort = await ensureOrt();
     const silence = new Float32Array(16000);
     const feeds = await buildPhonemeFeeds(silence, ort.Tensor);
     const results = await session.run(feeds);
@@ -241,6 +254,7 @@ async function loadModel(
 
   sendProgress({ status: "downloading", name: modelUrl.split("/").pop(), progress: 10 });
 
+  const ort = await ensureOrt();
   const executionProviders = await getExecutionProviders(webgpuEnabled);
 
   let modelArrayBuffer = await getModelFromCache(modelUrl);
@@ -325,20 +339,10 @@ async function doExtractPhonemes(audioData: Float32Array): Promise<string> {
   if (!session) throw new Error("Phoneme model not loaded");
   if (!idToToken) throw new Error("Vocabulary not loaded");
 
+  const ort = await ensureOrt();
   const feeds = await buildPhonemeFeeds(audioData, ort.Tensor);
   const results = await session.run(feeds);
-  let logits = results.logits || results.log_probs;
-  if (!logits) {
-    logits = results[Object.keys(results)[0]];
-  }
-  if (!logits) {
-    throw new Error(
-      "No logits output found in ONNX results. Available keys: " + Object.keys(results).join(", "),
-    );
-  }
-
-  const logitsData = logits.data as Float32Array;
-  const [, seqLen, vocabSize] = logits.dims;
+  const { logitsData, seqLen, vocabSize } = extractLogitsTensor(results);
   return decodePhonemes(logitsData, seqLen, vocabSize, idToToken, {
     returnDetails: false,
   }) as string;
@@ -351,20 +355,10 @@ async function doExtractPhonemesWithBlankInfo(
   if (!session) throw new Error("Phoneme model not loaded");
   if (!idToToken) throw new Error("Vocabulary not loaded");
 
+  const ort = await ensureOrt();
   const feeds = await buildPhonemeFeeds(audioData, ort.Tensor);
   const results = await session.run(feeds);
-  let logits = results.logits || results.log_probs;
-  if (!logits) {
-    logits = results[Object.keys(results)[0]];
-  }
-  if (!logits) {
-    throw new Error(
-      "No logits output found in ONNX results. Available keys: " + Object.keys(results).join(", "),
-    );
-  }
-
-  const logitsData = logits.data as Float32Array;
-  const [, seqLen, vocabSize] = logits.dims;
+  const { logitsData, seqLen, vocabSize } = extractLogitsTensor(results);
 
   const phonemes = decodePhonemes(logitsData, seqLen, vocabSize, idToToken, {
     returnDetails: false,
@@ -391,22 +385,11 @@ async function doExtractPhonemesDetailed(audioData: Float32Array): Promise<{
   if (!session) throw new Error("Phoneme model not loaded");
   if (!idToToken) throw new Error("Vocabulary not loaded");
 
+  const ort = await ensureOrt();
   const tokenMap = idToToken;
   const feeds = await buildPhonemeFeeds(audioData, ort.Tensor);
   const results = await session.run(feeds);
-
-  let logits = results.logits || results.log_probs;
-  if (!logits) {
-    logits = results[Object.keys(results)[0]];
-  }
-  if (!logits) {
-    throw new Error(
-      "No logits output found in ONNX results. Available keys: " + Object.keys(results).join(", "),
-    );
-  }
-
-  const logitsData = logits.data as Float32Array;
-  const [, seqLen, vocabSize] = logits.dims;
+  const { logitsData, seqLen, vocabSize } = extractLogitsTensor(results);
 
   const detailedPhonemes = decodePhonemes(logitsData, seqLen, vocabSize, tokenMap, {
     returnDetails: true,
@@ -461,7 +444,13 @@ self.onmessage = async (event: MessageEvent<WorkerMessage>) => {
         );
         self.postMessage({ type: "loaded", webgpuValidationFailed });
       } catch (err) {
-        self.postMessage({ type: "loadError", message: String(err) });
+        const ua = typeof navigator !== "undefined" ? navigator.userAgent : "unknown";
+        const mobile = isMobile();
+        const ortBuild = mobile ? "onnxruntime-web (plain)" : "onnxruntime-web/webgpu";
+        const errMsg = err instanceof Error ? err.message : String(err);
+        const stack = err instanceof Error && err.stack ? `\n${err.stack}` : "";
+        const context = `[mobile=${mobile}, ortBuild=${ortBuild}, crossOriginIsolated=${self.crossOriginIsolated}, ua=${ua}]`;
+        self.postMessage({ type: "loadError", message: `${errMsg}\n${context}${stack}` });
       }
       break;
     }

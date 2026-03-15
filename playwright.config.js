@@ -1,6 +1,17 @@
 import { defineConfig, devices } from "@playwright/test";
+import fs from "fs";
 import os from "os";
 import path from "path";
+
+// Load deploy.conf (gitignored, environment-specific) into process.env
+try {
+  for (const line of fs.readFileSync("deploy.conf", "utf-8").split("\n")) {
+    const m = line.match(/^(\w+)=(.+)$/);
+    if (m) process.env[m[1]] ??= m[2];
+  }
+} catch {
+  // deploy.conf not present — fall back to defaults in test files
+}
 
 /**
  * Playwright configuration for Phoneme Party
@@ -55,6 +66,31 @@ export default defineConfig({
   // Configure projects for major browsers
   projects: [
     {
+      name: "fast",
+      use: {
+        ...devices["Desktop Chrome"],
+        launchOptions: {
+          args: ["--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE localhost, EXCLUDE 127.0.0.1"],
+        },
+      },
+      testMatch: "**/fast/*.spec.js",
+    },
+    {
+      name: "model",
+      use: {
+        ...devices["Desktop Chrome"],
+        launchOptions: {
+          args: [
+            "--host-resolver-rules=MAP * ~NOTFOUND, EXCLUDE localhost, EXCLUDE 127.0.0.1",
+            ...(process.env.USE_GLOBAL_SETUP
+              ? [`--user-data-dir=${path.join(os.tmpdir(), "playwright-phoneme-party-cache")}`]
+              : []),
+          ],
+        },
+      },
+      testMatch: "**/model/*.spec.js",
+    },
+    {
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
@@ -70,9 +106,8 @@ export default defineConfig({
           ],
         },
       },
-      // prod-* tests run against the live site or the preview build (port 8080).
-      // They are handled by the chromium-production and prod projects below.
-      testIgnore: ["**/prod-*.spec.js"],
+      // fast/ and model/ tests handled by their own projects; prod-* by chromium-production/prod.
+      testIgnore: ["**/fast/*.spec.js", "**/model/*.spec.js", "**/prod-*.spec.js"],
     },
     {
       name: "chromium-production",
@@ -86,6 +121,11 @@ export default defineConfig({
       name: "prod",
       use: { ...devices["Desktop Chrome"] },
       testMatch: ["**/prod-smoke.spec.js", "**/prod-audio.spec.js"],
+    },
+    {
+      name: "webkit",
+      use: { ...devices["Desktop Safari"] },
+      testIgnore: ["**/prod-*.spec.js"],
     },
   ],
 

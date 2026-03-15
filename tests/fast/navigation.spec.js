@@ -1,4 +1,4 @@
-import { expect, test } from "./fixtures.js";
+import { expect, test } from "../fixtures.js";
 
 /**
  * Navigation tests: 2×3 = 6 links.

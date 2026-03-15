@@ -11,14 +11,12 @@ import { db } from "../db.js";
  * @param currentUserLevel - User's current manually set level
  * @param actualLevel - User's actual level based on performance
  * @param score - Score from the last attempt (0-100)
- * @param _phraseLevel - Difficulty level of the phrase they just attempted (reserved for future use)
  * @returns New adjusted user level
  */
 export function adjustUserLevel(
   currentUserLevel: number,
   actualLevel: number,
   score: number,
-  _phraseLevel: number,
 ): number {
   // Calculate the offset (how far user has moved from their actual level)
   const offset = currentUserLevel - actualLevel;

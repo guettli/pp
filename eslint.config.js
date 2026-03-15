@@ -3,6 +3,8 @@ import tseslint from "@typescript-eslint/eslint-plugin";
 import tsparser from "@typescript-eslint/parser";
 import sveltePlugin from "eslint-plugin-svelte";
 import * as svelteParser from "svelte-eslint-parser";
+import sonarjs from "eslint-plugin-sonarjs";
+import promise from "eslint-plugin-promise";
 
 const browserGlobals = {
   __BUILD_DATE__: "readonly",
@@ -48,19 +50,38 @@ const tsRules = {
   ...tseslint.configs["strict-type-checked"]?.rules,
   "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
   "@typescript-eslint/explicit-function-return-type": "off",
-  "@typescript-eslint/no-explicit-any": "warn",
+  // Upgraded from warn → error: zero violations exist
+  "@typescript-eslint/no-explicit-any": "error",
+  "@typescript-eslint/no-floating-promises": "error",
+  // Enabled as warn: real issues worth fixing but non-blocking
+  "@typescript-eslint/no-unsafe-assignment": "warn",
+  "@typescript-eslint/no-unsafe-call": "warn",
+  "@typescript-eslint/no-unsafe-member-access": "warn",
+  "@typescript-eslint/no-unsafe-argument": "warn",
+  "@typescript-eslint/no-misused-promises": "warn",
+  "@typescript-eslint/require-await": "warn",
+  // Off: too noisy or causes false positives in this codebase
   "@typescript-eslint/no-unnecessary-condition": "off",
   "@typescript-eslint/no-confusing-void-expression": "off",
   "@typescript-eslint/restrict-template-expressions": "off",
-  "@typescript-eslint/no-floating-promises": "warn",
-  "@typescript-eslint/no-misused-promises": "off",
-  "@typescript-eslint/require-await": "off",
   "@typescript-eslint/prefer-promise-reject-errors": "off",
-  "@typescript-eslint/no-unsafe-assignment": "off",
-  "@typescript-eslint/no-unsafe-call": "off",
-  "@typescript-eslint/no-unsafe-member-access": "off",
-  "@typescript-eslint/no-unsafe-argument": "off",
   "no-unused-vars": "off",
+};
+
+// Curated sonarjs rules: bug-prone patterns and code clarity
+const sonarRules = {
+  "sonarjs/no-duplicate-string": ["warn", { threshold: 5 }],
+  "sonarjs/no-redundant-boolean": "error",
+  "sonarjs/prefer-immediate-return": "warn",
+  "sonarjs/no-parameter-reassignment": "warn",
+  "sonarjs/nested-control-flow": ["warn", { maximumNestingLevel: 4 }],
+};
+
+// Promise plugin: useful for explicit Promise construction (less relevant for async/await)
+const promiseRules = {
+  "promise/param-names": "error",
+  "promise/no-return-wrap": "error",
+  "promise/no-multiple-resolved": "error",
 };
 
 export default [
@@ -79,8 +100,14 @@ export default [
     },
     plugins: {
       "@typescript-eslint": tseslint,
+      sonarjs,
+      promise,
     },
-    rules: tsRules,
+    rules: {
+      ...tsRules,
+      ...sonarRules,
+      ...promiseRules,
+    },
   },
   // Svelte files
   ...sveltePlugin.configs["flat/recommended"],
@@ -89,6 +116,8 @@ export default [
     plugins: {
       "@typescript-eslint": tseslint,
       svelte: sveltePlugin,
+      sonarjs,
+      promise,
     },
     languageOptions: {
       parser: svelteParser,
@@ -107,8 +136,11 @@ export default [
       // local variables (e.g. URLSearchParams/Set used for URL manipulation, not $state)
       "svelte/prefer-svelte-reactivity": "off",
       "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
-      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-explicit-any": "error",
+      "@typescript-eslint/no-misused-promises": "warn",
       "no-unused-vars": "off",
+      ...sonarRules,
+      ...promiseRules,
     },
   },
   // Server-side files may use Node.js globals

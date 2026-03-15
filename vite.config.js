@@ -84,6 +84,9 @@ const serveModelFromCache = () => {
 };
 
 export default defineConfig({
+  // Bundle all deps into the SSR output when building the Node.js server,
+  // so the deployed build-server/ is self-contained (no node_modules needed).
+  ssr: process.env.BUILD_SERVER ? { noExternal: true } : {},
   plugins: [
     sveltekit(),
     suppressExternalizationWarnings(),
@@ -123,7 +126,7 @@ export default defineConfig({
       strict: false,
     },
     watch: {
-      ignored: ["**/.venv/**", "**/onnx/**"],
+      ignored: ["**/.venv/**", "**/onnx/**", "**/static/audio/**", "**/build-server/**"],
     },
     headers: {
       "Cross-Origin-Opener-Policy": "same-origin",
