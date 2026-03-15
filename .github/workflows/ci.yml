@@ -42,6 +42,14 @@ jobs:
       - name: ESLint
         run: pnpm exec eslint src
 
+      - uses: astral-sh/setup-uv@v5
+
+      - name: Generate PanPhon data
+        run: |
+          uv sync --frozen
+          mkdir -p build/data
+          python3 scripts/export_panphon_features.py
+
       - name: Type check
         run: pnpm exec svelte-check --tsconfig ./tsconfig.json
 
