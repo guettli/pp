@@ -48,7 +48,7 @@ jobs:
         run: |
           uv sync --frozen
           mkdir -p build/data
-          python3 scripts/export_panphon_features.py
+          uv run python3 scripts/export_panphon_features.py
 
       - name: Type check
         run: pnpm exec svelte-check --tsconfig ./tsconfig.json
@@ -73,10 +73,10 @@ jobs:
         run: uv sync --frozen
 
       - name: Check duplicate phrases
-        run: python3 ./scripts/check-phrase-duplicates.py
+        run: uv run python3 ./scripts/check-phrase-duplicates.py
 
       - name: Validate en-GB translations
-        run: python3 ./scripts/validate-phrases-en-GB.py
+        run: uv run python3 ./scripts/validate-phrases-en-GB.py
 
       - name: Check phrase blacklist applied
-        run: python3 ./scripts/apply-blacklist.py
+        run: uv run python3 ./scripts/apply-blacklist.py
