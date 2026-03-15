@@ -33,14 +33,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Generate SvelteKit types
+        run: pnpm exec svelte-kit sync
+
       - name: Prettier check
         run: pnpm exec prettier --check --log-level warn .
 
       - name: ESLint
         run: pnpm exec eslint src
-
-      - name: Generate SvelteKit types
-        run: pnpm exec svelte-kit sync
 
       - name: Type check
         run: pnpm exec svelte-check --tsconfig ./tsconfig.json
