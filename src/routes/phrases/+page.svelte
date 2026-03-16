@@ -184,6 +184,38 @@
     await playPhraseAudio(phrase, lang, "edge-tts-male");
   }
 
+  // --- Feedback ---
+  type FeedbackTarget = { phrase: string; lang: StudyLanguage };
+  let feedbackTarget = $state<FeedbackTarget | null>(null);
+  let feedbackText = $state("");
+  let feedbackStatus = $state<"idle" | "sending" | "sent" | "error">("idle");
+
+  function openFeedback(group: PhraseGroup, lang: StudyLanguage) {
+    feedbackTarget = { phrase: group.langs[lang]!.phrase, lang };
+    feedbackText = "";
+    feedbackStatus = "idle";
+  }
+
+  function closeFeedback() {
+    feedbackTarget = null;
+  }
+
+  async function submitFeedback() {
+    if (!feedbackTarget || !feedbackText.trim()) return;
+    feedbackStatus = "sending";
+    const formData = new FormData();
+    formData.set("phrase", feedbackTarget.phrase);
+    formData.set("studyLang", feedbackTarget.lang);
+    formData.set("uiLang", uiLang);
+    formData.set("text", feedbackText.trim());
+    try {
+      const res = await fetch("/api/feedback", { method: "POST", body: formData });
+      feedbackStatus = res.ok ? "sent" : "error";
+    } catch {
+      feedbackStatus = "error";
+    }
+  }
+
   const LANG_LABELS: Record<StudyLanguage, string> = {
     "de-DE": "Deutsch",
     "en-GB": "English",
@@ -261,6 +293,11 @@
                     onclick={() => playAudio(group, lang)}
                     title="Play audio"
                     aria-label="Play audio">▶</button
+                  ><button
+                    class="feedback-btn"
+                    onclick={() => openFeedback(group, lang)}
+                    title="Submit feedback"
+                    aria-label="Submit feedback">✎</button
                   >
                 </td>
                 <td class="col-ipa">
@@ -283,6 +320,43 @@
     <p class="text-center text-muted py-3">{t("phrases.loading_more")}</p>
   {/if}
 </div>
+
+{#if feedbackTarget}
+  <!-- svelte-ignore a11y_click_events_have_key_events a11y_no_static_element_interactions -->
+  <div class="feedback-overlay" onclick={closeFeedback}>
+    <div class="feedback-modal" onclick={(e) => e.stopPropagation()}>
+      <h6 class="mb-2">Feedback for "<em>{feedbackTarget.phrase}</em>" ({feedbackTarget.lang})</h6>
+      {#if feedbackStatus === "sent"}
+        <p class="text-success mb-2">Thank you for your feedback!</p>
+        <button class="btn btn-sm btn-secondary" onclick={closeFeedback}>Close</button>
+      {:else}
+        <textarea
+          class="form-control mb-2"
+          rows={3}
+          placeholder="Describe the issue (e.g. wrong IPA, incorrect translation…)"
+          bind:value={feedbackText}
+          disabled={feedbackStatus === "sending"}
+        ></textarea>
+        {#if feedbackStatus === "error"}
+          <p class="text-danger small mb-2">Failed to send. Please try again.</p>
+        {/if}
+        <div class="d-flex gap-2 justify-content-end">
+          <button
+            class="btn btn-sm btn-secondary"
+            onclick={closeFeedback}
+            disabled={feedbackStatus === "sending"}>Cancel</button
+          >
+          <button
+            class="btn btn-sm btn-primary"
+            onclick={submitFeedback}
+            disabled={!feedbackText.trim() || feedbackStatus === "sending"}
+            >{feedbackStatus === "sending" ? "Sending…" : "Send"}</button
+          >
+        </div>
+      {/if}
+    </div>
+  </div>
+{/if}
 
 <style>
   .phrases-page {
@@ -414,5 +488,48 @@
 
   .scroll-sentinel {
     height: 1px;
+  }
+
+  .feedback-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.25rem;
+    padding: 0;
+    width: 1.4rem;
+    height: 1.4rem;
+    font-size: 0.75rem;
+    line-height: 1;
+    border: 1px solid #dee2e6;
+    border-radius: 50%;
+    background: #f8f9fa;
+    color: #6c757d;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: background 0.15s;
+  }
+
+  .feedback-btn:hover {
+    background: #ffc107;
+    color: #000;
+    border-color: #ffc107;
+  }
+
+  .feedback-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .feedback-modal {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.25rem;
+    width: min(420px, 90vw);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   }
 </style>
