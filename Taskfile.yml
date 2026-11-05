@@ -186,32 +186,12 @@ tasks:
     generates:
       - SCRIPTS.md
 
-  fast-deploy:
-    desc: Build and deploy to server (skips tests and checks)
-    deps: [ts, docs]
-    cmds:
-      - |
-        START=$(date +%s)
-        ./scripts/deploy-server.sh
-        END=$(date +%s)
-        echo "deploy-server: $((END - START))s"
-      - |
-        START=$(date +%s)
-        pnpm playwright test --project=prod
-        END=$(date +%s)
-        echo "check-prod: $((END - START))s"
-
   deploy:
-    desc: Build, check, deploy to server, and verify prod is up
+    desc: Run all checks. Deployment itself happens via GitOps after a push to main (see README)
     deps: [check, docs]
     cmds:
       - |
-        START=$(date +%s)
-        ./scripts/deploy-server.sh
-        END=$(date +%s)
-        echo "deploy-server: $((END - START))s"
-      - |
-        START=$(date +%s)
-        pnpm playwright test --project=prod
-        END=$(date +%s)
-        echo "check-prod: $((END - START))s"
+        echo "Checks passed. To deploy: push to main."
+        echo "  .github/workflows/publish-image.yml builds and pushes ghcr.io/guettli/pp:v<date>,"
+        echo "  Renovate in guettli/gitops bumps the tag, Flux rolls it out to the vps k3s cluster."
+        echo "  Afterwards verify with: ./run task check-prod"

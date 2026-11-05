@@ -36,21 +36,17 @@ Add a dependency in Taskfile, so that a new `git clone` of the project gets the 
 
 ## Deploy
 
-Deploy via:
-
-```sh
-./run task deploy
-```
-
-## Deploy instead of `pnpm check`
-
 When the agent has done his work, run:
 
 ```sh
 ./run task deploy
 ```
 
-This runs check and deploys to a demo page.
+This runs all checks. Deployment happens via GitOps: a push to `main` builds the container image
+(`.github/workflows/publish-image.yml`), Renovate in guettli/gitops bumps the image tag, and Flux
+rolls it out to the k3s cluster on the host `vps`. See the "Deployment" section in README.md.
+
+After the rollout, verify production with `./run task check-prod`.
 
 ## Branches
 

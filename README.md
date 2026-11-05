@@ -2,14 +2,17 @@
 
 Use AI models on your local device to analyze your pronunciation.
 
-Currently, focused on German beginners/kids.
+Focused on beginners and kids. Five study languages: German (de-DE), British English (en-GB), French
+(fr-FR), Italian (it-IT) and Spanish (es-ES), with 816 phrases each.
 
 Two language settings:
 
-- **ui-lang**: language of the UI (auto-detected from browser, changeable)
-- **study-lang**: language being practised (must be chosen explicitly; en-GB or de)
+- **ui-lang**: language of the UI (auto-detected from browser, changeable; de-DE, en-GB, fr-FR,
+  it-IT or es-ES)
+- **study-lang**: language being practised (must be chosen explicitly; de-DE, en-GB, fr-FR, it-IT or
+  es-ES)
 
-Demo: <https://relaxandplay.de/phoneme-party/>
+Live: <https://relaxandplay.de/phoneme-party/>
 
 Build on:
 
@@ -18,20 +21,21 @@ Build on:
 
 Github: <https://github.com/guettli/pp>
 
-Built as static web-site. No server required!
+Speech recognition runs in the browser. The recording never leaves the device, unless the user sends
+it with the feedback form.
 
-First Steps:
+How it works for the user:
 
-- Application has a set of well known phrases and the desired pronounciation.
-- User sees a random phrase, and the corresponding picture.
-- User records his/her voice.
+- The application has a set of well known phrases and their desired pronunciation.
+- The user sees a phrase and the corresponding picture (emoji), and can listen to it.
+- The user records their voice.
 - The distance between desired and actual phonemes gets shown.
 
 ## Goal: Help Children in Developing Countries
 
 My goal is to help children in developing countries to learn reading and speaking.
 
-Currently, learning English and German is worked on.
+Currently, learning English, German, French, Italian and Spanish is worked on.
 
 I was inspired by the book [Moral Ambition](https://www.moralambition.org/book).
 
@@ -51,16 +55,16 @@ sending data to external servers.
 ### How It Works
 
 1. **Text to Phonemes (Target)**
-   - User inputs a German phrase or sentence
-   - A phonetic dictionary or text-to-phoneme model converts the text into the expected phoneme
-     sequence
-   - For German, this uses IPA (International Phonetic Alphabet) or similar phonetic representation
+   - Each phrase in `phrases-{lang}.yaml` carries its expected pronunciation in IPA (International
+     Phonetic Alphabet), generated ahead of time (see [SCRIPTS.md](SCRIPTS.md))
 
 2. **Audio Recording**
    - User's voice is captured via the browser's Web Audio API
+   - Example audio for every phrase (two voices per language) is pre-generated with edge-tts
 
 3. **Speech to Phonemes (Actual)**
-   - An automatic speech recognition (ASR) model runs locally in the browser
+   - The [ZIPA](https://github.com/lingjzhu/zipa) model (ONNX, int8) runs locally in the browser via
+     onnxruntime-web, in a Web Worker
    - The model outputs IPA symbols
 
 4. **Phoneme Comparison**
@@ -74,6 +78,30 @@ sending data to external servers.
    - Results displayed in a user-friendly format
    - Color-coded phonemes (green = correct, yellow = close, red = incorrect)
    - Suggestions for improvement on specific sounds
+
+## Deployment
+
+The app is a SvelteKit application built with adapter-node. The Node server serves the pages, the
+static assets and the phrase audio, and stores the feedback sent via the feedback form
+(`/api/feedback`).
+
+It runs in the k3s cluster on the host `vps`, deployed via GitOps:
+
+1. A push to `main` runs [.github/workflows/publish-image.yml](.github/workflows/publish-image.yml).
+   It builds the WASM, the PanPhon data, the phrase JSON and the phrase audio, builds the server
+   bundle, smoke-tests it and pushes `ghcr.io/guettli/pp:v<YYYY.MM.DD.HHMMSS>`.
+2. Renovate in [guettli/gitops](https://github.com/guettli/gitops) opens and auto-merges the PR that
+   bumps the image tag in `k8s/plain/vps/pp/`.
+3. Flux applies the new Deployment.
+
+The phrase audio is not in git. Each image build copies it from the previous image and generates
+only the missing files with edge-tts.
+
+Smoke-test the live site with:
+
+```bash
+pnpm playwright test --project=prod
+```
 
 ## Development
 
