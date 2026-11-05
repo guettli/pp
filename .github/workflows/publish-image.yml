@@ -14,6 +14,8 @@ name: Publish Image
 on:
   push:
     branches: [main]
+  # Pull requests build and smoke-test the image but push nothing.
+  pull_request:
   workflow_dispatch:
 
 concurrency:
@@ -126,6 +128,7 @@ jobs:
           kill %1
 
       - name: Log in to GitHub Container Registry
+        if: github.event_name != 'pull_request'
         run:
           echo "${{ github.token }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
@@ -142,6 +145,11 @@ jobs:
             ${VERSION:+-t "$IMAGE:$VERSION"} \
             ${VERSION:+-t "$IMAGE:latest"} \
             .
+          if [ "${{ github.event_name }}" = pull_request ]; then
+            echo "pull request: image built, not pushed"
+            docker run --rm "$IMAGE:$GITHUB_SHA" node -e "require('fs').statSync('/app/build-server/index.js')"
+            exit 0
+          fi
           docker push "$IMAGE:$GITHUB_SHA"
           if [ -n "${VERSION:-}" ]; then
             docker push "$IMAGE:$VERSION"
