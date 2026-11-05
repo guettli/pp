@@ -8,11 +8,20 @@ import type { PhonemeFeatureTable } from "../types.js";
 // For Node.js: the test workers handle JSON loading separately
 import panphonData from "../../build/data/panphon_features.json";
 
+interface PanphonData {
+  phonemes: string[];
+  features: string;
+  featureCount: number;
+}
+
 /**
  * Decode base64 binary features into a lookup table
  */
 function decodePanphonFeatures(): PhonemeFeatureTable {
-  const { phonemes, features: featuresBase64, featureCount } = panphonData;
+  // The assertion is needed although eslint calls it unnecessary when the JSON
+  // exists: it is generated (task panphon), and CI lints before generating it.
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+  const { phonemes, features: featuresBase64, featureCount } = panphonData as PanphonData;
 
   // Decode base64 to binary
   const binaryString = atob(featuresBase64);
