@@ -1,0 +1,3 @@
+# Only the finished server bundle goes into the image (see Dockerfile).
+*
+!build-server
