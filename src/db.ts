@@ -372,8 +372,7 @@ class PhonemePartyDB {
     const stateId = `state_${studyLang}_${phrase}`;
 
     try {
-      const doc = await this.db.get<PhraseStateDoc>(stateId);
-      return doc as PhraseStateDoc;
+      return await this.db.get<PhraseStateDoc>(stateId);
     } catch {
       return null; // Never attempted
     }
@@ -523,7 +522,7 @@ class PhonemePartyDB {
     const docs: unknown[] = [];
     for (const row of result.rows) {
       if (row.doc !== undefined) {
-        docs.push(row.doc as unknown);
+        docs.push(row.doc);
       }
     }
     return docs;
@@ -707,14 +706,7 @@ class PhonemePartyDB {
   } | null> {
     const docId = "setting_catch_it";
     try {
-      return (await this.db.get(docId)) as {
-        phraseCount?: number;
-        duration?: number;
-        speedStart?: number;
-        speedEnd?: number;
-        wordsPerSec?: number;
-        wordLifetime?: number;
-      };
+      return await this.db.get(docId);
     } catch {
       return null;
     }
