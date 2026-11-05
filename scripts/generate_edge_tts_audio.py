@@ -55,7 +55,27 @@ async def generate_one(phrase: str, voice_id: str, out_file: Path, sem: asyncio.
     return f"  OK  {out_file.name}"
 
 
-async def async_main(check_only: bool, delete_orphans: bool) -> None:
+async def fetch_seed(session, url: str, out_file: Path, sem: asyncio.Semaphore) -> bool:
+    """Download an already generated opus file from a running deployment.
+
+    Returns False on 404, so the caller falls back to edge-tts for that file.
+    Any other non-200 status is an error: a broken seed source must not
+    silently turn into thousands of TTS requests.
+    """
+    async with sem:
+        async with session.get(url) as response:
+            if response.status == 404:
+                return False
+            if response.status != 200:
+                raise RuntimeError(f"seed download failed: {url} -> HTTP {response.status}")
+            body = await response.read()
+    tmp_file = out_file.with_suffix(".tmp.opus")
+    tmp_file.write_bytes(body)
+    tmp_file.rename(out_file)
+    return True
+
+
+async def async_main(check_only: bool, delete_orphans: bool, seed_url: str | None) -> None:
     project_root = Path(__file__).parent.parent
     audio_dir = project_root / "static" / "audio"
 
@@ -120,15 +140,35 @@ async def async_main(check_only: bool, delete_orphans: bool) -> None:
                         print(f"MISSING  {lang_code}/{voice_name}/{out_file.name}  (phrase: {phrase})")
                 continue
 
-            # Build tasks for all missing phrases in this voice
-            tasks = []
+            missing = []
             for item in sorted_phrases:
                 phrase = item["phrase"]
                 en_gb_text = phrase if lang_code == "en-GB" else (item.get("en-GB") or phrase)
                 stem = phrase_to_filename(en_gb_text)
                 out_file = voice_audio_dir / f"{stem}.opus"
-                if out_file.exists():
-                    continue
+                if not out_file.exists():
+                    missing.append((phrase, out_file))
+
+            if seed_url and missing:
+                import aiohttp
+
+                seed_sem = asyncio.Semaphore(20)
+                async with aiohttp.ClientSession() as session:
+                    seeded = await asyncio.gather(*(
+                        fetch_seed(
+                            session,
+                            f"{seed_url.rstrip('/')}/{lang_code}/{voice_name}/{out_file.name}",
+                            out_file,
+                            seed_sem,
+                        )
+                        for _, out_file in missing
+                    ))
+                print(f"Seeded {sum(seeded)}/{len(missing)} files for {lang_code}/{voice_name} from {seed_url}")
+                missing = [m for m, ok in zip(missing, seeded) if not ok]
+
+            # Build tasks for all phrases still missing in this voice
+            tasks = []
+            for phrase, out_file in missing:
                 print(f"Queuing: '{phrase}' [{lang_code}/{voice_name}]")
                 tasks.append(generate_one(phrase, voice_id, out_file, sem))
 
@@ -154,7 +194,14 @@ def main():
     )
     subparsers = parser.add_subparsers(dest="subcommand")
     subparsers.add_parser("check", help="Print missing and orphaned opus files without changing anything.")
-    subparsers.add_parser("create", help="Generate missing opus files using edge-tts.")
+    create_parser = subparsers.add_parser("create", help="Generate missing opus files using edge-tts.")
+    create_parser.add_argument(
+        "--seed-url",
+        help="Before calling edge-tts, try to download each missing file from this URL"
+        " (the audio/ directory of a running deployment, for example"
+        " https://relaxandplay.de/phoneme-party/audio). Files the URL does not have"
+        " (HTTP 404) are generated with edge-tts.",
+    )
     subparsers.add_parser("delete-orphans", help="Delete opus files with no matching phrase.")
 
     args = parser.parse_args()
@@ -166,6 +213,7 @@ def main():
     asyncio.run(async_main(
         check_only=args.subcommand == "check",
         delete_orphans=args.subcommand == "delete-orphans",
+        seed_url=getattr(args, "seed_url", None),
     ))
     print("Done.")
 
