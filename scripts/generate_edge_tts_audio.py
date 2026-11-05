@@ -69,7 +69,7 @@ async def fetch_seed(session, url: str, out_file: Path, sem: asyncio.Semaphore) 
             if response.status != 200:
                 raise RuntimeError(f"seed download failed: {url} -> HTTP {response.status}")
             body = await response.read()
-    tmp_file = out_file.with_suffix(".tmp.opus")
+    tmp_file = out_file.with_suffix(".part")
     tmp_file.write_bytes(body)
     tmp_file.rename(out_file)
     return True

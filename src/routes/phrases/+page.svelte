@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
   import { page } from "$app/state";
+  import { resolve } from "$app/paths";
   import "../../styles/main.css";
   import { t as _t, getUiLang, initI18n, onUiLangChange } from "../../i18n.js";
   import type { SupportedLanguage, Phrase, IPA } from "../../types.js";
@@ -209,7 +210,7 @@
     formData.set("uiLang", uiLang);
     formData.set("text", feedbackText.trim());
     try {
-      const res = await fetch("/api/feedback", { method: "POST", body: formData });
+      const res = await fetch(resolve("/api/feedback", {}), { method: "POST", body: formData });
       feedbackStatus = res.ok ? "sent" : "error";
     } catch {
       feedbackStatus = "error";
