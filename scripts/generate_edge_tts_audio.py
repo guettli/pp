@@ -130,6 +130,10 @@ async def async_main(check_only: bool, delete_orphans: bool, seed_url: str | Non
                         else:
                             print(f"ORPHAN   {lang_code}/{voice_name}/{opus_file.name}")
 
+            if delete_orphans:
+                # Only delete. Generating here too would bypass create's --seed-url.
+                continue
+
             if check_only:
                 for item in sorted_phrases:
                     phrase = item["phrase"]
