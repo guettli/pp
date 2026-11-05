@@ -8,17 +8,11 @@ import type { PhonemeFeatureTable } from "../types.js";
 // For Node.js: the test workers handle JSON loading separately
 import panphonData from "../../build/data/panphon_features.json";
 
-interface PanphonData {
-  phonemes: string[];
-  features: string;
-  featureCount: number;
-}
-
 /**
  * Decode base64 binary features into a lookup table
  */
 function decodePanphonFeatures(): PhonemeFeatureTable {
-  const { phonemes, features: featuresBase64, featureCount } = panphonData as PanphonData;
+  const { phonemes, features: featuresBase64, featureCount } = panphonData;
 
   // Decode base64 to binary
   const binaryString = atob(featuresBase64);

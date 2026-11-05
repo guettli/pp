@@ -247,10 +247,9 @@ async function loadModel(
     const parsed = JSON.parse(vocabText) as Record<string, number>;
     for (const [token, id] of Object.entries(parsed)) {
       vocab[token] = id;
-      idToToken[id as unknown as number] = token;
+      idToToken[id] = token;
     }
   }
-  void vocab; // vocab not needed beyond building idToToken
 
   sendProgress({ status: "downloading", name: modelUrl.split("/").pop(), progress: 10 });
 

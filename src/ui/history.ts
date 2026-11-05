@@ -35,7 +35,7 @@ export function initHistory() {
   if (prevHandler) {
     scrollContainer.removeEventListener("scroll", prevHandler);
   }
-  w[SCROLL_HANDLER_KEY] = handleScroll as EventListener;
+  w[SCROLL_HANDLER_KEY] = handleScroll;
 
   // Expose live state and refreshHistoryAsync on window from THIS module instance.
   // Tests must call window.__phonemePartyRefreshHistoryAsync() instead of importing
