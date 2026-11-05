@@ -4,6 +4,8 @@ on:
   push:
     branches: [testing, main]
   pull_request:
+  # publish-image.yml runs these checks first and publishes only if they pass.
+  workflow_call:
 
 jobs:
   lint:

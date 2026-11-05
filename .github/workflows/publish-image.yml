@@ -23,8 +23,14 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  ci:
+    # Lint, typecheck and phrase validation must pass before an image is built:
+    # Renovate auto-merges every v… tag into gitops.
+    uses: ./.github/workflows/ci.yml
+
   publish:
     name: Build & Push pp image
+    needs: ci
     runs-on: ubuntu-latest
     timeout-minutes: 60
     permissions:
@@ -117,8 +123,14 @@ jobs:
       - name: Smoke test the server bundle
         # Same entry point as the image. Fails the build before anything is
         # pushed if the bundle does not serve the app, its audio or the API.
+        # Run a copy outside the repository: inside it, node would resolve
+        # packages from node_modules/, which the image does not have.
         run: |
-          PORT=3000 HOST=127.0.0.1 node build-server/index.js > /tmp/server.log 2>&1 &
+          mkdir -p "$RUNNER_TEMP/smoke/data"
+          cp -r build-server "$RUNNER_TEMP/smoke/"
+          echo '{"type":"module"}' > "$RUNNER_TEMP/smoke/build-server/package.json"
+          cd "$RUNNER_TEMP/smoke/data"
+          PORT=3000 HOST=127.0.0.1 node ../build-server/index.js > /tmp/server.log 2>&1 &
           for _ in $(seq 1 30); do curl -sf -o /dev/null http://127.0.0.1:3000/phoneme-party/ && break; sleep 1; done
           curl -sf http://127.0.0.1:3000/phoneme-party/ | grep -q "<title>"
           curl -sf http://127.0.0.1:3000/phoneme-party/api/version
