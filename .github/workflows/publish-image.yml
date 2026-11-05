@@ -145,9 +145,17 @@ jobs:
             ${VERSION:+-t "$IMAGE:$VERSION"} \
             ${VERSION:+-t "$IMAGE:latest"} \
             .
+          # Run the image as the Deployment does (ORIGIN set, /data writable)
+          # before anything is pushed.
+          docker run -d --name pp-smoke -p 3000:3000 -e ORIGIN=http://127.0.0.1:3000 "$IMAGE:$GITHUB_SHA"
+          for _ in $(seq 1 30); do curl -sf -o /dev/null http://127.0.0.1:3000/phoneme-party/ && break; sleep 1; done
+          curl -sf -o /dev/null http://127.0.0.1:3000/phoneme-party/audio/en-GB/edge-tts-female/The_rabbit_laughs.opus
+          curl -sf -H "Origin: http://127.0.0.1:3000" -F text=ci-smoke -F phrase=x -F uiLang=en-GB -F studyLang=en-GB \
+            http://127.0.0.1:3000/phoneme-party/api/feedback
+          docker exec pp-smoke ls /data/feedback
+          docker rm -f pp-smoke
           if [ "${{ github.event_name }}" = pull_request ]; then
-            echo "pull request: image built, not pushed"
-            docker run --rm "$IMAGE:$GITHUB_SHA" node -e "require('fs').statSync('/app/build-server/index.js')"
+            echo "pull request: image built and tested, not pushed"
             exit 0
           fi
           docker push "$IMAGE:$GITHUB_SHA"
