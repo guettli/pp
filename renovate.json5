@@ -13,6 +13,11 @@
   schedule: ["before 6am on monday"],
   minimumReleaseAge: "14 days",
   prConcurrentLimit: 5,
+  // Majors need code changes more often than not (SvelteKit 3, Vite 8,
+  // TypeScript 7, ...). They wait on the Dependency Dashboard until ticked.
+  major: {
+    dependencyDashboardApproval: true,
+  },
   // Refreshes transitive dependencies in pnpm-lock.yaml. Before the lockfile was
   // committed, every build floated them, and a fresh install broke the build
   // without any change in this repo.
