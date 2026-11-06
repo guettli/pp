@@ -1,0 +1,34 @@
+// Renovate config. Renovate runs self-hosted from guettli/gitops
+// (.github/workflows/renovate.yml lists this repo in RENOVATE_REPOSITORIES), in
+// a job where no commands are allowed. It covers npm (package.json and
+// pnpm-lock.yaml, including the packageManager pnpm version) and GitHub Actions.
+// Python (uv.lock) is not covered: the Renovate job has no uv.
+//
+// No automerge: a merge to main deploys to production.
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: ["config:recommended"],
+  enabledManagers: ["npm", "github-actions"],
+  timezone: "Europe/Berlin",
+  schedule: ["before 6am on monday"],
+  minimumReleaseAge: "14 days",
+  prConcurrentLimit: 5,
+  // Refreshes transitive dependencies in pnpm-lock.yaml. Before the lockfile was
+  // committed, every build floated them, and a fresh install broke the build
+  // without any change in this repo.
+  lockFileMaintenance: {
+    enabled: true,
+    schedule: ["before 6am on monday"],
+  },
+  packageRules: [
+    {
+      matchManagers: ["npm"],
+      matchUpdateTypes: ["minor", "patch"],
+      groupName: "npm minor and patch",
+    },
+    {
+      matchManagers: ["github-actions"],
+      groupName: "github actions",
+    },
+  ],
+}
