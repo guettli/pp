@@ -62,7 +62,8 @@ when CI is green, then verify production with `./run task check-prod`.
 `--frozen`. After changing `package.json`, run `pnpm install` and commit the updated lockfile.
 
 Renovate (run from guettli/gitops) opens the update PRs: weekly, and only for releases that are at
-least 14 days old.
+least 14 days old (`minimumReleaseAge` in `pnpm-workspace.yaml` applies the same to the transitive
+dependencies).
 
 Two pitfalls:
 

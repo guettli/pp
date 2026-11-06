@@ -1,1 +1,15 @@
-onlyBuiltDependencies: onnxruntime-node
+# Install scripts that stay off. Everything works without them: esbuild and
+# flac-bindings ship prebuilt binaries, onnxruntime-node's script only downloads
+# the CUDA binaries, and protobufjs's only prints a notice. (The previous
+# `onlyBuiltDependencies: onnxruntime-node` was a string, not a list, and pnpm
+# ignored it.)
+ignoredBuiltDependencies:
+  - esbuild
+  - flac-bindings
+  - onnxruntime-node
+  - protobufjs
+
+# Resolve only versions published at least 14 days ago (in minutes). This also
+# covers the transitive dependencies that Renovate's lockFileMaintenance
+# refreshes, which Renovate's own minimumReleaseAge does not.
+minimumReleaseAge: 20160
